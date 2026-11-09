@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#edf5f3">
+<title>ห้องแล็บเสมือน | ความปลอดภัยและทักษะเคมี ม.4</title>
+<style>
+:root{color-scheme:light;--ink:#18312f;--muted:#58716c;--paper:#fff;--wash:#edf5f3;--line:#d5e3df;--green:#17665a;--mint:#d9eee8;--gold:#e9b65d;--red:#9c3c32;--shadow:0 14px 40px #1c4a3e12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1000px;margin:auto;padding:0 22px}
+.hero{padding:54px 0 42px;background:radial-gradient(ellipse at 95% 0,#d4e9df 0,transparent 45%),linear-gradient(145deg,#f9fcfa,#edf5f3);border-bottom:1px solid var(--line)}.eyebrow{color:var(--green);font-size:.82rem;font-weight:700;letter-spacing:.08em}.hero h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.2;max-width:750px;margin:.7rem 0}.hero p{max-width:650px;color:var(--muted);margin:.8rem 0 0}.hero-mark{display:inline-grid;place-items:center;width:48px;height:48px;margin-bottom:18px;border-radius:15px;background:var(--green);color:white;font-size:25px}
+.progressbar{height:8px;border-radius:99px;background:#d8e5e1;overflow:hidden;margin:24px 0 0}.progressbar span{display:block;height:100%;width:0;background:var(--green);transition:width .25s}.progress-copy{color:var(--muted);font-size:.9rem;margin:.45rem 0 0}
+main{padding:28px 0 64px}.lesson{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,34px);margin:18px 0;box-shadow:var(--shadow)}.lesson h2{font-size:1.35rem;line-height:1.35;margin:0 0 10px}.kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:var(--green);text-transform:uppercase;margin:0 0 5px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.choice-card{border:1px solid var(--line);background:#fbfdfc;border-radius:14px;padding:16px}.choice-card legend{font-weight:700;padding:0 5px}.choice-card label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}.choice-card input{accent-color:var(--green);margin-top:5px;flex:0 0 auto}
+fieldset{min-width:0;border:0;padding:0;margin:0}fieldset + fieldset{margin-top:18px}.feedback{min-height:1.6em;margin:10px 0 0;font-weight:600;color:var(--green)}.feedback.error{color:var(--red)}[aria-live]{border-radius:8px}.action{border:0;border-radius:10px;background:var(--green);color:#fff;font-weight:700;padding:10px 16px}.action:hover{background:#0d5147}.action.secondary{background:#e6f0ed;color:var(--ink)}button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.meter{width:min(100%,330px);margin:18px auto 8px}.meter svg{width:100%;height:auto;display:block}.caption{text-align:center;color:var(--muted);font-size:.9rem}.answer-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}.answer-row input{width:110px;border:1px solid #a8beb7;border-radius:9px;padding:9px 10px}.note{border-left:4px solid var(--gold);background:#fff8e9;padding:12px 15px;border-radius:0 10px 10px 0;color:#57492e}.complete{display:none;text-align:center;background:var(--mint);padding:20px;border-radius:14px;margin-top:18px}.complete h2{margin-bottom:4px}.footer{color:var(--muted);font-size:.9rem;padding:0 0 28px}
+@media(max-width:650px){.wrap{padding:0 15px}.hero{padding:38px 0 30px}.grid{grid-template-columns:1fr}.lesson{border-radius:14px}.answer-row{align-items:stretch}.answer-row input{width:100%}.answer-row button{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="hero-mark" aria-hidden="true">⚗</div>
+  <div class="eyebrow">ห้องแล็บเสมือน · เคมี ม.4 · บทที่ 1</div>
+  <h1>ปลอดภัยก่อนเริ่มทดลอง</h1>
+  <p>ฝึกเลือกอุปกรณ์ ทบทวนการตัดสินใจเพื่อความปลอดภัย และอ่านค่าจากกระบอกตวงในสถานการณ์จำลอง</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้าบทเรียน" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="progressFill"></span></div>
+  <p class="progress-copy" id="progressText" aria-live="polite">ทำกิจกรรม 0 จาก 5 ส่วน</p>
+</div></header>
+<main class="wrap">
+<section class="lesson" aria-labelledby="intro-title"><p class="kicker">เริ่มต้น</p><h2 id="intro-title">เป้าหมายการเรียนรู้</h2>
+<p>เมื่อจบบทนี้ นักเรียนจะเลือกอุปกรณ์เบื้องต้นได้เหมาะกับงาน ระบุแนวปฏิบัติเพื่อความปลอดภัย และอ่านระดับของเหลวจากก้นเมนิสคัสได้</p>
+<div class="note"><strong>หมายเหตุความปลอดภัย:</strong> บทเรียนนี้เป็นแบบจำลองเพื่อทบทวนความรู้ ไม่ใช้แทนคำแนะนำของครู การอ่านฉลากและเอกสารข้อมูลความปลอดภัย (SDS) หรือการฝึกในห้องปฏิบัติการที่มีผู้ควบคุม</div></section>
+
+<section class="lesson" id="apparatus" aria-labelledby="apparatus-title"><p class="kicker">กิจกรรม 1</p><h2 id="apparatus-title">เลือกอุปกรณ์ให้ตรงกับงาน</h2><p class="muted">เลือกคำตอบในแต่ละสถานการณ์</p>
+<fieldset class="choice-card"><legend>ต้องการวัดปริมาตรของเหลวโดยประมาณ</legend><label><input type="radio" name="volumeTool" value="cylinder">กระบอกตวง</label><label><input type="radio" name="volumeTool" value="beaker">บีกเกอร์</label></fieldset>
+<fieldset class="choice-card"><legend>ต้องการวัดมวลของของแข็ง</legend><label><input type="radio" name="massTool" value="balance">เครื่องชั่ง</label><label><input type="radio" name="massTool" value="cylinder">กระบอกตวง</label></fieldset>
+<p class="feedback" id="apparatusFeedback" aria-live="polite"></p></section>
+
+<section class="lesson" id="safety" aria-labelledby="safety-title"><p class="kicker">กิจกรรม 2</p><h2 id="safety-title">ตัดสินใจอย่างปลอดภัย</h2>
+<fieldset class="choice-card"><legend>ก่อนใช้สารเคมีที่มีอันตราย ควรทำอย่างไร?</legend><label><input type="radio" name="safety1" value="a">อ่านฉลากและ SDS ทำตามคำแนะนำของครู และใช้อุปกรณ์ป้องกันตามที่กำหนด</label><label><input type="radio" name="safety1" value="b">ดมสารจากปากภาชนะเพื่อระบุชนิด</label><label><input type="radio" name="safety1" value="c">ผสมสารเล็กน้อยเพื่อทดลองก่อน โดยไม่ต้องแจ้งครู</label></fieldset>
+<fieldset class="choice-card"><legend>พบหลอดแก้วมีรอยร้าวก่อนใช้งาน ควรทำอย่างไร?</legend><label><input type="radio" name="safety2" value="a">ใช้ต่ออย่างระมัดระวัง</label><label><input type="radio" name="safety2" value="b">หยุดใช้และแจ้งครูเพื่อจัดการอย่างเหมาะสม</label><label><input type="radio" name="safety2" value="c">ทิ้งลงถังขยะทั่วไป</label></fieldset>
+<p class="feedback" id="safetyFeedback" aria-live="polite"></p></section>
+
+<section class="lesson" id="reading" aria-labelledby="reading-title"><p class="kicker">กิจกรรม 3</p><h2 id="reading-title">อ่านค่าจากกระบอกตวง</h2><p>มองระดับของเหลวในภาพ อ่านที่ระดับสายตาเดียวกับกระบอกตวง และพิจารณา <strong>ก้นเมนิสคัส</strong> เส้นหลักสองเส้นห่างกัน 1 mL ให้ประมาณค่าหลักทศนิยมอีกหนึ่งตำแหน่ง</p>
+<figure class="meter"><svg viewBox="0 0 260 250" role="img" aria-labelledby="meterTitle meterDesc"><title id="meterTitle">ภาพจำลองกระบอกตวง</title><desc id="meterDesc">ระดับของเหลวอยู่ระหว่างขีด 24 และ 25 มิลลิลิตร ให้อ่านที่ก้นเมนิสคัส</desc>
+<rect x="65" y="20" width="130" height="205" rx="16" fill="#f7fbfa" stroke="#6b8980" stroke-width="3"/><path d="M68 118 Q130 124 192 118 L192 222 L68 222Z" fill="#b7ded5" opacity=".8"/>
+<line x1="82" y1="105" x2="145" y2="105" stroke="#315d53" stroke-width="3"/><line x1="82" y1="145" x2="145" y2="145" stroke="#315d53" stroke-width="3"/>
+<line x1="82" y1="105" x2="101" y2="105" stroke="#315d53" stroke-width="3"/><line x1="82" y1="145" x2="101" y2="145" stroke="#315d53" stroke-width="3"/>
+<text x="151" y="111" font-size="16" fill="#18312f">25</text><text x="151" y="151" font-size="16" fill="#18312f">24</text>
+<path d="M69 118 Q130 124 191 118" fill="none" stroke="#17665a" stroke-width="3"/><line x1="70" y1="121" x2="190" y2="121" stroke="#17665a" stroke-width="1" stroke-dasharray="4 4" opacity=".55"/>
+<text x="130" y="243" text-anchor="middle" font-size="14" fill="#58716c">ปริมาตร (mL)</text></svg><figcaption class="caption">ภาพจำลอง: ขีดหลัก 24 และ 25 mL</figcaption></figure>
+<div class="answer-row"><label for="meniscusInput">ปริมาตรที่อ่านได้ (mL)</label><input id="meniscusInput" type="number" min="0" max="100" step="0.1" inputmode="decimal" aria-describedby="readingHelp"><button class="action" id="readingButton" type="button">ตรวจคำตอบ</button></div><p id="readingHelp" class="muted">ตอบเป็นตัวเลขทศนิยมหนึ่งตำแหน่ง</p><p class="feedback" id="readingFeedback" aria-live="polite"></p></section>
+
+<section class="lesson" id="quiz" aria-labelledby="quiz-title"><p class="kicker">ทบทวน</p><h2 id="quiz-title">แบบทดสอบสั้น</h2>
+<fieldset class="choice-card"><legend>ควรอ่านค่าของของเหลวในกระบอกตวงตรงตำแหน่งใด?</legend><label><input type="radio" name="quiz1" value="a">ขอบบนของเมนิสคัส</label><label><input type="radio" name="quiz1" value="b">ก้นเมนิสคัส ที่ระดับสายตา</label><label><input type="radio" name="quiz1" value="c">มองจากด้านบนของกระบอก</label></fieldset>
+<fieldset class="choice-card"><legend>หากต้องการตวงของเหลวให้แม่นยำสูงมาก ควรเลือกอุปกรณ์จากอะไร?</legend><label><input type="radio" name="quiz2" value="a">เลือกกระบอกตวงขนาดใดก็ได้</label><label><input type="radio" name="quiz2" value="b">ดูดด้วยปากจากหลอดแก้ว</label><label><input type="radio" name="quiz2" value="c">เลือกปิเปตหรือขวดวัดปริมาตรตามงานและคำแนะนำของครู</label></fieldset>
+<button class="action" id="quizButton" type="button">ส่งคำตอบ</button><p class="feedback" id="quizFeedback" aria-live="polite"></p></section>
+
+<section class="complete" id="complete" aria-live="polite"><h2>🎉 ทำกิจกรรมครบแล้ว</h2><p>ทบทวนจุดที่ยังไม่แน่ใจ แล้วปรึกษาครูก่อนทำการทดลองจริง</p></section>
+<div class="answer-row"><button class="action secondary" id="resetButton" type="button">เริ่มบทเรียนใหม่</button></div>
+</main>
+<footer class="wrap footer">สื่อการเรียนรู้เคมีแบบ offline · เปิดไฟล์นี้ด้วยเว็บเบราว์เซอร์ได้โดยไม่ต้องเชื่อมต่ออินเทอร์เน็ต</footer>
+<script>
+(()=>{
+  'use strict';
+  const KEY='chemistryM4LabLesson_v1';
+  const $=id=>document.getElementById(id);
+  const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return {};}};
+  let state=read();
+  const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));}catch(_){} updateProgress();};
+  const selected=name=>document.querySelector(`input[name="${name}"]:checked`)?.value||'';
+  const feedback=(id,message,error=false)=>{$(id).textContent=message;$(id).classList.toggle('error',error);};
+  function updateProgress(){
+    const done=[!!state.apparatus,!!state.safety,!!state.reading,!!state.quiz];
+    const count=done.filter(Boolean).length;
+    $('progressFill').style.width=`${count/4*100}%`;
+    document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow',count);
+    $('progressText').textContent=`ทำกิจกรรม ${count} จาก 4 ส่วน`;
+    $('complete').style.display=count===4?'block':'none';
+  }
+  function checkApp(){
+    const a=selected('volumeTool'),b=selected('massTool');if(!a||!b)return;
+    const correct=a==='cylinder'&&b==='balance';state.apparatus=true;persist();
+    feedback('apparatusFeedback',correct?'ถูกต้อง: ใช้กระบอกตวงวัดปริมาตรโดยประมาณ และใช้เครื่องชั่งวัดมวล':'ลองทบทวนอีกครั้ง: กระบอกตวงใช้วัดปริมาตร ส่วนเครื่องชั่งใช้วัดมวล',!correct);
+  }
+  document.querySelectorAll('input[name="volumeTool"],input[name="massTool"]').forEach(el=>el.addEventListener('change',checkApp));
+  function checkSafety(){
+    const a=selected('safety1'),b=selected('safety2');if(!a||!b)return;
+    const correct=a==='a'&&b==='b';state.safety=true;persist();
+    feedback('safetyFeedback',correct?'ถูกต้อง: อ่านฉลากและ SDS ทำตามคำแนะนำ และแจ้งครูเมื่อพบอุปกรณ์ชำรุด':'ทบทวนอีกครั้ง: อย่าดมสารโดยตรง อย่าทดลองผสมเอง และอย่าใช้หรือทิ้งแก้วที่ร้าวโดยไม่แจ้งครู',!correct);
+  }
+  document.querySelectorAll('input[name="safety1"],input[name="safety2"]').forEach(el=>el.addEventListener('change',checkSafety));
+  $('readingButton').addEventListener('click',()=>{
+    const value=Number($('meniscusInput').value);if($('meniscusInput').value===''||!Number.isFinite(value)){feedback('readingFeedback','กรุณากรอกค่าที่อ่านได้',true);return;}
+    state.reading=true;persist();const correct=Math.abs(value-24.6)<=0.05;
+    feedback('readingFeedback',correct?'ถูกต้อง: อ่านก้นเมนิสคัสได้ประมาณ 24.6 mL และรายงานเพิ่มหนึ่งตำแหน่งประมาณค่า':`คำตอบอ้างอิงคือ 24.6 mL; อ่านที่ก้นเมนิสคัส โดยประมาณหนึ่งตำแหน่งหลังจุดทศนิยม`,!correct);
+  });
+  $('quizButton').addEventListener('click',()=>{
+    const a=selected('quiz1'),b=selected('quiz2');if(!a||!b){feedback('quizFeedback','กรุณาตอบให้ครบทั้งสองข้อ',true);return;}
+    state.quiz=true;persist();const score=(a==='b'?1:0)+(b==='c'?1:0);
+    feedback('quizFeedback',`ได้ ${score}/2 คะแนน · ${score===2?'เยี่ยมมาก':'คำตอบ: ก้นเมนิสคัสที่ระดับสายตา และเลือกปิเปตหรือขวดวัดปริมาตรให้เหมาะกับงาน'}`,score<2);
+  });
+  function restore(){
+    if(state.volumeTool)document.querySelector(`input[name="volumeTool"][value="${state.volumeTool}"]`).checked=true;
+    if(state.massTool)document.querySelector(`input[name="massTool"][value="${state.massTool}"]`).checked=true;
+    if(state.safety1)document.querySelector(`input[name="safety1"][value="${state.safety1}"]`).checked=true;
+    if(state.safety2)document.querySelector(`input[name="safety2"][value="${state.safety2}"]`).checked=true;
+    if(state.apparatus){checkApp();}if(state.safety){checkSafety();}
+    if(state.reading){$('meniscusInput').value=state.readingValue??'';$('readingButton').click();}
+    if(state.quiz){const a=state.quiz1,b=state.quiz2;if(a)document.querySelector(`input[name="quiz1"][value="${a}"]`).checked=true;if(b)document.querySelector(`input[name="quiz2"][value="${b}"]`).checked=true;if(a&&b)$('quizButton').click();}
+    updateProgress();
+  }
+  $('meniscusInput').addEventListener('input',()=>{state.readingValue=$('meniscusInput').value;persist();});
+  document.querySelectorAll('input[name="volumeTool"],input[name="massTool"],input[name="safety1"],input[name="safety2"],input[name="quiz1"],input[name="quiz2"]').forEach(el=>el.addEventListener('change',()=>{state[el.name]=el.value;persist();}));
+  $('resetButton').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}state={};location.reload();});
+  restore();
+})();
+</script>
+</body>
+</html>
