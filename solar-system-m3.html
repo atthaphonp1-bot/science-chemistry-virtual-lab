@@ -1,0 +1,1141 @@
+<meta charset="utf-8">
+<title>ระบบสุริยะของเรา</title>
+<script>if(!document.querySelector('meta[name="viewport"]')){var _m=document.createElement("meta");_m.name="viewport";_m.content="width=device-width,initial-scale=1,viewport-fit=cover";(document.head||document.documentElement).appendChild(_m);}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Sarabun:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --sky:#eaeef8; --paper:#ffffff; --paper2:#f5f7fd;
+  --ink:#101b34; --ink-soft:#4d5878; --ink-faint:#7b86a6;
+  --sun:#c9741a; --sun-bright:#e8952f; --sun-soft:#fbeddb;
+  --orbit:#256b64; --orbit-soft:#dcece9;
+  --line:#d3dbee; --line-strong:#b9c4de;
+  --good:#1f7a4d; --bad:#b23a2b;
+  --moon-lit:#f3e6cd; --moon-dark:#2b3450;
+  --shadow:0 1px 2px rgba(16,27,52,.06), 0 8px 24px -12px rgba(16,27,52,.18);
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --sky:#0a1020; --paper:#131b30; --paper2:#18213a;
+    --ink:#e9edf9; --ink-soft:#a9b4d3; --ink-faint:#7d88a8;
+    --sun:#f0a63f; --sun-bright:#f7bd63; --sun-soft:#3a2a12;
+    --orbit:#5cc3b3; --orbit-soft:#12302b;
+    --line:#28324f; --line-strong:#3a4566;
+    --good:#5cd28f; --bad:#f0796a;
+    --moon-lit:#f6ecd6; --moon-dark:#1b2237;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --sky:#0a1020; --paper:#131b30; --paper2:#18213a;
+  --ink:#e9edf9; --ink-soft:#a9b4d3; --ink-faint:#7d88a8;
+  --sun:#f0a63f; --sun-bright:#f7bd63; --sun-soft:#3a2a12;
+  --orbit:#5cc3b3; --orbit-soft:#12302b;
+  --line:#28324f; --line-strong:#3a4566;
+  --good:#5cd28f; --bad:#f0796a;
+  --moon-lit:#f6ecd6; --moon-dark:#1b2237;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sky);color:var(--ink);-webkit-text-size-adjust:100%;
+  font-family:"Sarabun",-apple-system,"Helvetica Neue",sans-serif;font-size:16px;line-height:1.75;}
+h1,h2,h3,h4{font-family:"Chakra Petch","Sarabun",sans-serif;margin:0;text-wrap:balance;line-height:1.3}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header.hero{position:relative;overflow:hidden;background:
+   radial-gradient(900px 320px at 88% -30%, var(--sun-soft), transparent 70%),
+   linear-gradient(180deg,var(--paper2),var(--sky));
+  border-bottom:1px solid var(--line);}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding-top:34px;padding-bottom:34px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun);margin-bottom:10px}
+.hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.01em}
+.hero p{margin:10px 0 0;color:var(--ink-soft);max-width:62ch}
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.byline{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:7px 16px 7px 9px;
+  border:1px solid var(--line-strong);border-radius:999px;background:var(--paper);
+  font-family:"Chakra Petch",sans-serif;font-size:15px;color:var(--ink-soft)}
+.byline .dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--sun-bright),var(--sun));color:#fff;font-size:13px;font-weight:700}
+.byline b{color:var(--ink);font-weight:600}
+.chip{font-size:13px;padding:4px 11px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink-soft);background:var(--paper)}
+.orbits{width:150px;height:150px}
+.orbits circle{fill:none;stroke:var(--line-strong)}
+.orbits .sunc{fill:var(--sun-bright);stroke:none}
+.orbits .pl{fill:var(--orbit);stroke:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbits g.rot{transform-origin:75px 75px;animation:spin linear infinite}
+.orbits g.r1{animation-duration:9s}.orbits g.r2{animation-duration:16s}.orbits g.r3{animation-duration:26s}
+@media (prefers-reduced-motion: reduce){.orbits g.rot{animation:none}}
+@media(max-width:720px){.hero .wrap{grid-template-columns:1fr}.orbits{display:none}}
+
+/* ---------- tabs ---------- */
+nav.tabs{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sky) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:thin}
+.tab{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:10px;border:1px solid transparent;
+  background:none;cursor:pointer;color:var(--ink-soft);font-family:"Chakra Petch",sans-serif;font-size:15px;font-weight:600;white-space:nowrap}
+.tab:hover{background:var(--paper);color:var(--ink)}
+.tab svg{width:20px;height:20px;flex:0 0 auto}
+.tab[aria-selected="true"]{background:var(--paper);border-color:var(--line-strong);color:var(--ink);box-shadow:var(--shadow)}
+.tab[aria-selected="true"] .tnum{color:var(--sun)}
+.tnum{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-faint)}
+:focus-visible{outline:2.5px solid var(--sun);outline-offset:2px;border-radius:6px}
+
+/* ---------- panels & cards ---------- */
+main{padding:28px 0 72px}
+.panel[hidden]{display:none}
+.panel{display:grid;gap:20px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.card > h2{font-size:22px;margin-bottom:4px}
+.card > h3{font-size:17px}
+.lede{color:var(--ink-soft);margin:6px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orbit);margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
+.fact{background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:14px 15px}
+.fact b{display:block;font-family:"Chakra Petch",sans-serif;font-size:15px;margin-bottom:2px}
+.fact span{font-size:14.5px;color:var(--ink-soft)}
+.formula{font-family:"IBM Plex Mono",monospace;background:var(--paper2);border-left:3px solid var(--sun);
+  padding:12px 14px;border-radius:0 9px 9px 0;overflow-x:auto;font-size:15px}
+.note{border-left:3px solid var(--orbit);background:var(--orbit-soft);padding:11px 14px;border-radius:0 9px 9px 0;font-size:14.5px}
+</style>
+<style>
+/* ---------- interactive widgets ---------- */
+.lab{background:linear-gradient(180deg,var(--paper2),var(--paper));border:1px solid var(--line-strong);border-radius:var(--r);padding:20px}
+.lab-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.lab-head h3{font-size:18px}
+.lab-head em{font-style:normal;font-size:13px;color:var(--ink-faint)}
+.ctrl{display:grid;gap:14px}
+.slider label{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;margin-bottom:4px}
+.slider .val{font-family:"IBM Plex Mono",monospace;color:var(--sun);font-weight:500}
+input[type=range]{width:100%;accent-color:var(--sun);height:24px}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.pbtn{font-size:13.5px;padding:5px 11px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink-soft);cursor:pointer;font-family:inherit}
+.pbtn:hover{border-color:var(--sun);color:var(--ink)}
+.pbtn[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:#fff}
+.readout{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.stat{flex:1 1 150px;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+.stat .k{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
+.stat .v{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat .v small{font-size:13px;color:var(--ink-soft)}
+.stage{width:100%;overflow-x:auto;margin-top:6px}
+.stage svg{display:block;max-width:100%;height:auto}
+.legend{font-size:13.5px;color:var(--ink-soft);margin-top:8px}
+
+/* moon widget */
+.moonlab{display:grid;grid-template-columns:minmax(260px,1fr) minmax(220px,.85fr);gap:20px;align-items:center}
+@media(max-width:640px){.moonlab{grid-template-columns:1fr}}
+.wheel{position:relative;width:100%;max-width:470px;aspect-ratio:1.4;margin:0 auto}
+.wheel .earth,.wheel .sunicon{position:absolute;transform:translate(-50%,-50%)}
+.wheel .earth{left:50%;top:50%}
+.posdot{position:absolute;width:46px;height:46px;touch-action:manipulation;transform:translate(-50%,-50%);border-radius:50%;
+  border:2px solid var(--line-strong);cursor:pointer;padding:0;display:grid;place-items:center;
+  background:linear-gradient(90deg,var(--moon-dark) 0 50%,var(--moon-lit) 50% 100%)}
+.posdot i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-soft);
+  background:var(--paper);width:21px;height:21px;border-radius:50%;display:grid;place-items:center;line-height:1}
+.posdot:hover{border-color:var(--sun)}
+.posdot[aria-pressed="true"]{border-color:var(--sun);border-width:3px;box-shadow:0 0 0 5px var(--sun-soft)}
+.posdot[aria-pressed="true"] i{color:var(--sun);font-weight:500}
+.wheel-key{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:6px;font-size:13.5px;color:var(--ink-soft)}
+.wheel-key span{display:inline-flex;align-items:center;gap:7px}
+.wheel-key .sw{width:16px;height:16px;border-radius:50%;border:1px solid var(--line-strong);flex:0 0 auto}
+.wheel-key .sw.half{background:linear-gradient(90deg,var(--moon-dark) 0 50%,var(--moon-lit) 50% 100%)}
+.wheel-key .sw.ray{border:0;height:2px;border-radius:0;background:var(--sun);width:22px}
+.moonview{text-align:center}
+.moon-vis{width:136px;height:136px;margin:0 auto 14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.28))}
+.moon-vis svg{display:block;width:100%;height:100%}
+.moonview h4{font-family:"Chakra Petch",sans-serif;font-size:20px;margin:0}
+.moonview .thai{color:var(--sun);font-family:"IBM Plex Mono",monospace;font-size:13.5px;margin:2px 0 8px}
+.moonview p{font-size:14.5px;color:var(--ink-soft);margin:0}
+
+/* illustrated explainers */
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:18px}
+.figcard{background:var(--paper2);border:1px solid var(--line);border-radius:13px;padding:16px;color:var(--ink-soft)}
+.figcard h4{font-family:"Chakra Petch",sans-serif;font-size:16.5px;color:var(--ink);margin:0 0 10px}
+.figcard figure{margin:0}
+.figcard svg{display:block;width:100%;height:auto;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px}
+.figcard figcaption{margin-top:10px;font-size:14.5px;line-height:1.65;color:var(--ink-soft)}
+.figcard figcaption b{color:var(--ink)}
+
+/* tech cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px;margin-top:16px}
+.tcard{display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;cursor:pointer;
+  border:1px solid var(--line);border-radius:13px;padding:15px 16px;background:var(--paper);
+  font-family:inherit;color:var(--ink);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tcard:hover{border-color:var(--line-strong)}
+.tcard[aria-expanded="true"]{border-color:var(--sun);background:var(--paper2)}
+.ticon{flex:0 0 auto;width:46px;height:46px;border-radius:11px;display:grid;place-items:center;
+  background:var(--sun-soft);color:var(--sun)}
+.ticon svg{width:30px;height:30px}
+.tbody{display:flex;flex-direction:column;gap:5px;min-width:0}
+.tbody .tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.08em;color:var(--sun)}
+.tbody b{font-family:"Chakra Petch",sans-serif;font-size:16.5px;line-height:1.35;font-weight:600}
+.tbody .desc{display:none;font-size:15px;line-height:1.65;color:var(--ink)}
+.tbody .ansletter{display:none;align-items:center;gap:7px;align-self:flex-start;
+  padding:3px 11px;border:1px solid var(--sun);border-radius:999px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--sun);background:var(--sun-soft)}
+.tbody .ansletter b{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--sun);line-height:1}
+.tcard[aria-expanded="true"] .ansletter{display:inline-flex}
+.tbody .hint{font-size:12.5px;color:var(--ink-faint)}
+.tcard[aria-expanded="true"] .desc{display:block}
+.tcard[aria-expanded="true"] .hint{display:none}
+
+/* ---------- quiz / answer key ---------- */
+.qsec{margin-top:22px}
+.qsec-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  padding-bottom:8px;border-bottom:2px solid var(--line-strong);margin-bottom:10px}
+.qsec-head h3{font-size:17px}
+.qsec-head .src{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-faint)}
+.revealall{font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid var(--line-strong);
+  background:var(--paper);color:var(--ink-soft);cursor:pointer;font-family:inherit}
+.revealall:hover{border-color:var(--sun);color:var(--sun)}
+.qitem{border-bottom:1px solid var(--line);padding:11px 0}
+.qitem:last-child{border-bottom:0}
+.qbtn{width:100%;display:flex;gap:11px;align-items:flex-start;background:none;border:0;padding:0;cursor:pointer;
+  text-align:left;font-family:inherit;font-size:15.5px;color:var(--ink);line-height:1.7}
+.qnum{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--sun);padding-top:3px;min-width:22px}
+.qtext{flex:1}
+.caret{flex:0 0 auto;width:18px;height:18px;margin-top:5px;color:var(--ink-faint);transition:transform .2s}
+.qitem.open .caret{transform:rotate(90deg);color:var(--sun)}
+.ans{display:none;margin:8px 0 2px 33px;padding:12px 14px;border-radius:10px;background:var(--sun-soft);
+  border:1px solid color-mix(in srgb,var(--sun) 28%,transparent);font-size:15px;color:var(--ink)}
+.qitem.open .ans{display:block}
+.ans .lbl{font-family:"Chakra Petch",sans-serif;font-weight:700;color:var(--sun);margin-right:6px}
+.ans .tf{font-family:"Chakra Petch",sans-serif;font-weight:700}
+.ans .tf.y{color:var(--good)}.ans .tf.n{color:var(--bad)}
+.ans code{font-family:"IBM Plex Mono",monospace;background:var(--paper);padding:1px 5px;border-radius:5px;font-size:14px}
+table.tide{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;margin-top:12px}
+table.tide th,table.tide td{border:1px solid var(--line);padding:6px 9px;text-align:center}
+table.tide thead th{background:var(--paper2);font-family:"Chakra Petch",sans-serif;font-weight:600}
+table.tide caption{caption-side:top;text-align:left;font-size:13px;color:var(--ink-faint);padding-bottom:6px}
+.scrollx{overflow-x:auto}
+/* ---------- touch / iPad ---------- */
+button,input,.tab,.pbtn,.qbtn,.revealall{touch-action:manipulation}
+@media (pointer:coarse){
+  .tab{padding:12px 16px;font-size:16px}
+  .pbtn{padding:9px 15px;font-size:15px}
+  input[type=range]{height:38px}
+  .qbtn{font-size:16.5px;padding:4px 0}
+  .revealall{padding:9px 15px;font-size:14.5px}
+  .ans{font-size:16px}
+  .flip .face{min-height:172px}
+}
+@media (min-width:760px) and (max-width:1200px){
+  body{font-size:17px}
+  .wrap{padding:0 26px}
+  .card{padding:26px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(255px,1fr))}
+  .hero .wrap{padding-top:40px;padding-bottom:40px}
+}
+@media (max-width:860px){
+  .moonlab{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}.ans{margin-left:0}}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-faint);font-size:13.5px}
+</style>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">วิทยาศาสตร์ ม.3 · ภาคเรียนที่ 1 · หน่วยที่ 4</div>
+      <h1>ระบบสุริยะของเรา</h1>
+      <p>บทที่ 1 ปฏิสัมพันธ์ในระบบสุริยะ — สื่อการสอนเชิงโต้ตอบ ครบทั้ง 4 เรื่องตามใบงาน พร้อมเฉลยทุกข้อ กดที่คำถามเพื่อดูเฉลย</p>
+      <div class="chiprow">
+        <span class="chip">4 เรื่อง · 18 ใบงาน</span>
+        <span class="chip">แบบจำลองโต้ตอบ 5 ชุด</span>
+        <span class="chip">เฉลย 100+ ข้อ</span>
+      </div>
+      <div class="byline"><span class="dot">ก๋</span>จัดทำโดย <b>ครูเก๋</b></div>
+    </div>
+    <svg class="orbits" viewBox="0 0 150 150" aria-hidden="true">
+      <circle cx="75" cy="75" r="30"/><circle cx="75" cy="75" r="48"/><circle cx="75" cy="75" r="66"/>
+      <circle class="sunc" cx="75" cy="75" r="9"/>
+      <g class="rot r1"><circle class="pl" cx="105" cy="75" r="4"/></g>
+      <g class="rot r2"><circle class="pl" cx="123" cy="75" r="5.5"/></g>
+      <g class="rot r3"><circle class="pl" cx="141" cy="75" r="3.5"/></g>
+    </svg>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="เลือกเรื่อง">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="12" r="3.2"/><circle cx="18.5" cy="12" r="1.8"/><path d="M9.6 12h5.6M14 9.8l1.9 2.2-1.9 2.2"/></svg>
+      <span class="tnum">01</span> แรงโน้มถ่วง
+    </button>
+    <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="13" cy="12" r="5"/><path d="M15.4 4.6 10.6 19.4M3 12h3"/><path d="M4.5 9.5 3 12l1.5 2.5"/></svg>
+      <span class="tnum">02</span> โลกโคจรรอบดวงอาทิตย์
+    </button>
+    <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15.5 3.4a8.6 8.6 0 1 0 5.1 11 7 7 0 0 1-5.1-11Z"/></svg>
+      <span class="tnum">03</span> โลก–ดวงจันทร์–ดวงอาทิตย์
+    </button>
+    <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M4 8.5 8 4.5l3 3-4 4zM16 12.5l4-4 0 0-3-3-4 4M12.5 15.5 9 19M14 17l-3.5 3.5"/></svg>
+      <span class="tnum">04</span> เทคโนโลยีอวกาศ
+    </button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ======================= TAB 1 ======================= -->
+<section class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+  <div class="card">
+    <div class="kicker">เรื่องที่ 1</div>
+    <h2>แรงโน้มถ่วงระหว่างดวงอาทิตย์กับดาวบริวาร</h2>
+    <p class="lede">ทุกวัตถุที่มีมวลจะดึงดูดกันเสมอ แม้ไม่สัมผัสกัน แรงนี้คือ <b>แรงโน้มถ่วง</b> และเป็นแรงที่ยึดดาวเคราะห์ทั้ง 8 ดวงไว้ในวงโคจรรอบดวงอาทิตย์</p>
+    <div class="formula">F = G · (m₁ · m₂) / r²  &nbsp;&nbsp;|&nbsp;&nbsp; G = 6.674 × 10⁻¹¹ N·m²/kg²</div>
+    <div class="grid2">
+      <div class="fact"><b>มวลมาก → แรงมาก</b><span>แรงแปรผันตรงกับมวลทั้งสอง ถ้ามวลดวงหนึ่งเพิ่มเป็น 2 เท่า แรงก็เพิ่มเป็น 2 เท่า</span></div>
+      <div class="fact"><b>ยิ่งไกล → แรงยิ่งน้อย</b><span>แรงแปรผกผันกับ<b>กำลังสอง</b>ของระยะทาง ห่างเป็น 2 เท่า แรงเหลือ 1/4</span></div>
+      <div class="fact"><b>น้ำหนัก ≠ มวล</b><span>มวลคงที่ทุกที่ แต่น้ำหนัก (W = mg) เปลี่ยนตามสนามโน้มถ่วง บนดวงจันทร์ g ≈ 1.62 จึงหนักราว 1/6 ของบนโลก</span></div>
+      <div class="fact"><b>ยิ่งไกล → โคจรยิ่งนาน</b><span>ดาวพุธใช้ 88 วัน โลก 365 วัน ดาวเนปจูน 165 ปี</span></div>
+    </div>
+  </div>
+
+  <div class="card lab">
+    <div class="lab-head"><h3>ห้องทดลอง: ปรับมวลและระยะทาง แล้วดูแรงโน้มถ่วง</h3><em>เทียบกับแรงที่ดวงอาทิตย์ดึงโลก = 1 เท่า</em></div>
+    <div class="ctrl">
+      <div class="slider">
+        <label>มวลของดาวเคราะห์ <span class="val" id="g-mv">1.00 เท่าของโลก</span></label>
+        <input type="range" id="g-mass" min="-1.3" max="2.6" step="0.01" value="0">
+      </div>
+      <div class="slider">
+        <label>ระยะห่างจากดวงอาทิตย์ <span class="val" id="g-dv">1.00 AU</span></label>
+        <input type="range" id="g-dist" min="-0.45" max="1.5" step="0.01" value="0">
+      </div>
+      <div class="presets" id="g-presets"></div>
+    </div>
+    <div class="stage"><svg id="g-stage" viewBox="0 0 700 190" role="img" aria-label="แผนภาพแรงโน้มถ่วงระหว่างดวงอาทิตย์กับดาวเคราะห์"></svg></div>
+    <div class="readout">
+      <div class="stat"><div class="k">แรงโน้มถ่วง (เทียบโลก)</div><div class="v" id="g-force">1.00 <small>เท่า</small></div></div>
+      <div class="stat"><div class="k">ค่าจริงโดยประมาณ</div><div class="v" id="g-newton">3.5×10²² <small>N</small></div></div>
+      <div class="stat"><div class="k">คาบการโคจร (กฎเคปเลอร์)</div><div class="v" id="g-period">1.00 <small>ปี</small></div></div>
+    </div>
+    <p class="legend">สังเกต: ถ้าเลื่อนระยะทางออกไปเป็น 2 เท่า แรงจะลดเหลือเพียง 1/4 เพราะระยะทางอยู่ในรูป <b>กำลังสอง</b> ที่ตัวส่วน</p>
+  </div>
+
+  <div class="card"><h3>ใบงานเรื่องที่ 1 · คำถามพร้อมเฉลย</h3><div id="q1"></div></div>
+</section>
+
+<!-- ======================= TAB 2 ======================= -->
+<section class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+  <div class="card">
+    <div class="kicker">เรื่องที่ 2</div>
+    <h2>ปรากฏการณ์จากการเคลื่อนที่ของโลกรอบดวงอาทิตย์</h2>
+    <p class="lede">โลกทำ 2 อย่างพร้อมกัน: <b>หมุนรอบตัวเอง</b> 1 รอบใน 24 ชั่วโมง (เกิดกลางวัน–กลางคืน) และ <b>โคจรรอบดวงอาทิตย์</b> 1 รอบใน 365.25 วัน โดยแกนโลกเอียง 23.5° คงที่ตลอด → เกิดฤดูกาล</p>
+    <div class="grid2">
+      <div class="fact"><b>สาเหตุของฤดูกาล = แกนเอียง</b><span>ไม่ใช่ระยะห่าง! ซีกโลกที่หันเข้าหาดวงอาทิตย์รับแสงตั้งฉากและนานกว่า จึงร้อนกว่า</span></div>
+      <div class="fact"><b>มุมตกกระทบ = ความเข้มพลังงาน</b><span>แสงตั้งฉาก → พลังงานต่อพื้นที่มาก อุณหภูมิสูง / แสงเฉียง → พลังงานกระจายบนพื้นที่กว้าง อุณหภูมิต่ำ</span></div>
+      <div class="fact"><b>สองซีกโลกตรงข้ามกันเสมอ</b><span>ไทยหนาว = นิวซีแลนด์ร้อน</span></div>
+      <div class="fact"><b>ประเทศไทยมี 3 ฤดู</b><span>ร้อน–ฝน–หนาว เพราะอยู่ในเขตร้อนใกล้ศูนย์สูตร ไม่มีฤดูใบไม้ร่วง/ใบไม้ผลิแบบเขตอบอุ่น</span></div>
+    </div>
+  </div>
+
+  <div class="card lab">
+    <div class="lab-head"><h3>ห้องทดลอง: เลื่อนวันในรอบปี ดูแกนโลกกับฤดูกาล</h3><em>ลากแถบเลื่อนเพื่อพาโลกโคจรรอบดวงอาทิตย์</em></div>
+    <div class="slider">
+      <label>วันที่ในรอบปี <span class="val" id="s-date">21 มิถุนายน</span></label>
+      <input type="range" id="s-day" min="1" max="365" step="1" value="172">
+    </div>
+    <div class="presets" id="s-presets"></div>
+    <div class="stage"><svg id="s-stage" viewBox="0 0 700 300" role="img" aria-label="แผนภาพวงโคจรของโลกรอบดวงอาทิตย์และมุมเอียงของแกนโลก"></svg></div>
+    <div class="readout">
+      <div class="stat"><div class="k">ซีกโลกเหนือ</div><div class="v" id="s-north" style="font-size:19px">ฤดูร้อน</div></div>
+      <div class="stat"><div class="k">ซีกโลกใต้</div><div class="v" id="s-south" style="font-size:19px">ฤดูหนาว</div></div>
+      <div class="stat"><div class="k">ประเทศไทย</div><div class="v" id="s-thai" style="font-size:19px">ฤดูฝน</div></div>
+    </div>
+    <p class="legend" id="s-note"></p>
+  </div>
+
+  <div class="card"><h3>ใบงานเรื่องที่ 2 · คำถามพร้อมเฉลย</h3><div id="q2"></div></div>
+</section>
+
+<!-- ======================= TAB 3 ======================= -->
+<section class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+  <div class="card">
+    <div class="kicker">เรื่องที่ 3</div>
+    <h2>ปฏิสัมพันธ์ระหว่างดวงอาทิตย์ โลก และดวงจันทร์</h2>
+    <p class="lede">ดวงจันทร์ไม่มีแสงในตัวเอง แต่สะท้อนแสงอาทิตย์ ครึ่งดวงที่หันเข้าหาดวงอาทิตย์สว่างเสมอ — สิ่งที่เปลี่ยนคือ <b>มุมที่เรามองจากโลก</b> จึงเห็นส่วนสว่างมากน้อยต่างกัน เกิดเป็นข้างขึ้น–ข้างแรม</p>
+    <div class="grid2">
+      <div class="fact"><b>โคจรรอบโลก 27.3 วัน</b><span>แต่รอบข้างขึ้น–ข้างแรม (จันทรคติ) ยาว 29.5 วัน เพราะโลกเคลื่อนที่ตามดวงอาทิตย์ไปด้วย</span></div>
+      <div class="fact"><b>ขึ้นช้าวันละ ~50 นาที</b><span>ดวงจันทร์เลื่อนไปทางตะวันออกวันละ ~13° โลกต้องหมุนตามอีก ~50 นาที</span></div>
+      <div class="fact"><b>เห็นด้านเดียวเสมอ</b><span>เพราะคาบหมุนรอบตัวเอง = คาบโคจรรอบโลก</span></div>
+      <div class="fact"><b>แรงไทดัล → น้ำขึ้นน้ำลง</b><span>เกิดจากแรงโน้มถ่วงที่กระทำต่อน้ำด้านใกล้–ไกลดวงจันทร์ไม่เท่ากัน</span></div>
+    </div>
+  </div>
+
+  <div class="card lab">
+    <div class="lab-head"><h3>ห้องทดลอง: วงล้อข้างขึ้น–ข้างแรม</h3><em>แสงอาทิตย์ส่องมาจากทางขวาเป็นลำขนาน · กดตำแหน่งดวงจันทร์เพื่อดูว่าจากโลกเห็นเป็นรูปใด</em></div>
+    <div class="moonlab">
+      <div class="wheel" id="m-wheel"></div>
+      <div class="moonview">
+        <div class="moon-vis" id="m-moon"></div>
+        <h4 id="m-name">จันทร์เต็มดวง</h4>
+        <div class="thai" id="m-thai">ขึ้น 15 ค่ำ</div>
+        <p id="m-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lab">
+    <div class="lab-head"><h3>ห้องทดลอง: น้ำเกิด–น้ำตาย</h3><em>เลือกการเรียงตัวของดวงอาทิตย์ โลก และดวงจันทร์</em></div>
+    <div class="presets" id="tide-presets"></div>
+    <div class="stage"><svg id="tide-stage" viewBox="0 0 700 230" role="img" aria-label="แผนภาพการเรียงตัวของดวงอาทิตย์ โลก ดวงจันทร์ กับระดับน้ำขึ้นน้ำลง"></svg></div>
+    <p class="legend" id="tide-note"></p>
+  </div>
+
+  <div class="card"><h3>ใบงานเรื่องที่ 3 · คำถามพร้อมเฉลย</h3><div id="q3"></div></div>
+</section>
+
+<!-- ======================= TAB 4 ======================= -->
+<section class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+  <div class="card">
+    <div class="kicker">เรื่องที่ 4</div>
+    <h2>เทคโนโลยีอวกาศ</h2>
+    <p class="lede">การประยุกต์ความรู้วิทยาศาสตร์และวิศวกรรมศาสตร์ เพื่อสำรวจ ศึกษา และใช้ประโยชน์จากอวกาศ ตั้งแต่จรวดที่พาของขึ้นไป จนถึงดาวเทียมที่ทำงานอยู่เหนือหัวเราตลอดเวลา</p>
+
+    <div class="figgrid">
+
+      <div class="figcard">
+        <h4>ทำไมจรวดต้องแบ่งเป็นหลายท่อน</h4>
+        <figure>
+          <svg viewBox="0 0 460 250" role="img" aria-label="แผนภาพจรวด 3 ท่อน สลัดท่อนที่เชื้อเพลิงหมดทิ้งทีละท่อน มวลจึงลดลงจาก 100% เหลือ 8% เมื่อถึงวงโคจร">
+            <defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L10,5 L0,9 z" fill="currentColor"/></marker></defs>
+            <line x1="18" y1="212" x2="442" y2="212" stroke="currentColor" opacity=".45" stroke-dasharray="4 5"/>
+            <text x="18" y="230" font-size="11.5" fill="currentColor" opacity=".7" font-family="Sarabun">พื้นโลก</text>
+            <g stroke="currentColor" fill="none" stroke-width="1.6" stroke-linejoin="round">
+              <g transform="translate(70,205)">
+                <rect x="-10" y="-24" width="20" height="24"/><rect x="-10" y="-48" width="20" height="24"/>
+                <rect x="-10" y="-72" width="20" height="24"/><path d="M-10,-72 L0,-92 L10,-72"/>
+                <path d="M-10,0 L-4,10 L4,10 L10,0" stroke="var(--sun)"/>
+              </g>
+              <g transform="translate(230,158)">
+                <rect x="-10" y="-24" width="20" height="24"/><rect x="-10" y="-48" width="20" height="24"/>
+                <path d="M-10,-48 L0,-68 L10,-48"/><path d="M-10,0 L-4,9 L4,9 L10,0" stroke="var(--sun)"/>
+              </g>
+              <g transform="translate(388,108)">
+                <rect x="-10" y="-24" width="20" height="24"/><path d="M-10,-24 L0,-42 L10,-24"/>
+                <rect x="-28" y="-20" width="15" height="12"/><rect x="13" y="-20" width="15" height="12"/>
+              </g>
+            </g>
+            <g stroke="var(--sun)" fill="none" stroke-width="1.6" marker-end="url(#ar1)" color="var(--sun)">
+              <path d="M95,150 Q150,120 195,110"/><path d="M255,102 Q310,78 348,68"/>
+            </g>
+            <g stroke="currentColor" fill="none" stroke-width="1.4" opacity=".55">
+              <rect x="126" y="176" width="16" height="19" transform="rotate(24 134 185)"/>
+              <rect x="292" y="128" width="16" height="19" transform="rotate(24 300 137)"/>
+            </g>
+            <g font-family="Sarabun" font-size="11.5" fill="var(--sun)" text-anchor="middle">
+              <text x="147" y="103">สลัดท่อนที่ 1</text><text x="303" y="61">สลัดท่อนที่ 2</text>
+            </g>
+            <g font-family="IBM Plex Mono" font-size="12" fill="currentColor" text-anchor="middle">
+              <text x="70" y="104">มวล 100%</text><text x="230" y="80">เหลือ ~30%</text><text x="388" y="50">เหลือ ~8%</text>
+            </g>
+            <g font-family="Sarabun" font-size="11" fill="currentColor" opacity=".7" text-anchor="middle">
+              <text x="70" y="232">ทะยานขึ้น</text><text x="230" y="186">สูง ~70 กม.</text><text x="388" y="136">เข้าสู่วงโคจร</text>
+            </g>
+          </svg>
+          <figcaption>ท่อนที่ใช้เชื้อเพลิงหมดแล้วกลายเป็น<b>น้ำหนักส่วนเกิน</b> จึงสลัดทิ้งไปเป็นลำดับ เครื่องยนต์ท่อนถัดไปจึงเร่งมวลที่เบาลงเรื่อย ๆ ด้วยเชื้อเพลิงเท่าเดิม สุดท้ายจึงพาส่วนบรรทุกไปถึงความเร็ว 7.9 กม./วินาที ที่ใช้เข้าวงโคจรได้</figcaption>
+        </figure>
+      </div>
+
+      <div class="figcard">
+        <h4>ทำไมกล้องโทรทรรศน์ต้องขึ้นไปอยู่นอกโลก</h4>
+        <figure>
+          <svg viewBox="0 0 460 250" role="img" aria-label="แผนภาพชั้นบรรยากาศดูดกลืนรังสีเอกซ์และอัลตราไวโอเลต ปล่อยให้แสงที่ตามองเห็นและคลื่นวิทยุผ่านลงมาแบบสั่นไหว กล้องอวกาศจึงอยู่เหนือบรรยากาศ">
+            <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L10,5 L0,9 z" fill="currentColor"/></marker></defs>
+            <rect x="1" y="1" width="458" height="150" fill="var(--moon-dark)" opacity=".10"/>
+            <rect x="1" y="151" width="458" height="46" fill="var(--orbit)" opacity=".18"/>
+            <line x1="0" y1="151" x2="460" y2="151" stroke="var(--orbit)" stroke-width="1.2" opacity=".7"/>
+            <line x1="0" y1="197" x2="460" y2="197" stroke="currentColor" stroke-width="1.6"/>
+            <text x="452" y="176" font-size="11.5" fill="var(--orbit)" text-anchor="end" font-family="Sarabun">ชั้นบรรยากาศโลก</text>
+            <text x="8" y="216" font-size="11.5" fill="currentColor" opacity=".7" font-family="Sarabun">พื้นโลก</text>
+            <g stroke="var(--sun)" stroke-width="1.8" color="var(--sun)">
+              <line x1="70" y1="28" x2="70" y2="146" marker-end="url(#ar2)"/>
+            </g>
+            <g stroke="var(--bad)" stroke-width="2.2" stroke-linecap="round">
+              <path d="M62,153 L78,169 M78,153 L62,169"/>
+            </g>
+            <text x="70" y="20" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">รังสีเอกซ์ / UV</text>
+            <text x="70" y="186" font-size="11" fill="var(--bad)" text-anchor="middle" font-family="Sarabun">ถูกดูดกลืนหมด</text>
+            <g stroke="currentColor" stroke-width="1.6" fill="none" color="currentColor">
+              <line x1="196" y1="28" x2="196" y2="151"/>
+              <path d="M196,151 l7,10 l-11,11 l8,10 l-4,9" marker-end="url(#ar2)"/>
+            </g>
+            <text x="196" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">แสงที่ตามองเห็น</text>
+            <text x="250" y="186" font-size="11" fill="currentColor" opacity=".75" text-anchor="start" font-family="Sarabun">หักเห → ภาพสั่นไหว</text>
+            <g stroke="currentColor" stroke-width="1.6" color="currentColor" opacity=".8">
+              <line x1="330" y1="28" x2="330" y2="193" marker-end="url(#ar2)"/>
+            </g>
+            <text x="330" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">คลื่นวิทยุ</text>
+            <g stroke="currentColor" fill="none" stroke-width="1.6" stroke-linejoin="round">
+              <g transform="translate(196,197)"><path d="M-22,0 A22,22 0 0 1 22,0 z"/><path d="M-6,-19 L-6,-3 L6,-3 L6,-19"/></g>
+              <g transform="translate(408,86)" stroke="var(--sun)">
+                <rect x="-19" y="-11" width="38" height="22" rx="3"/><path d="M19,-7 L30,-13 L30,13 L19,7"/>
+                <rect x="-38" y="-7" width="16" height="14"/>
+              </g>
+            </g>
+            <text x="196" y="234" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">กล้องบนพื้นโลก</text>
+            <text x="408" y="118" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">กล้องอวกาศ</text>
+            <text x="408" y="134" font-size="10.5" fill="var(--sun)" opacity=".85" text-anchor="middle" font-family="Sarabun">รับได้ทุกช่วงคลื่น</text>
+          </svg>
+          <figcaption>บรรยากาศ<b>ดูดกลืนรังสีเอกซ์และอัลตราไวโอเลตไว้จนหมด</b> เหลือแต่แสงที่ตามองเห็นและคลื่นวิทยุที่ผ่านลงมาได้ แถมยังหักเหจนภาพสั่นไหว กล้องที่อยู่เหนือบรรยากาศจึงเห็นได้ทั้งคมชัดกว่าและครบทุกช่วงคลื่น</figcaption>
+        </figure>
+      </div>
+
+      <div class="figcard">
+        <h4>ทำไมสถานีอวกาศจึงไม่ตกลงมา</h4>
+        <figure>
+          <svg viewBox="0 0 460 250" role="img" aria-label="แผนภาพแบบลูกกระสุนของนิวตัน ยิงช้าตกใกล้ ยิงเร็วขึ้นตกไกลขึ้น ยิงเร็วพอจะโค้งไปรอบโลกกลายเป็นวงโคจร">
+            <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L10,5 L0,9 z" fill="currentColor"/></marker></defs>
+            <ellipse cx="230" cy="392" rx="252" ry="248" fill="var(--orbit)" opacity=".22"/>
+            <ellipse cx="230" cy="392" rx="252" ry="248" fill="none" stroke="currentColor" opacity=".5"/>
+            <ellipse cx="230" cy="392" rx="300" ry="296" fill="none" stroke="var(--sun)" stroke-width="1.8" stroke-dasharray="7 6"/>
+            <text x="230" y="230" font-size="12" fill="currentColor" text-anchor="middle" font-family="Sarabun" opacity=".8">โลก</text>
+            <g fill="none" stroke="currentColor" stroke-width="1.6" color="currentColor">
+              <path d="M230,144 Q262,140 276,156" marker-end="url(#ar3)"/>
+              <path d="M230,144 Q310,132 350,178" marker-end="url(#ar3)"/>
+            </g>
+            <g font-family="Sarabun" font-size="11.5" fill="currentColor">
+              <text x="286" y="152">ยิงช้า → ตกใกล้</text>
+              <text x="360" y="186">เร็วขึ้น → ตกไกลขึ้น</text>
+            </g>
+            <text x="230" y="112" font-size="12" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">เร็วพอ 27,600 กม./ชม. → โค้งไปรอบโลก ไม่ตกถึงพื้น</text>
+            <g stroke="var(--sun)" fill="none" stroke-width="1.6">
+              <g transform="translate(70,140)"><rect x="-7" y="-5" width="14" height="10" rx="2"/>
+                <path d="M-7,-3 L-20,-7 L-20,7 L-7,3 M7,-3 L20,-7 L20,7 L7,3"/></g>
+            </g>
+            <text x="70" y="122" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">สถานีอวกาศ</text>
+            <g stroke="currentColor" stroke-width="1.4" color="currentColor" opacity=".85" marker-end="url(#ar3)">
+              <line x1="70" y1="155" x2="102" y2="203"/>
+            </g>
+            <text x="96" y="212" font-size="11" fill="currentColor" opacity=".8" font-family="Sarabun">แรงโน้มถ่วงดึงเข้าหาโลกตลอดเวลา</text>
+          </svg>
+          <figcaption>สถานีอวกาศ<b>ตกลงหาโลกอยู่ตลอดเวลา</b> แต่เพราะพุ่งไปข้างหน้าเร็วมาก เส้นทางที่ตกจึงโค้งพอดีกับความโค้งของผิวโลก กลายเป็นวนรอบโลกโดยไม่ถึงพื้น สภาพนี้เองที่ทำให้นักบินอวกาศรู้สึกไร้น้ำหนัก</figcaption>
+        </figure>
+      </div>
+
+      <div class="figcard">
+        <h4>ดาวเทียมของประเทศไทย</h4>
+        <figure>
+          <svg viewBox="0 0 460 200" role="img" aria-label="เส้นเวลาดาวเทียมไทย ไทยคม 1 พ.ศ. 2536 ไทยโชต พ.ศ. 2551 และ THEOS-2 พ.ศ. 2566">
+            <defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L10,5 L0,9 z" fill="currentColor"/></marker></defs>
+            <g stroke="currentColor" color="currentColor" stroke-width="1.6">
+              <line x1="26" y1="112" x2="430" y2="112" marker-end="url(#ar4)" opacity=".6"/>
+            </g>
+            <g stroke="currentColor" fill="none" stroke-width="1.5">
+              <g transform="translate(78,62)" stroke="var(--sun)"><rect x="-7" y="-9" width="14" height="18" rx="2"/>
+                <path d="M-7,-5 L-19,-9 L-19,5 L-7,1 M7,-5 L19,-9 L19,5 L7,1"/><path d="M0,9 v6"/></g>
+              <g transform="translate(230,62)"><rect x="-7" y="-9" width="14" height="18" rx="2"/>
+                <path d="M-7,-5 L-19,-9 L-19,5 L-7,1 M7,-5 L19,-9 L19,5 L7,1"/><path d="M-5,15 L0,9 L5,15" /></g>
+              <g transform="translate(382,62)"><rect x="-7" y="-9" width="14" height="18" rx="2"/>
+                <path d="M-7,-5 L-19,-9 L-19,5 L-7,1 M7,-5 L19,-9 L19,5 L7,1"/><path d="M-5,15 L0,9 L5,15" /></g>
+            </g>
+            <circle cx="78" cy="112" r="7" fill="var(--sun)"/>
+            <circle cx="230" cy="112" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="382" cy="112" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <g font-family="Chakra Petch" font-size="13" text-anchor="middle" fill="currentColor">
+              <text x="78" y="140" fill="var(--sun)">ไทยคม 1</text><text x="230" y="140">ไทยโชต</text><text x="382" y="140">THEOS-2</text>
+            </g>
+            <g font-family="IBM Plex Mono" font-size="11.5" text-anchor="middle" fill="currentColor" opacity=".8">
+              <text x="78" y="158">พ.ศ. 2536</text><text x="230" y="158">พ.ศ. 2551</text><text x="382" y="158">พ.ศ. 2566</text>
+            </g>
+            <g font-family="Sarabun" font-size="11" text-anchor="middle" fill="currentColor" opacity=".75">
+              <text x="78" y="177">ดาวเทียมสื่อสาร</text><text x="78" y="191">ดวงแรกของไทย</text>
+              <text x="230" y="177">สำรวจทรัพยากร</text><text x="230" y="191">ดวงแรกของไทย</text>
+              <text x="382" y="177">สำรวจความละเอียดสูง</text><text x="382" y="191">ระดับ 50 ซม.</text>
+            </g>
+            <text x="26" y="34" font-size="11.5" fill="currentColor" opacity=".75" font-family="Sarabun">วงโคจรค้างฟ้า 35,786 กม. (ไทยคม) · วงโคจรต่ำ ~600–800 กม. (ไทยโชต, THEOS-2)</text>
+          </svg>
+          <figcaption><b>ไทยคม 1</b> ขึ้นสู่วงโคจรเมื่อ พ.ศ. 2536 เป็นดาวเทียมสื่อสารดวงแรกของไทย ต่อมามี<b>ไทยโชต (THEOS-1)</b> พ.ศ. 2551 เป็นดาวเทียมสำรวจทรัพยากรดวงแรก และ <b>THEOS-2</b> พ.ศ. 2566 ที่ถ่ายภาพได้ละเอียดถึงระดับ 50 เซนติเมตร</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card lab">
+    <div class="lab-head"><h3>ห้องทดลอง: การ์ดจับคู่เทคโนโลยีอวกาศ</h3><em>กดการ์ดเพื่อดูหน้าที่และประโยชน์ (ตรงกับข้อจับคู่ ก–ฏ ในใบงาน)</em><button class="revealall" id="tech-all">เปิดทุกใบ</button></div>
+    <div class="cards" id="tech-cards"></div>
+  </div>
+
+  <div class="card"><h3>ใบงานเรื่องที่ 4 · คำถามพร้อมเฉลย</h3><div id="q4"></div></div>
+</section>
+</main>
+
+<footer><div class="wrap">สื่อการสอนเชิงโต้ตอบ · หน่วยที่ 4 ระบบสุริยะของเรา · วิทยาศาสตร์ ชั้นมัธยมศึกษาปีที่ 3 ภาคเรียนที่ 1 · เนื้อหาและเฉลยจัดทำตามใบงานบทที่ 1 ปฏิสัมพันธ์ในระบบสุริยะ · จัดทำโดย ครูเก๋</div></footer>
+<script>
+const T=(s)=>s; // helper marker
+const QDATA={};
+
+QDATA.q1=[
+ {title:"ใบงาน 1.1 · ตอบคำถามให้ถูกต้องสมบูรณ์", src:"หน้า 1", items:[
+  ["เพราะเหตุใดเมื่อเราชั่งน้ำหนักบนดวงจันทร์ เราจึงมีน้ำหนักไม่เท่ากับน้ำหนักที่ชั่งบนโลก",
+   "เพราะน้ำหนักคือแรงโน้มถ่วงที่ดาวดวงนั้นกระทำต่อมวลของเรา (W = mg) ดวงจันทร์มีมวลน้อยกว่าโลกมาก สนามโน้มถ่วงที่ผิวดวงจันทร์จึงมีค่าเพียงประมาณ 1.62 m/s² ขณะที่ผิวโลกมีค่าประมาณ 9.8 m/s² น้ำหนักบนดวงจันทร์จึงเหลือประมาณ 1 ใน 6 ของบนโลก ทั้งที่<b>มวลของเราเท่าเดิม</b>"],
+  ["นักเรียนคิดว่าตัวนักเรียนเองกับดาวเนปจูนซึ่งเป็นดาวเคราะห์ที่อยู่ไกลจากโลกมากที่สุดมีแรงโน้มถ่วงกระทำต่อกันหรือไม่ อย่างไร",
+   "มี เพราะวัตถุทุกชิ้นที่มีมวลย่อมมีแรงโน้มถ่วงดึงดูดซึ่งกันและกันเสมอตามกฎแรงโน้มถ่วงสากล แต่เนื่องจากระยะห่างระหว่างเรากับดาวเนปจูนไกลมาก และมวลของเราน้อยมาก แรงที่เกิดขึ้นจึงมีค่าน้อยมากจนไม่สามารถสังเกตผลได้"],
+  ["ขนาดของแรงโน้มถ่วงกับน้ำหนักของคนมีความสัมพันธ์กันอย่างไร",
+   "สัมพันธ์กันโดยตรง เพราะน้ำหนักของคน<b>ก็คือ</b>ขนาดของแรงโน้มถ่วงที่โลกกระทำต่อมวลของคนนั้น (W = mg) แรงโน้มถ่วงมากน้ำหนักก็มาก แรงโน้มถ่วงน้อยน้ำหนักก็น้อย น้ำหนักมีหน่วยเป็นนิวตัน (N)"],
+  ["ระยะห่างจากจุดศูนย์กลางของโลกและมวลของดาวเคราะห์มีผลต่อขนาดของแรงโน้มถ่วงอย่างไร",
+   "มวลแปรผันตรงกับแรง คือมวลมากขึ้นแรงโน้มถ่วงมากขึ้น ส่วนระยะห่างแปรผกผันกับกำลังสองของระยะทาง คือยิ่งห่างจากจุดศูนย์กลางมาก แรงยิ่งลดลงอย่างรวดเร็ว (ห่างเป็น 2 เท่า แรงเหลือ 1/4 ห่างเป็น 3 เท่า แรงเหลือ 1/9)"],
+  ["จรวดลำหนึ่งปล่อยจากพื้นโลกเพื่อออกไปยังนอกโลกที่ระดับความสูง 10,000 กิโลเมตร ที่ระดับความสูงนี้ น้ำหนักของจรวดมีค่าเป็นอย่างไร",
+   "น้ำหนักจะ<b>ลดลง</b>จากตอนอยู่บนพื้นโลกมาก เพราะระยะจากจุดศูนย์กลางโลกเพิ่มจากรัศมีโลกประมาณ 6,400 กม. เป็นประมาณ 16,400 กม. (เพิ่มขึ้นราว 2.56 เท่า) แรงโน้มถ่วงจึงลดเหลือประมาณ 1/2.56² ≈ 0.15 เท่า หรือราว 15% ของน้ำหนักเดิม แต่<b>ไม่เป็นศูนย์</b> และมวลของจรวดยังคงเท่าเดิม"],
+  ["ถ้าดวงจันทร์มีมวลมากขึ้นเป็น 2 เท่า แรงโน้มถ่วงที่ดวงจันทร์กระทำต่อโลกจะมีค่าเปลี่ยนไปอย่างไร",
+   "แรงจะเพิ่มขึ้นเป็น <b>2 เท่า</b> ของเดิม เพราะจากสมการ F = G·m₁m₂/r² แรงแปรผันตรงกับมวล เมื่อมวลดวงจันทร์เพิ่มเป็น 2 เท่าโดยระยะทางเท่าเดิม แรงจึงเพิ่มเป็น 2 เท่า (และแรงที่โลกกระทำต่อดวงจันทร์ก็เพิ่มเป็น 2 เท่าเช่นกัน เพราะเป็นแรงคู่กิริยา–ปฏิกิริยา)"],
+  ["นักเรียนคิดว่า แรงโน้มถ่วงที่ดวงอาทิตย์กระทำต่อดาวเคราะห์แต่ละดวงมีค่าเท่ากันหรือไม่ เพราะเหตุใด",
+   "<b>ไม่เท่ากัน</b> เพราะดาวเคราะห์แต่ละดวงมีมวลต่างกันและอยู่ห่างจากดวงอาทิตย์ไม่เท่ากัน ดาวที่มีมวลมากและอยู่ใกล้ดวงอาทิตย์จะถูกดึงดูดด้วยแรงมากกว่า เช่น ดาวพฤหัสบดีถูกดึงด้วยแรงมากที่สุดในบรรดาดาวเคราะห์ เพราะมีมวลมากถึง 318 เท่าของโลก"],
+  ["ปัจจัยที่ส่งผลต่อขนาดของแรงโน้มถ่วงที่ดวงอาทิตย์กระทำต่อดาวเคราะห์แต่ละดวง ได้แก่อะไรบ้าง",
+   "1) <b>มวลของดาวเคราะห์</b> (มวลมาก แรงมาก) 2) <b>ระยะห่างระหว่างดาวเคราะห์กับดวงอาทิตย์</b> (ยิ่งไกล แรงยิ่งลดลงตามกำลังสองของระยะทาง) ส่วนมวลของดวงอาทิตย์นั้นคงที่สำหรับดาวเคราะห์ทุกดวง"]
+ ]},
+ {title:"ใบงาน 1.2 · กฎแรงโน้มถ่วงและการคำนวณ", src:"หน้า 2", items:[
+  ["นักวิทยาศาสตร์ผู้ค้นพบแรงโน้มถ่วงของโลกคือใคร","<b>เซอร์ไอแซก นิวตัน</b> (Sir Isaac Newton) นักวิทยาศาสตร์ชาวอังกฤษ"],
+  ["แรงที่กระทำระหว่างดวงอาทิตย์กับดาวเคราะห์ ซึ่งเป็นแรงดึงดูดระหว่างมวลของดวงอาทิตย์กับดาวเคราะห์ เรียกแรงนี้ว่าอะไร","<b>แรงโน้มถ่วง</b> (Gravitational force) หรือแรงดึงดูดระหว่างมวล"],
+  ["ข้อความว่าแรงดึงดูดระหว่างมวลของดวงอาทิตย์กับดาวเคราะห์เป็นแรงโน้มถ่วงเช่นเดียวกับแรงดึงดูดระหว่างวัตถุ 2 วัตถุใด ๆ ในเอกภพ เป็นไปตามคำกล่าวของใคร","เป็นไปตาม <b>กฎแรงโน้มถ่วงสากลของนิวตัน</b> (Newton&rsquo;s Law of Universal Gravitation)"],
+  ["ระยะเวลาของการโคจรรอบดวงอาทิตย์ของดาวเคราะห์มีความสัมพันธ์กับระยะห่างจากดวงอาทิตย์ดังนี้",
+   "ดาวเคราะห์ที่อยู่<b>ใกล้</b>ดวงอาทิตย์จะใช้เวลาโคจรครบรอบ<b>น้อย</b> ส่วนดาวที่อยู่<b>ไกล</b>จะใช้เวลา<b>มาก</b> (เป็นไปตามกฎข้อที่ 3 ของเคปเลอร์ คือ T² แปรผันตรงกับ r³) เช่น ดาวพุธ 88 วัน โลก 365 วัน ดาวพฤหัสบดี 11.9 ปี ดาวเนปจูน 165 ปี"],
+  ["เราสามารถคำนวณแรงโน้มถ่วงได้จากสมการใด",
+   "<code>F = G·m₁m₂/r²</code> โดย F = แรงโน้มถ่วง (N), G = ค่าคงตัวความโน้มถ่วงสากล = 6.674 × 10⁻¹¹ N·m²/kg², m₁ และ m₂ = มวลของวัตถุทั้งสอง (kg), r = ระยะห่างระหว่างจุดศูนย์กลางมวลทั้งสอง (m)"],
+  ["ดวงอาทิตย์และโลกอยู่ห่างกัน 1.50 × 10¹¹ เมตร ดวงอาทิตย์มีมวล 1.99 × 10³⁰ กิโลกรัม และโลกมีมวล 5.97 × 10²⁴ กิโลกรัม จงหาว่าแรงโน้มถ่วงระหว่างดวงอาทิตย์กับโลกมีค่าเท่าใด",
+   "<b>วิธีทำ</b> จาก <code>F = G·m₁m₂/r²</code><br>F = (6.674 × 10⁻¹¹)(1.99 × 10³⁰)(5.97 × 10²⁴) / (1.50 × 10¹¹)²<br>ตัวเศษ = 6.674 × 1.99 × 5.97 = 79.29 → 79.29 × 10⁽⁻¹¹⁺³⁰⁺²⁴⁾ = 7.93 × 10⁴⁴<br>ตัวส่วน = (1.50 × 10¹¹)² = 2.25 × 10²²<br>F = 7.93 × 10⁴⁴ / 2.25 × 10²² = <b>3.52 × 10²² นิวตัน</b><br><i>หมายเหตุ: มวลมาตรฐานของดวงอาทิตย์คือ 1.99 × 10³⁰ กิโลกรัม (เท่ากับ 1.99 × 10³³ กรัม) หากแทนค่าเป็น 10³³ กิโลกรัมตามที่พิมพ์ในใบงาน คำตอบจะได้ 3.52 × 10²⁵ N ซึ่งมากเกินความเป็นจริง 1,000 เท่า</i>"]
+ ]},
+ {title:"ใบงาน 1.3 · ถูก–ผิด", src:"หน้า 3", items:[
+  ["แรงลัพธ์ที่กระทำต่อวัตถุที่ไม่เท่ากับศูนย์ทำให้วัตถุเปลี่ยนแปลงสภาพการเคลื่อนที่","<span class='tf y'>✓ ถูก</span> เมื่อแรงลัพธ์ไม่เป็นศูนย์ วัตถุจะมีความเร่ง จึงเปลี่ยนสภาพการเคลื่อนที่ (กฎข้อที่ 2 ของนิวตัน F = ma)"],
+  ["แรงโน้มถ่วงสามารถกระทำต่อวัตถุได้โดยไม่ต้องสัมผัสวัตถุ","<span class='tf y'>✓ ถูก</span> แรงโน้มถ่วงเป็นแรงไม่สัมผัส (non-contact force) กระทำผ่านสนามโน้มถ่วง เช่นเดียวกับแรงแม่เหล็กและแรงไฟฟ้า"],
+  ["แรงกิริยา–ปฏิกิริยาระหว่างวัตถุคู่หนึ่งมีขนาดเท่ากัน แต่ทิศทางตรงกันข้ามและเกิดขึ้นบนวัตถุเดียวกัน","<span class='tf n'>✗ ผิด</span> แรงกิริยาและแรงปฏิกิริยาเกิดขึ้นบนวัตถุ<b>คนละชิ้น</b> (ชิ้นละหนึ่งแรง) จึงไม่หักล้างกัน ถ้าเกิดบนวัตถุเดียวกันแรงลัพธ์จะเป็นศูนย์และวัตถุจะเคลื่อนที่ไม่ได้เลย"],
+  ["สนามโน้มถ่วงจะมีขนาดลดลงเมื่ออยู่ห่างจากต้นกำเนิดสนามมากขึ้น","<span class='tf y'>✓ ถูก</span> ความเข้มสนามโน้มถ่วงลดลงตามกำลังสองของระยะทาง (g = GM/r²)"],
+  ["สนามโน้มถ่วงมีทิศทางพุ่งออกรอบ ๆ ต้นกำเนิดสนามโน้มถ่วง","<span class='tf n'>✗ ผิด</span> สนามโน้มถ่วงมีทิศ<b>พุ่งเข้าหา</b>จุดศูนย์กลางมวลของต้นกำเนิดสนามเสมอ เพราะแรงโน้มถ่วงเป็นแรงดึงดูด"],
+  ["แรงโน้มถ่วงทำให้สิ่งต่าง ๆ ที่มีมวลเคลื่อนที่ออกจากกัน โดยวัตถุที่มีมวลมากจะมีแรงผลักมาก และถ้าวัตถุอยู่ใกล้กัน แรงผลักก็จะมีค่ามากขึ้น","<span class='tf n'>✗ ผิด</span> แรงโน้มถ่วงเป็นแรง<b>ดึงดูด</b>ให้วัตถุเข้าหากัน ไม่ใช่แรงผลัก (ส่วนข้อความที่ว่ามวลมากแรงมาก และอยู่ใกล้กันแรงมากขึ้นนั้นถูกต้อง แต่ต้องเป็นแรงดึงดูด)"],
+  ["ข้อความที่ว่าแรงดึงดูดระหว่างมวลของดวงอาทิตย์กับดาวเคราะห์เป็นแรงโน้มถ่วงเช่นเดียวกับแรงดึงดูดระหว่างวัตถุ 2 วัตถุใด ๆ ในเอกภพ เป็นไปตามกฎแรงโน้มถ่วงของนิวตัน","<span class='tf y'>✓ ถูก</span> เป็นสาระสำคัญของกฎแรงโน้มถ่วงสากลของนิวตัน ที่ใช้ได้กับวัตถุทุกคู่ในเอกภพ"],
+  ["ดาวเคราะห์ที่อยู่ห่างจากดวงอาทิตย์จะใช้เวลาในการโคจรรอบดวงอาทิตย์น้อยกว่าดาวเคราะห์ที่อยู่ใกล้ดวงอาทิตย์","<span class='tf n'>✗ ผิด</span> ตรงกันข้าม ดาวที่อยู่ไกลกว่าใช้เวลาโคจร<b>นานกว่า</b> เพราะเส้นทางโคจรยาวกว่าและเคลื่อนที่ช้ากว่า เช่น ดาวเนปจูนใช้เวลา 165 ปี ขณะที่ดาวพุธใช้เพียง 88 วัน"],
+  ["แรงโน้มถ่วงที่ดวงอาทิตย์กระทำต่อดาวเคราะห์แต่ละดวงมีค่าไม่เท่ากัน","<span class='tf y'>✓ ถูก</span> เพราะดาวเคราะห์แต่ละดวงมีมวลและระยะห่างจากดวงอาทิตย์ต่างกัน"],
+  ["ปัจจัยที่ส่งผลต่อขนาดของแรงโน้มถ่วงที่ดวงอาทิตย์กระทำต่อดาวเคราะห์แต่ละดวง ได้แก่ มวลของดาวเคราะห์ และระยะห่างของดาวเคราะห์จากดวงอาทิตย์","<span class='tf y'>✓ ถูก</span> ตรงตามสมการ F = G·m₁m₂/r²"]
+ ]}
+];
+</script>
+<script>
+QDATA.q2=[
+ {title:"ใบงาน 2.1 · การหมุนรอบตัวเอง การโคจร และฤดูกาล", src:"หน้า 4", items:[
+  ["การหมุนรอบตัวเองของโลก ขณะที่โคจรรอบดวงอาทิตย์ แกนสมมติของโลกเอียงอย่างไร",
+   "แกนโลกเอียงทำมุมประมาณ <b>23.5 องศา</b> กับแนวตั้งฉากของระนาบวงโคจรรอบดวงอาทิตย์ (หรือทำมุม 66.5 องศากับระนาบวงโคจร) และ<b>เอียงชี้ไปทางเดิมคงที่ตลอดเวลา</b> ขณะโคจร โดยขั้วเหนือชี้ไปทางดาวเหนือเสมอ"],
+  ["ตำแหน่งต่าง ๆ บนโลกที่ใช้อ้างอิงเพื่อให้เข้าใจตรงกันมีอะไรบ้าง",
+   "เส้นศูนย์สูตร (0°), เส้นทรอปิกออฟแคนเซอร์ 23.5° เหนือ, เส้นทรอปิกออฟแคปริคอร์น 23.5° ใต้, เส้นอาร์กติกเซอร์เคิล 66.5° เหนือ, เส้นแอนตาร์กติกเซอร์เคิล 66.5° ใต้, ขั้วโลกเหนือ–ขั้วโลกใต้ รวมทั้งเส้นละติจูด (เส้นรุ้ง) และเส้นลองจิจูด (เส้นแวง)"],
+  ["โลกมีลักษณะอย่างไร แต่ละบริเวณบนผิวโลกได้รับแสงจากดวงอาทิตย์เหมือนหรือแตกต่างกันอย่างไร",
+   "โลกมีลักษณะเป็น<b>ทรงกลม</b> (แป้นเล็กน้อยที่ขั้ว) แสงอาทิตย์เดินทางมาเป็นลำขนานกัน เมื่อตกกระทบผิวโค้งของโลก แต่ละบริเวณจึงรับแสงด้วยมุมต่างกัน — บริเวณใกล้ศูนย์สูตรรับแสง<b>ตั้งฉาก</b> พลังงานต่อหน่วยพื้นที่มาก อุณหภูมิสูง ส่วนบริเวณใกล้ขั้วโลกรับแสง<b>เฉียง</b> พลังงานกระจายบนพื้นที่กว้าง อุณหภูมิจึงต่ำกว่า"],
+  ["ซีกโลกเหนือและซีกโลกใต้มีการเปลี่ยนแปลงฤดูเหมือนหรือต่างกันอย่างไร เพราะเหตุใดจึงเป็นเช่นนั้น",
+   "<b>ต่างกัน คือเป็นฤดูตรงกันข้ามกันเสมอ</b> เมื่อซีกโลกเหนือเป็นฤดูร้อน ซีกโลกใต้จะเป็นฤดูหนาว เพราะแกนโลกเอียงคงที่ในทิศเดิมขณะโคจร ทำให้ในแต่ละช่วงของปีมีเพียงซีกเดียวที่หันเข้าหาดวงอาทิตย์ ซีกที่หันเข้าหาจะได้รับแสงตั้งฉากและมีกลางวันยาว จึงเป็นฤดูร้อน ส่วนซีกที่หันออกได้รับแสงเฉียงและกลางวันสั้น จึงเป็นฤดูหนาว"],
+  ["ฤดูของโลกเกิดจากอะไร",
+   "เกิดจาก<b>การที่แกนโลกเอียง 23.5 องศาคงที่ ขณะที่โลกโคจรรอบดวงอาทิตย์</b> ทำให้ในแต่ละตำแหน่งของวงโคจร แต่ละซีกโลกได้รับแสงอาทิตย์ด้วยมุมตกกระทบและระยะเวลากลางวันไม่เท่ากัน จึงเกิดฤดูกาลหมุนเวียนไปในรอบปี"],
+  ["ถ้าโลกโคจรรอบดวงอาทิตย์ในลักษณะที่แกนของโลกตั้งตรงจะส่งผลอย่างไร",
+   "จะ<b>ไม่เกิดฤดูกาล</b> เพราะทุกละติจูดจะได้รับแสงอาทิตย์ด้วยมุมเท่าเดิมตลอดทั้งปี อุณหภูมิของแต่ละบริเวณจะคงที่ตลอดปี และช่วงกลางวัน–กลางคืนจะยาวเท่ากันคือ 12 ชั่วโมงทุกวันทั่วโลก"],
+  ["การเกิดฤดูเกี่ยวข้องกับระยะทางระหว่างโลกกับดวงอาทิตย์หรือไม่ อย่างไร",
+   "<b>ไม่เกี่ยวข้อง</b> (เป็นความเข้าใจผิดที่พบบ่อย) แม้วงโคจรของโลกจะเป็นวงรีเล็กน้อยทำให้ระยะทางเปลี่ยนไปบ้าง แต่โลกอยู่ใกล้ดวงอาทิตย์ที่สุดในราวต้นเดือนมกราคม ซึ่งเป็นช่วงที่ซีกโลกเหนือกำลังเป็นฤดูหนาว ดังนั้นฤดูกาลจึงเกิดจาก<b>มุมเอียงของแกนโลก</b> ไม่ใช่ระยะทาง"],
+  ["เหตุใดตำแหน่งการขึ้นและตกของดวงอาทิตย์ที่ขอบฟ้า รวมทั้งเส้นทางการเคลื่อนที่ปรากฏของดวงอาทิตย์จึงเปลี่ยนแปลงไปในรอบปี",
+   "เพราะแกนโลกเอียงคงที่ขณะโคจรรอบดวงอาทิตย์ ทำให้มุมระหว่างผู้สังเกตบนโลกกับทิศทางของดวงอาทิตย์เปลี่ยนไปทีละน้อยตลอดปี ตำแหน่งขึ้น–ตกจึงเลื่อนไปทางเหนือและใต้สลับกัน (ราว ±23.5 องศาจากทิศตะวันออก–ตะวันตกพอดี) และเส้นทางปรากฏบนท้องฟ้าก็สูงต่ำต่างกันไปในแต่ละช่วงของปี"]
+ ]},
+ {title:"ใบงาน 2.2 · ทิศทางการขึ้น–ตกของดวงอาทิตย์", src:"หน้า 5", items:[
+  ["หากวันนี้ดวงอาทิตย์ขึ้นทางตะวันออกเฉียงเหนือ ดวงอาทิตย์จะตกลับขอบฟ้าทางทิศใด",
+   "ตกทาง<b>ทิศตะวันตกเฉียงเหนือ</b> เพราะตำแหน่งขึ้นและตกจะเบนไปทางซีกเดียวกันอย่างสมมาตร (ช่วงนี้คือช่วงที่ซีกโลกเหนือเป็นฤดูร้อน ราวเดือนมิถุนายน)"],
+  ["ในวันถัดไปดวงอาทิตย์จะขึ้นและตกที่ตำแหน่งเดิมหรือไม่ เพราะเหตุใด",
+   "<b>ไม่</b> ตำแหน่งจะเลื่อนไปเล็กน้อยทุกวัน เพราะโลกโคจรรอบดวงอาทิตย์ไปเรื่อย ๆ โดยแกนเอียงคงที่ ทำให้มุมของแสงอาทิตย์ที่ตกกระทบตำแหน่งผู้สังเกตเปลี่ยนไปทีละน้อย ตำแหน่งขึ้น–ตกจึงค่อย ๆ เลื่อนไปทางเหนือหรือใต้ แล้วย้อนกลับเป็นวัฏจักรครบรอบใน 1 ปี"],
+  ["ถ้าต้องการติดตั้งแผงเซลล์แสงอาทิตย์เพื่อให้ได้รับแสงมากที่สุด ณ ประเทศไทย ควรหันแผงไปทางทิศใด เพราะเหตุใด",
+   "ควรหันแผงไปทาง<b>ทิศใต้</b> และเอียงแผงประมาณ 10–15 องศาจากแนวราบ เพราะประเทศไทยอยู่เหนือเส้นศูนย์สูตร (ละติจูดประมาณ 6–20 องศาเหนือ) ตลอดทั้งปีดวงอาทิตย์จึงปรากฏอยู่ค่อนไปทางทิศใต้ของท้องฟ้าเป็นส่วนใหญ่ การหันแผงไปทางทิศใต้จะรับแสงตั้งฉากได้มากและสม่ำเสมอที่สุดในรอบปี"],
+  ["การเปลี่ยนแปลงตำแหน่งการขึ้นและตกของดวงอาทิตย์ รวมทั้งเส้นทางการเคลื่อนที่ปรากฏของดวงอาทิตย์เป็นแบบรูปหรือไม่ เพราะเหตุใด",
+   "<b>เป็นแบบรูป</b> (มีรูปแบบซ้ำเป็นวัฏจักร) เพราะเกิดจากการที่โลกโคจรรอบดวงอาทิตย์ครบ 1 รอบใน 1 ปีอย่างสม่ำเสมอโดยแกนเอียงคงที่ ตำแหน่งขึ้น–ตกจึงเลื่อนไปทางเหนือสุดในราว 21 มิ.ย. แล้วเลื่อนกลับมาใต้สุดในราว 21 ธ.ค. ซ้ำเช่นนี้ทุกปี"],
+  ["การเปลี่ยนแปลงตำแหน่งเส้นทางการขึ้นและตกของดวงอาทิตย์เกิดจากสาเหตุใด",
+   "เกิดจาก<b>การโคจรของโลกรอบดวงอาทิตย์ ร่วมกับการที่แกนโลกเอียง 23.5 องศาคงที่</b> ทำให้ตำแหน่งที่แสงอาทิตย์ตกตั้งฉากบนผิวโลกเลื่อนไปมาระหว่างเส้นทรอปิกออฟแคนเซอร์และเส้นทรอปิกออฟแคปริคอร์นในรอบปี"],
+  ["จากภาพตำแหน่งต่าง ๆ ของดวงจันทร์ที่โคจรรอบโลก ที่ตำแหน่งที่ 2 และ 6 พื้นผิวของดวงจันทร์ที่ได้รับแสงจากดวงอาทิตย์คิดเป็นกี่เปอร์เซ็นต์ของพื้นผิวดวงจันทร์ทั้งหมด",
+   "<b>50%</b> เสมอ ไม่ว่าดวงจันทร์จะอยู่ตำแหน่งใดในวงโคจร ดวงอาทิตย์ก็ส่องสว่างครึ่งดวงที่หันเข้าหาเสมอ (คนบนโลกเห็นเป็นจันทร์ครึ่งดวงที่ตำแหน่งนี้ เพราะเห็นส่วนสว่างเพียงครึ่งหนึ่งของด้านที่หันมาทางโลก)"]
+ ]},
+ {title:"ใบงาน 2.3 · ถูก–ผิด (แสงอาทิตย์กับฤดูกาล)", src:"หน้า 6", items:[
+  ["ดวงอาทิตย์เป็นแหล่งกำเนิดพลังงานที่ใหญ่ที่สุดในระบบสุริยะ เมื่อโลกได้รับแสงจากดวงอาทิตย์จะได้รับทั้งพลังงานแสงและพลังงานความร้อน","<span class='tf y'>✓ ถูก</span>"],
+  ["แสงจากดวงอาทิตย์เดินทางมายังโลกเป็นเส้นตรง","<span class='tf y'>✓ ถูก</span> แสงเดินทางเป็นเส้นตรงในตัวกลางเนื้อเดียว ลำแสงที่มาถึงโลกจึงเกือบขนานกัน"],
+  ["การโคจรของโลกรอบดวงอาทิตย์ทำให้เกิดกลางวัน กลางคืน","<span class='tf n'>✗ ผิด</span> กลางวัน–กลางคืนเกิดจาก<b>การหมุนรอบตัวเอง</b>ของโลก (24 ชั่วโมง) ส่วนการโคจรรอบดวงอาทิตย์ (365 วัน) ทำให้เกิดฤดูกาล"],
+  ["การหมุนรอบตัวเองของโลกทำให้เกิดปรากฏการณ์การขึ้นและตกของดวงอาทิตย์ และนำไปสู่การกำหนดทิศ","<span class='tf y'>✓ ถูก</span> โลกหมุนจากทิศตะวันตกไปตะวันออก เราจึงเห็นดวงอาทิตย์ขึ้นทางตะวันออกและตกทางตะวันตก"],
+  ["ประเทศไทยมี 4 ฤดู คือ ฤดูร้อน ฤดูฝน ฤดูหนาว ฤดูใบไม้ร่วง","<span class='tf n'>✗ ผิด</span> ประเทศไทยมี <b>3 ฤดู</b> คือ ฤดูร้อน ฤดูฝน และฤดูหนาว เพราะอยู่ในเขตร้อนใกล้ศูนย์สูตร ส่วนฤดูใบไม้ร่วงและใบไม้ผลิเป็นฤดูของประเทศในเขตอบอุ่น"],
+  ["แกนโลกเอียงทำมุม 23.5 องศากับแนวตั้งฉากกับระนาบทางโคจรของโลกรอบดวงอาทิตย์","<span class='tf y'>✓ ถูก</span>"],
+  ["ขณะที่โลกหมุนและโคจรรอบดวงอาทิตย์ แกนของโลกจะเอียงคงที่ในแนวเดิมเสมอ","<span class='tf y'>✓ ถูก</span> แกนโลกชี้ไปทางเดิม (ทางดาวเหนือ) ตลอดการโคจร ซึ่งเป็นเหตุให้เกิดฤดูกาล"],
+  ["บริเวณที่ได้รับแสงตกตั้งฉากจะได้รับพลังงานแสงต่อหนึ่งหน่วยพื้นที่มาก เป็นผลทำให้พื้นผิวโลกบริเวณนั้นมีอุณหภูมิต่ำกว่าบริเวณที่ได้รับแสงตกเฉียง","<span class='tf n'>✗ ผิด</span> บริเวณที่รับแสงตั้งฉากได้รับพลังงานต่อหน่วยพื้นที่มาก จึงมีอุณหภูมิ<b>สูงกว่า</b> บริเวณที่รับแสงเฉียง"],
+  ["ประมาณวันที่ 21–22 ธันวาคมของทุกปี ซีกโลกเหนือจะเป็นฤดูร้อน ซีกโลกใต้จะเป็นฤดูหนาว","<span class='tf n'>✗ ผิด</span> สลับกัน วันที่ 21–22 ธันวาคม (วันเหมายัน) ขั้วโลกเหนือเอียงออกจากดวงอาทิตย์มากที่สุด ซีกโลกเหนือจึงเป็น<b>ฤดูหนาว</b> และซีกโลกใต้เป็น<b>ฤดูร้อน</b>"],
+  ["ประมาณวันที่ 22–23 กันยายนของทุกปี โลกจะโคจรมาอยู่ในตำแหน่งที่แกนของโลกไม่ได้เอียงเข้าหาหรือเอนออกจากดวงอาทิตย์","<span class='tf y'>✓ ถูก</span> คือวัน<b>ศารทวิษุวัต</b> (Autumnal Equinox) กลางวันยาวเท่ากับกลางคืนทั่วโลก"],
+  ["ประมาณวันที่ 20–21 มีนาคมของทุกปี ซีกโลกเหนือจะเป็นฤดูใบไม้ผลิ และซีกโลกใต้จะเป็นฤดูใบไม้ร่วง","<span class='tf y'>✓ ถูก</span> คือวัน<b>วสันตวิษุวัต</b> (Vernal Equinox)"],
+  ["ในช่วงฤดูร้อน ดวงอาทิตย์จะปรากฏบนท้องฟ้ายาวนานกว่า ทำให้ช่วงเวลากลางวันยาวกว่ากลางคืน","<span class='tf y'>✓ ถูก</span> ซีกโลกที่หันเข้าหาดวงอาทิตย์มีกลางวันยาวกว่ากลางคืน จึงสะสมความร้อนได้มากกว่า"]
+ ]},
+ {title:"ใบงาน 2.4 · วิษุวัตและอายัน", src:"หน้า 7", items:[
+  ["รูปแสดงวงโคจรของโลกรอบดวงอาทิตย์ที่ตำแหน่งต่าง ๆ ในรอบปี เมื่อโลกโคจรจากตำแหน่งที่ 1 มายังตำแหน่งที่ 2 ทำให้เกิดการเปลี่ยนฤดู การเปลี่ยนแปลงนี้เกิดขึ้นเพราะสาเหตุใด",
+   "เพราะขณะที่โลกเคลื่อนจากตำแหน่งที่ 1 ไปตำแหน่งที่ 2 <b>แกนโลกยังคงเอียงชี้ไปทางเดิม</b> ซีกโลกที่เดิมหันเข้าหาดวงอาทิตย์จึงค่อย ๆ หันออก ทำให้มุมตกกระทบของแสงและความยาวของกลางวันเปลี่ยนไป พลังงานที่ได้รับต่อหน่วยพื้นที่จึงเปลี่ยน เกิดเป็นการเปลี่ยนฤดูกาล"],
+  ["จับคู่ตำแหน่งของโลกในวงโคจรกับชื่อปรากฏการณ์ (A วสันตวิษุวัต / B เหมายัน / C ครีษมายัน / D ศารทวิษุวัต)",
+   "<b>ตำแหน่งที่ขั้วโลกเหนือเอียงเข้าหาดวงอาทิตย์มากที่สุด = C ครีษมายัน</b> (ราว 21 มิ.ย.)<br><b>ตำแหน่งที่ขั้วโลกเหนือเอียงออกจากดวงอาทิตย์มากที่สุด = B เหมายัน</b> (ราว 21 ธ.ค.)<br><b>ตำแหน่งที่แกนโลกไม่เอียงเข้าหรือออก โดยกำลังเข้าสู่ฤดูใบไม้ผลิของซีกโลกเหนือ = A วสันตวิษุวัต</b> (ราว 20 มี.ค.)<br><b>ตำแหน่งตรงข้ามที่กำลังเข้าสู่ฤดูใบไม้ร่วงของซีกโลกเหนือ = D ศารทวิษุวัต</b> (ราว 22 ก.ย.)"],
+  ["2.1 วสันตวิษุวัต (อีควินอกซ์ฤดูใบไม้ผลิ) คือ",
+   "วันที่ดวงอาทิตย์ตั้งฉากกับเส้นศูนย์สูตรพอดี ประมาณ <b>20–21 มีนาคม</b> ของทุกปี ทำให้กลางวันยาวเท่ากับกลางคืนทั่วโลก ซีกโลกเหนือเริ่มเข้าสู่ฤดูใบไม้ผลิ ซีกโลกใต้เข้าสู่ฤดูใบไม้ร่วง"],
+  ["2.2 ครีษมายัน (โซลสติสฤดูร้อน) คือ",
+   "วันที่ขั้วโลกเหนือเอียงเข้าหาดวงอาทิตย์มากที่สุด ดวงอาทิตย์ตั้งฉากกับเส้นทรอปิกออฟแคนเซอร์ (23.5° เหนือ) ประมาณ <b>20–21 มิถุนายน</b> ซีกโลกเหนือมีกลางวัน<b>ยาวที่สุด</b>ในรอบปีและเป็นฤดูร้อน ส่วนซีกโลกใต้เป็นฤดูหนาว"],
+  ["2.3 ศารทวิษุวัต (อีควินอกซ์ฤดูใบไม้ร่วง) คือ",
+   "วันที่ดวงอาทิตย์ตั้งฉากกับเส้นศูนย์สูตรอีกครั้ง ประมาณ <b>22–23 กันยายน</b> กลางวันยาวเท่ากับกลางคืนทั่วโลก ซีกโลกเหนือเข้าสู่ฤดูใบไม้ร่วง ซีกโลกใต้เข้าสู่ฤดูใบไม้ผลิ"],
+  ["2.4 เหมายัน (โซลสติสฤดูหนาว) คือ",
+   "วันที่ขั้วโลกเหนือเอียงออกจากดวงอาทิตย์มากที่สุด ดวงอาทิตย์ตั้งฉากกับเส้นทรอปิกออฟแคปริคอร์น (23.5° ใต้) ประมาณ <b>21–22 ธันวาคม</b> ซีกโลกเหนือมีกลางคืน<b>ยาวที่สุด</b>ในรอบปีและเป็นฤดูหนาว ส่วนซีกโลกใต้เป็นฤดูร้อน"]
+ ]},
+ {title:"ใบงาน 2.5 · ถูก–ผิด (มุมแสงกับอุณหภูมิ)", src:"หน้า 8", items:[
+  ["ขณะที่โลกโคจรรอบดวงอาทิตย์ โลกจะหมุนรอบตัวเองด้วย ทำให้โลกได้รับความร้อนจากดวงอาทิตย์เท่ากัน","<span class='tf n'>✗ ผิด</span> การหมุนรอบตัวเองช่วยให้ทุกด้านของโลกได้รับแสงสลับกัน แต่แต่ละ<b>ละติจูด</b>ยังได้รับพลังงานไม่เท่ากัน เพราะมุมตกกระทบของแสงต่างกัน"],
+  ["เนื่องจากแกนของโลกเอียงทำให้โลกได้รับแสงจากดวงอาทิตย์แตกต่างกัน","<span class='tf y'>✓ ถูก</span>"],
+  ["บริเวณที่ได้รับแสงแนวเฉียงจะมีอุณหภูมิสูง","<span class='tf n'>✗ ผิด</span> แสงเฉียงกระจายพลังงานบนพื้นที่กว้างกว่า พลังงานต่อหน่วยพื้นที่จึงน้อย อุณหภูมิ<b>ต่ำ</b>"],
+  ["บริเวณที่ได้รับแสงแนวเส้นตรง (ตั้งฉาก) จะมีอุณหภูมิต่ำ","<span class='tf n'>✗ ผิด</span> แสงตั้งฉากให้พลังงานต่อหน่วยพื้นที่มากที่สุด อุณหภูมิจึง<b>สูง</b>"],
+  ["ประเทศในเขตศูนย์สูตรจะได้รับพลังงานความร้อนจากดวงอาทิตย์ค่อนข้างมากตลอดปี","<span class='tf y'>✓ ถูก</span> เพราะดวงอาทิตย์อยู่เกือบตั้งฉากกับพื้นที่บริเวณนั้นตลอดทั้งปี"],
+  ["ประเทศไทยเป็นประเทศในเขตศูนย์สูตร จึงจัดเป็นเมืองร้อน","<span class='tf n'>✗ ผิด</span> ประเทศไทยอยู่ใน<b>เขตร้อน (tropical zone)</b> ระหว่างเส้นทรอปิกทั้งสอง ที่ละติจูดประมาณ 6–20 องศาเหนือ ซึ่ง<b>ไม่ได้อยู่บนเส้นศูนย์สูตร</b> แต่จัดเป็นเมืองร้อนถูกต้อง"],
+  ["อุณหภูมิที่เพิ่มขึ้นจนร้อนทำให้เกิดฤดูใบไม้ผลิ เพราะพืชจะผลิใบใหม่ หลังจากที่ใบร่วงในฤดูใบไม้ร่วง","<span class='tf y'>✓ ถูก</span> เมื่ออุณหภูมิสูงขึ้นและกลางวันยาวขึ้นหลังฤดูหนาว พืชจึงผลิใบใหม่"],
+  ["อุณหภูมิที่ลดลงจนเย็นทำให้เกิดฤดูใบไม้ร่วง เพราะพืชจะผลัดใบ หลังจากที่ใบทำหน้าที่ในฤดูใบไม้ผลิ","<span class='tf y'>✓ ถูก</span> พืชผลัดใบเพื่อลดการคายน้ำและประหยัดพลังงานก่อนเข้าฤดูหนาว"],
+  ["จากเดือนมิถุนายนไปจนถึงเดือนมีนาคม ประเทศในซีกโลกเหนือจะมี 4 ฤดู คือ ฤดูร้อน ฤดูใบไม้ร่วง ฤดูหนาว ฤดูใบไม้ผลิ","<span class='tf y'>✓ ถูก</span> ลำดับฤดูของประเทศเขตอบอุ่นในซีกโลกเหนือเป็นเช่นนี้ คือ ร้อน (มิ.ย.) → ใบไม้ร่วง (ก.ย.) → หนาว (ธ.ค.) → ใบไม้ผลิ (มี.ค.)"],
+  ["พลังงานจากดวงอาทิตย์มีความเข้มข้นไม่เท่ากันเมื่อมาถึงโลก","<span class='tf y'>✓ ถูก</span> เพราะผิวโลกโค้งและแกนโลกเอียง แต่ละบริเวณจึงรับพลังงานต่อหน่วยพื้นที่ไม่เท่ากัน"]
+ ]}
+];
+</script>
+<script>
+QDATA.q3=[
+ {title:"ใบงาน 3.1 · ดวงจันทร์กับการรับแสง", src:"หน้า 9", items:[
+  ["เมื่อดวงจันทร์โคจรไปแต่ละตำแหน่ง พื้นที่บนดวงจันทร์ที่ได้รับแสงจากดวงอาทิตย์เป็นอย่างไร และสัมพันธ์กับตำแหน่งของดวงอาทิตย์หรือไม่ อย่างไร",
+   "ดวงจันทร์ได้รับแสงอาทิตย์<b>ครึ่งดวงเสมอ (50%)</b> ทุกตำแหน่ง โดยด้านที่สว่างคือด้านที่หันเข้าหาดวงอาทิตย์เสมอ จึงสัมพันธ์กับตำแหน่งของดวงอาทิตย์โดยตรง สิ่งที่เปลี่ยนคือ<b>สัดส่วนของด้านสว่างที่หันมาทางโลก</b> ซึ่งขึ้นกับมุมระหว่างดวงอาทิตย์–ดวงจันทร์–โลก"],
+  ["เพราะเหตุใดคนบนโลกจึงมองเห็นดวงจันทร์ในแต่ละตำแหน่งมีส่วนสว่างและส่วนมืดแตกต่างกัน",
+   "เพราะดวงจันทร์<b>ไม่มีแสงในตัวเอง</b> แต่สะท้อนแสงอาทิตย์ เมื่อดวงจันทร์โคจรรอบโลก มุมที่เรามองเห็นด้านสว่างเปลี่ยนไปเรื่อย ๆ บางตำแหน่งเห็นด้านสว่างทั้งหมด (จันทร์เพ็ญ) บางตำแหน่งเห็นด้านมืดทั้งหมด (จันทร์ดับ) จึงเกิดข้างขึ้น–ข้างแรม"],
+  ["3.1 ดวงจันทร์โคจรรอบโลกไปเป็นมุม 360 องศา ซึ่งใช้เวลาประมาณ 27.3 วัน ให้คำนวณว่าใน 1 วัน ดวงจันทร์เคลื่อนที่หรือเปลี่ยนตำแหน่งไปเป็นมุมเท่าไร",
+   "<b>วิธีทำ</b> มุมที่เคลื่อนที่ใน 1 วัน = 360° ÷ 27.3 วัน = <b>13.19 องศาต่อวัน</b> (ประมาณ 13 องศา)"],
+  ["3.2 จากการหมุนรอบตัวเองของโลกใน 1 วัน คิดเป็นมุม 360 องศา ใช้เวลา 24 ชั่วโมง ให้คำนวณเวลาที่โลกใช้ในการหมุนไปได้มุมเท่ากับที่ดวงจันทร์เคลื่อนที่ใน 1 วัน",
+   "<b>วิธีทำ</b> โลกหมุน 360° ใน 24 ชม. → หมุน 15° ต่อชั่วโมง<br>เวลาที่โลกหมุนได้ 13.19° = 13.19 ÷ 15 = 0.88 ชั่วโมง = <b>ประมาณ 53 นาที</b><br>นี่คือเหตุผลที่ดวงจันทร์ขึ้นและตก<b>ช้าลงวันละประมาณ 50 นาที</b>"],
+  ["ถ้าสังเกตดวงจันทร์เวลาเดิมในวันถัด ๆ ไป ณ ตำแหน่งเดิมบนโลก จะสังเกตเห็นดวงจันทร์อยู่ที่ตำแหน่งเดิมบนท้องฟ้าหรือไม่ เพราะเหตุใด",
+   "<b>ไม่</b> ดวงจันทร์จะปรากฏเลื่อนไปทางทิศตะวันออกประมาณวันละ 13 องศา เพราะดวงจันทร์โคจรรอบโลกไปเรื่อย ๆ โลกจึงต้องหมุนเพิ่มอีกประมาณ 50 นาทีจึงจะเห็นดวงจันทร์ที่ตำแหน่งเดิม"],
+  ["ถ้ามวลของดวงจันทร์ลดลงจะส่งผลต่อโลกอย่างไร",
+   "แรงโน้มถ่วงที่ดวงจันทร์กระทำต่อโลกจะ<b>ลดลง</b> ส่งผลให้<b>แรงไทดัลลดลง</b> ระดับน้ำขึ้นน้ำลงจะต่างกันน้อยลง นอกจากนี้ในระยะยาวยังทำให้แกนหมุนของโลกเสถียรน้อยลง (ปัจจุบันดวงจันทร์ช่วยรักษามุมเอียงแกนโลกให้คงที่) และอาจกระทบต่อวงโคจรของดวงจันทร์เองด้วย"]
+ ]},
+ {title:"ใบงาน 3.2 · ข้างขึ้น–ข้างแรม", src:"หน้า 10", items:[
+  ["ปรากฏการณ์ข้างขึ้น ข้างแรมเกิดขึ้นได้อย่างไร",
+   "เกิดจากการที่ดวงจันทร์โคจรรอบโลก ทำให้มุมระหว่าง<b>ดวงอาทิตย์–ดวงจันทร์–โลก</b> เปลี่ยนไปทุกวัน สัดส่วนของด้านสว่างที่หันมาทางโลกจึงเปลี่ยน คนบนโลกเห็นดวงจันทร์สว่างมากขึ้นทีละน้อยจนเต็มดวง (ข้างขึ้น) แล้วค่อย ๆ มืดลงจนมองไม่เห็น (ข้างแรม) ครบรอบใช้เวลาประมาณ 29.5 วัน"],
+  ["ถ้าสังเกตดวงจันทร์ที่ตำแหน่งและเวลาเดิม ดวงจันทร์จะปรากฏที่ตำแหน่งเดิมช้าไปวันละกี่นาที เพราะเหตุใด",
+   "ช้าไปประมาณ <b>50 นาทีต่อวัน</b> เพราะดวงจันทร์โคจรรอบโลกไปทางทิศตะวันออกวันละประมาณ 13 องศา โลกจึงต้องหมุนเพิ่มอีกประมาณ 50 นาทีจึงจะหันมาเห็นดวงจันทร์ที่ตำแหน่งเดิม"],
+  ["การเกิดข้างขึ้น ข้างแรม เกี่ยวข้องกับเงาของโลกหรือเงาของดวงจันทร์หรือไม่ อย่างไร",
+   "<b>ไม่เกี่ยวข้อง</b> ข้างขึ้น–ข้างแรมเกิดจากมุมมองของผู้สังเกตบนโลกที่เห็นด้านสว่างของดวงจันทร์มากน้อยต่างกัน ไม่ได้เกิดจากเงาบดบัง ส่วนปรากฏการณ์ที่เกิดจากเงาคือ <b>สุริยุปราคา</b> (เงาดวงจันทร์ทาบบนโลก) และ <b>จันทรุปราคา</b> (ดวงจันทร์เข้าไปในเงาโลก) ซึ่งเกิดไม่บ่อยเพราะระนาบวงโคจรดวงจันทร์เอียงประมาณ 5 องศา"],
+  ["ในบางวันและบางเวลาเราสามารถเห็นดวงจันทร์ในเวลากลางวันได้เพราะเหตุใด",
+   "เพราะดวงจันทร์ขึ้น–ตกเลื่อนเวลาไปวันละประมาณ 50 นาที ในบางช่วง (เช่น ข้างขึ้นต้น ๆ หรือข้างแรมท้าย ๆ) ดวงจันทร์จะอยู่เหนือขอบฟ้าพร้อมกับดวงอาทิตย์ และอยู่ห่างจากดวงอาทิตย์บนท้องฟ้าพอสมควร แสงสะท้อนจากดวงจันทร์จึงยังสว่างพอให้เห็นเป็นดวงจาง ๆ ในเวลากลางวันได้"],
+  ["ถูก–ผิด: ดวงจันทร์มีแสงสว่างในตัวเองเป็นแสงสีเหลืองนวล","<span class='tf n'>✗ ผิด</span> ดวงจันทร์<b>ไม่มีแสงในตัวเอง</b> เป็นเพียงการสะท้อนแสงจากดวงอาทิตย์"],
+  ["ถูก–ผิด: เราสามารถมองเห็นดวงจันทร์ได้หลายลักษณะ เช่น ทั้งเต็มดวง ค่อนดวง ครึ่งดวง เป็นเสี้ยว","<span class='tf y'>✓ ถูก</span>"],
+  ["ถูก–ผิด: จากวันเพ็ญหนึ่งไปจนถึงวันเพ็ญหนึ่งจะเป็นระยะเวลา 15 วัน","<span class='tf n'>✗ ผิด</span> จากวันเพ็ญถึงวันเพ็ญถัดไปคือ 1 เดือนจันทรคติ = <b>ประมาณ 29.5 วัน</b> (ส่วน 15 วันคือครึ่งรอบ เช่น จากขึ้น 1 ค่ำ ถึง ขึ้น 15 ค่ำ)"],
+  ["ถูก–ผิด: ดวงจันทร์โคจรรอบโลกเป็นเวลา 1 เดือน","<span class='tf y'>✓ ถูก</span> ประมาณ 27.3 วันเมื่อเทียบกับดาวฤกษ์ และ 29.5 วันเมื่อเทียบกับดวงอาทิตย์ (รอบข้างขึ้น–ข้างแรม) ซึ่งใกล้เคียง 1 เดือน"],
+  ["ถูก–ผิด: วันข้างขึ้นจะเริ่มจากวันขึ้น 1 ค่ำ ไปจนถึงวันขึ้น 15 ค่ำ รวม 15 วัน","<span class='tf y'>✓ ถูก</span>"],
+  ["ถูก–ผิด: วันข้างแรมจะเริ่มจากวันแรม 1 ค่ำ ไปจนถึงวันแรม 15 ค่ำ รวม 15 วัน","<span class='tf y'>✓ ถูก</span> (บางเดือนทางจันทรคติมีเพียงแรม 14 ค่ำ เรียกว่าเดือนขาด)"]
+ ]},
+ {title:"ใบงาน 3.3 · เติมคำ วงล้อข้างขึ้น–ข้างแรม", src:"หน้า 11", items:[
+  ["แรม 15 ค่ำ ดวงจันทร์มีลักษณะอย่างไร","<b>มืดทั้งดวง มองไม่เห็นดวงจันทร์</b> เรียกว่า จันทร์ดับ (New Moon) เพราะดวงจันทร์อยู่ระหว่างโลกกับดวงอาทิตย์ ด้านที่หันมาทางโลกจึงเป็นด้านมืด"],
+  ["ขึ้น 15 ค่ำ ดวงจันทร์มีลักษณะอย่างไร","<b>สว่างเต็มดวง</b> เรียกว่า จันทร์เพ็ญ (Full Moon) เพราะโลกอยู่ระหว่างดวงอาทิตย์กับดวงจันทร์ เราจึงเห็นด้านสว่างทั้งหมด"],
+  ["ดวงจันทร์โคจรรอบโลกใช้เวลากี่วัน ในทิศใด","ใช้เวลาประมาณ <b>27.3 วัน</b> (รอบข้างขึ้น–ข้างแรมครบรอบ 29.5 วัน) โคจรใน<b>ทิศทวนเข็มนาฬิกาเมื่อมองจากขั้วโลกเหนือ</b> คือจากทิศตะวันตกไปทิศตะวันออก ซึ่งเป็นทิศเดียวกับที่โลกหมุนรอบตัวเองและโคจรรอบดวงอาทิตย์"],
+  ["แสงอาทิตย์สะท้อนจากดวงจันทร์มายังโลกทำให้คนบนโลกเห็นส่วนสว่างได้ไม่เหมือนกันในแต่ละคืน โดยหันด้านสว่างเข้าหาดวงอาทิตย์เสมอ ปรากฏการณ์นี้เรียกว่า","<b>ข้างขึ้น–ข้างแรม</b> (Moon phases / Lunar phases)"],
+  ["ช่วงเวลาที่มองเห็นดวงจันทร์ค่อย ๆ สว่างขึ้นในแต่ละคืนจนสว่างเต็มดวง เรียกช่วงเวลานี้ว่า","<b>ข้างขึ้น</b> (Waxing) นับเป็นวันขึ้น 1 ค่ำ ถึง ขึ้น 15 ค่ำ"],
+  ["ช่วงเวลาที่มองเห็นดวงจันทร์ค่อย ๆ มืดลงในแต่ละคืนจนมืดสนิททั้งดวง เรียกช่วงเวลานี้ว่า","<b>ข้างแรม</b> (Waning) นับเป็นวันแรม 1 ค่ำ ถึง แรม 15 ค่ำ"],
+  ["ตามปฏิทินจันทรคติถือให้วันพระ ได้แก่","<b>วันขึ้น 8 ค่ำ, วันขึ้น 15 ค่ำ, วันแรม 8 ค่ำ และวันแรม 14 หรือ 15 ค่ำ</b> รวมเดือนละ 4 วัน (ห่างกันประมาณ 7–8 วัน ตรงกับจันทร์ครึ่งดวง เต็มดวง และดับ)"],
+  ["ในช่วงเวลาที่ดวงจันทร์ปรากฏเป็นเสี้ยวบาง แต่เราสามารถมองเห็นด้านมืดของดวงจันทร์ได้ เนื่องจากแสงอาทิตย์ส่องกระทบพื้นผิวโลกแล้วสะท้อนไปยังดวงจันทร์ เรียกปรากฏการณ์นี้ว่า","<b>แสงโลก</b> (Earthshine) หรือที่เรียกกันว่า แสงเถ้าธุลี (Ashen glow / Da Vinci glow)"]
+ ]},
+ {title:"ใบงาน 3.4 · ถูก–ผิด (ดวงจันทร์)", src:"หน้า 12", items:[
+  ["ดวงจันทร์จะปรากฏบนท้องฟ้าในเวลากลางคืนเท่านั้น","<span class='tf n'>✗ ผิด</span> บางช่วงเห็นดวงจันทร์ในเวลากลางวันได้ เพราะเวลาขึ้น–ตกของดวงจันทร์เลื่อนไปวันละ 50 นาที"],
+  ["ในรอบ 1 เดือน เราจะเห็นดวงจันทร์มีรูปร่างเปลี่ยนแปลงไปในแต่ละวัน","<span class='tf y'>✓ ถูก</span> ครบรอบข้างขึ้น–ข้างแรมใน 29.5 วัน"],
+  ["ถ้าระยะห่างระหว่างจุดศูนย์กลางของดาว 2 ดวงมากขึ้น แรงโน้มถ่วงที่กระทำต่อกันจะมากขึ้นตาม","<span class='tf n'>✗ ผิด</span> แรงโน้มถ่วงจะ<b>ลดลง</b>ตามกำลังสองของระยะทาง"],
+  ["ดวงจันทร์จะขึ้นและตกเร็วขึ้นอย่างสม่ำเสมอประมาณวันละ 50 นาที","<span class='tf n'>✗ ผิด</span> ดวงจันทร์ขึ้นและตก<b>ช้าลง</b>วันละประมาณ 50 นาที ไม่ใช่เร็วขึ้น"],
+  ["ช่วงเวลาที่เห็นดวงจันทร์สว่างขึ้นจนสว่างเต็มดวง เรียกว่า ข้างแรม","<span class='tf n'>✗ ผิด</span> ช่วงที่สว่างขึ้นจนเต็มดวงเรียกว่า <b>ข้างขึ้น</b>"],
+  ["ในวันข้างขึ้น ดวงจันทร์จะขึ้นในเวลากลางวันก่อนดวงอาทิตย์ตก และตกในเวลากลางคืน","<span class='tf y'>✓ ถูก</span> เช่น ขึ้น 8 ค่ำ ดวงจันทร์ขึ้นราวเที่ยงวันและตกราวเที่ยงคืน"],
+  ["ในวันข้างแรม ดวงจันทร์จะขึ้นหลังดวงอาทิตย์ตก หรือขึ้นในเวลากลางคืน และตกในเวลากลางวัน","<span class='tf y'>✓ ถูก</span> เช่น แรม 8 ค่ำ ดวงจันทร์ขึ้นราวเที่ยงคืนและตกราวเที่ยงวัน"],
+  ["ดวงจันทร์ต้องใช้เวลาประมาณ 15 วัน จึงจะมีเวลาขึ้นและตกใกล้เคียงกับเวลาเดิมอีกครั้งหนึ่ง","<span class='tf n'>✗ ผิด</span> ต้องใช้เวลาประมาณ <b>29.5 วัน</b> (1 เดือนจันทรคติ) จึงจะกลับมาขึ้น–ตกในเวลาใกล้เคียงเดิมพร้อมรูปร่างเดิม"],
+  ["ดวงจันทร์โคจรรอบโลกจากทิศตะวันตกไปทิศตะวันออก ซึ่งเป็นทิศทางเดียวกันกับการหมุนรอบตัวเองของโลก","<span class='tf y'>✓ ถูก</span>"],
+  ["ช่วงเวลาที่เห็นดวงจันทร์สว่างน้อยลงเรื่อย ๆ จนมองไม่เห็นดวงจันทร์ เรียกว่า ข้างขึ้น","<span class='tf n'>✗ ผิด</span> เรียกว่า <b>ข้างแรม</b>"],
+  ["ดวงจันทร์ขึ้นและตกในทิศเดียวกันกับดวงอาทิตย์","<span class='tf y'>✓ ถูก</span> ขึ้นทางทิศตะวันออกและตกทางทิศตะวันตกเช่นเดียวกัน เพราะเกิดจากการหมุนรอบตัวเองของโลกเหมือนกัน (ตำแหน่งเฉียงเหนือ–ใต้อาจต่างกันบ้าง)"],
+  ["คนบนโลกเห็นพื้นผิวของดวงจันทร์เพียงด้านเดียว เนื่องจากดวงจันทร์ใช้เวลาหมุนรอบตัวเองเท่ากับเวลาที่ใช้ในการโคจรรอบโลก","<span class='tf y'>✓ ถูก</span> เรียกว่าการหมุนแบบถูกตรึงด้วยแรงไทดัล (tidally locked) ทั้งสองคาบเท่ากันคือ 27.3 วัน"],
+  ["ดวงจันทร์ไม่มีแสงสว่างในตัวเอง แสงจากดวงจันทร์เกิดจากการสะท้อนแสงอาทิตย์มาเข้าตาเรา","<span class='tf y'>✓ ถูก</span>"],
+  ["ข้างขึ้น ข้างแรมเกิดจากการที่ดวงจันทร์โคจรรอบโลก และโลกกับดวงจันทร์ก็โคจรรอบดวงอาทิตย์","<span class='tf y'>✓ ถูก</span> การเคลื่อนที่ทั้งสองอย่างทำให้มุมดวงอาทิตย์–ดวงจันทร์–โลกเปลี่ยนไป (และเป็นเหตุที่รอบข้างขึ้นข้างแรม 29.5 วัน ยาวกว่ารอบโคจร 27.3 วัน)"],
+  ["ดวงจันทร์โคจรรอบโลก ทำให้มุมระหว่างดวงอาทิตย์–ดวงจันทร์–โลก เปลี่ยนแปลงไปวันละ 12 องศา","<span class='tf y'>✓ ถูก</span> คิดจาก 360° ÷ 29.5 วัน ≈ <b>12.2 องศาต่อวัน</b>"]
+ ]},
+ {title:"ใบงาน 3.5 · แรงไทดัลและน้ำขึ้นน้ำลง", src:"หน้า 13", items:[
+  ["ปรากฏการณ์น้ำขึ้น น้ำลง เกิดจากอะไร",
+   "เกิดจาก<b>แรงโน้มถ่วงของดวงจันทร์ (และดวงอาทิตย์) ที่กระทำต่อมวลน้ำบนโลกไม่เท่ากัน</b> ด้านที่หันเข้าหาดวงจันทร์ถูกดึงมากที่สุดจึงโป่งขึ้นเป็นน้ำขึ้น ด้านตรงข้ามก็โป่งขึ้นด้วยเพราะถูกดึงน้อยที่สุด (ผลของความเฉื่อย) ส่วนบริเวณตั้งฉากกับแนวนี้จะเป็นน้ำลง เมื่อโลกหมุนรอบตัวเอง แต่ละพื้นที่จึงผ่านส่วนโป่งวันละ 2 ครั้ง เกิดน้ำขึ้น–น้ำลงวันละ 2 รอบ"],
+  ["เมื่อดาวดวงหนึ่งได้รับอิทธิพลแรงโน้มถ่วงจากดาวอีกดวงหนึ่ง ด้านที่อยู่ใกล้จะถูกดึงดูดมากกว่าด้านที่อยู่ไกล ความแตกต่างของแรงทั้งด้านจะทำให้เกิดความเครียดภายใน เราเรียกแรงภายในที่แตกต่างนี้ว่าอะไร",
+   "<b>แรงไทดัล</b> (Tidal force)"],
+  ["แรงไทดัลเกิดจากแรงอะไร","เกิดจาก<b>ความแตกต่างของแรงโน้มถ่วง</b>ที่กระทำต่อส่วนต่าง ๆ ของวัตถุซึ่งอยู่ห่างจากแหล่งแรงไม่เท่ากัน (differential gravity)"],
+  ["แรงไทดัลเกี่ยวข้องกับปรากฏการณ์น้ำขึ้น น้ำลงหรือไม่ อย่างไร",
+   "<b>เกี่ยวข้องโดยตรง</b> แรงไทดัลจากดวงจันทร์และดวงอาทิตย์ทำให้มวลน้ำในมหาสมุทรโป่งออกทั้งด้านใกล้และด้านตรงข้าม เมื่อโลกหมุนผ่านส่วนโป่งเหล่านี้จึงเกิดน้ำขึ้นน้ำลงเป็นจังหวะสม่ำเสมอ โดยดวงจันทร์มีอิทธิพลมากกว่าดวงอาทิตย์ประมาณ 2 เท่าเพราะอยู่ใกล้โลกมากกว่า"],
+  ["ปรากฏการณ์น้ำขึ้น น้ำลง มีผลต่อการออกแบบบ้านที่สร้างบริเวณริมแม่น้ำที่เชื่อมต่อกับทะเลอย่างไร",
+   "ต้อง<b>ยกพื้นบ้านให้สูงกว่าระดับน้ำขึ้นสูงสุด</b> นิยมสร้างเป็นบ้านใต้ถุนสูงหรือบ้านเสาสูง มีท่าเทียบเรือแบบลอยหรือบันไดหลายระดับเพื่อใช้ได้ทั้งช่วงน้ำขึ้นและน้ำลง รวมทั้งเลือกวัสดุที่ทนน้ำเค็มและการกัดเซาะ"],
+  ["ยกตัวอย่างและอธิบายการดำรงชีวิตที่เกี่ยวข้องกับปรากฏการณ์น้ำขึ้น น้ำลง",
+   "เช่น <b>การทำนาเกลือ</b> (เปิดน้ำทะเลเข้านาช่วงน้ำขึ้น), <b>การประมงและเดินเรือ</b> (กำหนดเวลาเข้า–ออกท่าเรือตามตารางน้ำ), <b>การเก็บหอยและสัตว์ทะเลชายฝั่ง</b> ในช่วงน้ำลง, <b>การเลี้ยงหอยแมลงภู่/หอยนางรม</b> ที่อาศัยการหมุนเวียนของน้ำ และ<b>การท่องเที่ยวทะเลแหวก</b> ซึ่งเดินได้เฉพาะช่วงน้ำลงต่ำสุด"],
+  ["วันขึ้น 15 ค่ำ และวันแรม 15 ค่ำ ดวงอาทิตย์ โลก และดวงจันทร์เรียงตัวอยู่ในแนวเดียวกัน ทำให้แรงไทดัลบนโลกเพิ่มขึ้น ระดับน้ำขึ้นสูงสุดและน้ำลงต่ำสุดแตกต่างกันมาก เรียกปรากฏการณ์นี้ว่าอย่างไร",
+   "<b>น้ำเกิด</b> (Spring tide) เพราะแรงไทดัลของดวงอาทิตย์และดวงจันทร์เสริมกัน"],
+  ["วันขึ้น 8 ค่ำ และวันแรม 8 ค่ำ ดวงอาทิตย์ โลก และดวงจันทร์อยู่ในแนวตั้งฉากกัน ทำให้ระดับน้ำขึ้นสูงสุดและน้ำลงต่ำสุดไม่แตกต่างกันมาก เรียกปรากฏการณ์นี้ว่าอย่างไร",
+   "<b>น้ำตาย</b> (Neap tide) เพราะแรงไทดัลของดวงอาทิตย์หักล้างกับแรงไทดัลของดวงจันทร์บางส่วน"]
+ ]},
+ {title:"ใบงาน 3.6 · สถานการณ์ฤดูกาลและตารางน้ำขึ้นน้ำลง", src:"หน้า 14", items:[
+  ["1.1 จากจดหมายของเอกที่อยู่ประเทศจีน ถึงโทที่อยู่นิวซีแลนด์ การคาดคะเนของเอกมีส่วนใดที่ไม่ถูกต้องและไม่ถูกต้องอย่างไร",
+   "ส่วนที่ไม่ถูกต้องมี 2 จุด<br>1) เอกคาดว่า <b>ประเทศจีนอากาศคงหนาวเหมือนกันกับนิวซีแลนด์</b> ซึ่งผิด เพราะจีนอยู่ซีกโลกเหนือ นิวซีแลนด์อยู่ซีกโลกใต้ ฤดูกาลจะตรงข้ามกันเสมอ<br>2) เอกคาดว่าอีก 1–2 เดือน นิวซีแลนด์จะเปลี่ยนจาก<b>ฤดูหนาวเป็นฤดูร้อนทันที</b> ซึ่งผิด เพราะฤดูกาลเปลี่ยนอย่างค่อยเป็นค่อยไป ต้องผ่านฤดูใบไม้ผลิก่อนจึงจะถึงฤดูร้อน"],
+  ["1.2 ถ้าประเทศจีนเป็นฤดูหนาว ประเทศนิวซีแลนด์ควรเป็นฤดูอะไร เพราะเหตุใด",
+   "ควรเป็น<b>ฤดูร้อน</b> เพราะจีนอยู่ซีกโลกเหนือ ส่วนนิวซีแลนด์อยู่ซีกโลกใต้ เมื่อแกนโลกเอียงทำให้ซีกโลกเหนือหันออกจากดวงอาทิตย์ (หนาว) ซีกโลกใต้จะหันเข้าหาดวงอาทิตย์พอดี (ร้อน) ฤดูกาลของสองซีกโลกจึงตรงข้ามกันเสมอ"],
+  ["2.1 ถ้านักเรียนต้องการเดินทางไปชมทะเลแหวก จ.กระบี่ ควรไปวันและเวลาใดจึงจะเห็นทะเลแหวกกว้างที่สุด",
+   "ควรไป<b>วันที่ 16 เวลาประมาณ 9:06 น.</b> เพราะเป็นช่วงที่ระดับน้ำลงต่ำสุดของทั้งตาราง คือ <b>1.03 เมตร</b> น้ำจึงลดมากที่สุดและเห็นสันทรายกว้างที่สุด (อีกทั้งเป็นเวลากลางวันที่เหมาะแก่การเดินทาง) — หลักการอ่านตารางคือเลือกช่วงน้ำลงที่ตัวเลขความสูงน้อยที่สุด"],
+  ["2.2 นักเรียนคิดว่าปรากฏการณ์ดังกล่าวเกิดจากสาเหตุใด",
+   "เกิดจาก<b>แรงไทดัล</b> อันเป็นผลจากแรงโน้มถ่วงของดวงจันทร์และดวงอาทิตย์ที่ดึงดูดมวลน้ำทะเลไม่เท่ากัน ประกอบกับช่วงวันที่ 13–16 เป็นช่วงแรม 14–15 ค่ำ ต่อขึ้น 1–2 ค่ำ ซึ่งดวงอาทิตย์ โลก และดวงจันทร์เรียงตัวเกือบเป็นแนวเดียวกัน (ช่วง<b>น้ำเกิด</b>) แรงไทดัลจึงเสริมกัน ทำให้ระดับน้ำขึ้นสูงสุดกับน้ำลงต่ำสุดต่างกันมาก จึงเห็นทะเลแหวกได้ชัดเจน"]
+ ]}
+];
+</script>
+<script>
+QDATA.q4=[
+ {title:"ใบงาน 4.1 · ความหมายและการใช้ประโยชน์", src:"หน้า 15", items:[
+  ["เทคโนโลยีอวกาศ คืออะไร",
+   "<b>เทคโนโลยีอวกาศ</b> คือกระบวนการประยุกต์ใช้ความรู้ทางวิทยาศาสตร์และวิศวกรรมศาสตร์ ในการออกแบบ สร้าง และใช้งานอุปกรณ์หรือยานพาหนะ เพื่อสำรวจ ศึกษา และเก็บข้อมูลเกี่ยวกับอวกาศ รวมทั้งนำความรู้และอุปกรณ์เหล่านั้นมาใช้ประโยชน์บนโลก"],
+  ["ยกตัวอย่างเทคโนโลยีอวกาศมีอะไรบ้าง",
+   "จรวด, ยานอวกาศ, กระสวยอวกาศ, ดาวเทียมประเภทต่าง ๆ (สื่อสาร อุตุนิยมวิทยา สำรวจทรัพยากร นำร่อง จารกรรม), กล้องโทรทรรศน์อวกาศ (ฮับเบิล เจมส์ เว็บบ์), สถานีอวกาศนานาชาติ (ISS), ยานสำรวจไร้คนขับและหุ่นยนต์สำรวจพื้นผิวดาว (rover)"],
+  ["ถ้านักดาราศาสตร์ต้องการศึกษาข้อมูลเกี่ยวกับดาวอังคาร นักเรียนคิดว่านักดาราศาสตร์ควรใช้ข้อมูลจากอุปกรณ์ใด",
+   "ใช้ข้อมูลจาก<b>กล้องโทรทรรศน์อวกาศ</b> ร่วมกับ<b>ยานสำรวจที่โคจรรอบดาวอังคาร (orbiter)</b> และ<b>หุ่นยนต์สำรวจพื้นผิว (rover)</b> เช่น ยานคิวริออซิตี และเพอร์เซเวียแรนซ์ ซึ่งเก็บภาพ วิเคราะห์ดินและหิน วัดสภาพบรรยากาศได้โดยตรง"],
+  ["เพราะเหตุใดจึงต้องส่งกล้องโทรทรรศน์ให้อยู่นอกโลก",
+   "เพราะบรรยากาศของโลก<b>รบกวนการสังเกต</b> ทั้งฝุ่นละออง เมฆ ไอน้ำ การสั่นไหวของอากาศที่ทำให้ภาพพร่ามัว และแสงรบกวนจากเมือง นอกจากนี้บรรยากาศยัง<b>ดูดกลืนคลื่นแม่เหล็กไฟฟ้าบางช่วง</b> เช่น รังสีเอกซ์ รังสีแกมมา และอัลตราไวโอเลตไว้ไม่ให้ลงมาถึงพื้นโลก การนำกล้องขึ้นไปนอกโลกจึงได้ภาพคมชัดกว่าและเก็บข้อมูลได้ครบทุกช่วงคลื่น"],
+  ["ถ้าไม่มีดาวเทียมจะส่งผลอย่างไรต่อชีวิตประจำวันของนักเรียน",
+   "ระบบนำทาง GPS ใช้ไม่ได้, การสื่อสารทางไกลและโทรทัศน์ผ่านดาวเทียมหยุดชะงัก, อินเทอร์เน็ตบางพื้นที่ขาดการเชื่อมต่อ, การพยากรณ์อากาศและการเตือนภัยพายุ–น้ำท่วมทำได้ยากและแม่นยำน้อยลง, การสำรวจทรัพยากรและติดตามไฟป่าทำไม่ได้"],
+  ["ความก้าวหน้าทางด้านเทคโนโลยีอวกาศจะเกิดขึ้นได้ ต้องใช้ความรู้ใดในการออกแบบและประดิษฐ์",
+   "ต้องบูรณาการหลายศาสตร์ ได้แก่ <b>ฟิสิกส์</b> (แรง การเคลื่อนที่ วงโคจร แรงโน้มถ่วง), <b>เคมี</b> (เชื้อเพลิงจรวด วัสดุทนความร้อน), <b>วิศวกรรมศาสตร์</b> (โครงสร้าง เครื่องยนต์ ระบบควบคุม), <b>คณิตศาสตร์</b> (คำนวณวิถีโคจร), <b>คอมพิวเตอร์และอิเล็กทรอนิกส์</b> รวมถึง<b>ดาราศาสตร์และชีววิทยา</b>"],
+  ["โครงการสำรวจดวงจันทร์มีวัตถุประสงค์อะไรบ้าง",
+   "เพื่อศึกษาองค์ประกอบ โครงสร้าง และกำเนิดของดวงจันทร์ ค้นหาทรัพยากร เช่น น้ำแข็งบริเวณขั้ว และแร่ฮีเลียม-3 ทดสอบเทคโนโลยีการดำรงชีวิตนอกโลก และเตรียมใช้ดวงจันทร์เป็นฐานสำหรับการเดินทางไปสำรวจดาวอังคารในอนาคต"],
+  ["เพราะเหตุใดจึงส่งหุ่นยนต์ไปสำรวจดาวอังคาร",
+   "เพราะดาวอังคารอยู่ไกลมาก (เดินทางหลายเดือน) สภาพแวดล้อมไม่เอื้อต่อสิ่งมีชีวิต ทั้งอุณหภูมิต่ำมาก บรรยากาศเบาบางไม่มีออกซิเจน และมีรังสีสูง การส่งมนุษย์จึงเสี่ยงและใช้งบประมาณสูงมาก ส่วนหุ่นยนต์ทำงานได้ต่อเนื่องยาวนาน ไม่ต้องการอาหาร อากาศ หรือการเดินทางกลับ จึงคุ้มค่าและปลอดภัยกว่า"]
+ ]},
+ {title:"ใบงาน 4.2 · การสำรวจอวกาศและประโยชน์", src:"หน้า 16", items:[
+  ["การสำรวจดวงอาทิตย์มีความสำคัญอย่างไร",
+   "ช่วยให้เข้าใจแหล่งพลังงานหลักของระบบสุริยะ ทั้งการเกิดจุดมืดดวงอาทิตย์ การลุกจ้า และพายุสุริยะ ซึ่งส่งผลรบกวนสนามแม่เหล็กโลก ระบบสื่อสาร ดาวเทียม และระบบไฟฟ้าบนโลก การเฝ้าติดตามจึงช่วย<b>พยากรณ์สภาพอวกาศและเตือนภัยล่วงหน้า</b>ได้"],
+  ["การสำรวจองค์ประกอบของดาวเคราะห์ต่าง ๆ ในระบบสุริยะมีความสำคัญอย่างไร",
+   "ทำให้เข้าใจ<b>กำเนิดและวิวัฒนาการของระบบสุริยะและโลก</b> เปรียบเทียบสภาพแวดล้อมของดาวแต่ละดวงเพื่อทำนายอนาคตของโลก ค้นหาความเป็นไปได้ของสิ่งมีชีวิตนอกโลก และประเมินทรัพยากรที่อาจใช้ประโยชน์ได้ในอนาคต"],
+  ["นักเรียนคิดว่าโครงการสำรวจอวกาศมีผลกระทบต่อมนุษย์อย่างไร มีความจำเป็นหรือไม่ อย่างไร",
+   "<b>ผลดี</b> เกิดองค์ความรู้ใหม่และเทคโนโลยีที่ย้อนกลับมาใช้บนโลก เช่น GPS การสื่อสาร วัสดุน้ำหนักเบา อุปกรณ์การแพทย์ การกรองน้ำ และสร้างแรงบันดาลใจด้านวิทยาศาสตร์ <b>ผลเสีย</b> ใช้งบประมาณสูงมาก และก่อให้เกิดขยะอวกาศ <b>ความจำเป็น</b> ยังจำเป็น เพราะช่วยเฝ้าระวังภัยจากอวกาศ (เช่น ดาวเคราะห์น้อย พายุสุริยะ) ติดตามการเปลี่ยนแปลงภูมิอากาศโลก และเป็นการเตรียมอนาคตของมนุษยชาติ"],
+  ["มนุษย์ใช้ประโยชน์จากเทคโนโลยีอวกาศอย่างไร",
+   "ด้าน<b>การสื่อสารโทรคมนาคม</b> (โทรศัพท์ อินเทอร์เน็ต โทรทัศน์), <b>การนำทาง</b> (GPS), <b>การพยากรณ์อากาศและเตือนภัยพิบัติ</b>, <b>การสำรวจทรัพยากรธรรมชาติและผังเมือง</b>, <b>การเกษตร</b> (ติดตามพื้นที่เพาะปลูก), <b>การทหารและความมั่นคง</b>, <b>การวิจัยทางวิทยาศาสตร์และการแพทย์</b>"],
+  ["เทคโนโลยีอวกาศที่นำไปสำรวจอวกาศมีอะไรบ้าง",
+   "จรวดและกระสวยอวกาศ (พาขึ้นสู่วงโคจร), ยานอวกาศและยานสำรวจไร้คนขับ, ดาวเทียมสำรวจอวกาศ, กล้องโทรทรรศน์อวกาศหลายช่วงคลื่น, สถานีอวกาศ, หุ่นยนต์สำรวจพื้นผิว และชุดอวกาศพร้อมระบบพยุงชีพ"],
+  ["ภาพถ่ายจากกล้องถ่ายรูป กล้องถ่ายรูปที่ต่อกับกล้องโทรทรรศน์ และกล้องโทรทรรศน์อวกาศ ให้ข้อมูลเกี่ยวกับสิ่งใด และมีประโยชน์อย่างไร",
+   "ให้ข้อมูลเกี่ยวกับ<b>ลักษณะพื้นผิว บรรยากาศ องค์ประกอบทางเคมี ความสว่าง สี อุณหภูมิ และตำแหน่งการเคลื่อนที่</b>ของวัตถุท้องฟ้า ยิ่งใช้กล้องที่มีกำลังแยกภาพสูงและอยู่นอกบรรยากาศ ยิ่งเห็นรายละเอียดของวัตถุที่อยู่ไกลและจางมากได้ เป็นประโยชน์ต่อการวิจัยดาราศาสตร์ การจำแนกชนิดของดาว การค้นหาดาวเคราะห์นอกระบบ และการติดตามการเปลี่ยนแปลงบนโลก"],
+  ["ดาวเทียมสื่อสารดวงแรกของประเทศไทยมีชื่อว่าอย่างไร",
+   "<b>ดาวเทียมไทยคม 1 (Thaicom 1)</b> ส่งขึ้นสู่วงโคจรเมื่อ พ.ศ. 2536 (ค.ศ. 1993) นับเป็นดาวเทียมสื่อสารดวงแรกของไทย ชื่อ &ldquo;ไทยคม&rdquo; ได้รับพระราชทานจากพระบาทสมเด็จพระบรมชนกาธิเบศร มหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร"],
+  ["เพราะเหตุใดต้องสร้างจรวดเป็นหลาย ๆ ท่อนติดต่อกัน",
+   "เพราะการขึ้นสู่วงโคจรต้องใช้ความเร็วสูงมาก (ราว 7.9 กม./วินาที) การแบ่งเป็นหลายท่อนทำให้<b>สลัดท่อนที่ใช้เชื้อเพลิงหมดแล้วทิ้งไปได้</b> น้ำหนักที่ต้องเร่งจึงลดลงเรื่อย ๆ เครื่องยนต์ท่อนถัดไปจึงเร่งส่วนที่เหลือได้เร็วขึ้นด้วยเชื้อเพลิงเท่าเดิม เป็นการใช้พลังงานอย่างมีประสิทธิภาพที่สุด"]
+ ]},
+ {title:"ใบงาน 4.3 · สถานีอวกาศและกล้องโทรทรรศน์", src:"หน้า 17", items:[
+  ["จากภาพ เพราะเหตุใดสถานีอวกาศนานาชาติจึงโคจรรอบโลกได้โดยไม่ตกลงบนโลก",
+   "เพราะสถานีอวกาศเคลื่อนที่ไปข้างหน้าด้วย<b>ความเร็วสูงมากประมาณ 27,600 กิโลเมตรต่อชั่วโมง</b> ขณะที่แรงโน้มถ่วงของโลกดึงให้ตกลงมา ผลรวมทำให้สถานี &ldquo;ตกอย่างต่อเนื่อง&rdquo; ไปตามความโค้งของผิวโลกพอดี จึงวนเป็นวงโคจรโดยไม่ตกถึงพื้น (สภาพนี้เรียกว่าการตกอย่างอิสระ ทำให้นักบินอวกาศรู้สึกไร้น้ำหนัก) ประกอบกับที่ระดับความสูงราว 400 กม. มีอากาศเบาบางมาก แรงต้านจึงน้อย"],
+  ["ถ้านักเรียนต้องการสังเกตหรือสืบค้นข้อมูลของดาวเสาร์ จะใช้เทคโนโลยีอวกาศใดได้บ้าง",
+   "ใช้<b>กล้องโทรทรรศน์</b>ทั้งบนพื้นโลกและกล้องโทรทรรศน์อวกาศ (ฮับเบิล เจมส์ เว็บบ์) รวมทั้งข้อมูลจาก<b>ยานสำรวจอวกาศ</b> เช่น ยานแคสสินี–ไฮเกนส์ ที่โคจรสำรวจดาวเสาร์ วงแหวน และดวงจันทร์บริวารอย่างไททันและเอนเซลาดัสโดยตรง"],
+  ["เพราะเหตุใดจึงต้องมีกล้องโทรทรรศน์อวกาศที่ตรวจวัดคลื่นแม่เหล็กไฟฟ้าความถี่แตกต่างกัน",
+   "เพราะวัตถุท้องฟ้าแต่ละชนิดและแต่ละกระบวนการ<b>แผ่คลื่นแม่เหล็กไฟฟ้าในช่วงความถี่ต่างกัน</b> เช่น ดาวฤกษ์ร้อนจัดแผ่รังสีอัลตราไวโอเลตและรังสีเอกซ์ เมฆฝุ่นและดาวเกิดใหม่แผ่รังสีอินฟราเรดที่ทะลุฝุ่นออกมาได้ การมีกล้องหลายช่วงคลื่นจึงให้ข้อมูลที่สมบูรณ์กว่ามาก ทั้งอุณหภูมิ องค์ประกอบ และกระบวนการที่เกิดขึ้น"],
+  ["วัตถุประสงค์ในการสำรวจอวกาศ ได้แก่อะไรบ้าง",
+   "1) ศึกษากำเนิดและวิวัฒนาการของเอกภพและระบบสุริยะ 2) ค้นหาสิ่งมีชีวิตนอกโลก 3) ค้นหาทรัพยากรและพื้นที่ที่มนุษย์อาจอยู่อาศัยได้ 4) พัฒนาเทคโนโลยีที่นำมาใช้ประโยชน์บนโลก 5) เฝ้าระวังภัยจากอวกาศ เช่น ดาวเคราะห์น้อยและพายุสุริยะ 6) ติดตามการเปลี่ยนแปลงของโลก"],
+  ["การสำรวจดาวเคราะห์ชั้นนอกมีความน่าสนใจอย่างไร",
+   "ดาวเคราะห์ชั้นนอก (พฤหัสบดี เสาร์ ยูเรนัส เนปจูน) เป็นดาวแก๊สและน้ำแข็งขนาดใหญ่ มีระบบวงแหวนและดวงจันทร์บริวารจำนวนมาก บางดวงน่าสนใจอย่างยิ่ง เช่น <b>ยูโรปา</b> ของดาวพฤหัสบดี และ <b>เอนเซลาดัส</b> ของดาวเสาร์ ที่มีมหาสมุทรน้ำเหลวใต้เปลือกน้ำแข็ง จึงอาจเอื้อต่อสิ่งมีชีวิต อีกทั้งยังช่วยให้เข้าใจการก่อกำเนิดระบบสุริยะในยุคแรกเริ่ม"],
+  ["ปรากฏการณ์ที่เกิดจากปฏิสัมพันธ์ในระบบสุริยะและเทคโนโลยีอวกาศมีผลต่อมนุษย์อย่างไร",
+   "<b>ปรากฏการณ์ธรรมชาติ</b> เช่น กลางวัน–กลางคืน ฤดูกาล ข้างขึ้น–ข้างแรม และน้ำขึ้น–น้ำลง กำหนดวิถีชีวิต การเพาะปลูก การประมง การเดินเรือ และปฏิทินประเพณีของมนุษย์ ส่วนพายุสุริยะอาจรบกวนดาวเทียมและระบบไฟฟ้า <b>เทคโนโลยีอวกาศ</b> ช่วยให้เราพยากรณ์และเตือนภัยเหล่านี้ล่วงหน้า ทั้งยังอำนวยความสะดวกด้านการสื่อสาร การนำทาง และการวิจัย จึงมีผลต่อทั้งความปลอดภัยและคุณภาพชีวิตของมนุษย์โดยตรง"]
+ ]},
+ {title:"ใบงาน 4.4 · จับคู่ประเภทเทคโนโลยีอวกาศ", src:"หน้า 18", items:[
+  ["เป็นกระบวนการประยุกต์ใช้วิทยาการทางด้านวิทยาศาสตร์และวิศวกรรมศาสตร์เพื่อการสำรวจและเก็บข้อมูลเกี่ยวกับอวกาศ","<span class='lbl'>ตอบ</span> <b>จ. เทคโนโลยีอวกาศ</b>"],
+  ["ใช้ประโยชน์ในการสำรวจอวกาศ อยู่ในวงโคจรที่สูงกว่าดาวเทียมประเภทอื่น","<span class='lbl'>ตอบ</span> <b>ฎ. ดาวเทียมสำรวจอวกาศ</b>"],
+  ["ใช้ประโยชน์ในการหาตำแหน่งและทิศทางของการเดินเรือ","<span class='lbl'>ตอบ</span> <b>ญ. ดาวเทียมนำร่อง</b> (เช่น ระบบ GPS)"],
+  ["ใช้ประโยชน์ด้านการจารกรรมหรือสงคราม","<span class='lbl'>ตอบ</span> <b>ก. ดาวเทียมจารกรรม</b>"],
+  ["ใช้ประโยชน์ในการติดต่อสื่อสารและโทรคมนาคม","<span class='lbl'>ตอบ</span> <b>ค. ดาวเทียมสื่อสาร</b> (เช่น ไทยคม)"],
+  ["ใช้ในการพยากรณ์อากาศ","<span class='lbl'>ตอบ</span> <b>ข. ดาวเทียมอุตุนิยมวิทยา</b>"],
+  ["ใช้สำรวจพื้นผิวโลกและการเปลี่ยนแปลงต่าง ๆ","<span class='lbl'>ตอบ</span> <b>ฉ. ดาวเทียมสำรวจทรัพยากรธรรมชาติ</b> (เช่น THEOS ของไทย)"],
+  ["ยานพาหนะที่พาดาวเทียมหรือยานอวกาศขึ้นไปสู่อวกาศ ไม่สามารถนำกลับมาใช้ได้อีก","<span class='lbl'>ตอบ</span> <b>ซ. จรวด</b>"],
+  ["ถูกพัฒนาขึ้นมาแทนจรวด สามารถนำกลับมาแก้ไขซ่อมแซมปรับปรุงเพื่อนำไปใช้ใหม่","<span class='lbl'>ตอบ</span> <b>ฏ. กระสวยอวกาศ</b>"],
+  ["ชิ้นส่วนต่าง ๆ ของยานอวกาศที่สลัดออกซึ่งเสื่อมสภาพ เป็นอันตรายต่อดาวเทียมและสถานีอวกาศที่กำลังโคจรอยู่","<span class='lbl'>ตอบ</span> <b>ง. ขยะอวกาศ</b>"],
+  ["เป็นห้องทดลองขนาดใหญ่ อยู่ในอวกาศตลอดชีวิตการทำงาน","<span class='lbl'>ตอบ</span> <b>ช. สถานีอวกาศ</b> (เช่น สถานีอวกาศนานาชาติ ISS)"],
+  ["ดาวเทียมที่อยู่ ณ ตำแหน่งเดิมบนท้องฟ้า เนื่องจากใช้เวลาโคจรรอบโลกครบรอบเท่ากับโลกหมุนรอบตัวเองครบรอบพอดี","<span class='lbl'>ตอบ</span> <b>ฌ. ดาวเทียมค้างฟ้า</b> (Geostationary satellite โคจรที่ความสูงประมาณ 35,786 กม. เหนือเส้นศูนย์สูตร คาบ 24 ชั่วโมง)"]
+ ]}
+];
+</script>
+<script>
+/* ---------------- tabs ---------------- */
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(o=>{o.setAttribute('aria-selected',String(o===t));
+    document.getElementById(o.getAttribute('aria-controls')).hidden=(o!==t);});
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ---------------- answer-key accordion ---------------- */
+const caret='<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg>';
+function renderQ(hostId,sections){
+  const host=document.getElementById(hostId);
+  sections.forEach(sec=>{
+    const wrap=document.createElement('div');wrap.className='qsec';
+    wrap.innerHTML='<div class="qsec-head"><div><h3>'+sec.title+'</h3><span class="src">ใบงาน '+sec.src+'</span></div>'+
+      '<button class="revealall">เปิดเฉลยทั้งหมด</button></div>';
+    const list=document.createElement('div');
+    sec.items.forEach((it,i)=>{
+      const d=document.createElement('div');d.className='qitem';
+      d.innerHTML='<button class="qbtn" aria-expanded="false"><span class="qnum">'+(i+1)+'.</span>'+
+        '<span class="qtext">'+it[0]+'</span>'+caret+'</button>'+
+        '<div class="ans"><span class="lbl">เฉลย</span>'+it[1]+'</div>';
+      const btn=d.querySelector('.qbtn');
+      btn.addEventListener('click',()=>{const o=d.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));});
+      list.appendChild(d);
+    });
+    wrap.appendChild(list);
+    const all=wrap.querySelector('.revealall');
+    all.addEventListener('click',()=>{
+      const open=all.dataset.on!=='1';all.dataset.on=open?'1':'0';
+      all.textContent=open?'ซ่อนเฉลยทั้งหมด':'เปิดเฉลยทั้งหมด';
+      list.querySelectorAll('.qitem').forEach(q=>{q.classList.toggle('open',open);
+        q.querySelector('.qbtn').setAttribute('aria-expanded',String(open));});
+    });
+    host.appendChild(wrap);
+  });
+}
+renderQ('q1',QDATA.q1);renderQ('q2',QDATA.q2);renderQ('q4',QDATA.q4);
+
+/* tide table then topic-3 questions */
+document.getElementById('q3').insertAdjacentHTML('beforeend',
+ '<div class="scrollx"><table class="tide"><caption>ตารางระดับน้ำทะเลต่ำสุดและสูงสุดในแต่ละวัน โดยกรมเจ้าท่า วัดที่สถานีกระบี่ เดือนพฤษภาคม พ.ศ. 2561 (ใช้ตอบข้อ 2.1–2.2 ของใบงานหน้า 14)</caption>'+
+ '<thead><tr><th>วันที่</th><th>น้ำขึ้น เวลา</th><th>ความสูง (ม.)</th><th>น้ำขึ้น เวลา</th><th>ความสูง (ม.)</th><th>วันทางจันทรคติ</th><th>น้ำลง เวลา</th><th>ความสูง (ม.)</th><th>น้ำลง เวลา</th><th>ความสูง (ม.)</th></tr></thead><tbody>'+
+ '<tr><td>13</td><td>9:52</td><td>3.77</td><td>21:45</td><td>3.67</td><td>แรม 14 ค่ำ</td><td>15:40</td><td>1.45</td><td>3:06</td><td>1.41</td></tr>'+
+ '<tr><td>14</td><td>10:25</td><td>3.95</td><td>22:25</td><td>3.76</td><td>แรม 15 ค่ำ</td><td>3:54</td><td>1.27</td><td>16:13</td><td>1.21</td></tr>'+
+ '<tr><td>15</td><td>11:00</td><td>4.11</td><td>–</td><td>–</td><td>ขึ้น 1 ค่ำ</td><td>17:04</td><td>1.11</td><td>4:30</td><td>1.11</td></tr>'+
+ '<tr><td>16</td><td>11:34</td><td>4.19</td><td>23:53</td><td>3.79</td><td>ขึ้น 2 ค่ำ</td><td><b>9:06</b></td><td><b>1.07</b></td><td>17:40</td><td>1.03</td></tr>'+
+ '</tbody></table></div>');
+renderQ('q3',QDATA.q3);
+
+/* ---------------- LAB 1: gravity ---------------- */
+const PLANETS=[["ดาวพุธ",0.055,0.39],["ดาวศุกร์",0.815,0.72],["โลก",1,1],["ดาวอังคาร",0.107,1.52],
+  ["ดาวพฤหัสบดี",317.8,5.20],["ดาวเสาร์",95.2,9.58],["ดาวยูเรนัส",14.5,19.2],["ดาวเนปจูน",17.1,30.1]];
+const gm=document.getElementById('g-mass'),gd=document.getElementById('g-dist'),gstage=document.getElementById('g-stage');
+document.getElementById('g-presets').innerHTML=PLANETS.map((p,i)=>
+  '<button class="pbtn" data-i="'+i+'" aria-pressed="'+(p[0]==='โลก')+'">'+p[0]+'</button>').join('');
+function fmt(x){ if(x>=100||x<0.01){const e=Math.floor(Math.log10(x));return (x/Math.pow(10,e)).toFixed(2)+'×10'+String(e).replace(/[-0-9]/g,c=>({'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'}[c]));}
+  return x.toFixed(x<1?3:2);}
+function drawG(){
+  const m=Math.pow(10,+gm.value), d=Math.pow(10,+gd.value);
+  document.getElementById('g-mv').textContent=fmt(m)+' เท่าของโลก';
+  document.getElementById('g-dv').textContent=d.toFixed(2)+' AU';
+  const f=m/(d*d);
+  document.getElementById('g-force').innerHTML=fmt(f)+' <small>เท่า</small>';
+  document.getElementById('g-newton').innerHTML=fmt(f*3.52e22).replace(/^([\d.]+)×10/,'$1×10')+' <small>N</small>';
+  document.getElementById('g-period').innerHTML=Math.pow(d,1.5).toFixed(2)+' <small>ปี</small>';
+  const x=90+ (Math.log10(d)+0.45)/1.95*530;
+  const r=Math.max(6,Math.min(34,10*Math.pow(m,0.18)));
+  const w=Math.max(1.5,Math.min(16,3.2*Math.pow(f,0.28)));
+  gstage.innerHTML=
+   '<defs><radialGradient id="sg"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient></defs>'+
+   '<line x1="0" y1="150" x2="700" y2="150" stroke="var(--line)" stroke-dasharray="4 6"/>'+
+   '<circle cx="60" cy="95" r="42" fill="url(#sg)"/>'+
+   '<text x="60" y="160" text-anchor="middle" font-size="13" fill="var(--ink-soft)" font-family="Sarabun">ดวงอาทิตย์</text>'+
+   '<line x1="102" y1="95" x2="'+(x-r-4)+'" y2="95" stroke="var(--sun)" stroke-width="'+w+'" opacity=".75" stroke-linecap="round"/>'+
+   '<polygon points="'+(x-r-4)+',95 '+(x-r+10)+',88 '+(x-r+10)+',102" fill="var(--sun)" opacity=".85"/>'+
+   '<circle cx="'+x+'" cy="95" r="'+r+'" fill="var(--orbit)"/>'+
+   '<text x="'+x+'" y="160" text-anchor="middle" font-size="13" fill="var(--ink-soft)" font-family="Sarabun">ดาวเคราะห์</text>'+
+   '<text x="'+((102+x)/2)+'" y="78" text-anchor="middle" font-size="13" fill="var(--sun)" font-family="IBM Plex Mono">F = '+fmt(f)+'×</text>';
+}
+[gm,gd].forEach(el=>el.addEventListener('input',()=>{
+  document.querySelectorAll('#g-presets .pbtn').forEach(b=>b.setAttribute('aria-pressed','false'));drawG();}));
+document.getElementById('g-presets').addEventListener('click',e=>{
+  const b=e.target.closest('.pbtn'); if(!b)return;
+  document.querySelectorAll('#g-presets .pbtn').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));
+  const p=PLANETS[+b.dataset.i]; gm.value=Math.log10(p[1]); gd.value=Math.log10(p[2]); drawG();});
+drawG();
+</script>
+<script>
+/* ---------------- LAB 2: seasons ---------------- */
+const MONTHS=["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+const MD=[31,28,31,30,31,30,31,31,30,31,30,31];
+function dayToDate(n){let m=0,d=n;while(d>MD[m]){d-=MD[m];m++;}return d+' '+MONTHS[m];}
+const KEY=[[79,"วสันตวิษุวัต 20 มี.ค."],[172,"ครีษมายัน 21 มิ.ย."],[265,"ศารทวิษุวัต 22 ก.ย."],[355,"เหมายัน 21 ธ.ค."]];
+document.getElementById('s-presets').innerHTML=KEY.map(k=>'<button class="pbtn" data-d="'+k[0]+'">'+k[1]+'</button>').join('');
+const sday=document.getElementById('s-day'),sstage=document.getElementById('s-stage');
+function seasonN(n){ if(n>=79&&n<172)return["ฤดูใบไม้ผลิ","ฤดูใบไม้ร่วง"]; if(n>=172&&n<265)return["ฤดูร้อน","ฤดูหนาว"];
+  if(n>=265&&n<355)return["ฤดูใบไม้ร่วง","ฤดูใบไม้ผลิ"]; return["ฤดูหนาว","ฤดูร้อน"];}
+function thaiSeason(n){ if(n>=60&&n<152)return"ฤดูร้อน"; if(n>=152&&n<305)return"ฤดูฝน"; return"ฤดูหนาว";}
+function drawS(){
+  const n=+sday.value, a=((n-79)/365)*2*Math.PI;
+  document.getElementById('s-date').textContent=dayToDate(n);
+  const cx=350,cy=150,rx=250,ry=105;
+  const ex=cx+rx*Math.cos(a), ey=cy+ry*Math.sin(a);
+  const [sn,ss]=seasonN(n);
+  document.getElementById('s-north').textContent=sn;
+  document.getElementById('s-south').textContent=ss;
+  document.getElementById('s-thai').textContent=thaiSeason(n);
+  const northToSun=(ex<cx);
+  document.getElementById('s-note').innerHTML= northToSun
+   ? 'ตอนนี้<b>ขั้วโลกเหนือเอียงเข้าหาดวงอาทิตย์</b> ซีกโลกเหนือรับแสงตั้งฉากกว่าและมีกลางวันยาวกว่า จึงร้อนกว่า ส่วนซีกโลกใต้รับแสงเฉียงจึงหนาว'
+   : 'ตอนนี้<b>ขั้วโลกเหนือเอียงออกจากดวงอาทิตย์</b> ซีกโลกเหนือรับแสงเฉียงและกลางวันสั้น จึงหนาว ส่วนซีกโลกใต้หันเข้าหาดวงอาทิตย์จึงร้อน';
+  let marks='';
+  KEY.forEach(k=>{const ka=((k[0]-79)/365)*2*Math.PI;const kx=cx+rx*Math.cos(ka),ky=cy+ry*Math.sin(ka);
+    marks+='<circle cx="'+kx+'" cy="'+ky+'" r="3.5" fill="var(--line-strong)"/>'+
+      '<text x="'+kx+'" y="'+(ky<cy?ky-16:ky+26)+'" text-anchor="middle" font-size="11.5" font-family="Sarabun" fill="var(--ink-faint)">'+k[1]+'</text>';});
+  const tilt=-23.5, ax=ex+26*Math.sin(tilt*Math.PI/180), ay=ey-26*Math.cos(tilt*Math.PI/180);
+  const bx=ex-26*Math.sin(tilt*Math.PI/180), by=ey+26*Math.cos(tilt*Math.PI/180);
+  sstage.innerHTML=
+   '<defs><radialGradient id="sg2"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient>'+
+   '<linearGradient id="eg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3f7fbf"/><stop offset="1" stop-color="#2a5f93"/></linearGradient></defs>'+
+   '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="none" stroke="var(--line-strong)" stroke-dasharray="5 7"/>'+
+   marks+
+   '<circle cx="'+cx+'" cy="'+cy+'" r="34" fill="url(#sg2)"/>'+
+   '<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'" stroke="var(--sun)" stroke-width="1.4" opacity=".45" stroke-dasharray="3 5"/>'+
+   '<circle cx="'+ex+'" cy="'+ey+'" r="21" fill="url(#eg)"/>'+
+   '<line x1="'+ax+'" y1="'+ay+'" x2="'+bx+'" y2="'+by+'" stroke="var(--ink)" stroke-width="2.2"/>'+
+   '<text x="'+ax+'" y="'+(ay-6)+'" text-anchor="middle" font-size="11" font-family="IBM Plex Mono" fill="var(--ink-soft)">N 23.5°</text>'+
+   '<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" font-size="12" font-family="Sarabun" fill="#7a4a10">ดวงอาทิตย์</text>';
+}
+sday.addEventListener('input',drawS);
+document.getElementById('s-presets').addEventListener('click',e=>{const b=e.target.closest('.pbtn');if(!b)return;
+  document.querySelectorAll('#s-presets .pbtn').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));
+  sday.value=b.dataset.d;drawS();});
+drawS();
+
+/* ---------------- LAB 3: moon phases ---------------- */
+const PHASES=[
+ ["จันทร์ดับ","แรม 15 ค่ำ","ดวงจันทร์อยู่ระหว่างโลกกับดวงอาทิตย์ ด้านสว่างหันออกจากโลกทั้งหมด เราจึงมองไม่เห็น ขึ้น–ตกพร้อมดวงอาทิตย์"],
+ ["เดือนเสี้ยวข้างขึ้น","ขึ้น 3–4 ค่ำ","เห็นเสี้ยวบางสว่างทางขวา ปรากฏทางทิศตะวันตกช่วงหัวค่ำแล้วตกตามดวงอาทิตย์ไปไม่นาน"],
+ ["จันทร์ครึ่งดวงข้างขึ้น","ขึ้น 8 ค่ำ (วันพระ)","มุมดวงอาทิตย์–ดวงจันทร์–โลก เท่ากับ 90° เห็นสว่างครึ่งดวงทางขวา ขึ้นราวเที่ยงวัน ตกราวเที่ยงคืน"],
+ ["จันทร์ค่อนดวงข้างขึ้น","ขึ้น 11–12 ค่ำ","สว่างเกินครึ่ง เหลือด้านมืดเป็นเสี้ยวทางซ้าย สว่างขึ้นทุกคืนจนเต็มดวง"],
+ ["จันทร์เต็มดวง","ขึ้น 15 ค่ำ (วันเพ็ญ)","โลกอยู่ระหว่างดวงอาทิตย์กับดวงจันทร์ เห็นด้านสว่างเต็มดวง ขึ้นตอนดวงอาทิตย์ตกและตกตอนดวงอาทิตย์ขึ้น"],
+ ["จันทร์ค่อนดวงข้างแรม","แรม 3–4 ค่ำ","เริ่มมืดจากขอบขวา สว่างน้อยลงทุกคืน ขึ้นหลังค่ำและยังเห็นได้ในตอนเช้า"],
+ ["จันทร์ครึ่งดวงข้างแรม","แรม 8 ค่ำ (วันพระ)","เห็นสว่างครึ่งดวงทางซ้าย ขึ้นราวเที่ยงคืน ตกราวเที่ยงวัน"],
+ ["เดือนเสี้ยวข้างแรม","แรม 11–12 ค่ำ","เหลือเสี้ยวบางทางซ้าย เห็นทางทิศตะวันออกก่อนดวงอาทิตย์ขึ้น บางครั้งเห็นด้านมืดจาง ๆ จากแสงโลก (Earthshine)"]
+];
+const wheel=document.getElementById('m-wheel');
+const W=420,H=300,CX=168,CY=150,RR=100;   /* ผืนวาด 420x300 · โลกอยู่กลางวงโคจรรัศมี 100 */
+/* ลำแสงอาทิตย์: เส้นขนานยิงจากขวาไปซ้ายตลอดภาพ วาดไว้ชั้นล่างสุดจึงถูกโลกและดวงจันทร์บังไว้ */
+let rays='';
+[34,72,110,150,190,228,266].forEach(y=>{
+  rays+='<line x1="336" y1="'+y+'" x2="26" y2="'+y+'"/>'+
+        '<polyline points="46,'+(y-5)+' 34,'+y+' 46,'+(y+5)+'" fill="none"/>'+
+        '<polyline points="196,'+(y-5)+' 184,'+y+' 196,'+(y+5)+'" fill="none"/>';});
+let wheelHTML='<svg viewBox="0 0 '+W+' '+H+'" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">'+
+  '<defs><radialGradient id="sunw" cx="40%" cy="36%"><stop offset="0" stop-color="#fffdf6"/>'+
+  '<stop offset="55%" stop-color="#ffd071"/><stop offset="100%" stop-color="#dd8412"/></radialGradient>'+
+  '<radialGradient id="glow"><stop offset="42%" stop-color="#f0a63f" stop-opacity=".30"/>'+
+  '<stop offset="100%" stop-color="#f0a63f" stop-opacity="0"/></radialGradient>'+
+  '<radialGradient id="earthw" cx="36%" cy="32%"><stop offset="0" stop-color="#5b9fd8"/>'+
+  '<stop offset="100%" stop-color="#22578a"/></radialGradient></defs>'+
+  '<g stroke="var(--sun)" stroke-width="1.4" opacity=".42" stroke-linecap="round" stroke-linejoin="round">'+rays+'</g>'+
+  '<text x="250" y="20" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--sun)">แสงอาทิตย์ (ลำขนาน)</text>'+
+  '<circle cx="'+CX+'" cy="'+CY+'" r="'+RR+'" fill="none" stroke="var(--line-strong)" stroke-dasharray="4 7"/>'+
+  '<line id="m-sight" x1="'+CX+'" y1="'+CY+'" x2="'+(CX+RR)+'" y2="'+CY+'" stroke="var(--sun)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8"/>'+
+  '<circle cx="378" cy="150" r="40" fill="url(#glow)"/>'+
+  '<circle cx="378" cy="150" r="24" fill="url(#sunw)"/>'+
+  '<text x="378" y="200" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--sun)">ดวงอาทิตย์</text>'+
+  '<circle cx="'+CX+'" cy="'+CY+'" r="20" fill="url(#earthw)"/>'+
+  '<text x="'+CX+'" y="'+(CY+38)+'" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">โลก</text>'+
+  '</svg>';
+PHASES.forEach((p,i)=>{const ang=-i*45*Math.PI/180;   /* ทวนเข็มนาฬิกา เริ่มจากตำแหน่งใกล้ดวงอาทิตย์ */
+  const x=(CX+RR*Math.cos(ang))/W*100, y=(CY+RR*Math.sin(ang))/H*100;
+  wheelHTML+='<button class="posdot" data-i="'+i+'" aria-pressed="'+(i===4)+'" style="left:'+x.toFixed(2)+'%;top:'+y.toFixed(2)+'%" title="'+p[0]+'"><i>'+(i+1)+'</i></button>';});
+wheel.innerHTML=wheelHTML;
+wheel.insertAdjacentHTML('afterend','<div class="wheel-key">'+
+ '<span><i class="sw half"></i>ครึ่งดวงที่หันเข้าหาแสงสว่างเสมอ</span>'+
+ '<span><i class="sw ray"></i>ลำแสงอาทิตย์</span>'+
+ '<span>เส้นประ = แนวที่เรามองจากโลก</span></div>');
+/* วาดดวงจันทร์ตามหลักเรขาคณิตจริง: ขอบนอกเป็นครึ่งวงกลม เส้นแบ่งสว่าง-มืด (terminator) เป็นครึ่งวงรี */
+function moonSVG(k,waxing){
+  let lit='';
+  if(k>=0.999){lit='<circle cx="50" cy="50" r="50" fill="url(#mlit)"/>';}
+  else if(k>0.001){
+    const rx=(50*Math.abs(1-2*k)).toFixed(2);
+    const outer=waxing?1:0;
+    const inner=(k<0.5)?(waxing?0:1):(waxing?1:0);
+    lit='<path d="M50,0 A50,50 0 0,'+outer+' 50,100 A'+rx+',50 0 0,'+inner+' 50,0 Z" fill="url(#mlit)"/>';
+  }
+  return '<svg viewBox="0 0 100 100" role="img" aria-label="รูปร่างดวงจันทร์ที่มองเห็นจากโลก">'+
+   '<defs><radialGradient id="mlit" cx="36%" cy="30%">'+
+   '<stop offset="0" stop-color="#fffdf7"/><stop offset="62%" stop-color="var(--moon-lit)"/>'+
+   '<stop offset="100%" stop-color="#d8c8a6"/></radialGradient>'+
+   '<clipPath id="mclip"><circle cx="50" cy="50" r="50"/></clipPath></defs>'+
+   '<circle cx="50" cy="50" r="50" fill="var(--moon-dark)"/>'+lit+
+   '<g clip-path="url(#mclip)" fill="#6b5a3c" opacity=".16">'+
+   '<circle cx="34" cy="35" r="8"/><circle cx="59" cy="26" r="5"/><circle cx="66" cy="59" r="9.5"/>'+
+   '<circle cx="41" cy="68" r="6"/><circle cx="23" cy="55" r="4"/><circle cx="76" cy="38" r="3.4"/>'+
+   '<circle cx="52" cy="47" r="3"/></g>'+
+   '<circle cx="50" cy="50" r="49.4" fill="none" stroke="var(--line-strong)" stroke-width="1.2"/></svg>';
+}
+function setPhase(i){
+  const th=i*45*Math.PI/180, k=(1-Math.cos(th))/2, waxing=(i<=3);
+  document.getElementById('m-moon').innerHTML=moonSVG(k,waxing);
+  document.getElementById('m-name').textContent=PHASES[i][0];
+  document.getElementById('m-thai').textContent=PHASES[i][1]+' · สว่าง '+Math.round(k*100)+'%';
+  document.getElementById('m-desc').textContent=PHASES[i][2];
+  wheel.querySelectorAll('.posdot').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.i===i)));
+  const sight=document.getElementById('m-sight');
+  if(sight){const a2=-i*45*Math.PI/180;
+    sight.setAttribute('x2',(CX+RR*Math.cos(a2)).toFixed(1));
+    sight.setAttribute('y2',(CY+RR*Math.sin(a2)).toFixed(1));}
+}
+wheel.addEventListener('click',e=>{const b=e.target.closest('.posdot');if(b)setPhase(+b.dataset.i);});
+setPhase(4);
+
+/* ---------------- LAB 4: tides ---------------- */
+const TIDES={
+ spring:["น้ำเกิด (Spring tide)","ขึ้น 15 ค่ำ / แรม 15 ค่ำ — ดวงอาทิตย์ โลก ดวงจันทร์ <b>เรียงเป็นแนวเดียวกัน</b> แรงไทดัลของทั้งสองดวงเสริมกัน ส่วนโป่งของน้ำจึงสูงมาก ระดับน้ำขึ้นสูงสุดกับน้ำลงต่ำสุด<b>ต่างกันมาก</b>",1],
+ neap:["น้ำตาย (Neap tide)","ขึ้น 8 ค่ำ / แรม 8 ค่ำ — ดวงอาทิตย์ โลก ดวงจันทร์ <b>ทำมุมตั้งฉากกัน</b> แรงไทดัลหักล้างกันบางส่วน ส่วนโป่งของน้ำจึงเตี้ย ระดับน้ำขึ้นสูงสุดกับน้ำลงต่ำสุด<b>ต่างกันน้อย</b>",0]};
+document.getElementById('tide-presets').innerHTML=
+ '<button class="pbtn" data-k="spring" aria-pressed="true">แนวเดียวกัน · ขึ้น/แรม 15 ค่ำ</button>'+
+ '<button class="pbtn" data-k="neap" aria-pressed="false">ตั้งฉาก · ขึ้น/แรม 8 ค่ำ</button>';
+function drawTide(k){
+  const t=TIDES[k], spring=t[2]===1, ex=350,ey=115, bulge=spring?34:14;
+  const moon= spring? [560,115] : [350,215];
+  document.getElementById('tide-note').innerHTML='<b>'+t[0]+'</b> — '+t[1];
+  document.getElementById('tide-stage').innerHTML=
+   '<defs><radialGradient id="sg3"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient></defs>'+
+   '<circle cx="60" cy="115" r="40" fill="url(#sg3)"/>'+
+   '<text x="60" y="176" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">ดวงอาทิตย์</text>'+
+   '<ellipse cx="'+ex+'" cy="'+ey+'" rx="'+(60+bulge)+'" ry="'+(60-bulge*0.45)+'" fill="var(--orbit)" opacity=".33" transform="rotate('+(spring?0:90)+' '+ex+' '+ey+')"/>'+
+   '<circle cx="'+ex+'" cy="'+ey+'" r="52" fill="#2a5f93"/>'+
+   '<text x="'+ex+'" y="'+(ey+5)+'" text-anchor="middle" font-size="13" font-family="Sarabun" fill="#e9f2ff">โลก</text>'+
+   '<circle cx="'+moon[0]+'" cy="'+moon[1]+'" r="17" fill="var(--moon-lit)" stroke="var(--line-strong)"/>'+
+   '<text x="'+moon[0]+'" y="'+(moon[1]+34)+'" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">ดวงจันทร์</text>'+
+   '<text x="'+ex+'" y="'+(ey-88)+'" text-anchor="middle" font-size="13" font-family="IBM Plex Mono" fill="var(--sun)">'+(spring?'แรงไทดัลเสริมกัน':'แรงไทดัลหักล้างกัน')+'</text>';
+}
+document.getElementById('tide-presets').addEventListener('click',e=>{const b=e.target.closest('.pbtn');if(!b)return;
+  document.querySelectorAll('#tide-presets .pbtn').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));drawTide(b.dataset.k);});
+drawTide('spring');
+
+/* ---------------- LAB 5: tech cards ---------------- */
+const TECH=[
+ ["จ","เทคโนโลยีอวกาศ","การประยุกต์วิทยาศาสตร์และวิศวกรรมศาสตร์เพื่อสำรวจและเก็บข้อมูลอวกาศ รวมถึงนำกลับมาใช้ประโยชน์บนโลก"],
+ ["ค","ดาวเทียมสื่อสาร","ใช้ติดต่อสื่อสารและโทรคมนาคม เช่น โทรศัพท์ อินเทอร์เน็ต โทรทัศน์ — ของไทยคือดาวเทียมไทยคม"],
+ ["ข","ดาวเทียมอุตุนิยมวิทยา","ถ่ายภาพเมฆและวัดข้อมูลบรรยากาศ ใช้พยากรณ์อากาศและติดตามพายุ"],
+ ["ญ","ดาวเทียมนำร่อง","หาตำแหน่งและทิศทางสำหรับการเดินเรือ การบิน และ GPS ในโทรศัพท์"],
+ ["ฉ","ดาวเทียมสำรวจทรัพยากรธรรมชาติ","สำรวจพื้นผิวโลกและการเปลี่ยนแปลง เช่น ป่าไม้ พื้นที่เกษตร น้ำท่วม — ของไทยคือ THEOS"],
+ ["ก","ดาวเทียมจารกรรม","ใช้ด้านการทหาร ความมั่นคง การจารกรรมหรือสงคราม ถ่ายภาพความละเอียดสูง"],
+ ["ฎ","ดาวเทียมสำรวจอวกาศ","ใช้สำรวจอวกาศ อยู่ในวงโคจรสูงกว่าดาวเทียมประเภทอื่น เพื่อพ้นการรบกวนของบรรยากาศ"],
+ ["ฌ","ดาวเทียมค้างฟ้า","โคจรครบรอบใน 24 ชม. เท่ากับโลกหมุนรอบตัวเอง จึงอยู่ตำแหน่งเดิมบนท้องฟ้าเสมอ (สูงราว 35,786 กม.)"],
+ ["ซ","จรวด","ยานพาหนะพาดาวเทียมหรือยานอวกาศขึ้นสู่อวกาศ ใช้แล้วนำกลับมาใช้อีกไม่ได้ สร้างเป็นหลายท่อนเพื่อสลัดน้ำหนักทิ้ง"],
+ ["ฏ","กระสวยอวกาศ","พัฒนาแทนจรวด นำกลับมาซ่อมแซมปรับปรุงเพื่อใช้ซ้ำได้ ลดค่าใช้จ่ายในการขนส่ง"],
+ ["ช","สถานีอวกาศ","ห้องทดลองขนาดใหญ่ที่อยู่ในอวกาศตลอดอายุการทำงาน เช่น สถานีอวกาศนานาชาติ (ISS) โคจรสูงราว 400 กม."],
+ ["ง","ขยะอวกาศ","ชิ้นส่วนยานและดาวเทียมที่เสื่อมสภาพและถูกสลัดทิ้ง เป็นอันตรายต่อดาวเทียมและสถานีอวกาศที่โคจรอยู่"]];
+const SVGO='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
+const SAT='<rect x="20" y="16" width="8" height="12" rx="1.6"/><path d="M20 19H9v6h11M28 19h11v6H28"/><path d="M24 28v4"/>';
+const ICONS=[
+ /* เทคโนโลยีอวกาศ */ SVGO+'<circle cx="24" cy="24" r="7"/><ellipse cx="24" cy="24" rx="20" ry="9" transform="rotate(-28 24 24)"/><circle cx="41" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg>',
+ /* ดาวเทียมสื่อสาร */ SVGO+SAT+'<path d="M31 41a7 7 0 0 0-14 0"/><path d="M37 44a13 13 0 0 0-26 0"/></svg>',
+ /* อุตุนิยมวิทยา */ SVGO+SAT+'<path d="M16 44h14a4.5 4.5 0 0 0 .4-9 6.5 6.5 0 0 0-12-1.6A4.3 4.3 0 0 0 16 44z"/></svg>',
+ /* นำร่อง */ SVGO+SAT+'<path d="M24 47s6-7 6-11a6 6 0 0 0-12 0c0 4 6 11 6 11z"/><circle cx="24" cy="36" r="2.2"/></svg>',
+ /* สำรวจทรัพยากร */ SVGO+SAT+'<path d="M20 33 13 44h22l-7-11z" opacity=".55"/><path d="M7 46h34"/></svg>',
+ /* จารกรรม */ SVGO+SAT+'<path d="M13 40s4.6-5.5 11-5.5S35 40 35 40s-4.6 5.5-11 5.5S13 40 13 40z"/><circle cx="24" cy="40" r="2.6"/></svg>',
+ /* สำรวจอวกาศ */ SVGO+'<path d="M9 32 30 11l7 7L16 39z"/><path d="M13 36l-4 5M31 12l5 5"/><circle cx="40" cy="30" r="1.8" fill="currentColor" stroke="none"/><circle cx="33" cy="39" r="1.3" fill="currentColor" stroke="none"/><circle cx="43" cy="39" r="1.1" fill="currentColor" stroke="none"/></svg>',
+ /* ค้างฟ้า */ SVGO+'<circle cx="21" cy="27" r="10"/><ellipse cx="21" cy="27" rx="21" ry="8" transform="rotate(-18 21 27)" stroke-dasharray="3 3"/><rect x="36" y="12" width="7" height="7" rx="1.4"/><path d="M36 15.5h-5M43 15.5h4"/></svg>',
+ /* จรวด */ SVGO+'<path d="M24 3c5.5 5.5 8 12 8 19l-2.5 9h-11L16 22c0-7 2.5-13.5 8-19z"/><circle cx="24" cy="17" r="3.4"/><path d="M18.5 25 12 32l5 1M29.5 25 36 32l-5 1"/><path d="M20 36h8M21 41c1.6 3.5 4.4 3.5 6 0"/></svg>',
+ /* กระสวยอวกาศ */ SVGO+'<path d="M24 3c4.2 6.5 6.5 14.5 6.5 23v8h-13v-8C17.5 17.5 19.8 9.5 24 3z"/><path d="M17.5 26 7 41h34L30.5 26"/><path d="M21 45h6"/></svg>',
+ /* สถานีอวกาศ */ SVGO+'<rect x="19" y="20" width="10" height="8" rx="1.6"/><path d="M24 11v9M24 28v9"/><path d="M10 6h11v9H10zM27 6h11v9H27zM10 33h11v9H10zM27 33h11v9H27z"/></svg>',
+ /* ขยะอวกาศ */ SVGO+'<path d="M5 44a19 19 0 0 1 38 0"/><path d="M15 17l5 2.5-4 3.5zM31 9l5 3.5-5 2.5zM38 26l4 2.5-4 2.5zM22 5l4 2.5-4 2.5z"/></svg>'];
+document.getElementById('tech-cards').innerHTML=TECH.map((t,i)=>
+ '<button class="tcard" aria-expanded="false"><span class="ticon">'+ICONS[i]+'</span>'+
+ '<span class="tbody"><b>'+t[1]+'</b>'+
+ '<span class="ansletter">เฉลยข้อจับคู่ <b>'+t[0]+'.</b></span>'+
+ '<span class="desc">'+t[2]+'</span><span class="hint">กดเพื่อดูหน้าที่</span></span></button>').join('');
+document.getElementById('tech-cards').addEventListener('click',e=>{const b=e.target.closest('.tcard');
+  if(b)b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true');});
+document.getElementById('tech-all').addEventListener('click',function(){
+  const on=this.dataset.on!=='1'; this.dataset.on=on?'1':'0';
+  this.textContent=on?'ปิดทุกใบ':'เปิดทุกใบ';
+  document.querySelectorAll('.tcard').forEach(c=>c.setAttribute('aria-expanded',String(on)));});
+</script>
