@@ -157,12 +157,20 @@ function appendWritten_(d, sid, written) {
   var sh = writtenSheet_();
   var start = sh.getLastRow() + 1, n = written.length;
   var now = new Date(), name = d.name.trim(), title = ACTIVITIES[d.id];
+  var TEXT_COLS = [3, 10, 11, 12];   // ชื่อ, รหัสข้อ, คำถาม, คำตอบ: ต้องเป็นข้อความล้วน ห้ามถูกตีเป็นสูตร (= + - @)
   var rows = written.map(function (w) {
     return [now, sid, name, d.no, d.cls, d.room, d.id, title, d.attempt, w.k, w.q, w.a, '', '', ''];
   });
-  // คอลัมน์ข้อความ (ชื่อ, รหัสข้อ, คำถาม, คำตอบ) ตั้งเป็น plain text ก่อนเขียน กันคำตอบที่ขึ้นต้นด้วย = + - @ ถูกตีเป็นสูตร
-  [3, 10, 11, 12].forEach(function (c) { sh.getRange(start, c, n, 1).setNumberFormat('@'); });
+  var texts = rows.map(function (r) { return TEXT_COLS.map(function (c) { return String(r[c - 1]); }); });
+  TEXT_COLS.forEach(function (c) { rows.forEach(function (r) { r[c - 1] = ''; }); });   // ไม่ส่งข้อความที่ผู้ใช้พิมพ์ผ่าน setValues (จะถูกตีเป็นสูตรได้)
   sh.getRange(start, 1, n, WRITTEN_HEADERS.length).setValues(rows);
+  sh.getRange(start, 1, n, 1).setNumberFormat('dd/MM/yyyy HH:mm:ss');
+  // setRichTextValues เก็บเป็นข้อความล้วนเสมอ ไม่มีการตีเป็นสูตร
+  TEXT_COLS.forEach(function (c, ci) {
+    sh.getRange(start, c, n, 1).setNumberFormat('@').setRichTextValues(texts.map(function (t) {
+      return [SpreadsheetApp.newRichTextValue().setText(t[ci]).build()];
+    }));
+  });
 }
 
 function json_(o) {
