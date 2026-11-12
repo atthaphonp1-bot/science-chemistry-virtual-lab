@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>สารบัญบทเรียนเคมี | ห้องทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+
+
 <style>
 :root{color-scheme:light;--ink:#182238;--muted:#69758b;--blue:#1769e0;--wash:#fff;--line:#e6ebf3;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 18px 48px rgba(40,65,110,.08),0 3px 10px rgba(40,65,110,.04)}
 *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}button,input{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 28px}
@@ -42,5 +47,8 @@ const root=document.getElementById('curriculum'),search=document.getElementById(
 function render(){const q=search.value.trim().toLocaleLowerCase();root.innerHTML='';let visible=0;curriculum.forEach((group,gi)=>{const entries=group.items.map((item,ii)=>({item,ii})).filter(({item})=>`${group.grade} ${item[0]} ${item[1]}`.toLocaleLowerCase().includes(q));const show=(activeGrade==='all'||activeGrade===group.grade)&&entries.length>0;if(!show)return;visible+=entries.length;const section=document.createElement('section');section.className='grade';section.id=`grade-${gi+1}`;section.innerHTML=`<div class="grade-head"><span class="grade-badge">${group.grade}</span><div><h3>${group.title}</h3><p>${entries.length} บทเรียนในสาระนี้</p></div></div><div class="cards"></div>`;const cards=section.querySelector('.cards');entries.forEach(({item,ii})=>{const chapter=ii+1,isReady=group.grade==='ม.4',card=document.createElement(isReady?'a':'article');card.className=`lesson-card${isReady?'':' disabled'}`;if(isReady){card.href=`chemistry-m4.html#chapter-${chapter}`;card.setAttribute('aria-label',`เปิดบทเรียน ${group.grade} บทที่ ${chapter}: ${item[0]}`);}card.innerHTML=`<div class="card-top"><span class="chapter-no">บทที่ ${String(chapter).padStart(2,'0')}</span><span class="status${isReady?' ready':''}">${isReady?'พร้อมเรียน':'วางแผนเนื้อหา'}</span></div><h4>${item[0]}</h4><p class="desc">${item[1]}</p><div class="card-bottom"><b>${isReady?'เนื้อหา · แบบทดสอบ · แล็บเสมือน':'บทเรียน + การทดลองเสมือน'}</b><span class="arrow" aria-hidden="true">${isReady?'↗':'＋'}</span></div>`;cards.append(card);});root.append(section);});noResults.classList.toggle('show',visible===0);document.getElementById('totalCount').textContent=`6 ระดับ · ${curriculum.reduce((n,g)=>n+g.items.length,0)} บท`;}
 document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{activeGrade=button.dataset.grade;document.querySelectorAll('.filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));render();}));search.addEventListener('input',render);render();
 </script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
 </body>
 </html>
