@@ -24,16 +24,18 @@
 /* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
  * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
  * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
  * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
 (() => {
   'use strict';
   const CFG = window.__LAB_SUBMIT__ || {};
-  const ID = String(CFG.id || '');
   const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
   const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
   const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
-  const SKEY = 'labStudentInfo_v1', PKEY = 'labScoreParts_v1_' + ID, LKEY = 'labSubmitLog_v1_' + ID;
-  let parts = rd(PKEY, {});
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
   let rendered = false;
 
   const total = () => {
@@ -43,15 +45,21 @@
   };
 
   window.LabScore = {
-    set(name, got, max) {
-      got = Number(got); max = Number(max);
-      if (!name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
-      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
-      wr(PKEY, parts);
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
       refresh();
     },
-    get() { return Object.assign({ parts }, total()); },
-    clear() { parts = {}; wr(PKEY, parts); refresh(); }
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
   };
 
   const $ = (s, r = document) => r.querySelector(s);
@@ -69,7 +77,7 @@
   }
 
   function build() {
-    if (rendered || !URL_ || !ID) return;
+    if (rendered || !URL_) return;
     rendered = true; css();
     const info = rd(SKEY, {});
     const box = document.createElement('section');
@@ -77,6 +85,7 @@
     box.innerHTML =
       '<h2>ส่งผลการเรียนให้ครู</h2>' +
       '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
       '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
       '<div class="ls-grid">' +
       '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
@@ -97,11 +106,13 @@
 
   function refresh() {
     const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
     const t = total(), n = Object.keys(parts).length;
     el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
-    const log = rd(LKEY, []);
-    if (log.length && !$('#lsMsg').textContent) {
-      $('#lsMsg').className = 'ls-msg'; $('#lsMsg').textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
     }
   }
 
@@ -109,6 +120,7 @@
 
   async function send() {
     const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
     if (!Object.keys(parts).length) return msg('ยังไม่มีคะแนน กรุณาทำแบบทดสอบในหน้านี้ก่อน', 'err');
     const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
     if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
@@ -116,14 +128,14 @@
     if (!cls) return msg('กรุณาเลือกชั้น', 'err');
     if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
     wr(SKEY, { name, no, cls, room });
-    const log = rd(LKEY, []);
-    const payload = { v: 1, id: ID, title: String(CFG.title || ''), name, no: +no, cls, room: +room,
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
       got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
     const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
     try {
       /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
       await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
-      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY, log);
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
       msg('ส่งคำขอแล้ว ✓ คะแนน ' + t.got + '/' + t.max + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
     } catch (_) {
       msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
@@ -137,6 +149,10 @@
 
 </script>
 <!-- ls:end -->
+
+
+
+
 
 
 

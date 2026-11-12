@@ -6,6 +6,141 @@
 <!-- wm:css:start -->
 <style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
 <!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "", "title": "", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length) return msg('ยังไม่มีคะแนน กรุณาทำแบบทดสอบในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      msg('ส่งคำขอแล้ว ✓ คะแนน ' + t.got + '/' + t.max + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+
+
+
+
 
 
 
@@ -106,9 +241,9 @@ const $=s=>document.querySelector(s), list=$('#chapterList');let current=0,tab='
 function save(){try{localStorage.setItem(KEY,JSON.stringify(records))}catch{}}
 function progress(){const done=records.filter(Boolean).length;$('#progressText').textContent=`ความคืบหน้า ${done} / 6 บท`;$('#progressBar').style.width=`${done/6*100}%`;}
 function renderChapters(){list.innerHTML='';lessons.forEach((l,i)=>{const b=document.createElement('button');b.className='chapter';b.type='button';b.setAttribute('aria-current',String(i===current));b.innerHTML=`<small>บทที่ ${String(i+1).padStart(2,'0')}${records[i]?' · ✓':''}</small><strong>${l.title}</strong>`;b.onclick=()=>selectChapter(i);list.append(b)})}
-function selectChapter(i){current=i;const l=lessons[i];location.hash=`chapter-${i+1}`;$('#chapterEyebrow').textContent=`CHEMISTRY · M.4 · CHAPTER ${String(i+1).padStart(2,'0')}`;$('#chapterTitle').textContent=l.title;$('#chapterSummary').textContent=l.summary;$('#learn').innerHTML=`<h3 class="section-title">แนวคิดสำคัญ</h3><div class="cards">${l.learn.map((x,j)=>`<article class="learn-card"><h3>${String(j+1).padStart(2,'0')} · ${x[0]}</h3><p>${x[1]}</p></article>`).join('')}</div><section class="theory"><h3>ทฤษฎีและการทำความเข้าใจ</h3>${theory[i][0].map(x=>`<p>${x}</p>`).join('')}<div class="example"><b>ตัวอย่างคิดตาม</b><br>${theory[i][1]}</div></section><div class="callout"><b>เป้าหมายการเรียนรู้</b><br>${goal(i)}</div>`;renderQuiz(l);renderLab(l);renderChapters();setTab(tab);}
+function selectChapter(i){current=i;window.LabScore&&window.LabScore.use('เคมี ม.4 บทที่ '+(i+1),lessons[i].title);const l=lessons[i];location.hash=`chapter-${i+1}`;$('#chapterEyebrow').textContent=`CHEMISTRY · M.4 · CHAPTER ${String(i+1).padStart(2,'0')}`;$('#chapterTitle').textContent=l.title;$('#chapterSummary').textContent=l.summary;$('#learn').innerHTML=`<h3 class="section-title">แนวคิดสำคัญ</h3><div class="cards">${l.learn.map((x,j)=>`<article class="learn-card"><h3>${String(j+1).padStart(2,'0')} · ${x[0]}</h3><p>${x[1]}</p></article>`).join('')}</div><section class="theory"><h3>ทฤษฎีและการทำความเข้าใจ</h3>${theory[i][0].map(x=>`<p>${x}</p>`).join('')}<div class="example"><b>ตัวอย่างคิดตาม</b><br>${theory[i][1]}</div></section><div class="callout"><b>เป้าหมายการเรียนรู้</b><br>${goal(i)}</div>`;renderQuiz(l);renderLab(l);renderChapters();setTab(tab);}
 function goal(i){return ['เลือกใช้อุปกรณ์และปฏิบัติตามแนวทางความปลอดภัย พร้อมวิเคราะห์คุณภาพข้อมูลจากการวัดซ้ำ','อธิบายองค์ประกอบอะตอม ไอโซโทป ไอออน และเชื่อมโยงการจัดเรียงอิเล็กตรอนกับสมบัติธาตุ','อธิบายชนิดพันธะ ทำนายรูปร่างโมเลกุล และพิจารณาขั้วจากโครงสร้าง','แปลงมวลและจำนวนอนุภาคเป็นโมล และหาสูตรจากข้อมูลเชิงปริมาณ','คำนวณความเข้มข้นและวางแผนเตรียมสารละลายหรือเจือจางอย่างถูกต้อง','ใช้สมการดุลหาอัตราส่วนโมล สารกำหนดปริมาณ และผลได้ของปฏิกิริยา'][i]}
-function renderQuiz(l){$('#quiz').innerHTML=`<h3 class="section-title">ทบทวนความเข้าใจ</h3><p class="quiz-intro">เลือกคำตอบให้ครบ แล้วกดตรวจคำตอบ ระบบจะแสดงคำอธิบายรายข้อ</p><form id="quizForm">${l.quiz.map((q,i)=>`<fieldset class="quiz-item"><legend>${i+1}. ${q[0]}</legend>${q[1].map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}<div class="feedback" id="fb${i}" aria-live="polite"></div></fieldset>`).join('')}<button class="btn primary" type="submit">ตรวจคำตอบ</button><div id="quizResult" class="result" hidden aria-live="polite"></div></form>`;$('#quizForm').onsubmit=e=>{e.preventDefault();let score=0;l.quiz.forEach((q,i)=>{const picked=$(`input[name=q${i}]:checked`),fb=$(`#fb${i}`),ok=!!picked&&Number(picked.value)===q[2];if(ok)score++;fb.className=`feedback ${ok?'good':'bad'}`;fb.textContent=`${ok?'ถูกต้อง':'ลองทบทวนอีกครั้ง'} — ${q[3]}`});const r=$('#quizResult');r.hidden=false;r.textContent=`ได้ ${score} จาก ${l.quiz.length} คะแนน`;if(score===l.quiz.length){records[current]=true;save();renderChapters();progress()}}}
+function renderQuiz(l){$('#quiz').innerHTML=`<h3 class="section-title">ทบทวนความเข้าใจ</h3><p class="quiz-intro">เลือกคำตอบให้ครบ แล้วกดตรวจคำตอบ ระบบจะแสดงคำอธิบายรายข้อ</p><form id="quizForm">${l.quiz.map((q,i)=>`<fieldset class="quiz-item"><legend>${i+1}. ${q[0]}</legend>${q[1].map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}<div class="feedback" id="fb${i}" aria-live="polite"></div></fieldset>`).join('')}<button class="btn primary" type="submit">ตรวจคำตอบ</button><div id="quizResult" class="result" hidden aria-live="polite"></div></form>`;$('#quizForm').onsubmit=e=>{e.preventDefault();let score=0;l.quiz.forEach((q,i)=>{const picked=$(`input[name=q${i}]:checked`),fb=$(`#fb${i}`),ok=!!picked&&Number(picked.value)===q[2];if(ok)score++;fb.className=`feedback ${ok?'good':'bad'}`;fb.textContent=`${ok?'ถูกต้อง':'ลองทบทวนอีกครั้ง'} — ${q[3]}`});const r=$('#quizResult');r.hidden=false;r.textContent=`ได้ ${score} จาก ${l.quiz.length} คะแนน`;window.LabScore&&(window.LabScore.use('เคมี ม.4 บทที่ '+(current+1),l.title),window.LabScore.set('แบบทดสอบ',score,l.quiz.length));if(score===l.quiz.length){records[current]=true;save();renderChapters();progress()}}}
 function renderLab(l){const target=$('#lab');target.innerHTML=`<h3 class="section-title">${l.lab.title}</h3><p class="lab-intro">${l.lab.intro}</p><figure class="simulation" aria-label="ภาพจำลองการทดลอง"><div id="scene"></div><figcaption id="sceneCaption">ภาพจำลองประกอบการทดลอง · ปรับตัวแปรแล้วสังเกตการเปลี่ยนแปลง</figcaption></figure><div id="labBody"></div><p class="notice">แล็บนี้เป็นแบบจำลองเชิงการศึกษา ค่าที่ได้อาจถูกทำให้ง่ายเพื่อให้เห็นความสัมพันธ์ของตัวแปร หากทำการทดลองจริงให้ปฏิบัติตามคำแนะนำครูและเอกสารความปลอดภัย</p>`;paintScene(l.lab.kind);({measure:labMeasure,spectrum:labSpectrum,molecule:labMolecule,hydrate:labHydrate,solution:labSolution,stoich:labStoich}[l.lab.kind])()}
 function paintScene(kind,d={}){const host=$('#scene');if(!host)return;let svg='',caption='แบบจำลองภาพประกอบการทดลอง';if(kind==='measure'){const measured=d.value??d.target??10,target=d.target??measured,beakerY=174-target/50*105,cylinderY=175-target/25*130,beakerTicks=[10,20,30,40,50].map(v=>{const y=174-v/50*105;return `<path d=\"M98 ${y}h16\" stroke=\"#71819b\" stroke-width=\"2\"/><text x=\"76\" y=\"${y+3}\" class=\"sim-label\" font-size=\"9\">${v}</text>`}).join(''),cylinderTicks=[5,10,15,20,25].map(v=>{const y=175-v/25*130;return `<path d=\"M310 ${y}h16\" stroke=\"#71819b\" stroke-width=\"2\"/><text x=\"289\" y=\"${y+3}\" class=\"sim-label\" font-size=\"9\">${v}</text>`}).join(''),valueLabel=d.value?`${d.value.toFixed(2)} mL`:`เป้าหมาย ${target} mL`,selected=d.tool||'cylinder';svg=`<path d=\"M88 43h104v133H88z\" class=\"sim-glass\"/><path d=\"M92 ${beakerY}h96v${174-beakerY}H92z\" class=\"sim-liquid\"/>${beakerTicks}<path d=\"M328 30h44v146h-44z\" class=\"sim-glass\"/><path d=\"M332 ${cylinderY}h36v${174-cylinderY}h-36z\" class=\"sim-liquid\"/>${cylinderTicks}<text x=\"332\" y=\"${Math.max(20,cylinderY-8)}\" class=\"sim-label\">${valueLabel}</text><path d=\"M554 24v49q0 7 7 7h36q7 0 7-7V24m-50 0h50m-50 26h50M561 80v12q-21 7-21 25v16q0 16 19 20v24l11 17 11-17v-24q19-4 19-20v-16q0-18-21-25V80\" class=\"sim-glass\"/><path d=\"M561 99q-13 5-13 18v16q0 10 13 13v24l10 16 10-16v-24q13-3 13-13v-16q0-13-13-18z\" class=\"sim-liquid\"/><text x=\"561\" y=\"69\" class=\"sim-label\" font-size=\"9\">ขีดสอบเทียบ</text><text x=\"75\" y=\"199\" class=\"sim-label\" ${selected==='beaker'?'fill=\"#1769e0\" font-weight=\"700\"':''}>บีกเกอร์ · 50 mL</text><text x=\"285\" y=\"199\" class=\"sim-label\" ${selected==='cylinder'?'fill=\"#1769e0\" font-weight=\"700\"':''}>กระบอกตวง · 25 mL</text><text x=\"515\" y=\"199\" class=\"sim-label\" ${selected==='pipette'?'fill=\"#1769e0\" font-weight=\"700\"':''}>ปิเปต ${target} mL</text>`;caption=`สเกลจำลองสัมพันธ์กับความจุ: บีกเกอร์ 50 mL · กระบอกตวง 25 mL · ปิเปตปริมาตรขนาด ${target} mL · ตวงแล้ว ${d.count||0} ครั้ง`}
 else if(kind==='spectrum'){svg=`<circle cx="210" cy="96" r="24" fill="#ffd76a"/><ellipse cx="210" cy="96" rx="110" ry="48" fill="none" stroke="#8aa2c4" stroke-width="2"/><ellipse cx="210" cy="96" rx="110" ry="48" fill="none" stroke="#8aa2c4" stroke-width="2" transform="rotate(60 210 96)"/><circle cx="320" cy="96" r="8" fill="#3984ed"/><path d="M380 100h80" class="sim-line"/><path d="M480 66h190v64H480z" fill="#fff" stroke="#a8b7cd" stroke-width="2"/><path d="M510 67v62m34-62v62m46-62v62m48-62v62m42-62v62" stroke="#e74e50" stroke-width="4"/><text x="156" y="173" class="sim-label">อะตอม ${d.element||'H'} · อิเล็กตรอนเปลี่ยนระดับ</text><text x="505" y="153" class="sim-label">เส้นแสง ${d.lam||'—'} nm</text>`;caption='การเปลี่ยนระดับพลังงานปล่อยโฟตอนเป็นเส้นสเปกตรัมเฉพาะธาตุ'}
