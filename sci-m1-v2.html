@@ -18,12 +18,79 @@
 
 
 
-<style>:root{--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25)}*{box-sizing:border-box}body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Thonburi","Sarabun",system-ui,sans-serif;color:var(--ink);background:#fff}.wrap{max-width:1000px;margin:auto;padding:28px 20px 70px}a.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.2;margin:.6rem 0}p.l{color:var(--muted);max-width:640px}h2{margin:2rem 0 .8rem;padding-left:12px;border-left:5px solid var(--c)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}.c{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:0 10px 30px rgba(50,50,70,.06);transition:transform .2s}.c:hover{transform:translateY(-2px);border-color:var(--c)}.c b{display:block;color:var(--c)}.c span{color:var(--ink)}.n{color:var(--muted);font-size:.85rem}@media(prefers-reduced-motion:reduce){*{transition:none!important}}</style></head><body><div class="wrap">
+<style>:root{--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25)}*{box-sizing:border-box}body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Thonburi","Sarabun",system-ui,sans-serif;color:var(--ink);background:#fff}.wrap{max-width:1000px;margin:auto;padding:28px 20px 70px}a.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.2;margin:.6rem 0}p.l{color:var(--muted);max-width:640px}h2{margin:2.2rem 0 .2rem;padding-left:12px;border-left:5px solid var(--c)}h3{margin:1.4rem 0 .1rem;font-size:1.1rem}.cd{color:var(--muted);margin:0 0 .6rem;font-size:.92rem}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}.c{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:0 10px 30px rgba(50,50,70,.06);transition:transform .2s}.c:hover{transform:translateY(-2px);border-color:var(--c)}.c b{display:block;color:var(--c)}.n{color:var(--muted);font-size:.85rem}@media(prefers-reduced-motion:reduce){*{transition:none!important}}</style><!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head><body><div class="wrap">
 <a class="home" href="index.html">← สารบัญหลักสูตร</a>
 <h1>การทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2</h1>
 <p class="l">ห้องทดลองเสมือนตามกิจกรรมในหนังสือเรียนรายวิชาพื้นฐาน (สสวท.) หน่วยที่ 5 พลังงานความร้อน และหน่วยที่ 6 กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ แต่ละกิจกรรมมีแบบจำลองให้ลงมือ ตารางบันทึกผล และคำถามท้ายกิจกรรม</p>
-<h2 style="--c:#e8662c">หน่วยที่ 5 พลังงานความร้อน</h2><div class="grid"><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-1.html"><b>กิจกรรม 5.1</b><span>แบบจำลองอนุภาคของสสารในแต่ละสถานะเป็นอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-2.html"><b>กิจกรรม 5.2</b><span>ปัจจัยใดบ้างที่มีผลต่อการเปลี่ยนแปลงอุณหภูมิของสาร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-3.html"><b>กิจกรรม 5.3</b><span>ความร้อนส่งผลต่อสารแต่ละสถานะอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-4.html"><b>กิจกรรม 5.4</b><span>ความร้อนทำให้สารเปลี่ยนสถานะได้อย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-5.html"><b>กิจกรรม 5.5</b><span>ความร้อนถ่ายโอนผ่านของแข็งได้อย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-6.html"><b>กิจกรรม 5.6</b><span>การถ่ายโอนความร้อนของของเหลวและแก๊สเป็นอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-7.html"><b>กิจกรรม 5.7</b><span>การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางเป็นอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-lab-5-8.html"><b>กิจกรรม 5.8</b><span>น้ำอุณหภูมิต่างกันผสมกันจะเป็นอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-final-5-1.html"><b>ท้ายบท 1 · หน่วยที่ 5</b><span>ค่าความร้อนจำเพาะของสารเกี่ยวข้องกับสิ่งมีชีวิตและสิ่งแวดล้อมอย่างไร</span></a><a class="c" style="--c:#e8662c" href="sci-m1-v2-final-5-2.html"><b>ท้ายบท 2 · หน่วยที่ 5</b><span>สร้างตู้ขนส่งสินค้ากันความร้อนได้อย่างไร</span></a></div><h2 style="--c:#6b3fb3">หน่วยที่ 6 กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ</h2><div class="grid"><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-1.html"><b>กิจกรรม 6.1</b><span>บรรยากาศของโลกเป็นอย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-2.html"><b>กิจกรรม 6.2</b><span>อุณหภูมิอากาศเปลี่ยนแปลงอย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-3.html"><b>กิจกรรม 6.3</b><span>อากาศมีแรงกระทำต่อวัตถุอย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-4.html"><b>กิจกรรม 6.4</b><span>เหตุใดลมจึงเคลื่อนที่เร็วต่างกัน</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-5.html"><b>กิจกรรม 6.5</b><span>ปัจจัยที่มีผลต่อความชื้นสัมพัทธ์มีอะไรบ้าง</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-6.html"><b>กิจกรรม 6.6</b><span>เมฆที่เห็นเป็นอย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-7.html"><b>กิจกรรม 6.7</b><span>การพยากรณ์อากาศทำได้อย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-8.html"><b>กิจกรรม 6.8</b><span>คำพยากรณ์อากาศมีประโยชน์อย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-9.html"><b>กิจกรรม 6.9</b><span>พายุฝนฟ้าคะนองและพายุหมุนเขตร้อนเกิดขึ้นได้อย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-lab-6-10.html"><b>กิจกรรม 6.10</b><span>ภูมิอากาศเปลี่ยนแปลงได้หรือไม่</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-final-6-1.html"><b>ท้ายบท 1 · หน่วยที่ 6</b><span>เฝ้าระวังและป้องกันอันตรายจากการเปลี่ยนแปลงลมฟ้าอากาศอย่างฉับพลันได้อย่างไร</span></a><a class="c" style="--c:#6b3fb3" href="sci-m1-v2-final-6-2.html"><b>ท้ายบท 2 · หน่วยที่ 6</b><span>ปฏิบัติตนอย่างไรเพื่อรับมือกับการเปลี่ยนแปลงภูมิอากาศโลกในอนาคต</span></a></div>
-<p class="n" style="margin-top:2rem">แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู</p></div><!-- wm:foot:start -->
+<div id="units"><noscript>ต้องเปิด JavaScript เพื่อดูรายการกิจกรรม</noscript></div>
+<p class="n" style="margin-top:2rem">แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู</p></div>
+<script src="assets/curriculum-m1v2.js"></script>
+<script>
+(()=>{const D=window.CURRICULUM_M1V2,root=document.getElementById('units');if(!D)return;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const col={5:'#e8662c',6:'#6b3fb3'};
+root.innerHTML=D.units.map(u=>`<h2 style="--c:${col[u.no]||'#1769e0'}">หน่วยที่ ${u.no} ${esc(u.title)}</h2>`+u.chapters.map(c=>`<h3 id="u${u.no}c${c.no}">บทที่ ${c.no} ${esc(c.title)}</h3><p class="cd">${esc(c.desc)}</p><div class="grid">`+c.activities.map(a=>`<a class="c" style="--c:${col[u.no]||'#1769e0'}" href="${esc(a.file)}"><b>${/^ท้ายบท/.test(a.id)?'กิจกรรม'+esc(a.id):'กิจกรรม '+esc(a.id)}</b><span>${esc(a.title)}</span></a>`).join('')+'</div>').join('')).join('');
+})();
+</script><!-- wm:foot:start -->
 <footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
 <!-- wm:foot:end -->
 </body></html>

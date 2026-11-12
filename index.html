@@ -10,6 +10,13 @@
 <!-- wm:css:end -->
 
 
+
+
+
+
+
+
+
 <style>
 :root{color-scheme:light;--ink:#182238;--muted:#69758b;--blue:#1769e0;--wash:#fff;--line:#e6ebf3;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 18px 48px rgba(40,65,110,.08),0 3px 10px rgba(40,65,110,.04)}
 *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}button,input{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 28px}
@@ -23,20 +30,81 @@
 @media(max-width:600px){.wrap{padding:0 16px}.topbar{padding:15px 0}.top-tag{font-size:.72rem}.hero{display:block;min-height:0;padding:28px 24px;border-radius:25px}.hero-art{position:absolute;right:-54px;top:18px;width:150px;opacity:.42}.hero h1{max-width:430px;font-size:clamp(2.55rem,12vw,3.8rem)}.hero p{max-width:400px;font-size:.98rem}.intro-row{align-items:start;flex-direction:column;margin:34px 0 17px}.toolbar{gap:10px}.filters{margin:0 -2px}.cards{grid-template-columns:1fr;gap:12px}.lesson-card{min-height:190px;border-radius:18px}.grade{margin:24px 0 34px}.grade-badge{min-width:51px;height:51px;border-radius:16px}.grade-head h3{font-size:1.16rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
 </head>
 <body>
 <div class="wrap">
 <nav class="topbar" aria-label="เมนูหลัก"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M12 4h8M14 4v8l-7 12a2 2 0 0 0 1.7 3h14.6a2 2 0 0 0 1.7-3l-7-12V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 21h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>ห้องทดลองเสมือน</span></div><span class="top-tag">เคมี · ม.1–ม.6</span></nav>
-<header class="hero"><div class="hero-copy"><div class="eyebrow">SCIENCE · CHEMISTRY</div><h1>เคมีที่เข้าใจได้<br>ผ่านการทดลอง</h1><p>เลือกชั้นเรียนเพื่อสำรวจบทเรียน แนวคิดสำคัญ และการทดลองเสมือนที่กำลังพัฒนาเป็นชุดการเรียนรู้แบบ offline</p></div><p style="margin-top:14px"><a href="sci-m1-v2.html" style="font-weight:650;color:#1769e0;text-decoration:none">🔥 ใหม่: การทดลองเสมือนวิทยาศาสตร์ ม.1 เล่ม 2 (พลังงานความร้อน · ลมฟ้าอากาศ) →</a></p></div><div class="hero-art" aria-hidden="true"><span></span></div></header>
+<header class="hero"><div class="hero-copy"><div class="eyebrow">SCIENCE · CHEMISTRY</div><h1>เคมีที่เข้าใจได้<br>ผ่านการทดลอง</h1><p>เลือกชั้นเรียนเพื่อสำรวจบทเรียน แนวคิดสำคัญ และการทดลองเสมือนที่กำลังพัฒนาเป็นชุดการเรียนรู้แบบ offline</p><p class="hero-cta"><a class="cta" href="sci-m1-v2.html">ใหม่ · การทดลองเสมือน วิทยาศาสตร์ ม.1 เล่ม 2 →</a></p></div><div class="hero-art" aria-hidden="true"><span></span></div></header>
 <section class="intro-row"><div><h2>สารบัญบทเรียน</h2><p>เรียงเนื้อหาตามระดับชั้น จากพื้นฐานสู่เคมีเพิ่มเติม</p></div><span class="total" id="totalCount">6 ระดับ · 32 บท</span></section>
 <div class="toolbar"><label class="search"><input id="searchInput" type="search" placeholder="ค้นหาบทเรียน เช่น กรด–เบส หรือโมล" aria-label="ค้นหาบทเรียน"></label><div class="filters" role="group" aria-label="กรองตามระดับชั้น"><button class="filter" type="button" data-grade="all" aria-pressed="true">ทั้งหมด</button><button class="filter" type="button" data-grade="ม.1" aria-pressed="false">ม.1</button><button class="filter" type="button" data-grade="ม.2" aria-pressed="false">ม.2</button><button class="filter" type="button" data-grade="ม.3" aria-pressed="false">ม.3</button><button class="filter" type="button" data-grade="ม.4" aria-pressed="false">ม.4</button><button class="filter" type="button" data-grade="ม.5" aria-pressed="false">ม.5</button><button class="filter" type="button" data-grade="ม.6" aria-pressed="false">ม.6</button></div></div>
 <main id="curriculum" aria-live="polite"></main><div class="no-results" id="noResults">ไม่พบบทเรียนที่ตรงกับคำค้น ลองเปลี่ยนคำหรือเลือกระดับชั้นอื่น</div>
-<footer class="footnote"><strong>หมายเหตุ:</strong> ม.1–ม.3 เป็นหัวข้อเคมีที่คัดจากวิทยาศาสตร์พื้นฐาน ส่วน ม.4–ม.6 จัดตามกลุ่มสาระเคมีเพิ่มเติมของ สสวท. รายการนี้เป็นโครงร่างสำหรับพัฒนาเว็บ ควรเทียบกับหลักสูตรและหนังสือเรียนของสถานศึกษาก่อนผลิตเนื้อหาฉบับจริง.
+<footer class="footnote"><strong>หมายเหตุ:</strong> ม.1 จัดตามหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) ซึ่งมีกิจกรรมทดลองเสมือนครบแล้ว ม.2–ม.3 เป็นหัวข้อเคมีที่คัดจากวิทยาศาสตร์พื้นฐาน ส่วน ม.4–ม.6 จัดตามกลุ่มสาระเคมีเพิ่มเติมของ สสวท. รายการนี้เป็นโครงร่างสำหรับพัฒนาเว็บ ควรเทียบกับหลักสูตรและหนังสือเรียนของสถานศึกษาก่อนผลิตเนื้อหาฉบับจริง.
 <div class="sources"><a href="https://www.scimath.org/ebook-chemistry/item/8417-2-2560-2551" target="_blank" rel="noopener">คู่มือหลักสูตรเคมี สสวท.</a><a href="https://www.scimath.org/ebook-chemistry/item/8292-4-1" target="_blank" rel="noopener">เคมี ม.4 เล่ม 1</a><a href="https://www.scimath.org/ebook-chemistry/item/8293-4-2" target="_blank" rel="noopener">เคมี ม.4 เล่ม 2</a><a href="https://www.scimath.org/ebook-chemistry/item/10298-3" target="_blank" rel="noopener">เคมี ม.5 เล่ม 3</a><a href="https://www.scimath.org/ebook-chemistry/item/10299-4" target="_blank" rel="noopener">เคมี ม.5 เล่ม 4</a><a href="https://www.scimath.org/ebook-chemistry/item/11515-6-5" target="_blank" rel="noopener">เคมี ม.6 เล่ม 5</a><a href="https://www.scimath.org/ebook-chemistry/item/11516-6-6" target="_blank" rel="noopener">เคมี ม.6 เล่ม 6</a></div></footer>
 </div>
+<script src="assets/curriculum-m1v2.js"></script>
 <script>
+const M1=window.CURRICULUM_M1V2||{units:[]};
 const curriculum=[
-{grade:'ม.1',title:'พื้นฐานเรื่องสารและสมบัติ',items:[['สารรอบตัวและสมบัติของสาร','สำรวจสมบัติทางกายภาพและการจำแนกสารในชีวิตประจำวัน'],['สถานะของสารและการเปลี่ยนสถานะ','เชื่อมโยงความร้อนกับการจัดเรียงและการเคลื่อนที่ของอนุภาค'],['สารบริสุทธิ์และสารผสม','เปรียบเทียบองค์ประกอบและสมบัติของสารชนิดต่าง ๆ'],['การแยกสารผสม','เลือกวิธีกรอง ระเหย กลั่น หรือแยกด้วยสมบัติทางกายภาพ'],['อนุภาคของสารและแบบจำลอง','ใช้แบบจำลองอธิบายสิ่งที่สังเกตได้ในระดับอนุภาค']]},
+{grade:'ม.1',title:'วิทยาศาสตร์และเทคโนโลยี เล่ม 2 · พลังงานความร้อนและลมฟ้าอากาศ',items:M1.units.flatMap(u=>u.chapters.map(c=>{const first=c.activities[0].id,last=c.activities.filter(x=>!/^ท้ายบท/.test(x.id)).slice(-1)[0].id;return[c.title,c.desc,{href:`sci-m1-v2.html#u${u.no}c${c.no}`,label:`หน่วย ${u.no} · บท ${c.no}`,bottom:`กิจกรรม ${first}–${last} · ท้ายบท · แล็บเสมือน`}];}))},
 {grade:'ม.2',title:'องค์ประกอบและการเปลี่ยนแปลงของสาร',items:[['ธาตุ สารประกอบ และสารผสม','จำแนกสารจากองค์ประกอบและสมบัติที่แตกต่างกัน'],['แบบจำลองอะตอมเบื้องต้น','รู้จักอะตอม อนุภาคมูลฐาน และข้อจำกัดของแบบจำลอง'],['สารละลายและการละลาย','พิจารณาตัวทำละลาย ตัวละลาย และปัจจัยที่เกี่ยวข้อง'],['การแยกสารและการใช้ประโยชน์','เลือกวิธีแยกสารจากข้อมูลและสถานการณ์'],['สารในชีวิตประจำวันและความปลอดภัย','อ่านฉลาก ใช้สารอย่างเหมาะสม และจัดการอย่างรับผิดชอบ']]},
 {grade:'ม.3',title:'ปฏิกิริยาและวัสดุรอบตัว',items:[['ปฏิกิริยาเคมีและหลักฐานการเปลี่ยนแปลง','แยกการเปลี่ยนแปลงทางกายภาพออกจากปฏิกิริยาเคมี'],['สมการเคมีและการอนุรักษ์มวล','แทนสารตั้งต้นและผลิตภัณฑ์ พร้อมดุลสมการอย่างง่าย'],['กรด–เบสและการใช้ตัวบ่งชี้','สำรวจสมบัติ การเปลี่ยนสี และการประยุกต์ใช้'],['วัสดุ พอลิเมอร์ และสมบัติ','เชื่อมโยงโครงสร้างกับการเลือกใช้วัสดุ'],['สารเคมีกับสิ่งแวดล้อม','ศึกษาผลกระทบและแนวทางลดของเสียหรือมลพิษ'],['โครงงานเคมีจากปัญหาใกล้ตัว','ตั้งคำถาม วางแผนเก็บข้อมูล และสื่อสารข้อค้นพบ']]},
 {grade:'ม.4',title:'เคมีเพิ่มเติม · โครงสร้างและปริมาณสาร',items:[['ความปลอดภัยและทักษะในปฏิบัติการเคมี','อุปกรณ์ ความปลอดภัย การวัด หน่วย และการบันทึกผล'],['อะตอมและสมบัติของธาตุ','โครงสร้างอะตอม การจัดเรียงอิเล็กตรอน และแนวโน้มสมบัติ'],['พันธะเคมี','พันธะไอออนิก โคเวเลนต์ โลหะ และสมบัติของสาร'],['โมลและสูตรเคมี','ความสัมพันธ์ระหว่างอนุภาค มวล โมล และสูตร'],['สารละลาย','ความเข้มข้น การเตรียม และการเจือจางสารละลาย'],['ปริมาณสัมพันธ์','คำนวณปริมาณสารในสมการเคมีและผลได้ของปฏิกิริยา']]},
@@ -44,7 +112,7 @@ const curriculum=[
 {grade:'ม.6',title:'เคมีอินทรีย์และการแก้ปัญหา',items:[['เคมีอินทรีย์และโครงสร้างสาร','จำแนกสารประกอบอินทรีย์จากโครงสร้างและพันธะ'],['หมู่ฟังก์ชันและปฏิกิริยาอินทรีย์','เชื่อมโยงหมู่ฟังก์ชันกับสมบัติและการเกิดปฏิกิริยา'],['พอลิเมอร์และวัสดุ','พิจารณาการเกิดพอลิเมอร์ สมบัติ และการใช้งาน'],['เคมีอินทรีย์และพอลิเมอร์ในชีวิตประจำวัน','ประเมินการใช้วัสดุ ผลกระทบ และการจัดการหลังใช้งาน'],['เคมีกับการแก้ปัญหา','บูรณาการความรู้และทักษะทางเคมีเพื่อออกแบบแนวทางแก้ปัญหา']]}
 ];
 const root=document.getElementById('curriculum'),search=document.getElementById('searchInput'),noResults=document.getElementById('noResults');let activeGrade='all';
-function render(){const q=search.value.trim().toLocaleLowerCase();root.innerHTML='';let visible=0;curriculum.forEach((group,gi)=>{const entries=group.items.map((item,ii)=>({item,ii})).filter(({item})=>`${group.grade} ${item[0]} ${item[1]}`.toLocaleLowerCase().includes(q));const show=(activeGrade==='all'||activeGrade===group.grade)&&entries.length>0;if(!show)return;visible+=entries.length;const section=document.createElement('section');section.className='grade';section.id=`grade-${gi+1}`;section.innerHTML=`<div class="grade-head"><span class="grade-badge">${group.grade}</span><div><h3>${group.title}</h3><p>${entries.length} บทเรียนในสาระนี้</p></div></div><div class="cards"></div>`;const cards=section.querySelector('.cards');entries.forEach(({item,ii})=>{const chapter=ii+1,isReady=group.grade==='ม.4',card=document.createElement(isReady?'a':'article');card.className=`lesson-card${isReady?'':' disabled'}`;if(isReady){card.href=`chemistry-m4.html#chapter-${chapter}`;card.setAttribute('aria-label',`เปิดบทเรียน ${group.grade} บทที่ ${chapter}: ${item[0]}`);}card.innerHTML=`<div class="card-top"><span class="chapter-no">บทที่ ${String(chapter).padStart(2,'0')}</span><span class="status${isReady?' ready':''}">${isReady?'พร้อมเรียน':'วางแผนเนื้อหา'}</span></div><h4>${item[0]}</h4><p class="desc">${item[1]}</p><div class="card-bottom"><b>${isReady?'เนื้อหา · แบบทดสอบ · แล็บเสมือน':'บทเรียน + การทดลองเสมือน'}</b><span class="arrow" aria-hidden="true">${isReady?'↗':'＋'}</span></div>`;cards.append(card);});root.append(section);});noResults.classList.toggle('show',visible===0);document.getElementById('totalCount').textContent=`6 ระดับ · ${curriculum.reduce((n,g)=>n+g.items.length,0)} บท`;}
+function render(){const q=search.value.trim().toLocaleLowerCase();root.innerHTML='';let visible=0;curriculum.forEach((group,gi)=>{const entries=group.items.map((item,ii)=>({item,ii})).filter(({item})=>`${group.grade} ${item[0]} ${item[1]}`.toLocaleLowerCase().includes(q));const show=(activeGrade==='all'||activeGrade===group.grade)&&entries.length>0;if(!show)return;visible+=entries.length;const section=document.createElement('section');section.className='grade';section.id=`grade-${gi+1}`;section.innerHTML=`<div class="grade-head"><span class="grade-badge">${group.grade}</span><div><h3>${group.title}</h3><p>${entries.length} บทเรียนในสาระนี้</p></div></div><div class="cards"></div>`;const cards=section.querySelector('.cards');entries.forEach(({item,ii})=>{const chapter=ii+1,opt=item[2],isReady=group.grade==='ม.4'||!!opt,card=document.createElement(isReady?'a':'article');card.className=`lesson-card${isReady?'':' disabled'}`;if(isReady){card.href=opt?opt.href:`chemistry-m4.html#chapter-${chapter}`;card.setAttribute('aria-label',opt?`เปิดกิจกรรม ${group.grade} ${opt.label}: ${item[0]}`:`เปิดบทเรียน ${group.grade} บทที่ ${chapter}: ${item[0]}`);}card.innerHTML=`<div class="card-top"><span class="chapter-no">${opt?opt.label:'บทที่ '+String(chapter).padStart(2,'0')}</span><span class="status${isReady?' ready':''}">${isReady?'พร้อมเรียน':'วางแผนเนื้อหา'}</span></div><h4>${item[0]}</h4><p class="desc">${item[1]}</p><div class="card-bottom"><b>${opt?opt.bottom:isReady?'เนื้อหา · แบบทดสอบ · แล็บเสมือน':'บทเรียน + การทดลองเสมือน'}</b><span class="arrow" aria-hidden="true">${isReady?'↗':'＋'}</span></div>`;cards.append(card);});root.append(section);});noResults.classList.toggle('show',visible===0);document.getElementById('totalCount').textContent=`6 ระดับ · ${curriculum.reduce((n,g)=>n+g.items.length,0)} บท`;}
 document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{activeGrade=button.dataset.grade;document.querySelectorAll('.filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));render();}));search.addEventListener('input',render);render();
 </script>
 <!-- wm:foot:start -->

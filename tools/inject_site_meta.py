@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """ใส่ meta สำหรับแชร์ลิงก์ (Open Graph) + ลายน้ำ + เครดิตท้ายหน้า ให้ทุกหน้า sci-m1-v2*.html
-และใส่เฉพาะลายน้ำ+เครดิตให้หน้าเคมี (index.html, chemistry-m4*.html)
+และใส่เฉพาะลายน้ำ+เครดิต+ธีม Apple ให้หน้าเคมี (index.html, chemistry-m4*.html)
 
 รันจากรากโปรเจกต์: python3 tools/inject_site_meta.py
 รันซ้ำได้ (ลบของเก่าที่อยู่ระหว่าง marker แล้วใส่ใหม่)
 """
 import glob
 import html
+import json
+import os
 import re
 import urllib.parse
 
@@ -32,11 +34,28 @@ WM_CSS = (
     "@media print{body::after{opacity:.12}}"
     "</style>\n<!-- wm:css:end -->\n"
 )
+CFG = json.load(open("tools/submit_config.json", encoding="utf8"))
+MODULE = open("tools/submit_module.js", encoding="utf8").read()
+
+
+def submit_block(f, title):
+    """ฝังโมดูลส่งคะแนนในหน้ากิจกรรม (lab/final) ตั้งรหัสกิจกรรมจากชื่อไฟล์"""
+    m = re.match(r"sci-m1-v2-(lab|final)-(\d+)-(\d+)\.html$", os.path.basename(f))
+    if not m:
+        return ""
+    kind, a, b = m.groups()
+    aid = f"{a}.{b}" if kind == "lab" else f"ท้ายบท {a}.{b}"
+    cfg = json.dumps({"id": aid, "title": title.split(" | ")[0], "url": CFG.get("url", "")}, ensure_ascii=False)
+    cfg = cfg.replace("</", "<\\/")
+    return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+
+
+AP = "<!-- ap:start -->\n<style>\n" + open("tools/apple_theme.css", encoding="utf8").read() + "</style>\n<!-- ap:end -->\n"
 WM_FOOT = f'<!-- wm:foot:start -->\n<footer class="site-credit">{CREDIT}</footer>\n<!-- wm:foot:end -->\n'
 
 
 def strip(s):
-    for tag in ("og", "wm:css", "wm:foot"):
+    for tag in ("og", "wm:css", "wm:foot", "ls", "ap"):
         s = re.sub(rf"<!-- {tag}:start -->.*?<!-- {tag}:end -->\n?", "", s, flags=re.S)
     return s
 
@@ -56,7 +75,8 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
         '<meta name="twitter:card" content="summary_large_image">\n'
         "<!-- og:end -->\n"
     )
-    s = s.replace("</title>", "</title>\n" + og + WM_CSS, 1)
+    s = s.replace("</title>", "</title>\n" + og + WM_CSS + submit_block(f, title), 1)
+    s = s.replace("</head>", AP + "</head>", 1)
     s = s.replace("</body>", WM_FOOT + "</body>", 1)
     open(f, "w", encoding="utf8").write(s)
     print(f)
@@ -65,6 +85,7 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
 for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")):
     s = strip(open(f, encoding="utf8").read())
     s = s.replace("</title>", "</title>\n" + WM_CSS, 1)
+    s = s.replace("</head>", AP + "</head>", 1)
     s = s.replace("</body>", WM_FOOT + "</body>", 1)
     open(f, "w", encoding="utf8").write(s)
     print(f)
