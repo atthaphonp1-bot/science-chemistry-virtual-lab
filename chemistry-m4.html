@@ -8,10 +8,76 @@
 <!-- wm:css:end -->
 
 
+
+
+
+
+
+
+
 <style>
 :root{color-scheme:light;--ink:#172033;--muted:#69758a;--blue:#1769e0;--line:#e6ebf3;--soft:#f5f8fd;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 18px 48px #28416e12,0 3px 10px #28416e08}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}.top{height:78px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:720;letter-spacing:-.025em;display:flex;gap:10px;align-items:center}.mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#4b96ff,#1558d5);color:white;display:grid;place-items:center;box-shadow:0 7px 17px #286bd733}.top a{color:var(--blue);text-decoration:none;font-weight:650}.hero{position:relative;overflow:hidden;padding:38px clamp(23px,5vw,58px);border:1px solid #edf1f8;border-radius:30px;background:linear-gradient(130deg,#fff,#f8faff);box-shadow:0 28px 65px #31508012}.eyebrow{font-size:.75rem;color:var(--blue);font-weight:760;letter-spacing:.14em}.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.13;letter-spacing:-.045em;margin:9px 0}.hero p{margin:0;color:var(--muted);max-width:720px}.progress{margin-top:22px;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.85rem}.track{height:7px;width:180px;border-radius:99px;background:#e8eef8;overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#62a3ff,#1769e0);border-radius:inherit;transition:width .25s}.chapter-area{margin:30px 0 20px}.chapter-list{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.chapter{min-height:95px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 9px 24px #28416e09,inset 0 1px #fff;color:var(--ink);transition:.2s}.chapter:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.chapter[aria-current=true]{border-color:#a9c9fb;background:linear-gradient(145deg,#f4f8ff,#fff);box-shadow:0 9px 24px #286bd71a,inset 0 1px #fff}.chapter small{display:block;color:#748199;font-size:.72rem;font-weight:700}.chapter strong{font-size:.88rem;line-height:1.35;display:block;margin-top:5px}.panel{border:1px solid #e8edf5;border-radius:25px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:clamp(22px,4vw,36px);background:linear-gradient(120deg,#fff,#fbfcff);border-bottom:1px solid #edf0f5}.panel-head h2{font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.2;letter-spacing:-.035em;margin:5px 0}.panel-head p{margin:0;color:var(--muted)}.tabs{display:flex;gap:8px;padding:13px clamp(16px,3vw,32px);border-bottom:1px solid var(--line);background:#fcfdff;overflow:auto}.tab{border:0;border-radius:11px;padding:9px 15px;background:transparent;color:var(--muted);font-size:.9rem;font-weight:680;white-space:nowrap}.tab[aria-selected=true]{background:#edf4ff;color:var(--blue);box-shadow:inset 0 0 0 1px #dfebff}.content{padding:clamp(20px,4vw,36px)}.section-title{font-size:1.15rem;letter-spacing:-.02em;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.learn-card{padding:19px;border:1px solid #e8edf4;border-radius:18px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 8px 24px #28416e09,inset 0 1px #fff}.learn-card h3{font-size:1rem;margin:0 0 7px}.learn-card p{margin:0;color:#58657b;font-size:.94rem}.callout{margin-top:16px;padding:15px 17px;border-left:3px solid #4a91f3;border-radius:0 12px 12px 0;background:#f3f7ff;color:#41546f}.lab-intro,.quiz-intro{color:var(--muted);margin:0 0 18px}.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:16px}.box{border:1px solid var(--line);border-radius:18px;padding:19px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 8px 24px #28416e08}.box h3{font-size:1rem;margin:0 0 12px}.controls{display:grid;gap:13px}.field{display:grid;gap:5px}.field label{font-size:.85rem;color:#4f5e75;font-weight:650}.field input[type=range]{width:100%;accent-color:var(--blue)}.field select,.field input[type=number]{width:100%;padding:10px 11px;border:1px solid #dce4f0;border-radius:10px;background:white;color:var(--ink)}.value{color:var(--blue);font-weight:720}.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.btn{border:1px solid #dce5f2;border-radius:11px;padding:9px 14px;background:white;color:#34445c;font-size:.88rem;font-weight:670}.btn.primary{background:linear-gradient(145deg,#3284f1,#1760d0);border-color:#1760d0;color:white;box-shadow:0 6px 14px #1769e033}.btn:disabled{opacity:.48;cursor:not-allowed}.readout{min-height:120px;display:grid;align-content:center;justify-items:center;text-align:center;border:1px dashed #d7e2f1;border-radius:15px;background:radial-gradient(ellipse at 50% 0,#f1f6ff,#fff 76%);padding:15px}.readout b{font-size:1.15rem}.readout span{color:var(--muted);font-size:.88rem}.readout .big{font-size:2rem;color:var(--blue);font-weight:760;line-height:1.3}.table-wrap{overflow:auto;margin-top:16px}table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:400px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #edf0f5}th{color:#66758b;background:#f8faff;font-weight:700}.notice{font-size:.83rem;color:#6a768b;margin:13px 0 0}.quiz-item{border:1px solid var(--line);border-radius:16px;padding:17px;margin:12px 0;background:#fff}.quiz-item legend{font-weight:680;padding:0 4px}.option{display:flex;gap:9px;align-items:flex-start;margin:8px 0;color:#4c5a70;cursor:pointer}.option input{margin-top:6px;accent-color:var(--blue)}.feedback{margin-top:9px;font-size:.88rem;font-weight:650}.feedback.good{color:#19704b}.feedback.bad{color:#b54c3c}.result{padding:14px;border-radius:13px;background:#f3f7ff;color:#3c5271;margin-top:13px}.footer{color:var(--muted);font-size:.82rem;padding:22px 0 40px}.footer a{color:#4775b9}.empty{color:var(--muted)}[hidden]{display:none!important}
 .theory{margin-top:20px;padding:21px;border:1px solid #e5ecf7;border-radius:18px;background:linear-gradient(140deg,#f7faff,#fff)}.theory h3{margin:0 0 8px}.theory p{margin:8px 0;color:#4f5e75}.theory .example{padding:12px 14px;margin-top:12px;border-radius:12px;background:#fff;border:1px solid #e8edf5}.simulation{margin:0 0 18px;padding:13px;border:1px solid #e5ecf6;border-radius:18px;background:radial-gradient(ellipse at 50% 0,#edf4ff,#fff 73%);overflow:hidden}.simulation svg{display:block;width:100%;height:auto;max-height:245px}.simulation figcaption{text-align:center;color:#66758b;font-size:.82rem}.sim-label{font:600 13px var(--font);fill:#59677d}.sim-line{stroke:#71819b;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.sim-glass{fill:#f7fbff;stroke:#7b91ae;stroke-width:3}.sim-liquid{fill:#8fc2ff;opacity:.74}@media(max-width:850px){.chapter-list{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-grid{grid-template-columns:1fr}}@media(max-width:570px){.wrap{width:calc(100% - 24px)}.top{height:65px}.hero{border-radius:23px;padding:26px 22px}.chapter-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chapter{min-height:84px;padding:11px}.chapter strong{font-size:.82rem}.cards{grid-template-columns:1fr}.panel{border-radius:20px}.tabs{padding:10px 12px}.content{padding:18px}.box{padding:15px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
 </head>
 <body><div class="wrap">
 <nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
