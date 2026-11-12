@@ -34,13 +34,21 @@ WM_CSS = (
     "@media print{body::after{opacity:.12}}"
     "</style>\n<!-- wm:css:end -->\n"
 )
+CHEM_LAB_ID = "เคมี ม.4 ปฏิบัติการเบื้องต้น"
 CFG = json.load(open("tools/submit_config.json", encoding="utf8"))
 MODULE = open("tools/submit_module.js", encoding="utf8").read()
 
 
 def submit_block(f, title):
     """ฝังโมดูลส่งคะแนนในหน้ากิจกรรม (lab/final) ตั้งรหัสกิจกรรมจากชื่อไฟล์"""
-    m = re.match(r"sci-m1-v2-(lab|final)-(\d+)-(\d+)\.html$", os.path.basename(f))
+    base = os.path.basename(f)
+    if base == "chemistry-m4.html":      # หลายบทในไฟล์เดียว: หน้าเรียก LabScore.use(id, title) เองเมื่อเปลี่ยนบท
+        cfg = json.dumps({"id": "", "title": "", "url": CFG.get("url", "")}, ensure_ascii=False)
+        return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+    if base == "chemistry-m4-lab.html":
+        cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)
+        return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+    m = re.match(r"sci-m1-v2-(lab|final)-(\d+)-(\d+)\.html$", base)
     if not m:
         return ""
     kind, a, b = m.groups()
@@ -84,7 +92,8 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
 # หน้าเคมี: ลายน้ำ + เครดิตอย่างเดียว (ไม่แตะ meta เดิมของหน้า)
 for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")):
     s = strip(open(f, encoding="utf8").read())
-    s = s.replace("</title>", "</title>\n" + WM_CSS, 1)
+    title = re.search(r"<title>(.*?)</title>", s).group(1)
+    s = s.replace("</title>", "</title>\n" + WM_CSS + submit_block(f, title), 1)
     s = s.replace("</head>", AP + "</head>", 1)
     s = s.replace("</body>", WM_FOOT + "</body>", 1)
     open(f, "w", encoding="utf8").write(s)

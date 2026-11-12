@@ -48,6 +48,11 @@ js = ("/* แหล่งข้อมูลเดียวของ ม.1 เล
 open("assets/curriculum-m1v2.js", "w", encoding="utf8").write(js)
 # ฝังรายการกิจกรรมที่อนุญาต (id -> ชื่อ) ลง Code.gs ให้เซิร์ฟเวอร์ใช้ชื่อของตัวเอง ไม่เชื่อค่าจากไคลเอนต์
 acts = {a["id"]: a["title"] for u in units for c in u["chapters"] for a in c["activities"]}
+# หน้าเคมี ม.4: ชื่อบทอ่านจากอาร์เรย์ lessons ใน chemistry-m4.html และหน้าต้นแบบ chemistry-m4-lab.html
+chem = open("chemistry-m4.html", encoding="utf8").read()
+for i, t in enumerate(re.findall(r"^\{title:'([^']+)'", chem, flags=re.M), 1):
+    acts["เคมี ม.4 บทที่ %d" % i] = t
+acts["เคมี ม.4 ปฏิบัติการเบื้องต้น"] = "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4"
 gs = open("tools/apps_script/Code.gs", encoding="utf8").read()
 region = "// ids:start (สร้างอัตโนมัติโดย tools/build_curriculum.py ห้ามแก้ด้วยมือ)\nvar ACTIVITIES = " + json.dumps(acts, ensure_ascii=False, indent=2) + ";\n// ids:end"
 gs = re.sub(r"// ids:start.*?// ids:end", lambda m: region, gs, flags=re.S)
