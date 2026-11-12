@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6efff">
+<title>กิจกรรม 6.6 เมฆที่เห็นเป็นอย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 6.6 เมฆที่เห็นเป็นอย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-6-6.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--pur:#7b3fb2;--pur2:#b88ae6;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#f6efff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,40,80,.1),0 2px 8px rgba(60,40,80,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#f6efff,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#5d3a80;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--pur);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:680px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pur),var(--pur2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--pur);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--pur);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--pur);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.seg button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font-weight:650;color:var(--ink)}.seg button[aria-pressed=true]{background:var(--pur);color:#fff;border-color:var(--pur)}.seg button:disabled{opacity:.45;cursor:not-allowed}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem;background:#efe3fb;color:#4b2a73}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#efe3fb;position:sticky;top:0}.tw{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#faf6ff}
+select,input[type=number]{border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:#fff;color:var(--ink)}input[type=number]{width:90px}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.cards3{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}.cardx{border:1px solid var(--line);border-radius:16px;padding:10px;background:#fcfaff}.cardx svg{width:100%;height:auto;display:block;border-radius:10px}.cardx h4{margin:.4rem 0 .1rem;font-size:.95rem}.cardx p{margin:0;font-size:.84rem;color:var(--muted);line-height:1.5}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes steam{0%{transform:translateY(0) scale(.8);opacity:.7}100%{transform:translateY(-34px) scale(1.4);opacity:0}}
+.stm{animation:steam 1.8s linear infinite}
+
+.sl{display:grid;grid-template-columns:auto 1fr 52px;gap:8px;align-items:center}.sl input[type=range]{width:100%}.sl output{text-align:right;font-weight:700}
+.sel3{display:grid;gap:8px;margin:8px 0}.sel3 label{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:center}
+@media(max-width:520px){.sel3 label{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 6 กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ · เรื่องที่ 5 เมฆและฝน</div>
+  <h1>กิจกรรม 6.6 เมฆที่เห็นเป็นอย่างไร</h1>
+  <p class="lead">สังเกตท้องฟ้าในเวลาเช้า กลางวัน และเย็น จำแนกชนิดของเมฆด้วยแผนภาพเมฆ และตรวจวัดปริมาณเมฆปกคลุมท้องฟ้าด้วยการประมาณของนักเรียน 4 คน</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<ol class="steps" style="margin-top:0"><li>สังเกต อธิบายลักษณะ และจำแนกประเภทของเมฆ</li><li>ตรวจวัดปริมาณเมฆปกคลุมท้องฟ้า</li></ol>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>แผนภาพเมฆ</li></ul>
+<div class="note warn"><strong>ข้อควรระวัง (ตามหนังสือเรียน):</strong> ขณะสังเกตเมฆในท้องฟ้า นักเรียนต้องไม่มองดวงอาทิตย์โดยตรง เนื่องจากจะเป็นอันตรายต่อดวงตาได้</div>
+<h3>วิธีดำเนินกิจกรรม</h3>
+<ol class="steps">
+<li>ร่วมกันอภิปรายเกี่ยวกับวิธีสังเกตเมฆในท้องฟ้า ข้อมูลที่ควรจะได้จากการสังเกตเมฆ และวิธีบอกปริมาณเมฆ</li>
+<li>สังเกตและวาดภาพเมฆ จำแนกเมฆที่พบตามเกณฑ์ของตนเอง บอกปริมาณเมฆในท้องฟ้าตามวิธีการที่ได้อภิปรายร่วมกันจากข้อ 1 และนำเสนอ</li>
+<li>ศึกษาวิธีการสังเกตเมฆ แผนภาพเมฆ อภิปรายเกี่ยวกับวิธีการสังเกตลักษณะและปริมาณเมฆปกคลุม ตามวิธีการในเกร็ดน่ารู้ รวมทั้งวางแผนการสังเกตลักษณะของเมฆและปริมาณเมฆปกคลุมท้องฟ้าในเวลาเช้า กลางวัน และเย็น</li>
+<li>สังเกตเมฆอีกหนึ่งครั้งตามวิธีการจากข้อ 3 และบันทึกข้อมูลโดยการวาดภาพหรือถ่ายภาพ และบรรยายลักษณะเมฆที่พบ รวมทั้งปริมาณเมฆปกคลุม</li>
+<li>ระบุชื่อเมฆที่พบโดยใช้แผนภาพเมฆ</li></ol>
+<div class="note"><strong>เกร็ดน่ารู้ วิธีการตรวจวัดปริมาณเมฆปกคลุมท้องฟ้า:</strong> (1) เลือกพื้นที่โล่งแจ้งที่ไม่มีสิ่งกีดขวาง แบ่งท้องฟ้าเป็น 4 ส่วน ให้นักเรียน 4 คนที่มีความสูงใกล้เคียงกันยืนหันหลังชนกัน แล้วชูแขนขึ้นท้องฟ้ากางแขนทำมุม 90 องศา (2) แต่ละคนสังเกตท้องฟ้าตรงหน้าตั้งแต่ระดับสายตาจนถึงระดับสูงสุดของท้องฟ้า และคาดคะเนเปอร์เซนต์ปริมาณเมฆปกคลุมท้องฟ้าในพื้นที่ของตนเอง (3) หาค่าเฉลี่ยโดยนำผลของทั้ง 4 คนมารวมกันแล้วหารด้วย 4 (4) นำค่าที่ได้ไปเทียบกับตารางแปลผลด้านล่าง</div>
+<div class="tw" style="max-height:none"><table><thead><tr><th>ปริมาณเมฆปกคลุม</th><th>ค่าประมาณปริมาณเมฆปกคลุมของพื้นที่ทั้งหมด</th></tr></thead><tbody>
+<tr><td>ไม่มีเมฆ (No clouds)</td><td>ท้องฟ้าไม่มีเมฆปกคลุม หรือไม่สามารถมองเห็นเมฆได้</td></tr>
+<tr><td>ท้องฟ้าแจ่มใส (Clear clouds)</td><td>น้อยกว่า 10%</td></tr>
+<tr><td>เมฆบางส่วน (Isolated clouds)</td><td>10%–25%</td></tr>
+<tr><td>เมฆกระจัดกระจาย (Scattered clouds)</td><td>25%–50%</td></tr>
+<tr><td>เมฆเป็นหย่อม ๆ (Broken clouds)</td><td>50%–90%</td></tr>
+<tr><td>เมฆครึ้ม (Overcast clouds)</td><td>มากกว่า 90%</td></tr></tbody></table></div>
+<p class="pc">ตัวเลขที่ขอบของช่วง (เช่น 25% หรือ 50%) หนังสือไม่ได้ระบุว่าอยู่ช่วงใด แบบจำลองนี้ให้ค่าขอบล่างอยู่ในช่วงบน เช่น 25% จัดเป็นเมฆกระจัดกระจาย และให้ 90% จัดเป็นเมฆเป็นหย่อม ๆ</p>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · สังเกตท้องฟ้า</p><h2>ห้องสังเกตท้องฟ้าเสมือน</h2>
+<div class="note"><strong>ข้อมูลสมมติ:</strong> หนังสือไม่มีผลสังเกตจริง ท้องฟ้า 3 ช่วงเวลาในหน้านี้ผู้จัดทำวาดและกำหนดชนิดเมฆเอง คือ เช้า = สตราตัส · กลางวัน = คิวมูลัส · เย็น = คิวมูโลนิมบัส ภาพท้องฟ้าแบนแบ่งเป็น 4 ส่วนแทนนักเรียนคนที่ 1–4 และค่าปริมาณเมฆจริงของแต่ละส่วนคำนวณจากภาพที่วาด</div>
+<div class="seg" id="scTabs" role="group" aria-label="เลือกช่วงเวลา"></div>
+<div class="lab">
+ <div class="stage"><svg id="sky" viewBox="0 0 400 300" role="img" aria-label="ภาพท้องฟ้าแบ่งเป็น 4 ส่วน"></svg><p class="pc" style="margin:4px 8px 6px">ส่วนที่ 1 ซ้ายบน · 2 ขวาบน · 3 ซ้ายล่าง · 4 ขวาล่าง</p></div>
+ <div class="panel">
+  <div><strong>ขั้นที่ 1 จำแนกเมฆ</strong> (ข้อ 2 และ 5 ของวิธีดำเนินกิจกรรม)
+   <div class="sel3">
+    <label>รูปร่าง<select id="selSh"><option value="">— เลือก —</option><option value="ก้อน">เมฆก้อน (cumulus)</option><option value="แผ่น">เมฆแผ่น (stratus)</option><option value="ริ้ว">เมฆเป็นริ้ว (cirrus)</option></select></label>
+    <label>ระดับฐานเมฆ<select id="selLv"><option value="">— เลือก —</option><option value="high">ระดับสูง (มากกว่า 6,000 เมตร)</option><option value="mid">ระดับกลาง (2,000–6,000 เมตร)</option><option value="low">ระดับต่ำ (ต่ำกว่า 2,000 เมตร)</option></select></label>
+    <label>ชื่อเมฆ<select id="selNm"></select></label></div>
+   <div class="btns"><button class="btn" id="typeBtn" type="button">ตรวจชนิดเมฆ</button></div>
+   <p class="fb" id="typeFb" aria-live="polite"></p></div>
+  <div><strong>ขั้นที่ 2 ประมาณปริมาณเมฆปกคลุม</strong> (นักเรียนแต่ละคนประมาณในส่วนของตนเอง)
+   <div id="sliders" style="display:grid;gap:6px;margin-top:6px"></div>
+   <div class="readout" style="margin-top:8px"><div><small>ค่าเฉลี่ย</small><b id="rMean">–</b><small>%</small></div><div style="grid-column:span 2"><small>ประเภท</small><b id="rCat" style="font-size:1.05rem">–</b></div></div>
+   <div class="btns" style="margin-top:8px"><button class="btn" id="estBtn" type="button" disabled>ตรวจและบันทึกผลช่วงเวลานี้</button><button class="btn alt" id="resetBtn" type="button">เริ่มใหม่</button></div>
+   <p class="fb" id="estFb" aria-live="polite"></p></div>
+ </div>
+</div>
+</section>
+
+<section class="card" id="data"><p class="kicker">ส่วนที่ 2 · บันทึกผลและกราฟ</p><h2>ตารางบันทึกผลและกราฟปริมาณเมฆปกคลุม</h2>
+<div class="tw"><table><thead><tr><th>ช่วงเวลา</th><th>ชนิดเมฆ</th><th>ระดับ</th><th>ประมาณ 1</th><th>2</th><th>3</th><th>4</th><th>เฉลี่ย (%)</th><th>ประเภทปริมาณเมฆ</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="graph" style="margin-top:14px"><svg id="graph" viewBox="0 0 460 260" role="img" aria-label="แผนภูมิแท่งปริมาณเมฆปกคลุมเฉลี่ยของแต่ละช่วงเวลา"></svg></div>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 3 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<div class="note">คำถามเป็นของหนังสือเรียน ส่วนตัวเลือกและแนวคำตอบเขียนโดยผู้จัดทำหน้านี้จากเนื้อหาในหนังสือ (หน้า 142–145) และข้อมูลสมมติของแบบจำลอง หนังสือไม่ได้ให้เฉลย</div>
+<fieldset><legend>1. จากการสังเกตเมฆครั้งแรก เมฆที่พบมีลักษณะเป็นอย่างไร สามารถจำแนกเมฆที่พบตามเกณฑ์ของตนเองได้เป็นกี่ประเภท อะไรบ้าง</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> ตามรูปร่าง จำแนกได้ 3 ประเภทใหญ่ คือ เมฆก้อน เมฆแผ่น และเมฆเป็นริ้ว (เกณฑ์ของตนเองอาจต่างกัน แต่นักอุตุนิยมวิทยาใช้เกณฑ์นี้)</label>
+<label class="opt"><input type="radio" name="q1" value="b"> จำแนกได้ 2 ประเภท คือ เมฆขาวกับเมฆดำเท่านั้น</label>
+<label class="opt"><input type="radio" name="q1" value="c"> จำแนกไม่ได้ เพราะเมฆทุกก้อนเหมือนกัน</label></fieldset>
+<label for="q2"><strong>2. จากการศึกษาวิธีการสังเกตเมฆและแผนภาพเมฆ เมื่อออกไปสังเกตเมฆอีกครั้งหนึ่ง ได้ข้อมูลเพิ่มเติมจากการสังเกตด้วยวิธีการของตนเองหรือไม่ อย่างไร</strong> (เขียนด้วยคำของตนเอง)</label>
+<textarea id="q2" placeholder="เช่น ได้ระดับความสูงของฐานเมฆ ชื่อเมฆ และปริมาณเมฆเป็นเปอร์เซนต์ …"></textarea>
+<fieldset style="margin-top:14px"><legend>3. เมฆที่พบในแต่ละช่วงเวลา เช้า กลางวัน และเย็น มีลักษณะและปริมาณแตกต่างกันหรือไม่ อย่างไร และพบเมฆชนิดใดมากที่สุด (ตามข้อมูลสมมติของแบบจำลอง)</legend>
+<label class="opt"><input type="radio" name="q3" value="a"> แตกต่างกัน ช่วงเช้ามีเมฆสตราตัสปกคลุมมากที่สุด (เมฆครึ้ม) กลางวันมีคิวมูลัสเป็นก้อน ๆ กระจัดกระจาย เย็นมีคิวมูโลนิมบัสเป็นก้อนใหญ่</label>
+<label class="opt"><input type="radio" name="q3" value="b"> ไม่แตกต่างกัน พบเมฆชนิดเดียวกันทุกช่วงเวลา</label>
+<label class="opt"><input type="radio" name="q3" value="c"> แตกต่างกัน ช่วงเย็นมีเมฆปกคลุมมากที่สุดเพราะเป็นเมฆครึ้ม</label></fieldset>
+<fieldset><legend>4. จากกิจกรรม สรุปได้ว่าอย่างไร</legend>
+<label class="opt"><input type="radio" name="q4" value="a"> เมฆที่พบในช่วงเช้า กลางวัน และเย็นมีลักษณะต่างกัน และปริมาณเมฆปกคลุมก็ต่างกัน เนื่องจากปัจจัย เช่น ปริมาณไอน้ำในอากาศ อุณหภูมิอากาศ ลมและทิศทางลม</label>
+<label class="opt"><input type="radio" name="q4" value="b"> เมฆมีลักษณะเดียวกันตลอดทั้งวันและทั้งปี</label>
+<label class="opt"><input type="radio" name="q4" value="c"> ปริมาณเมฆไม่เกี่ยวกับอุณหภูมิหรือลม</label></fieldset>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="q2Ans" style="display:none"><strong>แนวคำตอบข้อ 2 (ของผู้จัดทำ):</strong> วิธีของตนเองบอกได้เพียงรูปร่างคร่าว ๆ และมากน้อยของเมฆ ส่วนการศึกษาแผนภาพเมฆและวิธีของนักอุตุนิยมวิทยาให้ข้อมูลเพิ่ม เช่น ชื่อเมฆ ระดับความสูงของฐานเมฆ (สูง กลาง ต่ำ) และปริมาณเมฆปกคลุมเป็นเปอร์เซนต์ที่นำไปเทียบกับตารางได้</div>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 4 · แผนภาพเมฆและส่วนประกอบของเมฆ</p><h2>แผนภาพเมฆ 10 ชนิด และเมฆแต่ละระดับประกอบด้วยอะไร</h2>
+<p>เมฆเกิดจากไอน้ำในอากาศควบแน่นกลายเป็นละอองน้ำขนาดเล็ก ซึ่งรวมตัวกันกลายเป็นเมฆ เมฆที่อยู่ระดับสูงประกอบด้วยผลึกน้ำแข็งเกือบทั้งหมด ระดับกลางประกอบด้วยผลึกน้ำแข็งและละอองน้ำ ส่วนระดับต่ำประกอบด้วยละอองน้ำทั้งหมด (หนังสือหน้า 144) กดเลือกระดับเพื่อดู</p>
+<div class="seg" id="lvTabs" role="group" aria-label="เลือกระดับเมฆ"><button type="button" data-k="high" aria-pressed="false">ระดับสูง</button><button type="button" data-k="mid" aria-pressed="false">ระดับกลาง</button><button type="button" data-k="low" aria-pressed="false">ระดับต่ำ</button></div>
+<div class="two"><div class="stage"><svg id="part" viewBox="0 0 300 200" role="img" aria-label="อนุภาคในเมฆระดับต่าง ๆ"></svg></div><div class="panel"><div>ระดับ: <span class="badge" id="lvName">เลือกระดับ</span></div><p class="pc" id="lvDesc" aria-live="polite"></p><p class="pc">ข้อสันนิษฐานของผู้จัดทำ (หนังสือตั้งเป็นคำถามให้คิดเอง): ที่ความสูงมาก อุณหภูมิต่ำมาก ละอองน้ำจึงเยือกแข็งเป็นผลึกน้ำแข็ง</p></div></div>
+<h3>แผนภาพชนิดของเมฆตามระดับความสูงและรูปร่าง (ภาพวาดของผู้จัดทำ คำอธิบายสรุปจากภาพ 6.23)</h3>
+<div class="cards3" id="atlas"></div>
+<h3>รากศัพท์ภาษาละตินที่เกี่ยวข้องกับชื่อเมฆ (หนังสือหน้า 144)</h3>
+<div class="tw" style="max-height:none"><table><thead><tr><th>รากศัพท์</th><th>ความหมาย</th></tr></thead><tbody><tr><td>เซอร์รัส (cirrus)</td><td>มัดผม, ริ้ว</td></tr><tr><td>อัลโต (alto)</td><td>กลาง</td></tr><tr><td>สตราตัส (stratus)</td><td>แผ่น</td></tr><tr><td>คิวมูลัส (cumulus)</td><td>ปุย</td></tr><tr><td>นิมโบ (nimbo), นิมบัส (nimbus)</td><td>ฝนรุนแรง</td></tr></tbody></table></div>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวนจากเนื้อหาหน้า 142–145</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. นักเรียน 4 คนประมาณปริมาณเมฆปกคลุมในส่วนของตนได้ 12%, 20%, 18% และ 30% ค่าเฉลี่ยและประเภทตามตารางคือข้อใด</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> เฉลี่ย 20% เมฆบางส่วน (Isolated)</label><label class="opt"><input type="radio" name="z1" value="b"> เฉลี่ย 20% เมฆกระจัดกระจาย (Scattered)</label><label class="opt"><input type="radio" name="z1" value="c"> เฉลี่ย 80% เมฆครึ้ม (Overcast)</label></fieldset>
+<fieldset><legend>2. รากศัพท์ภาษาละติน “อัลโต (alto)” ในชื่อเมฆ เช่น อัลโตคิวมูลัส หมายถึงข้อใด</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> แผ่น</label><label class="opt"><input type="radio" name="z2" value="b"> กลาง</label><label class="opt"><input type="radio" name="z2" value="c"> ฝนรุนแรง</label></fieldset>
+<fieldset><legend>3. เมฆที่อยู่ระดับต่ำ (ต่ำกว่า 2,000 เมตร) ประกอบด้วยสิ่งใด</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> ผลึกน้ำแข็งเกือบทั้งหมด</label><label class="opt"><input type="radio" name="z3" value="b"> ผลึกน้ำแข็งและละอองน้ำ</label><label class="opt"><input type="radio" name="z3" value="c"> ละอองน้ำทั้งหมด</label></fieldset>
+<fieldset><legend>4. เมฆชนิดใดแสดงว่าอาจเกิดฝนตกหนักในระยะเวลาอันใกล้</legend>
+<label class="opt"><input type="radio" name="z4" value="a"> เมฆเซอร์รัส</label><label class="opt"><input type="radio" name="z4" value="b"> เมฆนิมโบสตราตัส</label><label class="opt"><input type="radio" name="z4" value="c"> เมฆคิวมูโลนิมบัส</label></fieldset>
+<fieldset><legend>5. ขณะสังเกตเมฆในท้องฟ้า ข้อใดเป็นข้อควรระวังตามหนังสือ</legend>
+<label class="opt"><input type="radio" name="z5" value="a"> ไม่มองดวงอาทิตย์โดยตรง เพราะเป็นอันตรายต่อดวงตา</label><label class="opt"><input type="radio" name="z5" value="b"> ไม่สังเกตเมฆในเวลาเช้า</label><label class="opt"><input type="radio" name="z5" value="c"> ต้องสวมแว่นตาแบบสีเข้มทุกครั้งที่สังเกต</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ข้อมูลอ้างอิงจากหนังสือเรียน</p><h2>สรุปเนื้อหาที่เกี่ยวข้อง</h2>
+<p>นักอุตุนิยมวิทยาแบ่งเมฆตามรูปร่างลักษณะเป็น 3 ประเภทใหญ่ ได้แก่ เมฆก้อน (cumulus) เมฆแผ่น (stratus) และเมฆเป็นริ้ว (cirrus) และแบ่งตามระดับความสูงของฐานเมฆเป็น 3 ระดับ คือ ระดับสูง (มากกว่า 6,000 เมตร) ระดับกลาง (2,000–6,000 เมตร) และระดับต่ำ (ต่ำกว่า 2,000 เมตร) การเรียกชื่อเมฆใช้ลักษณะและความสูงของเมฆประกอบกัน และจากการพิจารณาลักษณะและความสูงของฐานเมฆ ในทางอุตุนิยมวิทยาแบ่งเมฆออกเป็น 10 ชนิดสำคัญ</p>
+<p>ปริมาณเมฆปกคลุมมีความสัมพันธ์กับสภาพอากาศวันนั้น ๆ วันที่มีเมฆปกคลุมน้อย พลังงานจากดวงอาทิตย์ส่งมายังพื้นผิวโลกได้มาก วันนั้นจึงมีอุณหภูมิอากาศสูง ตรงกันข้ามหากมีเมฆปกคลุมมาก อุณหภูมิอากาศจะต่ำ</p>
+<p>ชนิดของเมฆช่วยพยากรณ์ลมฟ้าอากาศอย่างง่าย: เมฆเซอร์รัสแสดงว่าอากาศดี ท้องฟ้าแจ่มใส · เมฆนิมโบสตราตัสแสดงว่าอาจเกิดฝนพรำ ๆ · เมฆคิวมูโลนิมบัสแสดงว่าอาจเกิดฝนตกหนักในระยะเวลาอันใกล้</p>
+<p class="pc">ที่มา: หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 6 หน้า 140–145 (แผนภาพเมฆ ภาพ 6.23 ดัดแปลงจากโครงการ GLOBE สสวท. ตามที่หนังสือระบุ ในหน้านี้วาดภาพประกอบใหม่ด้วย SVG) · ตารางแปลผลปริมาณเมฆปกคลุมที่มา: กรมอุตุนิยมวิทยา, 2560 · แบบจำลองเพื่อการศึกษา ไม่แทนการสังเกตท้องฟ้าจริง</p>
+</section>
+
+<section class="card" id="done" style="display:none;background:#f3effc"><h2>ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่แล้วประมาณปริมาณเมฆอีกครั้ง หรือออกไปสังเกตท้องฟ้าจริงพร้อมครู แล้วทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act66_v1';
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function blobs(id,opt){
+  opt=opt||{};const r=rng(id.charCodeAt(0)*131+(id.charCodeAt(1)||7)*17+3),o=[];
+  const add=(cx,cy,rx,ry,f,op)=>o.push([cx,cy,rx,ry,f,op==null?1:op]);
+  const puff=(cx,by,s,f)=>{add(cx,by-s*.5,s,s*.5,f);add(cx-s*.7,by-s*.3,s*.6,s*.4,f);add(cx+s*.75,by-s*.3,s*.65,s*.42,f);add(cx+s*.05,by-s*1.0,s*.62,s*.5,f);};
+  switch(id){
+    case'Ci':for(let i=0;i<6;i++){const y=22+i*34+r()*10,x=70+r()*260;add(x,y,50+r()*50,3+r()*3,'#ffffff',.9);add(x+40,y+6,30+r()*30,2,'#ffffff',.7);}break;
+    case'Cc':for(let i=0;i<9;i++)for(let j=0;j<5;j++)add(25+i*46+r()*14,20+j*42+r()*14,7+r()*3,5+r()*2,'#ffffff',.85);break;
+    case'Cs':add(200,70,230,60,'#ffffff',.5);add(200,150,230,55,'#ffffff',.45);add(200,205,230,40,'#ffffff',.4);break;
+    case'Ac':for(let j=0;j<4;j++)for(let i=0;i<7;i++)add(30+i*55+r()*10+(j%2)*20,35+j*50+r()*8,20+r()*6,10+r()*3,'#eef1f6',.92);break;
+    case'As':add(200,60,240,70,'#bfc7d3',.85);add(200,150,240,70,'#b3bcc9',.85);add(200,215,240,45,'#a9b3c1',.85);break;
+    case'Cu':{const P=[[70,140,50],[250,110,56],[345,190,42],[130,225,40],[330,60,34],[40,55,30]];P.slice(0,opt.n||4).forEach(p=>puff(p[0],p[1],p[2],'#ffffff'));break;}
+    case'St':add(200,40,240,32,'#aab3c0');add(200,100,260,34,'#a3acba');add(200,160,260,36,'#a9b2bf');add(200,215,240,34,'#9fa9b8');break;
+    case'Sc':for(let j=0;j<3;j++)for(let i=0;i<5;i++)add(35+i*82+(j%2)*30+r()*8,50+j*65+r()*8,38+r()*6,20+r()*3,'#d7dce6');break;
+    case'Ns':add(200,50,250,60,'#6c7482');add(200,130,250,70,'#5f6775');add(200,210,250,50,'#6c7482');break;
+    case'Cb':add(200,205,95,20,'#7b8494');add(200,172,52,34,'#f4f6fa');add(194,134,56,36,'#fafbfd');add(206,98,58,38,'#ffffff');add(200,66,52,34,'#ffffff');add(200,42,125,20,'#eef1f6');
+      if(opt.extra){puff(55,180,56,'#e9ecf3');puff(345,190,54,'#e9ecf3');puff(55,85,34,'#dfe3ec');puff(350,95,34,'#dfe3ec');puff(120,236,44,'#e9ecf3');puff(285,238,44,'#e9ecf3');}break;
+  }
+  return o;
+}
+function coverage(bl){const q=[0,0,0,0],n=[0,0,0,0];
+  for(let x=2.5;x<400;x+=5)for(let y=2.5;y<240;y+=5){const k=(x>=200?1:0)+(y>=120?2:0);n[k]++;
+    if(bl.some(b=>{const dx=(x-b[0])/b[2],dy=(y-b[1])/b[3];return dx*dx+dy*dy<=1;}))q[k]++;}
+  return q.map((v,i)=>Math.round(v/n[i]*100));}
+
+/* พอร์ตจาก cloud_cover_category() ที่ผ่าน checks ของ llm-orchestrator */
+function cloudCoverCategory(est){
+  if(!est||!est.length)throw new RangeError('empty');
+  for(const v of est)if(!(v>=0&&v<=100))throw new RangeError('range');
+  const mean=est.reduce((a,b)=>a+b,0)/est.length;
+  const key=mean===0?'no_clouds':mean<10?'clear':mean<25?'isolated':mean<50?'scattered':mean<=90?'broken':'overcast';
+  return[mean,key];
+}
+const CAT={no_clouds:'ไม่มีเมฆ (No clouds)',clear:'ท้องฟ้าแจ่มใส (Clear)',isolated:'เมฆบางส่วน (Isolated)',scattered:'เมฆกระจัดกระจาย (Scattered)',broken:'เมฆเป็นหย่อม ๆ (Broken)',overcast:'เมฆครึ้ม (Overcast)'};
+const LV={high:'ระดับสูง (มากกว่า 6,000 เมตร)',mid:'ระดับกลาง (2,000–6,000 เมตร)',low:'ระดับต่ำ (ต่ำกว่า 2,000 เมตร)'};
+const LVS={high:'สูง',mid:'กลาง',low:'ต่ำ'};
+const TYPES=[
+ {id:'Ci',th:'เซอร์รัส',en:'Cirrus',lv:'high',sh:'ริ้ว',d:'แผ่นบางสีขาวเจิดจ้าหรือเทาอ่อน แสงอาทิตย์ส่องผ่านได้ดี เป็นฝอย คล้ายขนนกบาง ๆ เป็นเส้น หรือเป็นทางยาว อยู่สูงราว 30,000 ฟุต'},
+ {id:'Cc',th:'เซอร์โรคิวมูลัส',en:'Cirrocumulus',lv:'high',sh:'ก้อน',d:'ก้อนเล็ก ๆ สีขาว คล้ายขนแกะหรือปุยนุ่น ไม่มีเงา'},
+ {id:'Cs',th:'เซอร์โรสตราตัส',en:'Cirrostratus',lv:'high',sh:'แผ่น',d:'คล้ายเซอร์รัส แต่แผ่ออกเป็นแผ่นเยื่อบาง ๆ ต่อเนื่อง ตามทิศทางของลม แทบโปร่งแสง'},
+ {id:'Ac',th:'อัลโตคิวมูลัส',en:'Altocumulus',lv:'mid',sh:'ก้อน',d:'ริ้วของก้อนสำลีเล็ก ๆ หรือกลุ่มก้อนเล็ก ๆ คล้ายฝูงแกะที่อยู่รวมกัน'},
+ {id:'As',th:'อัลโตสตราตัส',en:'Altostratus',lv:'mid',sh:'แผ่น',d:'แผ่นปกคลุมบริเวณกว้าง กระจายตัวสม่ำเสมอ ฐานเมฆสีเทาหรือสีฟ้า บังดวงอาทิตย์หรือดวงจันทร์ให้เป็นฝ้า ๆ อาจเกิดฝนละอองบาง ๆ'},
+ {id:'Cu',th:'คิวมูลัส',en:'Cumulus',lv:'low',sh:'ก้อน',d:'ก้อนหนา ฐานเมฆมักแบนราบ อาจเป็นก้อนเดี่ยวหรือรวมกันเป็นก้อนใหญ่ มองคล้ายดอกกะหล่ำขนาดใหญ่'},
+ {id:'St',th:'สตราตัส',en:'Stratus',lv:'low',sh:'แผ่น',d:'แผ่นสีเทา ไม่รวมตัวกัน ปกคลุมบริเวณกว้างมาก บางครั้งต่ำมากคล้ายหมอก เคลื่อนที่ตามลมได้เร็ว ท้องฟ้ามืดครึ้ม มองไม่เห็นดวงอาทิตย์ และอาจทำให้เกิดฝนละออง'},
+ {id:'Sc',th:'สตราโตคิวมูลัส',en:'Stratocumulus',lv:'low',sh:'ก้อน',d:'ก้อนกลมคล้ายคิวมูลัส แต่เรียงติดกันเป็นแถว รวมกันคล้ายคลื่น บางครั้งแยกเป็นกลุ่มก้อนเล็ก ๆ จำนวนมาก'},
+ {id:'Ns',th:'นิมโบสตราตัส',en:'Nimbostratus',lv:'low',sh:'แผ่น',d:'แผ่นสีเทาเข้ม คล้ายพื้นดินที่เปียกน้ำ ปกคลุมบริเวณกว้างมาก ทำให้เกิดฝนหรือหิมะตกปริมาณน้อยถึงปานกลางต่อเนื่องเป็นเวลานาน ๆ'},
+ {id:'Cb',th:'คิวมูโลนิมบัส',en:'Cumulonimbus',lv:'low',sh:'ก้อน',d:'เมฆก้อนใหญ่หนาก่อตัวสูงมาก ยอดบางครั้งแผ่ออกเป็นรูปทั่ง ทำให้ฝนตกหนัก ฟ้าแลบ ฟ้าร้อง เกิดพายุทอร์นาโดหรือลูกเห็บได้ เรียกว่าเมฆฝนฟ้าคะนอง'}];
+const TB=Object.fromEntries(TYPES.map(t=>[t.id,t]));
+const SC=[{k:'morning',n:'เช้า',type:'St',opt:{},tod:'m',rain:false},{k:'noon',n:'กลางวัน',type:'Cu',opt:{n:6},tod:'d'},{k:'eve',n:'เย็น',type:'Cb',opt:{extra:1},tod:'e',rain:true}];
+SC.forEach(s=>{s.bl=blobs(s.type,s.opt);s.cov=coverage(s.bl);});
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();if(!S.scn)S.scn={};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+let cur=Number(S.cur)||0;if(cur<0||cur>2)cur=0;let est=[0,0,0,0],touched=false,uid=0;
+const GR={m:['#9fc3e6','#f4e2cf'],d:['#4f9be8','#cfe6fb'],e:['#6a6fb0','#f2a56e']};
+
+function skySvg(bl,tod,grid,rain,ground){
+  const g='g'+(++uid),c=GR[tod];
+  let s=`<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient></defs><rect width="400" height="240" fill="${c[1]}"/><rect width="400" height="240" fill="url(#${g})"/>`;
+  s+=bl.map(b=>`<ellipse cx="${b[0].toFixed(1)}" cy="${b[1].toFixed(1)}" rx="${b[2].toFixed(1)}" ry="${b[3].toFixed(1)}" fill="${b[4]}" opacity="${b[5]}"/>`).join('');
+  if(rain==='Ns'||rain==='Cb'){const x0=rain==='Ns'?20:150,x1=rain==='Ns'?380:250;for(let x=x0;x<=x1;x+=14)s+=`<line x1="${x}" y1="205" x2="${x-5}" y2="238" stroke="#e9f3ff" stroke-width="1.5" opacity=".7"/>`;}
+  if(ground)s+='<rect y="240" width="400" height="60" fill="#6b9a54"/><rect x="40" y="248" width="8" height="30" fill="#6a4a30"/><circle cx="44" cy="244" r="20" fill="#4f8a45"/><rect x="330" y="252" width="30" height="22" fill="#c9b28f"/><path d="M325 252 l20 -14 l20 14z" fill="#9a5a46"/>';
+  if(grid)s+='<line x1="200" y1="0" x2="200" y2="240" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/><line x1="0" y1="120" x2="400" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/><g font-size="22" font-weight="800" fill="#4b2a73" stroke="#fff" stroke-width="4" paint-order="stroke"><text x="14" y="30">1</text><text x="378" y="30">2</text><text x="14" y="232">3</text><text x="378" y="232">4</text></g>';
+  return s;
+}
+function tabs(){
+  const b=$('scTabs');b.innerHTML='';
+  SC.forEach((s,i)=>{const x=document.createElement('button');x.type='button';x.textContent='ช่วง'+s.n+(S.scn[s.k]&&S.scn[s.k].rec?' ✓':'');x.setAttribute('aria-pressed',i===cur);x.addEventListener('click',()=>{cur=i;S.cur=i;touched=false;est=(S.scn[s.k]&&S.scn[s.k].est)||[0,0,0,0];$('typeFb').textContent='';$('estFb').textContent='';save();render();});b.appendChild(x);});
+}
+function render(){
+  const s=SC[cur],st=S.scn[s.k]||{};
+  tabs();
+  $('sky').innerHTML=skySvg(s.bl,s.tod,true,s.type,true);
+  $('selNm').innerHTML='<option value="">— เลือก —</option>'+TYPES.map(t=>`<option value="${t.id}">${t.th} (${t.en} : ${t.id})</option>`).join('');
+  const locked=!!st.type;
+  if(locked){$('selSh').value=TB[s.type].sh;$('selLv').value=TB[s.type].lv;$('selNm').value=s.type;}
+  else{$('selSh').value=st.sh||'';$('selLv').value=st.lv||'';}
+  ['selSh','selLv','selNm','typeBtn'].forEach(i=>$(i).disabled=locked);
+  if(locked&&!$('typeFb').textContent){$('typeFb').className='fb';$('typeFb').textContent=`ถูกต้อง: ${TB[s.type].th} (${s.type}) ${LV[TB[s.type].lv]} · ${TB[s.type].d}`;}
+  const sl=$('sliders');sl.innerHTML='';
+  for(let i=0;i<4;i++){const d=document.createElement('div');d.className='sl';d.innerHTML=`<label for="e${i}">คนที่ ${i+1}</label><input type="range" id="e${i}" min="0" max="100" step="5" value="${est[i]}"${st.rec?' disabled':''}><output id="o${i}">${est[i]}%</output>`;sl.appendChild(d);
+    d.querySelector('input').addEventListener('input',ev=>{est[i]=Number(ev.target.value);touched=true;$('o'+i).textContent=est[i]+'%';meanUI();});}
+  meanUI();drawTable();drawGraph();
+}
+function meanUI(){
+  const s=SC[cur],st=S.scn[s.k]||{};const[m,k]=cloudCoverCategory(est);
+  $('rMean').textContent=touched||st.rec?(Math.round(m*10)/10):'–';$('rCat').textContent=touched||st.rec?CAT[k]:'–';
+  $('estBtn').disabled=!(touched&&st.type&&!st.rec);
+}
+$('typeBtn').addEventListener('click',()=>{
+  const s=SC[cur],t=TB[s.type],sh=$('selSh').value,lv=$('selLv').value,nm=$('selNm').value;
+  const fb=$('typeFb');fb.className='fb err';
+  if(!sh||!lv||!nm){fb.textContent='เลือกรูปร่าง ระดับ และชื่อเมฆให้ครบก่อน';return;}
+  if(nm===s.type){S.scn[s.k]=Object.assign(S.scn[s.k]||{},{type:1});fb.className='fb';fb.textContent='';save();render();return;}
+  if(lv!==t.lv)fb.textContent='ระดับความสูงของฐานเมฆยังไม่ตรง ลองดูแผนภาพเมฆด้านล่าง (ส่วนที่ 4) เทียบระดับกับรูปร่างของเมฆในภาพ';
+  else if(sh!==t.sh)fb.textContent='ระดับถูกแล้ว แต่รูปร่างของเมฆยังไม่ตรง สังเกตว่าเป็นก้อน แผ่น หรือริ้ว';
+  else fb.textContent='รูปร่างและระดับถูกแล้ว แต่ชื่อยังไม่ใช่ เทียบลักษณะกับคำอธิบายของเมฆในระดับเดียวกันในแผนภาพเมฆ';
+});
+$('estBtn').addEventListener('click',()=>{
+  const s=SC[cur],[m,k]=cloudCoverCategory(est),tm=s.cov.reduce((a,b)=>a+b,0)/4,[,tk]=cloudCoverCategory(s.cov);
+  S.scn[s.k]=Object.assign(S.scn[s.k]||{},{rec:1,est:est.slice(),mean:m,key:k});save();
+  const diffs=est.map((v,i)=>`คนที่ ${i+1} ประมาณ ${v}% จริง ${s.cov[i]}%`).join(' · ');
+  $('estFb').className='fb'+(Math.abs(m-tm)<=10?'':' err');
+  $('estFb').textContent=`บันทึกแล้ว: เฉลี่ย ${Math.round(m*10)/10}% (${CAT[k]}) · ค่าจริงของภาพนี้เฉลี่ย ${Math.round(tm*10)/10}% (${CAT[tk]}) · ${diffs}`+(Math.abs(m-tm)<=10?' · ประมาณได้ใกล้เคียง':' · ต่างจากค่าจริงมากกว่า 10% ลองประมาณใหม่ในครั้งหน้า');
+  render();
+});
+$('resetBtn').addEventListener('click',()=>{S.scn={};est=[0,0,0,0];touched=false;$('typeFb').textContent='';$('estFb').textContent='';save();render();drawTable();drawGraph();});
+
+function drawTable(){
+  const tb=$('rows'),h=SC.map(s=>{const r=S.scn[s.k];if(!r||!r.rec)return '';const t=TB[s.type];return `<tr><td>${s.n}</td><td>${t.th} (${t.id})</td><td>${LVS[t.lv]}</td>${r.est.map(v=>`<td>${v}</td>`).join('')}<td>${Math.round(r.mean*10)/10}</td><td>${CAT[r.key]}</td></tr>`;}).join('');
+  tb.innerHTML=h||'<tr><td colspan="9" style="color:#999">ยังไม่มีข้อมูล</td></tr>';
+}
+function drawGraph(){
+  const W=460,H=260,L=48,B=40,T=14,y=v=>T+(H-T-B)*(1-v/100);
+  let s=`<rect width="${W}" height="${H}" fill="#fff"/>`;
+  for(let v=0;v<=100;v+=10)s+=`<line x1="${L}" x2="${W-14}" y1="${y(v)}" y2="${y(v)}" stroke="${[10,25,50,90].includes(v)?'#d9c7ef':'#eef0f5'}"/><text x="${L-6}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="#66708a">${v}</text>`;
+  [25,90].forEach(v=>{s+=`<line x1="${L}" x2="${W-14}" y1="${y(v)}" y2="${y(v)}" stroke="#b98be0" stroke-dasharray="4 4"/>`;});
+  s+=`<text transform="translate(12 ${(H-B)/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#1d2433">ปริมาณเมฆปกคลุมเฉลี่ย (%)</text>`;
+  SC.forEach((c,i)=>{const x=L+36+i*125,r=S.scn[c.k];s+=`<text x="${x+30}" y="${H-18}" font-size="12" text-anchor="middle" fill="#1d2433">${c.n}</text>`;
+    if(r&&r.rec)s+=`<rect x="${x}" y="${y(r.mean)}" width="60" height="${y(0)-y(r.mean)}" rx="6" fill="#7b3fb2"/><text x="${x+30}" y="${y(r.mean)-5}" font-size="12" text-anchor="middle" fill="#4b2a73">${Math.round(r.mean*10)/10}%</text>`;
+    else s+=`<text x="${x+30}" y="${y(0)-6}" font-size="11" text-anchor="middle" fill="#aaa">ยังไม่บันทึก</text>`;});
+  $('graph').innerHTML=s;
+}
+
+/* แผนภาพเมฆ */
+$('atlas').innerHTML=['high','mid','low'].map(l=>TYPES.filter(t=>t.lv===l).map(t=>{
+  const svg=`<svg viewBox="0 0 400 240" role="img" aria-label="ภาพวาดเมฆ${t.th}">${skySvg(blobs(t.id,t.id==='Cu'?{n:4}:t.id==='Cb'?{}:{}),'d',false,t.id,false)}</svg>`;
+  return `<div class="cardx">${svg}<h4>${t.th} (${t.en} : ${t.id})</h4><p><b>${LV[t.lv]}</b> · เมฆ${t.sh}</p><p>${t.d}</p></div>`;}).join('')).join('');
+
+/* ส่วนประกอบของเมฆ */
+const LD={high:['ระดับสูง','เมฆระดับสูง (มากกว่า 6,000 เมตร) ประกอบด้วยผลึกน้ำแข็งเกือบทั้งหมด'],mid:['ระดับกลาง','เมฆระดับกลาง (2,000–6,000 เมตร) ประกอบด้วยผลึกน้ำแข็งและละอองน้ำ'],low:['ระดับต่ำ','เมฆระดับต่ำ (ต่ำกว่า 2,000 เมตร) ประกอบด้วยละอองน้ำทั้งหมด']};
+let seenLv=S.seenLv||[];
+function drawPart(k){
+  const rnd=i=>{const v=Math.sin(i*91.7+3)*10000;return v-Math.floor(v);};
+  let s='<rect width="300" height="200" fill="#eef6ff"/><ellipse cx="150" cy="100" rx="130" ry="70" fill="#fff" stroke="#c7d3e6"/>';
+  for(let i=0;i<34;i++){const x=40+rnd(i)*220,y=50+rnd(i+40)*100,ice=k==='high'||(k==='mid'&&i%2===0);
+    if(ice)s+=`<g stroke="#4a86c8" stroke-width="1.6" stroke-linecap="round"><line x1="${x-6}" y1="${y}" x2="${x+6}" y2="${y}"/><line x1="${x-3}" y1="${y-5}" x2="${x+3}" y2="${y+5}"/><line x1="${x-3}" y1="${y+5}" x2="${x+3}" y2="${y-5}"/></g>`;
+    else s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="#7cc0f0" stroke="#3b8fd0"/>`;}
+  s+='<text x="150" y="192" text-anchor="middle" font-size="11" fill="#66708a">✳ ผลึกน้ำแข็ง · ● ละอองน้ำ (ภาพแสดงแนวคิด)</text>';
+  $('part').innerHTML=s;$('lvName').textContent=LD[k][0];$('lvDesc').textContent=LD[k][1];
+  $('lvTabs').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+}
+$('lvTabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{drawPart(b.dataset.k);if(!seenLv.includes(b.dataset.k))seenLv.push(b.dataset.k);S.seenLv=seenLv;save();}));
+drawPart('low');$('lvName').textContent='เลือกระดับ';$('lvDesc').textContent='';$('lvTabs').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',false));
+
+const sel=n=>document.querySelector(`input[name="${n}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a=['q1','q3','q4'].map(sel);
+  if(a.some(v=>!v)||!$('q2').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบทั้ง 4 ข้อ';$('qFb').className='fb err';return;}
+  const key=['a','a','a'],sc=a.filter((v,i)=>v===key[i]).length;
+  S.q=a;S.q2=$('q2').value;S.qDone=true;save();$('q2Ans').style.display='block';
+  $('qFb').className='fb'+(sc===3?'':' err');$('qFb').textContent=sc===3?'ถูกทั้ง 3 ข้อที่ตรวจได้ ลองเทียบข้อ 2 กับแนวคำตอบด้านล่าง':`ถูก ${sc}/3 ข้อ ทบทวนตารางผลและเนื้อหาด้านบน`;
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3','z4','z5'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['a','b','c','c','a'],sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===5?'':' err');$('zFb').textContent=`ได้ ${sc}/5 · เฉลย: 1) (12+20+18+30)÷4 = 20% อยู่ในช่วง 10%–25% เมฆบางส่วน 2) กลาง 3) ละอองน้ำทั้งหมด 4) คิวมูโลนิมบัส 5) ไม่มองดวงอาทิตย์โดยตรง`;
+});
+function progress(){
+  const d=[SC.every(s=>S.scn[s.k]&&S.scn[s.k].rec),!!S.qDone,seenLv.length>=3,!!S.zDone],n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);
+  $('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (สังเกตครบ 3 ช่วงเวลา · คำถาม · ส่วนประกอบของเมฆ · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+(()=>{
+  if(S.q)['q1','q3','q4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.q[i]}"]`);if(e)e.checked=true;});
+  if(S.q2)$('q2').value=S.q2;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3','z4','z5'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  const c=S.scn[SC[cur].k];if(c&&c.est)est=c.est.slice();
+  render();drawTable();drawGraph();progress();
+})();
+window.__lab={cloudCoverCategory,SC,coverage,blobs,get scn(){return S.scn;}};
+})();
+</script>
+</body>
+</html>

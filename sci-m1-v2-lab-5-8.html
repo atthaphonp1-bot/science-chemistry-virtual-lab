@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.8 น้ำอุณหภูมิต่างกันผสมกันจะเป็นอย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.8 น้ำอุณหภูมิต่างกันผสมกันจะเป็นอย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-8.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:700px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px;font-weight:650}.tab[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}.ctl input[type=range]{grid-column:1/-1;width:100%}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#fff1e6;position:sticky;top:0}.tw{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.calc label{font-size:.85rem;color:var(--muted);display:block}.calc input{width:100%;padding:7px 10px;border:1px solid var(--line);border-radius:10px}
+pre.out{background:#f7f8fb;border-radius:14px;padding:14px;white-space:pre-wrap;font:.9rem/1.7 var(--font);margin:12px 0 0}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}.calc{grid-template-columns:1fr 1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 2 สมดุลความร้อน</div>
+  <h1>กิจกรรม 5.8 น้ำอุณหภูมิต่างกันผสมกันจะเป็นอย่างไร</h1>
+  <p class="lead">เทน้ำเย็นกับน้ำร้อนอย่างละ 25 cm³ ลงในแคลอรีมิเตอร์ วัดอุณหภูมิทุก 10 วินาทีนาน 2 นาที เขียนกราฟ แล้วทำซ้ำโดยเปลี่ยนอุณหภูมิของน้ำร้อนและน้ำเย็น</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>วัดอุณหภูมิน้ำและอธิบายการถ่ายโอนความร้อนระหว่างน้ำที่มีอุณหภูมิต่างกัน</p>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>เทอร์มอมิเตอร์</li><li>แคลอรีมิเตอร์</li><li>น้ำร้อน</li><li>น้ำเย็น</li><li>ถ้วยตวง</li><li>กระดาษกราฟ</li><li>นาฬิกาจับเวลา</li><li>แก้วน้ำ</li></ul>
+<div class="note warn"><strong>ข้อควรระวัง:</strong> ควรระวังการใช้น้ำร้อน โดยใช้ผ้าหนาจับภาชนะที่ใส่น้ำร้อน (ในแล็บเสมือนนี้ไม่มีน้ำร้อนจริง แต่เวลาทำจริงต้องระวังเสมอ)</div>
+<h3>วิธีดำเนินกิจกรรม</h3>
+<ol class="steps">
+<li>เทน้ำเย็น 25 ลูกบาศก์เซนติเมตร ลงในแคลอรีมิเตอร์ วัดและบันทึกอุณหภูมิ</li>
+<li>เทน้ำร้อน 25 ลูกบาศก์เซนติเมตร ลงในแก้วน้ำ วัดและบันทึกอุณหภูมิ</li>
+<li>เทน้ำร้อนลงในแคลอรีมิเตอร์แล้วปิดฝาให้แน่นทันที วัดและบันทึกอุณหภูมิของน้ำในแคลอรีมิเตอร์ทุก ๆ 10 วินาที เป็นเวลา 2 นาที เขียนกราฟแสดงความสัมพันธ์ระหว่างอุณหภูมิกับเวลา</li>
+<li>วิเคราะห์กราฟเพื่อสังเกตการเปลี่ยนแปลงอุณหภูมิของน้ำหลังผสมในช่วงเวลาต่าง ๆ</li>
+<li>ทำกิจกรรมทั้งหมดซ้ำอีก 1 ครั้ง โดยเปลี่ยนอุณหภูมิของน้ำร้อนและน้ำเย็น</li></ol>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน</h2>
+<p class="lead">เลือกอุณหภูมิน้ำเย็นและน้ำร้อนของรอบนี้ แล้วกดปุ่มทำตามขั้นตอนทีละขั้น ต้องทำครบทั้ง 2 รอบ (รอบที่ 2 ต้องเปลี่ยนอุณหภูมิ)</p>
+<div class="tabs" role="group" aria-label="เลือกรอบการทดลอง" style="margin:14px 0"><button class="tab" id="tab0" type="button" aria-pressed="true">รอบที่ 1</button><button class="tab" id="tab1" type="button" aria-pressed="false" disabled>รอบที่ 2</button></div>
+<div class="lab">
+ <div class="stage">
+ <svg viewBox="0 0 380 320" role="img" aria-labelledby="stT stD"><title id="stT">ชุดทดลองผสมน้ำร้อนกับน้ำเย็นในแคลอรีมิเตอร์</title><desc id="stD">ถ้วยตวงน้ำเย็น แก้วน้ำร้อน และแคลอรีมิเตอร์ที่มีเทอร์มอมิเตอร์</desc>
+  <defs><clipPath id="cCl"><rect x="25" y="150" width="60" height="120" rx="4"/></clipPath><clipPath id="gCl"><path d="M135 170 L140 270 Q141 278 150 278 L180 278 Q189 278 190 270 L195 170Z"/></clipPath><clipPath id="kCl"><rect x="250" y="170" width="100" height="108" rx="8"/></clipPath></defs>
+  <rect x="10" y="288" width="360" height="12" rx="5" fill="#cfd5e2"/>
+  <!-- ถ้วยตวง -->
+  <rect id="cW" x="25" y="270" width="60" height="0" fill="#4aa8ff" opacity=".85" clip-path="url(#cCl)"/>
+  <rect x="25" y="150" width="60" height="120" rx="4" fill="none" stroke="#5f7694" stroke-width="3"/>
+  <g stroke="#7c8ea8" stroke-width="1.5"><line x1="25" y1="190" x2="40" y2="190"/><line x1="25" y1="230" x2="40" y2="230"/></g>
+  <text x="55" y="300" font-size="11" text-anchor="middle" fill="#66708a" dy="12">ถ้วยตวง</text>
+  <!-- แก้ว -->
+  <rect id="gW" x="130" y="278" width="70" height="0" fill="#ff6a4a" opacity=".85" clip-path="url(#gCl)"/>
+  <path d="M135 170 L140 270 Q141 278 150 278 L180 278 Q189 278 190 270 L195 170" fill="none" stroke="#5f7694" stroke-width="3" stroke-linejoin="round"/>
+  <g id="steam" style="display:none" fill="#cdd5e0"><circle cx="150" cy="158" r="6"/><circle cx="168" cy="150" r="7"/><circle cx="184" cy="158" r="5"/></g>
+  <text x="165" y="300" font-size="11" text-anchor="middle" fill="#66708a" dy="12">แก้วน้ำ</text>
+  <!-- แคลอรีมิเตอร์ -->
+  <rect x="244" y="164" width="112" height="120" rx="12" fill="#eef1f7" stroke="#8f98ab" stroke-width="3"/>
+  <rect x="250" y="170" width="100" height="108" rx="8" fill="#fff"/>
+  <rect id="kW" x="250" y="278" width="100" height="0" fill="#4aa8ff" opacity=".85" clip-path="url(#kCl)"/>
+  <rect id="kLid" x="240" y="150" width="120" height="12" rx="5" fill="#8f98ab" style="display:none"/>
+  <g><rect x="318" y="40" width="12" height="190" rx="6" fill="#fff" stroke="#7a859a" stroke-width="2"/><rect id="hg" x="322" y="226" width="4" height="0" fill="#d62f2f"/><circle cx="324" cy="232" r="9" fill="#d62f2f" stroke="#7a859a" stroke-width="2"/></g>
+  <text x="300" y="300" font-size="11" text-anchor="middle" fill="#66708a" dy="12">แคลอรีมิเตอร์</text>
+  <text id="svTc" x="55" y="140" font-size="12" text-anchor="middle" fill="#1769e0"></text>
+  <text id="svTh" x="165" y="140" font-size="12" text-anchor="middle" fill="#b63f43"></text>
+  <rect x="10" y="10" width="110" height="44" rx="10" fill="#1d2433"/><text id="sw" x="65" y="40" font-size="24" text-anchor="middle" fill="#7dffb0" font-family="monospace">0:00</text>
+ </svg></div>
+ <div class="panel">
+  <div class="ctl"><label for="cold">อุณหภูมิน้ำเย็นของรอบนี้ (ค่าสมมติ)</label><b id="coldV">28 °C</b><input type="range" id="cold" min="15" max="30" step="1" value="28"></div>
+  <div class="ctl"><label for="hot">อุณหภูมิน้ำร้อนของรอบนี้ (ค่าสมมติ)</label><b id="hotV">60 °C</b><input type="range" id="hot" min="40" max="80" step="1" value="60"></div>
+  <div class="readout"><div><small>เวลา</small><b id="rTime">0</b><small>วินาที</small></div><div><small>เทอร์มอมิเตอร์ในแคลอรีมิเตอร์</small><b id="rTemp">—</b><small>°C</small></div><div><small>ขั้นตอน</small><b id="rStep">1</b><small>จาก 3</small></div></div>
+  <div class="btns">
+   <button class="btn" id="goBtn" type="button">1) เทน้ำเย็น 25 cm³ ลงแคลอรีมิเตอร์ แล้ววัดอุณหภูมิ</button>
+   <button class="btn alt" id="autoBtn" type="button" disabled>เล่นอัตโนมัติ</button>
+   <button class="btn alt" id="resetBtn" type="button">เริ่มใหม่ทั้งหมด</button>
+  </div>
+  <p class="fb" id="labFb" aria-live="polite"></p>
+  <details><summary>ค่าที่ใช้ในแบบจำลอง (สมมติเอง)</summary><p class="pc">อุณหภูมิน้ำร้อน/น้ำเย็น ปรับได้เอง (หนังสือไม่ได้กำหนดค่า) · น้ำเย็นและน้ำร้อนอย่างละ 25 cm³ (ประมาณ 25 g) ตามหนังสือ · แคลอรีมิเตอร์มีความจุความร้อนสมมติ 3 cal/°C เริ่มต้นที่อุณหภูมิเดียวกับน้ำเย็น · อุณหภูมิห้อง 30 °C · เทอร์มอมิเตอร์ตอบสนองช้าลงแบบเอกซ์โพเนนเชียล (ค่าคงที่เวลา 12 วินาที) · ความร้อนสูญเสียออกสู่ห้องช้า ๆ (k = 0.0001 ต่อวินาที) · อ่านค่าได้ละเอียด 0.5 °C · น้ำร้อนในแก้วไม่เย็นลงระหว่างรอ แบบจำลองนี้ลดรูปจากการทดลองจริง</p></details>
+ </div>
+</div>
+</section>
+
+<section class="card" id="data"><p class="kicker">ส่วนที่ 2 · บันทึกผลและกราฟ</p><h2>ตารางบันทึกผลและกราฟอุณหภูมิ–เวลา</h2>
+<div class="two">
+ <div class="tw"><table><thead><tr><th>เวลา (วินาที)</th><th>รอบที่ 1 (°C)</th><th>รอบที่ 2 (°C)</th></tr></thead><tbody id="rows"></tbody></table></div>
+ <div class="graph"><svg id="graph" viewBox="0 0 420 300" role="img" aria-label="กราฟอุณหภูมิของน้ำผสมกับเวลา"></svg>
+ <p class="pc" style="text-align:center"><span class="sw" style="background:#e8662c"></span> รอบที่ 1 &nbsp; <span class="sw" style="background:#1769e0"></span> รอบที่ 2</p></div>
+</div>
+<div id="cmp" class="note" style="display:none"></div>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 3 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<p class="pc" style="margin-bottom:12px">หนังสือไม่มีเฉลย แนวคำตอบด้านล่างเรียบเรียงจากเนื้อหาหน้า 80 และจากข้อมูลที่แบบจำลองบันทึกได้ (ข้อ 3 เทียบจากผลทดลองของผู้เรียนเอง ต้องทำครบ 2 รอบก่อน)</p>
+<fieldset><legend>1. การเปลี่ยนแปลงอุณหภูมิของน้ำหลังผสมในช่วงเวลาต่าง ๆ เป็นอย่างไร</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> อุณหภูมิไม่เปลี่ยนแปลงเลยตลอด 2 นาที</label>
+<label class="opt"><input type="radio" name="q1" value="b"> ช่วงแรกอุณหภูมิเปลี่ยนเร็ว (น้ำเย็นร้อนขึ้น น้ำร้อนเย็นลง) แล้วค่อย ๆ เปลี่ยนช้าลงจนคงที่ เป็นอุณหภูมิผสมสุดท้าย</label>
+<label class="opt"><input type="radio" name="q1" value="c"> อุณหภูมิเพิ่มขึ้นเรื่อย ๆ ไม่หยุด</label></fieldset>
+<fieldset><legend>2. อุณหภูมิของน้ำหลังผสมแตกต่างจากอุณหภูมิของน้ำก่อนผสมหรือไม่ อย่างไร</legend>
+<label class="opt"><input type="radio" name="q2" value="a"> เท่ากับอุณหภูมิน้ำร้อนก่อนผสม</label>
+<label class="opt"><input type="radio" name="q2" value="b"> อยู่ระหว่างอุณหภูมิน้ำเย็นกับน้ำร้อนก่อนผสม (สูงกว่าน้ำเย็น ต่ำกว่าน้ำร้อน)</label>
+<label class="opt"><input type="radio" name="q2" value="c"> ต่ำกว่าอุณหภูมิน้ำเย็นก่อนผสม</label></fieldset>
+<fieldset><legend>3. เมื่อทำกิจกรรมซ้ำอีกครั้ง อุณหภูมิสุดท้ายของน้ำหลังผสมทั้ง 2 ครั้ง เท่ากันหรือไม่ อย่างไร</legend>
+<label class="opt"><input type="radio" name="q3" value="same"> เท่ากัน</label>
+<label class="opt"><input type="radio" name="q3" value="diff"> ไม่เท่ากัน</label></fieldset>
+<fieldset><legend>4. กิจกรรมนี้มีการถ่ายโอนความร้อนหรือไม่ อย่างไร</legend>
+<label class="opt"><input type="radio" name="q4" value="a"> ไม่มี เพราะน้ำทั้งสองไม่ได้ใช้ไฟ</label>
+<label class="opt"><input type="radio" name="q4" value="b"> มี ความร้อนถ่ายโอนจากน้ำร้อนไปยังน้ำเย็น จนน้ำทั้งสองมีอุณหภูมิเท่ากัน</label>
+<label class="opt"><input type="radio" name="q4" value="c"> มี ความร้อนถ่ายโอนจากน้ำเย็นไปยังน้ำร้อน</label></fieldset>
+<label for="q5"><strong>5. สรุปได้ว่าอย่างไร</strong> (เขียนด้วยคำของตนเอง)</label>
+<textarea id="q5" placeholder="เช่น เมื่อน้ำที่มีอุณหภูมิต่างกันผสมกัน …"></textarea>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="q5Ans" style="display:none"><strong>แนวคำตอบข้อ 5:</strong> เมื่อนำน้ำที่มีอุณหภูมิต่างกันมาผสมกัน ความร้อนถ่ายโอนจากน้ำที่มีอุณหภูมิสูงกว่าไปยังน้ำที่มีอุณหภูมิต่ำกว่า น้ำร้อนมีอุณหภูมิลดลง น้ำเย็นมีอุณหภูมิสูงขึ้น จนน้ำทั้งสองมีอุณหภูมิเท่ากัน เรียกว่าสมดุลความร้อน และอุณหภูมินั้นเป็นอุณหภูมิผสมสุดท้าย (หนังสือเรียนหน้า 80)</div>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 4 · สมดุลความร้อนและการคำนวณ</p><h2>ความร้อนที่สูญเสีย = ความร้อนที่ได้รับ</h2>
+<p>เมื่อสารที่มีอุณหภูมิต่างกันสัมผัสกัน ความร้อนถ่ายโอนจากสารที่มีอุณหภูมิสูงกว่าไปยังสารที่มีอุณหภูมิต่ำกว่า จนทั้งสองมีอุณหภูมิเท่ากัน เรียกว่า <strong>สมดุลความร้อน (thermal equilibrium)</strong> สารที่อุณหภูมิสูงกว่าสูญเสียความร้อนเท่ากับที่สารอีกชนิดได้รับ: <strong>Q<sub>สูญเสีย</sub> = Q<sub>ได้รับ</sub></strong> โดย Q = mcΔt (หนังสือเรียนหน้า 80–81)</p>
+<div class="stage"><svg viewBox="0 0 560 150" role="img" aria-label="น้ำ 300 กรัม 70 องศาเซลเซียส สูญเสียความร้อน 3,000 แคลอรี ให้น้ำ 300 กรัม 50 องศาเซลเซียส จนสมดุลที่ 60 องศาเซลเซียส">
+ <rect x="30" y="40" width="110" height="80" rx="10" fill="#ff8a6a" stroke="#b63f43" stroke-width="2"/><text x="85" y="76" text-anchor="middle" font-size="14" fill="#fff">น้ำ 300 g</text><text x="85" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">70 °C</text>
+ <rect x="420" y="40" width="110" height="80" rx="10" fill="#7dbbff" stroke="#1769e0" stroke-width="2"/><text x="475" y="76" text-anchor="middle" font-size="14" fill="#0b2f66">น้ำ 300 g</text><text x="475" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2f66">50 °C</text>
+ <line x1="150" y1="80" x2="410" y2="80" stroke="#e8662c" stroke-width="4"/><polygon points="410,80 394,70 394,90" fill="#e8662c"/>
+ <text x="280" y="66" text-anchor="middle" font-size="14" fill="#1d2433">ความร้อน 3,000 cal</text><text x="280" y="108" text-anchor="middle" font-size="14" fill="#1d2433">สมดุลที่ 60 °C (ตัวอย่างหน้า 81)</text>
+</svg></div>
+<h3>ลองคำนวณเอง</h3>
+<div class="tabs" role="group" aria-label="เลือกรูปแบบโจทย์" style="margin:8px 0 12px"><button class="tab" id="m_two" type="button" aria-pressed="true">หาอุณหภูมิผสม (ตัวอย่าง 1)</button><button class="tab" id="m_mass" type="button" aria-pressed="false">หามวลที่ต้องใช้ (ตัวอย่าง 2)</button><button class="tab" id="m_ice" type="button" aria-pressed="false">ผสมน้ำแข็ง (ตัวอย่าง 3)</button></div>
+<div class="calc" id="calcF"></div>
+<div class="btns" style="margin-top:12px"><button class="btn" id="calcBtn" type="button">คำนวณ</button><button class="btn alt" id="calcEx" type="button">ใช้ค่าจากตัวอย่างในหนังสือ</button></div>
+<pre class="out" id="calcOut" aria-live="polite">เลือกโจทย์ กรอกค่า แล้วกด “คำนวณ”</pre>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวนจากตัวอย่างโจทย์และชวนคิด</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. นำน้ำมวล 3,500 g อุณหภูมิ 30 °C ผสมน้ำร้อนมวล 1,000 g อุณหภูมิ 70 °C (c ของน้ำ = 1 cal/g °C) เมื่อสมดุลความร้อนอุณหภูมิเป็นเท่าใด</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> 50.0 °C</label><label class="opt"><input type="radio" name="z1" value="b"> 38.9 °C</label><label class="opt"><input type="radio" name="z1" value="c"> 45.0 °C</label></fieldset>
+<fieldset><legend>2. แผ่นทองแดงมวล 25 g อุณหภูมิ 250 °C (c = 0.092 cal/g °C) จุ่มในน้ำ 35 °C จนสมดุลที่ 40 °C ต้องใช้น้ำมวลกี่กรัม</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> 483 g</label><label class="opt"><input type="radio" name="z2" value="b"> 25 g</label><label class="opt"><input type="radio" name="z2" value="c"> 96.6 g</label></fieldset>
+<fieldset><legend>3. น้ำแข็ง 30 g ที่ 0 °C ใส่ในน้ำหวาน 100 g ที่ 32 °C (c น้ำหวาน 1.2 cal/g °C, L หลอมเหลว 80 cal/g) เมื่อสมดุลอุณหภูมิเท่าใด</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> 16.0 °C</label><label class="opt"><input type="radio" name="z3" value="b"> 0 °C</label><label class="opt"><input type="radio" name="z3" value="c"> 9.6 °C</label></fieldset>
+<fieldset><legend>4. (ชวนคิดข้อ 3) ชามเงิน 20 g (c = 0.06 cal/g °C) อุณหภูมิ 5 °C ใส่ในน้ำอุ่น 100 g อุณหภูมิ 50 °C ความร้อนถ่ายโอนอย่างไร และสมดุลที่อุณหภูมิใกล้เคียงที่สุด</legend>
+<label class="opt"><input type="radio" name="z4" value="a"> จากน้ำอุ่นไปยังชามเงิน สมดุลประมาณ 49.5 °C</label><label class="opt"><input type="radio" name="z4" value="b"> จากชามเงินไปยังน้ำอุ่น สมดุลประมาณ 27.5 °C</label><label class="opt"><input type="radio" name="z4" value="c"> จากน้ำอุ่นไปยังชามเงิน สมดุลประมาณ 27.5 °C</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><h2>ข้อมูลอ้างอิงจากหนังสือเรียน</h2>
+<p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 5 หน้า 79–85 (กิจกรรม 5.8 หน้า 79, เนื้อหาสมดุลความร้อนหน้า 80–81, ตัวอย่างโจทย์ที่ 1–3 หน้า 82–85, ชวนคิดหน้า 85) · ข้อ 4 ของแบบทดสอบ (ชามเงิน) หนังสือไม่มีเฉลย ผลคำนวณจากสมการในหนังสือ: (20×0.06×5 + 100×1×50) ÷ (20×0.06 + 100×1) ≈ 49.5 °C · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู</p>
+</section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>🎉 ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่ แล้วเปรียบเทียบกราฟ หรือทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act58_v1';
+/* พอร์ตจากฟังก์ชัน Python ที่ผ่าน checks+hidden_checks ของ llm-orchestrator (ทดสอบเทียบด้วย node) */
+function equilibriumTemp(m1,c1,t1,m2,c2,t2){
+  if(m1<0||m2<0)throw new RangeError('mass');
+  const d=m1*c1+m2*c2;if(d<=0)throw new RangeError('den');
+  return(m1*c1*t1+m2*c2*t2)/d;
+}
+function massNeeded(m1,c1,t1,c2,t2,tf){
+  const d=c2*(tf-t2);if(d===0)throw new RangeError('den');
+  return m1*c1*(t1-tf)/d;
+}
+function mixWithIce(m1,c1,t1,mIce,latent,cMelt=1){
+  const n=m1*c1*t1-mIce*latent;if(n<=0)return 0;
+  return n/(m1*c1+mIce*cMelt);
+}
+function thermometerReading(t,tc,th,mc=25,mh=25,cal=3,troom=30,tau=12,k=0.0001){
+  if(t<0)throw new RangeError('t');
+  const teq0=(mh*th+(mc+cal)*tc)/(mh+mc+cal);
+  const teqT=troom+(teq0-troom)*Math.exp(-k*t);
+  const r=teqT+(tc-teq0)*Math.exp(-t/tau);
+  if(t===0)return Math.round(tc*2)/2;
+  return Math.round(r*2)/2;
+}
+const q05=x=>Math.round(x*2)/2;
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+const newRun=(c,h)=>({cold:c,hot:h,stage:0,tc:null,th:null,pts:[]});
+let runs=[newRun(28,60),newRun(25,70)],cur=0,auto=null;
+
+function tempColor(T){const f=Math.max(0,Math.min(1,(T-15)/(75-15)));const a=[74,168,255],b=[255,90,60];return'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*f)).join(',')+')';}
+function curReading(r){if(r.stage===0)return null;if(r.stage<3)return r.tc;return r.pts[r.pts.length-1].T;}
+const fmt=t=>Math.floor(t/60)+':'+String(t%60).padStart(2,'0');
+const LAB=['1) เทน้ำเย็น 25 cm³ ลงแคลอรีมิเตอร์ แล้ววัดอุณหภูมิ','2) เทน้ำร้อน 25 cm³ ลงแก้วน้ำ แล้ววัดอุณหภูมิ','3) เทน้ำร้อนลงแคลอรีมิเตอร์ ปิดฝา เริ่มจับเวลา','บันทึกอุณหภูมิ (+10 วินาที)','ครบ 2 นาทีแล้ว'];
+
+function render(){
+  const r=runs[cur];
+  $('tab0').setAttribute('aria-pressed',cur===0);$('tab1').setAttribute('aria-pressed',cur===1);$('tab1').disabled=runs[0].stage<4;
+  const ed=r.stage===0;$('cold').disabled=!ed;$('hot').disabled=!ed;$('cold').value=r.cold;$('hot').value=r.hot;$('coldV').textContent=r.cold+' °C';$('hotV').textContent=r.hot+' °C';
+  const T=curReading(r);
+  $('rTemp').textContent=T===null?'—':T.toFixed(1);
+  const t=r.stage>=3?r.pts[r.pts.length-1].t:0;$('rTime').textContent=t;$('sw').textContent=fmt(t);
+  $('rStep').textContent=Math.min(3,r.stage+1);
+  const b=$('goBtn');b.textContent=LAB[Math.min(4,r.stage)];b.disabled=r.stage>=4;
+  $('autoBtn').disabled=r.stage<3||r.stage>=4;
+  // svg
+  const lvl=(h,id,y0)=>{$(id).setAttribute('y',y0-h);$(id).setAttribute('height',h);};
+  lvl(r.stage<1?50:0,'cW',270);$('cW').setAttribute('fill',tempColor(r.cold));
+  lvl(r.stage>=2&&r.stage<3?50:0,'gW',278);$('gW').setAttribute('fill',tempColor(r.hot));
+  const kh=r.stage<1?0:r.stage<3?45:90;lvl(kh,'kW',278);$('kW').setAttribute('fill',tempColor(T===null?r.cold:T));
+  $('kLid').style.display=r.stage>=3?'':'none';
+  $('steam').style.display=(r.stage>=2&&r.stage<3)?'':'none';
+  $('svTc').textContent=(r.stage===0)?'น้ำเย็น 25 cm³':'';
+  $('svTh').textContent=(r.stage>=2&&r.stage<3)?'น้ำร้อน '+r.th.toFixed(1)+' °C':'';
+  const h=T===null?8:Math.max(8,Math.min(190,((T+5)/110)*190));$('hg').setAttribute('y',226-h);$('hg').setAttribute('height',h);
+  drawTable();drawGraph();compare();
+}
+function drawTable(){
+  const ts=[];for(let t=0;t<=120;t+=10)ts.push(t);
+  $('rows').innerHTML=ts.map(t=>{const c=i=>{const p=runs[i].pts.find(p=>p.t===t);return p?p.T.toFixed(1):'<span style="color:#bbb">–</span>';};return`<tr><td>${t}</td><td>${c(0)}</td><td>${c(1)}</td></tr>`;}).join('');
+}
+function drawGraph(){
+  const W=420,H=300,L=46,Rr=14,T0=14,Bt=42;
+  const all=runs.flatMap(r=>r.pts.map(p=>p.T));const lo0=all.length?Math.min(...all):20,hi0=all.length?Math.max(...all):60;
+  const lo=Math.floor((lo0-3)/5)*5,hi=Math.ceil((hi0+3)/5)*5;
+  const x=t=>L+(W-L-Rr)*t/120,y=v=>T0+(H-T0-Bt)*(1-(v-lo)/(hi-lo));
+  let s=`<rect width="${W}" height="${H}" fill="#fff"/>`;
+  for(let v=lo;v<=hi;v+=5){s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e9f0"/><text x="${L-6}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="#66708a">${v}</text>`;}
+  for(let t=0;t<=120;t+=20){s+=`<line x1="${x(t)}" x2="${x(t)}" y1="${T0}" y2="${H-Bt}" stroke="#f0f2f7"/><text x="${x(t)}" y="${H-Bt+16}" font-size="11" text-anchor="middle" fill="#66708a">${t}</text>`;}
+  s+=`<text x="${(L+W)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#1d2433">เวลา (วินาที)</text><text transform="translate(12 ${(H-Bt)/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#1d2433">อุณหภูมิ (°C)</text>`;
+  ['#e8662c','#1769e0'].forEach((c,i)=>{const p=runs[i].pts;if(!p.length)return;s+=`<polyline fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round" points="${p.map(q=>x(q.t)+','+y(q.T)).join(' ')}"/>`+p.map(q=>`<circle cx="${x(q.t)}" cy="${y(q.T)}" r="3.5" fill="${c}"/>`).join('');});
+  $('graph').innerHTML=s;
+}
+function compare(){
+  const el=$('cmp');const lines=[];
+  runs.forEach((r,i)=>{if(r.stage<4)return;const f=r.pts[r.pts.length-1].T;
+    const calc=(r.tc+r.th)/2,ql=25*(r.th-f),qg=25*(f-r.tc);
+    lines.push(`<strong>รอบที่ ${i+1}:</strong> วัดน้ำเย็น ${r.tc.toFixed(1)} °C น้ำร้อน ${r.th.toFixed(1)} °C · คำนวณแบบอุดมคติ (มวลเท่ากัน ไม่มีการสูญเสีย) = (${r.tc.toFixed(1)} + ${r.th.toFixed(1)}) ÷ 2 = ${calc.toFixed(1)} °C · ค่าที่วัดได้เมื่อ 2 นาที = ${f.toFixed(1)} °C · Q<sub>น้ำร้อนสูญเสีย</sub> ≈ 25×(${r.th.toFixed(1)}−${f.toFixed(1)}) = ${ql.toFixed(0)} cal, Q<sub>น้ำเย็นได้รับ</sub> ≈ 25×(${f.toFixed(1)}−${r.tc.toFixed(1)}) = ${qg.toFixed(0)} cal`);});
+  if(!lines.length){el.style.display='none';return;}
+  el.style.display='block';
+  el.innerHTML=lines.join('<br>')+'<br><span class="pc">ค่าที่วัดได้ต่ำกว่าค่าคำนวณเล็กน้อย เพราะแคลอรีมิเตอร์ (ในแบบจำลองสมมติให้ดูดความร้อน) ภาชนะ และอากาศรอบข้างรับความร้อนไปบางส่วน (เทียบกับชวนคิดข้อ 2 ของหนังสือ) ความร้อนส่วนที่น้ำเย็นได้รับจึงน้อยกว่าที่น้ำร้อนสูญเสีย</span>';
+}
+function advance(){
+  const r=runs[cur];const f=$('labFb');f.className='fb';
+  if(r.stage===0){
+    if(cur===1&&runs[0].cold===r.cold&&runs[0].hot===r.hot){f.className='fb err';f.textContent='รอบที่ 2 ต้องเปลี่ยนอุณหภูมิของน้ำร้อนและ/หรือน้ำเย็นให้ต่างจากรอบที่ 1';return;}
+    r.tc=q05(r.cold);r.stage=1;f.textContent='บันทึกแล้ว: น้ำเย็น '+r.tc.toFixed(1)+' °C';
+  }else if(r.stage===1){r.th=q05(r.hot);r.stage=2;f.textContent='บันทึกแล้ว: น้ำร้อน '+r.th.toFixed(1)+' °C (ใช้ผ้าหนาจับภาชนะน้ำร้อน)';}
+  else if(r.stage===2){r.pts=[{t:0,T:thermometerReading(0,r.cold,r.hot)}];r.stage=3;f.textContent='เทน้ำร้อนลงแล้ว ปิดฝา จับเวลาเริ่ม 0 วินาที กดบันทึกทุก 10 วินาที';}
+  else if(r.stage===3){
+    const t=r.pts[r.pts.length-1].t+10;r.pts.push({t,T:thermometerReading(t,r.cold,r.hot)});
+    if(t>=120){r.stage=4;stopAuto();f.textContent=cur===0?'ครบ 2 นาที รอบที่ 1 เสร็จแล้ว ไปที่แท็บ “รอบที่ 2” แล้วเปลี่ยนอุณหภูมิน้ำร้อน/น้ำเย็นก่อนทำซ้ำ':'ครบ 2 นาที ทำครบทั้ง 2 รอบแล้ว ดูกราฟและตอบคำถามต่อได้เลย';}
+  }
+  S.runs=runs;S.cur=cur;save();render();
+}
+function stopAuto(){if(auto){clearInterval(auto);auto=null;}$('autoBtn').textContent='เล่นอัตโนมัติ';}
+$('goBtn').addEventListener('click',advance);
+$('autoBtn').addEventListener('click',()=>{if(auto){stopAuto();return;}$('autoBtn').textContent='หยุดเล่น';auto=setInterval(()=>{if(runs[cur].stage>=3&&runs[cur].stage<4)advance();else stopAuto();},500);});
+$('cold').addEventListener('input',e=>{runs[cur].cold=Number(e.target.value);$('coldV').textContent=runs[cur].cold+' °C';S.runs=runs;save();});
+$('hot').addEventListener('input',e=>{runs[cur].hot=Number(e.target.value);$('hotV').textContent=runs[cur].hot+' °C';S.runs=runs;save();});
+$('tab0').addEventListener('click',()=>{stopAuto();cur=0;S.cur=cur;save();render();});
+$('tab1').addEventListener('click',()=>{if(runs[0].stage<4)return;stopAuto();cur=1;S.cur=cur;save();render();});
+$('resetBtn').addEventListener('click',()=>{stopAuto();runs=[newRun(28,60),newRun(25,70)];cur=0;delete S.runs;delete S.cur;$('labFb').textContent='';save();render();});
+
+/* calculator */
+let mode='two';
+const MODES={
+ two:{f:[['m1','มวลที่ 1 (g)',1000],['c1','c ที่ 1 (cal/g °C)',1],['t1','อุณหภูมิที่ 1 (°C)',70],['m2','มวลที่ 2 (g)',3500],['c2','c ที่ 2 (cal/g °C)',1],['t2','อุณหภูมิที่ 2 (°C)',30]]},
+ mass:{f:[['m1','มวลชิ้นที่ 1 (g)',25],['c1','c ชิ้นที่ 1',0.092],['t1','อุณหภูมิชิ้นที่ 1 (°C)',250],['c2','c ของน้ำ',1],['t2','อุณหภูมิน้ำ (°C)',35],['tf','อุณหภูมิสมดุล (°C)',40]]},
+ ice:{f:[['m1','มวลน้ำหวาน (g)',100],['c1','c น้ำหวาน',1.2],['t1','อุณหภูมิน้ำหวาน (°C)',32],['mi','มวลน้ำแข็ง 0 °C (g)',30],['L','ความร้อนแฝงหลอมเหลว (cal/g)',80],['cm','c ของน้ำ (cal/g °C)',1]]}
+};
+const EXV={two:[1000,1,70,3500,1,30],mass:[25,.092,250,1,35,40],ice:[100,1.2,32,30,80,1]};
+function buildCalc(m,vals){
+  mode=m;['two','mass','ice'].forEach(k=>$('m_'+k).setAttribute('aria-pressed',k===m));
+  $('calcF').innerHTML=MODES[m].f.map((f,i)=>`<div><label for="cf_${f[0]}">${f[1]}</label><input id="cf_${f[0]}" type="number" step="any" value="${(vals||EXV[m])[i]}"></div>`).join('');
+  $('calcOut').textContent='เลือกโจทย์ กรอกค่า แล้วกด “คำนวณ”';
+}
+const n2=v=>Math.round(v*100)/100;
+function doCalc(){
+  const v=MODES[mode].f.map(f=>parseFloat($('cf_'+f[0]).value));
+  if(v.some(x=>!Number.isFinite(x))){$('calcOut').textContent='กรุณากรอกตัวเลขให้ครบทุกช่อง';return;}
+  let out;
+  try{
+    if(mode==='two'){const[m1,c1,t1,m2,c2,t2]=v;const X=equilibriumTemp(m1,c1,t1,m2,c2,t2);
+      out=`Q สูญเสีย = Q ได้รับ\nm₁c₁(t₁ − X) = m₂c₂(X − t₂)\n${m1}×${c1}×(${t1} − X) = ${m2}×${c2}×(X − ${t2})\nX = ${n2(X)} °C\nความร้อนที่ถ่ายโอน Q = ${n2(m1*c1*(t1-X))} cal`;}
+    else if(mode==='mass'){const[m1,c1,t1,c2,t2,tf]=v;const m2=massNeeded(m1,c1,t1,c2,t2,tf);
+      out=`Q ที่ชิ้นที่ 1 สูญเสีย = ${m1}×${c1}×(${t1} − ${tf}) = ${n2(m1*c1*(t1-tf))} cal\nQ ที่น้ำได้รับ = m×${c2}×(${tf} − ${t2})\nมวลน้ำ m = ${n2(m2)} g`+(m2<0?'\n(ค่าติดลบ แปลว่าทิศทางการถ่ายโอนความร้อนไม่ตรงกับที่ตั้งโจทย์ ตรวจอุณหภูมิอีกครั้ง)':'');}
+    else{const[m1,c1,t1,mi,L,cm]=v;const X=mixWithIce(m1,c1,t1,mi,L,cm);
+      const need=mi*L,have=m1*c1*t1;
+      out=`ความร้อนที่น้ำหวานให้ได้ถึง 0 °C = ${m1}×${c1}×${t1} = ${n2(have)} cal\nความร้อนที่น้ำแข็งต้องใช้หลอมเหลว = ${mi}×${L} = ${n2(need)} cal\n`+(have<=need?'ความร้อนไม่พอหลอมน้ำแข็งทั้งหมด จึงมีน้ำแข็งเหลือและอุณหภูมิสมดุลเท่ากับ 0 °C (ส่วนที่แบบจำลองนี้สรุปเอง ไม่ได้อยู่ในตัวอย่างหนังสือ)':`(${m1}×${c1}×(${t1} − X)) = ${mi}×${L} + ${mi}×${cm}×X\nX = ${n2(X)} °C`);}
+  }catch(_){out='คำนวณไม่ได้ ตรวจค่ามวลและความจุความร้อนจำเพาะ (ต้องไม่ติดลบและไม่เป็นศูนย์)';}
+  $('calcOut').textContent=out;S.calcUsed=1;save();
+}
+['two','mass','ice'].forEach(k=>$('m_'+k).addEventListener('click',()=>buildCalc(k)));
+$('calcBtn').addEventListener('click',doCalc);
+$('calcEx').addEventListener('click',()=>{buildCalc(mode);doCalc();});
+
+/* questions */
+const sel=n=>document.querySelector(`input[name="${n}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a=['q1','q2','q3','q4'].map(sel);
+  if(a.some(v=>!v)||!$('q5').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบทั้ง 5 ข้อ';$('qFb').className='fb err';return;}
+  if(runs[0].stage<4||runs[1].stage<4){$('qFb').textContent='ทำการทดลองให้ครบทั้ง 2 รอบก่อน เพื่อใช้เทียบข้อ 3';$('qFb').className='fb err';return;}
+  const f1=runs[0].pts[runs[0].pts.length-1].T,f2=runs[1].pts[runs[1].pts.length-1].T;
+  const key=['b','b',Math.abs(f1-f2)<0.01?'same':'diff','b'];
+  const sc=a.filter((v,i)=>v===key[i]).length;
+  S.q=a;S.q5=$('q5').value;S.qDone=true;save();$('q5Ans').style.display='block';
+  $('qFb').className='fb'+(sc===4?'':' err');
+  $('qFb').textContent=(sc===4?'ถูกทั้ง 4 ข้อ':`ถูก ${sc}/4 ข้อ`)+` (ข้อ 3 ผลทดลองของคุณ: รอบ 1 = ${f1.toFixed(1)} °C รอบ 2 = ${f2.toFixed(1)} °C จึง${key[2]==='same'?'เท่ากัน':'ไม่เท่ากัน เพราะอุณหภูมิเริ่มต้นต่างกัน'}) ลองเทียบข้อ 5 กับแนวคำตอบด้านล่าง`;
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3','z4'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['b','c','c','a'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===4?'':' err');
+  $('zFb').textContent=`ได้ ${sc}/4 · เฉลย: 1) 38.9 °C (175,000 ÷ 4,500) 2) 483 ÷ 5 = 96.6 g 3) 1,440 ÷ 150 = 9.6 °C 4) ความร้อนถ่ายโอนจากน้ำอุ่นไปยังชามเงิน สมดุลประมาณ 49.5 °C`;
+});
+function progress(){
+  const d=[runs[0].stage>=4&&runs[1].stage>=4,!!S.qDone,!!S.calcUsed,!!S.zDone];
+  const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);$('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (ทดลอง 2 รอบ · คำถาม · ลองคำนวณ · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* restore */
+(()=>{
+  if(Array.isArray(S.runs)&&S.runs.length===2&&S.runs.every(r=>r&&Array.isArray(r.pts)))runs=S.runs;
+  cur=(S.cur===1&&runs[0].stage>=4)?1:0;
+  if(S.q)['q1','q2','q3','q4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.q[i]}"]`);if(e)e.checked=true;});
+  if(S.q5)$('q5').value=S.q5;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3','z4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  buildCalc('two');render();progress();
+})();
+window.__lab={equilibriumTemp,massNeeded,mixWithIce,thermometerReading};
+})();
+</script>
+</body>
+</html>

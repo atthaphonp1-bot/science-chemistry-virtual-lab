@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.7 การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางเป็นอย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.7 การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางเป็นอย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-7.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:700px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}
+.lab{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 16px;font-weight:650}.tab[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.88rem}.on{background:#dff5ea;color:#176553}.off{background:#f0f0f0;color:#666}
+.modes{width:100%;border-collapse:collapse;font-size:.93rem}.modes td,.modes th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.modes th{background:#fff1e6}
+table.disc{border-collapse:collapse;width:100%;font-size:.93rem}table.disc th,table.disc td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}table.disc td:first-child,table.disc th:first-child{text-align:left}table.disc th{background:#fff1e6}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}label.opt.good{border-color:#2fa77a;background:#effaf4}label.opt.bad{border-color:#d9696d;background:#fff1f0}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.cards div{background:#f7f8fb;border-radius:14px;padding:12px 14px;font-size:.93rem}.cards b{display:block;color:var(--orange)}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@keyframes rise{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-34px);opacity:0}}
+@keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.15)}}
+.wave{stroke-dasharray:6 6;animation:flow .7s linear infinite}.rise{animation:rise 1.6s linear infinite}.flm{transform-origin:center bottom;transform-box:fill-box;animation:flame .4s ease-in-out infinite}
+@media(max-width:820px){.lab,.two,.cards{grid-template-columns:1fr}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 1 การถ่ายโอนความร้อน</div>
+  <h1>กิจกรรม 5.7 การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางเป็นอย่างไร</h1>
+  <p class="lead">สร้างแบบจำลองการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางตามความคิดของตนเอง สืบค้นข้อมูลจากห้องทดลองเสมือนและเนื้อหาในหนังสือ แล้วปรับปรุงแบบจำลองให้ถูกต้อง</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 5 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>สืบค้นข้อมูลและสร้างแบบจำลองการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลาง</p>
+<p class="pc">หนังสือไม่ได้ระบุวัสดุอุปกรณ์และข้อควรระวังสำหรับกิจกรรมนี้ (เป็นกิจกรรมสร้างแบบจำลองและสืบค้นข้อมูล)</p>
+<h3>วิธีดำเนินกิจกรรม (ตามหนังสือเรียน)</h3>
+<ol class="steps">
+<li>อภิปรายร่วมกันเกี่ยวกับการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางในปรากฏการณ์ต่าง ๆ ในชีวิตประจำวัน เช่น การถ่ายโอนความร้อนจากดวงอาทิตย์มายังโลก</li>
+<li>สร้างแบบจำลองการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางตามความคิดของตนเอง</li>
+<li>สืบค้นข้อมูลการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางจากแหล่งค้นคว้าที่เชื่อถือได้ บันทึกข้อมูลที่รวบรวมได้</li>
+<li>ปรับปรุงแบบจำลองการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางในข้อ 2 ให้ถูกต้อง นำเสนอ</li></ol>
+<div class="note">หน้านี้พาทำตามขั้นข้างต้นทีละขั้น: ขั้น 1–2 ส่วนที่ 1 · ขั้น 3 ส่วนที่ 2 (ห้องทดลองเสมือน + ข้อมูลจากหนังสือ) · ขั้น 4 ส่วนที่ 3</div>
+</section>
+
+<section class="card" id="s1"><p class="kicker">ส่วนที่ 1 · ขั้น 1–2</p><h2>อภิปรายและสร้างแบบจำลองแรกของฉัน</h2>
+<h3>ขั้น 1 · อภิปราย: ปรากฏการณ์เหล่านี้ถ่ายโอนความร้อนด้วยวิธีใด</h3>
+<p class="pc">ติ๊กได้มากกว่า 1 วิธีต่อ 1 ปรากฏการณ์ (วิธีที่หนังสือกล่าวถึง: การนำความร้อน การพาความร้อน การแผ่รังสีความร้อน)</p>
+<div class="tw" style="overflow:auto"><table class="disc"><thead><tr><th>ปรากฏการณ์</th><th>นำความร้อน</th><th>พาความร้อน</th><th>แผ่รังสีความร้อน</th></tr></thead><tbody id="discRows"></tbody></table></div>
+<div class="btns" style="margin-top:10px"><button class="btn" id="discBtn" type="button">ตรวจ</button></div><p class="fb" id="discFb" aria-live="polite"></p>
+<h3>ขั้น 2 · สร้างแบบจำลองตามความคิดของตนเอง</h3>
+<p>เลือกองค์ประกอบที่คุณคิดว่าต้องมีในแบบจำลองการถ่ายโอนความร้อนจากดวงอาทิตย์มายังโลก (ยังไม่มีเฉลย ตามความคิดของคุณก่อน)</p>
+<div id="m1List"></div>
+<label for="m1Txt"><strong>อธิบายแบบจำลองของฉัน</strong> (เช่น วาดอะไร ลูกศรหมายถึงอะไร)</label>
+<textarea id="m1Txt" placeholder="เช่น วาดดวงอาทิตย์ มีลูกศรชี้ไปที่โลก …"></textarea>
+<div class="btns" style="margin-top:10px"><button class="btn" id="m1Btn" type="button">บันทึกแบบจำลองแรก</button></div><p class="fb" id="m1Fb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 2 · ขั้น 3 สืบค้นข้อมูล</p><h2>ห้องทดลองเสมือน: แบบจำลองการแผ่รังสีความร้อน</h2>
+<p class="lead">เลือกสถานการณ์และตัวกลาง แล้วสังเกตว่าความร้อนถ่ายโอนด้วยวิธีใดบ้าง ลูกศรเส้นประแสดงทิศทางการเคลื่อนที่ของคลื่นแม่เหล็กไฟฟ้า (ลองให้ครบอย่างน้อย 3 แบบ)</p>
+<div class="tabs" role="group" aria-label="เลือกสถานการณ์" style="margin:14px 0"><button class="tab" id="sc_sun" type="button" aria-pressed="true">ดวงอาทิตย์ → โลก (ภาพ 5.39)</button><button class="tab" id="sc_fire" type="button" aria-pressed="false">กองไฟ → คนรอบกองไฟ (ภาพ 5.40)</button><button class="tab" id="sc_fish" type="button" aria-pressed="false">ย่างอาหารด้วยกองไฟ (ภาพ 5.41)</button></div>
+<div class="lab">
+ <div class="stage"><svg id="sim" viewBox="0 0 520 250" role="img" aria-label="แบบจำลองการถ่ายโอนความร้อนจากแหล่งความร้อนไปยังผู้รับ"></svg></div>
+ <div class="panel">
+  <div><strong>ตัวกลางระหว่างแหล่งความร้อนกับผู้รับ</strong>
+   <div class="tabs" role="group" aria-label="เลือกตัวกลาง" style="margin-top:6px"><button class="tab" id="md_vac" type="button" aria-pressed="true">สุญญากาศ</button><button class="tab" id="md_air" type="button" aria-pressed="false">อากาศ</button></div></div>
+  <table class="modes"><thead><tr><th>วิธี</th><th>เกิดขึ้น?</th></tr></thead><tbody id="modeRows"></tbody></table>
+  <p class="fb" id="simFb" aria-live="polite" style="color:var(--ink)"></p>
+  <p class="pc">ค่าที่สมมติเอง: การเลือกตัวกลางเป็นสุญญากาศหรืออากาศในสถานการณ์กองไฟ/ย่างอาหารเป็นการทดลองทางความคิดของแบบจำลอง (หนังสือไม่ได้กล่าวถึงกองไฟในสุญญากาศ) ส่วนระหว่างดวงอาทิตย์กับโลกหนังสือระบุว่าเป็นบริเวณสุญญากาศ จึงล็อกเป็นสุญญากาศ แบบจำลองไม่คำนวณปริมาณความร้อน</p>
+ </div>
+</div>
+<h3>ข้อมูลที่สืบค้นได้จากหนังสือเรียน (บันทึกไว้ใช้ปรับปรุงแบบจำลอง)</h3>
+<div class="cards">
+ <div><b>การแผ่รังสีความร้อน (heat radiation) หน้า 76</b>สสารที่มีพลังงานความร้อนแผ่ความร้อนออกมาในรูปรังสีอินฟราเรด ซึ่งเป็นคลื่นแม่เหล็กไฟฟ้า โดยไม่ต้องอาศัยตัวกลาง</div>
+ <div><b>จากดวงอาทิตย์สู่โลก หน้า 76</b>ระหว่างดวงอาทิตย์กับโลกมีบริเวณที่เป็นสุญญากาศ คลื่นแม่เหล็กไฟฟ้ายังแผ่จากดวงอาทิตย์มาถึงโลกได้ ทำให้โลกมีอุณหภูมิสูงขึ้น</div>
+ <div><b>ภาพ 5.40 หน้า 76</b>ใช้ลูกศรแสดงทิศทางการเคลื่อนที่ของคลื่นแม่เหล็กไฟฟ้าที่แผ่ออกไปโดยรอบ การแผ่รังสีเกิดในบริเวณที่มีตัวกลางก็ได้ เช่น แผ่ผ่านอากาศได้</div>
+ <div><b>ย่างอาหารด้วยกองไฟ หน้า 77</b>ความร้อนถ่ายโอนได้หลายวิธีพร้อมกัน: อากาศร้อนพาความร้อนไปยังอาหาร (การพาความร้อน) และส่วนหนึ่งแผ่รังสีจากกองไฟไปยังอาหารโดยตรง</div>
+</div>
+<label for="notes" style="display:block;margin-top:12px"><strong>บันทึกข้อมูลที่รวบรวมได้ของฉัน</strong> (ขั้น 3)</label>
+<textarea id="notes" placeholder="สรุปข้อมูลที่ได้ด้วยคำของตนเอง"></textarea>
+</section>
+
+<section class="card" id="s3"><p class="kicker">ส่วนที่ 3 · ขั้น 4</p><h2>ปรับปรุงแบบจำลองให้ถูกต้อง</h2>
+<p>แก้องค์ประกอบของแบบจำลองให้ตรงกับข้อมูลที่สืบค้นได้ แล้วกด “ตรวจแบบจำลองที่ปรับปรุง” (ต้องบันทึกแบบจำลองแรกก่อน)</p>
+<div id="m2List"></div>
+<label for="m2Txt"><strong>อธิบายแบบจำลองที่ปรับปรุงแล้ว</strong></label>
+<textarea id="m2Txt" placeholder="เช่น แก้ลูกศรให้ …"></textarea>
+<div class="btns" style="margin-top:10px"><button class="btn" id="m2Btn" type="button">ตรวจแบบจำลองที่ปรับปรุง</button></div>
+<p class="fb" id="m2Fb" aria-live="polite"></p><div class="note" id="m2Cmp" style="display:none"></div>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 4 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<p class="pc" style="margin-bottom:12px">หนังสือไม่มีเฉลย แนวคำตอบเรียบเรียงจากเนื้อหาหน้า 76–77 (ข้อ 2 เทียบจากแบบจำลองของคุณเอง ข้อ 4 เป็นข้อสรุปจากแบบจำลองหน้านี้)</p>
+<fieldset><legend>1. การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางเป็นอย่างไร ตัวอย่างมีอะไรบ้าง</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> ความร้อนเคลื่อนที่ผ่านวัตถุที่สัมผัสกัน เช่น ช้อนโลหะในน้ำร้อน</label>
+<label class="opt"><input type="radio" name="q1" value="b"> สารที่มีพลังงานความร้อนแผ่ความร้อนออกมาเป็นรังสีอินฟราเรด (คลื่นแม่เหล็กไฟฟ้า) เช่น ความร้อนจากดวงอาทิตย์มายังโลก ความร้อนจากกองไฟ</label>
+<label class="opt"><input type="radio" name="q1" value="c"> อากาศร้อนลอยขึ้นพาความร้อนไปยังที่อื่น</label></fieldset>
+<label for="q2"><strong>2. แบบจำลองที่สร้างขึ้นตอนแรกเหมือนหรือต่างจากแบบจำลองที่ปรับปรุงแล้วอย่างไร</strong> (เขียนตามที่คุณเห็น)</label>
+<textarea id="q2" placeholder="ดูสรุปการเปลี่ยนแปลงในส่วนที่ 3 ประกอบ" style="margin-bottom:16px"></textarea>
+<fieldset><legend>3. แบบจำลองที่ปรับปรุงแล้วอธิบายการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="q3" value="a"> ลูกศรเส้นประแสดงคลื่นแม่เหล็กไฟฟ้าที่แผ่ออกจากแหล่งความร้อนไปโดยรอบ เคลื่อนที่ผ่านสุญญากาศได้ จึงไปถึงสิ่งที่รับความร้อนโดยไม่ต้องมีตัวกลาง</label>
+<label class="opt"><input type="radio" name="q3" value="b"> อนุภาคของอากาศส่งความร้อนต่อกันไปทีละอนุภาค</label>
+<label class="opt"><input type="radio" name="q3" value="c"> ความร้อนไหลจากบริเวณอุณหภูมิต่ำไปสูง</label></fieldset>
+<fieldset><legend>4. แบบจำลองที่สร้างขึ้นมีอะไรบ้างที่ไม่สามารถแสดงให้เห็นตามความเป็นจริงได้ (เลือกได้หลายข้อ)</legend>
+<label class="opt"><input type="checkbox" name="q4" value="a"> คลื่นแม่เหล็กไฟฟ้า (รังสีอินฟราเรด) มองไม่เห็นด้วยตา ต้องใช้เส้นประแทน</label>
+<label class="opt"><input type="checkbox" name="q4" value="b"> ขนาดและระยะทางจริง เช่น ระยะระหว่างดวงอาทิตย์กับโลก</label>
+<label class="opt"><input type="checkbox" name="q4" value="c"> ปริมาณความร้อนและอุณหภูมิที่เปลี่ยนไปจริง (แบบจำลองไม่ได้คำนวณ)</label>
+<label class="opt"><input type="checkbox" name="q4" value="d"> ทิศทางที่ความร้อนถ่ายโอน (จากแหล่งความร้อนไปยังผู้รับ)</label></fieldset>
+<label for="q5"><strong>5. จากกิจกรรม สรุปได้ว่าอย่างไร</strong></label>
+<textarea id="q5" placeholder="เช่น การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางคือ …"></textarea>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="q5Ans" style="display:none"><strong>แนวคำตอบข้อ 5:</strong> การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลางคือการแผ่รังสีความร้อน สสารที่มีพลังงานความร้อนแผ่คลื่นแม่เหล็กไฟฟ้า (รังสีอินฟราเรด) ออกมาได้ แม้ผ่านบริเวณสุญญากาศ เช่น ความร้อนจากดวงอาทิตย์มายังโลก การถ่ายโอนความร้อนเกิดจากบริเวณที่มีอุณหภูมิสูงกว่าไปยังบริเวณที่มีอุณหภูมิต่ำกว่า มี 3 วิธี คือ การนำความร้อน การพาความร้อน และการแผ่รังสีความร้อน (หนังสือเรียนหน้า 76–77)</div>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวนจากเนื้อหาสรุป</p><h2>แบบทดสอบสั้น</h2>
+<div class="note"><strong>สรุปจากหนังสือ (หน้า 77):</strong> การถ่ายโอนความร้อนระหว่างสสารจะเกิดจากบริเวณที่มีอุณหภูมิสูงกว่าไปยังบริเวณที่มีอุณหภูมิต่ำกว่า โดยการถ่ายโอนความร้อนมี 3 วิธี คือ การนำความร้อน การพาความร้อน และการแผ่รังสีความร้อน การถ่ายโอนความร้อนเกิดได้ทั้งอาศัยตัวกลางและไม่อาศัยตัวกลาง</div>
+<fieldset><legend>1. การถ่ายโอนความร้อนมีกี่วิธี อะไรบ้าง</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> 2 วิธี คือ การนำความร้อนและการพาความร้อน</label><label class="opt"><input type="radio" name="z1" value="b"> 3 วิธี คือ การนำความร้อน การพาความร้อน และการแผ่รังสีความร้อน</label><label class="opt"><input type="radio" name="z1" value="c"> 3 วิธี คือ การนำความร้อน การหลอมเหลว และการระเหย</label></fieldset>
+<fieldset><legend>2. วิธีใดเกิดขึ้นได้โดยไม่อาศัยตัวกลาง</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> การนำความร้อน</label><label class="opt"><input type="radio" name="z2" value="b"> การพาความร้อน</label><label class="opt"><input type="radio" name="z2" value="c"> การแผ่รังสีความร้อน</label></fieldset>
+<fieldset><legend>3. ความร้อนถ่ายโอนระหว่างสสารจากบริเวณใดไปบริเวณใด</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> จากบริเวณที่มีอุณหภูมิต่ำกว่าไปสูงกว่า</label><label class="opt"><input type="radio" name="z3" value="b"> จากบริเวณที่มีอุณหภูมิสูงกว่าไปยังต่ำกว่า</label><label class="opt"><input type="radio" name="z3" value="c"> ถ่ายโอนไปทั้งสองทางเท่ากัน</label></fieldset>
+<fieldset><legend>4. การย่างอาหารสดด้วยกองไฟ ความร้อนถ่ายโอนไปยังอาหารด้วยวิธีใด</legend>
+<label class="opt"><input type="radio" name="z4" value="a"> การพาความร้อน (อากาศร้อนพาความร้อน) และการแผ่รังสีความร้อน พร้อมกัน</label><label class="opt"><input type="radio" name="z4" value="b"> การแผ่รังสีความร้อนเท่านั้น</label><label class="opt"><input type="radio" name="z4" value="c"> การนำความร้อนเท่านั้น</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><h2>ข้อมูลอ้างอิงจากหนังสือเรียน</h2>
+<p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 5 หน้า 75–77 (กิจกรรม 5.7 และคำถามท้ายกิจกรรมหน้า 75, การแผ่รังสีความร้อนหน้า 76, ย่างอาหารและสรุปหน้า 77) · ภาพทั้งหมดในหน้านี้วาดใหม่ด้วย SVG ไม่ได้นำภาพจากหนังสือมาใช้ · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริง</p>
+</section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>🎉 ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่ แล้วสร้างแบบจำลองอีกครั้ง หรือทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act57_v1';
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+
+/* กฎของแบบจำลอง: วิธีถ่ายโอนความร้อนที่เกิดขึ้นในแต่ละสถานการณ์ (ตามหน้า 76-77) */
+function heatModes(scenario,medium){
+  const air=medium==='air';
+  return{
+    conduction:false,                                  /* วัตถุไม่ได้สัมผัสกัน */
+    convection:air&&scenario!=='sun',                  /* ต้องมีอากาศ (ของไหล) พาความร้อน */
+    radiation:true                                     /* คลื่นแม่เหล็กไฟฟ้า ไม่ต้องอาศัยตัวกลาง */
+  };
+}
+const SCN={sun:'ดวงอาทิตย์ → โลก',fire:'กองไฟ → คนรอบกองไฟ',fish:'ย่างอาหารด้วยกองไฟ'};
+
+/* ขั้น 1 อภิปราย */
+const DISC=[
+ {id:'d1',t:'ความร้อนจากดวงอาทิตย์มายังโลก (ภาพ 5.39)',k:[0,0,1]},
+ {id:'d2',t:'ความร้อนจากกองไฟไปยังคนที่นั่งรอบกองไฟ (ภาพ 5.40)',k:[0,0,1]},
+ {id:'d3',t:'การย่างอาหารสดด้วยกองไฟ (ภาพ 5.41)',k:[0,1,1]}];
+$('discRows').innerHTML=DISC.map(d=>`<tr><td>${d.t}</td>${[0,1,2].map(i=>`<td><input type="checkbox" aria-label="${d.t} วิธีที่ ${i+1}" data-d="${d.id}" data-i="${i}"></td>`).join('')}</tr>`).join('');
+$('discBtn').addEventListener('click',()=>{
+  let ok=0;DISC.forEach(d=>{const v=[0,1,2].map(i=>document.querySelector(`input[data-d="${d.id}"][data-i="${i}"]`).checked?1:0);if(v.join()===d.k.join())ok++;});
+  S.disc=DISC.map(d=>[0,1,2].map(i=>document.querySelector(`input[data-d="${d.id}"][data-i="${i}"]`).checked?1:0));S.discDone=true;save();
+  $('discFb').className='fb'+(ok===3?'':' err');
+  $('discFb').textContent=ok===3?'ถูกทั้ง 3 ข้อ':`ถูก ${ok}/3 ข้อ · แนวตอบจากหนังสือ: ดวงอาทิตย์ → โลก = แผ่รังสี (ผ่านสุญญากาศ) · กองไฟ → คน (ภาพ 5.40) = แผ่รังสี (ผ่านอากาศได้) · ย่างอาหาร = พาความร้อน + แผ่รังสี (หน้า 77)`;
+});
+
+/* รายการองค์ประกอบของแบบจำลอง: k = ควรมีตามหนังสือหรือไม่ */
+const EL=[
+ {t:'ลูกศรออกจากแหล่งความร้อนไปรอบทิศทาง',k:1,w:'หนังสือหน้า 76: ลูกศรแสดงการแผ่ออกไปโดยรอบ'},
+ {t:'ลูกศรบอกทิศจากแหล่งความร้อน (อุณหภูมิสูง) ไปยังสิ่งที่รับความร้อน (อุณหภูมิต่ำ)',k:1,w:'ความร้อนถ่ายโอนจากที่อุณหภูมิสูงไปต่ำ (หน้า 77)'},
+ {t:'ระบุว่าเป็นคลื่นแม่เหล็กไฟฟ้า (รังสีอินฟราเรด)',k:1,w:'หน้า 76'},
+ {t:'ไม่ต้องมีตัวกลางระหว่างแหล่งความร้อนกับผู้รับ',k:1,w:'หน้า 76: ไม่ต้องอาศัยตัวกลาง'},
+ {t:'ต้องมีอากาศหรือตัวกลางอื่นคอยส่งความร้อนต่อกันไป',k:0,w:'ข้อนี้คือการนำ/การพาความร้อน ไม่ใช่การแผ่รังสี'},
+ {t:'แหล่งความร้อนต้องสัมผัสกับผู้รับ',k:0,w:'ข้อนี้คือการนำความร้อน'},
+ {t:'คลื่นแม่เหล็กไฟฟ้าแผ่ผ่านอากาศได้ด้วย',k:1,w:'หน้า 76: แผ่ผ่านอากาศได้'},
+ {t:'ความร้อนไหลจากบริเวณอุณหภูมิต่ำไปยังบริเวณอุณหภูมิสูง',k:0,w:'ทิศจริงคือจากสูงไปต่ำ (หน้า 77)'}];
+function buildList(id,pre,sel){$(id).innerHTML=EL.map((e,i)=>`<label class="opt" id="${pre}L${i}"><input type="checkbox" id="${pre}${i}" ${sel&&sel.includes(i)?'checked':''}> ${e.t}</label>`).join('');}
+const getSel=pre=>EL.map((e,i)=>i).filter(i=>$(pre+i).checked);
+buildList('m1List','a',S.m1&&S.m1.sel);
+$('m1Txt').value=(S.m1&&S.m1.txt)||'';
+$('m1Btn').addEventListener('click',()=>{
+  if(!getSel('a').length||!$('m1Txt').value.trim()){$('m1Fb').className='fb err';$('m1Fb').textContent='เลือกองค์ประกอบอย่างน้อย 1 ข้อ และอธิบายแบบจำลองของคุณก่อน';return;}
+  S.m1={sel:getSel('a'),txt:$('m1Txt').value};save();$('m1Fb').className='fb';$('m1Fb').textContent='บันทึกแบบจำลองแรกแล้ว (ยังไม่ตรวจถูกผิด ไปสืบค้นในส่วนที่ 2 ต่อ)';buildList('m2List','b',S.m2?S.m2.sel:S.m1.sel);
+});
+
+/* ห้องทดลอง */
+let scn=S.scn||'sun',med=scn==='sun'?'vac':(S.med||'vac');
+function arrows(x0,y0,n,len,spread){let s='';for(let i=0;i<n;i++){const a=(-spread/2+spread*i/(n-1))*Math.PI/180;const x1=x0+Math.cos(a)*len,y1=y0+Math.sin(a)*len;s+=`<line class="wave" x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#e8662c" stroke-width="3" marker-end="url(#ah)"/>`;}return s;}
+function drawSim(){
+  const m=heatModes(scn,med);
+  let s=`<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#e8662c"/></marker></defs>`;
+  const vac=med==='vac';
+  s+=`<rect x="0" y="0" width="520" height="250" rx="14" fill="${vac?'#101a33':'#dff0ff'}"/>`;
+  if(vac){for(let i=0;i<26;i++){const x=(i*97)%520,y=(i*53)%230+6;s+=`<circle cx="${x}" cy="${y}" r="1.4" fill="#cfd8ff"/>`;}}
+  else{for(let i=0;i<30;i++){const x=(i*83)%520,y=(i*41)%240+5;s+=`<circle cx="${x}" cy="${y}" r="2" fill="#9cc2e6" opacity=".6"/>`;}}
+  s+=`<text x="260" y="238" text-anchor="middle" font-size="13" fill="${vac?'#9fb0e8':'#3a6a96'}">${vac?'สุญญากาศ (ไม่มีอากาศ)':'อากาศ'}</text>`;
+  if(scn==='sun'){
+    s+=`<circle cx="70" cy="120" r="46" fill="#ffc83d" stroke="#ff9a1f" stroke-width="3"/><text x="70" y="124" text-anchor="middle" font-size="14" fill="#7a3d00">ดวงอาทิตย์</text>`;
+    s+=`<circle cx="450" cy="120" r="30" fill="#4aa0e8"/><path d="M432 112 q10-12 22-4 q-6 14-18 10z M452 130 q10-4 16 6 q-8 8-16-2z" fill="#58b36b"/><text x="450" y="170" text-anchor="middle" font-size="13" fill="#e8f0ff">โลก</text>`;
+    s+=arrows(122,120,5,300,40);
+  }else{
+    const fx=fireX();s+=`<g class="flm"><path d="M${fx} 200 C${fx-26} 170 ${fx-12} 150 ${fx} 128 C${fx+12} 150 ${fx+26} 170 ${fx} 200Z" fill="#ff8a2b"/><path d="M${fx} 200 C${fx-12} 184 ${fx-6} 172 ${fx} 160 C${fx+6} 172 ${fx+12} 184 ${fx} 200Z" fill="#ffd45a"/></g>`;
+    s+=`<rect x="${fx-30}" y="198" width="60" height="8" rx="3" fill="#7a5a3b"/><text x="${fx}" y="222" text-anchor="middle" font-size="12" fill="${vac?'#cfd8ff':'#1d2433'}">กองไฟ</text>`;
+    if(scn==='fire'){s+=`<circle cx="430" cy="150" r="16" fill="#f2c9a0"/><rect x="412" y="164" width="36" height="40" rx="8" fill="#6a8fe0"/><text x="430" y="224" text-anchor="middle" font-size="12" fill="${vac?'#cfd8ff':'#1d2433'}">คน</text>`;s+=arrows(fx+30,165,5,250,50);}
+    else{s+=`<line x1="${fx+80}" y1="90" x2="${fx+240}" y2="90" stroke="#9a7b55" stroke-width="3"/><ellipse cx="${fx+160}" cy="86" rx="62" ry="16" fill="#c98f5a" stroke="#8a5a2e" stroke-width="2"/><text x="${fx+160}" y="64" text-anchor="middle" font-size="12" fill="${vac?'#cfd8ff':'#1d2433'}">อาหารสด</text>`;s+=arrows(fx+22,150,4,150,-70).replace(/x2="([\d.]+)" y2="([\d.-]+)"/g,(a,x,y)=>`x2="${x}" y2="${y}"`);}
+    if(m.convection){for(let i=0;i<3;i++){const x=fx-22+i*22;s+=`<path class="rise" d="M${x} 140 q-8 -12 0 -24 q8 -12 0 -24" fill="none" stroke="#b63f43" stroke-width="3" stroke-linecap="round" style="animation-delay:${i*.5}s"/>`;}s+=`<text x="${fx-70}" y="104" font-size="12" fill="#b63f43">อากาศร้อนลอยขึ้น</text>`;}
+  }
+  $('sim').innerHTML=s;
+  const R=(k,l,why)=>`<tr><td>${l}</td><td><span class="badge ${m[k]?'on':'off'}">${m[k]?'เกิดขึ้น':'ไม่เกิด'}</span> <span class="pc">${why}</span></td></tr>`;
+  $('modeRows').innerHTML=R('conduction','การนำความร้อน','แหล่งความร้อนไม่ได้สัมผัสกับผู้รับ')+R('convection','การพาความร้อน',m.convection?'อากาศร้อนเคลื่อนที่พาความร้อน':(scn==='sun'?'ไม่มีอากาศ/ของไหลระหว่างทาง':med==='vac'?'ไม่มีอากาศมาพาความร้อน':''))+R('radiation','การแผ่รังสีความร้อน','คลื่นแม่เหล็กไฟฟ้า ไม่ต้องอาศัยตัวกลาง');
+  $('simFb').textContent=med==='vac'?'แม้ไม่มีตัวกลางเลย ความร้อนก็ยังถ่ายโอนถึงผู้รับได้ด้วยการแผ่รังสีความร้อน':'ในอากาศ การแผ่รังสีเกิดขึ้นพร้อมกับการพาความร้อนได้ (หน้า 77)';
+  ['sun','fire','fish'].forEach(k=>$('sc_'+k).setAttribute('aria-pressed',k===scn));
+  $('md_vac').setAttribute('aria-pressed',med==='vac');$('md_air').setAttribute('aria-pressed',med==='air');
+  $('md_air').disabled=scn==='sun';
+}
+function fireX(){return 90;}
+function setSim(sc,md){
+  scn=sc;med=sc==='sun'?'vac':md;S.scn=scn;S.med=med;
+  const c=new Set(S.combos||[]);c.add(scn+'|'+med);S.combos=[...c];save();drawSim();
+}
+['sun','fire','fish'].forEach(k=>$('sc_'+k).addEventListener('click',()=>setSim(k,med)));
+$('md_vac').addEventListener('click',()=>setSim(scn,'vac'));
+$('md_air').addEventListener('click',()=>setSim(scn,'air'));
+$('notes').value=S.notes||'';$('notes').addEventListener('input',e=>{S.notes=e.target.value;save();});
+
+/* ขั้น 4 ปรับปรุง */
+buildList('m2List','b',S.m2?S.m2.sel:(S.m1?S.m1.sel:[]));
+$('m2Txt').value=(S.m2&&S.m2.txt)||'';
+function m2Check(){
+  if(!S.m1){$('m2Fb').className='fb err';$('m2Fb').textContent='กรุณาบันทึกแบบจำลองแรกในส่วนที่ 1 ก่อน';return;}
+  const sel=getSel('b');let wrong=0;
+  EL.forEach((e,i)=>{const on=sel.includes(i),good=on===!!e.k;if(!good)wrong++;const L=$('bL'+i);L.className='opt '+(good?'good':'bad');});
+  S.m2={sel,txt:$('m2Txt').value};S.m2Done=true;save();
+  const f=S.m1.sel;const added=sel.filter(i=>!f.includes(i)),removed=f.filter(i=>!sel.includes(i));
+  $('m2Fb').className='fb'+(wrong?' err':'');
+  $('m2Fb').textContent=wrong?`ยังมี ${wrong} ข้อที่ไม่ตรงกับหนังสือ (กรอบสีแดง) ลองแก้แล้วตรวจอีกครั้ง`:'แบบจำลองที่ปรับปรุงตรงกับข้อมูลในหนังสือทุกข้อ';
+  const bad=EL.map((e,i)=>({e,i})).filter(o=>(sel.includes(o.i))!==!!o.e.k).map(o=>o.e.w);
+  $('m2Cmp').style.display='block';
+  $('m2Cmp').innerHTML=`<strong>เทียบกับแบบจำลองแรก:</strong> เพิ่ม ${added.length} ข้อ${added.length?' ('+added.map(i=>EL[i].t).join('; ')+')':''} · เอาออก ${removed.length} ข้อ${removed.length?' ('+removed.map(i=>EL[i].t).join('; ')+')':''}`+(bad.length?`<br><strong>ข้อที่ยังไม่ตรง:</strong> ${bad.join(' · ')}`:'');
+}
+$('m2Btn').addEventListener('click',m2Check);
+
+/* คำถาม */
+const sel1=n=>document.querySelector(`input[name="${n}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a1=sel1('q1'),a3=sel1('q3');const a4=[...document.querySelectorAll('input[name="q4"]:checked')].map(e=>e.value).sort().join('');
+  if(!a1||!a3||!a4||!$('q2').value.trim()||!$('q5').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบทั้ง 5 ข้อ';$('qFb').className='fb err';return;}
+  const ok=[a1==='b',a3==='a',a4==='abc'].filter(Boolean).length;
+  S.q={a1,a3,a4,q2:$('q2').value,q5:$('q5').value};S.qDone=true;save();$('q5Ans').style.display='block';
+  $('qFb').className='fb'+(ok===3?'':' err');
+  $('qFb').textContent=(ok===3?'ข้อ 1, 3, 4 ถูกทั้งหมด':`ข้อ 1, 3, 4 ถูก ${ok}/3`)+' · ข้อ 2 และ 5 เขียนด้วยคำของตนเอง เทียบกับแนวคำตอบด้านล่าง';
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3','z4'].map(sel1);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['b','c','b','a'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===4?'':' err');
+  $('zFb').textContent=`ได้ ${sc}/4 · เฉลย: 1) 3 วิธี (นำ พา แผ่รังสี) 2) การแผ่รังสีความร้อน 3) จากสูงกว่าไปต่ำกว่า 4) พาความร้อนและแผ่รังสีพร้อมกัน`;
+});
+function progress(){
+  const d=[!!S.discDone&&!!S.m1,(S.combos||[]).length>=3,!!S.m2Done,!!S.qDone,!!S.zDone];
+  const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/5*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);
+  $('pText').textContent=`ทำแล้ว ${n} จาก 5 ส่วน (แบบจำลองแรก · ห้องทดลอง ≥ 3 แบบ · ปรับปรุง · คำถาม · แบบทดสอบ)`;$('done').style.display=n===5?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* restore */
+(()=>{
+  if(S.disc)DISC.forEach((d,r)=>[0,1,2].forEach(i=>{document.querySelector(`input[data-d="${d.id}"][data-i="${i}"]`).checked=!!(S.disc[r]||[])[i];}));
+  if(S.discDone)$('discBtn').click();
+  if(S.q){document.querySelector(`input[name="q1"][value="${S.q.a1}"]`)&&(document.querySelector(`input[name="q1"][value="${S.q.a1}"]`).checked=true);const e3=document.querySelector(`input[name="q3"][value="${S.q.a3}"]`);if(e3)e3.checked=true;(S.q.a4||'').split('').forEach(v=>{const e=document.querySelector(`input[name="q4"][value="${v}"]`);if(e)e.checked=true;});$('q2').value=S.q.q2||'';$('q5').value=S.q.q5||'';}
+  if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3','z4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  if(S.m2Done)m2Check();
+  drawSim();progress();
+})();
+window.__lab={heatModes};
+})();
+</script>
+</body>
+</html>

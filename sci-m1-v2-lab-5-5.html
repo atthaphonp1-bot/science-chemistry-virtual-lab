@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.5 ความร้อนถ่ายโอนผ่านของแข็งได้อย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.5 ความร้อนถ่ายโอนผ่านของแข็งได้อย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-5.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:720px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem;background:#ffe3d1;color:#a8420f}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#fff1e6;position:sticky;top:0}.tw{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.leg{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}.leg i{flex:1;height:10px;border-radius:99px;background:linear-gradient(90deg,hsl(240 85% 55%),hsl(180 85% 55%),hsl(120 85% 55%),hsl(60 85% 55%),hsl(0 85% 55%))}
+.pz{transition:transform .9s ease-in,opacity .9s}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
+.flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 2 เรื่องที่ 1</div>
+  <h1>กิจกรรม 5.5 ความร้อนถ่ายโอนผ่านของแข็งได้อย่างไร</h1>
+  <p class="lead">ให้ความร้อนแก่แผ่นอะลูมิเนียมที่วางชิ้นเทียนไขไว้เป็นวง ๆ ในห้องทดลองเสมือน สังเกตลำดับที่ชิ้นเทียนหลอมตก แล้วใช้แบบจำลองอนุภาคอธิบายการนำความร้อน</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<ol><li>สังเกตและอธิบายการถ่ายโอนความร้อนของแผ่นอะลูมิเนียม</li><li>รวบรวมข้อมูลและสร้างแบบจำลองเพื่ออธิบายการถ่ายโอนความร้อนของของแข็ง</li></ol>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>เทียนไข</li><li>เทียนไขขนาดเล็ก</li><li>แผ่นอะลูมิเนียม</li><li>วงเวียน</li><li>ไม้ขีดไฟ</li><li>ที่กั้นลมของชุดตะเกียงแอลกอฮอล์</li><li>ไม้บรรทัด</li><li>มีดคัตเตอร์</li><li>กรรไกร</li><li>เครื่องบันทึกภาพเคลื่อนไหว (ถ้ามี)</li></ul>
+<div class="note warn"><strong>ข้อควรระวัง:</strong> หนังสือเรียนไม่ได้ระบุข้อควรระวังไว้ในกิจกรรมนี้ แต่ในการทำจริงมีการจุดเทียนไขและมีแผ่นโลหะร้อน ควรมีครูดูแล จับแผ่นโลหะด้วยถุงมือหรือผ้ารอง (ข้อความนี้เป็นของผู้จัดทำหน้านี้ ไม่ใช่ต้นฉบับ) ในแล็บเสมือนนี้ไม่มีไฟจริง</div>
+<h3>วิธีดำเนินกิจกรรม (ตามหนังสือเรียน)</h3>
+<ol class="steps">
+<li>ตัดแผ่นอะลูมิเนียมเป็นรูปสี่เหลี่ยมจัตุรัสให้มีความยาวด้านละ 15 เซนติเมตร ใช้วงเวียนวาดวงกลม 3 วง ซ้อนกัน</li>
+<li>ตัดเทียนไขเป็นชิ้นเล็ก ๆ ขนาดเท่า ๆ กัน จำนวน 13 ชิ้น</li>
+<li>นำแผ่นอะลูมิเนียมวางพาดไว้บนที่กั้นลม จากนั้นวางชิ้นเทียนไขบนแผ่นอะลูมิเนียมตำแหน่งใดก็ได้ 4 ชิ้นในแต่ละวง และวางไว้ตรงกลางวงกลมอีก 1 ชิ้น</li>
+<li>จุดเทียนไขอีกแท่งหนึ่งใต้แผ่นอะลูมิเนียมให้เปลวเทียนอยู่ตรงกลางแผ่น สังเกตการเปลี่ยนแปลงที่เกิดขึ้นกับชิ้นเทียนไขที่ตำแหน่งต่าง ๆ บันทึกผลการเปลี่ยนแปลง หรือถ่ายภาพเคลื่อนไหว นำเสนอ</li>
+<li>นำข้อมูลที่ได้จากการสังเกตมาสร้างแบบจำลอง โดยวาดภาพการจัดเรียงอนุภาคแสดงการถ่ายโอนความร้อนของของแข็ง</li>
+<li>สืบค้นข้อมูลการถ่ายโอนความร้อนของของแข็งในระดับอนุภาคจากแหล่งค้นคว้าที่เชื่อถือได้ บันทึกผล</li>
+<li>ปรับปรุงแบบจำลองการถ่ายโอนความร้อนของของแข็งในข้อ 5 ให้ถูกต้อง นำเสนอ</li></ol>
+<p class="pc">ในหน้านี้ ขั้นตอนที่ 1–4 ทำในห้องทดลองเสมือน ส่วนขั้นตอนที่ 5–7 ทำในหัวข้อ “แบบจำลองอนุภาค” และคำถามท้ายกิจกรรม</p>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน</h2>
+<p class="lead">กด “จุดเทียนไขใต้แผ่น” แล้วกด “เดินต่อ 1 หน่วยเวลา” ซ้ำ ๆ (หรือเล่นอัตโนมัติ) สังเกตว่าชิ้นเทียนไขชิ้นใดหลอมและตกลงมาก่อน บันทึกผลจะขึ้นในตารางด้านล่าง</p>
+<div class="lab" style="margin-top:16px">
+ <div>
+  <div class="stage"><svg id="side" viewBox="0 0 360 240" role="img" aria-labelledby="sdT sdD"><title id="sdT">ภาพข้างของชุดทดลอง</title><desc id="sdD">แผ่นอะลูมิเนียมวางบนที่กั้นลม มีชิ้นเทียนไขวางบนแผ่น และเทียนไขจุดอยู่ใต้กึ่งกลางแผ่น</desc></svg></div>
+  <div class="stage" style="margin-top:12px"><svg id="top" viewBox="0 0 300 300" role="img" aria-label="ภาพมองจากด้านบนแสดงความร้อนบนแผ่นอะลูมิเนียม"></svg>
+   <div class="leg" style="padding:4px 8px"><span>เย็น</span><i></i><span>ร้อน</span></div></div>
+ </div>
+ <div class="panel">
+  <div class="readout"><div><small>เวลาของแบบจำลอง</small><b id="rUnit">0</b><small>หน่วย</small></div><div><small>ชิ้นเทียนที่ตกแล้ว</small><b id="rFall">0/13</b><small>ชิ้น</small></div><div><small>ค่าการนำความร้อนของแผ่น</small><b id="rK">0.50</b><small>cal/s/(cm °C)</small></div></div>
+  <label for="mat"><strong>วัสดุของแผ่น</strong> (กิจกรรมในหนังสือใช้อะลูมิเนียม ตัวเลือกอื่นเป็นการทดลองเพิ่ม)</label>
+  <select id="mat"><option value="0.50" selected>อะลูมิเนียม (0.50)</option><option value="1.01">เงิน (1.01)</option><option value="0.99">ทองแดง (0.99)</option><option value="0.163">เหล็ก (0.163)</option></select>
+  <p class="pc" id="obs" aria-live="polite" style="margin:0"></p>
+  <div class="btns">
+   <button class="btn" id="lampBtn" type="button">จุดเทียนไขใต้แผ่น</button>
+   <button class="btn" id="stepBtn" type="button" disabled>เดินต่อ 1 หน่วยเวลา</button>
+   <button class="btn alt" id="autoBtn" type="button" disabled>เล่นอัตโนมัติ</button>
+   <button class="btn alt" id="resetBtn" type="button">เริ่มใหม่</button>
+  </div>
+  <p class="fb" id="labFb" aria-live="polite"></p>
+  <details open><summary>ค่าที่ใช้ในแบบจำลอง (สมมติโดยผู้จัดทำ)</summary><p class="pc">หนังสือเรียนไม่ได้ให้ตัวเลขเวลา อุณหภูมิ หรือระยะวงกลมของกิจกรรมนี้ แบบจำลองจึงใช้ค่าสมมติดังนี้ แผ่นแบ่งเป็นช่อง 15 × 15 ช่อง ช่องละ 1 cm (ตามด้านยาว 15 cm) · วงกลมรัศมี 2, 4 และ 6 cm จากกึ่งกลาง · เปลวเทียนคงที่ที่ระดับความร้อน 100 หน่วย ส่วนแผ่นเริ่มที่ 0 หน่วย · ชิ้นเทียนตกเมื่อระดับความร้อนที่ช่องนั้นถึง 40 หน่วย · 1 หน่วยเวลาเท่ากับการคำนวณ 10 ขั้น · ความเร็วการถ่ายโอนความร้อนต่อขั้นเท่ากับ 0.1 × (ค่าการนำความร้อนของวัสดุ ÷ 0.50) โดยค่าการนำความร้อนมาจากตาราง 5.4 · ไม่มีความร้อนสูญเสียออกจากแผ่น และวางชิ้นเทียนตามแนวแกนเพื่อให้เทียบง่าย แบบจำลองนี้แสดงลำดับก่อนหลังได้ แต่เวลาและระดับความร้อนไม่ใช่ค่าจริง</p></details>
+ </div>
+</div>
+</section>
+
+<section class="card" id="data"><p class="kicker">ส่วนที่ 2 · บันทึกผลและกราฟ</p><h2>ตารางบันทึกผลและกราฟ</h2>
+<div class="two">
+ <div class="tw"><table><thead><tr><th>ตำแหน่งของชิ้นเทียน</th><th>ระยะจากเปลวเทียน (cm)</th><th>ตกแล้ว (ชิ้น)</th><th>ตกชิ้นแรก (หน่วยเวลา)</th></tr></thead><tbody id="rows"></tbody></table></div>
+ <div class="graph"><svg id="graph" viewBox="0 0 420 300" role="img" aria-label="กราฟเวลาที่ชิ้นเทียนตกกับระยะจากเปลวเทียน"></svg></div>
+</div>
+<p class="pc">กราฟนี้ผู้จัดทำเพิ่มขึ้นเพื่อช่วยดูแนวโน้ม (หนังสือให้บันทึกผลการเปลี่ยนแปลงหรือถ่ายภาพเคลื่อนไหว) แกนนอนคือระยะจากเปลวเทียน แกนตั้งคือเวลาที่ชิ้นแรกในวงนั้นตก</p>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 3 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<fieldset><legend>1. เมื่อให้ความร้อนแก่แผ่นอะลูมิเนียม การเปลี่ยนแปลงของชิ้นเทียนไขแต่ละตำแหน่งเหมือนหรือแตกต่างกันอย่างไร</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> เหมือนกันทุกชิ้น ตกพร้อมกันหมด</label>
+<label class="opt"><input type="radio" name="q1" value="b"> แตกต่างกัน ชิ้นที่อยู่ใกล้เปลวเทียนหลอมและตกก่อน ชิ้นที่อยู่ไกลออกไปหลอมและตกตามมาทีหลัง</label>
+<label class="opt"><input type="radio" name="q1" value="c"> ชิ้นที่อยู่ไกลเปลวเทียนที่สุดตกก่อน</label></fieldset>
+<fieldset><legend>2. การถ่ายโอนความร้อนของแผ่นอะลูมิเนียมเป็นอย่างไร ทราบได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="q2" value="a"> ความร้อนถ่ายโอนจากบริเวณใกล้เปลวเทียนไปยังบริเวณที่อยู่ไกลออกไปตามแผ่น ทราบได้จากชิ้นเทียนที่อยู่ไกลออกไปหลอมตามลำดับต่อมา</label>
+<label class="opt"><input type="radio" name="q2" value="b"> ความร้อนไม่ถ่ายโอนไปตามแผ่น ชิ้นเทียนหลอมเพราะได้รับความร้อนจากเปลวเทียนโดยตรงเท่านั้น</label>
+<label class="opt"><input type="radio" name="q2" value="c"> ความร้อนถ่ายโอนจากบริเวณที่อยู่ไกลมาสู่บริเวณใกล้เปลวเทียน</label></fieldset>
+<label for="q3"><strong>3. แบบจำลองการถ่ายโอนความร้อนของของแข็งที่สร้างขึ้นในตอนแรกเหมือนหรือต่างจากแบบจำลองที่ปรับปรุงแล้วอย่างไร</strong> (เขียนเปรียบเทียบแบบจำลองก่อนและหลังปรับปรุงของตนเอง)</label>
+<textarea id="q3" placeholder="เช่น แบบจำลองแรกของฉันวาดอนุภาคไว้ว่า … หลังปรับปรุงเพิ่ม …"></textarea>
+<fieldset style="margin-top:16px"><legend>4. แบบจำลองการถ่ายโอนความร้อนที่ปรับปรุงแล้วอธิบายการถ่ายโอนความร้อนของของแข็งได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="q4" value="a"> อนุภาคที่ได้รับความร้อนจะเคลื่อนที่ไปทั้งก้อนจนถึงบริเวณที่เย็น</label>
+<label class="opt"><input type="radio" name="q4" value="b"> อนุภาคบริเวณที่ได้รับความร้อนสั่นมากขึ้น ชนอนุภาคข้างเคียงทำให้สั่นตามไปด้วย ความร้อนจึงถ่ายโอนต่อเนื่องจากบริเวณที่อุณหภูมิสูงไปยังบริเวณที่อุณหภูมิต่ำกว่า</label>
+<label class="opt"><input type="radio" name="q4" value="c"> อนุภาคหยุดสั่นเมื่อได้รับความร้อน</label></fieldset>
+<label for="q5"><strong>5. แบบจำลองการถ่ายโอนความร้อนของของแข็งที่สร้างขึ้น มีอะไรบ้างที่ไม่สามารถแสดงให้เห็นตามความเป็นจริงได้</strong></label>
+<textarea id="q5" placeholder="เช่น ขนาดของอนุภาค … การสั่นที่เร็วมาก …"></textarea>
+<fieldset style="margin-top:16px"><legend>6. จากกิจกรรม สรุปได้ว่าอย่างไร</legend>
+<label class="opt"><input type="radio" name="q6" value="a"> ความร้อนถ่ายโอนผ่านของแข็งได้ โดยอนุภาคสั่นและชนอนุภาคข้างเคียงต่อเนื่องกันไปจากบริเวณที่มีอุณหภูมิสูงกว่าไปยังบริเวณที่มีอุณหภูมิต่ำกว่า เรียกว่าการนำความร้อน</label>
+<label class="opt"><input type="radio" name="q6" value="b"> ความร้อนถ่ายโอนผ่านของแข็งไม่ได้</label>
+<label class="opt"><input type="radio" name="q6" value="c"> ความร้อนถ่ายโอนผ่านของแข็งโดยอนุภาคเคลื่อนที่ไปพร้อมความร้อน เรียกว่าการพาความร้อน</label></fieldset>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="qAns" style="display:none"><strong>แนวคำตอบข้อเขียน (ผู้จัดทำเรียบเรียงจากเนื้อหาหน้า 67 ไม่ใช่เฉลยของหนังสือ):</strong>
+<p><b>ข้อ 3</b> คำตอบขึ้นกับแบบจำลองของแต่ละคน แบบจำลองที่ปรับปรุงแล้วควรมีอนุภาคเรียงชิดกัน บริเวณที่ได้รับความร้อนสั่นแรงกว่า และมีการชนกับอนุภาคข้างเคียงเพื่อส่งต่อความร้อน</p>
+<p><b>ข้อ 5</b> เช่น แบบจำลองเป็นภาพนิ่งหรือภาพแบบง่าย จึงเห็นการสั่นและการชนกันของอนุภาคต่อเนื่องไม่ได้ ขนาดและจำนวนอนุภาคไม่ตรงความจริง และใช้สีแทนระดับอุณหภูมิ</p></div>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 4 · ขั้นตอนที่ 5–7 แบบจำลองอนุภาค</p><h2>แบบจำลองการถ่ายโอนความร้อนของของแข็ง</h2>
+<p>เลื่อนเวลาเพื่อดูแถวอนุภาคตามแนวจากเปลวเทียนไปยังขอบแผ่น (ใช้ข้อมูลของแถวกลางแผ่นจากการทดลองของคุณ) สีแดงคืออนุภาคที่มีอุณหภูมิสูง สีฟ้าคืออนุภาคที่อุณหภูมิต่ำ อนุภาคที่ร้อนกว่าสั่นแรงกว่า ต้องทดลองในส่วนที่ 1 ก่อนจึงจะเลื่อนได้</p>
+<div class="two"><div class="stage"><svg id="part" viewBox="0 0 320 200" role="img" aria-label="แบบจำลองอนุภาคในแผ่นอะลูมิเนียม"></svg></div>
+<div class="panel"><label for="pSlider">เลื่อนเวลา (หน่วย)</label><input type="range" id="pSlider" min="0" max="0" value="0" disabled><p class="pc" id="pDesc"></p></div></div>
+<div class="note"><strong>สรุปจากหนังสือ (หน้า 67):</strong> อนุภาคที่ได้รับความร้อนจะสั่นมากขึ้นและชนกับอนุภาคข้างเคียง ทำให้อนุภาคข้างเคียงสั่นมากขึ้นตามไปด้วย อนุภาคของสารจึงเป็นตัวกลางในการถ่ายโอนความร้อนโดยการสั่นอย่างต่อเนื่อง จากบริเวณที่อุณหภูมิสูงกว่าไปยังบริเวณที่อุณหภูมิต่ำกว่า วิธีนี้เรียกว่า <b>การนำความร้อน (heat conduction)</b> เกิดขึ้นได้กับสารทุกสถานะ แต่สารแต่ละสถานะนำความร้อนได้ไม่เท่ากัน</div>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวนจากตาราง 5.4</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. จากตาราง 5.4 สารใดนำความร้อนได้ดีที่สุดในกลุ่มโลหะ (เงิน ทองแดง อะลูมิเนียม เหล็ก)</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> เงิน (1.01 cal/s/(cm °C))</label><label class="opt"><input type="radio" name="z1" value="b"> อะลูมิเนียม (0.50)</label><label class="opt"><input type="radio" name="z1" value="c"> เหล็ก (0.163)</label></fieldset>
+<fieldset><legend>2. อะลูมิเนียมมีค่าการนำความร้อน 0.50 ส่วนเหล็กมี 0.163 เปรียบเทียบได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> เหล็กนำความร้อนได้ดีกว่าอะลูมิเนียม</label><label class="opt"><input type="radio" name="z2" value="b"> อะลูมิเนียมนำความร้อนได้ดีกว่าเหล็กประมาณ 3 เท่า (0.50 ÷ 0.163 ≈ 3.1)</label><label class="opt"><input type="radio" name="z2" value="c"> เท่ากัน</label></fieldset>
+<fieldset><legend>3. น้ำแข็ง (ของแข็ง) มีค่าการนำความร้อน 0.005 ส่วนน้ำที่ 20 °C (ของเหลว) มี 0.0014 สรุปจากสองค่านี้ได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> น้ำแข็งนำความร้อนได้ดีกว่าน้ำ</label><label class="opt"><input type="radio" name="z3" value="b"> น้ำนำความร้อนได้ดีกว่าน้ำแข็ง</label><label class="opt"><input type="radio" name="z3" value="c"> นำความร้อนได้เท่ากัน</label></fieldset>
+<fieldset><legend>4. ไม้ (0.0001) และอากาศที่ 0 °C (0.000057) มีค่าการนำความร้อนต่ำมาก เรียกสารกลุ่มนี้ว่าอะไร และเหมาะทำส่วนใดของภาชนะหุงต้ม</legend>
+<label class="opt"><input type="radio" name="z4" value="a"> ตัวนำความร้อน เหมาะทำก้นหม้อ</label><label class="opt"><input type="radio" name="z4" value="b"> ฉนวนความร้อน เหมาะทำส่วนที่ต้องการให้ความร้อนส่งผ่านได้น้อย เช่น ด้ามจับ</label><label class="opt"><input type="radio" name="z4" value="c"> ฉนวนความร้อน เหมาะทำก้นหม้อ</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ข้อมูลอ้างอิงจากหนังสือเรียน</p><h2>ตาราง 5.4 ค่าการนำความร้อนของสารในสถานะต่าง ๆ</h2>
+<div class="tw"><table><thead><tr><th>สาร</th><th>ค่าการนำความร้อน (cal/s)/(cm °C)</th><th>สาร</th><th>ค่าการนำความร้อน (cal/s)/(cm °C)</th></tr></thead><tbody>
+<tr><td>เงิน</td><td>1.01</td><td>น้ำแข็ง</td><td>0.005</td></tr><tr><td>ทองแดง</td><td>0.99</td><td>ไม้</td><td>0.0001</td></tr><tr><td>อะลูมิเนียม</td><td>0.50</td><td>น้ำที่อุณหภูมิ 20 °C</td><td>0.0014</td></tr><tr><td>เหล็ก</td><td>0.163</td><td>อากาศที่อุณหภูมิ 0 °C</td><td>0.000057</td></tr></tbody></table></div>
+<p class="pc">สารที่นำความร้อนได้ดีเรียกว่า ตัวนำความร้อน ส่วนสารที่นำความร้อนได้ไม่ดีเรียกว่า ฉนวนความร้อน (หน้า 67) · ที่มา: หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 65–68 (กิจกรรม 5.5 หน้า 65–66, ตาราง 5.4 หน้า 67) · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู</p>
+</section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>ทำครบทุกส่วนแล้ว</h2><p>ลองเปลี่ยนวัสดุของแผ่นแล้วเปรียบเทียบเวลาที่ชิ้นเทียนตก หรือไปทำกิจกรรม 5.6 ต่อ</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act55_v1';
+const N=15,CEN=7,THR=40,SRC=100,SPU=10,CELL=20,MAXU=250;
+const RAD=[0,2,4,6];
+const GNAME=['ตรงกลางแผ่น (เหนือเปลวเทียน)','วงในสุด (วงที่ 1)','วงกลาง (วงที่ 2)','วงนอกสุด (วงที่ 3)'];
+/* พอร์ตจาก diffuse_step() ที่ผ่าน checks ของ llm-orchestrator (ทดสอบด้วย node เทียบกับไฟล์ Python) */
+function diffuseStep(g,a,src){
+  const R=g.length,C=g[0].length,o=new Array(R);
+  for(let i=0;i<R;i++){const row=new Array(C);for(let j=0;j<C;j++){let s=0,n=0;const v=g[i][j];
+    if(i>0){s+=g[i-1][j];n++}if(i<R-1){s+=g[i+1][j];n++}if(j>0){s+=g[i][j-1];n++}if(j<C-1){s+=g[i][j+1];n++}
+    row[j]=v+a*(s-n*v)}o[i]=row}
+  if(src)for(const[r,c,t]of src)if(r>=0&&r<R&&c>=0&&c<C)o[r][c]=t;
+  return o;
+}
+const color=t=>`hsl(${Math.round(240*(1-Math.max(0,Math.min(100,t))/100))} 85% 55%)`;
+/* ชิ้นเทียน 13 ชิ้น: กลาง 1 + 4 ชิ้นต่อวง ตามแนวแกน */
+const pieces=[];
+pieces.push({id:0,g:0,r:CEN,c:CEN});
+[1,2,3].forEach(k=>{const d=RAD[k];[[CEN-d,CEN],[CEN+d,CEN],[CEN,CEN-d],[CEN,CEN+d]].forEach(([r,c])=>pieces.push({id:pieces.length,g:k,r,c}));});
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+let g,unit,lit,mat,segs,melt,hist,auto=null;
+const alpha=()=>0.1*mat/0.50;
+function resetSim(m){g=Array.from({length:N},()=>Array(N).fill(0));unit=0;lit=false;mat=m;segs=[];melt={};hist=[g[CEN].slice()];}
+function advance(n){
+  for(let u=0;u<n;u++){
+    for(let s=0;s<SPU;s++)g=diffuseStep(g,alpha(),lit?[[CEN,CEN,SRC]]:null);
+    unit++;
+    for(const p of pieces)if(melt[p.id]===undefined&&g[p.r][p.c]>=THR)melt[p.id]=unit;
+    hist.push(g[CEN].slice());
+    const last=segs[segs.length-1];if(last&&last[0]===(lit?1:0))last[1]++;else segs.push([lit?1:0,1]);
+  }
+}
+const nFell=()=>Object.keys(melt).length;
+const allFell=()=>nFell()===pieces.length;
+
+/* ---- ภาพข้าง (เฉียง) ---- */
+const px=(r,c)=>180+(c-CEN)*17+(r-CEN)*6,py=(r)=>112+(r-CEN)*5;
+function buildSide(){
+  let s='<rect x="0" y="206" width="360" height="34" fill="#e7ebf3"/>';
+  // ที่กั้นลม
+  s+='<rect x="92" y="125" width="176" height="82" fill="none" stroke="#8f98ab" stroke-width="3" rx="4"/><rect x="92" y="125" width="176" height="82" fill="#cfd8e6" opacity=".25"/>';
+  // เทียนไขแท่งใต้แผ่น
+  s+='<rect x="170" y="165" width="20" height="41" fill="#ffe9a8" stroke="#d1a43a" stroke-width="2" rx="2"/><line x1="180" y1="165" x2="180" y2="158" stroke="#444" stroke-width="2"/><g id="flame" style="display:none"><path class="flame" d="M180 160 C170 148 176 138 180 128 C184 138 192 148 180 160Z" fill="#ff8a2b"/><path class="flame" d="M180 160 C175 153 178 148 180 143 C182 148 185 153 180 160Z" fill="#ffd45a"/></g>';
+  // แผ่น (ด้านบนเป็นสี่เหลี่ยมด้านขนาน)
+  const a=[px(0,0),py(0)],b=[px(0,N-1),py(0)],c=[px(N-1,N-1),py(N-1)],d=[px(N-1,0),py(N-1)];
+  s+=`<polygon points="${a} ${b} ${c} ${d}" fill="#c9d1dd" stroke="#8793a8" stroke-width="2"/><polygon points="${d} ${c} ${c[0]},${c[1]+5} ${d[0]},${d[1]+5}" fill="#9aa5b8"/>`;
+  s+='<g id="pcs"></g>';
+  $('side').innerHTML=s;
+}
+function drawSide(){
+  let s='';
+  const ord=[...pieces].sort((a,b)=>a.r-b.r);
+  for(const p of ord){
+    const f=melt[p.id]!==undefined;
+    const x=px(p.r,p.c)-5,y=py(p.r)-10;
+    s+=`<g class="pz" style="transform:translateY(${f?(206-y-8):0}px);opacity:${f?.45:1}"><rect x="${x}" y="${y}" width="10" height="10" rx="2" fill="#fffdf2" stroke="#c9a74a" stroke-width="1.5"/></g>`;
+  }
+  $('pcs').innerHTML=s;
+  $('flame').style.display=lit?'':'none';
+}
+function drawTop(){
+  let s='';
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)s+=`<rect x="${j*CELL}" y="${i*CELL}" width="${CELL}" height="${CELL}" fill="${color(g[i][j])}"/>`;
+  s+=`<circle cx="${(CEN+.5)*CELL}" cy="${(CEN+.5)*CELL}" r="${(CEN+.5)*CELL}" fill="none" stroke="none"/>`;
+  [2,4,6].forEach(k=>{s+=`<circle cx="${(CEN+.5)*CELL}" cy="${(CEN+.5)*CELL}" r="${k*CELL}" fill="none" stroke="#fff" stroke-opacity=".7" stroke-dasharray="4 4"/>`;});
+  for(const p of pieces){const f=melt[p.id]!==undefined;s+=`<circle cx="${(p.c+.5)*CELL}" cy="${(p.r+.5)*CELL}" r="6" fill="${f?'none':'#fffdf2'}" stroke="${f?'#fff':'#8a6d1c'}" stroke-width="2" ${f?'stroke-dasharray="2 2"':''}/>`;}
+  $('top').innerHTML=s;
+}
+function drawTable(){
+  let h='';
+  for(let k=0;k<4;k++){
+    const ps=pieces.filter(p=>p.g===k),ts=ps.map(p=>melt[p.id]).filter(v=>v!==undefined);
+    h+=`<tr><td>${GNAME[k]}</td><td>${RAD[k]}</td><td>${ts.length}/${ps.length}</td><td>${ts.length?Math.min(...ts):'—'}</td></tr>`;
+  }
+  $('rows').innerHTML=h;
+}
+function drawGraph(){
+  const W=420,H=300,L=46,Rr=14,T=14,Bt=42;
+  const pts=[0,1,2,3].map(k=>{const ts=pieces.filter(p=>p.g===k).map(p=>melt[p.id]).filter(v=>v!==undefined);return ts.length?[RAD[k],Math.min(...ts)]:null;}).filter(Boolean);
+  const ymax=Math.max(70,Math.ceil(Math.max(0,...pts.map(p=>p[1]))*1.15/10)*10);
+  const x=d=>L+(W-L-Rr)*d/6.5,y=v=>T+(H-T-Bt)*(1-v/ymax);
+  let s=`<rect width="${W}" height="${H}" fill="#fff"/>`;
+  const stepY=ymax>=140?40:ymax>=70?20:10;
+  for(let v=0;v<=ymax;v+=stepY)s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e9f0"/><text x="${L-6}" y="${y(v)+4}" font-size="11" text-anchor="end" fill="#66708a">${v}</text>`;
+  for(let d=0;d<=6;d+=2)s+=`<line x1="${x(d)}" x2="${x(d)}" y1="${T}" y2="${H-Bt}" stroke="#f0f2f7"/><text x="${x(d)}" y="${H-Bt+16}" font-size="11" text-anchor="middle" fill="#66708a">${d}</text>`;
+  s+=`<text x="${(L+W)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#1d2433">ระยะจากเปลวเทียน (cm)</text><text transform="translate(12 ${(H-Bt)/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#1d2433">เวลาที่ตก (หน่วย)</text>`;
+  if(pts.length)s+=`<polyline fill="none" stroke="#e8662c" stroke-width="2.5" stroke-linejoin="round" points="${pts.map(p=>x(p[0])+','+y(p[1])).join(' ')}"/>`+pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="4" fill="#e8662c"/>`).join('');
+  $('graph').innerHTML=s;
+}
+function obsText(){
+  const n=nFell();
+  if(!lit&&unit===0)return 'สังเกต: ชิ้นเทียนไข 13 ชิ้นวางอยู่บนแผ่นอะลูมิเนียม ยังไม่ได้จุดเทียนไขใต้แผ่น';
+  if(n===0)return 'สังเกต: ความร้อนเริ่มแผ่ออกจากกึ่งกลางแผ่น ยังไม่มีชิ้นเทียนตก';
+  const front=Math.max(...[0,1,2,3].filter(k=>pieces.filter(p=>p.g===k).some(p=>melt[p.id]!==undefined)));
+  return `สังเกต: ชิ้นเทียนตกแล้ว ${n} ชิ้น ความร้อนถ่ายโอนไปถึงวงที่ ${front===0?'— (เฉพาะชิ้นกลางแผ่น)':front} แล้ว`;
+}
+function render(){
+  $('rUnit').textContent=unit;$('rFall').textContent=nFell()+'/13';$('rK').textContent=mat;
+  $('lampBtn').textContent=lit?'ดับเทียนไข':'จุดเทียนไขใต้แผ่น';
+  $('obs').textContent=obsText();
+  const stop=unit>=MAXU;
+  $('stepBtn').disabled=!lit||allFell()||stop;$('autoBtn').disabled=!lit||allFell()||stop;
+  if(stop&&!allFell())$('labFb').textContent='ครบ '+MAXU+' หน่วยเวลาแล้ว ชิ้นเทียนบางชิ้นยังไม่ตก (วัสดุนี้นำความร้อนช้า) ลองเทียบกับอะลูมิเนียมหรือเงิน';
+  drawSide();drawTop();drawTable();drawGraph();setupSlider();
+}
+function persist(){S.mat=mat;S.segs=segs;S.lit=lit;if(allFell()){S.lab=true;}save();}
+function stepOnce(n){
+  if(!lit||allFell()||unit>=MAXU)return;
+  advance(n||1);
+  if(allFell()){stopAuto();$('labFb').className='fb';$('labFb').textContent='ชิ้นเทียนตกครบทุกชิ้นแล้ว ดูลำดับในตารางและกราฟ แล้วตอบคำถามต่อได้เลย';}
+  persist();render();
+}
+function stopAuto(){if(auto){clearInterval(auto);auto=null;}$('autoBtn').textContent='เล่นอัตโนมัติ';}
+$('lampBtn').addEventListener('click',()=>{lit=!lit;if(!lit)stopAuto();$('labFb').textContent=lit?'':'ดับเทียนไขแล้ว (แบบจำลองไม่มีความร้อนสูญเสีย ความร้อนที่สะสมในแผ่นจึงค่อย ๆ แผ่เฉลี่ยทั่วแผ่น)';persist();render();});
+$('stepBtn').addEventListener('click',()=>stepOnce(1));
+$('autoBtn').addEventListener('click',()=>{if(auto){stopAuto();return;}$('autoBtn').textContent='หยุดเล่น';auto=setInterval(()=>stepOnce(2),200);});
+$('resetBtn').addEventListener('click',()=>{stopAuto();resetSim(Number($('mat').value));delete S.segs;delete S.lit;delete S.lab;$('labFb').textContent='';save();render();});
+$('mat').addEventListener('change',()=>{stopAuto();resetSim(Number($('mat').value));S.mat=mat;delete S.segs;delete S.lit;delete S.lab;$('labFb').textContent='เปลี่ยนวัสดุแล้ว เริ่มทดลองใหม่';save();render();});
+
+/* ---- แบบจำลองอนุภาค ---- */
+function drawParticles(u){
+  const row=hist[Math.min(u,hist.length-1)]||hist[0];
+  const cols=8,rowsN=3,x0=34,dx=36,y0=45,dy=40;
+  const rnd=i=>{const v=Math.sin(i*91.7+u*13.3)*10000;return v-Math.floor(v);};
+  let s='<rect width="320" height="200" fill="#f8fbff"/>';
+  s+='<path d="M12 170 C4 150 12 140 14 126 C20 140 28 152 12 170Z" fill="#ff8a2b" opacity=".9"/><text x="16" y="190" font-size="11" fill="#66708a">เปลวเทียน</text>';
+  const pts=[];
+  for(let cI=0;cI<cols;cI++){const t=row[CEN+cI];const amp=1+t/100*7;
+    for(let rI=0;rI<rowsN;rI++){const k=cI*rowsN+rI;pts.push({x:x0+cI*dx+(rnd(k)-.5)*amp*2,y:y0+rI*dy+(rnd(k+50)-.5)*amp*2,t});}}
+  for(let cI=0;cI<cols;cI++)for(let rI=0;rI<rowsN;rI++){const a=pts[cI*rowsN+rI];
+    if(cI<cols-1){const b=pts[(cI+1)*rowsN+rI];s+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#b3bac8" stroke-width="1.5"/>`;}
+    if(rI<rowsN-1){const b=pts[cI*rowsN+rI+1];s+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#b3bac8" stroke-width="1.5"/>`;}}
+  for(const p of pts)s+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="10" fill="${color(p.t)}" stroke="#1d2433" stroke-opacity=".35" stroke-width="1.5"/>`;
+  $('part').innerHTML=s;
+  const hot=row[CEN],far=row[CEN+cols-1];
+  $('pDesc').textContent=`หน่วยเวลา ${u}: อนุภาคฝั่งซ้ายใกล้เปลวเทียน (ระดับความร้อน ${hot.toFixed(0)}) สั่นแรงกว่าอนุภาคฝั่งขวาที่อยู่ไกลออกไป (${far.toFixed(0)}) ความร้อนจึงถ่ายโอนจากซ้ายไปขวาผ่านการสั่นและการชนกันของอนุภาคข้างเคียง เส้นเทาแทนอนุภาคที่ยึดกันอยู่ในของแข็ง`;
+}
+function setupSlider(){const sl=$('pSlider');const max=unit;sl.max=max;sl.disabled=max===0;if(Number(sl.value)>max)sl.value=max;drawParticles(Number(sl.value));}
+$('pSlider').addEventListener('input',e=>drawParticles(Number(e.target.value)));
+$('pSlider').addEventListener('change',()=>{S.sliderUsed=1;save();});
+
+/* ---- คำถาม ---- */
+const sel=n=>document.querySelector(`input[name="${n}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const names=['q1','q2','q4','q6'],a=names.map(sel);
+  if(a.some(v=>!v)){$('qFb').textContent='กรุณาตอบข้อ 1, 2, 4 และ 6 ให้ครบ (ข้อ 3 และ 5 เขียนตอบด้วยตนเอง)';$('qFb').className='fb err';return;}
+  const key=['b','a','b','a'];const sc=a.filter((v,i)=>v===key[i]).length;
+  S.q=a;S.q3=$('q3').value;S.q5=$('q5').value;S.qDone=true;save();$('qAns').style.display='block';
+  $('qFb').className='fb'+(sc===4?'':' err');$('qFb').textContent=sc===4?'ข้อเลือกตอบถูกทั้ง 4 ข้อ ลองเทียบข้อ 3 และ 5 กับแนวคำตอบด้านล่าง':`ข้อเลือกตอบถูก ${sc}/4 ข้อ ทบทวนตารางผลและสรุปจากหนังสือ แล้วดูแนวคำตอบด้านล่าง`;
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3','z4'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['a','b','a','b'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===4?'':' err');$('zFb').textContent=`ได้ ${sc}/4 · เฉลย: 1) เงิน 1.01 2) อะลูมิเนียมนำความร้อนได้ดีกว่าเหล็กประมาณ 3 เท่า 3) น้ำแข็ง 0.005 มากกว่าน้ำ 0.0014 จึงนำความร้อนได้ดีกว่า 4) ฉนวนความร้อน เหมาะทำด้ามจับ`;
+});
+function progress(){
+  const d=[!!S.lab,!!S.qDone,Number(S.sliderUsed)>0,!!S.zDone];
+  const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);
+  $('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (ทดลอง · คำถาม · แบบจำลองอนุภาค · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* ---- คืนค่าที่บันทึกไว้: จำลองซ้ำตามช่วงที่บันทึก ---- */
+(()=>{
+  const m=[0.5,1.01,0.99,0.163].includes(Number(S.mat))?Number(S.mat):0.5;
+  resetSim(m);$('mat').value=String(m)==='0.5'?'0.50':String(m);
+  buildSide();
+  if(Array.isArray(S.segs))for(const sg of S.segs){lit=!!sg[0];advance(Math.min(MAXU-unit,Number(sg[1])||0));}
+  lit=!!S.lit;
+  if(S.q)['q1','q2','q4','q6'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.q[i]}"]`);if(e)e.checked=true;});
+  if(S.q3)$('q3').value=S.q3;if(S.q5)$('q5').value=S.q5;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3','z4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  render();progress();
+})();
+window.__lab={diffuseStep,pieces,get melt(){return melt;},get unit(){return unit;},advance,resetSim,setLit:v=>{lit=v;}};
+})();
+</script>
+</body>
+</html>

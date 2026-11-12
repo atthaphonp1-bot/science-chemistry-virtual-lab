@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.4 ความร้อนทำให้สารเปลี่ยนสถานะได้อย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.4 ความร้อนทำให้สารเปลี่ยนสถานะได้อย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-4.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ice:#bfe3ff;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:680px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem}
+.p-ice{background:#dff0ff;color:#0b4f8a}.p-melting{background:#e6e0ff;color:#4b2fa3}.p-water{background:#d6f0ff;color:#0a5f86}.p-boiling{background:#ffe3d1;color:#a8420f}.p-steam{background:#f0f0f0;color:#555}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#fff1e6;position:sticky;top:0}.tw{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.dataT{margin-top:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+@keyframes steam{0%{transform:translateY(0) scale(.8);opacity:.7}100%{transform:translateY(-46px) scale(1.4);opacity:0}}
+@keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
+.bub{animation:bub 1.3s linear infinite}.stm{animation:steam 1.8s linear infinite}.flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 1 เรื่องที่ 4</div>
+  <h1>กิจกรรม 5.4 ความร้อนทำให้สารเปลี่ยนสถานะได้อย่างไร</h1>
+  <p class="lead">ให้ความร้อนแก่น้ำแข็งด้วยตะเกียงแอลกอฮอล์ในห้องทดลองเสมือน วัดอุณหภูมิทุก 1 นาที สังเกตสถานะ แล้วเขียนกราฟอุณหภูมิกับเวลา</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>สังเกตและอธิบายการเปลี่ยนสถานะของน้ำเนื่องจากความร้อน</p>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>น้ำแข็ง</li><li>แท่งแก้วคน</li><li>เทอร์มอมิเตอร์</li><li>บีกเกอร์ ขนาด 250 cm³</li><li>ชุดตะเกียงแอลกอฮอล์</li><li>ขาตั้งพร้อมที่จับ</li><li>กระดาษกราฟ</li><li>นาฬิกาจับเวลา</li></ul>
+<div class="note warn"><strong>ข้อควรระวัง:</strong> แอลกอฮอล์เป็นสารไวไฟ จึงควรระมัดระวังในการใช้ตะเกียงแอลกอฮอล์ ในแล็บเสมือนนี้ไม่มีไฟจริง แต่เวลาทำจริงต้องมีครูดูแลเสมอ</div>
+<h3>วิธีดำเนินกิจกรรม</h3>
+<ol class="steps">
+<li>ใส่น้ำแข็งก้อนเล็ก ๆ ประมาณ 2 ใน 3 ของบีกเกอร์ จัดอุปกรณ์ วัดอุณหภูมิเมื่อระดับของเหลวในเทอร์มอมิเตอร์คงที่ สังเกตสถานะของน้ำแข็ง บันทึกผล</li>
+<li>ให้ความร้อนแก่น้ำแข็งด้วยตะเกียงแอลกอฮอล์ ใช้แท่งแก้วคนให้ทั่วตลอดเวลา วัดอุณหภูมิ สังเกตสถานะของสิ่งที่อยู่ในบีกเกอร์ทุก ๆ 1 นาที จนเดือด บันทึกผล</li>
+<li>ให้ความร้อนต่อไปอีก 3 นาที วัดอุณหภูมิ สังเกตสถานะทุก ๆ 1 นาที บันทึกผล</li>
+<li>เขียนกราฟแสดงความสัมพันธ์ระหว่างอุณหภูมิกับเวลา ตั้งแต่เริ่มวัดอุณหภูมิของน้ำแข็งจนสิ้นสุดการทำกิจกรรม</li></ol>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน</h2>
+<p class="lead">กด “จุดตะเกียง” แล้วกด “บันทึกผล 1 นาที” ซ้ำ ๆ (หรือใช้เล่นอัตโนมัติ) ระบบจะอ่านอุณหภูมิและบันทึกสถานะให้ เมื่อน้ำเดือดแล้วต้องให้ความร้อนต่ออีก 3 นาที</p>
+<div class="lab" style="margin-top:16px">
+ <div class="stage">
+ <svg viewBox="0 0 360 380" role="img" aria-labelledby="stT stD"><title id="stT">ชุดทดลองให้ความร้อนแก่น้ำแข็ง</title><desc id="stD">บีกเกอร์ใส่น้ำแข็งบนขาตั้ง มีเทอร์มอมิเตอร์และตะเกียงแอลกอฮอล์</desc>
+  <defs><clipPath id="bk"><path d="M110 120 L110 300 Q110 312 122 312 L238 312 Q250 312 250 300 L250 120Z"/></clipPath>
+  <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd3ff"/><stop offset="1" stop-color="#5aa9ee"/></linearGradient></defs>
+  <rect x="60" y="355" width="240" height="14" rx="6" fill="#9aa3b5"/><rect x="278" y="60" width="8" height="300" fill="#b3bac8"/>
+  <rect x="95" y="320" width="170" height="8" rx="3" fill="#8f98ab"/><rect x="108" y="322" width="6" height="35" fill="#8f98ab"/><rect x="246" y="322" width="6" height="35" fill="#8f98ab"/>
+  <g clip-path="url(#bk)"><rect id="wRect" x="100" y="312" width="160" height="0" fill="url(#wg)" opacity=".85"/><g id="ice"></g><g id="bubbles"></g></g>
+  <path d="M110 120 L110 300 Q110 312 122 312 L238 312 Q250 312 250 300 L250 120" fill="none" stroke="#5f7694" stroke-width="3" stroke-linejoin="round"/>
+  <g stroke="#7c8ea8" stroke-width="1.5"><line x1="110" y1="150" x2="122" y2="150"/><line x1="110" y1="190" x2="122" y2="190"/><line x1="110" y1="230" x2="122" y2="230"/><line x1="110" y1="270" x2="122" y2="270"/></g>
+  <g id="stirrer" ><line x1="170" y1="70" x2="195" y2="300" stroke="#8fb5cc" stroke-width="4" stroke-linecap="round"/></g>
+  <g id="thermo"><rect x="206" y="40" width="12" height="265" rx="6" fill="#fff" stroke="#7a859a" stroke-width="2"/><rect id="hg" x="210" y="300" width="4" height="0" fill="#d62f2f"/><circle cx="212" cy="305" r="9" fill="#d62f2f" stroke="#7a859a" stroke-width="2"/></g>
+  <line x1="286" y1="100" x2="238" y2="100" stroke="#b3bac8" stroke-width="5"/><rect x="232" y="94" width="12" height="12" rx="3" fill="#8c95a8"/>
+  <g id="lamp"><path d="M150 372 h60 l10 -26 h-80z" fill="#7aa4c8" stroke="#4d6f90" stroke-width="2" opacity=".0"/></g>
+  <g transform="translate(0,0)"><rect x="140" y="345" width="80" height="10" fill="none"/>
+   <path d="M142 352 Q142 335 180 335 Q218 335 218 352 Z" fill="#cfd8e6" stroke="#6a7c96" stroke-width="2"/>
+   <rect x="170" y="324" width="20" height="12" fill="#8a97ab"/>
+   <g id="flame" style="display:none"><path class="flame" d="M180 322 C168 308 176 296 180 286 C184 296 192 308 180 322Z" fill="#ff8a2b"/><path class="flame" d="M180 322 C174 314 178 308 180 302 C182 308 186 314 180 322Z" fill="#ffd45a"/></g></g>
+  <g id="steam" style="display:none" fill="#cdd5e0"><circle class="stm" cx="150" cy="112" r="9"/><circle class="stm" cx="180" cy="104" r="11" style="animation-delay:.5s"/><circle class="stm" cx="225" cy="110" r="8" style="animation-delay:1s"/></g>
+ </svg></div>
+ <div class="panel">
+  <div class="readout"><div><small>เวลา</small><b id="rTime">0</b><small>นาที</small></div><div><small>อุณหภูมิ</small><b id="rTemp">-5.0</b><small>°C</small></div><div><small>ความร้อนที่ได้รับ</small><b id="rQ">0</b><small>cal</small></div></div>
+  <div>สถานะในบีกเกอร์: <span class="badge p-ice" id="rPhase">น้ำแข็ง</span></div>
+  <p class="pc" id="obs" aria-live="polite" style="margin:0"></p>
+  <div class="btns">
+   <button class="btn" id="lampBtn" type="button">จุดตะเกียง</button>
+   <button class="btn" id="stepBtn" type="button" disabled>บันทึกผล 1 นาที</button>
+   <button class="btn alt" id="autoBtn" type="button" disabled>เล่นอัตโนมัติ</button>
+   <button class="btn alt" id="resetBtn" type="button">เริ่มใหม่</button>
+  </div>
+  <p class="fb" id="labFb" aria-live="polite"></p>
+  <details><summary>ค่าที่ใช้ในแบบจำลอง</summary><p class="pc">น้ำแข็ง 100 g เริ่มที่ −5 °C · ตะเกียงให้ความร้อน 1,000 cal ต่อนาที (ไม่มีความร้อนสูญเสีย) · ความจุความร้อนจำเพาะ น้ำแข็ง 0.5 น้ำ 1.0 ไอน้ำ 0.48 cal/g·°C · ความร้อนแฝงของการหลอมเหลว 80 cal/g และของการกลายเป็นไอ 540 cal/g (ตาราง 5.3) แบบจำลองนี้ลดรูปจากการทดลองจริงที่มีความร้อนสูญเสียและเครื่องมือมีความคลาดเคลื่อน</p></details>
+ </div>
+</div>
+</section>
+
+<section class="card" id="data"><p class="kicker">ส่วนที่ 2 · บันทึกผลและกราฟ</p><h2>ตารางบันทึกผลและกราฟอุณหภูมิ–เวลา</h2>
+<div class="two">
+ <div class="tw"><table><thead><tr><th>เวลา (นาที)</th><th>อุณหภูมิ (°C)</th><th>สถานะ</th></tr></thead><tbody id="rows"><tr><td colspan="3" style="color:#999">ยังไม่มีข้อมูล</td></tr></tbody></table></div>
+ <div class="graph"><svg id="graph" viewBox="0 0 420 300" role="img" aria-label="กราฟอุณหภูมิกับเวลา"></svg></div>
+</div>
+<p class="pc">กราฟในหนังสือเรียน (ภาพ 5.27) ใช้ความร้อนเป็นแกนนอน ส่วนกิจกรรมนี้ใช้เวลา เพราะตะเกียงให้ความร้อนสม่ำเสมอ ทั้งสองกราฟจึงมีรูปร่างคล้ายกัน</p>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 3 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<fieldset><legend>1. ปริมาณความร้อนที่น้ำแข็งได้รับ มีความสัมพันธ์กับเวลาหรือไม่ อย่างไร</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> ไม่มีความสัมพันธ์กัน</label>
+<label class="opt"><input type="radio" name="q1" value="b"> ยิ่งให้ความร้อนนานขึ้น น้ำแข็งยิ่งได้รับความร้อนมากขึ้น เพราะตะเกียงให้ความร้อนสม่ำเสมอ</label>
+<label class="opt"><input type="radio" name="q1" value="c"> ได้รับความร้อนเฉพาะตอนอุณหภูมิเพิ่มขึ้นเท่านั้น</label></fieldset>
+<fieldset><legend>2. ช่วงที่น้ำแข็งหลอมเหลวเป็นน้ำ อุณหภูมิเป็นอย่างไร น้ำแข็งได้รับความร้อนหรือไม่ และสิ่งที่อยู่ในบีกเกอร์มีสถานะใดบ้าง</legend>
+<label class="opt"><input type="radio" name="q2" value="a"> อุณหภูมิสูงขึ้นเรื่อย ๆ มีเฉพาะของแข็ง</label>
+<label class="opt"><input type="radio" name="q2" value="b"> อุณหภูมิคงที่ที่ 0 °C ยังได้รับความร้อน และมีทั้งน้ำแข็งกับน้ำ (ของแข็งและของเหลว)</label>
+<label class="opt"><input type="radio" name="q2" value="c"> อุณหภูมิคงที่เพราะไม่ได้รับความร้อน</label></fieldset>
+<fieldset><legend>3. ช่วงที่น้ำเดือดเป็นไอน้ำ อุณหภูมิเป็นอย่างไร น้ำได้รับความร้อนหรือไม่ และสิ่งที่อยู่ในบีกเกอร์มีสถานะใดบ้าง</legend>
+<label class="opt"><input type="radio" name="q3" value="a"> อุณหภูมิคงที่ที่ 100 °C ยังได้รับความร้อน และมีทั้งน้ำกับไอน้ำ (ของเหลวและแก๊ส)</label>
+<label class="opt"><input type="radio" name="q3" value="b"> อุณหภูมิเพิ่มขึ้นเรื่อย ๆ จนเกิน 100 °C</label>
+<label class="opt"><input type="radio" name="q3" value="c"> อุณหภูมิลดลงเพราะน้ำระเหย</label></fieldset>
+<fieldset><legend>4. จากกราฟ สรุปความสัมพันธ์ระหว่างอุณหภูมิกับเวลาขณะที่หลอมเหลวและเดือดได้อย่างไร</legend>
+<label class="opt"><input type="radio" name="q4" value="a"> ขณะเปลี่ยนสถานะ อุณหภูมิคงที่ (กราฟเป็นเส้นระดับ) ทั้งที่ยังได้รับความร้อน</label>
+<label class="opt"><input type="radio" name="q4" value="b"> ขณะเปลี่ยนสถานะ อุณหภูมิเพิ่มขึ้นเร็วที่สุด</label>
+<label class="opt"><input type="radio" name="q4" value="c"> ขณะเปลี่ยนสถานะ อุณหภูมิลดลง</label></fieldset>
+<label for="q5"><strong>5. สรุปได้ว่าอย่างไร</strong> (เขียนด้วยคำของตนเอง)</label>
+<textarea id="q5" placeholder="เช่น เมื่อสารได้รับความร้อน …"></textarea>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="q5Ans" style="display:none"><strong>แนวคำตอบข้อ 5:</strong> เมื่อให้ความร้อนแก่น้ำแข็ง อุณหภูมิเพิ่มขึ้นจนถึง 0 °C น้ำแข็งเริ่มหลอมเหลวโดยอุณหภูมิคงที่ จนหมดแล้วอุณหภูมิของน้ำจึงเพิ่มขึ้นถึง 100 °C น้ำเดือดกลายเป็นไอโดยอุณหภูมิคงที่ สารเปลี่ยนสถานะได้เมื่อได้รับหรือสูญเสียความร้อน และขณะเปลี่ยนสถานะอุณหภูมิคงที่ (ความร้อนถูกใช้เปลี่ยนสถานะ)</div>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 4 · ทำไมอุณหภูมิจึงคงที่</p><h2>แบบจำลองอนุภาค</h2>
+<p>เมื่อสารเปลี่ยนสถานะ ความร้อนที่ได้รับถูกใช้ทำให้แรงยึดเหนี่ยวระหว่างอนุภาคลดลง โดยอุณหภูมิไม่เปลี่ยน เลื่อนดูตามเวลาที่บันทึกได้ในการทดลอง</p>
+<div class="two"><div class="stage"><svg id="part" viewBox="0 0 300 200" role="img" aria-label="แบบจำลองอนุภาคของน้ำ"></svg></div>
+<div class="panel"><label for="pSlider">เลื่อนเวลา (นาที)</label><input type="range" id="pSlider" min="0" max="0" value="0" disabled><div>สถานะ: <span class="badge p-ice" id="pPhase">น้ำแข็ง</span></div><p class="pc" id="pDesc"></p></div></div>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวนจากตาราง 5.2 และ 5.3</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. ที่ความดัน 1 บรรยากาศ บรอมีน (Br₂) มีจุดหลอมเหลว −7.2 °C และจุดเดือด 58.8 °C ที่อุณหภูมิห้อง 25 °C บรอมีนมีสถานะใด</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> ของแข็ง</label><label class="opt"><input type="radio" name="z1" value="b"> ของเหลว</label><label class="opt"><input type="radio" name="z1" value="c"> แก๊ส</label></fieldset>
+<fieldset><legend>2. น้ำแข็งมวล 50 g ที่ 0 °C ต้องใช้ความร้อนเท่าไรจึงหลอมเป็นน้ำที่ 0 °C ทั้งหมด (ความร้อนแฝงของการหลอมเหลว 80 cal/g)</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> 1,600 cal</label><label class="opt"><input type="radio" name="z2" value="b"> 4,000 cal</label><label class="opt"><input type="radio" name="z2" value="c"> 27,000 cal</label></fieldset>
+<fieldset><legend>3. ทองแดง 1 g ที่ 1,083 °C มีความร้อนแฝงของการหลอมเหลว 32 cal/g ตะกั่ว 1 g ที่จุดหลอมเหลว ใช้ความร้อนกี่ cal (ตาราง 5.3: ตะกั่ว 5.9 cal/g) เปรียบเทียบกับทองแดงได้ว่าอย่างไร</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> ตะกั่ว 5.9 cal ใช้น้อยกว่าทองแดง</label><label class="opt"><input type="radio" name="z3" value="b"> ตะกั่ว 5.9 cal ใช้มากกว่าทองแดง</label><label class="opt"><input type="radio" name="z3" value="c"> เท่ากัน</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ข้อมูลอ้างอิงจากหนังสือเรียน</p><h2>ตาราง 5.3 ความร้อนแฝงของสารต่าง ๆ</h2>
+<div class="tw"><table><thead><tr><th>สาร</th><th>จุดหลอมเหลว (°C)</th><th>ความร้อนแฝงหลอมเหลว (cal/g)</th><th>จุดเดือด (°C)</th><th>ความร้อนแฝงกลายเป็นไอ (cal/g)</th></tr></thead><tbody>
+<tr><td>ออกซิเจน</td><td>−219</td><td>3.3</td><td>−183</td><td>51</td></tr><tr><td>ไนโตรเจน</td><td>−210</td><td>6.1</td><td>−196</td><td>48</td></tr><tr><td>เอทิลแอลกอฮอล์</td><td>−144</td><td>24.9</td><td>78</td><td>205</td></tr><tr><td>แอมโมเนีย</td><td>−75</td><td>108</td><td>−33</td><td>327</td></tr><tr><td>น้ำ</td><td>0</td><td>80</td><td>100</td><td>540</td></tr><tr><td>ตะกั่ว</td><td>327</td><td>5.9</td><td>1,750</td><td>208</td></tr><tr><td>เงิน</td><td>962</td><td>26</td><td>2,163</td><td>628</td></tr><tr><td>ทองแดง</td><td>1,083</td><td>32</td><td>2,300</td><td>1,211</td></tr><tr><td>เหล็ก</td><td>1,538</td><td>69.1</td><td>3,023</td><td>1,520</td></tr></tbody></table></div>
+<p class="pc">ที่มา: หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 45–50 · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู</p>
+</section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>🎉 ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่ แล้วเปรียบเทียบกราฟ หรือทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act54_v1';
+const MASS=100,START=-5,POWER=1000,EXTRA_MIN=3;
+/* โมเดลนี้พอร์ตจาก heating_state() ที่ผ่าน checks ของ llm-orchestrator (ทดสอบด้วย node ใน tests ของ skill) */
+function heatingState(q,mass=MASS,start=START){
+  const ci=.5,cw=1,cs=.48,lf=80,lv=540;
+  const b1=mass*ci*(0-start),b2=b1+mass*lf,b3=b2+mass*cw*100,b4=b3+mass*lv;
+  q=Math.max(0,q);
+  if(q<b1)return[start+q/(mass*ci),'ice'];
+  if(q<b2)return[0,'melting'];
+  if(q<b3)return[(q-b2)/(mass*cw),'water'];
+  if(q<b4)return[100,'boiling'];
+  return[100+(q-b4)/(mass*cs),'steam'];
+}
+const B=(m=>({b1:m*.5*-START,b2:m*.5*-START+m*80,b3:m*.5*-START+m*80+m*100,b4:m*.5*-START+m*80+m*100+m*540}))(MASS);
+const TH={ice:'น้ำแข็ง',melting:'น้ำแข็งกำลังหลอมเหลว (น้ำแข็ง + น้ำ)',water:'น้ำ',boiling:'น้ำกำลังเดือด (น้ำ + ไอน้ำ)',steam:'ไอน้ำ'};
+const THS={ice:'ของแข็ง',melting:'ของแข็ง + ของเหลว',water:'ของเหลว',boiling:'ของเหลว + แก๊ส',steam:'แก๊ส'};
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+let minute=0,lamp=false,rows=[],auto=null;
+
+function quantity(){return minute*POWER;}
+function render(){
+  const[t,p]=heatingState(quantity());
+  $('rTime').textContent=minute;$('rTemp').textContent=t.toFixed(1);$('rQ').textContent=quantity().toLocaleString('en-US');
+  const bg=$('rPhase');bg.textContent=TH[p];bg.className='badge p-'+p;
+  $('flame').style.display=lamp?'':'none';$('steam').style.display=(p==='boiling'||p==='steam')?'':'none';
+  $('lampBtn').textContent=lamp?'ดับตะเกียง':'จุดตะเกียง';
+  // thermometer
+  const h=Math.max(8,Math.min(250,((t+20)/140)*250));$('hg').setAttribute('y',300-h);$('hg').setAttribute('height',h);
+  // water + ice
+  const total=B.b2-B.b1,meltFrac=p==='ice'?0:p==='melting'?(quantity()-B.b1)/total:1;
+  const waterH=p==='ice'?0:Math.max(6,60+110*meltFrac);
+  const evap=p==='steam'?0:p==='boiling'?(quantity()-B.b3)/(B.b4-B.b3):0;
+  const lvl=p==='ice'?0:Math.min(170,waterH)*(1-evap*.5);
+  $('wRect').setAttribute('y',312-lvl);$('wRect').setAttribute('height',lvl);
+  let ice='';const n=Math.round(14*(1-meltFrac));
+  const seed=[[125,150],[160,170],[195,140],[225,175],[140,205],[180,215],[215,230],[130,250],[170,262],[205,268],[150,285],[190,292],[228,280],[118,185],[235,205]];
+  for(let i=0;i<n;i++){const[x,y]=seed[i%seed.length];const yy=p==='ice'?y:Math.max(130,y-(110*meltFrac*(1-i/14)));ice+=`<rect x="${x}" y="${yy}" width="26" height="26" rx="5" fill="#d8eeff" stroke="#9cc9ee" stroke-width="2" opacity=".95" transform="rotate(${(i*23)%30-15} ${x+13} ${yy+13})"/>`;}
+  $('ice').innerHTML=ice;
+  let bub='';if(p==='boiling'||p==='steam'){for(let i=0;i<8;i++)bub+=`<circle class="bub" cx="${125+i*16}" cy="${300-(i%3)*10}" r="${3+i%3}" fill="#fff" style="animation-delay:${(i*.17).toFixed(2)}s"/>`;}
+  $('bubbles').innerHTML=bub;
+  $('obs').textContent=lamp||minute>0?`สังเกต: ${TH[p]} · ${THS[p]}`:'สังเกต: น้ำแข็งก้อนเล็ก ๆ ในบีกเกอร์ ยังไม่ได้ให้ความร้อน';
+  $('stepBtn').disabled=!lamp||finished();$('autoBtn').disabled=!lamp||finished();
+  drawTable();drawGraph();setupSlider();
+}
+function boilMinute(){const r=rows.find(r=>r.p==='boiling');return r?r.m:null;}
+function finished(){const b=boilMinute();return b!==null&&minute>=b+EXTRA_MIN;}
+function drawTable(){
+  const tb=$('rows');if(!rows.length){tb.innerHTML='<tr><td colspan="3" style="color:#999">ยังไม่มีข้อมูล</td></tr>';return;}
+  tb.innerHTML=rows.map(r=>`<tr><td>${r.m}</td><td>${r.t.toFixed(1)}</td><td>${TH[r.p].split(' (')[0]}</td></tr>`).join('');
+  const w=tb.parentElement;w.scrollTop=w.scrollHeight;
+}
+function drawGraph(){
+  const W=420,H=300,L=46,Rr=14,T=14,Bt=42,maxT=Math.max(30,Math.ceil(Math.max(...rows.map(r=>r.m),23)/1)),maxTime=Math.max(24,rows.length?rows[rows.length-1].m+1:24);
+  const x=m=>L+(W-L-Rr)*m/maxTime,y=c=>T+(H-T-Bt)*(1-(c+10)/120);
+  let s=`<rect width="${W}" height="${H}" fill="#fff"/>`;
+  for(let c=-10;c<=110;c+=20){s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(c)}" y2="${y(c)}" stroke="#e6e9f0"/><text x="${L-6}" y="${y(c)+4}" font-size="11" text-anchor="end" fill="#66708a">${c}</text>`;}
+  for(let m=0;m<=maxTime;m+=4){s+=`<line x1="${x(m)}" x2="${x(m)}" y1="${T}" y2="${H-Bt}" stroke="#f0f2f7"/><text x="${x(m)}" y="${H-Bt+16}" font-size="11" text-anchor="middle" fill="#66708a">${m}</text>`;}
+  s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(0)}" y2="${y(0)}" stroke="#7aa4ff" stroke-dasharray="4 4"/><line x1="${L}" x2="${W-Rr}" y1="${y(100)}" y2="${y(100)}" stroke="#ff9a5c" stroke-dasharray="4 4"/>`;
+  s+=`<text x="${(L+W)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#1d2433">เวลา (นาที)</text><text transform="translate(12 ${(H-Bt)/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#1d2433">อุณหภูมิ (°C)</text>`;
+  if(rows.length){s+=`<polyline fill="none" stroke="#e8662c" stroke-width="2.5" stroke-linejoin="round" points="${rows.map(r=>x(r.m)+','+y(r.t)).join(' ')}"/>`+rows.map(r=>`<circle cx="${x(r.m)}" cy="${y(r.t)}" r="3.5" fill="#e8662c"/>`).join('');}
+  $('graph').innerHTML=s;
+}
+function stepOne(){
+  if(!lamp||finished())return;
+  minute+=1;const[t,p]=heatingState(quantity());rows.push({m:minute,t:Math.round(t*10)/10,p});
+  S.minute=minute;S.rows=rows;S.lamp=lamp;
+  if(finished()){stopAuto();S.lab=true;$('labFb').className='fb';$('labFb').textContent='ครบแล้ว: ให้ความร้อนต่ออีก 3 นาทีหลังน้ำเดือด ตามขั้นตอนที่ 3 ดูกราฟและตอบคำถามต่อได้เลย';}
+  save();render();
+}
+function stopAuto(){if(auto){clearInterval(auto);auto=null;}$('autoBtn').textContent='เล่นอัตโนมัติ';}
+$('lampBtn').addEventListener('click',()=>{lamp=!lamp;if(!rows.length){rows.push({m:0,t:START,p:'ice'});}if(!lamp)stopAuto();S.lamp=lamp;S.rows=rows;save();$('labFb').textContent=lamp?'':'ดับตะเกียงแล้ว ความร้อนหยุดเพิ่ม (แบบจำลองไม่มีความร้อนสูญเสีย อุณหภูมิจึงไม่ลดลง)';render();});
+$('stepBtn').addEventListener('click',stepOne);
+$('autoBtn').addEventListener('click',()=>{if(auto){stopAuto();return;}$('autoBtn').textContent='หยุดเล่น';auto=setInterval(stepOne,500);});
+$('resetBtn').addEventListener('click',()=>{stopAuto();minute=0;lamp=false;rows=[];delete S.minute;delete S.rows;delete S.lamp;delete S.lab;$('labFb').textContent='';save();render();});
+
+/* particle model */
+function drawParticles(m){
+  const r=rows.find(r=>r.m===m)||rows[rows.length-1];const ph=r?r.p:'ice';
+  const cols=6,rowsN=4,sp=ph==='ice'?34:ph==='melting'?38:ph==='water'?36:ph==='boiling'?50:75;
+  let s='<rect width="300" height="200" fill="#f8fbff"/>';let k=0;
+  const rnd=i=>{const v=Math.sin(i*91.7+m*13.3)*10000;return v-Math.floor(v);};
+  for(let i=0;i<cols*rowsN;i++){
+    const cx=i%cols,cy=Math.floor(i/cols);let x,y;
+    if(ph==='ice'){x=45+cx*34+(rnd(i)-.5)*3;y=40+cy*34+(rnd(i+7)-.5)*3;}
+    else if(ph==='melting'){const solid=cy<2;x=45+cx*34+(rnd(i)-.5)*(solid?5:16);y=(solid?40+cy*30:110+(cy-2)*34)+(rnd(i+7)-.5)*(solid?5:12);}
+    else if(ph==='water'){x=40+cx*36+(rnd(i)-.5)*16+((cy%2)*10);y=110+cy*18+(rnd(i+7)-.5)*14;}
+    else if(ph==='boiling'){const gas=i%3===0;x=gas?25+rnd(i)*250:40+cx*36+(rnd(i)-.5)*16;y=gas?20+rnd(i+3)*100:130+cy*14+(rnd(i+7)-.5)*14;}
+    else{x=20+rnd(i)*260;y=20+rnd(i+5)*160;}
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#ff9a5c" stroke="#e8662c" stroke-width="2"/>`;
+    if(ph==='steam'||(ph==='boiling'&&i%3===0)){const a=rnd(i+11)*6.28;s+=`<line x1="${x}" y1="${y}" x2="${x+Math.cos(a)*18}" y2="${y+Math.sin(a)*18}" stroke="#a8420f" stroke-width="1.6"/>`;}
+  }
+  $('part').innerHTML=s;$('pPhase').textContent=THS[ph];$('pPhase').className='badge p-'+ph;
+  $('pDesc').textContent={ice:'อนุภาคอยู่ชิดกันเป็นระเบียบ สั่นอยู่กับที่',melting:'ได้รับความร้อน อนุภาคสั่นมากขึ้น แรงยึดเหนี่ยวลดลง บางส่วนเริ่มเคลื่อนที่ได้ อุณหภูมิคงที่ที่ 0 °C',water:'อนุภาคอยู่ใกล้กัน เคลื่อนที่ไปมาได้ ไม่เป็นระเบียบ',boiling:'บางอนุภาคหลุดออกเป็นแก๊ส อุณหภูมิคงที่ที่ 100 °C',steam:'อนุภาคอยู่ห่างกัน เคลื่อนที่เร็วและอิสระ'}[ph];
+}
+function setupSlider(){const sl=$('pSlider');const max=rows.length?rows[rows.length-1].m:0;sl.max=max;sl.disabled=!rows.length;if(Number(sl.value)>max)sl.value=max;drawParticles(Number(sl.value));}
+$('pSlider').addEventListener('input',e=>drawParticles(Number(e.target.value)));
+
+/* questions */
+const sel=n=>document.querySelector(`input[name="${n}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a=['q1','q2','q3','q4'].map(sel);
+  if(a.some(v=>!v)||!$('q5').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบทั้ง 5 ข้อ';$('qFb').className='fb err';return;}
+  const key=['b','b','a','a'];const sc=a.filter((v,i)=>v===key[i]).length;
+  S.q=a;S.q5=$('q5').value;S.qDone=true;save();$('q5Ans').style.display='block';
+  $('qFb').className='fb'+(sc===4?'':' err');$('qFb').textContent=sc===4?'ถูกทั้ง 4 ข้อ ลองเทียบข้อ 5 กับแนวคำตอบด้านล่าง':`ถูก ${sc}/4 ข้อ ทบทวนกราฟและแนวคำตอบด้านล่าง`;
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['b','b','a'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===3?'':' err');$('zFb').textContent=`ได้ ${sc}/3 · เฉลย: 1) ของเหลว (อยู่ระหว่าง −7.2 ถึง 58.8 °C) 2) 50 × 80 = 4,000 cal 3) ตะกั่ว 5.9 cal/g น้อยกว่าทองแดง 32 cal/g`;
+});
+function progress(){
+  const d=[!!S.lab,!!S.qDone,!!S.zDone,Number(S.sliderUsed)>0];
+  const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);$('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (ทดลอง · คำถาม · แบบจำลองอนุภาค · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+$('pSlider').addEventListener('change',()=>{S.sliderUsed=1;save();});
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* restore */
+(()=>{
+  rows=Array.isArray(S.rows)?S.rows:[];minute=Number(S.minute)||0;lamp=!!S.lamp;
+  if(S.q)['q1','q2','q3','q4'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.q[i]}"]`);if(e)e.checked=true;});
+  if(S.q5)$('q5').value=S.q5;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3'].forEach((n,i)=>{const e=document.querySelector(`input[name="${n}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  render();progress();
+})();
+window.__lab={heatingState,get rows(){return rows;}};
+})();
+</script>
+</body>
+</html>

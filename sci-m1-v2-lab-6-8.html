@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f0fc">
+<title>กิจกรรม 6.8 คำพยากรณ์อากาศมีประโยชน์อย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 6.8 คำพยากรณ์อากาศมีประโยชน์อย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-6-8.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--pu:#7b3fa8;--pu2:#b57ddb;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#f7f0fc;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,40,80,.1),0 2px 8px rgba(60,40,80,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#f7f0fc,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#5d3a7a;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--pu);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:720px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pu),var(--pu2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--pu);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--pu);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{padding-left:1.2rem}
+.stepbox{border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:14px 0;background:#fcfaff}.stepbox h3{margin:0 0 .4rem}
+.btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--pu);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.tabs button:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#f1e6fa}.tw{overflow:auto;border:1px solid var(--line);border-radius:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0;align-items:center}
+select{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fbf8fe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--red);font-weight:700}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.tabs button{border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px;text-align:left}.tabs button.on{background:var(--soft);border-color:var(--pu);box-shadow:0 0 0 2px rgba(123,63,168,.15)}.tabs b{display:block;color:var(--pu)}.tabs button .tick{float:right;color:var(--ok)}
+.fcst{background:#fff;border:1px dashed #b57ddb;border-radius:14px;padding:12px 16px;margin:10px 0}.fcst p{margin:.2rem 0}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem}.r-high{background:#ffe0df;color:#9a2f33}.r-medium{background:#fff0cc;color:#8a5a00}.r-low{background:#dcf5e8;color:#176553}
+@media(max-width:820px){.two,.tabs{grid-template-columns:1fr}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 6 กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ</div>
+  <h1>กิจกรรม 6.8 คำพยากรณ์อากาศมีประโยชน์อย่างไร</h1>
+  <p class="lead">อ่านคำพยากรณ์อากาศหลายแบบ ระบุข้อมูลที่คำพยากรณ์บอก แล้วสวมบทบาทสมมติเป็นชาวสวน เจ้าของรีสอร์ท หรือผู้ว่าราชการจังหวัดในพื้นที่แห้งแล้ง เพื่อตัดสินใจใช้ประโยชน์จากคำพยากรณ์</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>วิเคราะห์และแปลความหมายคำพยากรณ์อากาศเพื่อนำไปใช้ประโยชน์อย่างง่าย</p>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>คำพยากรณ์อากาศประจำวัน รายเดือน และรายสามเดือน</li><li>คำพยากรณ์อากาศเพื่อการเดินเรือ</li><li>คำพยากรณ์อากาศเพื่อการเกษตร</li></ul>
+<h3>วิธีดำเนินกิจกรรม</h3>
+<ol class="steps">
+<li>วิเคราะห์ข้อมูลคำพยากรณ์อากาศประจำวัน รายเดือน และรายสามเดือน คำพยากรณ์อากาศเพื่อการเดินเรือ และคำพยากรณ์อากาศเพื่อการเกษตร โดยร่วมกันอภิปรายในกลุ่มเพื่อระบุข้อมูลองค์ประกอบลมฟ้าอากาศ และแปลความหมายจากคำพยากรณ์</li>
+<li>แต่ละกลุ่มเลือกบทบาทสมมติเป็นกลุ่มคนที่มีอาชีพต่าง ๆ เช่น ชาวสวน เจ้าของรีสอร์ท ผู้ว่าราชการจังหวัด ซึ่งอาศัยอยู่ในพื้นที่เดียวกันและพื้นที่นั้นอยู่ในภาวะแห้งแล้ง</li>
+<li>วิเคราะห์คำพยากรณ์ว่า มีผลกระทบต่อสถานการณ์ของพื้นที่และอาชีพของตนเองอย่างไรและนำเสนอแนวทางการแก้ไขปัญหาจากมุมมองของแต่ละอาชีพ เพื่อหาข้อสรุปร่วมกัน นำเสนอโดยแสดงบทบาทสมมติ</li>
+<li>อภิปรายร่วมกันในชั้นเรียนเพื่อหาข้อสรุปเกี่ยวกับประโยชน์ของคำพยากรณ์อากาศ</li></ol>
+<div class="note warn"><strong>ข้อสังเกต:</strong> หนังสือไม่ได้ระบุข้อควรระวังของกิจกรรมนี้ แต่คำพยากรณ์ตัวอย่าง ตัวเลขฝนปกติ และตัวเลือกการตัดสินใจในแล็บเสมือนเป็น<strong>ค่าสมมติของแบบจำลอง</strong> ไม่ใช่ข้อมูลของกรมอุตุนิยมวิทยาหรือคำแนะนำทางการ เมื่อทำจริงให้ใช้คำพยากรณ์ฉบับจริง</div>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน: อ่านคำพยากรณ์และสวมบทบาท</h2>
+
+<div class="stepbox"><h3>ขั้นที่ 1 วิเคราะห์คำพยากรณ์ 3 แบบ</h3>
+<p>เลือกคำพยากรณ์แต่ละแบบ อ่านแล้วติ๊กข้อมูลองค์ประกอบลมฟ้าอากาศที่คำพยากรณ์นั้นบอก</p>
+<div class="tabs" role="group" aria-label="ชนิดคำพยากรณ์"><button type="button" data-p="gen"><span class="tick" id="tk_gen"></span><b>1. ประจำวัน/รายเดือน/รายสามเดือน</b>พยากรณ์ทั่วไป</button><button type="button" data-p="sail"><span class="tick" id="tk_sail"></span><b>2. เพื่อการเดินเรือ</b>ชาวเรือ</button><button type="button" data-p="agri"><span class="tick" id="tk_agri"></span><b>3. เพื่อการเกษตร</b>เกษตรกร</button></div>
+<div class="ctl"><label for="scn">สถานการณ์ฝนในคำพยากรณ์ (สมมติ)</label><select id="scn"><option value="A">ฝนน้อยกว่าปกติมาก</option><option value="B">ฝนค่อนข้างน้อย</option><option value="C">ฝนใกล้เคียงปกติ</option></select></div>
+<div class="fcst" id="fcst"><p class="pc">เลือกคำพยากรณ์ด้านบน</p></div>
+<fieldset id="elBox" disabled><legend>คำพยากรณ์นี้บอกข้อมูลอะไรบ้าง (เลือกได้หลายข้อ)</legend>
+<label class="opt"><input type="checkbox" name="el" value="temp"> อุณหภูมิอากาศ</label>
+<label class="opt"><input type="checkbox" name="el" value="rain"> ปริมาณฝน</label>
+<label class="opt"><input type="checkbox" name="el" value="wind"> ลม</label>
+<label class="opt"><input type="checkbox" name="el" value="wave"> ความสูงของคลื่น</label>
+<label class="opt"><input type="checkbox" name="el" value="hum"> ความชื้นสัมพัทธ์</label>
+<label class="opt"><input type="checkbox" name="el" value="price"> ราคาพืชผลในตลาด</label></fieldset>
+<div class="btns"><button class="btn" id="elBtn" type="button" disabled>ตรวจคำตอบ</button></div>
+<p class="fb" id="elFb" aria-live="polite"></p></div>
+
+<div class="stepbox"><h3>ขั้นที่ 2-3 เลือกบทบาทสมมติและวางแนวทาง</h3>
+<p>ทุกคนอยู่ในพื้นที่เดียวกัน พื้นที่นั้นอยู่ในภาวะแห้งแล้ง เลือกบทบาท แล้วเลือกแนวทางที่เหมาะกับสถานการณ์ตามคำพยากรณ์รายสามเดือน</p>
+<div class="ctl"><label for="role">บทบาท</label><select id="role"><option value="farmer">ชาวสวน</option><option value="resort">เจ้าของรีสอร์ท</option><option value="gov">ผู้ว่าราชการจังหวัด</option></select></div>
+<div class="note" id="riskBox"></div>
+<fieldset id="actBox"><legend>แนวทางที่จะทำ (เลือกได้หลายข้อ)</legend></fieldset>
+<div class="btns"><button class="btn" id="actBtn" type="button">ตรวจแนวทาง</button><button class="btn alt" id="resetBtn" type="button">เริ่มใหม่</button></div>
+<p class="fb" id="actFb" aria-live="polite"></p>
+<p class="pc" id="roleProg"></p>
+</div>
+<details><summary>ค่าที่ใช้ในแบบจำลอง</summary><p class="pc">ฝนรวมปกติ 3 เดือน 450 มม. (สมมติ) · คำพยากรณ์ฝนสามเดือน สถานการณ์ A 180 มม. B 330 มม. C 450 มม. (สมมติ) · ระดับความเสี่ยงภัยแล้ง: ฝนพยากรณ์น้อยกว่าครึ่งของปกติ = สูง, น้อยกว่า 80% ของปกติ = ปานกลาง, นอกนั้น = ต่ำ (เกณฑ์ของแบบจำลองเพื่อการเรียนรู้ ไม่ใช่เกณฑ์ของกรมอุตุนิยมวิทยา) · แนวทางที่ "เหมาะสม" ในแต่ละบทบาทกำหนดโดยผู้สร้างแบบจำลอง แบบจำลองเพื่อการศึกษา</p></details>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 2 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<fieldset><legend>1. คำพยากรณ์อากาศบอกข้อมูลอะไรบ้าง</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> สภาพลมฟ้าอากาศที่จะเกิดในอนาคต เช่น อุณหภูมิ ปริมาณฝน ลม</label>
+<label class="opt"><input type="radio" name="q1" value="b"> สภาพลมฟ้าอากาศที่เกิดขึ้นไปแล้วเมื่อวานเท่านั้น</label>
+<label class="opt"><input type="radio" name="q1" value="c"> ราคาสินค้าที่จะขึ้นหรือลง</label></fieldset>
+<label for="q2t"><strong>2. จากกิจกรรม สรุปได้ว่าอย่างไร</strong> (เขียนด้วยคำของตนเอง)</label>
+<textarea id="q2t" placeholder="เช่น คำพยากรณ์อากาศช่วยให้…"></textarea>
+<fieldset style="margin-top:14px"><legend>ชวนคิด (หนังสือหน้า 155): บุคคลกลุ่มใดควรติดตามข่าวสารการพยากรณ์อากาศอย่างสม่ำเสมอ เพราะเหตุใด</legend>
+<label class="opt"><input type="radio" name="q3" value="a"> ทุกคนที่กิจกรรมหรืออาชีพเกี่ยวข้องกับลมฟ้าอากาศ เช่น เกษตรกร ผู้เดินเรือ ผู้ดูแลการท่องเที่ยว เพื่อวางแผนและลดผลกระทบจากสภาพลมฟ้าอากาศ</label>
+<label class="opt"><input type="radio" name="q3" value="b"> เฉพาะนักอุตุนิยมวิทยาเท่านั้น</label>
+<label class="opt"><input type="radio" name="q3" value="c"> ไม่มีกลุ่มใดจำเป็นต้องติดตาม</label></fieldset>
+<div class="btns"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="qAns" style="display:none"><strong>แนวคำตอบข้อ 2 (จากเนื้อหาหนังสือหน้า 155):</strong> คำพยากรณ์อากาศบอกสภาพลมฟ้าอากาศที่จะเกิดในอนาคต นำไปใช้ประโยชน์ในการวางแผนทำกิจกรรมต่าง ๆ เช่น การใช้ชีวิตประจำวัน การเดินทางคมนาคม การเกษตร การป้องกันและลดผลกระทบจากภัยพิบัติทางธรรมชาติ การเฝ้าระวังสภาพลมฟ้าอากาศที่รุนแรง รวมทั้งการวางแผนระยะยาว เช่น การค้า การใช้ที่ดิน การจัดการน้ำ ธุรกิจการท่องเที่ยวและการเกษตร</div>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 3 · จากคำพยากรณ์สู่การตัดสินใจ</p><h2>ฝนที่พยากรณ์ต่างจากปกติแค่ไหนจึงเสี่ยงแล้ง</h2>
+<p>เลื่อนปริมาณฝนรวม 3 เดือนที่คำพยากรณ์บอก เทียบกับฝนปกติ 450 มม. (สมมติ) แล้วดูระดับความเสี่ยงที่แบบจำลองคำนวณ</p>
+<div class="two"><div><svg id="bar" viewBox="0 0 320 120" role="img" aria-label="ปริมาณฝนพยากรณ์เทียบกับปกติ" style="width:100%;height:auto"></svg></div>
+<div><label for="mm">ฝนพยากรณ์ 3 เดือน: <b id="mmV">180</b> มม.</label><input type="range" id="mm" min="0" max="600" step="10" value="180" style="width:100%"><div>ความเสี่ยงภัยแล้ง: <span class="badge" id="rk"></span></div><p class="pc" id="rkD"></p></div></div>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 4 · ทบทวนจากเนื้อหาหนังสือ</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. ข้อใดเป็นตัวอย่างการวางแผนระยะยาวที่ใช้คำพยากรณ์อากาศ (ตามหนังสือหน้า 155)</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> การจัดการน้ำ</label><label class="opt"><input type="radio" name="z1" value="b"> การเลือกเสื้อผ้าสำหรับวันนี้</label><label class="opt"><input type="radio" name="z1" value="c"> การจัดตารางสอบกลางภาค</label></fieldset>
+<fieldset><legend>2. ข้อใดเป็นสภาพลมฟ้าอากาศที่รุนแรงซึ่งควรเฝ้าระวัง (ตามหนังสือหน้า 155)</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> ท้องฟ้าโปร่งตลอดวัน</label><label class="opt"><input type="radio" name="z2" value="b"> พายุหมุนเขตร้อน</label><label class="opt"><input type="radio" name="z2" value="c"> ลมพัดเบา ๆ</label></fieldset>
+<fieldset><legend>3. ถ้าฝนปกติ 3 เดือนคือ 450 มม. และคำพยากรณ์บอกว่าจะมีฝน 200 มม. แบบจำลองประเมินความเสี่ยงภัยแล้งเป็นระดับใด</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> สูง</label><label class="opt"><input type="radio" name="z3" value="b"> ปานกลาง</label><label class="opt"><input type="radio" name="z3" value="c"> ต่ำ</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><h2>ข้อมูลอ้างอิง</h2>
+<p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 6 กิจกรรม 6.8 หน้า 154 และเนื้อหาสรุปเรื่องประโยชน์ของคำพยากรณ์อากาศหน้า 155 · ข้อความคำพยากรณ์ตัวอย่าง ตัวเลขฝน เกณฑ์ความเสี่ยง และแนวทางของแต่ละบทบาทเป็นค่าสมมติของแบบจำลอง · แบบจำลองเพื่อการศึกษา ไม่แทนคำพยากรณ์หรือคำแนะนำจริง</p></section>
+
+<section class="card" id="done" style="display:none;background:#f6f0fb"><h2>🎉 ทำครบทุกส่วนแล้ว</h2><p>ลองเปลี่ยนบทบาทหรือสถานการณ์ฝนแล้วดูว่าแนวทางที่เหมาะสมเปลี่ยนไปอย่างไร</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act68_v1';
+const NORMAL=450;
+/*PURE*/
+/* droughtRisk พอร์ตจาก drought_risk() ที่ผ่าน checks ของ llm-orchestrator (ทดสอบด้วย node เทียบกับต้นฉบับ Python) */
+function droughtRisk(forecast,normal){
+  if(normal<=0)throw new Error('normal must be > 0');
+  if(forecast*2<normal)return'high';
+  if(forecast*10<normal*8)return'medium';
+  return'low';
+}
+const RANK={low:0,medium:1,high:2};
+/* กฎ: min เป็นตัวเลข = เหมาะสมเมื่อระดับเสี่ยง >= min; 'low' = เหมาะสมเฉพาะเมื่อเสี่ยงต่ำ; 'never' = ไม่เหมาะสมเสมอ */
+function isRecommended(min,risk){return min==='never'?false:min==='low'?risk==='low':RANK[risk]>=min;}
+function scoreChoice(acts,chosen,risk){
+  let hit=0,missed=[],wrong=[];
+  acts.forEach((a,i)=>{const rec=isRecommended(a.min,risk),c=chosen.includes(i);if(rec&&c)hit++;else if(rec&&!c)missed.push(i);else if(!rec&&c)wrong.push(i);});
+  return{hit,missed,wrong,perfect:!missed.length&&!wrong.length};
+}
+/*ENDPURE*/
+const RISKTH={high:'สูง',medium:'ปานกลาง',low:'ต่ำ'};
+const FORE={A:180,B:330,C:450};
+const SCNTXT={A:'น้อยกว่าปกติมาก',B:'ค่อนข้างน้อยกว่าปกติ',C:'ใกล้เคียงปกติ'};
+const ROLES={
+ farmer:{n:'ชาวสวน',acts:[
+  {t:'ติดตามคำพยากรณ์รายเดือนและรายสามเดือนอย่างสม่ำเสมอ',min:0},
+  {t:'เตรียมแหล่งเก็บน้ำและวางแผนการให้น้ำ',min:1},
+  {t:'คลุมโคนต้นไม้เพื่อรักษาความชื้นในดิน',min:1},
+  {t:'เลื่อนหรือลดการปลูกพืชที่ต้องใช้น้ำมาก',min:2},
+  {t:'ให้น้ำและปลูกพืชตามปกติโดยไม่ปรับแผน',min:'low'},
+  {t:'ไม่ต้องสนใจคำพยากรณ์ เพราะเดาอากาศไม่ได้',min:'never'}]},
+ resort:{n:'เจ้าของรีสอร์ท',acts:[
+  {t:'ติดตามคำพยากรณ์ประจำวันเพื่อวางแผนกิจกรรมของนักท่องเที่ยว',min:0},
+  {t:'วางแผนสำรองน้ำใช้ในรีสอร์ท',min:1},
+  {t:'ขอความร่วมมือแขกให้ใช้น้ำอย่างประหยัด',min:2},
+  {t:'จัดกิจกรรมตามปกติ เพราะคำพยากรณ์ไม่มีผล',min:'low'},
+  {t:'เปิดให้ใช้น้ำสิ้นเปลืองเต็มที่เพื่อดึงดูดลูกค้า',min:'never'}]},
+ gov:{n:'ผู้ว่าราชการจังหวัด',acts:[
+  {t:'ติดตามคำพยากรณ์และประสานข้อมูลกับกรมอุตุนิยมวิทยา',min:0},
+  {t:'สำรวจแหล่งน้ำและวางแผนจัดสรรน้ำของจังหวัด',min:1},
+  {t:'ประกาศมาตรการประหยัดน้ำและเตรียมช่วยเหลือเกษตรกร',min:2},
+  {t:'ไม่ต้องเตรียมการใด ๆ เพราะฝนใกล้เคียงปกติ',min:'low'},
+  {t:'รอให้เกิดภัยแล้งก่อนจึงค่อยวางแผน',min:'never'}]}
+};
+const PROD={
+ gen:{n:'ประจำวัน/รายเดือน/รายสามเดือน',el:['temp','rain'],txt:s=>[`<b>ประจำวัน:</b> อุณหภูมิต่ำสุด 25 °C สูงสุด 36 °C ฝนไม่มี`,`<b>รายเดือน:</b> อุณหภูมิสูงกว่าปกติเล็กน้อย ฝนรวมของเดือนนี้${SCNTXT[s]}`,`<b>รายสามเดือน:</b> ฝนรวมคาดว่า ${FORE[s]} มม. (ปกติ ${NORMAL} มม.)`]},
+ sail:{n:'เพื่อการเดินเรือ',el:['wind','wave','rain'],txt:s=>['<b>ทะเลอ่าว:</b> ลมตะวันออกเฉียงใต้ ความเร็ว 15-25 กม./ชม.','<b>คลื่น:</b> สูง 1-2 เมตร','<b>ฝน:</b> มีฝนฟ้าคะนองบางพื้นที่ เรือเล็กควรระวัง']},
+ agri:{n:'เพื่อการเกษตร',el:['rain','hum','temp'],txt:s=>[`<b>ฝน:</b> ในช่วง 3 เดือนข้างหน้า ปริมาณฝน${SCNTXT[s]}`,'<b>ความชื้น:</b> ความชื้นสัมพัทธ์ 45-60% ค่อนข้างต่ำ','<b>อุณหภูมิ:</b> อากาศร้อนในตอนกลางวัน']}
+};
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+let cur=null;
+const scn=()=>$('scn').value;
+
+function showProd(p){
+  cur=p;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
+  $('fcst').innerHTML=`<p class="pc">คำพยากรณ์ตัวอย่าง (สมมติ): ${PROD[p].n}</p>`+PROD[p].txt(scn()).map(t=>`<p>${t}</p>`).join('');
+  $('elBox').disabled=false;$('elBtn').disabled=false;
+  document.querySelectorAll('input[name=el]').forEach(c=>c.checked=false);$('elFb').textContent='';
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>showProd(b.dataset.p)));
+$('scn').addEventListener('change',()=>{S.scn=scn();save();if(cur)showProd(cur);renderRole();});
+$('elBtn').addEventListener('click',()=>{
+  if(!cur)return;const ch=[...document.querySelectorAll('input[name=el]:checked')].map(c=>c.value).sort();
+  const ans=PROD[cur].el.slice().sort();const ok=ch.join()===ans.join();
+  const th={temp:'อุณหภูมิ',rain:'ปริมาณฝน',wind:'ลม',wave:'ความสูงคลื่น',hum:'ความชื้น'};
+  $('elFb').className='fb'+(ok?'':' err');
+  $('elFb').textContent=ok?'ถูกต้อง':'ยังไม่ตรง ลองอ่านคำพยากรณ์อีกครั้ง คำใบ้: มี '+ans.length+' รายการ และไม่มีข้อมูลที่ไม่ใช่องค์ประกอบลมฟ้าอากาศ';
+  if(ok){S.ident=S.ident||{};S.ident[cur]=true;save();ticks();}
+});
+function ticks(){['gen','sail','agri'].forEach(p=>$('tk_'+p).textContent=S.ident&&S.ident[p]?'✓':'');}
+
+function renderRole(){
+  const r=$('role').value,risk=droughtRisk(FORE[scn()],NORMAL);
+  $('riskBox').innerHTML=`คำพยากรณ์ฝนรายสามเดือน: <b>${FORE[scn()]} มม.</b> จากปกติ ${NORMAL} มม. · ความเสี่ยงภัยแล้ง <span class="badge r-${risk}">${RISKTH[risk]}</span> (แบบจำลอง)`;
+  const box=$('actBox');box.innerHTML='<legend>แนวทางที่จะทำ (เลือกได้หลายข้อ)</legend>'+ROLES[r].acts.map((a,i)=>`<label class="opt"><input type="checkbox" name="act" value="${i}"> ${a.t}</label>`).join('');
+  $('actFb').textContent='';
+  const d=S.roles?Object.keys(S.roles).length:0;$('roleProg').textContent=`ตรวจแนวทางแล้ว ${d} จาก 3 บทบาท (ผ่านอย่างน้อย 1 บทบาทจึงนับว่าทำส่วนทดลองเสร็จ)`;
+}
+$('role').addEventListener('change',renderRole);
+$('actBtn').addEventListener('click',()=>{
+  const r=$('role').value,risk=droughtRisk(FORE[scn()],NORMAL),acts=ROLES[r].acts;
+  const ch=[...document.querySelectorAll('input[name=act]:checked')].map(c=>Number(c.value));
+  if(!ch.length){$('actFb').className='fb err';$('actFb').textContent='เลือกแนวทางอย่างน้อย 1 ข้อ';return;}
+  const s=scoreChoice(acts,ch,risk);
+  let m=s.perfect?`เหมาะสมครบ: แนวทางที่เลือกสอดคล้องกับความเสี่ยง${RISKTH[risk]}`:'';
+  if(s.wrong.length)m+=` ไม่เหมาะกับสถานการณ์นี้: ${s.wrong.map(i=>'“'+acts[i].t+'”').join(', ')}.`;
+  if(s.missed.length)m+=` ยังขาด: ${s.missed.map(i=>'“'+acts[i].t+'”').join(', ')}.`;
+  $('actFb').className='fb'+(s.perfect?'':' err');$('actFb').textContent=m;
+  if(s.perfect){S.roles=S.roles||{};S.roles[r]=true;}
+  save();renderRole();$('actFb').className='fb'+(s.perfect?'':' err');$('actFb').textContent=m;
+});
+$('resetBtn').addEventListener('click',()=>{['ident','roles','scn'].forEach(k=>delete S[k]);save();ticks();$('scn').value='A';cur=null;$('fcst').innerHTML='<p class="pc">เลือกคำพยากรณ์ด้านบน</p>';$('elBox').disabled=true;$('elBtn').disabled=true;$('elFb').textContent='';document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));renderRole();});
+
+/* slider model */
+function drawBar(mm){
+  const risk=droughtRisk(mm,NORMAL),sc=300/600,col={high:'#c8474b',medium:'#e0a020',low:'#2f9e74'}[risk];
+  let s=`<rect x="10" y="30" width="300" height="22" rx="6" fill="#eef1f7"/><rect x="10" y="30" width="${Math.min(300,mm*sc)}" height="22" rx="6" fill="${col}"/>`;
+  s+=`<line x1="${10+NORMAL*sc}" x2="${10+NORMAL*sc}" y1="22" y2="62" stroke="#7b3fa8" stroke-width="2"/><text x="${10+NORMAL*sc}" y="16" font-size="11" text-anchor="middle" fill="#7b3fa8">ปกติ ${NORMAL}</text>`;
+  s+=`<line x1="${10+NORMAL*.8*sc}" x2="${10+NORMAL*.8*sc}" y1="40" y2="62" stroke="#8a5a00" stroke-dasharray="3 3"/><text x="${10+NORMAL*.8*sc}" y="76" font-size="10" text-anchor="middle" fill="#8a5a00">80%</text>`;
+  s+=`<line x1="${10+NORMAL*.5*sc}" x2="${10+NORMAL*.5*sc}" y1="40" y2="62" stroke="#9a2f33" stroke-dasharray="3 3"/><text x="${10+NORMAL*.5*sc}" y="76" font-size="10" text-anchor="middle" fill="#9a2f33">50%</text>`;
+  s+=`<text x="10" y="104" font-size="11" fill="#66708a">0 มม.</text><text x="310" y="104" font-size="11" text-anchor="end" fill="#66708a">600 มม.</text>`;
+  $('bar').innerHTML=s;
+  $('mmV').textContent=mm;$('rk').textContent=RISKTH[risk];$('rk').className='badge r-'+risk;
+  $('rkD').textContent=`ฝนพยากรณ์เท่ากับ ${(mm/NORMAL*100).toFixed(0)}% ของปกติ`+(risk==='high'?' (น้อยกว่าครึ่งหนึ่ง): ควรเตรียมรับมือภัยแล้งเต็มที่':risk==='medium'?' (น้อยกว่า 80%): ควรเตรียมแหล่งน้ำและวางแผนการใช้น้ำ':' : ใช้ชีวิตและทำกิจกรรมตามแผนปกติได้ แต่ติดตามคำพยากรณ์ต่อเนื่อง');
+}
+$('mm').addEventListener('input',e=>drawBar(Number(e.target.value)));
+$('mm').addEventListener('change',()=>{S.slid=1;save();});
+
+/* questions + quiz */
+const sel=nm=>document.querySelector(`input[name="${nm}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a=['q1','q3'].map(sel);
+  if(a.some(v=>!v)||!$('q2t').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบ (ข้อ 2 เขียนสรุปด้วยคำของตนเอง)';$('qFb').className='fb err';return;}
+  const sc=(a[0]==='a')+(a[1]==='a');S.q=a;S.q2=$('q2t').value;S.qDone=true;save();$('qAns').style.display='block';
+  $('qFb').className='fb'+(sc===2?'':' err');$('qFb').textContent=sc===2?'ข้อที่มีเฉลยถูกทั้งหมด เทียบข้อ 2 กับแนวคำตอบด้านล่าง':`ถูก ${sc}/2 ข้อที่มีเฉลย ทบทวนแนวคำตอบด้านล่าง`;
+});
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['a','b','a'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===3?'':' err');$('zFb').textContent=`ได้ ${sc}/3 · เฉลย: 1) การจัดการน้ำ 2) พายุหมุนเขตร้อน 3) สูง (200×2 = 400 น้อยกว่า 450)`;
+});
+function progress(){
+  const idOk=S.ident&&S.ident.gen&&S.ident.sail&&S.ident.agri,roleOk=S.roles&&Object.keys(S.roles).length>=1;
+  const d=[!!(idOk&&roleOk),!!S.qDone,Number(S.slid)>0,!!S.zDone];const c=d.filter(Boolean).length;
+  $('pFill').style.width=c/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',c);$('pText').textContent=`ทำแล้ว ${c} จาก 4 ส่วน (ทดลอง · คำถาม · แบบจำลองความเสี่ยง · แบบทดสอบ)`;$('done').style.display=c===4?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* restore */
+(()=>{
+  if(S.scn&&FORE[S.scn])$('scn').value=S.scn;
+  ticks();renderRole();drawBar(Number($('mm').value));
+  if(S.q){['q1','q3'].forEach((nm,i)=>{const e=document.querySelector(`input[name="${nm}"][value="${S.q[i]}"]`);if(e)e.checked=true;});}
+  if(S.q2)$('q2t').value=S.q2;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3'].forEach((nm,i)=>{const e=document.querySelector(`input[name="${nm}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  progress();
+})();
+window.__lab={droughtRisk,isRecommended,scoreChoice,ROLES};
+})();
+</script>
+</body>
+</html>

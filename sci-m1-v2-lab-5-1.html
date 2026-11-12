@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.1 แบบจำลองอนุภาคของสารในแต่ละสถานะเป็นอย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.1 แบบจำลองอนุภาคของสารในแต่ละสถานะเป็นอย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-1.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ice:#bfe3ff;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:680px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem}
+.p-ice{background:#dff0ff;color:#0b4f8a}.p-melting{background:#e6e0ff;color:#4b2fa3}.p-water{background:#d6f0ff;color:#0a5f86}.p-boiling{background:#ffe3d1;color:#a8420f}.p-steam{background:#f0f0f0;color:#555}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#fff1e6;position:sticky;top:0}.tw{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.dataT{margin-top:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+@keyframes steam{0%{transform:translateY(0) scale(.8);opacity:.7}100%{transform:translateY(-46px) scale(1.4);opacity:0}}
+@keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
+.bub{animation:bub 1.3s linear infinite}.stm{animation:steam 1.8s linear infinite}.flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tabs .btn{padding:8px 16px}.btn.on{background:var(--orange);color:#fff}.btn.alt.on{background:var(--ink);color:#fff}
+.ex{font-size:.9rem;margin:2px 0 0 4px}.ex.ok{color:var(--ok)}.ex.bad{color:var(--red)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--muted);margin:6px 2px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+select,input[type=number]{border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:#fff;color:var(--ink)}input[type=number]{width:5.5em}
+.compare td,.compare th{font-size:.88rem}.good{background:#effaf4}.badc{background:#fff1f0}
+.assume{background:#f4f1ff;border-left:4px solid #6b4fd6;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.92rem}
+
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 1 เรื่องที่ 1 สถานะของสาร</div>
+  <h1>กิจกรรม 5.1 แบบจำลองอนุภาคของสารในแต่ละสถานะเป็นอย่างไร</h1>
+  <p class="lead">คาดคะเนแบบจำลองอนุภาคของของแข็ง ของเหลว และแก๊ส แล้วสำรวจการจัดเรียงอนุภาค แรงยึดเหนี่ยว และการเคลื่อนที่ในห้องทดลองเสมือน จากนั้นปรับแก้แบบจำลองของตนเอง</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<ol class="steps"><li>รวบรวมข้อมูลและสร้างแบบจำลองเพื่ออธิบายการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส</li>
+<li>วิเคราะห์และเปรียบเทียบการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส</li></ol>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>กระดาษ</li><li>ดินสอสี</li><li>กรรไกร</li><li>วัสดุและอุปกรณ์อื่น ๆ เช่น ดินน้ำมัน โฟม ลูกปิงปอง</li></ul>
+<p class="pc">ในห้องทดลองเสมือนนี้ใช้ภาพวาดอนุภาคบนหน้าจอแทนการปั้นแบบจำลองด้วยดินน้ำมันหรือลูกปิงปอง</p>
+<h3>วิธีดำเนินกิจกรรม (ตามหนังสือเรียน)</h3>
+<ol class="steps">
+<li>คาดคะเนและบันทึกการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส และสร้างแบบจำลองอนุภาคตามที่คาดคะเน</li>
+<li>รวบรวมข้อมูลแบบจำลองอนุภาคของสารแต่ละสถานะเกี่ยวกับการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส จากสื่อบนอินเทอร์เน็ตหรือแหล่งเรียนรู้อื่น ๆ</li>
+<li>วิเคราะห์ข้อมูลแบบจำลองอนุภาคที่รวบรวมได้ในข้อ 2 และปรับแก้แบบจำลองอนุภาคที่สร้างไว้จากการคาดคะเนในข้อ 1 ให้ถูกต้อง</li>
+<li>นำเสนอแบบจำลองอนุภาคที่ปรับแก้แล้ว โดยอธิบายและเปรียบเทียบแบบจำลองอนุภาคของสารในแต่ละสถานะ</li></ol>
+<div class="assume">กิจกรรมนี้ไม่มีการวัดค่าตัวเลข ส่วนที่ผู้จัดทำสมมติเองมีเพียงความจุของภาชนะในการสาธิตรูปร่างและปริมาตร (ระบุไว้ใต้ภาพ) และรูปแบบการเคลื่อนไหวของอนุภาคที่เป็นภาพประกอบ ไม่ใช่การจำลองฟิสิกส์จริง</div>
+</section>
+
+<section class="card" id="p1"><p class="kicker">ส่วนที่ 1 · คาดคะเน (ข้อ 1)</p><h2>คาดคะเนแบบจำลองอนุภาคก่อนดูข้อมูล</h2>
+<p class="lead">เลือกคำตอบที่คิดว่าใช่สำหรับแต่ละสถานะ แล้วกด “บันทึกคาดคะเน” เพื่อนำไปเทียบกับแบบจำลองในส่วนที่ 3</p>
+<div class="tw" style="margin-top:12px;max-height:none"><table id="predT"><thead><tr><th>สถานะ</th><th>การจัดเรียงอนุภาค</th><th>แรงยึดเหนี่ยว</th><th>การเคลื่อนที่</th><th>รูปร่าง</th><th>ปริมาตร</th></tr></thead><tbody id="predB"></tbody></table></div>
+<div class="btns" style="margin-top:12px"><button class="btn" id="predBtn" type="button">บันทึกคาดคะเน</button></div>
+<p class="fb" id="predFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 2 · สำรวจแบบจำลอง (ข้อ 2)</p><h2>ห้องทดลองเสมือน: อนุภาคและภาชนะ</h2>
+<p class="lead">เลือกสถานะของสาร ดูแบบจำลองอนุภาค (วงกลมสีส้มแทนอนุภาค ลูกศรแทนขนาดและทิศทางความเร็ว) แล้วลองใส่สารในภาชนะต่าง ๆ ให้ครบทั้ง 3 สถานะ</p>
+<div class="tabs" role="group" aria-label="เลือกสถานะ">
+ <button class="btn on" data-st="solid" type="button">ของแข็ง (ก้อนหิน)</button><button class="btn alt" data-st="liquid" type="button">ของเหลว (น้ำสี 100 cm³)</button><button class="btn alt" data-st="gas" type="button">แก๊ส</button></div>
+<div class="lab">
+ <div class="stage"><svg id="part" viewBox="0 0 300 200" role="img" aria-label="แบบจำลองอนุภาคของสาร"></svg>
+  <div class="legend"><span><i style="background:#ff9a5c"></i>อนุภาคของสาร</span><span>ลูกศร = ขนาดและทิศทางความเร็ว</span></div></div>
+ <div class="panel">
+  <div>สถานะ: <span class="badge p-ice" id="stBadge">ของแข็ง</span></div>
+  <ul class="steps" style="margin:0;padding-left:1.2rem">
+   <li>การจัดเรียงอนุภาค: <b id="dArr"></b></li><li>แรงยึดเหนี่ยวระหว่างอนุภาค: <b id="dFor"></b></li><li>การเคลื่อนที่ของอนุภาค: <b id="dMov"></b></li></ul>
+  <p class="pc" id="dWhy" style="margin:0"></p>
+ </div>
+</div>
+<h3>ใส่สารลงในภาชนะ</h3>
+<p class="pc">เลือกภาชนะ แล้วสังเกตรูปร่างและปริมาตรของสาร (น้ำสีมีปริมาตร 100 cm³ ตามภาพ 5.5 ของหนังสือ)</p>
+<div class="tabs" role="group" aria-label="เลือกภาชนะ" id="cTabs"></div>
+<div class="lab"><div class="stage"><svg id="cont" viewBox="0 0 120 130" role="img" aria-label="สารในภาชนะ" style="max-height:300px"></svg></div>
+ <div class="panel"><div class="readout" style="grid-template-columns:1fr 1fr"><div><small>รูปร่างของสาร</small><b id="rShape" style="font-size:1.05rem">-</b></div><div><small>ปริมาตรของสาร</small><b id="rVol" style="font-size:1.05rem">-</b></div></div>
+ <p class="pc" id="cNote" aria-live="polite" style="margin:0"></p>
+ <p class="pc" style="margin:0">ความจุของภาชนะ (cm³) เป็นค่าสมมติของแบบจำลองเพื่อใช้วาดภาพ: กระบอกตวง 100 · ขวดรูปกรวย 250 · บีกเกอร์ 250 · จานแก้ว 150 · ขวดโหล 300 ระดับน้ำในภาพเป็นภาพโดยประมาณ</p></div></div>
+<p class="fb" id="labFb" aria-live="polite"></p>
+<div class="btns"><button class="btn alt" id="resetBtn" type="button">เริ่มส่วนที่ 2 ใหม่</button></div>
+</section>
+
+<section class="card" id="p3"><p class="kicker">ส่วนที่ 3 · วิเคราะห์และปรับแก้ (ข้อ 3)</p><h2>เปรียบเทียบคาดคะเนกับแบบจำลองจากหนังสือเรียน</h2>
+<div class="tw" style="max-height:none"><table class="compare"><thead><tr><th>สถานะ</th><th>การจัดเรียงอนุภาค</th><th>แรงยึดเหนี่ยว</th><th>การเคลื่อนที่</th><th>รูปร่าง</th><th>ปริมาตร</th></tr></thead><tbody id="cmpB"><tr><td colspan="6" style="color:#999">บันทึกคาดคะเนในส่วนที่ 1 ก่อน</td></tr></tbody></table></div>
+<p class="pc">ช่องสีเขียวคือคาดคะเนที่ตรงกับหนังสือ ช่องสีแดงอ่อนคือส่วนที่ต้องปรับแก้ (แสดงคำตอบจากหนังสือในช่อง)</p>
+<div class="note"><strong>พลาสมา:</strong> หนังสือเรียนกล่าวว่าสถานะของสารยังมีอีกสถานะหนึ่ง เรียกว่า พลาสมา เกิดจากโมเลกุลของแก๊สได้รับพลังงานสูงมากจนอะตอมในโมเลกุลแตกตัวออกจากกัน พลังงานที่สูงมากนี้ยังทำให้อิเล็กตรอนหลุดออกจากอะตอม ส่งผลให้อะตอมแก๊สที่เหลือมีประจุบวก พบพลาสมาได้ในหลอดฟลูออเรสเซนต์ ในขณะเกิดฟ้าผ่า และในอวกาศ</div>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 4 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<div id="qbox"></div>
+<div class="btns" style="margin-top:12px"><button class="btn" id="qBtn" type="button">ตรวจ/ดูแนวคำตอบ</button></div><p class="fb" id="qFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวน</p><h2>แบบทดสอบสั้น</h2>
+<div id="zbox"></div>
+<div class="btns" style="margin-top:12px"><button class="btn" id="zBtn" type="button">ส่งคำตอบ</button></div><p class="fb" id="zFb" aria-live="polite"></p>
+<div class="note"><strong>ความคิดเชิงลึกจากหนังสือ:</strong> “จากภาพ 5.1 การระเหิดของไอโอดีน แบบจำลองอนุภาคของไอโอดีนในสถานะที่พบในภาพควรมีลักษณะอย่างไร ให้วาดภาพ พร้อมอธิบาย” ลองวาดบนกระดาษแล้วเทียบกับแบบจำลองด้านบน</div>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 5 หน้า 5–10 (กิจกรรม 5.1 หน้า 6–7, ภาพ 5.2–5.8 หน้า 7–10) · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริง ภาพวาดเป็นของผู้จัดทำ ไม่ได้ใช้ภาพจากหนังสือ</p></section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่เพื่อทดลองซ้ำ หรือทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+<script>
+(()=>{
+'use strict';
+const KEY='sciM1V2Act51_v1';
+const $=id=>document.getElementById(id);
+const rd=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=rd();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+const reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* ชุดคำถาม: {q,o:[...],a:index,e:'อธิบาย'} หรือ {q,t:1,s:'แนวคำตอบ'} */
+function mkQ(box,list,sk,dk,btn,fb){
+  $(box).innerHTML=list.map((it,i)=>it.t
+    ?`<label for="${sk}t${i}"><strong>${i+1}. ${it.q}</strong></label><textarea id="${sk}t${i}" placeholder="เขียนด้วยคำของตนเอง"></textarea><div class="note" id="${sk}s${i}" style="display:none"><strong>แนวคำตอบ:</strong> ${it.s}</div>`
+    :`<fieldset><legend>${i+1}. ${it.q}</legend>${it.o.map((o,j)=>`<label class="opt"><input type="radio" name="${sk}${i}" value="${j}"> ${o}</label>`).join('')}<div class="ex" id="${sk}x${i}"></div></fieldset>`).join('');
+  const saved=Array.isArray(S[sk])?S[sk]:[];
+  list.forEach((it,i)=>{const v=saved[i];if(v===undefined||v===null||v==='')return;
+    if(it.t){$(sk+'t'+i).value=v;}else{const e=document.querySelector(`input[name="${sk}${i}"][value="${v}"]`);if(e)e.checked=true;}});
+  $(btn).addEventListener('click',()=>{
+    const ans=list.map((it,i)=>it.t?$(sk+'t'+i).value.trim():((document.querySelector(`input[name="${sk}${i}"]:checked`)||{}).value));
+    if(ans.some(a=>a===undefined||a==='')){$(fb).textContent='กรุณาตอบให้ครบทุกข้อ';$(fb).className='fb err';return;}
+    let sc=0,n=0;
+    list.forEach((it,i)=>{
+      if(it.t){$(sk+'s'+i).style.display='block';return;}
+      n++;const ok=Number(ans[i])===it.a;if(ok)sc++;
+      const x=$(sk+'x'+i);x.textContent=(ok?'ถูกต้อง':'เฉลย: '+it.o[it.a])+(it.e?' — '+it.e:'');x.className='ex '+(ok?'ok':'bad');
+    });
+    S[sk]=ans;S[dk]=true;save();
+    $(fb).className='fb'+(n&&sc<n?' err':'');
+    $(fb).textContent=n?`ข้อเลือกตอบ ถูก ${sc}/${n} ข้อ · ข้อเขียนให้เทียบกับแนวคำตอบใต้ช่องคำตอบ`:'เทียบคำตอบของตนเองกับแนวคำตอบใต้แต่ละข้อ';
+  });
+  if(S[dk])$(btn).click();
+}
+/* แบบจำลองอนุภาค 2 มิติ (สีส้มแทนอนุภาค ตามหนังสือ) kind: solid|liquid|gas, k: 0..1 ระดับความร้อน, t: วินาที */
+function pstr(kind,k,t){
+  const rn=i=>{const v=Math.sin(i*91.7+13.3)*10000;return v-Math.floor(v);};
+  let s='<rect width="300" height="200" fill="#f8fbff"/>',ar='';
+  for(let i=0;i<24;i++){
+    const cx=i%6,cy=Math.floor(i/6);let x,y,vx=0,vy=0;
+    if(kind==='solid'){
+      const sp=29+k*6,A=1+k*3.5,w=16+k*16;
+      x=150+(cx-2.5)*sp+A*Math.sin(t*w+i*1.7);y=100+(cy-1.5)*sp+A*Math.sin(t*w*1.1+i*2.3);
+    }else if(kind==='liquid'){
+      const sp=34+k*6,A=6+k*6,w=1.6+k*2.4,bx=150+(cx-2.5)*sp+(rn(i)-.5)*8,by=118+(cy-1.5)*(24+k*5)+(rn(i+4)-.5)*8;
+      x=bx+A*Math.sin(w*t+i*2.1);y=by+A*.8*Math.cos(w*1.3*t+i*1.3);vx=A*w*Math.cos(w*t+i*2.1);vy=-A*.8*w*1.3*Math.sin(w*1.3*t+i*1.3);
+    }else{
+      const ax=(95+k*30)*(.35+.65*rn(i)),ay=(65+k*18)*(.35+.65*rn(i+5)),w1=(.9+rn(i+9))*(1+k*1.3),w2=(.8+rn(i+13))*(1+k*1.3);
+      x=150+ax*Math.sin(w1*t+i*3.1);y=100+ay*Math.sin(w2*t+i*1.9);vx=ax*w1*Math.cos(w1*t+i*3.1);vy=ay*w2*Math.cos(w2*t+i*1.9);
+    }
+    x=Math.max(12,Math.min(288,x));y=Math.max(12,Math.min(188,y));
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#ff9a5c" stroke="#e8662c" stroke-width="2"/>`;
+    const m=Math.hypot(vx,vy);
+    if(m>0.5){const L=Math.min(26,6+m*.22+k*6);ar+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+vx/m*L).toFixed(1)}" y2="${(y+vy/m*L).toFixed(1)}" stroke="#a8420f" stroke-width="1.5" marker-end="url(#ah)"/>`;}
+  }
+  return `<defs><marker id="ah" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L6 3L0 6z" fill="#a8420f"/></marker></defs>`+s+ar;
+}
+/* วนวาดเฟรม; ถ้าผู้ใช้ตั้งลดการเคลื่อนไหว จะวาดเฟรมนิ่งแทน */
+function animate(fn){let t0=null,run=true;
+  function loop(ts){if(t0===null)t0=ts;fn((ts-t0)/1000);if(run&&!reduce)requestAnimationFrame(loop);}
+  fn(0.5);if(!reduce)requestAnimationFrame(loop);
+  return{redraw:()=>fn(0.5)};}
+
+/*PURE*/
+/* ความรู้จากหนังสือเรียน ม.1 เล่ม 2 หน้า 7-10: ดัชนีคำตอบที่ถูกของแต่ละสถานะ */
+const OPT={a:['เรียงชิดกันเป็นระเบียบ','อยู่ใกล้กัน ไม่เป็นระเบียบ','อยู่ห่างกันมาก'],f:['มากที่สุด','น้อยกว่าของแข็งแต่มากกว่าแก๊ส','น้อยมาก'],m:['สั่นอยู่กับที่','เคลื่อนที่ได้แต่ไม่อิสระ (เคลื่อนที่รอบ ๆ อนุภาคใกล้เคียง)','เคลื่อนที่ได้อย่างอิสระทุกทิศทาง'],sh:['คงที่','ไม่คงที่'],v:['คงที่','ไม่คงที่']};
+const KEYA={solid:[0,0,0,0,0],liquid:[1,1,1,1,0],gas:[2,2,2,1,1]};
+const ST={solid:'ของแข็ง',liquid:'ของเหลว',gas:'แก๊ส'};
+function compare(pred){const r={};for(const s of Object.keys(KEYA)){const p=pred&&pred[s]||[];r[s]=KEYA[s].map((c,i)=>Number(p[i])===c);}return r;}
+const CONT={cyl:{n:'กระบอกตวง',cap:100,d:'M45 10H75V118H45Z',y0:10,y1:118},flask:{n:'ขวดรูปกรวย',cap:250,d:'M52 10H68V45L100 118H20L52 45Z',y0:10,y1:118},beaker:{n:'บีกเกอร์',cap:250,d:'M20 30H100V118H20Z',y0:30,y1:118},dish:{n:'จานแก้ว',cap:150,d:'M8 88H112V118H8Z',y0:88,y1:118},jar:{n:'ขวดโหล',cap:300,d:'M32 40H88V118H32Z',y0:40,y1:118}};
+function liquidFrac(cap,v=100){return Math.min(1,v/cap);}
+/*ENDPURE*/
+
+const DESC={
+ solid:{arr:OPT.a[0],f:OPT.f[0],m:OPT.m[0],why:'อนุภาคเรียงชิดกันและสั่นอยู่กับที่ แรงยึดเหนี่ยวมากจึงทำให้ของแข็งมีรูปร่างและปริมาตรคงที่ ก้อนหินเป็นก้อนรูปร่างเดิมไม่ว่าจะวางในภาชนะใด (ภาพ 5.2–5.3)',b:'p-ice'},
+ liquid:{arr:OPT.a[1],f:OPT.f[1],m:OPT.m[1],why:'อนุภาคอยู่ใกล้กันแต่เคลื่อนที่ได้ จึงเปลี่ยนรูปร่างตามภาชนะ แต่ปริมาตรคงที่ (น้ำสี 100 cm³ ยังคง 100 cm³ ในกระบอกตวง ขวดรูปกรวย และบีกเกอร์ ภาพ 5.4–5.5)',b:'p-water'},
+ gas:{arr:OPT.a[2],f:OPT.f[2],m:OPT.m[2],why:'อนุภาคอยู่ห่างกันมากและเคลื่อนที่อิสระ จึงฟุ้งกระจายเต็มภาชนะ รูปร่างและปริมาตรเปลี่ยนตามภาชนะ (ภาพ 5.6–5.7)',b:'p-steam'}};
+let st='solid',cn='cyl';
+/* คาดคะเน */
+const COLS=['a','f','m','sh','v'];
+$('predB').innerHTML=Object.keys(ST).map(s=>`<tr><td><b>${ST[s]}</b></td>${COLS.map((c,i)=>`<td><select id="pr_${s}_${i}" aria-label="${ST[s]} ${c}"><option value="">เลือก…</option>${OPT[c].map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select></td>`).join('')}</tr>`).join('');
+function predRestore(){if(S.pred)for(const s of Object.keys(ST))COLS.forEach((c,i)=>{const e=$(`pr_${s}_${i}`);if(e&&S.pred[s]&&S.pred[s][i]!==undefined)e.value=S.pred[s][i];});}
+$('predBtn').addEventListener('click',()=>{
+  const p={};let miss=false;for(const s of Object.keys(ST)){p[s]=COLS.map((c,i)=>{const v=$(`pr_${s}_${i}`).value;if(v==='')miss=true;return v;});}
+  if(miss){$('predFb').textContent='เลือกให้ครบทุกช่องก่อน';$('predFb').className='fb err';return;}
+  S.pred=p;S.predDone=true;save();$('predFb').className='fb';$('predFb').textContent='บันทึกคาดคะเนแล้ว ไปสำรวจแบบจำลองในส่วนที่ 2 และดูผลเทียบในส่วนที่ 3';drawCmp();
+});
+function drawCmp(){
+  if(!S.pred){return;}
+  const r=compare(S.pred);
+  $('cmpB').innerHTML=Object.keys(ST).map(s=>`<tr><td><b>${ST[s]}</b></td>${COLS.map((c,i)=>{const ok=r[s][i];return `<td class="${ok?'good':'badc'}">${ok?'ตรง: ':'ปรับแก้เป็น: '}${OPT[c][KEYA[s][i]]}</td>`;}).join('')}</tr>`).join('');
+  const n=Object.values(r).flat().filter(Boolean).length;
+  $('cmpB').insertAdjacentHTML('beforeend',`<tr><td colspan="6">คาดคะเนตรงกับหนังสือ ${n} จาก 15 ช่อง</td></tr>`);
+}
+/* แบบจำลอง */
+const anim=animate(t=>{$('part').innerHTML=pstr(st,0.35,t);});
+function drawCont(){
+  const c=CONT[cn];const id='cl'+cn;
+  let inner='';
+  if(st==='solid'){inner=`<ellipse cx="60" cy="${c.y1-9}" rx="15" ry="9" fill="#cdbb8a" stroke="#8d7b4d" stroke-width="2"/>`;}
+  else if(st==='liquid'){const h=liquidFrac(c.cap)*(c.y1-c.y0);inner=`<rect x="0" y="${c.y1-h}" width="120" height="${h+2}" fill="#7bd36d" opacity=".8"/>`;}
+  else{inner=`<rect x="0" y="0" width="120" height="130" fill="#ffd9c2" opacity=".55"/>`+Array.from({length:16},(_,i)=>{const r=j=>{const v=Math.sin((i+1)*57.3+j*9.1)*10000;return v-Math.floor(v);};return `<circle cx="${20+r(1)*80}" cy="${c.y0+4+r(2)*(c.y1-c.y0-8)}" r="3" fill="#ff9a5c" stroke="#e8662c" stroke-width="1"/>`;}).join('');}
+  const lid=st==='gas'?`<rect x="${st==='gas'&&cn==='dish'?8:cn==='jar'?32:cn==='beaker'?20:cn==='cyl'?45:cn==='flask'?52:0}" y="${c.y0-6}" width="${cn==='dish'?104:cn==='jar'?56:cn==='beaker'?80:cn==='cyl'?30:16}" height="6" fill="#6a5a4a"/>`:'';
+  $('cont').innerHTML=`<defs><clipPath id="${id}"><path d="${c.d}"/></clipPath></defs><rect x="0" y="118" width="120" height="6" fill="#d5dae6"/><g clip-path="url(#${id})">${inner}</g><path d="${c.d}" fill="none" stroke="#5f7694" stroke-width="3"/>${lid}`;
+  $('rShape').textContent=st==='gas'?'เปลี่ยนตามภาชนะ (เต็มภาชนะ)':st==='liquid'?'เปลี่ยนตามภาชนะ':'คงที่ (เป็นก้อนเดิม)';
+  $('rVol').textContent=st==='gas'?`เท่าภาชนะ (${c.cap} cm³ ค่าสมมติ)`:st==='liquid'?'100 cm³ คงที่':'คงที่';
+  $('cNote').textContent=`${ST[st]}ใน${c.n}`;
+}
+function setState(s,rec){st=s;document.querySelectorAll('.tabs [data-st]').forEach(b=>{const on=b.dataset.st===s;b.className='btn'+(on?' on':' alt');});
+  const d=DESC[s];$('stBadge').textContent=ST[s];$('stBadge').className='badge '+d.b;$('dArr').textContent=d.arr;$('dFor').textContent=d.f;$('dMov').textContent=d.m;$('dWhy').textContent=d.why;
+  anim.redraw();drawCont();if(rec)mark();}
+function mark(){S.combos=S.combos||[];const k=st+'|'+cn;if(!S.combos.includes(k))S.combos.push(k);save();labStatus();}
+function labStatus(){const c=S.combos||[];const per=Object.keys(ST).map(s=>c.filter(k=>k.startsWith(s+'|')).length);
+  $('labFb').className='fb';$('labFb').textContent=`ลองแล้ว: ของแข็ง ${per[0]} · ของเหลว ${per[1]} · แก๊ส ${per[2]} ภาชนะ (ต้องลองแต่ละสถานะอย่างน้อย 2 ภาชนะ)`+(per.every(n=>n>=2)?' · ครบแล้ว':'');}
+document.querySelectorAll('.tabs [data-st]').forEach(b=>b.addEventListener('click',()=>setState(b.dataset.st,true)));
+$('cTabs').innerHTML=Object.keys(CONT).map(k=>`<button class="btn ${k===cn?'on':'alt'}" data-c="${k}" type="button">${CONT[k].n}</button>`).join('');
+$('cTabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{cn=b.dataset.c;$('cTabs').querySelectorAll('button').forEach(x=>x.className='btn '+(x===b?'on':'alt'));drawCont();mark();}));
+$('resetBtn').addEventListener('click',()=>{delete S.combos;save();labStatus();});
+
+const QS=[
+ {q:'การจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊สเป็นอย่างไร เหมือนหรือแตกต่างกันอย่างไร',t:1,s:'ของแข็ง: อนุภาคเรียงชิดกัน แรงยึดเหนี่ยวมาก สั่นอยู่กับที่ · ของเหลว: อนุภาคอยู่ใกล้กัน แรงยึดเหนี่ยวน้อยกว่าของแข็งแต่มากกว่าแก๊ส เคลื่อนที่ได้แต่ไม่เป็นอิสระ เคลื่อนที่รอบ ๆ อนุภาคใกล้เคียง · แก๊ส: อนุภาคอยู่ห่างกันมาก แรงยึดเหนี่ยวน้อยมาก เคลื่อนที่ได้อย่างอิสระทุกทิศทาง (หนังสือหน้า 7–9)'},
+ {q:'แบบจำลองอนุภาคที่สร้างขึ้นครั้งแรกเหมือนหรือแตกต่างจากแบบจำลองที่ปรับแก้แล้วอย่างไร',t:1,s:'ให้เทียบกับตารางสีเขียว/แดงในส่วนที่ 3 ว่าช่องใดตรงและช่องใดต้องปรับแก้ แล้วเขียนว่าแก้เรื่องใดบ้าง (แนวคำตอบขึ้นกับคาดคะเนของแต่ละคน)'},
+ {q:'แบบจำลองอนุภาคที่สร้างขึ้นมีอะไรบ้างที่ไม่สามารถแสดงให้เห็นตามความเป็นจริง',t:1,s:'ตัวอย่างข้อจำกัด (ผู้จัดทำเสริม): อนุภาคจริงเล็กมากและมองไม่เห็นด้วยตาเปล่า ไม่ได้เป็นทรงกลมสีส้ม ภาพสองมิติบอกจำนวนอนุภาคจริงไม่ได้ และภาพนิ่งหรือภาพวาดไม่แสดงการเคลื่อนที่ต่อเนื่อง'},
+ {q:'จากกิจกรรม สรุปได้ว่าอย่างไร',t:1,s:'สารแต่ละสถานะมีการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคต่างกัน ทำให้ของแข็งมีรูปร่างและปริมาตรคงที่ ของเหลวมีรูปร่างไม่คงที่แต่ปริมาตรคงที่ แก๊สมีรูปร่างและปริมาตรไม่คงที่'}];
+const QZ=[
+ {q:'ก้อนหินที่วางในจานแก้วถูกย้ายไปใส่ขวดโหล รูปร่างและปริมาตรของก้อนหินเป็นอย่างไร',o:['รูปร่างเปลี่ยนตามขวดโหล ปริมาตรคงที่','รูปร่างและปริมาตรคงที่','รูปร่างคงที่ ปริมาตรเปลี่ยนตามขวดโหล'],a:1,e:'อนุภาคของแข็งอยู่ชิดกันและสั่นอยู่กับที่ (ภาพ 5.3)'},
+ {q:'เทน้ำสีปริมาตร 100 cm³ จากกระบอกตวงลงบีกเกอร์ น้ำสีมีรูปร่างและปริมาตรเป็นอย่างไร',o:['รูปร่างคงที่ ปริมาตรคงที่','รูปร่างเปลี่ยนไปตามบีกเกอร์ ปริมาตรยังเป็น 100 cm³','รูปร่างและปริมาตรเปลี่ยนไปตามบีกเกอร์'],a:1,e:'ของเหลวมีรูปร่างไม่คงที่แต่ปริมาตรคงที่ (ภาพ 5.5)'},
+ {q:'ปล่อยแก๊สจากลูกโป่งไปยังถุงมือยาง แก๊สเป็นอย่างไร',o:['แก๊สคงรูปร่างเดิมของลูกโป่ง','แก๊สฟุ้งกระจายเต็มถุงมือยาง รูปร่างและปริมาตรเปลี่ยนตามภาชนะ','แก๊สมีปริมาตรเท่าเดิมแต่รูปร่างเปลี่ยน'],a:1,e:'อนุภาคแก๊สอยู่ห่างกันมากและเคลื่อนที่อิสระ (ภาพ 5.7)'},
+ {q:'สถานะใดมีแรงยึดเหนี่ยวระหว่างอนุภาคมากที่สุด',o:['แก๊ส','ของเหลว','ของแข็ง'],a:2,e:'อนุภาคของของแข็งเรียงชิดกัน'},
+ {q:'พลาสมาเกิดขึ้นได้อย่างไร (ตามหนังสือเรียน)',o:['โมเลกุลของแก๊สได้รับพลังงานสูงมากจนอะตอมแตกตัวและอิเล็กตรอนหลุดออกจากอะตอม','ของแข็งหลอมเหลวจนกลายเป็นของเหลว','ของเหลวสูญเสียความร้อนจนกลายเป็นของแข็ง'],a:0,e:'พบในหลอดฟลูออเรสเซนต์ ฟ้าผ่า และอวกาศ'}];
+function progress(){
+  const c=S.combos||[];const per=Object.keys(ST).map(s=>c.filter(k=>k.startsWith(s+'|')).length);
+  const d=[!!S.predDone,per.every(n=>n>=2),!!S.qDone,!!S.zDone];const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);
+  $('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (คาดคะเน · สำรวจแบบจำลอง · คำถามท้ายกิจกรรม · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+predRestore();drawCmp();setState('solid',false);labStatus();
+mkQ('qbox',QS,'q','qDone','qBtn','qFb');mkQ('zbox',QZ,'z','zDone','zBtn','zFb');progress();
+window.__lab={compare,liquidFrac,KEYA,CONT};
+
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+})();
+</script>
+</body>
+</html>
