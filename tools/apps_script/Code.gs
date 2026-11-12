@@ -48,7 +48,13 @@ var ACTIVITIES = {
 };
 // ids:end
 var HEADERS = ['เวลา', 'ชื่อ-สกุล', 'เลขที่', 'ชั้น', 'ห้อง', 'กิจกรรม', 'ชื่อกิจกรรม',
-               'คะแนนที่ได้', 'คะแนนเต็ม', 'เปอร์เซ็นต์', 'คะแนนแต่ละส่วน', 'ส่งครั้งที่'];
+               'คะแนนที่ได้', 'คะแนนเต็ม', 'เปอร์เซ็นต์', 'คะแนนแต่ละส่วน', 'ส่งครั้งที่',
+               'จำนวนข้อเขียน', 'รหัสส่ง', 'คะแนนข้อเขียน'];   // 'คะแนนข้อเขียน' เว้นว่างรอครูกรอก
+
+// แท็บ "ข้อเขียน" = ตารางข้อมูลแบบฐานข้อมูล แถวละหนึ่งคำตอบ เชื่อมกับแท็บกิจกรรมด้วย 'รหัสส่ง'
+var WRITTEN_SHEET = 'ข้อเขียน';
+var WRITTEN_HEADERS = ['เวลา', 'รหัสส่ง', 'ชื่อ-สกุล', 'เลขที่', 'ชั้น', 'ห้อง', 'กิจกรรม', 'ชื่อกิจกรรม',
+                       'ส่งครั้งที่', 'รหัสข้อ', 'คำถาม', 'คำตอบ', 'คะแนนที่ได้', 'คะแนนเต็ม', 'ผู้ตรวจ/หมายเหตุ'];
 
 function doGet() {
   return json_({ ok: true, note: 'ใช้ POST เท่านั้น' });
@@ -70,8 +76,12 @@ function doPost(e) {
 
     var sheet = sheetFor_(d.id);
     var pct = d.max > 0 ? Math.round(d.got / d.max * 1000) / 10 : 0;
+    var written = d.written || [];
+    var sid = Utilities.getUuid().slice(0, 8);
     sheet.appendRow([new Date(), d.name.trim(), d.no, d.cls, d.room, d.id, ACTIVITIES[d.id],
-                     d.got, d.max, pct, JSON.stringify(d.parts), d.attempt]);
+                     d.got, d.max, pct, JSON.stringify(d.parts), d.attempt,
+                     written.length, sid, '']);
+    if (written.length) appendWritten_(d, sid, written);
     return json_({ ok: true });
   } catch (x) {
     return json_({ ok: false, error: String(x) });
@@ -89,8 +99,9 @@ function validate_(d) {
   if (/^[=+\-@]/.test(d.name.trim())) return 'ชื่อไม่ถูกต้อง';   // กันสูตรใน Sheet
   if (CLASSES.indexOf(d.cls) < 0) return 'ชั้นไม่ถูกต้อง';
   if (!isInt_(d.no, 1, 99) || !isInt_(d.room, 1, 99)) return 'เลขที่/ห้องไม่ถูกต้อง';
+  var onlyWritten = d.max === 0 && d.got === 0 && Array.isArray(d.written) && d.written.length > 0;  // ส่งเฉพาะข้อเขียน
   if (typeof d.got !== 'number' || typeof d.max !== 'number' ||
-      !(d.max > 0 && d.max <= 500 && d.got >= 0 && d.got <= d.max)) return 'คะแนนไม่ถูกต้อง';
+      !((d.max > 0 || onlyWritten) && d.max <= 500 && d.got >= 0 && d.got <= d.max)) return 'คะแนนไม่ถูกต้อง';
   if (!isInt_(d.attempt, 1, 999)) return 'ครั้งที่ไม่ถูกต้อง';
   if (!d.parts || typeof d.parts !== 'object' || Array.isArray(d.parts)) return 'ข้อมูลส่วนไม่ถูกต้อง';
   var keys = Object.keys(d.parts);
@@ -99,6 +110,15 @@ function validate_(d) {
     var p = d.parts[keys[i]];
     if (keys[i].length > 40 || !p || typeof p.got !== 'number' || typeof p.max !== 'number' ||
         p.got < 0 || p.max <= 0 || p.got > p.max) return 'ข้อมูลส่วนไม่ถูกต้อง';
+  }
+  if (d.written !== undefined) {
+    if (!Array.isArray(d.written) || d.written.length > 30) return 'ข้อเขียนไม่ถูกต้อง';
+    for (var j = 0; j < d.written.length; j++) {
+      var w = d.written[j];
+      if (!w || typeof w.k !== 'string' || typeof w.q !== 'string' || typeof w.a !== 'string') return 'ข้อเขียนไม่ถูกต้อง';
+      if (w.k.length < 1 || w.k.length > 40 || w.q.length > 300 || w.a.length < 1 || w.a.length > 3000) return 'ข้อเขียนไม่ถูกต้อง';
+      if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(w.k + w.q + w.a)) return 'ข้อเขียนไม่ถูกต้อง';
+    }
   }
   return '';
 }
@@ -114,8 +134,35 @@ function sheetFor_(id) {
     sh.appendRow(HEADERS);
     sh.setFrozenRows(1);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+  } else if (sh.getLastColumn() < HEADERS.length) {
+    // แท็บที่สร้างไว้จากเวอร์ชันเก่า: เติมหัวคอลัมน์ใหม่ (ข้อเขียน/รหัสส่ง/คะแนนข้อเขียน)
+    sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
   }
   return sh;
+}
+
+function writtenSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(WRITTEN_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(WRITTEN_SHEET);
+    sh.appendRow(WRITTEN_HEADERS);
+    sh.setFrozenRows(1);
+    sh.getRange(1, 1, 1, WRITTEN_HEADERS.length).setFontWeight('bold');
+  }
+  return sh;
+}
+
+function appendWritten_(d, sid, written) {
+  var sh = writtenSheet_();
+  var start = sh.getLastRow() + 1, n = written.length;
+  var now = new Date(), name = d.name.trim(), title = ACTIVITIES[d.id];
+  var rows = written.map(function (w) {
+    return [now, sid, name, d.no, d.cls, d.room, d.id, title, d.attempt, w.k, w.q, w.a, '', '', ''];
+  });
+  // คอลัมน์ข้อความ (ชื่อ, รหัสข้อ, คำถาม, คำตอบ) ตั้งเป็น plain text ก่อนเขียน กันคำตอบที่ขึ้นต้นด้วย = + - @ ถูกตีเป็นสูตร
+  [3, 10, 11, 12].forEach(function (c) { sh.getRange(start, c, n, 1).setNumberFormat('@'); });
+  sh.getRange(start, 1, n, WRITTEN_HEADERS.length).setValues(rows);
 }
 
 function json_(o) {
