@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f0fc">
+<title>กิจกรรม 6.7 การพยากรณ์อากาศทำได้อย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 6.7 การพยากรณ์อากาศทำได้อย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-6-7.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--pu:#7b3fa8;--pu2:#b57ddb;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#f7f0fc;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,40,80,.1),0 2px 8px rgba(60,40,80,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#f7f0fc,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#5d3a7a;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--pu);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:720px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pu),var(--pu2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--pu);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--pu);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{padding-left:1.2rem}
+.stepbox{border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:14px 0;background:#fcfaff}.stepbox.locked{opacity:.5}.stepbox h3{margin:0 0 .4rem}
+.btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--pu);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#f1e6fa;position:sticky;top:0}.tw{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}
+select,input[type=number]{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff}input[type=number]{width:110px}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fbf8fe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--red);font-weight:700}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.tabs button{border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px;text-align:left}.tabs button.on{background:var(--soft);border-color:var(--pu);box-shadow:0 0 0 2px rgba(123,63,168,.15)}.tabs b{display:block;color:var(--pu)}
+@media(max-width:820px){.two,.tabs{grid-template-columns:1fr}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 6 กระบวนการเปลี่ยนแปลงลมฟ้าอากาศ</div>
+  <h1>กิจกรรม 6.7 การพยากรณ์อากาศทำได้อย่างไร</h1>
+  <p class="lead">รวบรวมข้อมูลองค์ประกอบลมฟ้าอากาศย้อนหลัง 6 วัน จัดกระทำเป็นกราฟหรือตาราง วิเคราะห์แนวโน้ม แล้วพยากรณ์วันที่ 7 ก่อนเทียบกับสิ่งที่เกิดขึ้นจริงในแบบจำลอง</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>รวบรวมข้อมูลและวิเคราะห์ความสัมพันธ์ระหว่างองค์ประกอบลมฟ้าอากาศเพื่อพยากรณ์อากาศอย่างง่าย</p>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>กระดาษกราฟ (ในแล็บเสมือนใช้กราฟที่วาดให้บนหน้าจอแทน)</li></ul>
+<h3>วิธีดำเนินกิจกรรม</h3>
+<ol class="steps">
+<li>รวบรวมข้อมูลองค์ประกอบลมฟ้าอากาศย้อนหลังเป็นเวลา 6 วัน จากแหล่งข้อมูลต่าง ๆ เช่น เว็บไซต์กรมอุตุนิยมวิทยา และเว็บไซต์อื่น ๆ</li>
+<li>นำข้อมูลที่รวบรวมได้ตั้งแต่วันที่ 1-6 มาจัดกระทำในรูปแบบต่าง ๆ เช่น กราฟเส้น แผนภูมิแท่ง ตาราง และรูปแบบอื่น ๆ ตามความเหมาะสม โดยอาจใช้โปรแกรมสำเร็จรูปต่าง ๆ</li>
+<li>วิเคราะห์แนวโน้มการเปลี่ยนแปลงและความสัมพันธ์ขององค์ประกอบลมฟ้าอากาศจากข้อมูลที่ได้จัดกระทำ เพื่อสร้างคำพยากรณ์อากาศในวันถัดไป โดยพยากรณ์อุณหภูมิอากาศต่ำสุด อุณหภูมิอากาศสูงสุด และปริมาณฝน จากนั้นนำเสนอผลการพยากรณ์อากาศต่อชั้นเรียน</li>
+<li>ตรวจสอบความถูกต้องของคำพยากรณ์กับสิ่งที่เกิดขึ้นจริงในวันที่ 7 โดยเปรียบเทียบการพยากรณ์อุณหภูมิอากาศต่ำสุด อุณหภูมิอากาศสูงสุด และปริมาณฝนกับข้อมูลลมฟ้าอากาศที่สืบค้นเพิ่มเติมจากแหล่งข้อมูลเดียวกัน จากนั้นอภิปรายร่วมกันในชั้นเรียนเกี่ยวกับปัจจัยที่ส่งผลต่อความแม่นยำของการพยากรณ์อากาศ</li></ol>
+<div class="note"><strong>กิจกรรมทางเลือก (ตามหนังสือ):</strong> ตรวจวัดอุณหภูมิอากาศ ความชื้น และปริมาณเมฆปกคลุม ต่อเนื่องกัน 6 วัน และจัดกระทำข้อมูลในรูปแบบต่าง ๆ แล้ววิเคราะห์ข้อมูลเพื่อสร้างคำพยากรณ์อากาศเกี่ยวกับอุณหภูมิอากาศ ความชื้นและปริมาณเมฆ เปรียบเทียบกับสภาพลมฟ้าอากาศที่เกิดขึ้นจริงในวันที่ 7</div>
+<div class="note warn"><strong>ข้อสังเกต:</strong> กิจกรรมนี้ไม่มีข้อควรระวังด้านความปลอดภัยในหนังสือ แต่ข้อมูลในแล็บเสมือนเป็น<strong>ค่าสมมติของแบบจำลอง</strong> ไม่ใช่ข้อมูลจริงของกรมอุตุนิยมวิทยา เมื่อทำจริงให้รวบรวมข้อมูลจากเว็บไซต์ตามขั้นตอนที่ 1</div>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน: พยากรณ์อากาศวันที่ 7</h2>
+<p class="lead">ทำตามขั้นตอนที่ 1 → 4 ทีละขั้น ขั้นถัดไปจะปลดล็อกเมื่อทำขั้นก่อนหน้าเสร็จ</p>
+
+<div class="stepbox" id="s1"><h3>ขั้นที่ 1 รวบรวมข้อมูลย้อนหลัง 6 วัน</h3>
+<div class="ctl"><label for="src">แหล่งข้อมูล</label><select id="src"><option>เว็บไซต์กรมอุตุนิยมวิทยา (ข้อมูลสมมติ)</option><option>เว็บไซต์อื่น ๆ (ข้อมูลสมมติ)</option></select>
+<button class="btn" id="colBtn" type="button">รวบรวมข้อมูลวันที่ 1</button><button class="btn alt" id="colAll" type="button">รวบรวมครบทุกวัน</button></div>
+<div class="tw"><table><thead><tr><th>วันที่</th><th>อุณหภูมิต่ำสุด (°C)</th><th>อุณหภูมิสูงสุด (°C)</th><th>ปริมาณฝน (มม.)</th><th>ความชื้นสัมพัทธ์ (%)</th></tr></thead><tbody id="raw"><tr><td colspan="5" style="color:#999">ยังไม่มีข้อมูล</td></tr></tbody></table></div>
+<p class="pc">ค่าสมมติของแบบจำลอง: อุณหภูมิต่ำสุดเกือบคงที่ อุณหภูมิสูงสุดเพิ่มขึ้นช้า ๆ ปริมาณฝนและความชื้นเพิ่มขึ้น (หนังสือไม่ได้ให้ตัวเลข ผู้สร้างแบบจำลองกำหนดขึ้นเอง)</p></div>
+
+<div class="stepbox locked" id="s2"><h3>ขั้นที่ 2 จัดกระทำข้อมูล</h3>
+<div class="ctl"><label for="elSel">องค์ประกอบ</label><select id="elSel"><option value="min">อุณหภูมิต่ำสุด</option><option value="max">อุณหภูมิสูงสุด</option><option value="rain">ปริมาณฝน</option><option value="hum">ความชื้นสัมพัทธ์</option></select>
+<label for="kindSel">รูปแบบ</label><select id="kindSel"><option value="line">กราฟเส้น</option><option value="bar">แผนภูมิแท่ง</option><option value="table">ตาราง</option></select></div>
+<div class="graph" id="chart"></div>
+<p class="pc" id="chartNote">ลองสลับอย่างน้อย 2 รูปแบบ เพื่อดูว่ารูปแบบใดมองแนวโน้มได้ง่ายกว่า</p></div>
+
+<div class="stepbox locked" id="s3"><h3>ขั้นที่ 3 วิเคราะห์แนวโน้มและพยากรณ์วันที่ 7</h3>
+<p>จากข้อมูลวันที่ 1-6 ค่าของแต่ละองค์ประกอบมีแนวโน้มอย่างไร</p>
+<div class="ctl"><label for="tr_min">อุณหภูมิต่ำสุด</label><select id="tr_min"><option value="">เลือก</option><option value="up">เพิ่มขึ้น</option><option value="flat">เกือบคงที่</option><option value="down">ลดลง</option></select>
+<label for="tr_max">อุณหภูมิสูงสุด</label><select id="tr_max"><option value="">เลือก</option><option value="up">เพิ่มขึ้น</option><option value="flat">เกือบคงที่</option><option value="down">ลดลง</option></select>
+<label for="tr_rain">ปริมาณฝน</label><select id="tr_rain"><option value="">เลือก</option><option value="up">เพิ่มขึ้น</option><option value="flat">เกือบคงที่</option><option value="down">ลดลง</option></select>
+<button class="btn alt" id="trBtn" type="button">ตรวจแนวโน้ม</button></div>
+<p class="fb" id="trFb" aria-live="polite"></p>
+<div id="predBox" style="display:none"><p>แล้วพยากรณ์วันที่ 7 (ใส่ตัวเลขตามที่วิเคราะห์ได้)</p>
+<div class="ctl"><label for="p_min">อุณหภูมิต่ำสุด (°C)</label><input type="number" id="p_min" step="0.1"><label for="p_max">อุณหภูมิสูงสุด (°C)</label><input type="number" id="p_max" step="0.1"><label for="p_rain">ปริมาณฝน (มม.)</label><input type="number" id="p_rain" step="0.1" min="0">
+<button class="btn" id="predBtn" type="button">ส่งคำพยากรณ์</button></div></div>
+<p class="fb" id="predFb" aria-live="polite"></p></div>
+
+<div class="stepbox locked" id="s4"><h3>ขั้นที่ 4 ตรวจสอบกับสิ่งที่เกิดขึ้นจริงในวันที่ 7</h3>
+<div id="result"><p class="pc">ส่งคำพยากรณ์ในขั้นที่ 3 ก่อน</p></div></div>
+<div class="btns"><button class="btn alt" id="resetBtn" type="button">เริ่มใหม่</button></div>
+<details style="margin-top:12px"><summary>ค่าที่ใช้ในแบบจำลอง</summary><p class="pc">ข้อมูลวันที่ 1-6 และผลจริงวันที่ 7 เป็นค่าสมมติทั้งหมด · เส้นแนวโน้มคำนวณด้วยวิธีกำลังสองน้อยที่สุด (เส้นตรงที่พอดีกับข้อมูลที่สุด) แล้วต่อไปวันที่ 7 · เกณฑ์ว่า "ตรงกับจริง" คือคลาดเคลื่อนไม่เกิน 1 °C สำหรับอุณหภูมิ และไม่เกิน 5 มม. สำหรับปริมาณฝน (กำหนดเอง ไม่ใช่เกณฑ์ของหนังสือ) · เกณฑ์ตัดสินแนวโน้ม: เปลี่ยนไม่เกิน 0.1 °C/วัน หรือ 0.5 มม./วัน ถือว่าเกือบคงที่ แบบจำลองเพื่อการศึกษา ไม่ใช่การพยากรณ์อากาศจริง</p></details>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 2 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<fieldset><legend>1. กิจกรรมนี้มีขั้นตอนในการพยากรณ์อากาศอย่างไร</legend>
+<label class="opt"><input type="radio" name="q1" value="a"> รวบรวมข้อมูลย้อนหลัง → จัดกระทำข้อมูลเป็นกราฟ/ตาราง → วิเคราะห์แนวโน้มแล้วพยากรณ์ → ตรวจสอบกับสิ่งที่เกิดขึ้นจริง</label>
+<label class="opt"><input type="radio" name="q1" value="b"> เดาตามความรู้สึก → บอกเพื่อน → ไม่ต้องตรวจสอบ</label>
+<label class="opt"><input type="radio" name="q1" value="c"> ตรวจสอบกับสิ่งที่เกิดขึ้นจริงก่อน → ค่อยรวบรวมข้อมูล</label></fieldset>
+<fieldset><legend>2. เหตุใดจึงต้องเก็บรวบรวมข้อมูลองค์ประกอบลมฟ้าอากาศ 6 วัน เพื่อใช้ในการพยากรณ์อากาศ</legend>
+<label class="opt"><input type="radio" name="q2" value="a"> เพื่อให้ได้ข้อมูลที่เพียงพอสำหรับวิเคราะห์แนวโน้มการเปลี่ยนแปลงและความสัมพันธ์ขององค์ประกอบลมฟ้าอากาศ</label>
+<label class="opt"><input type="radio" name="q2" value="b"> เพราะวันเดียวก็พยากรณ์ได้แม่นยำเท่ากัน</label>
+<label class="opt"><input type="radio" name="q2" value="c"> เพื่อให้ตารางยาวขึ้นเท่านั้น</label></fieldset>
+<p><strong>3. คำพยากรณ์อุณหภูมิอากาศสูงสุด อุณหภูมิอากาศต่ำสุด และปริมาณฝน ตรงกับข้อเท็จจริงที่เกิดขึ้นหรือไม่ อย่างไร</strong></p>
+<div class="note" id="q3Auto">ทำขั้นที่ 3-4 ในห้องทดลองก่อน ระบบจะสรุปผลของคุณให้ที่นี่</div>
+<label for="q3t">เขียนอธิบายด้วยคำของตนเอง</label><textarea id="q3t" placeholder="เช่น อุณหภูมิต่ำสุดตรงกับจริง แต่ปริมาณฝน…"></textarea>
+<fieldset style="margin-top:14px"><legend>4. จากกิจกรรม สรุปได้ว่าอย่างไร</legend>
+<label class="opt"><input type="radio" name="q4" value="a"> การพยากรณ์อากาศอย่างง่ายทำได้โดยวิเคราะห์แนวโน้มของข้อมูลย้อนหลัง แต่คำพยากรณ์อาจคลาดเคลื่อนจากสิ่งที่เกิดขึ้นจริงได้</label>
+<label class="opt"><input type="radio" name="q4" value="b"> คำพยากรณ์จากแนวโน้มของข้อมูลถูกต้องเสมอ</label>
+<label class="opt"><input type="radio" name="q4" value="c"> ลมฟ้าอากาศพยากรณ์ไม่ได้เลย</label></fieldset>
+<div class="btns"><button class="btn" id="qBtn" type="button">ตรวจคำตอบ</button></div>
+<p class="fb" id="qFb" aria-live="polite"></p>
+<div class="note" id="qAns" style="display:none"><strong>แนวคำตอบ:</strong> ข้อ 3 ให้เทียบผลที่คุณได้กับตารางในขั้นที่ 4 (ตัวเลขขึ้นกับการพยากรณ์ของคุณ) · ข้อ 4 หนังสือเรียนกล่าวว่าคำพยากรณ์ที่แม่นยำต้องมีข้อมูลองค์ประกอบลมฟ้าอากาศที่เพียงพอ และต้องมีความรู้ความเข้าใจกระบวนการเปลี่ยนแปลงของลมฟ้าอากาศ นักอุตุนิยมวิทยาจึงใช้ความรู้ทางอุตุนิยมวิทยาและวิธีวิเคราะห์ข้อมูลที่ซับซ้อนกว่าในกิจกรรมนี้</div>
+</section>
+
+<section class="card" id="concept"><p class="kicker">ส่วนที่ 3 · การพยากรณ์อากาศจริง 3 ขั้นตอน</p><h2>นักอุตุนิยมวิทยาทำอย่างไร</h2>
+<p>การพยากรณ์อากาศจริงมีความซับซ้อนมากกว่ากิจกรรม โดยทั่วไปประกอบด้วย 3 ขั้นตอนสำคัญ กดแต่ละขั้นเพื่อดูรายละเอียด (ตามหนังสือเรียน)</p>
+<div class="tabs" role="group" aria-label="ขั้นตอนการพยากรณ์อากาศ"><button type="button" data-k="1"><b>ขั้นที่ 1</b>การตรวจอากาศ</button><button type="button" data-k="2"><b>ขั้นที่ 2</b>การสื่อสาร</button><button type="button" data-k="3"><b>ขั้นที่ 3</b>การวิเคราะห์ข้อมูล</button></div>
+<div class="note" id="cDesc">เลือกขั้นตอนด้านบน</div>
+<svg viewBox="0 0 520 90" role="img" aria-label="ลำดับ 3 ขั้นตอนการพยากรณ์อากาศ" style="width:100%;height:auto"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#7b3fa8"/></marker></defs>
+<g id="flow"></g></svg>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 4 · ทบทวนจากเนื้อหาหนังสือ</p><h2>แบบทดสอบสั้น</h2>
+<fieldset><legend>1. สถานีอุตุนิยมวิทยาใช้เทอร์มอมิเตอร์ ศรลม ดาวเทียม และเรดาร์ตรวจอากาศ จัดอยู่ในขั้นตอนใดของการพยากรณ์อากาศ</legend>
+<label class="opt"><input type="radio" name="z1" value="a"> การตรวจอากาศ</label><label class="opt"><input type="radio" name="z1" value="b"> การสื่อสาร</label><label class="opt"><input type="radio" name="z1" value="c"> การวิเคราะห์ข้อมูล</label></fieldset>
+<fieldset><legend>2. การแลกเปลี่ยนข้อมูลผลการตรวจอากาศจากแหล่งต่าง ๆ ทั้งภายในและนอกประเทศ จัดอยู่ในขั้นตอนใด</legend>
+<label class="opt"><input type="radio" name="z2" value="a"> การตรวจอากาศ</label><label class="opt"><input type="radio" name="z2" value="b"> การสื่อสาร</label><label class="opt"><input type="radio" name="z2" value="c"> การวิเคราะห์ข้อมูล</label></fieldset>
+<fieldset><legend>3. จากแผนที่อากาศผิวพื้นวันที่ 24 มีนาคม 2560 (หนังสือหน้า 153) ความกดอากาศต่ำเกิดจากสาเหตุใด</legend>
+<label class="opt"><input type="radio" name="z3" value="a"> ความร้อนปกคลุมบริเวณประเทศไทยตอนบน</label><label class="opt"><input type="radio" name="z3" value="b"> พายุหมุนเขตร้อนจากมหาสมุทรแปซิฟิก</label><label class="opt"><input type="radio" name="z3" value="c"> ความหนาวเย็นจากประเทศจีนตอนใต้</label></fieldset>
+<button class="btn" id="zBtn" type="button">ส่งคำตอบ</button><p class="fb" id="zFb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><h2>ข้อมูลอ้างอิง</h2>
+<p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 6 กิจกรรม 6.7 หน้า 151 และเนื้อหาสรุปหน้า 152-153 (กรมอุตุนิยมวิทยา: 2559, 2560) · ค่าข้อมูล 6 วัน ผลวันที่ 7 และเกณฑ์ตรงกับจริงเป็นค่าสมมติของแบบจำลอง · แบบจำลองเพื่อการศึกษา ไม่แทนการพยากรณ์อากาศจริง</p></section>
+
+<section class="card" id="done" style="display:none;background:#f6f0fb"><h2>🎉 ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่แล้วพยากรณ์อีกครั้ง หรือรวบรวมข้อมูลจริงจากเว็บไซต์กรมอุตุนิยมวิทยาแล้วเปรียบเทียบ</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='sciM1V2Act67_v1';
+/*PURE*/
+/* predictNext พอร์ตจาก predict_next() ที่ผ่าน checks ของ llm-orchestrator (ทดสอบด้วย node เทียบกับต้นฉบับ Python) */
+function fitLine(values){
+  const n=values.length;if(n===0)throw new Error('values must not be empty');
+  if(n===1)return{a:values[0],b:0};
+  let sx=0,sy=0,sxy=0,sx2=0;
+  for(let i=0;i<n;i++){const x=i+1,y=values[i];sx+=x;sy+=y;sxy+=x*y;sx2+=x*x;}
+  const d=n*sx2-sx*sx;const b=(n*sxy-sx*sy)/d;return{a:(sy-b*sx)/n,b};
+}
+function predictNext(values,floor=null){
+  const{a,b}=fitLine(values);let r=a+b*(values.length+1);
+  if(floor!==null)r=Math.max(r,floor);return r;
+}
+function trendOf(values,eps){const b=fitLine(values).b;return b>eps?'up':b<-eps?'down':'flat';}
+/*ENDPURE*/
+const EL={min:{n:'อุณหภูมิต่ำสุด',u:'°C',d:1,eps:.1},max:{n:'อุณหภูมิสูงสุด',u:'°C',d:1,eps:.1},rain:{n:'ปริมาณฝน',u:'มม.',d:1,eps:.5},hum:{n:'ความชื้นสัมพัทธ์',u:'%',d:0,eps:.5}};
+/* ข้อมูลสมมติของแบบจำลอง */
+const DATA={min:[25.8,25.5,26.1,25.7,26.0,25.9],max:[33.0,34.0,34.2,35.0,35.1,36.0],rain:[0,0,2.5,8.0,15.0,22.0],hum:[60,63,66,70,74,78]};
+const ACTUAL={min:26.2,max:35.5,rain:12.0};
+const TOL={min:1,max:1,rain:5};
+const TRN={up:'เพิ่มขึ้น',flat:'เกือบคงที่',down:'ลดลง'};
+const read=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=read();const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+let n=0;
+
+function renderRaw(){
+  const tb=$('raw');
+  if(!n){tb.innerHTML='<tr><td colspan="5" style="color:#999">ยังไม่มีข้อมูล</td></tr>';}
+  else{let h='';for(let i=0;i<n;i++)h+=`<tr><td>${i+1}</td><td>${DATA.min[i].toFixed(1)}</td><td>${DATA.max[i].toFixed(1)}</td><td>${DATA.rain[i].toFixed(1)}</td><td>${DATA.hum[i]}</td></tr>`;tb.innerHTML=h;}
+  $('colBtn').textContent=n>=6?'รวบรวมครบ 6 วันแล้ว':`รวบรวมข้อมูลวันที่ ${n+1}`;$('colBtn').disabled=n>=6;$('colAll').disabled=n>=6;
+  const lock=(id,l)=>$(id).classList.toggle('locked',l);
+  lock('s2',n<6);lock('s3',n<6||!(S.charts&&S.charts.length>=2));
+  lock('s4',!S.sub);
+}
+function drawChart(){
+  const k=$('elSel').value,kind=$('kindSel').value,e=EL[k],v=DATA[k];
+  if(n<6){$('chart').innerHTML='<p class="pc" style="padding:14px">รวบรวมข้อมูลให้ครบ 6 วันก่อน</p>';return;}
+  S.charts=Array.isArray(S.charts)?S.charts:[];if(!S.charts.includes(kind)){S.charts.push(kind);save();renderRaw();}
+  if(kind==='table'){$('chart').innerHTML=`<div class="tw" style="max-height:none"><table><thead><tr><th>วันที่</th><th>${e.n} (${e.u})</th></tr></thead><tbody>${v.map((x,i)=>`<tr><td>${i+1}</td><td>${x.toFixed(e.d)}</td></tr>`).join('')}${S.sub?`<tr><td>7 (จริง)</td><td>${(k in ACTUAL?ACTUAL[k]:'-')}</td></tr>`:''}</tbody></table></div>`;return;}
+  const W=420,H=260,L=46,R=14,T=14,B=40;
+  const ex=S.sub&&k in ACTUAL?[ACTUAL[k],S.pred[k]]:[];const all=v.concat(ex);
+  let lo=k==='rain'?0:Math.floor(Math.min(...all)-1),hi=Math.ceil(Math.max(...all)+1);if(hi-lo<4)hi=lo+4;
+  const x=d=>L+(W-L-R)*(d-.5)/7,y=c=>T+(H-T-B)*(1-(c-lo)/(hi-lo));
+  let s='';
+  for(let i=0;i<=4;i++){const c=lo+(hi-lo)*i/4;s+=`<line x1="${L}" x2="${W-R}" y1="${y(c)}" y2="${y(c)}" stroke="#e6e9f0"/><text x="${L-6}" y="${y(c)+4}" font-size="11" text-anchor="end" fill="#66708a">${c.toFixed(c%1?1:0)}</text>`;}
+  for(let d=1;d<=7;d++)s+=`<text x="${x(d)}" y="${H-B+16}" font-size="11" text-anchor="middle" fill="#66708a">${d}</text>`;
+  s+=`<text x="${(L+W)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#1d2433">วันที่</text><text transform="translate(12 ${(H-B)/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#1d2433">${e.n} (${e.u})</text>`;
+  if(kind==='bar')s+=v.map((c,i)=>`<rect x="${x(i+1)-14}" y="${y(c)}" width="28" height="${Math.max(0,y(lo)-y(c))}" rx="4" fill="#b57ddb"/>`).join('');
+  else s+=`<polyline fill="none" stroke="#7b3fa8" stroke-width="2.5" stroke-linejoin="round" points="${v.map((c,i)=>x(i+1)+','+y(c)).join(' ')}"/>`+v.map((c,i)=>`<circle cx="${x(i+1)}" cy="${y(c)}" r="3.5" fill="#7b3fa8"/>`).join('');
+  if(S.sub&&k in ACTUAL){const f=fitLine(v);s+=`<line x1="${x(1)}" y1="${y(f.a+f.b)}" x2="${x(7)}" y2="${y(f.a+f.b*7)}" stroke="#1769e0" stroke-dasharray="5 4"/>`+
+    `<circle cx="${x(7)}" cy="${y(ACTUAL[k])}" r="5" fill="#176553"/><circle cx="${x(7)}" cy="${y(S.pred[k])}" r="5" fill="#fff" stroke="#e8662c" stroke-width="2.5"/>`+
+    `<text x="${W-R}" y="${T+8}" font-size="10" text-anchor="end" fill="#176553">● จริง  <tspan fill="#e8662c">○ ที่คุณพยากรณ์</tspan>  <tspan fill="#1769e0">-- เส้นแนวโน้ม</tspan></text>`;}
+  $('chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${kind==='bar'?'แผนภูมิแท่ง':'กราฟเส้น'}${e.n}ตามวันที่">${s}</svg>`;
+}
+$('colBtn').addEventListener('click',()=>{if(n<6){n++;S.n=n;save();renderRaw();drawChart();}});
+$('colAll').addEventListener('click',()=>{n=6;S.n=n;save();renderRaw();drawChart();});
+$('elSel').addEventListener('change',drawChart);$('kindSel').addEventListener('change',drawChart);
+$('src').addEventListener('change',()=>{S.src=$('src').selectedIndex;save();});
+
+$('trBtn').addEventListener('click',()=>{
+  if(n<6||!(S.charts&&S.charts.length>=2)){$('trFb').className='fb err';$('trFb').textContent='ทำขั้นที่ 1 และ 2 ก่อน (สลับรูปแบบข้อมูลอย่างน้อย 2 แบบ)';return;}
+  const ks=['min','max','rain'],a=ks.map(k=>$('tr_'+k).value);
+  if(a.some(v=>!v)){$('trFb').className='fb err';$('trFb').textContent='เลือกแนวโน้มให้ครบทั้ง 3 รายการ';return;}
+  const ans=ks.map(k=>trendOf(DATA[k],EL[k].eps));const sc=a.filter((v,i)=>v===ans[i]).length;
+  S.tr=a;S.trChecked=true;save();
+  $('trFb').className='fb'+(sc===3?'':' err');
+  $('trFb').textContent=(sc===3?'ถูกทั้ง 3 รายการ: ':`ถูก ${sc}/3 รายการ เฉลย: `)+ks.map((k,i)=>`${EL[k].n} ${TRN[ans[i]]}`).join(' · ');
+  $('predBox').style.display='block';
+});
+$('predBtn').addEventListener('click',()=>{
+  const p={min:parseFloat($('p_min').value),max:parseFloat($('p_max').value),rain:parseFloat($('p_rain').value)};
+  if(Object.values(p).some(v=>!Number.isFinite(v))||p.rain<0){$('predFb').className='fb err';$('predFb').textContent='กรอกตัวเลขให้ครบ (ปริมาณฝนต้องไม่ติดลบ)';return;}
+  if(p.min>p.max){$('predFb').className='fb err';$('predFb').textContent='อุณหภูมิต่ำสุดต้องไม่มากกว่าอุณหภูมิสูงสุด';return;}
+  S.pred=p;S.sub=true;save();renderResult();renderRaw();drawChart();$('predFb').className='fb';$('predFb').textContent='ส่งคำพยากรณ์แล้ว ดูผลในขั้นที่ 4';
+});
+function renderResult(){
+  if(!S.sub||!S.pred){$('result').innerHTML='<p class="pc">ส่งคำพยากรณ์ในขั้นที่ 3 ก่อน</p>';$('q3Auto').textContent='ทำขั้นที่ 3-4 ในห้องทดลองก่อน ระบบจะสรุปผลของคุณให้ที่นี่';return;}
+  const ks=['min','max','rain'];let hit=0,rows='',sum=[];
+  ks.forEach(k=>{const e=EL[k],pv=S.pred[k],av=ACTUAL[k],d=pv-av,ok=Math.abs(d)<=TOL[k]+1e-9,tl=predictNext(DATA[k],k==='rain'?0:null);if(ok)hit++;
+    rows+=`<tr><td>${e.n} (${e.u})</td><td>${pv.toFixed(1)}</td><td>${av.toFixed(1)}</td><td>${d>0?'+':''}${d.toFixed(1)}</td><td>${ok?'<span class="ok">ตรง</span>':'<span class="bad">ไม่ตรง</span>'}</td><td>${tl.toFixed(1)}</td></tr>`;
+    sum.push(`${e.n}${ok?'ตรง':'ไม่ตรง'}กับค่าจริง (คลาดเคลื่อน ${Math.abs(d).toFixed(1)} ${e.u})`);});
+  $('result').innerHTML=`<div class="tw" style="max-height:none"><table><thead><tr><th>รายการ</th><th>ที่คุณพยากรณ์</th><th>ค่าจริงวันที่ 7 (สมมติ)</th><th>ผลต่าง</th><th>ผล</th><th>เส้นแนวโน้มคำนวณได้</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="fb${hit===3?'':' err'}">ตรงกับค่าจริง ${hit} จาก 3 รายการ (เกณฑ์: ±1 °C สำหรับอุณหภูมิ ±5 มม. สำหรับฝน ค่ากำหนดเอง)</p>
+  <div class="note"><strong>อภิปราย (ขั้นตอนที่ 4 ของหนังสือ):</strong> ปัจจัยใดทำให้คำพยากรณ์คลาดเคลื่อน เช่น ข้อมูลย้อนหลังมีเพียง 6 วัน แนวโน้มที่เห็นอาจเปลี่ยนไปเมื่อลมฟ้าอากาศเปลี่ยนแปลง (ฝนในแบบจำลองลดลงในวันที่ 7 ทั้งที่ 6 วันแรกเพิ่มขึ้น) ปริมาณฝนผันผวนมากกว่าอุณหภูมิ และไม่ได้ใช้ความรู้เรื่องกระบวนการเปลี่ยนแปลงลมฟ้าอากาศ ดูเส้นแนวโน้มประกอบในกราฟขั้นที่ 2 (เลือกกราฟเส้นหรือแท่ง)</div>`;
+  $('q3Auto').innerHTML='ผลของคุณ: '+sum.join(' · ')+'. ใช้ข้อมูลนี้เขียนอธิบายด้านล่าง';
+}
+$('resetBtn').addEventListener('click',()=>{n=0;['n','tr','trChecked','pred','sub','charts'].forEach(k=>delete S[k]);save();['tr_min','tr_max','tr_rain'].forEach(i=>$(i).value='');['p_min','p_max','p_rain'].forEach(i=>$(i).value='');$('trFb').textContent='';$('predFb').textContent='';$('predBox').style.display='none';renderRaw();drawChart();renderResult();});
+
+/* questions */
+const sel=nm=>document.querySelector(`input[name="${nm}"]:checked`)?.value||'';
+$('qBtn').addEventListener('click',()=>{
+  const a=['q1','q2','q4'].map(sel);
+  if(a.some(v=>!v)||!$('q3t').value.trim()){$('qFb').textContent='กรุณาตอบให้ครบทั้ง 4 ข้อ (ข้อ 3 เขียนอธิบาย)';$('qFb').className='fb err';return;}
+  const key=['a','a','a'];const sc=a.filter((v,i)=>v===key[i]).length;
+  S.q=a;S.q3=$('q3t').value;S.qDone=true;save();$('qAns').style.display='block';
+  $('qFb').className='fb'+(sc===3?'':' err');$('qFb').textContent=sc===3?'ข้อ 1, 2, 4 ถูกทั้งหมด ข้อ 3 เทียบกับตารางในขั้นที่ 4':`ข้อ 1, 2, 4 ถูก ${sc}/3 ข้อ ทบทวนแนวคำตอบด้านล่าง`;
+});
+/* concept */
+const STEPS={1:['การตรวจอากาศ','เก็บรวบรวมข้อมูลองค์ประกอบลมฟ้าอากาศปัจจุบัน โดยใช้เครื่องมือต่าง ๆ เช่น เทอร์มอมิเตอร์ ศรลม ดาวเทียม และเรดาร์ตรวจอากาศ'],2:['การสื่อสาร','รวบรวมและแลกเปลี่ยนข้อมูลผลการตรวจอากาศที่ได้จากแหล่งต่าง ๆ ทั้งภายในและนอกประเทศ'],3:['การวิเคราะห์ข้อมูล','นำข้อมูลองค์ประกอบลมฟ้าอากาศมาจัดกระทำในรูปแบบต่าง ๆ เช่น แผนภูมิทางอุตุนิยมวิทยา แผนที่อากาศ วิเคราะห์ข้อมูลและคาดหมายการเปลี่ยนแปลงลมฟ้าอากาศด้วยวิธีการพยากรณ์อากาศแบบต่าง ๆ และเผยแพร่คำพยากรณ์ในช่องทางต่าง ๆ']};
+function drawFlow(cur){
+  let s='';[1,2,3].forEach((k,i)=>{const x=10+i*175,on=S.seen&&S.seen.includes(k),c=k===cur;
+    s+=`<rect x="${x}" y="20" width="150" height="50" rx="14" fill="${c?'#7b3fa8':on?'#e6d4f5':'#f4eefa'}" stroke="#7b3fa8"/><text x="${x+75}" y="50" font-size="14" text-anchor="middle" fill="${c?'#fff':'#3c2457'}">${k}. ${STEPS[k][0]}</text>`;
+    if(i<2)s+=`<line x1="${x+152}" y1="45" x2="${x+172}" y2="45" stroke="#7b3fa8" stroke-width="2" marker-end="url(#ar)"/>`;});
+  $('flow').innerHTML=s;
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  const k=Number(b.dataset.k);document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $('cDesc').innerHTML=`<strong>${k}. ${STEPS[k][0]}:</strong> ${STEPS[k][1]}`;
+  S.seen=Array.isArray(S.seen)?S.seen:[];if(!S.seen.includes(k))S.seen.push(k);save();drawFlow(k);
+}));
+$('zBtn').addEventListener('click',()=>{
+  const a=['z1','z2','z3'].map(sel);if(a.some(v=>!v)){$('zFb').textContent='กรุณาตอบให้ครบทุกข้อ';$('zFb').className='fb err';return;}
+  const key=['a','b','a'];const sc=a.filter((v,i)=>v===key[i]).length;S.z=a;S.zDone=true;save();
+  $('zFb').className='fb'+(sc===3?'':' err');$('zFb').textContent=`ได้ ${sc}/3 · เฉลย: 1) การตรวจอากาศ 2) การสื่อสาร 3) ความร้อนปกคลุมบริเวณประเทศไทยตอนบน`;
+});
+function progress(){
+  const d=[!!S.sub,!!S.qDone,Array.isArray(S.seen)&&S.seen.length>=3,!!S.zDone];
+  const c=d.filter(Boolean).length;
+  $('pFill').style.width=c/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',c);$('pText').textContent=`ทำแล้ว ${c} จาก 4 ส่วน (ทดลอง · คำถาม · 3 ขั้นตอนการพยากรณ์ · แบบทดสอบ)`;$('done').style.display=c===4?'block':'none';
+}
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+
+/* restore */
+(()=>{
+  n=Number(S.n)||0;if(S.src)$('src').selectedIndex=S.src;
+  renderRaw();drawChart();
+  if(S.trChecked&&S.tr){['min','max','rain'].forEach((k,i)=>$('tr_'+k).value=S.tr[i]||'');$('trBtn').click();}
+  if(S.sub&&S.pred){['min','max','rain'].forEach(k=>$('p_'+k).value=S.pred[k]);$('predBox').style.display='block';renderResult();renderRaw();drawChart();}
+  if(S.q)['q1','q2','q4'].forEach((nm,i)=>{const e=document.querySelector(`input[name="${nm}"][value="${S.q[i]}"]`);if(e)e.checked=true;});
+  if(S.q3)$('q3t').value=S.q3;if(S.qDone)$('qBtn').click();
+  if(S.z)['z1','z2','z3'].forEach((nm,i)=>{const e=document.querySelector(`input[name="${nm}"][value="${S.z[i]}"]`);if(e)e.checked=true;});
+  if(S.zDone)$('zBtn').click();
+  drawFlow(0);progress();
+})();
+window.__lab={fitLine,predictNext,trendOf,DATA,ACTUAL};
+})();
+</script>
+</body>
+</html>

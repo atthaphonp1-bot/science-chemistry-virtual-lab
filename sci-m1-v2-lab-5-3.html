@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6ee">
+<title>กิจกรรม 5.3 ความร้อนส่งผลต่อสสารแต่ละสถานะอย่างไร | ห้องทดลองเสมือน ม.1</title>
+<!-- og:start -->
+<meta name="description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:type" content="website">
+<meta property="og:title" content="กิจกรรม 5.3 ความร้อนส่งผลต่อสสารแต่ละสถานะอย่างไร | ห้องทดลองเสมือน ม.1">
+<meta property="og:description" content="ห้องทดลองเสมือน วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (ตามหนังสือเรียน สสวท.) ลงมือทดลอง บันทึกผล และตอบคำถามได้บนมือถือ">
+<meta property="og:url" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/sci-m1-v2-lab-5-3.html">
+<meta property="og:image" content="https://atthaphonp1-bot.github.io/science-chemistry-virtual-lab/assets/og-sci-m1-v2.png">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
+
+<style>
+:root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--orange:#e8662c;--orange2:#ff9a5c;--blue:#1769e0;--ice:#bfe3ff;--ok:#176553;--red:#b63f43;--soft:#fff6ee;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(60,50,40,.1),0 2px 8px rgba(60,50,40,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:0 24px}
+.hero{padding:30px 0 20px}.hero .wrap{padding:clamp(26px,5vw,52px);border-radius:30px;background:linear-gradient(135deg,#fff6ee,#fff 60%,#eef6ff);border:1px solid var(--line);box-shadow:var(--shadow)}
+.home{color:#7a5a45;text-decoration:none;font-size:.85rem;font-weight:650}.eyebrow{color:var(--orange);font-size:.78rem;font-weight:750;letter-spacing:.1em;margin-top:14px}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .6rem;text-wrap:balance}h2{font-size:1.55rem;margin:.2rem 0 .6rem;line-height:1.3}h3{margin:1.2rem 0 .3rem}
+.lead{color:var(--muted);max-width:680px;margin:0}
+.progressbar{height:7px;border-radius:99px;background:rgba(120,130,160,.15);overflow:hidden;margin:22px 0 0}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s}.pc{color:var(--muted);font-size:.84rem;margin:.5rem 0 0}
+main{padding:10px 0 70px}section.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);margin:18px 0;box-shadow:var(--shadow)}
+.kicker{color:var(--orange);font-weight:750;font-size:.78rem;letter-spacing:.08em;margin:0}
+.note{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:12px 16px;margin:14px 0}.note.warn{background:#fff1f0;border-color:var(--red)}
+ol.steps{padding-left:1.3rem}ol.steps li{margin:.35rem 0}ul.mat{columns:2;padding-left:1.2rem}
+.lab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start}
+.stage{background:linear-gradient(180deg,#f3f8ff,#fff);border:1px solid var(--line);border-radius:20px;padding:10px}.stage svg{width:100%;height:auto;display:block}
+.panel{display:grid;gap:12px}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.readout div{background:#f7f8fb;border-radius:14px;padding:8px 10px;text-align:center}.readout b{display:block;font-size:1.35rem}.readout small{color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:650;background:var(--orange);color:#fff}.btn.alt{background:#eef1f7;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5a9cff;outline-offset:2px}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-weight:700;font-size:.9rem}
+.p-ice{background:#dff0ff;color:#0b4f8a}.p-melting{background:#e6e0ff;color:#4b2fa3}.p-water{background:#d6f0ff;color:#0a5f86}.p-boiling{background:#ffe3d1;color:#a8420f}.p-steam{background:#f0f0f0;color:#555}
+table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#fff1e6;position:sticky;top:0}.tw{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:14px}
+.graph{background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px}.graph svg{width:100%;height:auto;display:block}
+fieldset{border:0;padding:0;margin:0 0 16px}legend{font-weight:650;margin-bottom:4px}label.opt{display:block;padding:7px 12px;margin:5px 0;border:1px solid var(--line);border-radius:12px;cursor:pointer}label.opt:hover{background:#fafbfe}
+.fb{min-height:1.5em;font-weight:620;color:var(--ok);margin:8px 0 0}.fb.err{color:var(--red)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.dataT{margin-top:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.lab,.two{grid-template-columns:1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+@keyframes steam{0%{transform:translateY(0) scale(.8);opacity:.7}100%{transform:translateY(-46px) scale(1.4);opacity:0}}
+@keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
+.bub{animation:bub 1.3s linear infinite}.stm{animation:steam 1.8s linear infinite}.flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tabs .btn{padding:8px 16px}.btn.on{background:var(--orange);color:#fff}.btn.alt.on{background:var(--ink);color:#fff}
+.ex{font-size:.9rem;margin:2px 0 0 4px}.ex.ok{color:var(--ok)}.ex.bad{color:var(--red)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--muted);margin:6px 2px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+select,input[type=number]{border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:#fff;color:var(--ink)}input[type=number]{width:5.5em}
+.compare td,.compare th{font-size:.88rem}.good{background:#effaf4}.badc{background:#fff1f0}
+.assume{background:#f4f1ff;border-left:4px solid #6b4fd6;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.92rem}
+
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <a class="home" href="sci-m1-v2.html">← สารบัญ</a>
+  <div class="eyebrow">วิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 · หน่วยที่ 5 พลังงานความร้อน · บทที่ 1 เรื่องที่ 3 ความร้อนกับการขยายและหดตัวของสาร</div>
+  <h1>กิจกรรม 5.3 ความร้อนส่งผลต่อสสารแต่ละสถานะอย่างไร</h1>
+  <p class="lead">สำรวจว่าอากาศ น้ำ และเหล็กขยายตัวเมื่อได้รับความร้อน และหดตัวเมื่อสูญเสียความร้อนอย่างไร ในห้องทดลองเสมือน 3 ตอน แล้วอธิบายด้วยแบบจำลองอนุภาค</p>
+  <div class="progressbar" role="progressbar" aria-label="ความคืบหน้า" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="pFill"></span></div>
+  <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
+</div></header>
+<main class="wrap">
+
+<section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
+<p>สำรวจและอธิบายผลของความร้อนต่อการเปลี่ยนแปลงขนาดของอากาศ น้ำ และเหล็ก</p>
+<h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
+<ul class="mat"><li>ขวดแก้วหรือขวดพลาสติก</li><li>บีกเกอร์ ขนาด 250 cm³</li><li>ลูกโป่ง</li><li>ขันพลาสติก</li><li>ขวดรูปกรวย ขนาด 125 cm³</li><li>น้ำสี</li><li>หลอดแก้วนำแก๊ส</li><li>จุกยางเจาะรู</li><li>น้ำร้อน อุณหภูมิประมาณ 80 °C</li><li>น้ำแข็ง</li><li>ชุดตะเกียงแอลกอฮอล์</li><li>วงแหวนและลูกกลมโลหะ</li></ul>
+<div class="note warn"><strong>ข้อควรระวัง:</strong><ul style="margin:.3rem 0 0"><li>แอลกอฮอล์เป็นสารไวไฟ จึงควรระมัดระวังในการใช้ตะเกียงแอลกอฮอล์</li><li>น้ำร้อนมีอุณหภูมิสูง ควรใช้ถุงมือกันความร้อนหรือผ้าขณะจับภาชนะบรรจุน้ำร้อน</li></ul>ในแล็บเสมือนนี้ไม่มีไฟและน้ำร้อนจริง แต่เวลาทำจริงต้องมีครูดูแล</div>
+<h3>วิธีดำเนินกิจกรรม (ตามหนังสือเรียน)</h3>
+<p><b>ตอนที่ 1</b></p><ol class="steps"><li>ครอบลูกโป่งบนปากขวดแก้วหรือขวดพลาสติกให้มีอากาศภายในลูกโป่งเล็กน้อย สังเกตและบันทึกผล</li><li>นำขวดจากข้อ 1 ไปวางในขันพลาสติกที่มีน้ำร้อน สังเกตการเปลี่ยนแปลง บันทึกผล</li><li>นำขวดจากข้อ 2 ไปวางในขันพลาสติกที่มีน้ำแข็ง สังเกตการเปลี่ยนแปลง บันทึกผล</li><li>วาดภาพแสดงการเปลี่ยนแปลงของการจัดเรียงอนุภาคของอากาศในขวดและลูกโป่งเมื่อนำขวดไปวางในขันที่มีน้ำร้อนและน้ำแข็ง ตามลำดับ</li></ol>
+<p><b>ตอนที่ 2</b></p><ol class="steps"><li>ใส่น้ำสีลงในขวดรูปกรวย 2 ใบ จนเต็ม</li><li>เสียบหลอดนำแก๊สลงในจุกยางแล้วนำไปปิดขวดรูปกรวยให้แน่น อย่าให้มีฟองอากาศภายในขวดรูปกรวย</li><li>ขยับจุกยาง ให้ระดับของน้ำสีในหลอดแก้วนำแก๊สสูงจากจุกยางประมาณ 2–3 เซนติเมตรเท่ากัน บันทึกระดับความสูงของน้ำสี</li><li>ให้ความร้อนแก่ขวดรูปกรวยใบที่ 1 ส่วนอีกใบหนึ่งนำไปแช่ในน้ำแข็งเป็นเวลา 3 นาทีเท่ากัน สังเกตและวัดระดับความสูงของน้ำสี บันทึกผล</li><li>วาดภาพแสดงการเปลี่ยนแปลงของการจัดเรียงอนุภาคของน้ำในขวดรูปกรวยเมื่อให้ความร้อนและนำไปแช่ในน้ำแข็ง ตามลำดับ</li></ol>
+<p><b>ตอนที่ 3</b></p><ol class="steps"><li>นำลูกกลมเหล็กลอดผ่านวงแหวนเหล็ก สังเกตการเคลื่อนที่ของลูกกลมเหล็กผ่านวงแหวนเหล็ก บันทึกผล</li><li>ให้ความร้อนแก่ลูกกลมเหล็กโดยใช้ตะเกียงแอลกอฮอล์ประมาณ 4 นาที</li><li>นำลูกกลมเหล็กที่ถูกทำให้ร้อนลอดผ่านวงแหวนเหล็กอีกครั้ง สังเกตการเคลื่อนที่ของลูกกลมเหล็กผ่านวงแหวนเหล็ก บันทึกผล</li><li>นำลูกกลมเหล็กไปแช่น้ำแข็งประมาณ 1 นาที</li><li>นำลูกกลมเหล็กที่ถูกทำให้เย็นลอดผ่านวงแหวนเหล็กอีกครั้ง สังเกตการเคลื่อนที่ของลูกกลมเหล็กผ่านวงแหวนเหล็ก</li><li>วาดภาพแสดงการเปลี่ยนแปลงของการจัดเรียงอนุภาคของลูกกลมเหล็กเมื่อให้ความร้อนและเมื่อนำไปแช่ในน้ำแข็ง ตามลำดับ</li></ol>
+</section>
+
+<section class="card" id="lab"><p class="kicker">ส่วนที่ 1 · ทดลอง</p><h2>ห้องทดลองเสมือน</h2>
+<div class="tabs" role="group" aria-label="เลือกตอน"><button class="btn on" data-t="t1" type="button">ตอนที่ 1 อากาศ</button><button class="btn alt" data-t="t2" type="button">ตอนที่ 2 น้ำ</button><button class="btn alt" data-t="t3" type="button">ตอนที่ 3 เหล็ก</button></div>
+<p class="lead" id="tDesc"></p><div class="assume" id="tAssume"></div>
+<div class="lab"><div class="stage"><svg id="scene" viewBox="0 0 300 300" role="img" aria-label="ชุดทดลอง"></svg></div>
+ <div class="panel">
+  <div class="readout"><div><small>เวลาสะสม</small><b id="rTime">0</b><small>นาที</small></div><div><small>อุณหภูมิของสาร</small><b id="rTemp">28</b><small>°C (ค่าแบบจำลอง)</small></div><div><small id="rLab">ค่าที่สังเกต</small><b id="rObs" style="font-size:1.05rem">-</b></div></div>
+  <p class="pc" id="obsT" aria-live="polite" style="margin:0"></p>
+  <div class="btns"><button class="btn" id="hotBtn" type="button">ให้ความร้อน +30 วินาที</button><button class="btn" id="iceBtn" type="button" style="background:#1769e0">แช่น้ำแข็ง +30 วินาที</button><button class="btn alt" id="testBtn" type="button" style="display:none">ลองให้ลูกกลมลอดวงแหวน</button><button class="btn alt" id="resetBtn" type="button">เริ่มตอนนี้ใหม่</button></div>
+  <p class="fb" id="labFb" aria-live="polite"></p>
+  <details><summary>ค่าที่ใช้ในแบบจำลอง (ผู้จัดทำสมมติ)</summary><p class="pc">อุณหภูมิเริ่มต้นของทุกตอน 28 °C (อุณหภูมิห้อง) · ใช้การเข้าใกล้อุณหภูมิของสิ่งแวดล้อมแบบเอกซ์โพเนนเชียล · ตอน 1: ขวดมีอากาศ 300 mL ลูกโป่งมีอากาศเริ่มต้น 10 mL ปริมาตรแก๊สเปลี่ยนตามอุณหภูมิเคลวิน (T/T₀) น้ำร้อน 80 °C ตามหนังสือ น้ำแข็ง 0 °C ค่าคงที่เวลา 60 วินาที ไม่คิดความดัน · ตอน 2: ขวด 125 cm³ ตามหนังสือ สัมประสิทธิ์การขยายตัวเชิงปริมาตรของน้ำ 2.1×10⁻⁴ ต่อ °C หลอดแก้วนำแก๊สมีพื้นที่หน้าตัด 0.196 cm² (เส้นผ่านศูนย์กลางใน 5 mm) ระดับน้ำสีเริ่มต้นสูงจากจุก 2.5 cm (หนังสือบอก 2–3 cm) ไม่คิดการขยายตัวของแก้วและไม่คิดความผิดปกติของน้ำช่วง 0–4 °C ตะเกียงทำให้น้ำเข้าใกล้ 100 °C ค่าคงที่เวลา 120 วินาที · ตอน 3: ลูกกลมเหล็กเส้นผ่านศูนย์กลาง 2.000 cm ที่ 28 °C วงแหวนเส้นผ่านศูนย์กลางใน 2.004 cm สัมประสิทธิ์การขยายตัวเชิงเส้นของเหล็ก 1.2×10⁻⁵ ต่อ °C เปลวไฟของตะเกียงทำให้ลูกกลมเข้าใกล้ 500 °C ค่าคงที่เวลา 90 วินาที ส่วนในน้ำแข็งค่าคงที่เวลา 30 วินาที · ภาพวาดขยายความเปลี่ยนแปลงเกินจริงเพื่อให้มองเห็น</p></details>
+ </div></div>
+</section>
+
+<section class="card" id="data"><p class="kicker">ส่วนที่ 2 · บันทึกผล</p><h2>ตารางบันทึกผลการสังเกต</h2>
+<div class="tw"><table><thead><tr><th>เวลาสะสม (นาที)</th><th>การกระทำ</th><th>อุณหภูมิ (°C, ค่าแบบจำลอง)</th><th>ผลที่สังเกต</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="pc" id="prog3"></p>
+</section>
+
+<section class="card" id="model"><p class="kicker">ส่วนที่ 3 · แบบจำลองอนุภาค</p><h2>อนุภาคเปลี่ยนไปอย่างไรเมื่อได้รับหรือสูญเสียความร้อน</h2>
+<p class="lead">เลือกสถานะ แล้วเลื่อนจากซ้าย (สูญเสียความร้อน) ไปขวา (ได้รับความร้อน) เทียบกับภาพ 5.13–5.15 ในหนังสือ (วงกลมสีส้มแทนอนุภาค ลูกศรแทนขนาดและทิศทางความเร็ว)</p>
+<div class="tabs" role="group" aria-label="เลือกสถานะ"><button class="btn on" data-k="gas" type="button">แก๊ส (อากาศ)</button><button class="btn alt" data-k="liquid" type="button">ของเหลว (น้ำ)</button><button class="btn alt" data-k="solid" type="button">ของแข็ง (เหล็ก)</button></div>
+<div class="lab"><div class="stage"><svg id="part" viewBox="0 0 300 200" role="img" aria-label="แบบจำลองอนุภาค"></svg></div>
+<div class="panel"><label for="kSl">ระดับความร้อน: <span id="kTxt"></span></label><input type="range" id="kSl" min="0" max="100" value="50"><p class="pc" id="kDesc" aria-live="polite"></p></div></div>
+<p class="pc">การเคลื่อนไหวของอนุภาคในภาพเป็นภาพประกอบ ไม่ได้คำนวณจากฟิสิกส์จริง</p>
+</section>
+
+<section class="card" id="qs"><p class="kicker">ส่วนที่ 4 · คำถามท้ายกิจกรรม</p><h2>คำถามท้ายกิจกรรม</h2>
+<h3>ตอนที่ 1</h3><div id="q1box"></div><div class="btns" style="margin-top:10px"><button class="btn" id="q1Btn" type="button">ตรวจ/ดูแนวคำตอบ</button></div><p class="fb" id="q1Fb" aria-live="polite"></p>
+<h3>ตอนที่ 2</h3><div id="q2box"></div><div class="btns" style="margin-top:10px"><button class="btn" id="q2Btn" type="button">ตรวจ/ดูแนวคำตอบ</button></div><p class="fb" id="q2Fb" aria-live="polite"></p>
+<h3>ตอนที่ 3 และสรุปทั้ง 3 ตอน</h3><div id="q3box"></div><div class="btns" style="margin-top:10px"><button class="btn" id="q3Btn" type="button">ตรวจ/ดูแนวคำตอบ</button></div><p class="fb" id="q3Fb" aria-live="polite"></p>
+</section>
+
+<section class="card" id="quiz"><p class="kicker">ส่วนที่ 5 · ทบทวน</p><h2>แบบทดสอบสั้น</h2>
+<div id="zbox"></div><div class="btns" style="margin-top:12px"><button class="btn" id="zBtn" type="button">ส่งคำตอบ</button></div><p class="fb" id="zFb" aria-live="polite"></p>
+<div class="note"><strong>กิจกรรมเสริมในหนังสือ:</strong> “ความร้อนส่งผลต่ออากาศในขวดพลาสติกอย่างไร” นำขวดพลาสติกเปล่าชนิดบางปิดฝาให้แน่นแล้วนำไปแช่ในภาชนะบรรจุน้ำแข็ง คิดว่าจะเกิดอะไรขึ้น และถอดอธิบายการเปลี่ยนแปลงด้วยแบบจำลองอนุภาค (หนังสือหน้า 34) · และ “ถนนยกตัว” (ภาพ 5.16 หน้า 38) ลองใช้ความรู้เรื่องการขยายตัวของสารอธิบายและเสนอแนวทางแก้ปัญหา</div>
+</section>
+
+<section class="card" id="ref"><p class="kicker">ที่มา</p><p class="pc">หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน่วยที่ 5 หน้า 30–38 (กิจกรรม 5.3 หน้า 30–33, เนื้อหาสรุป ภาพ 5.13–5.15 หน้า 34–37, คำถามจากกิจกรรม หน้า 38) · แบบจำลองเพื่อการศึกษา ไม่แทนการทดลองจริงภายใต้การดูแลของครู ภาพวาดเป็นของผู้จัดทำ</p></section>
+
+<section class="card" id="done" style="display:none;background:#effaf4"><h2>ทำครบทุกส่วนแล้ว</h2><p>ลองกดเริ่มใหม่เพื่อทดลองซ้ำ หรือทำกิจกรรมต่อไปในเล่ม</p></section>
+<div class="btns"><button class="btn alt" id="wipe" type="button">ล้างความคืบหน้าทั้งหมด</button></div>
+</main>
+<script>
+(()=>{
+'use strict';
+const KEY='sciM1V2Act53_v1';
+const $=id=>document.getElementById(id);
+const rd=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(_){return{};}};
+let S=rd();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}progress();};
+const reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* ชุดคำถาม: {q,o:[...],a:index,e:'อธิบาย'} หรือ {q,t:1,s:'แนวคำตอบ'} */
+function mkQ(box,list,sk,dk,btn,fb){
+  $(box).innerHTML=list.map((it,i)=>it.t
+    ?`<label for="${sk}t${i}"><strong>${i+1}. ${it.q}</strong></label><textarea id="${sk}t${i}" placeholder="เขียนด้วยคำของตนเอง"></textarea><div class="note" id="${sk}s${i}" style="display:none"><strong>แนวคำตอบ:</strong> ${it.s}</div>`
+    :`<fieldset><legend>${i+1}. ${it.q}</legend>${it.o.map((o,j)=>`<label class="opt"><input type="radio" name="${sk}${i}" value="${j}"> ${o}</label>`).join('')}<div class="ex" id="${sk}x${i}"></div></fieldset>`).join('');
+  const saved=Array.isArray(S[sk])?S[sk]:[];
+  list.forEach((it,i)=>{const v=saved[i];if(v===undefined||v===null||v==='')return;
+    if(it.t){$(sk+'t'+i).value=v;}else{const e=document.querySelector(`input[name="${sk}${i}"][value="${v}"]`);if(e)e.checked=true;}});
+  $(btn).addEventListener('click',()=>{
+    const ans=list.map((it,i)=>it.t?$(sk+'t'+i).value.trim():((document.querySelector(`input[name="${sk}${i}"]:checked`)||{}).value));
+    if(ans.some(a=>a===undefined||a==='')){$(fb).textContent='กรุณาตอบให้ครบทุกข้อ';$(fb).className='fb err';return;}
+    let sc=0,n=0;
+    list.forEach((it,i)=>{
+      if(it.t){$(sk+'s'+i).style.display='block';return;}
+      n++;const ok=Number(ans[i])===it.a;if(ok)sc++;
+      const x=$(sk+'x'+i);x.textContent=(ok?'ถูกต้อง':'เฉลย: '+it.o[it.a])+(it.e?' — '+it.e:'');x.className='ex '+(ok?'ok':'bad');
+    });
+    S[sk]=ans;S[dk]=true;save();
+    $(fb).className='fb'+(n&&sc<n?' err':'');
+    $(fb).textContent=n?`ข้อเลือกตอบ ถูก ${sc}/${n} ข้อ · ข้อเขียนให้เทียบกับแนวคำตอบใต้ช่องคำตอบ`:'เทียบคำตอบของตนเองกับแนวคำตอบใต้แต่ละข้อ';
+  });
+  if(S[dk])$(btn).click();
+}
+/* แบบจำลองอนุภาค 2 มิติ (สีส้มแทนอนุภาค ตามหนังสือ) kind: solid|liquid|gas, k: 0..1 ระดับความร้อน, t: วินาที */
+function pstr(kind,k,t){
+  const rn=i=>{const v=Math.sin(i*91.7+13.3)*10000;return v-Math.floor(v);};
+  let s='<rect width="300" height="200" fill="#f8fbff"/>',ar='';
+  for(let i=0;i<24;i++){
+    const cx=i%6,cy=Math.floor(i/6);let x,y,vx=0,vy=0;
+    if(kind==='solid'){
+      const sp=29+k*6,A=1+k*3.5,w=16+k*16;
+      x=150+(cx-2.5)*sp+A*Math.sin(t*w+i*1.7);y=100+(cy-1.5)*sp+A*Math.sin(t*w*1.1+i*2.3);
+    }else if(kind==='liquid'){
+      const sp=34+k*6,A=6+k*6,w=1.6+k*2.4,bx=150+(cx-2.5)*sp+(rn(i)-.5)*8,by=118+(cy-1.5)*(24+k*5)+(rn(i+4)-.5)*8;
+      x=bx+A*Math.sin(w*t+i*2.1);y=by+A*.8*Math.cos(w*1.3*t+i*1.3);vx=A*w*Math.cos(w*t+i*2.1);vy=-A*.8*w*1.3*Math.sin(w*1.3*t+i*1.3);
+    }else{
+      const ax=(95+k*30)*(.35+.65*rn(i)),ay=(65+k*18)*(.35+.65*rn(i+5)),w1=(.9+rn(i+9))*(1+k*1.3),w2=(.8+rn(i+13))*(1+k*1.3);
+      x=150+ax*Math.sin(w1*t+i*3.1);y=100+ay*Math.sin(w2*t+i*1.9);vx=ax*w1*Math.cos(w1*t+i*3.1);vy=ay*w2*Math.cos(w2*t+i*1.9);
+    }
+    x=Math.max(12,Math.min(288,x));y=Math.max(12,Math.min(188,y));
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#ff9a5c" stroke="#e8662c" stroke-width="2"/>`;
+    const m=Math.hypot(vx,vy);
+    if(m>0.5){const L=Math.min(26,6+m*.22+k*6);ar+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+vx/m*L).toFixed(1)}" y2="${(y+vy/m*L).toFixed(1)}" stroke="#a8420f" stroke-width="1.5" marker-end="url(#ah)"/>`;}
+  }
+  return `<defs><marker id="ah" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L6 3L0 6z" fill="#a8420f"/></marker></defs>`+s+ar;
+}
+/* วนวาดเฟรม; ถ้าผู้ใช้ตั้งลดการเคลื่อนไหว จะวาดเฟรมนิ่งแทน */
+function animate(fn){let t0=null,run=true;
+  function loop(ts){if(t0===null)t0=ts;fn((ts-t0)/1000);if(run&&!reduce)requestAnimationFrame(loop);}
+  fn(0.5);if(!reduce)requestAnimationFrame(loop);
+  return{redraw:()=>fn(0.5)};}
+
+/*PURE*/
+/* อุณหภูมิของสารเข้าใกล้อุณหภูมิสิ่งแวดล้อม (เอกซ์โพเนนเชียล) */
+function approach(tNow,tEnv,tau,dt){if(tau<=0)return tEnv;return tEnv+(tNow-tEnv)*Math.exp(-Math.max(0,dt)/tau);}
+/* ปริมาตรแก๊สในลูกโป่ง (mL) ปริมาตรแก๊สแปรตามอุณหภูมิเคลวิน ไม่ติดลบ */
+function balloonMl(vb,t,t0,v0){return Math.max(0,v0+vb*((t+273.15)/(t0+273.15)-1));}
+/* ระดับน้ำในหลอดที่เปลี่ยนไป (cm) = V·β·Δt ÷ พื้นที่หน้าตัด */
+function levelRise(v,beta,area,dT){return v*beta*dT/area;}
+function ballD(d0,alpha,t,t0){return d0*(1+alpha*(t-t0));}
+function ballPasses(d0,alpha,t,t0,ring){return ballD(d0,alpha,t,t0)<=ring;}
+/*ENDPURE*/
+const T0=28,STEP=30;
+const P={bottle:300,v0:10,flask:125,beta:2.1e-4,area:.196,lvl0:2.5,d0:2.000,alpha:1.2e-5,ring:2.004};
+const ENV={t1:{hot:[80,60],ice:[0,60]},t2:{hot:[100,120],ice:[0,120]},t3:{hot:[500,90],ice:[0,30]}};
+const DESC={
+ t1:{d:'ตอนที่ 1 · ครอบลูกโป่งบนปากขวดแก้วให้มีอากาศในลูกโป่งเล็กน้อย แล้ววางขวดในขันน้ำร้อน (ประมาณ 80 °C) แล้วย้ายไปขันน้ำแข็ง สังเกตลูกโป่ง',a:'หนังสือไม่ได้กำหนดเวลาของตอนนี้ ผู้จัดทำให้แต่ละครั้งที่กดคือ 30 วินาที และถือว่าทำครบเมื่อให้ความร้อนอย่างน้อย 2 ครั้ง (1 นาที) แล้วแช่น้ำแข็งอย่างน้อย 2 ครั้ง ปริมาตรขวดและอากาศในลูกโป่งเป็นค่าสมมติ'},
+ t2:{d:'ตอนที่ 2 · น้ำสีเต็มขวดรูปกรวย 125 cm³ ปิดจุกยางเสียบหลอดแก้ว ระดับน้ำสีในหลอดสูงจากจุกประมาณ 2–3 cm ให้ความร้อนขวดหนึ่ง อีกขวดแช่น้ำแข็ง 3 นาที (ในแบบจำลองกดต่อเนื่องกับขวดเดียวและเริ่มใหม่ได้)',a:'ทำครบเมื่อให้ความร้อน 3 นาที (6 ครั้ง) และแช่น้ำแข็ง 3 นาที (6 ครั้ง) เริ่มจากระดับน้ำ 2.5 cm ทุกครั้ง ถ้าต้องการทำอีกขวดแยกจากกัน ให้กด “เริ่มตอนนี้ใหม่” ก่อน ค่าตัวเลขเป็นค่าสมมติของผู้จัดทำ'},
+ t3:{d:'ตอนที่ 3 · ลูกกลมเหล็กลอดวงแหวนเหล็ก → ให้ความร้อนประมาณ 4 นาที แล้วลอดอีกครั้ง → แช่น้ำแข็งประมาณ 1 นาที แล้วลอดอีกครั้ง',a:'ทำตามลำดับ: (1) กด “ลองให้ลูกกลมลอดวงแหวน” ก่อนให้ความร้อน (2) ให้ความร้อน 8 ครั้ง (= 4 นาที) แล้วลองลอด (3) แช่น้ำแข็ง 2 ครั้ง (= 1 นาที) แล้วลองลอด ขนาดลูกกลมและวงแหวนเป็นค่าสมมติของผู้จัดทำ'}};
+const LAB={hot:{t1:'วางขวดในน้ำร้อน 80 °C',t2:'ให้ความร้อนด้วยตะเกียง',t3:'ให้ความร้อนด้วยตะเกียง'},ice:'แช่น้ำแข็ง'};
+let tt='t1';
+if(!S.e)S.e={};
+['t1','t2','t3'].forEach(t=>{if(!S.e[t])S.e[t]={T:T0,m:0,log:[],hs:0,is:0,last:'',res:null,tests:{}};});
+const E=()=>S.e[tt];
+function obsOf(t,T){
+  if(t==='t1'){const v=balloonMl(P.bottle,T,T0,P.v0);return{v:v,txt:v>P.v0+2?`ลูกโป่งพองขึ้น (แก๊สในลูกโป่งประมาณ ${v.toFixed(0)} mL)`:v<P.v0-2?'ลูกโป่งแฟบลง':'ลูกโป่งขนาดเท่าเดิม',short:v.toFixed(0)+' mL'};}
+  if(t==='t2'){const l=Math.max(0,P.lvl0+levelRise(P.flask,P.beta,P.area,T-T0));const dl=l-P.lvl0;return{v:l,txt:`ระดับน้ำสีสูงจากจุก ${l.toFixed(1)} cm (${Math.abs(dl)<.15?'เท่าเดิม':dl>0?'สูงขึ้น '+dl.toFixed(1)+' cm':'ต่ำลง '+(-dl).toFixed(1)+' cm'})`,short:l.toFixed(1)+' cm'};}
+  const d=ballD(P.d0,P.alpha,T,T0);return{v:d,txt:`เส้นผ่านศูนย์กลางลูกกลม ${d.toFixed(4)} cm (วงแหวน ${P.ring.toFixed(3)} cm)`,short:d.toFixed(4)+' cm'};}
+function act(kind){
+  const e=E(),[env,tau]=ENV[tt][kind];e.T=approach(e.T,env,tau,STEP);e.m+=STEP/60;e.res=null;e.last=kind;if(kind==='hot')e.hs++;else e.is++;
+  e.log.push({m:e.m,a:kind==='hot'?LAB.hot[tt]:LAB.ice,T:e.T,o:obsOf(tt,e.T).txt});save();render();checkDone();}
+function testRing(){
+  const e=E(),pass=ballPasses(P.d0,P.alpha,e.T,T0,P.ring);e.res=pass?'pass':'stuck';
+  const hotOK=e.last==='hot'&&e.hs>=8,coldOK=e.last==='ice'&&e.is>=2,room=e.hs===0&&e.is===0;
+  if(room)e.tests.room=true;if(hotOK)e.tests.hot=true;if(coldOK)e.tests.cold=true;
+  let note='';if(e.last==='hot'&&e.hs<8)note=' (ให้ความร้อนยังไม่ครบ 4 นาที ผลนี้ยังไม่นับ)';if(e.last==='ice'&&e.is<2)note=' (แช่น้ำแข็งยังไม่ครบ 1 นาที ผลนี้ยังไม่นับ)';
+  e.log.push({m:e.m,a:'ทดสอบลอดวงแหวน',T:e.T,o:(pass?'ลอดผ่านวงแหวนได้':'ลอดไม่ผ่าน ติดอยู่บนวงแหวน')+note});save();render();checkDone();}
+function isDone(t){const e=S.e[t];return t==='t1'?(e.hs>=2&&e.is>=2):t==='t2'?(e.hs>=6&&e.is>=6):(e.hs>=8&&e.is>=2&&!!e.tests.room&&!!e.tests.hot&&!!e.tests.cold);}
+function checkDone(){$('labFb').className='fb';$('labFb').textContent=isDone(tt)?'ตอนนี้ครบตามขั้นตอนของหนังสือแล้ว ตอบคำถามต่อได้เลย':'';}
+function need(){const e=E();
+  if(tt==='t1')return`ความคืบหน้า: ให้ความร้อน ${e.hs}/2 ครั้ง · แช่น้ำแข็ง ${e.is}/2 ครั้ง`;
+  if(tt==='t2')return`ความคืบหน้า: ให้ความร้อน ${e.hs}/6 ครั้ง (3 นาที) · แช่น้ำแข็ง ${e.is}/6 ครั้ง (3 นาที)`;
+  return`ความคืบหน้า: ให้ความร้อน ${e.hs}/8 ครั้ง · แช่น้ำแข็ง ${e.is}/2 ครั้ง · ทดสอบลอด: ก่อนให้ความร้อน ${e.tests.room?'✓':'–'} · หลังร้อน ${e.tests.hot?'✓':'–'} · หลังเย็น ${e.tests.cold?'✓':'–'}`;}
+function drawScene(){
+  const e=E();let s='<rect width="300" height="300" fill="#fff"/>';const ob=obsOf(tt,e.T);
+  const ice=(x,y,n)=>Array.from({length:n},(_,i)=>`<rect x="${x+i*26}" y="${y+(i%2)*10}" width="20" height="20" rx="4" fill="#d8eeff" stroke="#9cc9ee" stroke-width="2" transform="rotate(${i*17%25-10} ${x+i*26+10} ${y+(i%2)*10+10})"/>`).join('');
+  const flame=(x,y)=>`<path class="flame" d="M${x} ${y} C${x-12} ${y-14} ${x-4} ${y-24} ${x} ${y-34} C${x+4} ${y-24} ${x+12} ${y-14} ${x} ${y}Z" fill="#ff8a2b"/><path class="flame" d="M${x} ${y} C${x-5} ${y-8} ${x-2} ${y-14} ${x} ${y-20} C${x+2} ${y-14} ${x+5} ${y-8} ${x} ${y}Z" fill="#ffd45a"/>`;
+  if(tt==='t1'){
+    const v=ob.v,basin=e.last?`<rect x="45" y="205" width="210" height="80" rx="10" fill="${e.last==='hot'?'#ffd3c4':'#cfe6fb'}" stroke="#8c9ab5" stroke-width="3" opacity=".9"/>`:'';
+    s+=`<rect x="20" y="288" width="260" height="8" rx="3" fill="#9aa3b5"/>`;
+    s+=`<path d="M135 70 H165 V120 Q200 135 200 170 V260 Q200 275 185 275 H115 Q100 275 100 260 V170 Q100 135 135 120Z" fill="#eaf4ff" stroke="#5f7694" stroke-width="3"/>`;
+    s+=basin;
+    if(e.last==='ice')s+=ice(60,225,7);
+    if(e.last==='hot')s+=`<g fill="#ff9a7a" opacity=".6">${[70,120,170,215].map(x=>`<circle cx="${x}" cy="245" r="5"/>`).join('')}</g>`;
+    s+=`<path d="M135 70 H165 V120 Q200 135 200 170 V260 Q200 275 185 275 H115 Q100 275 100 260 V170 Q100 135 135 120Z" fill="none" stroke="#5f7694" stroke-width="3"/>`;
+    if(v<1)s+=`<path d="M135 70 Q150 100 165 70Z" fill="#f48fb1" stroke="#c2185b" stroke-width="2"/>`;
+    else{const rx=Math.min(62,12+v*.62),ry=rx*1.15;s+=`<ellipse cx="150" cy="${70-ry+4}" rx="${rx}" ry="${ry}" fill="#f8a5c2" stroke="#c2185b" stroke-width="2.5" opacity=".92"/><rect x="132" y="64" width="36" height="9" rx="3" fill="#c2185b"/>`;}
+    s+=`<text x="150" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">${ob.short}</text>`;
+  }else if(tt==='t2'){
+    const lv=Math.min(11,ob.v),yL=140-12*lv;
+    s+=`<rect x="20" y="288" width="260" height="8" rx="3" fill="#9aa3b5"/>`;
+    s+=`<path d="M140 165 H160 V195 L215 245 H85 L140 195Z" fill="#e5554a" opacity=".85"/><rect x="146.5" y="${yL}" width="7" height="${165-yL}" fill="#e5554a"/><rect x="136" y="140" width="28" height="26" rx="4" fill="#4b3b34"/><rect x="144" y="8" width="12" height="132" rx="5" fill="none" stroke="#7a859a" stroke-width="2.5"/><path d="M140 165 H160 V195 L215 245 H85 L140 195Z" fill="none" stroke="#5f7694" stroke-width="3" stroke-linejoin="round"/>`;
+    for(let c=0;c<=11;c+=1)s+=`<line x1="156" x2="${c%5===0?168:162}" y1="${140-12*c}" y2="${140-12*c}" stroke="#7a859a"/>`;
+    s+=`<line x1="70" x2="230" y1="${140-12*P.lvl0}" y2="${140-12*P.lvl0}" stroke="#7aa4ff" stroke-dasharray="4 4"/><text x="236" y="${140-12*P.lvl0+4}" font-size="11" fill="#4a6fd0">ระดับเริ่มต้น 2.5 cm</text>`;
+    if(e.last==='ice'){s+=`<rect x="55" y="200" width="190" height="75" rx="8" fill="#cfe6fb" opacity=".55" stroke="#8c9ab5" stroke-width="2"/>`+ice(62,235,6);}
+    if(e.last==='hot')s+=flame(150,282);
+    s+=`<text x="262" y="20" text-anchor="end" font-size="14" font-weight="700" fill="#1d2433">${ob.short}</text>`;
+  }else{
+    const d=ob.v,r=20+(d-P.d0)*1000,rr=20+(P.ring-P.d0)*1000,hotness=Math.max(0,Math.min(1,(e.T-T0)/470)),col=`rgb(${Math.round(60+195*hotness)},${Math.round(64+42*hotness)},${Math.round(72-30*hotness)})`;
+    let cy=70;if(e.res==='pass')cy=225;else if(e.res==='stuck')cy=140;else if(e.last==='hot')cy=210;else if(e.last==='ice')cy=235;
+    s+=`<rect x="20" y="288" width="260" height="8" rx="3" fill="#9aa3b5"/>`;
+    if(e.last==='hot'&&!e.res)s+=`<rect x="115" y="255" width="70" height="28" rx="6" fill="#cfd8e6" stroke="#6a7c96" stroke-width="2"/>`+flame(150,255);
+    if(e.last==='ice'&&!e.res)s+=`<rect x="75" y="245" width="150" height="40" rx="8" fill="#cfe6fb" stroke="#8c9ab5" stroke-width="2"/>`+ice(85,255,5);
+    s+=`<ellipse cx="150" cy="${e.res==='stuck'?170:170}" rx="${rr+4}" ry="${rr/3}" fill="none" stroke="#5f7694" stroke-width="6"/><line x1="${150+rr+4}" y1="170" x2="285" y2="170" stroke="#5f7694" stroke-width="6" stroke-linecap="round"/>`;
+    s+=`<circle cx="150" cy="${cy}" r="${r}" fill="${col}" stroke="#2b2f36" stroke-width="2"/><line x1="150" y1="${cy-r}" x2="150" y2="${cy-r-14}" stroke="#2b2f36" stroke-width="3"/>`;
+    s+=`<text x="150" y="22" text-anchor="middle" font-size="12" fill="#66708a">ขยายความเปลี่ยนแปลงเกินจริง ~1,000 เท่า</text><text x="150" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">${ob.short}</text>`;
+    if(e.res)s+=`<text x="150" y="290" text-anchor="middle" font-size="14" font-weight="700" fill="${e.res==='pass'?'#176553':'#b63f43'}">${e.res==='pass'?'ลอดผ่านได้':'ลอดไม่ผ่าน'}</text>`;
+  }
+  $('scene').innerHTML=s;
+}
+function render(){
+  const e=E(),ob=obsOf(tt,e.T);
+  document.querySelectorAll('.tabs [data-t]').forEach(b=>b.className='btn '+(b.dataset.t===tt?'on':'alt'));
+  $('tDesc').textContent=DESC[tt].d;$('tAssume').textContent=DESC[tt].a;
+  $('rTime').textContent=(Math.round(e.m*10)/10);$('rTemp').textContent=e.T.toFixed(1);$('rLab').textContent=tt==='t1'?'ลูกโป่ง':tt==='t2'?'ระดับน้ำสี':'เส้นผ่านศูนย์กลาง';$('rObs').textContent=ob.short;$('obsT').textContent='สังเกต: '+ob.txt;
+  $('hotBtn').textContent=tt==='t1'?'วางในน้ำร้อน +30 วินาที':'ให้ความร้อน +30 วินาที';$('testBtn').style.display=tt==='t3'?'':'none';
+  $('rows').innerHTML=e.log.length?e.log.map(r=>`<tr><td>${Math.round(r.m*10)/10}</td><td>${r.a}</td><td>${r.T.toFixed(1)}</td><td style="text-align:left">${r.o}</td></tr>`).join(''):'<tr><td colspan="4" style="color:#999">ยังไม่มีข้อมูล กดปุ่มในห้องทดลอง</td></tr>';
+  $('prog3').textContent=need();drawScene();
+}
+document.querySelectorAll('.tabs [data-t]').forEach(b=>b.addEventListener('click',()=>{tt=b.dataset.t;$('labFb').textContent='';render();checkDone();}));
+$('hotBtn').addEventListener('click',()=>act('hot'));$('iceBtn').addEventListener('click',()=>act('ice'));$('testBtn').addEventListener('click',testRing);
+$('resetBtn').addEventListener('click',()=>{S.e[tt]={T:T0,m:0,log:[],hs:0,is:0,last:'',res:null,tests:{}};$('labFb').textContent='';save();render();});
+
+/* แบบจำลองอนุภาค */
+let pk='gas',kv=.5;
+const PD={gas:{lo:'อนุภาคมีพลังงานลดลง เคลื่อนที่ช้าลง ระยะห่างระหว่างอนุภาคลดลง แก๊สหดตัวมีปริมาตรลดลง',mid:'อนุภาคแก๊สอยู่ห่างกันมากและเคลื่อนที่อย่างอิสระ',hi:'อนุภาคมีพลังงานเพิ่มขึ้น เคลื่อนที่ได้เร็วขึ้น แรงยึดเหนี่ยวระหว่างอนุภาคน้อยลง ระยะห่างระหว่างอนุภาคเพิ่มขึ้น แก๊สขยายตัวมีปริมาตรมากขึ้น'},
+ liquid:{lo:'อนุภาคมีพลังงานลดลง เคลื่อนที่ช้าลงและมีระยะห่างระหว่างอนุภาคลดลง ของเหลวหดตัวมีปริมาตรลดลง',mid:'อนุภาคของเหลวอยู่ใกล้กัน เคลื่อนที่ได้แต่ไม่เป็นอิสระ โดยเคลื่อนที่รอบ ๆ อนุภาคข้างเคียง',hi:'อนุภาคมีพลังงานเพิ่มขึ้น เคลื่อนที่ได้เร็วขึ้น แรงยึดเหนี่ยวระหว่างอนุภาคน้อยลง ระยะห่างเพิ่มขึ้น ของเหลวขยายตัวมีปริมาตรเพิ่มขึ้น'},
+ solid:{lo:'อนุภาคมีพลังงานลดลง สั่นช้าลงและมีระยะห่างระหว่างอนุภาคลดลง ของแข็งหดตัวมีปริมาตรลดลง แต่หดน้อยกว่าของเหลวและแก๊ส เพราะอนุภาคอยู่ชิดกันและแรงยึดเหนี่ยวมาก',mid:'อนุภาคของแข็งเรียงชิดกันและสั่นอยู่กับที่',hi:'อนุภาคมีพลังงานเพิ่มขึ้น สั่นเร็วขึ้น แรงยึดเหนี่ยวน้อยลง ระยะห่างเพิ่มขึ้น ของแข็งขยายตัว แต่ขยายน้อยกว่าของเหลวและแก๊ส'}};
+const an=animate(t=>{$('part').innerHTML=pstr(pk,kv,t);});
+function pUI(){const z=kv<.4?'lo':kv>.6?'hi':'mid';$('kDesc').textContent=PD[pk][z];$('kTxt').textContent=z==='lo'?'สูญเสียความร้อน':z==='hi'?'ได้รับความร้อน':'อุณหภูมิห้อง';an.redraw();}
+document.querySelectorAll('.tabs [data-k]').forEach(b=>b.addEventListener('click',()=>{pk=b.dataset.k;document.querySelectorAll('.tabs [data-k]').forEach(x=>x.className='btn '+(x===b?'on':'alt'));S.seen=S.seen||{};S.seen[pk]=1;save();pUI();}));
+$('kSl').addEventListener('input',e=>{kv=Number(e.target.value)/100;pUI();});
+$('kSl').addEventListener('change',()=>{S.kMoved=1;save();});
+
+const Q1=[{q:'เมื่อนำขวดที่ครอบด้วยลูกโป่งไปวางในน้ำร้อน ลูกโป่งเป็นอย่างไร',o:['แฟบลง','พองขึ้น เพราะอากาศในขวดขยายตัว','ไม่เปลี่ยนแปลง'],a:1,e:'อากาศได้รับความร้อนจึงขยายตัว (หนังสือหน้า 34)'},
+ {q:'เมื่อนำขวดไปวางในน้ำแข็ง ลูกโป่งเป็นอย่างไร',o:['พองขึ้น','ไม่เปลี่ยนแปลง','แฟบลง เพราะอากาศในขวดสูญเสียความร้อนจึงหดตัว'],a:2,e:'อากาศสูญเสียความร้อนจึงหดตัว'},
+ {q:'แบบจำลองการจัดเรียงอนุภาคของอากาศเมื่อนำขวดไปวางในน้ำร้อนหรือน้ำแข็งเป็นอย่างไร',t:1,s:'น้ำร้อน: อนุภาคอากาศได้รับความร้อน มีพลังงานเพิ่มขึ้น เคลื่อนที่ได้เร็วขึ้น มีแรงยึดเหนี่ยวน้อยลง ระยะห่างระหว่างอนุภาคเพิ่มขึ้น แก๊สขยายตัว ลูกโป่งพอง · น้ำแข็ง: อนุภาคสูญเสียความร้อน เคลื่อนที่ช้าลง ระยะห่างลดลง แก๊สหดตัว ลูกโป่งแฟบ (หนังสือหน้า 34 ภาพ 5.13)'},
+ {q:'จากกิจกรรมตอนที่ 1 สรุปได้ว่าอย่างไร',t:1,s:'แก๊สขยายตัวเมื่อได้รับความร้อนและหดตัวเมื่อสูญเสียความร้อน'}];
+const Q2=[{q:'เมื่อให้ความร้อนกับขวดน้ำสี ระดับของน้ำสีในหลอดแก้วเป็นอย่างไร',o:['ต่ำลง','สูงขึ้น เพราะน้ำขยายตัว','เท่าเดิม'],a:1,e:'ในแบบจำลอง ให้ความร้อน 3 นาที ระดับน้ำสีสูงขึ้นหลายเซนติเมตร'},
+ {q:'เมื่อนำขวดน้ำสีไปแช่ในน้ำแข็ง ระดับของน้ำสีในหลอดแก้วเป็นอย่างไร',o:['สูงขึ้น','เท่าเดิม','ต่ำลง เพราะน้ำสูญเสียความร้อนจึงหดตัว'],a:2,e:'น้ำสูญเสียความร้อนจึงหดตัว (ตามแบบจำลอง ไม่คิดความผิดปกติของน้ำช่วง 0–4 °C)'},
+ {q:'แบบจำลองการจัดเรียงอนุภาคของน้ำสีเมื่อให้ความร้อนและเมื่อนำไปแช่ในน้ำแข็งเป็นอย่างไร',t:1,s:'ให้ความร้อน: อนุภาคมีพลังงานเพิ่มขึ้น เคลื่อนที่เร็วขึ้น แรงยึดเหนี่ยวน้อยลง ระยะห่างเพิ่มขึ้น ของเหลวขยายตัว · แช่น้ำแข็ง: พลังงานลดลง เคลื่อนที่ช้าลง ระยะห่างลดลง ของเหลวหดตัว (หนังสือหน้า 35 ภาพ 5.14)'},
+ {q:'จากกิจกรรมตอนที่ 2 สรุปได้ว่าอย่างไร',t:1,s:'ของเหลวขยายตัวเมื่อได้รับความร้อนและหดตัวเมื่อสูญเสียความร้อน'}];
+const Q3=[{q:'เมื่อให้ความร้อนแก่ลูกกลมเหล็ก ลูกกลมเหล็กเป็นอย่างไร',o:['ลอดวงแหวนได้เหมือนเดิม','ขยายตัวจนลอดวงแหวนไม่ผ่าน','หดตัวจนเล็กลง'],a:1,e:'อนุภาคของเหล็กสั่นเร็วขึ้นและระยะห่างเพิ่มขึ้น (ขนาดเปลี่ยนน้อย ในแบบจำลองเปลี่ยนไม่ถึง 0.01 cm)'},
+ {q:'เมื่อนำลูกกลมเหล็กที่ร้อนไปแช่ในน้ำแข็ง แล้วนำมาลอดวงแหวนอีกครั้ง เป็นอย่างไร',o:['ลอดไม่ผ่านเหมือนเดิม','ลอดผ่านได้ เพราะหดตัวเมื่อสูญเสียความร้อน','ลอดไม่ผ่านเพราะขยายมากขึ้น'],a:1,e:'ในแบบจำลองแช่น้ำแข็ง 1 นาที ลูกกลมเย็นลงมากพอจะลอดได้'},
+ {q:'แบบจำลองการจัดเรียงอนุภาคของลูกกลมเหล็กเมื่อให้ความร้อนและเมื่อนำไปแช่ในน้ำแข็งเป็นอย่างไร',t:1,s:'ให้ความร้อน: อนุภาคของแข็งเรียงชิดกันและสั่นเร็วขึ้น แรงยึดเหนี่ยวน้อยลง ระยะห่างเพิ่มขึ้น ของแข็งขยายตัว · แช่น้ำแข็ง: สั่นช้าลง ระยะห่างลดลง ของแข็งหดตัว (หนังสือหน้า 37 ภาพ 5.15)'},
+ {q:'จากกิจกรรมตอนที่ 3 สรุปได้ว่าอย่างไร',t:1,s:'ของแข็งขยายตัวเมื่อได้รับความร้อนและหดตัวเมื่อสูญเสียความร้อน'},
+ {q:'จากกิจกรรมทั้ง 3 ตอน สรุปได้ว่าอย่างไร',t:1,s:'สารทั้ง 3 สถานะขยายตัวเมื่อได้รับความร้อนและหดตัวเมื่อสูญเสียความร้อน โดยของแข็งเปลี่ยนแปลงปริมาตรน้อยกว่าของเหลวและแก๊ส (หนังสือหน้า 34–37)'},
+ {q:'ขณะที่อากาศ น้ำ และลูกกลมเหล็กขยายหรือหดตัวเมื่อได้รับหรือสูญเสียความร้อน จำนวนและขนาดของอนุภาคเป็นอย่างไร (คำถามหน้า 38)',o:['จำนวนและขนาดของอนุภาคไม่เปลี่ยน แต่ระยะห่างระหว่างอนุภาคเปลี่ยน','จำนวนอนุภาคเพิ่มขึ้นเมื่อได้รับความร้อน','ขนาดของอนุภาคเพิ่มขึ้นเมื่อได้รับความร้อน'],a:0,e:'ภาพ 5.13–5.15 แสดงอนุภาคจำนวนและขนาดเท่าเดิม ส่วนระยะห่างและความเร็วเปลี่ยน'},
+ {q:'ภาพแบบจำลองอนุภาคที่สร้างขึ้นมีส่วนใดบ้างที่ไม่สามารถแสดงให้เห็นตามความเป็นจริง และถ้าจะปรับปรุงทำได้อย่างไร',t:1,s:'ตัวอย่าง (ผู้จัดทำเสริม): อนุภาคจริงเล็กมากและมีจำนวนมหาศาล ไม่ใช่ทรงกลมสีส้ม ภาพนิ่งแสดงการเคลื่อนที่ต่อเนื่องไม่ได้ และระยะห่างในภาพขยายเกินจริง ปรับปรุงโดยทำภาพเคลื่อนไหวหรือใช้แบบจำลองสามมิติ'}];
+const QZ=[
+ {q:'ปิดฝาขวดพลาสติกเปล่าชนิดบางให้แน่นแล้วนำไปแช่ในน้ำแข็ง อากาศในขวดเป็นอย่างไร',o:['ขยายตัว เพราะได้รับความร้อน','หดตัว เพราะสูญเสียความร้อน ขวดอาจบุบ','ไม่เปลี่ยนแปลง'],a:1,e:'อนุภาคอากาศเคลื่อนที่ช้าลงและอยู่ใกล้กันมากขึ้น'},
+ {q:'ข้อใดเปรียบเทียบการเปลี่ยนแปลงปริมาตรของสารเมื่อได้รับความร้อนได้ถูกต้อง (หนังสือหน้า 37)',o:['ของแข็งเปลี่ยนแปลงมากที่สุด','ของแข็งเปลี่ยนแปลงน้อยกว่าของเหลวและแก๊ส','ทั้งสามสถานะเปลี่ยนแปลงเท่ากัน'],a:1,e:'อนุภาคของของแข็งอยู่ชิดกันและแรงยึดเหนี่ยวมาก'},
+ {q:'เมื่ออนุภาคของสารได้รับความร้อน อนุภาคเปลี่ยนแปลงอย่างไร',o:['พลังงานลดลง เคลื่อนที่ช้าลง','พลังงานเพิ่มขึ้น เคลื่อนที่เร็วขึ้น ระยะห่างระหว่างอนุภาคเพิ่มขึ้น','อนุภาคมีจำนวนมากขึ้น'],a:1},
+ {q:'ถนนคอนกรีตบางช่วงยกตัวขึ้นในวันที่อากาศร้อนจัด (ภาพ 5.16) สาเหตุที่สัมพันธ์กับบทเรียนนี้คือข้อใด',o:['คอนกรีตหดตัวเมื่อได้รับความร้อน','คอนกรีตขยายตัวเมื่อได้รับความร้อนจากแสงแดด','คอนกรีตสูญเสียความร้อนจนขยายตัว'],a:1,e:'ตามแนวคิดของบทเรียน (หนังสือไม่ได้เฉลย) ส่วนการแก้ปัญหา ให้ลองคิดและออกแบบเองตามกิจกรรมเสริม'},
+ {q:'ลูกกลมเหล็กที่ลอดวงแหวนได้พอดี หลังแช่น้ำแข็งแล้วนำมาลอดวงแหวน',o:['ลอดผ่านได้ เพราะลูกกลมหดตัว','ลอดผ่านไม่ได้ เพราะลูกกลมขยายตัว','ลอดผ่านไม่ได้ เพราะวงแหวนหดตัว'],a:0,e:'ถ้าวงแหวนก็เย็นลงด้วย วงแหวนจะหดตัวเช่นกัน แต่ในกิจกรรมแช่เฉพาะลูกกลม'}];
+function progress(){
+  const lab=['t1','t2','t3'].every(t=>isDone(t));const sn=S.seen||{};
+  const d=[lab,!!(S.d1&&S.d2&&S.d3),!!(sn.gas&&sn.liquid&&sn.solid&&S.kMoved),!!S.zDone];const n=d.filter(Boolean).length;
+  $('pFill').style.width=n/4*100+'%';document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',n);
+  $('pText').textContent=`ทำแล้ว ${n} จาก 4 ส่วน (ทดลองครบ 3 ตอน · คำถามท้ายกิจกรรม · แบบจำลองอนุภาค 3 สถานะ · แบบทดสอบ)`;$('done').style.display=n===4?'block':'none';
+}
+S.seen=S.seen||{};S.seen.gas=1;
+mkQ('q1box',Q1,'q1','d1','q1Btn','q1Fb');mkQ('q2box',Q2,'q2','d2','q2Btn','q2Fb');mkQ('q3box',Q3,'q3','d3','q3Btn','q3Fb');mkQ('zbox',QZ,'z','zDone','zBtn','zFb');
+pUI();render();checkDone();progress();
+window.__lab={approach,balloonMl,levelRise,ballPasses,ballD};
+
+$('wipe').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(_){}location.reload();});
+})();
+</script>
+</body>
+</html>
