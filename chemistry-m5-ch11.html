@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.5 บทที่ 11", "title": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#e0e9f2;--soft:#f0f8fc;--acc:#1b8bb0;--acc2:#e1f3f9;--ok:#157a55;--bad:#b63f43;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;height:68px;gap:12px;flex-wrap:wrap}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:18px 0 8px}.eyebrow{color:var(--acc);font-size:.8rem;font-weight:700;letter-spacing:.08em}
+h1{margin:.2rem 0 .5rem;font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.2}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;font-weight:600}
+.track{flex:1;min-width:140px;height:10px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:var(--acc);transition:width .4s}
+.notice{border:1px solid #ecdca8;background:#fffaf0;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#6b5619;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:#b7f0c8}
+.panel{border:1px solid var(--line);border-radius:26px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--soft);margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #bfe0ec;border-radius:22px;padding:16px;background:linear-gradient(160deg,#f2fafd,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 13px;min-height:38px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #a9d3e3;background:#fff;border-radius:999px;padding:7px 14px;min-height:40px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#0f5873;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a href="index.html">← สารบัญหลักสูตร</a><span class="small">เคมี ม.5 เล่ม 4 · สสวท.</span></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 5 · BOOK 4 · CHAPTER 11</div>
+<h1>เคมีไฟฟ้า: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 11.1–11.5 ตามหนังสือเรียนเคมี ม.5 เล่ม 4 ของ สสวท. ตั้งแต่ปฏิกิริยารีดอกซ์ เซลล์กัลวานิก การชุบโลหะ จนถึงการแยกสลายด้วยไฟฟ้า แล้วตอบคำถามท้ายกิจกรรมและทำแบบทดสอบสั้น</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 5 กิจกรรม</span><span class="track"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ผลที่เห็นคำนวณจากค่าศักย์ไฟฟ้ามาตรฐานและสมการในหนังสือ ส่วนสี ฟองแก๊ส และความหนาของโลหะที่เกาะเป็นภาพประกอบเชิงคุณภาพ ไม่ใช่การวัดจริง<br>
+<b>ข้อควรระวังทั่วไปเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในหนังสือ): สวมแว่นตานิรภัยและถุงมือ ล้างมือหลังทดลอง สารละลายที่มีโลหะหนัก เช่น คอปเปอร์(II)ซัลเฟต ต้องทิ้งตามที่ครูกำหนด และไม่ต่อแบตเตอรี่ลัดวงจร</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 11"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: หนังสือเรียนรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (สสวท., e-book พ.ศ. 2563) กิจกรรม 11.1 หน้า 88 · 11.2 หน้า 90–92 · 11.3 หน้า 116–120 · 11.4 หน้า 139–140 · 11.5 หน้า 142–145 · ค่า E° จากตาราง 11.2 และ 11.3 ส่วนกิจกรรม 11.6 (สืบค้นข้อมูลและทำโปสเตอร์) ไม่ได้ทำเป็นแล็บเสมือน · <a href="https://www.scimath.org/ebook-chemistry/item/10299-4" target="_blank" rel="noopener">หน้าหนังสือที่ สสวท.</a></footer>
+</div>
+<script>
+'use strict';
+/* ======================= ข้อมูลและแบบจำลอง ======================= */
+/* ตาราง 11.3 (บางส่วน) E° ของครึ่งเซลล์รีดักชัน: ion + ne⁻ → metal */
+const HALF={
+ Li:{ion:'Li⁺',n:1,E:-3.05},K:{ion:'K⁺',n:1,E:-2.93},Ba:{ion:'Ba²⁺',n:2,E:-2.90},Ca:{ion:'Ca²⁺',n:2,E:-2.87},Na:{ion:'Na⁺',n:1,E:-2.71},
+ Mg:{ion:'Mg²⁺',n:2,E:-2.37},Al:{ion:'Al³⁺',n:3,E:-1.66},Zn:{ion:'Zn²⁺',n:2,E:-0.76},Cr:{ion:'Cr³⁺',n:3,E:-0.74},Fe:{ion:'Fe²⁺',n:2,E:-0.44},
+ Ni:{ion:'Ni²⁺',n:2,E:-0.25},Pb:{ion:'Pb²⁺',n:2,E:-0.13},H2:{ion:'H⁺',n:2,E:0.00},Cu:{ion:'Cu²⁺',n:2,E:0.34},Ag:{ion:'Ag⁺',n:1,E:0.80},Au:{ion:'Au³⁺',n:3,E:1.50}};
+const SERIES=['K','Ca','Na','Mg','Al','Zn','Fe','Ni','Pb','H2','Cu','Ag','Au']; // ตาราง 11.2 (ตัวรีดิวซ์ดี → ไม่ดี)
+const NAME={Mg:'Mg',Zn:'Zn',Cu:'Cu',Fe:'Fe',Ni:'Ni',Ag:'Ag',Al:'Al',Pb:'Pb',H2:'H₂ (SHE)',Au:'Au',K:'K',Ca:'Ca',Na:'Na'};
+const E_H2O_RED=-0.83, E_O2_H2O=1.23;
+function eCell(Ecathode,Eanode){return Math.round((Ecathode-Eanode)*100)/100;}
+/* โลหะ A จุ่มในไอออนของ B: เกิดปฏิกิริยาเมื่อ E°(ไอออน B) > E°(ไอออน A) */
+function reacts(metalA,metalB){return HALF[metalB].E>HALF[metalA].E;}
+function cellOf(a,b){ // เลือกครึ่งเซลล์สองอัน → แอโนด/แคโทด
+  const An=HALF[a].E<=HALF[b].E?a:b,Ca=An===a?b:a;return{anode:An,cathode:Ca,E:eCell(HALF[Ca].E,HALF[An].E)};}
+const SOL={
+ ki:{name:'KI(aq)',molten:false,cat:{sp:'K⁺',E:-2.93,eq:'K⁺ + e⁻ → K'},an:{sp:'I⁻',E:0.53,eq:'2I⁻ → I₂ + 2e⁻'}},
+ cuso4:{name:'CuSO₄(aq)',molten:false,cat:{sp:'Cu²⁺',E:0.34,eq:'Cu²⁺ + 2e⁻ → Cu'},an:{sp:'SO₄²⁻',E:2.01,eq:'2SO₄²⁻ → S₂O₈²⁻ + 2e⁻'}},
+ na2so4:{name:'Na₂SO₄(aq)',molten:false,cat:{sp:'Na⁺',E:-2.71,eq:'Na⁺ + e⁻ → Na'},an:{sp:'SO₄²⁻',E:2.01,eq:'2SO₄²⁻ → S₂O₈²⁻ + 2e⁻'}},
+ nacl:{name:'NaCl(l) หลอมเหลว',molten:true,cat:{sp:'Na⁺',E:-2.71,eq:'Na⁺ + e⁻ → Na'},an:{sp:'Cl⁻',E:1.36,eq:'2Cl⁻ → Cl₂ + 2e⁻'}}};
+const WATER={cat:{sp:'H₂O',E:E_H2O_RED,eq:'2H₂O + 2e⁻ → H₂ + 2OH⁻'},an:{sp:'H₂O',E:E_O2_H2O,eq:'2H₂O → O₂ + 4H⁺ + 4e⁻'}};
+function electrolysis(id){
+  const s=SOL[id];
+  // แคโทด: เลือกตัวที่รับอิเล็กตรอนง่ายที่สุด (E° สูงสุด) ; แอโนด: เลือกตัวที่ให้อิเล็กตรอนง่ายที่สุด (E° ของครึ่งเซลล์รีดักชันต่ำสุด)
+  const c=s.molten||s.cat.E>WATER.cat.E?s.cat:WATER.cat;
+  const a=s.molten||s.an.E<WATER.an.E?s.an:WATER.an;
+  return{cathode:c,anode:a,E:eCell(c.E,a.E),min:Math.abs(eCell(c.E,a.E)),candC:s.molten?[s.cat]:[s.cat,WATER.cat],candA:s.molten?[s.an]:[s.an,WATER.an]};
+}
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function mixc(c1,c2,t){const h=x=>[1,3,5].map(i=>parseInt(x.substr(i,2),16));const a=h(c1),b=h(c2);return'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+function sgn(x){return(x>=0?'+':'−')+Math.abs(x).toFixed(2);}
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m5-ch11-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['11.1','11.2','11.3','11.4','11.5'];
+const TITLES={'11.1':'รีดอกซ์: โลหะกับไอออนของโลหะ','11.2':'เปรียบเทียบตัวรีดิวซ์/ตัวออกซิไดส์','11.3':'วัดศักย์ไฟฟ้าของเซลล์','11.4':'ชุบเหล็กด้วยสังกะสี','11.5':'แยกสลาย KI ด้วยไฟฟ้า'};
+let cur=0;
+
+/* ======================= แบบทดสอบ ======================= */
+const QUIZ={
+'11.1':[
+ {q:'เลขออกซิเดชันของ Cl ในเปอร์คลอเรตไอออน (ClO₄⁻) เป็นเท่าใด',o:['+7','−1','+5','+3'],a:0,w:'ให้ O = −2 ผลรวมต้องเท่ากับประจุไอออน x + 4(−2) = −1 จึง x = +7 (แบบฝึกหัด 11.1 ข้อ 1.2)'},
+ {q:'ในปฏิกิริยา Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s) สารใดเป็นตัวรีดิวซ์',o:['Zn เพราะเลขออกซิเดชันเพิ่มจาก 0 เป็น +2 (ให้อิเล็กตรอน)','Cu²⁺ เพราะเลขออกซิเดชันลดลง','SO₄²⁻ เพราะรวมกับ Zn','ไม่มีตัวรีดิวซ์ เพราะไม่ใช่รีดอกซ์'],a:0,w:'ตัวรีดิวซ์คือสารที่เลขออกซิเดชันเพิ่ม (ให้อิเล็กตรอน) ส่วน Cu²⁺ ลดลงจาก +2 เป็น 0 จึงเป็นตัวออกซิไดส์'},
+ {q:'ปฏิกิริยาใดเป็นปฏิกิริยารีดอกซ์',o:['2H₂S + 3O₂ → 2SO₂ + 2H₂O','HCO₃⁻ + OH⁻ → H₂O + CO₃²⁻','HCl + NaOH → NaCl + H₂O','Cu²⁺ + S²⁻ → CuS'],a:0,w:'ในข้อแรก S เปลี่ยนจาก −2 เป็น +4 และ O เปลี่ยนจาก 0 เป็น −2 ส่วนข้ออื่นไม่มีธาตุใดเปลี่ยนเลขออกซิเดชัน'}],
+'11.2':[
+ {q:'จากกิจกรรม เรียงความสามารถในการเป็นตัวรีดิวซ์ของโลหะจากมากไปน้อย',o:['Mg > Zn > Cu','Cu > Zn > Mg','Zn > Mg > Cu','Mg > Cu > Zn'],a:0,w:'Mg ทำปฏิกิริยากับ Zn²⁺ และ Cu²⁺ ได้ Zn ทำปฏิกิริยากับ Cu²⁺ ได้แต่ไม่ทำกับ Mg²⁺ ส่วน Cu ไม่ทำปฏิกิริยากับทั้ง Zn²⁺ และ Mg²⁺ (สอดคล้องตาราง 11.2)'},
+ {q:'ไอออนใดเป็นตัวออกซิไดส์ที่ดีที่สุดในกลุ่ม Mg²⁺, Zn²⁺, Cu²⁺',o:['Cu²⁺','Zn²⁺','Mg²⁺','เท่ากันทั้งสาม'],a:0,w:'โลหะที่เป็นตัวรีดิวซ์ได้แย่ที่สุด (Cu) มีไอออนที่เป็นตัวออกซิไดส์ดีที่สุด ลำดับตัวออกซิไดส์จึงตรงข้ามกับตัวรีดิวซ์'},
+ {q:'ใส่สร้อยคอทองคำ (Au) ในกรดไฮโดรคลอริก (HCl) ทองคำจะถูกออกซิไดส์เป็นไอออนหรือไม่',o:['ไม่ เพราะ Au อยู่ต่ำกว่า H₂ ในตาราง 11.2 เป็นตัวรีดิวซ์ที่ไม่ดีพอจะให้อิเล็กตรอนแก่ H⁺','ได้ เพราะ HCl เป็นกรดแก่','ได้ เพราะ Au เป็นโลหะ','ไม่ เพราะ Au เป็นอโลหะ'],a:0,w:'ตาราง 11.2 ระบุว่า Au เป็นตัวรีดิวซ์ที่ไม่ดี และ H⁺ ไม่ใช่ตัวออกซิไดส์ที่ดีพอจะทำให้ Au เกิดปฏิกิริยา'}],
+'11.3':[
+ {q:'E°cell ของเซลล์ Zn(s)|Zn²⁺(aq)||Cu²⁺(aq)|Cu(s) ที่ภาวะมาตรฐานเท่ากับเท่าใด',o:['+1.10 V','+0.42 V','−1.10 V','+0.76 V'],a:0,w:'E°cell = E°cathode − E°anode = 0.34 − (−0.76) = +1.10 V (ผลวัดในรูป 11.3 ของหนังสือได้ 1.04 V เพราะภาวะจริงไม่เป็นมาตรฐานทุกประการ)'},
+ {q:'ในเซลล์ Zn–Cu อิเล็กตรอนเคลื่อนที่ในลวดอย่างไร',o:['จากขั้ว Zn (แอโนด) ไปยังขั้ว Cu (แคโทด)','จากขั้ว Cu ไปยังขั้ว Zn','ไม่เคลื่อนที่','ผ่านสะพานเกลือ'],a:0,w:'Zn มีศักย์ไฟฟ้าต่ำกว่า จึงเกิดออกซิเดชันที่ Zn ปล่อยอิเล็กตรอนไปยัง Cu ที่ Cu²⁺ รับอิเล็กตรอน'},
+ {q:'เซลล์ Fe(s)|Fe²⁺(aq)||Cl⁻(aq)|Cl₂(g)|Pt(s) มี E°cell เท่าใด (E° ของ Cl₂/Cl⁻ = +1.36 V, Fe²⁺/Fe = −0.44 V)',o:['+1.80 V','+0.92 V','−1.80 V','+1.36 V'],a:0,w:'แคโทดคือ Cl₂ แอโนดคือ Fe: 1.36 − (−0.44) = +1.80 V (แบบฝึกหัด 11.4 ข้อ 1.1)'}],
+'11.4':[
+ {q:'ถ้าต้องการชุบเหล็กด้วยสังกะสี ควรต่อเหล็กและแผ่นสังกะสีกับขั้วใดของแบตเตอรี่',o:['เหล็กต่อขั้วลบ (เป็นแคโทด) สังกะสีต่อขั้วบวก (เป็นแอโนด)','เหล็กต่อขั้วบวก สังกะสีต่อขั้วลบ','ต่อกับขั้วใดก็ได้','ต่อเหล็กอย่างเดียวไม่ต้องต่อสังกะสี'],a:0,w:'หนังสือสรุป: ต่อวัตถุที่ต้องการชุบกับขั้วลบ และโลหะที่ใช้ชุบกับขั้วบวก'},
+ {q:'ความเข้มข้นของสารละลาย ZnSO₄ ระหว่างชุบเป็นอย่างไร',o:['แทบไม่เปลี่ยน เพราะ Zn²⁺ ที่ถูกรีดิวซ์ที่แคโทดเท่ากับ Zn²⁺ ที่เกิดจากการออกซิไดส์ที่แอโนด','เข้มข้นขึ้นมาก','เจือจางลงมาก','เปลี่ยนเป็น ZnCl₂'],a:0,w:'แอโนด Zn → Zn²⁺ + 2e⁻ ส่วนแคโทด Zn²⁺ + 2e⁻ → Zn จำนวนโมลเท่ากัน'},
+ {q:'ถ้าใช้ไฟฟ้ากระแสสลับแทนกระแสตรง จะชุบโลหะได้ดีหรือไม่',o:['ไม่ดี เพราะขั้วสลับกันตลอด ปฏิกิริยาจึงไม่ดำเนินไปในทิศทางเดียว','ดีกว่า','ดีเท่ากัน','ชุบได้เร็วขึ้น'],a:0,w:'หนังสือระบุว่าต้องใช้ไฟฟ้ากระแสตรงเพื่อให้ปฏิกิริยาดำเนินไปในทิศทางเดียว'}],
+'11.5':[
+ {q:'ที่แคโทดในการแยกสลายสารละลาย KI เกิดสิ่งใด',o:['H₂O ถูกรีดิวซ์เป็นแก๊ส H₂ และ OH⁻ (ฟีนอล์ฟทาลีนเป็นสีชมพู)','K⁺ ถูกรีดิวซ์เป็นโลหะ K','I⁻ ถูกรีดิวซ์','เกิดแก๊ส O₂'],a:0,w:'E° ของ H₂O (−0.83 V) สูงกว่า K⁺ (−2.93 V) จึงรับอิเล็กตรอนได้ง่ายกว่า ได้ H₂ และ OH⁻'},
+ {q:'การแยกสลายสารละลาย CuSO₄ ด้วยไฟฟ้า ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีแรงเคลื่อนไฟฟ้ามากกว่าเท่าใด',o:['0.89 V','1.57 V','0.34 V','1.23 V'],a:0,w:'แคโทด Cu²⁺ (+0.34 V) แอโนด H₂O (+1.23 V) E°cell = 0.34 − 1.23 = −0.89 V (หน้า 145)'},
+ {q:'ที่แอโนดของสารละลาย KI เกิดสิ่งใดและมีสีอย่างไร',o:['I⁻ ถูกออกซิไดส์เป็น I₂ (สีน้ำตาลเหลือง)','H₂O ถูกออกซิไดส์เป็น O₂','K⁺ ถูกออกซิไดส์','เกิด Cl₂'],a:0,w:'E° ของ I₂/I⁻ (+0.53 V) ต่ำกว่า O₂/H₂O (+1.23 V) จึงให้อิเล็กตรอนได้ง่ายกว่า'}]
+};
+function quizHTML(act){
+  return'<div class="box" id="quiz-'+act.replace('.','_')+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+act.replace('.','_')+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act){
+  const root=$('#quiz-'+act.replace('.','_')),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;sel.closest('.opt').classList.add(v===qs[i].a?'good':'wrong');}
+      $$('.opt',el)[qs[i].a].classList.add('good');
+      why.classList.remove('hide');why.textContent=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(act+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.opt',root).forEach(o=>o.classList.remove('good','wrong'));$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>';}
+
+/* ======================= 11.1 ======================= */
+const REDOX=[
+ {r:'2H₂S(g) + 3O₂(g) → 2SO₂(g) + 2H₂O(g)',redox:true,n:'S: −2 → +4 (เพิ่ม) · O: 0 → −2 (ลด) · ตัวรีดิวซ์ H₂S ตัวออกซิไดส์ O₂'},
+ {r:'HCO₃⁻(aq) + OH⁻(aq) → H₂O(l) + CO₃²⁻(aq)',redox:false,n:'ไม่มีธาตุใดเปลี่ยนเลขออกซิเดชัน (H +1, C +4, O −2 ตลอด)'},
+ {r:'CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(g)',redox:true,n:'C: −4 → +4 (เพิ่ม) · O: 0 → −2 (ลด) · ตัวรีดิวซ์ CH₄ ตัวออกซิไดส์ O₂'},
+ {r:'HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l)',redox:false,n:'ไม่มีการเปลี่ยนแปลงเลขออกซิเดชัน (ตัวอย่างในหน้า 87)'},
+ {r:'Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s)',redox:true,n:'Zn: 0 → +2 (เพิ่ม) · Cu: +2 → 0 (ลด) · ตัวรีดิวซ์ Zn ตัวออกซิไดส์ Cu²⁺'}];
+function act111(){
+  return`<h2>กิจกรรม 11.1 ปฏิกิริยารีดอกซ์ระหว่างโลหะกับไอออนของโลหะ</h2><p class="sub">หนังสือหน้า 87–89</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองการเกิดปฏิกิริยารีดอกซ์</li><li>อธิบายการเปลี่ยนแปลงที่เกิดขึ้นจากการถ่ายโอนอิเล็กตรอนของปฏิกิริยารีดอกซ์ระหว่างโลหะกับไอออนของโลหะ</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>CuSO₄ 0.10 mol/L · แผ่นโลหะสังกะสี (Zn) 2 cm × 5 cm · บีกเกอร์ 50 mL · กระบอกตวง 25 mL · แท่งแก้วคน · กระดาษทราย 3 cm × 3 cm</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ขัดแผ่น Zn ด้วยกระดาษทราย</li><li>ใส่ CuSO₄ 0.10 mol/L 25 mL ลงในบีกเกอร์ สังเกตสีของสารละลาย</li><li>จุ่มแผ่น Zn ลงในบีกเกอร์ สังเกตการเปลี่ยนแปลง</li><li>ตั้งไว้ 1–2 นาที สังเกตสารละลายและแผ่น Zn ถ้ามีสารมาเกาะให้ใช้แท่งแก้วคนเขี่ยออกแล้วสังเกตแผ่นโลหะอีกครั้ง</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน</h3>
+   <div class="btns"><button class="btn sm" type="button" id="s111a">1. ขัดแผ่น Zn</button><button class="btn sm" type="button" id="s111b" disabled>2. ใส่ CuSO₄ 25 mL</button><button class="btn sm" type="button" id="s111c" disabled>3. จุ่มแผ่น Zn</button><button class="btn alt sm" type="button" id="s111t" disabled>ตั้งไว้ +30 วินาที</button><button class="btn alt sm" type="button" id="s111s" disabled>เขี่ยสารที่เกาะออก</button><button class="btn alt sm" type="button" id="s111r">เริ่มใหม่</button></div>
+   <div class="cols"><div class="fig"><svg viewBox="0 0 260 230" id="g111" role="img" aria-label="บีกเกอร์ CuSO₄ กับแผ่นสังกะสี"></svg></div>
+   <div><p>เวลา: <b id="t111">0</b> วินาที</p><div class="tip" id="obs111" aria-live="polite">เริ่มจากขั้นที่ 1</div>
+   <p class="small">แบบจำลองเชิงคุณภาพ: ความเร็วที่สีฟ้าจางลงและความหนาของทองแดงที่เกาะเป็นค่าสมมติเพื่อแสดงแนวโน้ม ไม่ใช่ข้อมูลจากหนังสือ</p></div></div>
+   <div class="box"><h3>เขียนครึ่งปฏิกิริยา (หน้า 89)</h3><div class="rowflex"><label>ครึ่งปฏิกิริยาออกซิเดชัน<select id="ox111"><option value="">เลือก…</option><option value="a">Zn → Zn²⁺ + 2e⁻</option><option value="b">Zn²⁺ + 2e⁻ → Zn</option><option value="c">Cu → Cu²⁺ + 2e⁻</option></select></label>
+   <label>ครึ่งปฏิกิริยารีดักชัน<select id="rd111"><option value="">เลือก…</option><option value="a">Cu²⁺ + 2e⁻ → Cu</option><option value="b">Zn²⁺ + 2e⁻ → Zn</option><option value="c">Cu → Cu²⁺ + 2e⁻</option></select></label></div>
+   <div class="btns"><button class="btn sm" type="button" id="chk111">ตรวจ</button></div><div class="res" id="res111" aria-live="polite"></div></div></div>
+  <div class="box"><h3>ตรวจเลขออกซิเดชัน: เป็นปฏิกิริยารีดอกซ์หรือไม่ (หน้า 87 และตรวจสอบความเข้าใจ)</h3>
+   <div id="redox111">${REDOX.map((x,i)=>`<div class="q" data-i="${i}"><p class="eq">${x.r}</p><div class="btns"><button class="btn alt sm" data-v="1" type="button">เป็นรีดอกซ์</button><button class="btn alt sm" data-v="0" type="button">ไม่เป็นรีดอกซ์</button></div><div class="why hide"></div></div>`).join('')}</div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w111_1','การเปลี่ยนแปลงที่เกิดขึ้นเป็นการถ่ายโอนอิเล็กตรอนของปฏิกิริยารีดอกซ์ระหว่างโลหะสังกะสี (Zn) กับสารละลายคอปเปอร์(II)ซัลเฟต (CuSO₄) อย่างไร')}${written('w111_2','ระบุตัวรีดิวซ์และตัวออกซิไดส์ พร้อมเขียนครึ่งปฏิกิริยาออกซิเดชันและรีดักชันของ Cu(s) + 2Ag⁺(aq) → Cu²⁺(aq) + 2Ag(s)')}</div>
+  ${quizHTML('11.1')}`;
+}
+function wire111(){
+  const S={step:0,t:0,scraped:false};
+  const f=()=>0.12*(1-Math.exp(-S.t/60));
+  function draw(){
+    const blue=S.step>=2?mixc('#2f7fd8','#bcd8f0',f()*5):'#fff';
+    let s='<rect x="50" y="60" width="160" height="150" rx="8" fill="#fff" stroke="#8a93a8" stroke-width="2"/>';
+    if(S.step>=2)s+=`<rect class="tube" x="52" y="100" width="156" height="108" fill="${blue}" opacity=".9"/>`;
+    const dep=S.step>=3?Math.min(1,S.t/120)*(S.scraped?0:1):0;
+    if(S.step>=3){
+      const zc=S.t>0?'#9aa0ab':'#b8bcc6';
+      s+=`<rect x="108" y="30" width="26" height="150" rx="2" fill="${zc}" stroke="#6d7482"/>`;
+      s+=`<rect x="${108-dep*6}" y="110" width="${26+dep*12}" height="70" rx="3" fill="#b4562a" opacity="${.15+.8*dep}"/>`;
+      if(S.t>0)s+=`<circle cx="95" cy="190" r="${2+dep*2}" fill="#b4562a" opacity="${dep}"/><circle cx="150" cy="195" r="${2+dep*2}" fill="#b4562a" opacity="${dep}"/>`;
+    }else if(S.step>=1)s+='<rect x="108" y="10" width="26" height="150" rx="2" fill="#c9cdd6" stroke="#6d7482" opacity=".5" transform="translate(110 0) rotate(8 120 80)"/>';
+    $('#g111').innerHTML=s;
+    $('#t111').textContent=S.t;
+    const o=S.step===0?'เริ่มจากขั้นที่ 1: ขัดแผ่น Zn':S.step===1?'ขัดแผ่น Zn แล้ว ผิวเป็นประกายสีเงินเทา ต่อไปใส่ CuSO₄':S.step===2?'CuSO₄ 0.10 mol/L มีสีฟ้า ต่อไปจุ่มแผ่น Zn':
+      S.t===0?'เพิ่งจุ่มแผ่น Zn เริ่มเห็นสีน้ำตาลแดงเกาะที่ผิว':(S.t<60?'มีของแข็งสีน้ำตาลแดง (Cu) เกาะที่ผิวแผ่น Zn สีฟ้าของสารละลายเริ่มจางลง':'ผิวแผ่น Zn คล้ำเป็นสีน้ำตาลแดงมากขึ้น สีฟ้าของสารละลายจางลง')+(S.scraped?' · เขี่ยสารออกแล้ว: เห็นผิวโลหะเดิมเป็นหลุมขรุขระ บางลง':'');
+    $('#obs111').textContent=o;
+    $('#s111b').disabled=S.step!==1;$('#s111c').disabled=S.step!==2;$('#s111t').disabled=S.step<3||S.t>=240;$('#s111s').disabled=S.step<3||S.t<30||S.scraped;$('#s111a').disabled=S.step!==0;
+  }
+  $('#s111a').onclick=()=>{S.step=1;draw();};$('#s111b').onclick=()=>{S.step=2;draw();};$('#s111c').onclick=()=>{S.step=3;draw();};
+  $('#s111t').onclick=()=>{S.t+=30;draw();};$('#s111s').onclick=()=>{S.scraped=true;draw();};
+  $('#s111r').onclick=()=>{S.step=0;S.t=0;S.scraped=false;draw();};
+  $('#chk111').onclick=()=>{const o=$('#ox111').value,r=$('#rd111').value,m=$('#res111');
+    if(!o||!r){m.className='res bad';m.textContent='เลือกให้ครบทั้งสองช่อง';return;}
+    if(o==='a'&&r==='a'){m.className='res ok';m.textContent='ถูกต้อง Zn เสียอิเล็กตรอน (ออกซิเดชัน) Cu²⁺ รับอิเล็กตรอน (รีดักชัน) สมการไอออนิกสุทธิ: Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)';}
+    else{m.className='res bad';m.textContent='ยังไม่ถูก ออกซิเดชัน = ให้อิเล็กตรอน (เลขออกซิเดชันเพิ่ม) รีดักชัน = รับอิเล็กตรอน (เลขออกซิเดชันลด) ลองดู Zn กับ Cu²⁺ อีกครั้ง';}};
+  $$('#redox111 .q').forEach(q=>{const x=REDOX[+q.dataset.i];$$('button',q).forEach(b=>b.onclick=()=>{const w=$('.why',q);w.classList.remove('hide');const ok=(b.dataset.v==='1')===x.redox;w.innerHTML=(ok?'✓ ถูกต้อง · ':'✗ ลองใหม่ · ')+(x.redox?'เป็นรีดอกซ์':'ไม่เป็นรีดอกซ์')+' · '+x.n;});});
+  draw();wireQuiz('11.1');
+}
+
+/* ======================= 11.2 ======================= */
+function act112(){
+  const sols=[['cu','CuSO₄'],['zn','ZnSO₄'],['mg','MgSO₄']],mets=['Mg','Zn','Cu'];
+  return`<h2>กิจกรรม 11.2 เปรียบเทียบความสามารถในการเป็นตัวรีดิวซ์และตัวออกซิไดส์</h2><p class="sub">หนังสือหน้า 90–92</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองปฏิกิริยารีดอกซ์ระหว่างโลหะและไอออนของโลหะคู่ต่าง ๆ</li><li>เปรียบเทียบความสามารถในการเป็นตัวรีดิวซ์ของโลหะ และตัวออกซิไดส์ของไอออนของโลหะ</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>CuSO₄ · ZnSO₄ · MgSO₄ ความเข้มข้น 0.10 mol/L · แผ่นโลหะ Mg, Zn, Cu ขนาด 0.5 cm × 11 cm · หลอดทดลองขนาดเล็ก · กระบอกตวง 10 mL · แท่งแก้วคน · กระดาษทราย</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ขัดแผ่นโลหะ Mg, Zn และ Cu ด้วยกระดาษทราย</li><li>ใส่ CuSO₄ 5 mL ลงในหลอดทดลอง 2 หลอด สังเกตสี จุ่ม Mg ในหลอดที่ 1 และ Zn ในหลอดที่ 2</li><li>ตั้งไว้ 1–2 นาที สังเกตสารละลายและแผ่นโลหะ ถ้ามีสารมาเกาะให้เขี่ยออกแล้วสังเกตอีกครั้ง</li><li>ทำซ้ำโดยเปลี่ยนเป็น ZnSO₄ (ใช้ Mg และ Cu) และ MgSO₄ (ใช้ Zn และ Cu)</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: จุ่มโลหะลงในสารละลายแล้วรอ 2 นาที</h3>
+   <p class="small">กดคู่โลหะ–สารละลายทั้ง 6 คู่ ผลที่เห็นตัดสินจากค่า E° ในตาราง 11.3 ส่วนคำอธิบายสีและสิ่งที่มาเกาะเป็นภาพประกอบเชิงคุณภาพ</p>
+   <div class="tw"><table id="t112"><thead><tr><th class="l">แผ่นโลหะ ↓ / สารละลาย →</th>${sols.map(s=>`<th>${s[1]}</th>`).join('')}</tr></thead><tbody>${mets.map(m=>`<tr><td class="l"><b>${m}</b></td>${sols.map(s=>{const same=m.toLowerCase()===s[0];return same?'<td class="small">(ไม่ทดลอง ชนิดเดียวกัน)</td>':`<td><button class="btn alt sm" type="button" data-m="${m}" data-s="${s[0]}">จุ่ม ${m} ใน ${s[1]}</button><div class="small res-cell" data-k="${m}-${s[0]}"></div></td>`;}).join('')}</tr>`).join('')}</tbody></table></div>
+   <div class="btns"><button class="btn sm" type="button" id="all112">ทดลองครบทั้ง 6 คู่</button></div>
+   <div class="box"><h3>สรุปลำดับ (ตอบหลังทดลองครบ)</h3><div class="rowflex"><label>ตัวรีดิวซ์: มาก → น้อย<select id="ordR"><option value="">เลือกลำดับ…</option>${['Mg>Zn>Cu','Mg>Cu>Zn','Zn>Mg>Cu','Cu>Zn>Mg'].map(x=>`<option value="${x}">${x.replace(/>/g,' > ')}</option>`).join('')}</select></label>
+   <label>ตัวออกซิไดส์ของไอออน: มาก → น้อย<select id="ordO"><option value="">เลือกลำดับ…</option>${['Cu2>Zn2>Mg2','Mg2>Zn2>Cu2','Zn2>Cu2>Mg2','Cu2>Mg2>Zn2'].map(x=>`<option value="${x}">${x.replace(/2/g,'²⁺').replace(/>/g,' > ')}</option>`).join('')}</select></label></div>
+   <div class="btns"><button class="btn sm" type="button" id="chk112">ตรวจลำดับ</button></div><div class="res" id="res112" aria-live="polite"></div></div></div>
+  <div class="box"><h3>ตรวจสอบความเข้าใจ: ทำนายด้วยตาราง 11.2</h3><div class="rowflex"><label>โลหะ<select id="pm">${SERIES.filter(k=>k!=='H2').map(k=>`<option value="${k}">${NAME[k]}</option>`).join('')}</select></label><label>จุ่มใน<select id="pi">${SERIES.filter(k=>k!=='H2').map(k=>`<option value="${k}">${HALF[k].ion}</option>`).concat(['<option value="H2">H⁺ (สารละลายกรด)</option>']).join('')}</select></label></div><div class="tip" id="pred112" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w112_1','1. โลหะและไอออนของโลหะคู่ใดที่เกิดปฏิกิริยาเคมี ทราบได้อย่างไร')}${written('w112_2','2. สารใดเป็นตัวรีดิวซ์และสารใดเป็นตัวออกซิไดส์ของแต่ละปฏิกิริยาในข้อ 1')}${written('w112_3','3. เขียนสมการเคมีของปฏิกิริยารีดอกซ์ที่เกิดขึ้นทั้งหมด')}${written('w112_4','4. เรียงลำดับความสามารถในการเป็นตัวรีดิวซ์ของโลหะ')}${written('w112_5','5. เรียงลำดับความสามารถในการเป็นตัวออกซิไดส์ของไอออนของโลหะ')}</div>
+  ${quizHTML('11.2')}`;
+}
+function wire112(){
+  const OBS={'Mg-cu':'มีของแข็งสีน้ำตาลแดงเกาะบนแผ่น Mg และสีฟ้าของสารละลายจางลง','Zn-cu':'มีของแข็งสีน้ำตาลแดงเกาะบนแผ่น Zn และสีฟ้าของสารละลายจางลง','Mg-zn':'มีของแข็งสีเทาเกาะบนแผ่น Mg สารละลายยังไม่มีสี','Cu-zn':'ไม่เห็นการเปลี่ยนแปลง','Zn-mg':'ไม่เห็นการเปลี่ยนแปลง','Cu-mg':'ไม่เห็นการเปลี่ยนแปลง'};
+  const EQ={'Mg-cu':'Mg(s) + Cu²⁺(aq) → Mg²⁺(aq) + Cu(s)','Zn-cu':'Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)','Mg-zn':'Mg(s) + Zn²⁺(aq) → Mg²⁺(aq) + Zn(s)'};
+  const ION={cu:'Cu',zn:'Zn',mg:'Mg'};
+  const done=new Set();
+  function run(m,s){const key=m+'-'+s,ok=reacts(m,ION[s]);done.add(key);
+    $('[data-k="'+key+'"]').innerHTML=(ok?'<b style="color:#157a55">เกิดปฏิกิริยา</b> · ':'<b style="color:#b63f43">ไม่เกิดปฏิกิริยา</b> · ')+OBS[key]+(ok?'<br><span class="eq">'+EQ[key]+'</span>':'');}
+  $$('#t112 button[data-m]').forEach(b=>b.onclick=()=>run(b.dataset.m,b.dataset.s));
+  $('#all112').onclick=()=>$$('#t112 button[data-m]').forEach(b=>run(b.dataset.m,b.dataset.s));
+  $('#chk112').onclick=()=>{const m=$('#res112'),r=$('#ordR').value,o=$('#ordO').value;
+    if(done.size<6){m.className='res bad';m.textContent='ทดลองให้ครบทั้ง 6 คู่ก่อน ('+done.size+'/6)';return;}
+    if(!r||!o){m.className='res bad';m.textContent='เลือกลำดับให้ครบทั้งสองช่อง';return;}
+    const ok=r==='Mg>Zn>Cu'&&o==='Cu2>Zn2>Mg2';
+    m.className='res '+(ok?'ok':'bad');m.textContent=ok?'ถูกต้อง ตัวรีดิวซ์ Mg > Zn > Cu ส่วนตัวออกซิไดส์ Cu²⁺ > Zn²⁺ > Mg²⁺ สอดคล้องกับตาราง 11.2':'ยังไม่ถูก ดูว่าโลหะใดทำปฏิกิริยากับไอออนของโลหะอื่นได้มากที่สุด โลหะนั้นเป็นตัวรีดิวซ์ที่ดีที่สุด และไอออนของตัวที่แย่ที่สุดเป็นตัวออกซิไดส์ที่ดีที่สุด';};
+  const pred=()=>{const a=$('#pm').value,b=$('#pi').value;let t;
+    if(a===b&&b!=='H2')t='โลหะกับไอออนของตัวเองไม่ใช่คู่ที่ใช้เปรียบเทียบ';
+    else{const ok=reacts(a,b);const ion=b==='H2'?'H⁺':HALF[b].ion;
+      t=ok?`${NAME[a]} อยู่สูงกว่า ${b==='H2'?'H₂':NAME[b]} ในตาราง 11.2 (E° ${HALF[a].E.toFixed(2)} < ${HALF[b].E.toFixed(2)} V) จึง<b>เกิดปฏิกิริยา</b>: ${NAME[a]} เป็นตัวรีดิวซ์ ${ion} เป็นตัวออกซิไดส์`:`${NAME[a]} อยู่ต่ำกว่า ${b==='H2'?'H₂':NAME[b]} (E° ${HALF[a].E.toFixed(2)} > ${HALF[b].E.toFixed(2)} V) จึง<b>ไม่เกิดปฏิกิริยา</b>${a==='Au'&&b==='H2'?' (ทองคำไม่ทำปฏิกิริยากับ HCl)':''}`;}
+    $('#pred112').innerHTML=t;};
+  $('#pm').onchange=pred;$('#pi').onchange=pred;pred();
+  wireQuiz('11.2');
+}
+
+/* ======================= 11.3 ======================= */
+function act113(){
+  const opts=['Zn','Cu','Fe','Ni','Ag','Mg','Al','Pb','H2'].map(k=>`<option value="${k}">${NAME[k]}</option>`).join('');
+  return`<h2>กิจกรรม 11.3 การวัดค่าศักย์ไฟฟ้าของเซลล์เคมีไฟฟ้า</h2><p class="sub">หนังสือหน้า 116–120</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองวัดค่าศักย์ไฟฟ้าของเซลล์กัลวานิก</li><li>ระบุครึ่งเซลล์ที่เกิดปฏิกิริยาออกซิเดชันและปฏิกิริยารีดักชันจากทิศทางการถ่ายโอนอิเล็กตรอน</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>CuSO₄ 1.0 mol/L · ZnSO₄ 1.0 mol/L · สารละลายอิ่มตัวของ KNO₃ · แผ่น Zn และ Cu ขนาด 1.5 cm × 5 cm · มิเตอร์วัดความต่างศักย์ · บีกเกอร์ 50 mL · กระดาษกรองสำหรับทำสะพานเกลือ</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ขัดแผ่น Cu และ Zn ด้วยกระดาษทราย</li><li>จุ่ม Cu ในบีกเกอร์ CuSO₄ 20 mL และ Zn ในบีกเกอร์ ZnSO₄ 20 mL</li><li>วางบีกเกอร์ชิดกัน ใช้กระดาษกรองชุบ KNO₃ เป็นสะพานเกลือ</li><li>ต่อแผ่น Cu และ Zn เข้ากับมิเตอร์ สังเกตทิศทางเข็มและอ่านค่า</li><li>สลับขั้วของมิเตอร์ สังเกตทิศทางเข็มและอ่านค่าอีกครั้ง</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: เซลล์ Zn | Zn²⁺ (1.0 M) || Cu²⁺ (1.0 M) | Cu</h3>
+   <div class="rowflex"><label>สายสีแดง (ขั้ว +) ต่อกับแผ่น<select id="red113"><option value="Cu">Cu (ต่อสายดำกับ Zn)</option><option value="Zn">Zn (ต่อสายดำกับ Cu)</option></select></label>
+   <label style="flex:0 0 auto;display:flex;gap:8px;align-items:center"><input type="checkbox" id="sb113" checked> ใส่สะพานเกลือ KNO₃</label></div>
+   <div class="fig" style="margin-top:8px"><svg viewBox="0 0 520 260" id="g113" role="img" aria-label="เซลล์กัลวานิก Zn–Cu ต่อกับโวลต์มิเตอร์"></svg></div>
+   <p>ค่าที่อ่านได้: <span class="read" id="rd113">0.00 V</span> <span class="small" id="dir113"></span></p>
+   <div class="tip" id="note113"></div></div>
+  <div class="lab"><h3>สำรวจเซลล์อื่น ๆ (ตาราง 11.3)</h3><p class="small">เลือกครึ่งเซลล์สองอัน คำนวณ E°cell = E°cathode − E°anode และเขียนแผนภาพเซลล์ตามตัวอย่าง 11 (หน้า 115)</p>
+   <div class="rowflex"><label>ครึ่งเซลล์ที่ 1<select id="h1">${opts}</select></label><label>ครึ่งเซลล์ที่ 2<select id="h2" >${opts.replace('value="Zn"','value="Zn" ').replace(/<option value="Cu">/,'<option value="Cu" selected>')}</select></label></div><div id="out113" class="tip" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w113_1','1. เขียนแผนภาพครึ่งเซลล์ที่เกิดปฏิกิริยาออกซิเดชันและครึ่งเซลล์ที่เกิดปฏิกิริยารีดักชัน และแผนภาพเซลล์')}${written('w113_2','2. ระบุทิศทางการเคลื่อนที่ของอิเล็กตรอนและกระแสไฟฟ้า')}${written('w113_3','3. ทิศทางการเบนของเข็มมิเตอร์สอดคล้องกับทิศทางการเคลื่อนที่ของอิเล็กตรอนหรือกระแสไฟฟ้า')}${written('w113_4','4. ศักย์ไฟฟ้าของเซลล์มีค่าเท่าใด พร้อมทั้งระบุว่าขั้วใดมีศักย์ไฟฟ้าสูงกว่า และสูงกว่าอยู่เท่าใด')}</div>
+  ${quizHTML('11.3')}`;
+}
+function wire113(){
+  function draw(){
+    const red=$('#red113').value,bridge=$('#sb113').checked;
+    const E=bridge?eCell(HALF.Cu.E,HALF.Zn.E):0;
+    const reading=bridge?(red==='Cu'?E:-E):0;
+    // อิเล็กตรอนเคลื่อนที่ Zn → Cu ในลวดเสมอ (เมื่อวงจรครบ) ; ทิศของลูกศรคงที่ ไม่ขึ้นกับการสลับสายมิเตอร์
+    let s='';
+    s+='<rect x="40" y="130" width="160" height="110" rx="6" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect x="42" y="160" width="156" height="78" fill="#e6eef5"/>';
+    s+='<rect x="320" y="130" width="160" height="110" rx="6" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect x="322" y="160" width="156" height="78" fill="#4d8fdc" opacity=".8"/>';
+    s+='<rect x="110" y="70" width="24" height="150" fill="#9aa0ab" stroke="#6d7482"/><text x="122" y="64" text-anchor="middle" font-size="13" font-weight="700">Zn</text>';
+    s+='<rect x="390" y="70" width="24" height="150" fill="#c2763d" stroke="#8a4f23"/><text x="402" y="64" text-anchor="middle" font-size="13" font-weight="700">Cu</text>';
+    s+='<text x="120" y="256" text-anchor="middle" font-size="12" fill="#33415c">ZnSO₄ 1.0 M</text><text x="400" y="256" text-anchor="middle" font-size="12" fill="#33415c">CuSO₄ 1.0 M</text>';
+    if(bridge)s+='<path d="M170 150 V118 H350 V150" fill="none" stroke="#e5d9a8" stroke-width="12" stroke-linejoin="round"/><text x="260" y="112" text-anchor="middle" font-size="11" fill="#6b5619">สะพานเกลือ KNO₃</text>';
+    // โวลต์มิเตอร์
+    s+='<rect x="215" y="20" width="90" height="46" rx="8" fill="#243a44"/><text x="260" y="50" text-anchor="middle" font-size="18" font-weight="700" fill="#9ff0c0" font-family="monospace">'+(reading>=0?'':'-')+Math.abs(reading).toFixed(2)+'</text>';
+    const zx=122,cx=402,ztop=70;
+    const toZ=red==='Zn',redX=toZ?zx:cx,blkX=toZ?cx:zx;
+    s+=`<path d="M${redX} ${ztop} V30 H270 V43" fill="none" stroke="#d63b3b" stroke-width="3"/><path d="M${blkX} ${ztop} V10 H250 V43" fill="none" stroke="#222" stroke-width="3"/>`;
+    s+='<text x="285" y="38" font-size="10" fill="#d63b3b">+</text><text x="238" y="38" font-size="10" fill="#222">−</text>';
+    if(bridge){
+      s+=`<path d="M${zx} 68 V24 H${cx} V68" fill="none" stroke="#2e9c5b" stroke-width="2" class="flow" opacity="0" />`;
+    }
+    // ลูกศรทิศทางอิเล็กตรอน
+    if(bridge)s+='<text x="260" y="96" text-anchor="middle" font-size="12" fill="#157a55">e⁻ ไหลจาก Zn ไป Cu (ผ่านมิเตอร์)</text><path d="M200 84 H320" stroke="#157a55" stroke-width="3" class="flow" fill="none"/><path d="M320 84 l-8 -5 v10z" fill="#157a55"/>';
+    $('#g113').innerHTML=s;
+    $('#rd113').textContent=(reading>=0?'':'−')+Math.abs(reading).toFixed(2)+' V';
+    $('#dir113').textContent=bridge?(red==='Cu'?'(ต่อ Cu กับขั้วบวก: ค่าเป็นบวก)':'(ต่อ Zn กับขั้วบวก: ค่าเป็นลบ เพราะสลับขั้ว)'):'(วงจรไม่ครบ ไม่มีกระแสไหล)';
+    $('#note113').innerHTML=bridge?'Zn (แอโนด): Zn → Zn²⁺ + 2e⁻ · Cu (แคโทด): Cu²⁺ + 2e⁻ → Cu · E°cell = 0.34 − (−0.76) = <b>+1.10 V</b> ศักย์ไฟฟ้าขั้ว Cu สูงกว่า Zn อยู่ 1.10 V<br><span class="small">รูป 11.3 ในหนังสืออ่านได้ 1.04 V (ภาวะจริงต่างจากมาตรฐานเล็กน้อย) แบบจำลองนี้แสดงค่ามาตรฐาน 1.10 V</span>':'ไม่มีสะพานเกลือ ประจุสะสมที่ครึ่งเซลล์ทั้งสอง ปฏิกิริยาดำเนินต่อไม่ได้ โวลต์มิเตอร์จึงไม่แสดงค่าที่คงที่ (แบบจำลองแสดง 0.00 V)';
+  }
+  $('#red113').onchange=draw;$('#sb113').onchange=draw;
+  const explore=()=>{const a=$('#h1').value,b=$('#h2').value,o=$('#out113');
+    if(a===b){o.textContent='เลือกครึ่งเซลล์ต่างกัน';return;}
+    const c=cellOf(a,b),A=c.anode,C=c.cathode;
+    const side=k=>k==='H2'?'Pt(s)|H₂(g, 1 atm)':null;
+    const left=A==='H2'?'Pt(s)|H₂(g)|H⁺(aq)':`${A}(s)|${HALF[A].ion}(aq)`,right=C==='H2'?'H⁺(aq)|H₂(g)|Pt(s)':`${HALF[C].ion}(aq)|${C}(s)`;
+    const half=(k,ox)=>k==='H2'?(ox?'H₂ → 2H⁺ + 2e⁻':'2H⁺ + 2e⁻ → H₂'):(ox?`${k} → ${HALF[k].ion} + ${HALF[k].n}e⁻`:`${HALF[k].ion} + ${HALF[k].n}e⁻ → ${k}`);
+    o.innerHTML=`แอโนด (ออกซิเดชัน): <span class="eq">${half(A,true)}</span> (E° = ${sgn(HALF[A].E)} V)<br>แคโทด (รีดักชัน): <span class="eq">${half(C,false)}</span> (E° = ${sgn(HALF[C].E)} V)<br>E°cell = ${HALF[C].E.toFixed(2)} − (${HALF[A].E.toFixed(2)}) = <b>${sgn(c.E)} V</b><br>แผนภาพเซลล์: <span class="eq">${left} || ${right}</span><br><span class="small">E° เป็นบวก แสดงว่าเป็นเซลล์กัลวานิกที่ให้ไฟฟ้า อิเล็กตรอนเคลื่อนที่จาก ${NAME[A]} ไป ${NAME[C]}</span>`;};
+  $('#h1').onchange=explore;$('#h2').onchange=explore;explore();
+  draw();wireQuiz('11.3');
+}
+
+/* ======================= 11.4 ======================= */
+function act114(){
+  return`<h2>กิจกรรม 11.4 การทดลองชุบเหล็กด้วยสังกะสี</h2><p class="sub">หนังสือหน้า 139–140</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองชุบเหล็กด้วยสังกะสีโดยใช้หลักการของเซลล์อิเล็กโทรลิติก</li><li>อธิบายหลักการชุบโลหะด้วยไฟฟ้า</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>ZnSO₄ 0.1 mol/L · ตะปูเหล็กยาว 2.5 cm · แผ่นสังกะสี 1 cm × 2.5 cm · กระดาษทราย · บีกเกอร์ 50 mL · แบตเตอรี่ 1.5 V · สายไฟต่อคลิปปากจระเข้ (สีดำและสีแดง) · กระจกนาฬิกา</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ขัดตะปูเหล็กและแผ่นสังกะสีด้วยกระดาษทราย</li><li>เติม ZnSO₄ 20 mL ลงในบีกเกอร์</li><li>ต่อแผ่นสังกะสีเข้ากับขั้วบวกและตะปูเหล็กเข้ากับขั้วลบของแบตเตอรี่ แล้วจุ่มโลหะทั้งสองลงในสารละลาย สังเกตเป็นเวลา 5 นาที</li><li>นำตะปูและแผ่นสังกะสีออกจากสายไฟวางบนกระจกนาฬิกา ตั้งไว้ให้แห้งประมาณ 10 นาที สังเกตการเปลี่ยนแปลง</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน</h3>
+   <div class="rowflex"><label>แผ่นสังกะสีต่อกับขั้วของแบตเตอรี่ 1.5 V<select id="zn114"><option value="+">ขั้วบวก (ตามหนังสือ) · ตะปูเหล็กต่อขั้วลบ</option><option value="-">ขั้วลบ · ตะปูเหล็กต่อขั้วบวก</option></select></label>
+   <label style="flex:0 0 auto;display:flex;gap:8px;align-items:center"><input type="checkbox" id="on114"> ต่อวงจร (เปิดไฟ)</label></div>
+   <div class="rowflex"><label>เวลา: <b id="tm114">0</b> นาที<input type="range" id="tr114" min="0" max="5" step="1" value="0" aria-label="เวลาที่ผ่านไป นาที"></label></div>
+   <div class="cols"><div class="fig"><svg viewBox="0 0 300 240" id="g114" role="img" aria-label="ชุดชุบโลหะ ตะปูเหล็กและแผ่นสังกะสีในสารละลาย ZnSO₄"></svg></div>
+   <div><div class="tip" id="obs114" aria-live="polite"></div><div class="box" style="margin-top:8px"><h3>ปฏิกิริยา</h3><div id="eq114" class="eq"></div></div></div></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w114_1','1. ขั้วไฟฟ้าใดเป็นแอโนดและขั้วไฟฟ้าใดเป็นแคโทด')}${written('w114_2','2. เขียนสมการเคมีแสดงปฏิกิริยาที่เกิดขึ้นที่ขั้วไฟฟ้าทั้งสอง')}${written('w114_3','3. โลหะที่ต้องการชุบและที่ใช้ชุบควรต่อกับขั้วไฟฟ้าใดตามลำดับ')}${written('w114_4','4. ความเข้มข้นของสารละลายอิเล็กโทรไลต์เปลี่ยนแปลงหรือไม่ เพราะเหตุใด')}</div>
+  <div class="box"><h3>สรุปหลักการ (หน้า 140)</h3><ol><li>ต่อวัตถุที่ต้องการชุบกับขั้วลบของแบตเตอรี่ และให้โลหะที่ใช้ชุบต่อกับขั้วบวก ทำให้วัตถุเป็นแคโทด โลหะที่ใช้ชุบเป็นแอโนด</li><li>สารละลายอิเล็กโทรไลต์ต้องมีไอออนของโลหะที่ใช้ชุบ</li><li>ใช้ไฟฟ้ากระแสตรง เพื่อให้ปฏิกิริยาดำเนินไปในทิศทางเดียว</li></ol></div>
+  ${quizHTML('11.4')}`;
+}
+function wire114(){
+  function draw(){
+    const znPos=$('#zn114').value==='+',on=$('#on114').checked,t=+$('#tr114').value;
+    $('#tm114').textContent=t;
+    const nailCath=on&&znPos,reversed=on&&!znPos;
+    const coat=nailCath?t/5:0;
+    let s='<rect x="40" y="90" width="220" height="140" rx="8" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect x="42" y="120" width="216" height="108" fill="#e9f1f7"/>';
+    // แผ่น Zn (ซ้าย) และตะปู (ขวา)
+    const znW=nailCath?24-t*0.8:(reversed?24+t*2:24);
+    s+=`<rect x="${90-(znW-24)/2}" y="50" width="${Math.max(10,znW)}" height="150" fill="#aeb4bf" stroke="#6d7482"/><text x="102" y="44" text-anchor="middle" font-size="12">Zn</text>`;
+    const nailW=reversed?8-t*1.0:8;
+    s+=`<rect x="196" y="50" width="${Math.max(2,nailW)}" height="150" fill="#6e7480" stroke="#444"/><rect x="${196-coat*4}" y="120" width="${Math.max(2,nailW)+coat*8}" height="80" fill="#cfd5df" opacity="${.15+coat*.85}"/><text x="202" y="44" text-anchor="middle" font-size="12">Fe (ตะปู)</text>`;
+    if(on){
+      s+=`<path d="M102 50 V15 H${znPos?'275':'25'} V150" fill="none" stroke="${znPos?'#d63b3b':'#222'}" stroke-width="3"/><path d="M200 50 V28 H${znPos?'25':'275'} V150" fill="none" stroke="${znPos?'#222':'#d63b3b'}" stroke-width="3"/>`;
+      s+='<rect x="262" y="140" width="24" height="40" fill="#3b6ea8" rx="4"/><text x="274" y="165" text-anchor="middle" font-size="10" fill="#fff">1.5V</text>';
+    }
+    $('#g114').innerHTML=s;
+    let o,eq;
+    if(!on){o='ยังไม่ต่อวงจร ไม่มีกระแสไฟฟ้า ไม่เกิดการเปลี่ยนแปลง';eq='—';}
+    else if(nailCath){
+      o=t===0?'เริ่มต่อวงจร: ตะปูเหล็กเป็นแคโทด (ขั้วลบ) แผ่น Zn เป็นแอโนด (ขั้วบวก)':`หลัง ${t} นาที: มีสังกะสีสีเทาเงินเกาะบนตะปูเหล็กหนาขึ้นตามเวลา แผ่น Zn บางลงเล็กน้อย สีและความเข้มข้นของสารละลายแทบไม่เปลี่ยน`+(t===5?' · เมื่อทำให้แห้งตะปูเหล็กมีผิวสีเทาเคลือบสังกะสี':'');
+      eq='แคโทด (Fe): <b>Zn²⁺(aq) + 2e⁻ → Zn(s)</b> (E° −0.76 V ซึ่งสูงกว่า H₂O −0.83 V)<br>แอโนด (Zn): <b>Zn(s) → Zn²⁺(aq) + 2e⁻</b>';}
+    else{
+      o=t===0?'ต่อสลับขั้ว: ตะปูเหล็กเป็นแอโนด (ขั้วบวก) ซึ่งไม่ตรงตามหนังสือ':`หลัง ${t} นาที: ตะปูเหล็กถูกออกซิไดส์ละลายเป็น Fe²⁺ ตะปูบางลง ส่วนสังกะสีไปเกาะที่แผ่น Zn (แคโทด) ไม่ได้ชุบตะปู`;
+      eq='แอโนด (ตะปู Fe): Fe(s) → Fe²⁺(aq) + 2e⁻ (E° −0.44 V)<br>แคโทด (แผ่น Zn): Zn²⁺(aq) + 2e⁻ → Zn(s)<br><b>ผิด:</b> ต้องต่อตะปูเข้ากับขั้วลบ';}
+    $('#obs114').textContent=o;$('#eq114').innerHTML=eq;
+  }
+  $('#zn114').onchange=draw;$('#on114').onchange=draw;$('#tr114').oninput=draw;
+  draw();wireQuiz('11.4');
+}
+
+/* ======================= 11.5 ======================= */
+function act115(){
+  return`<h2>กิจกรรม 11.5 การแยกสลายสารละลายโพแทสเซียมไอโอไดด์ด้วยไฟฟ้า</h2><p class="sub">หนังสือหน้า 142–145</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองแยกสลายสารละลายโพแทสเซียมไอโอไดด์ด้วยไฟฟ้าโดยใช้หลักการของเซลล์อิเล็กโทรลิติก</li><li>ระบุแอโนดและแคโทด</li><li>เขียนสมการรีดอกซ์แสดงปฏิกิริยาเคมีที่เกิดขึ้นและคำนวณศักย์ไฟฟ้าของเซลล์</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>KI 1.0 mol/L · สารละลายฟีนอล์ฟทาลีน · แบตเตอรี่ 9 V · เข็มหมุด · กระจกนาฬิกาหรือจานเพาะเชื้อ · หลอดหยดพร้อมจุกยาง · สายไฟคลิปปากจระเข้ (สีแดงและสีดำ) · กระดาษสีขาว 10 cm × 10 cm</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>หยด KI 20 หยดลงในกระจกนาฬิกาที่วางบนกระดาษสีขาว</li><li>หยดฟีนอล์ฟทาลีน 3 หยด ปล่อยให้สารผสมกันโดยไม่ต้องคน</li><li>ต่อสายไฟกับเข็มหมุดและต่อเข้ากับแบตเตอรี่ แล้วจุ่มเข็มหมุดทั้งสองลงในสารละลายพร้อมกัน สังเกตการเปลี่ยนแปลง</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: KI + ฟีนอล์ฟทาลีน บนกระดาษขาว</h3>
+   <div class="rowflex"><label>เข็มหมุดซ้ายต่อกับ<select id="pin115"><option value="+">ขั้วบวก (สายสีแดง) · เข็มขวาต่อขั้วลบ</option><option value="-">ขั้วลบ · เข็มขวาต่อขั้วบวก</option></select></label>
+   <label style="flex:0 0 auto;display:flex;gap:8px;align-items:center"><input type="checkbox" id="on115"> ต่อแบตเตอรี่ 9 V</label></div>
+   <div class="rowflex"><label>เวลา: <b id="tm115">0</b> วินาที<input type="range" id="tr115" min="0" max="60" step="10" value="0" aria-label="เวลาที่ผ่านไป วินาที"></label></div>
+   <div class="cols"><div class="fig"><svg viewBox="0 0 320 220" id="g115" role="img" aria-label="กระจกนาฬิกาใส่ KI กับฟีนอล์ฟทาลีน เข็มหมุดสองอัน"></svg></div><div><div class="tip" id="obs115" aria-live="polite"></div></div></div></div>
+  <div class="lab"><h3>ทำนายผลการแยกสลายด้วยไฟฟ้า (หน้า 141–145)</h3><p class="small">เลือกสารละลาย ดูตัวเลือกที่แคโทด/แอโนด เทียบ E° แล้วหาแรงเคลื่อนไฟฟ้าขั้นต่ำ</p>
+   <label class="lbl" for="sol115">สารละลาย / สารหลอมเหลว</label><select id="sol115"><option value="ki">KI(aq)</option><option value="cuso4">CuSO₄(aq)</option><option value="na2so4">Na₂SO₄(aq)</option><option value="nacl">NaCl(l) หลอมเหลว</option></select><div id="out115" class="box" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w115_1','1. KI มีสารใดที่สามารถเกิดปฏิกิริยาออกซิเดชันและรีดักชันได้บ้าง')}${written('w115_2','2. เมื่อผ่านกระแสไฟฟ้าเข้าไปใน KI ที่ขั้วบวกและขั้วลบมีสารใดเกิดขึ้น ทราบได้อย่างไร')}${written('w115_3','3. สมการเคมีของปฏิกิริยาที่แคโทดและแอโนดเป็นอย่างไร สอดคล้องกับค่าศักย์ไฟฟ้ามาตรฐานรีดักชันในตาราง 11.3 หรือไม่ อย่างไร')}${written('w115_4','4. เขียนสมการเคมีของปฏิกิริยารีดอกซ์ที่เกิดขึ้นและต้องใช้แหล่งกำเนิดไฟฟ้าที่มีอีเอ็มเอฟมากกว่าเท่าใดเพื่อทำให้เกิดปฏิกิริยา')}</div>
+  ${quizHTML('11.5')}`;
+}
+function wire115(){
+  function draw(){
+    const leftPos=$('#pin115').value==='+',on=$('#on115').checked,t=+$('#tr115').value;
+    $('#tm115').textContent=t;
+    const k=t/60;
+    // ซ้าย x=110, ขวา x=210 ; แคโทด = เข็มที่ต่อขั้วลบ
+    const cX=leftPos?210:110,aX=leftPos?110:210;
+    let s='<rect x="0" y="0" width="320" height="220" fill="#fafafa"/><ellipse cx="160" cy="125" rx="130" ry="70" fill="#f4f7fa" stroke="#9aa6b8" stroke-width="2"/>';
+    s+='<ellipse cx="160" cy="125" rx="118" ry="60" fill="#f1f4f8" opacity=".9"/>';
+    if(on&&t>0){
+      s+=`<ellipse cx="${cX}" cy="130" rx="${12+k*34}" ry="${8+k*22}" fill="#e0529c" opacity="${.2+k*.55}"/>`;
+      s+=`<ellipse cx="${aX}" cy="130" rx="${10+k*26}" ry="${7+k*18}" fill="#b5762a" opacity="${.2+k*.6}"/>`;
+      for(let i=0;i<4;i++)s+=`<circle class="bub" cx="${cX-6+i*4}" cy="${128-(i%2)*6}" r="2.5" fill="#fff" stroke="#9aa6b8" style="animation-delay:${i*.25}s"/>`;
+    }
+    for(const [x,col,lab] of [[110,leftPos?'#d63b3b':'#222',leftPos?'+':'−'],[210,leftPos?'#222':'#d63b3b',leftPos?'−':'+']]){
+      s+=`<line x1="${x}" y1="${on?20:10}" x2="${x}" y2="135" stroke="#6f7787" stroke-width="3"/><circle cx="${x}" cy="135" r="3" fill="#6f7787"/><text x="${x}" y="14" text-anchor="middle" font-size="14" font-weight="700" fill="${on?col:'#8a93a8'}">${on?lab:''}</text>`;
+    }
+    if(on)s+='<text x="160" y="205" text-anchor="middle" font-size="11" fill="#33415c">แบตเตอรี่ 9 V</text>';
+    $('#g115').innerHTML=s;
+    let o;
+    if(!on)o='ยังไม่ต่อวงจร KI + ฟีนอล์ฟทาลีน ไม่มีสี';
+    else if(t===0)o='เริ่มต่อวงจร จุ่มเข็มหมุดทั้งสองพร้อมกัน';
+    else o=`หลัง ${t} วินาที: ที่เข็มต่อขั้วลบ (แคโทด) มีฟองแก๊สและสารละลายเปลี่ยนเป็นสีชมพู (เกิด OH⁻ ทำให้ฟีนอล์ฟทาลีนเปลี่ยนสี) · ที่เข็มต่อขั้วบวก (แอโนด) สารละลายเป็นสีน้ำตาลเหลือง (เกิด I₂)`;
+    $('#obs115').textContent=o;
+  }
+  $('#pin115').onchange=draw;$('#on115').onchange=draw;$('#tr115').oninput=draw;
+  const pred=()=>{const id=$('#sol115').value,r=electrolysis(id),s=SOL[id];
+    const list=(arr,kind)=>arr.map(x=>`<li>${x.sp}: <span class="eq">${x.eq}</span> (E° ${sgn(x.E)} V)</li>`).join('');
+    const why=s.molten?'ไม่มีน้ำ จึงมีเพียงไอออนของเกลือเท่านั้นที่เกิดปฏิกิริยา':'ที่แคโทด ตัวที่รับอิเล็กตรอนง่ายที่สุด (E° สูงสุด) ถูกรีดิวซ์ · ที่แอโนด ตัวที่ให้อิเล็กตรอนง่ายที่สุด (E° ต่ำสุด) ถูกออกซิไดส์';
+    $('#out115').innerHTML=`<p class="small">${why}</p><div class="cols"><div><b>ตัวเลือกที่แคโทด</b><ul>${list(r.candC)}</ul><p>→ เกิด: <b class="eq">${r.cathode.eq}</b></p></div><div><b>ตัวเลือกที่แอโนด (E° ของครึ่งเซลล์รีดักชัน)</b><ul>${list(r.candA)}</ul><p>→ เกิด: <b class="eq">${r.anode.eq}</b></p></div></div><p>E°cell = E°cathode − E°anode = ${r.cathode.E.toFixed(2)} − (${r.anode.E.toFixed(2)}) = <b>${sgn(r.E)} V</b> · ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีอีเอ็มเอฟมากกว่า <b>${r.min.toFixed(2)} V</b>${id==='ki'?' (แบตเตอรี่ 9 V ในกิจกรรมจึงเพียงพอ)':''}</p>`;};
+  $('#sol115').onchange=pred;pred();
+  draw();wireQuiz('11.5');
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'11.1':[act111,wire111],'11.2':[act112,wire112],'11.3':[act113,wire113],'11.4':[act114,wire114],'11.5':[act115,wire115]};
+function paintTabs(){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" role="tab" aria-selected="${i===cur}" data-i="${i}">${a} ${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>b.onclick=()=>select(+b.dataset.i));
+}
+function paintProgress(){const n=ACTS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';}
+function select(i){
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 11','เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel">'+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs();
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(11\.\d)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>

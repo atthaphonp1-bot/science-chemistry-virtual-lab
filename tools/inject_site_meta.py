@@ -45,6 +45,11 @@ def submit_block(f, title):
     if base == "chemistry-m4.html":      # หลายบทในไฟล์เดียว: หน้าเรียก LabScore.use(id, title) เองเมื่อเปลี่ยนบท
         cfg = json.dumps({"id": "", "title": "", "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+    if base in ("chemistry-m5-ch10.html", "chemistry-m5-ch11.html"):    # หน้าเดียวรวมกิจกรรมของบท ส่งคะแนนรวมภายใต้รหัสเดียว (หน้าเรียก LabScore.use ซ้ำเอง)
+        ch = "10" if base.endswith("ch10.html") else "11"
+        ttl = {"10": "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)", "11": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)"}[ch]
+        cfg = json.dumps({"id": "เคมี ม.5 บทที่ " + ch, "title": ttl, "url": CFG.get("url", "")}, ensure_ascii=False)
+        return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     if base == "chemistry-m4-lab.html":
         cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
@@ -90,7 +95,7 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
     print(f)
 
 # หน้าเคมี: ลายน้ำ + เครดิตอย่างเดียว (ไม่แตะ meta เดิมของหน้า)
-for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")):
+for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")) + sorted(glob.glob("chemistry-m5*.html")):
     s = strip(open(f, encoding="utf8").read())
     title = re.search(r"<title>(.*?)</title>", s).group(1)
     s = s.replace("</title>", "</title>\n" + WM_CSS + submit_block(f, title), 1)

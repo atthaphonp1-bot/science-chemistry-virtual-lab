@@ -53,6 +53,8 @@ chem = open("chemistry-m4.html", encoding="utf8").read()
 for i, t in enumerate(re.findall(r"^\{title:'([^']+)'", chem, flags=re.M), 1):
     acts["เคมี ม.4 บทที่ %d" % i] = t
 acts["เคมี ม.4 ปฏิบัติการเบื้องต้น"] = "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4"
+acts["เคมี ม.5 บทที่ 10"] = "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)"
+acts["เคมี ม.5 บทที่ 11"] = "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)"
 gs = open("tools/apps_script/Code.gs", encoding="utf8").read()
 region = "// ids:start (สร้างอัตโนมัติโดย tools/build_curriculum.py ห้ามแก้ด้วยมือ)\nvar ACTIVITIES = " + json.dumps(acts, ensure_ascii=False, indent=2) + ";\n// ids:end"
 gs = re.sub(r"// ids:start.*?// ids:end", lambda m: region, gs, flags=re.S)
