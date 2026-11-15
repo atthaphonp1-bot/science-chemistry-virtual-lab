@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.5 บทที่ 10", "title": "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+
+
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#e3e8f2;--soft:#f6f4fb;--acc:#7a4fb5;--acc2:#efe8f8;--blue:#1769e0;--ok:#157a55;--bad:#b63f43;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;height:68px;gap:12px;flex-wrap:wrap}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:18px 0 8px}.eyebrow{color:var(--acc);font-size:.8rem;font-weight:700;letter-spacing:.08em}
+h1{margin:.2rem 0 .5rem;font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.2}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;font-weight:600}
+.track{flex:1;min-width:140px;height:10px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:var(--acc);transition:width .4s}
+.notice{border:1px solid #ecdca8;background:#fffaf0;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#6b5619;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:#8fe0b8}
+.panel{border:1px solid var(--line);border-radius:26px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--soft);margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #dcd2ee;border-radius:22px;padding:16px;background:linear-gradient(160deg,#faf7ff,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 13px;min-height:38px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #cdbfe6;background:#fff;border-radius:999px;padding:7px 14px;min-height:40px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 10px;border-radius:99px;background:var(--acc2);font-weight:700;color:#4a2d80}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.stripcell{cursor:pointer}
+.bar{height:16px;border-radius:8px;background:var(--acc);min-width:3px;transition:width .5s}
+.barrow{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:6px 0;font-size:.92rem}
+@media(max-width:560px){.barrow{grid-template-columns:1fr}}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#4a2d80;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.tube{transition:fill .3s}
+.dropanim{animation:drop .5s ease-in}
+@keyframes drop{0%{transform:translateY(-8px);opacity:0}30%{opacity:1}100%{transform:translateY(26px);opacity:0}}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a href="index.html">← สารบัญหลักสูตร</a><span class="small">เคมี ม.5 เล่ม 4 · สสวท.</span></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 5 · BOOK 4 · CHAPTER 10</div>
+<h1>กรด–เบส: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 10.1–10.5 ตามหนังสือเรียนเคมี ม.5 เล่ม 4 ของ สสวท. ด้วยแบบจำลองที่คำนวณจากค่าคงที่ในหนังสือ แล้วตอบคำถามท้ายกิจกรรมและทำแบบทดสอบสั้น</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 5 กิจกรรม</span><span class="track"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ผลที่เห็นคำนวณจากสมการและค่าคงที่ในหนังสือ ไม่ใช่การวัดจริง และไม่ได้แทนการฝึกใช้อุปกรณ์จริงภายใต้การดูแลของครู<br>
+<b>ข้อควรระวังทั่วไปเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในหนังสือ): สวมแว่นตานิรภัย ถุงมือ และเสื้อกาวน์ ระวังกรดและเบสสัมผัสผิวหนังและตา และอ่านฉลากสารเคมีทุกครั้ง</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 10"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: หนังสือเรียนรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 5 เล่ม 4 บทที่ 10 กรด–เบส (สสวท., e-book พ.ศ. 2563) กิจกรรม 10.1 หน้า 26 · 10.2 หน้า 30–31 · 10.3 หน้า 57–58 · 10.4 หน้า 60–61 · 10.5 หน้า 64–65 · ค่า pH ช่วงเปลี่ยนสีของเมทิลออเรนจ์อ่านจากรูป 10.7 (หน้า 45) ส่วนกิจกรรม 10.6 (สืบค้นข้อมูล) ไม่ได้ทำเป็นแล็บเสมือน · <a href="https://www.scimath.org/ebook-chemistry/item/10299-4" target="_blank" rel="noopener">หน้าหนังสือที่ สสวท.</a></footer>
+</div>
+<script>
+'use strict';
+/* ======================= แบบจำลอง (ฟังก์ชันบริสุทธิ์) ======================= */
+const KW=1e-14;
+const KB={eth:4.47e-4,nh3:1.80e-5,phn:7.41e-10};   // ตาราง 10.3
+const KA_AC=1.80e-5, KB_AC=5.56e-10, KA_NH4=5.56e-10; // ตาราง 10.4
+const KA_HCO3=4.68e-11, KB_HCO3=2.24e-8;
+/* ตามหนังสือ (ตัวอย่าง 6): ถ้า C/K > 1000 ถือว่า C − x ≈ C จึง x = √(KC) ไม่เช่นนั้นแก้สมการกำลังสอง */
+function weakIon(K,C){const x=C/K>1000?Math.sqrt(K*C):(-K+Math.sqrt(K*K+4*K*C))/2;return{x:x,pct:x/C*100};}
+/* สมดุลประจุ: [H+]+Na = [OH-]+Cl+[A-]; mmol และ mL; Ka=null คือกรดแก่ */
+function phCB(Na,Cl,T,Vt,Ka){
+  const na=Na/Vt,cl=Cl/Vt,t=T/Vt;
+  const f=lg=>{const h=Math.pow(10,lg);const a=t>0?(Ka?t*Ka/(Ka+h):t):0;return h+na-KW/h-cl-a;};
+  let lo=-14,hi=1;
+  for(let i=0;i<200;i++){const m=(lo+hi)/2;if(f(m)>0)hi=m;else lo=m;}
+  return -(lo+hi)/2;
+}
+function titrationPH(Ca,Va,Cb,Vb,Ka){return phCB(Cb*Vb,0,Ca*Va,Va+Vb,Ka);}
+const IND={
+ mo:{name:'เมทิลออเรนจ์',lo:3.1,hi:4.4,a:'#e5392f',b:'#f4c430',desc:'แดง → เหลือง'},
+ mr:{name:'เมทิลเรด',lo:4.2,hi:6.3,a:'#e5392f',b:'#f5d33f',desc:'แดง → เหลือง'},
+ btb:{name:'โบรโมไทมอลบลู',lo:6.0,hi:7.6,a:'#f0d43a',b:'#2f6fd0',desc:'เหลือง → น้ำเงิน'},
+ pp:{name:'ฟีนอล์ฟทาลีน',lo:8.3,hi:10.0,a:'#eef3fa',b:'#e0529c',desc:'ไม่มีสี → ชมพู'}
+};
+const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16));
+function mix(c1,c2,t){const a=hex(c1),b=hex(c2);return'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+function indColor(id,pH){const d=IND[id];const t=Math.max(0,Math.min(1,(pH-d.lo)/(d.hi-d.lo)));return mix(d.a,d.b,t);}
+function indWord(id,pH){const d=IND[id];const t=(pH-d.lo)/(d.hi-d.lo);
+  const w={mo:['แดง','ส้ม','เหลือง'],mr:['แดง','ส้ม','เหลือง'],btb:['เหลือง','เขียว','น้ำเงิน'],pp:['ไม่มีสี','ชมพูอ่อน','ชมพู']}[id];
+  return t<=0.05?w[0]:t>=0.95?w[2]:w[1]+' (กำลังเปลี่ยนสี)';}
+const UI_COL=['#d93f45','#e4623f','#ea9559','#f2b45f','#f5cb4a','#c3cd69','#a2cd66','#78a057','#3f9a8d','#2a7a8a','#2f67ae','#3b4f95','#43376f','#3a2c63'];
+function uiColor(pH){const i=Math.max(1,Math.min(14,Math.round(pH)));return UI_COL[i-1];}
+function sup(n){return String(n).replace(/-/g,'⁻').replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]);}
+function sci(x,d){const e=Math.floor(Math.log10(Math.abs(x)));const m=x/Math.pow(10,e);return m.toFixed(d)+' × 10'+sup(e);}
+function pct(p){return p>=0.01?p.toPrecision(2):sci(p,1);}
+function f2(x){return x.toFixed(2);}
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m5-ch10-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['10.1','10.2','10.3','10.4','10.5'];
+const TITLES={'10.1':'ร้อยละการแตกตัวของกรดและเบส','10.2':'สมบัติกรด–เบสของสารละลายเกลือ','10.3':'ไทเทรตด้วยอินดิเคเตอร์','10.4':'หาความเข้มข้นของ HCl','10.5':'สารละลายบัฟเฟอร์'};
+let cur=0;
+
+/* ======================= แบบทดสอบ ======================= */
+const QUIZ={
+'10.1':[
+ {q:'สารละลายเบส 0.50 mol/L ของเอทิลเอมีน (Kᵇ 4.47×10⁻⁴) แอมโมเนีย (1.80×10⁻⁵) และฟีนิลเอมีน (7.41×10⁻¹⁰) เรียงร้อยละการแตกตัวจากมากไปน้อยได้อย่างไร',o:['เอทิลเอมีน > แอมโมเนีย > ฟีนิลเอมีน','ฟีนิลเอมีน > แอมโมเนีย > เอทิลเอมีน','แอมโมเนีย > เอทิลเอมีน > ฟีนิลเอมีน','ทั้งสามเท่ากันเพราะความเข้มข้นเท่ากัน'],a:0,w:'ที่ความเข้มข้นเท่ากัน เบสที่มี Kᵇ มากกว่าแตกตัวได้มากกว่า จึงเรียงตามค่า Kᵇ'},
+ {q:'เมื่อเจือจางสารละลาย CH₃COOH จาก 1.0 เป็น 0.050 mol/L ร้อยละการแตกตัวเปลี่ยนอย่างไร (Kₐ คงที่)',o:['เพิ่มขึ้น','ลดลง','ไม่เปลี่ยน','เพิ่มแล้วลดลง'],a:0,w:'หนังสือสรุปว่าเมื่อความเข้มข้นเพิ่ม ร้อยละการแตกตัวลดลง ดังนั้นเมื่อเจือจางจึงเพิ่มขึ้น (จากแล็บ 0.42% เป็น 1.9%)'},
+ {q:'กรด HA 0.20 mol/L แตกตัวได้ร้อยละ 10 ส่วนกรด HB 0.020 mol/L แตกตัวได้ร้อยละ 20 HB เป็นกรดที่แรงกว่า HA ใช่หรือไม่',o:['ไม่ใช่ เพราะต้องเทียบด้วย Kₐ (ค่าคงที่การแตกตัว) ไม่ใช่ร้อยละการแตกตัวที่ความเข้มข้นต่างกัน','ใช่ เพราะแตกตัวร้อยละมากกว่า','ใช่ เพราะความเข้มข้นต่ำกว่า','ตอบไม่ได้เลย'],a:0,w:'Kₐ ของ HA = 0.20×0.10²/0.90 ≈ 2.2×10⁻³ ส่วน HB = 0.020×0.20²/0.80 = 1.0×10⁻³ จึงพบว่า HA แรงกว่า'}],
+'10.2':[
+ {q:'สารละลาย NH₄Cl มีสมบัติเป็นอะไร และเพราะไอออนใด',o:['กรด เพราะ NH₄⁺ ให้โปรตอนแก่น้ำ','เบส เพราะ Cl⁻ รับโปรตอนจากน้ำ','กลาง เพราะเป็นเกลือ','เบส เพราะ NH₄⁺ รับโปรตอน'],a:0,w:'NH₄⁺ เป็นคู่กรดของเบสอ่อน NH₃ จึงให้โปรตอนกับน้ำได้ H₃O⁺ (Kₐ = 5.56×10⁻¹⁰) ส่วน Cl⁻ เป็นคู่เบสของกรดแก่ ไม่ทำปฏิกิริยากับน้ำ'},
+ {q:'ไอออนใดทำให้สารละลาย CH₃COONa เป็นเบส',o:['CH₃COO⁻','Na⁺','ทั้งสองไอออน','ไม่มีไอออนใด'],a:0,w:'CH₃COO⁻ เป็นคู่เบสของกรดอ่อน CH₃COOH จึงรับโปรตอนจากน้ำให้ OH⁻ (Kᵇ = 5.56×10⁻¹⁰) ส่วน Na⁺ ไม่ทำปฏิกิริยากับน้ำ'},
+ {q:'NaHCO₃: HCO₃⁻ มี Kₐ = 4.68×10⁻¹¹ และ Kᵇ = 2.24×10⁻⁸ สารละลายมีสมบัติอย่างไร',o:['เบส เพราะ Kᵇ มากกว่า Kₐ','กรด เพราะ Kₐ น้อยกว่า','กลาง เพราะให้และรับโปรตอนได้','กรด เพราะมีไฮโดรเจน'],a:0,w:'หนังสือสรุปว่า Kᵇ > Kₐ สารละลายเป็นเบส'}],
+'10.3':[
+ {q:'การไทเทรต CH₃COOH 0.10 mol/L ด้วย NaOH อินดิเคเตอร์ใดให้จุดยุติใกล้จุดสมมูลที่สุด',o:['ฟีนอล์ฟทาลีน (ช่วง pH 8.3–10.0)','เมทิลออเรนจ์ (ช่วง pH ประมาณ 3.1–4.4)','ใช้ได้เท่ากันทั้งสองชนิด','ไม่ต้องใช้อินดิเคเตอร์'],a:0,w:'จุดสมมูลเป็นสารละลายเกลือ CH₃COONa ซึ่งเป็นเบส (pH ≈ 8.7 ในแบบจำลองนี้) อยู่ในช่วงเปลี่ยนสีของฟีนอล์ฟทาลีน'},
+ {q:'ทำไมปริมาตร NaOH ที่ใช้จนเมทิลออเรนจ์เป็นสีเหลืองจึงน้อยกว่าที่จุดสมมูลมาก',o:['เมทิลออเรนจ์เปลี่ยนสีที่ pH ต่ำ (ประมาณ 3.1–4.4) ซึ่งถึงก่อนจุดสมมูลที่ pH สูงกว่า 7','NaOH ที่ใช้ไม่บริสุทธิ์','CH₃COOH ระเหย','อ่านบิวเรตต์ผิดเสมอ'],a:0,w:'ในการไทเทรตกรดอ่อนกับเบสแก่ pH ถึง 4.4 ตั้งแต่เติม NaOH เพียงประมาณ 3 mL จากที่ต้องใช้ 10 mL'},
+ {q:'จุดสมมูลของการไทเทรตกรดอ่อนกับเบสแก่มี pH อย่างไร',o:['มากกว่า 7','เท่ากับ 7','น้อยกว่า 7','ขึ้นกับอินดิเคเตอร์'],a:0,w:'หนังสือสรุปว่า กรดอ่อน–เบสแก่ จุดสมมูล pH > 7 (ผลิตภัณฑ์เป็นเกลือที่เป็นเบส)'}],
+'10.4':[
+ {q:'การไทเทรต HCl กับ NaOH ที่จุดสมมูลมี pH เท่าใด',o:['7','ต่ำกว่า 7','สูงกว่า 7','ขึ้นกับความเข้มข้น'],a:0,w:'กรดแก่–เบสแก่ ผลิตภัณฑ์คือ NaCl เป็นกลาง (รูป 10.11 หน้า 52)'},
+ {q:'ช่วง pH ที่เปลี่ยนอย่างรวดเร็วของกรดแก่–เบสแก่กว้าง (ประมาณ 3–11) อินดิเคเตอร์ในแล็บนี้ชนิดใดใช้ได้',o:['เมทิลเรด โบรโมไทมอลบลู และฟีนอล์ฟทาลีน ใช้ได้ทั้งสามชนิด','ใช้ได้เฉพาะโบรโมไทมอลบลู','ใช้ได้เฉพาะฟีนอล์ฟทาลีน','ใช้ไม่ได้เลย'],a:0,w:'ช่วงเปลี่ยนสีของทั้งสามชนิดอยู่ในช่วงที่ pH กระโดด จึงให้ปริมาตรที่จุดยุติใกล้เคียงกัน'},
+ {q:'ไทเทรต HCl 10.00 mL ด้วย NaOH 0.100 mol/L ใช้ NaOH เฉลี่ย 8.50 mL HCl เข้มข้นเท่าใด',o:['0.0850 mol/L','0.118 mol/L','0.850 mol/L','0.0085 mol/L'],a:0,w:'n(NaOH) = 0.100 × 8.50/1000 = 8.50×10⁻⁴ mol = n(HCl) ดังนั้น C = 8.50×10⁻⁴ / 0.01000 L = 0.0850 mol/L'}],
+'10.5':[
+ {q:'เมื่อหยดกรดหรือเบสเล็กน้อยลงในสารละลายผสม CH₃COOH กับ CH₃COONa pH เปลี่ยนอย่างไรเมื่อเทียบกับน้ำ',o:['เปลี่ยนน้อยมาก','เปลี่ยนมากกว่าน้ำ','เปลี่ยนเท่ากับน้ำ','ไม่เปลี่ยนเลยแม้เติมมากแค่ไหน'],a:0,w:'ทำหน้าที่เป็นบัฟเฟอร์ คู่กรด–เบสทำปฏิกิริยากับ H₃O⁺ หรือ OH⁻ ที่เติมเข้าไป'},
+ {q:'บัฟเฟอร์ CH₃COOH/CH₃COONa ที่มีความเข้มข้นกรดเท่ากับเกลือ มี pH เท่ากับอะไร',o:['pKₐ ของ CH₃COOH (≈ 4.74)','7.00','14 − pKₐ','pKᵇ ของ CH₃COO⁻'],a:0,w:'pH = pKₐ − log([HA]/[A⁻]) เมื่ออัตราส่วนเท่ากับ 1 ค่า log เป็นศูนย์ ดังนั้น pH = pKₐ'},
+ {q:'สารละลายคู่ใดเป็นบัฟเฟอร์',o:['NH₄Cl กับ NH₃','HCl กับ NaCl','NaOH กับ NaCl','HNO₃ กับ NaNO₃'],a:0,w:'บัฟเฟอร์ประกอบด้วยกรดอ่อนกับเกลือของกรดอ่อน หรือเบสอ่อนกับเกลือของเบสอ่อนที่เป็นคู่กรด–เบสกัน (ตาราง 10.5)'}]
+};
+function quizHTML(act){
+  return'<div class="box" id="quiz-'+act.replace('.','_')+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+act.replace('.','_')+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act,extra){
+  const root=$('#quiz-'+act.replace('.','_')),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked');const why=$('.why',el);
+      $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;sel.closest('.opt').classList.add(v===qs[i].a?'good':'wrong');}
+      $$('.opt',el)[qs[i].a].classList.add('good');
+      why.classList.remove('hide');why.textContent=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    const extraPts=extra?extra():{got:0,max:0};
+    ls(act+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.opt',root).forEach(o=>o.classList.remove('good','wrong'));$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label,ph){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="'+(ph||'พิมพ์คำตอบของคุณ')+'"></textarea></div>';}
+
+/* ======================= กิจกรรม 10.1 ======================= */
+function act101(){
+  return`<h2>กิจกรรม 10.1 ร้อยละการแตกตัวของกรดและเบส</h2><p class="sub">หนังสือหน้า 26 · คำนวณและเปรียบเทียบร้อยละการแตกตัว</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>คำนวณและเปรียบเทียบร้อยละการแตกตัวของกรดอ่อนหรือเบสอ่อนในสารละลายที่มีความเข้มข้นเท่ากัน</li><li>คำนวณและเปรียบเทียบร้อยละการแตกตัวของกรดอ่อนหรือเบสอ่อนในสารละลายที่มีความเข้มข้นแตกต่างกัน</li></ol></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (ตามหนังสือ)</h3><b>ตอนที่ 1</b> คำนวณและเปรียบเทียบร้อยละการแตกตัวของเอทิลเอมีน (C₂H₅NH₂) แอมโมเนีย (NH₃) และฟีนิลเอมีน (C₆H₅NH₂) ที่ความเข้มข้นชนิดละ 0.50 mol/L<br><b>ตอนที่ 2</b> คำนวณร้อยละการแตกตัวของ CH₃COOH ที่ 0.050 0.10 0.50 และ 1.0 mol/L แล้วเขียนกราฟร้อยละการแตกตัวกับความเข้มข้น</div></div>
+  <div class="box"><h3>สูตรที่ใช้</h3>Kᵇ = [BH⁺][OH⁻]/[B] · สมมติแตกตัว x mol/L: K = x² / (C − x) · ร้อยละการแตกตัว = (x / C) × 100<br><span class="small">แบบจำลองใช้วิธีเดียวกับตัวอย่าง 6 ในหนังสือ: เมื่อ C/K > 1000 ถือว่า C − x ≈ C จึงได้ x = √(K·C) (เช่น NH₃ 0.20 mol/L ได้ร้อยละการแตกตัว 0.95) ทุกค่าในกิจกรรมนี้เข้าเงื่อนไขนี้</span></div>
+  <div class="lab"><h3>ตอนที่ 1 · เบสอ่อน 0.50 mol/L</h3><p class="small">กดคำนวณแต่ละเบส ค่า Kᵇ ที่ 25 °C จากตาราง 10.3</p>
+   <div class="btns" id="b1btns">${[['eth','เอทิลเอมีน C₂H₅NH₂'],['nh3','แอมโมเนีย NH₃'],['phn','ฟีนิลเอมีน C₆H₅NH₂']].map(b=>`<button class="btn alt sm" type="button" data-b="${b[0]}">คำนวณ ${b[1]}</button>`).join('')}<button class="btn sm" type="button" id="b1all">คำนวณครบทั้งสาม</button></div>
+   <div class="tw"><table id="t1"><thead><tr><th class="l">เบส</th><th>Kᵇ</th><th>[OH⁻] (mol/L)</th><th>ร้อยละการแตกตัว</th></tr></thead><tbody></tbody></table></div>
+   <div id="bars1" class="fig" style="margin-top:10px;padding:10px"></div><p class="small">ความยาวแท่งใช้สเกลลอการิทึมเพราะค่าต่างกันหลายเท่า</p></div>
+  <div class="lab"><h3>ตอนที่ 2 · CH₃COOH หลายความเข้มข้น</h3><p class="small">Kₐ ของ CH₃COOH = 1.80 × 10⁻⁵ (ตาราง 10.4) เลือกความเข้มข้นแล้วบันทึกผล</p>
+   <div class="btns" id="cchips">${[0.050,0.10,0.50,1.0].map(c=>`<button class="chip" type="button" aria-pressed="false" data-c="${c}">${c} mol/L</button>`).join('')}</div>
+   <div class="cols"><div class="tw"><table id="t2"><thead><tr><th>C (mol/L)</th><th>[H₃O⁺] (mol/L)</th><th>ร้อยละการแตกตัว</th></tr></thead><tbody></tbody></table></div>
+   <div class="fig"><svg id="g2" viewBox="0 0 320 220" role="img" aria-label="กราฟร้อยละการแตกตัวกับความเข้มข้น"></svg></div></div></div>
+  <div class="box"><h3>คำถามท้ายกิจกรรม (ตามหนังสือ)</h3>${written('w101_1','1. ร้อยละการแตกตัวของเบสในสารละลายมีแนวโน้มเดียวกับค่า Kᵇ หรือไม่ อย่างไร')}${written('w101_2','2. ร้อยละการแตกตัวของกรดในสารละลายขึ้นกับความเข้มข้นของกรดหรือไม่ อย่างไร')}<div class="tip" id="tip101"></div></div>
+  ${quizHTML('10.1')}`;
+}
+function wire101(){
+  const rows={};
+  const draw1=()=>{
+    const names={eth:'เอทิลเอมีน (C₂H₅NH₂)',nh3:'แอมโมเนีย (NH₃)',phn:'ฟีนิลเอมีน (C₆H₅NH₂)'};
+    const keys=['eth','nh3','phn'].filter(k=>rows[k]);
+    $('#t1 tbody').innerHTML=keys.map(k=>`<tr><td class="l">${names[k]}</td><td>${sci(KB[k],2)}</td><td>${sci(rows[k].x,2)}</td><td><b>${pct(rows[k].pct)}</b></td></tr>`).join('');
+    $('#bars1').innerHTML=keys.map(k=>{const w=Math.max(2,Math.min(100,(Math.log10(rows[k].pct)+3)/(Math.log10(3.5)+3)*100));return`<div class="barrow"><span>${names[k]}</span><div><div class="bar" style="width:${w}%"></div></div><b>${pct(rows[k].pct)} %</b></div>`;}).join('')||'<span class="small">ยังไม่ได้คำนวณ</span>';
+    tip();
+  };
+  const calc1=k=>{rows[k]=weakIon(KB[k],0.50);draw1();};
+  $$('#b1btns [data-b]').forEach(b=>b.onclick=()=>calc1(b.dataset.b));
+  $('#b1all').onclick=()=>['eth','nh3','phn'].forEach(calc1);
+  const rec={};
+  const draw2=()=>{
+    const cs=[0.05,0.1,0.5,1.0].filter(c=>rec[c]);
+    $('#t2 tbody').innerHTML=cs.map(c=>`<tr><td>${c}</td><td>${sci(rec[c].x,2)}</td><td><b>${pct(rec[c].pct)}</b></td></tr>`).join('');
+    const X=c=>40+(c/1.0)*250,Y=p=>190-(p/2.2)*160;
+    let s='<line x1="40" y1="190" x2="300" y2="190" stroke="#8a93a8"/><line x1="40" y1="20" x2="40" y2="190" stroke="#8a93a8"/>';
+    [0,0.5,1.0].forEach(c=>s+=`<text x="${X(c)}" y="206" font-size="11" text-anchor="middle" fill="#5d6b82">${c}</text>`);
+    [0,1,2].forEach(p=>s+=`<text x="34" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="40" x2="300" y1="${Y(p)}" y2="${Y(p)}" stroke="#eef0f6"/>`);
+    s+='<text x="170" y="218" font-size="11" text-anchor="middle" fill="#5d6b82">ความเข้มข้น CH₃COOH (mol/L)</text><text x="10" y="105" font-size="11" fill="#5d6b82" transform="rotate(-90 10 105)" text-anchor="middle">ร้อยละการแตกตัว</text>';
+    if(cs.length>1)s+='<polyline fill="none" stroke="#7a4fb5" stroke-width="2" points="'+cs.map(c=>X(c)+','+Y(rec[c].pct)).join(' ')+'"/>';
+    cs.forEach(c=>s+=`<circle cx="${X(c)}" cy="${Y(rec[c].pct)}" r="5" fill="#7a4fb5"/><text x="${X(c)+7}" y="${Y(rec[c].pct)-7}" font-size="11" fill="#33415c">${pct(rec[c].pct)}</text>`);
+    $('#g2').innerHTML=s;tip();
+  };
+  $$('#cchips .chip').forEach(b=>b.onclick=()=>{const c=+b.dataset.c;rec[c]=weakIon(KA_AC,c);b.setAttribute('aria-pressed','true');draw2();});
+  const tip=()=>{const t=$('#tip101');const d1=Object.keys(rows).length===3,d2=Object.keys(rec).length===4;
+    t.textContent=d1&&d2?'สังเกต: ตอนที่ 1 เบสที่ Kᵇ มากแตกตัวได้มากกว่า ตอนที่ 2 ยิ่งเจือจางยิ่งแตกตัวมากขึ้น (ร้อยละการแตกตัวลดลงเมื่อความเข้มข้นเพิ่ม)':'ทำตอนที่ 1 ให้ครบสามเบสและตอนที่ 2 ให้ครบสี่ความเข้มข้น แล้วจะมีข้อสังเกตแสดงที่นี่';};
+  draw1();draw2();wireQuiz('10.1');
+}
+
+/* ======================= กิจกรรม 10.2 ======================= */
+const SALTS={nacl:{n:'NaCl',pH:7.0,ions:'Na⁺ และ Cl⁻',why:'ทั้ง Na⁺ และ Cl⁻ ไม่ทำปฏิกิริยากับน้ำ (Cl⁻ เป็นคู่เบสของกรดแก่ HCl) สารละลายจึงเป็นกลาง'},
+ nh4cl:{n:'NH₄Cl',pH:null,ions:'NH₄⁺ และ Cl⁻',why:'NH₄⁺ + H₂O ⇌ NH₃ + H₃O⁺ (Kₐ = 5.56×10⁻¹⁰) จึงให้ H₃O⁺ สารละลายเป็นกรด'},
+ ch3coona:{n:'CH₃COONa',pH:null,ions:'CH₃COO⁻ และ Na⁺',why:'CH₃COO⁻ + H₂O ⇌ CH₃COOH + OH⁻ (Kᵇ = 5.56×10⁻¹⁰) จึงให้ OH⁻ สารละลายเป็นเบส'}};
+const SALT_C=0.5; // สมมติของแบบจำลอง: 1 ช้อนเบอร์ 1 ละลายใน 5 mL ประมาณ 0.5 mol/L (หนังสือไม่ระบุมวล)
+SALTS.nh4cl.pH=-Math.log10(weakIon(KA_NH4,SALT_C).x);
+SALTS.ch3coona.pH=14+Math.log10(weakIon(KB_AC,SALT_C).x);
+function strip(clickable){return'<svg viewBox="0 0 420 70" class="fig" role="img" aria-label="แถบสีของยูนิเวอร์ซัลอินดิเคเตอร์ pH 1–14" style="border:0;padding:0">'+UI_COL.map((c,i)=>`<g class="${clickable?'stripcell':''}" data-ph="${i+1}"><rect x="${i*30}" y="6" width="30" height="46" fill="${c}"/><text x="${i*30+15}" y="35" text-anchor="middle" font-size="13" fill="#fff">${i+1}</text></g>`).join('')+'</svg>';}
+function act102(){
+  return`<h2>กิจกรรม 10.2 สมบัติกรด–เบสของสารละลายเกลือ</h2><p class="sub">หนังสือหน้า 30–31 · ทดลองสมบัติกรด–เบสของสารละลายเกลือ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองเพื่อศึกษาสมบัติกรด–เบสของสารละลายเกลือ</li><li>ระบุสมบัติกรด–เบสของสารละลายเกลือจากอินดิเคเตอร์</li><li>ระบุชนิดของไอออนที่ส่งผลต่อสมบัติกรด–เบสของสารละลายเกลือ</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>NaCl · NH₄Cl · CH₃COONa · ยูนิเวอร์ซัลอินดิเคเตอร์ · ช้อนตักสารเบอร์ 1 · หลอดทดลองขนาดกลาง · แท่งแก้วคน · กระบอกตวง 10 mL · หลอดหยด</div></div>
+  <div class="box"><h3>วิธีการทดลอง (ตามหนังสือ)</h3><ol><li>ใส่ NaCl, NH₄Cl และ CH₃COONa ลงในหลอดทดลอง หลอดละ 1 ชนิด ปริมาณ 1 ช้อนเบอร์ 1 เติมน้ำ 5 mL คนจนเป็นสารละลายเนื้อเดียว</li><li>หยดยูนิเวอร์ซัลอินดิเคเตอร์หลอดละ 1 หยด เขย่า สังเกตสี เทียบกับแถบสี แล้วบันทึก pH</li></ol></div>
+  <div class="lab"><h3>โต๊ะปฏิบัติการ</h3><p class="small">กดปุ่มใต้หลอดทีละขั้น เมื่อหยดอินดิเคเตอร์แล้ว ให้คลิกที่ช่องสีในแถบเพื่อบันทึก pH ที่คุณอ่านได้</p>
+   <div class="cols" style="grid-template-columns:repeat(3,1fr)" id="tubes2">${Object.keys(SALTS).map(k=>`<div class="fig" data-s="${k}" style="text-align:center"><b>${SALTS[k].n}</b>
+   <svg viewBox="0 0 100 130"><rect x="30" y="10" width="40" height="100" rx="18" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect class="tube liq" x="32" y="110" width="36" height="0" fill="#eef3fa"/><g class="dropg hide"><circle cx="50" cy="4" r="4" fill="#6b3fa0" class="dropanim"/></g></svg>
+   <div class="small stage">ยังไม่ได้ใส่เกลือ</div><button class="btn sm" type="button" data-step="0">ใส่เกลือ 1 ช้อนเบอร์ 1</button></div>`).join('')}</div>
+   <p class="lbl">แถบสีเทียบ (คลิกเลือก pH ที่ตรงกับสีของหลอดที่หยดอินดิเคเตอร์แล้ว)</p><div id="strip2">${strip(true)}</div>
+   <div class="btns"><label class="small">เลือกหลอดที่จะบันทึก <select id="pick2" aria-label="เลือกหลอด"><option value="nacl">NaCl</option><option value="nh4cl">NH₄Cl</option><option value="ch3coona">CH₃COONa</option></select></label></div>
+   <div class="tw"><table id="t2b"><thead><tr><th class="l">สารละลาย</th><th>pH ที่อ่านได้</th><th>สมบัติ</th><th>ไอออนที่ละลายได้</th></tr></thead><tbody></tbody></table></div>
+   <p class="small">ข้อสมมติของแบบจำลอง: หนังสือไม่ระบุมวลสาร จึงกำหนดให้สารละลายเกลือมีความเข้มข้นประมาณ ${SALT_C} mol/L ผล pH จึงเป็นค่าประมาณ (NH₄Cl ≈ ${SALTS.nh4cl.pH.toFixed(1)}, CH₃COONa ≈ ${SALTS.ch3coona.pH.toFixed(1)}) ในห้องปฏิบัติการจริงอาจต่างเล็กน้อย</p></div>
+  <div class="box"><h3>ลองเกลืออื่น (ตัวอย่างจากหน้า 31–32)</h3><select id="other2" aria-label="เลือกเกลือ"><option value="">เลือกเกลือ…</option><option value="nh4no3">NH₄NO₃</option><option value="nahco3">NaHCO₃</option><option value="ch3coonh4">CH₃COONH₄</option></select><div id="otherOut" class="tip" aria-live="polite">เลือกเกลือเพื่อดูการวิเคราะห์ด้วยค่า Kₐ และ Kᵇ</div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w102_1','1. สารละลายเกลือแต่ละชนิดมีสมบัติกรด–เบสเป็นอย่างไร')}${written('w102_2','2. เกลือทั้งสามชนิดเมื่อละลายน้ำให้ไอออนใดบ้าง')}${written('w102_3','3. ไอออนใดทำให้สมบัติกรด–เบสของสารละลายเกลือ NaCl กับ NH₄Cl แตกต่างกัน')}${written('w102_4','4. ไอออนใดทำให้สมบัติกรด–เบสของสารละลายเกลือ NaCl กับ CH₃COONa แตกต่างกัน')}</div>
+  ${quizHTML('10.2')}`;
+}
+function wire102(){
+  const stage={},got={};
+  const stTxt=['ยังไม่ได้ใส่เกลือ','ใส่เกลือแล้ว','ละลายแล้ว (ใส่น้ำ 5 mL คนแล้ว)','หยดอินดิเคเตอร์แล้ว'];
+  const btnTxt=['ใส่เกลือ 1 ช้อนเบอร์ 1','เติมน้ำ 5 mL แล้วคน','หยดยูนิเวอร์ซัลอินดิเคเตอร์ 1 หยด'];
+  $$('#tubes2 [data-s]').forEach(card=>{
+    const k=card.dataset.s;stage[k]=0;const liq=$('.liq',card),btn=$('button',card);
+    btn.onclick=()=>{
+      const s=stage[k];if(s>=3)return;stage[k]=s+1;
+      if(stage[k]===1){liq.setAttribute('y',100);liq.setAttribute('height',10);liq.setAttribute('fill','#f4f6fa');}
+      if(stage[k]===2){liq.setAttribute('y',55);liq.setAttribute('height',55);liq.setAttribute('fill','#eef3fa');}
+      if(stage[k]===3){liq.setAttribute('fill',uiColor(SALTS[k].pH));const g=$('.dropg',card);g.classList.remove('hide');setTimeout(()=>g.classList.add('hide'),600);}
+      $('.stage',card).textContent=stTxt[stage[k]];
+      if(stage[k]<3)btn.textContent=btnTxt[stage[k]];else{btn.textContent='เสร็จ · เลือกสีในแถบด้านล่าง';btn.disabled=true;$('#pick2').value=k;}
+    };
+  });
+  $$('#strip2 .stripcell').forEach(g=>g.onclick=()=>{
+    const k=$('#pick2').value;
+    if(stage[k]<3){alert('หลอด '+SALTS[k].n+' ยังไม่ได้หยดอินดิเคเตอร์ ทำตามขั้นตอนในหลอดนั้นให้ครบก่อน');return;}
+    got[k]=+g.dataset.ph;draw();
+  });
+  const draw=()=>{
+    $('#t2b tbody').innerHTML=Object.keys(SALTS).filter(k=>got[k]).map(k=>{
+      const t=SALTS[k].pH,prop=t<6.5?'กรด':t>7.5?'เบส':'กลาง';
+      const close=Math.abs(got[k]-t)<=1;
+      return`<tr><td class="l">${SALTS[k].n}</td><td>${got[k]}${close?'':' <span class="small">(สีไม่ตรง ลองเทียบใหม่)</span>'}</td><td><b>${prop}</b></td><td>${SALTS[k].ions}</td></tr>`;}).join('');
+  };
+  $('#other2').onchange=e=>{
+    const v=e.target.value,o=$('#otherOut');
+    const m={nh4no3:'NH₄NO₃ → NH₄⁺ + NO₃⁻ · NO₃⁻ เป็นคู่เบสของกรดแก่ HNO₃ จึงไม่รับโปรตอนจากน้ำ ส่วน NH₄⁺ ให้โปรตอนได้ (Kₐ = 5.56×10⁻¹⁰) → <b>สารละลายเป็นกรด</b>',
+      nahco3:'NaHCO₃ → Na⁺ + HCO₃⁻ · HCO₃⁻ ให้โปรตอนได้ (Kₐ = 4.68×10⁻¹¹) และรับโปรตอนได้ (Kᵇ = 2.24×10⁻⁸) เนื่องจาก Kᵇ > Kₐ → <b>สารละลายเป็นเบส</b>',
+      ch3coonh4:'CH₃COONH₄ → NH₄⁺ + CH₃COO⁻ · Kₐ ของ NH₄⁺ = 5.56×10⁻¹⁰ เท่ากับ Kᵇ ของ CH₃COO⁻ = 5.56×10⁻¹⁰ → <b>สารละลายเป็นกลาง</b>'};
+    o.innerHTML=v?m[v]:'เลือกเกลือเพื่อดูการวิเคราะห์ด้วยค่า Kₐ และ Kᵇ';
+  };
+  wireQuiz('10.2');
+}
+
+/* ======================= ชุดไทเทรต (ใช้ร่วม 10.3 และ 10.4) ======================= */
+function mountTitration(host,cfg){
+  const S={drops:0,ind:cfg.indicators[0],trials:{},showPH:false,Ca:cfg.Ca()};
+  cfg.indicators.forEach(k=>S.trials[k]=[]);
+  const DROP=0.05;
+  host.innerHTML=`<div class="cols"><div class="fig"><svg viewBox="0 0 260 390" id="${cfg.id}svg" role="img" aria-label="ชุดไทเทรต บิวเรตต์และขวดรูปกรวย">
+   <defs><clipPath id="${cfg.id}fl"><path d="M112 300 L112 324 L78 364 Q74 372 84 372 L176 372 Q186 372 182 364 L148 324 L148 300 Z"/></clipPath></defs>
+   <rect x="118" y="14" width="24" height="230" rx="3" fill="#fff" stroke="#8a93a8" stroke-width="2"/>
+   <rect id="${cfg.id}liq" class="tube" x="120" y="16" width="20" height="226" fill="#cfe3ff"/>
+   ${[0,10,20,30,40,50].map(v=>`<line x1="142" x2="150" y1="${16+v/50*226}" y2="${16+v/50*226}" stroke="#8a93a8"/><text x="153" y="${20+v/50*226}" font-size="10" fill="#5d6b82">${v}</text>`).join('')}
+   <rect x="110" y="244" width="40" height="8" fill="#a9b2c6"/><rect x="154" y="244" width="26" height="8" rx="2" fill="#7a4fb5"/><rect x="127" y="252" width="6" height="40" fill="#cfd6e4"/>
+   <g id="${cfg.id}drop" class="hide"><circle cx="130" cy="292" r="4" fill="#6aa0e8" class="dropanim"/></g>
+   <path d="M112 300 L112 324 L78 364 Q74 372 84 372 L176 372 Q186 372 182 364 L148 324 L148 300 Z" fill="#fff" fill-opacity=".4" stroke="#8a93a8" stroke-width="2"/>
+   <rect id="${cfg.id}fliq" class="tube" x="70" y="330" width="120" height="44" fill="#eef3fa" clip-path="url(#${cfg.id}fl)"/>
+   </svg><div style="text-align:center" class="small">บิวเรตต์บรรจุ NaOH ${cfg.Cb.toFixed(3)} mol/L · ขวดรูปกรวยมี ${cfg.acidLabel} ${cfg.Va.toFixed(2)} mL</div></div>
+  <div><div class="box" style="margin-top:0"><label class="lbl" for="${cfg.id}ind">อินดิเคเตอร์ที่ใช้ (หยด 2 หยด)</label><select id="${cfg.id}ind">${cfg.indicators.map(k=>`<option value="${k}">${IND[k].name} (${IND[k].desc})</option>`).join('')}</select>
+   <p style="margin:10px 0 4px">ค่าที่อ่านจากบิวเรตต์: <span class="read" id="${cfg.id}rd">0.00 mL</span></p>
+   <p style="margin:4px 0">สีของสารละลายในขวด: <b id="${cfg.id}cw"></b></p>
+   <div class="btns"><button class="btn sm" type="button" data-a="20">ไข +1.00 mL</button><button class="btn sm" type="button" data-a="4">+0.20 mL</button><button class="btn alt sm" type="button" data-a="1">+1 หยด (0.05 mL)</button></div>
+   <div class="btns"><button class="btn" type="button" id="${cfg.id}rec">บันทึกจุดยุติ</button><button class="btn alt" type="button" id="${cfg.id}new">เริ่มขวดใหม่ (ปรับระดับบิวเรตต์ 0.00)</button></div>
+   <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" id="${cfg.id}ph"> แสดง pH และกราฟการไทเทรต (โหมดอธิบายผล ไม่มีในการทดลองจริง)</label>
+   <p class="small">1 mL = 20 หยด · ไขช้า ๆ ใกล้จุดยุติทีละหยด หยุดเมื่อสีเปลี่ยน<b>อย่างถาวร</b> ตามหนังสือ</p></div></div></div>
+  <div class="tw"><table id="${cfg.id}tb"><thead><tr><th class="l">อินดิเคเตอร์</th><th>ครั้งที่ 1</th><th>ครั้งที่ 2</th><th>ครั้งที่ 3</th><th>ครั้งที่ 4–5 (ถ้าจำเป็น)</th><th>เฉลี่ย (mL)</th></tr></thead><tbody></tbody></table></div>
+  <div class="fig hide" id="${cfg.id}gw" style="margin-top:10px"><svg id="${cfg.id}g" viewBox="0 0 420 250" role="img" aria-label="กราฟการไทเทรต"></svg></div><p class="small hide" id="${cfg.id}gcap"></p>`;
+  const $$$=s=>$('#'+cfg.id+s,host);
+  const V=()=>S.drops*DROP;
+  const pHnow=()=>titrationPH(S.Ca,cfg.Va,cfg.Cb,V(),cfg.Ka);
+  function paint(){
+    const pH=pHnow();const col=indColor(S.ind,pH);
+    $$$('fliq').setAttribute('fill',col);
+    $$$('liq').setAttribute('y',16+V()/50*226);$$$('liq').setAttribute('height',Math.max(0,226-V()/50*226));
+    $$$('rd').textContent=f2(V())+' mL';
+    $$$('cw').textContent=indWord(S.ind,pH)+(S.showPH?' · pH '+pH.toFixed(2):'');
+    graph();
+  }
+  function stat(k){
+    const arr=S.trials[k];const valid=arr.map((v,i)=>{const others=arr.filter((_,j)=>j!==i);if(others.length<2)return true;const m=others.reduce((a,b)=>a+b,0)/others.length;return Math.abs(v-m)<=0.20;});
+    // ตามหนังสือ: ข้อมูลที่ต่างจากครั้งอื่นเกิน 0.20 mL ให้ตัดทิ้งแล้วทดลองเพิ่ม
+    const use=arr.filter((_,i)=>valid[i]);return{arr,valid,mean:use.length?use.reduce((a,b)=>a+b,0)/use.length:null,n:use.length};
+  }
+  function table(){
+    $$$('tb').querySelector('tbody').innerHTML=cfg.indicators.map(k=>{const s=stat(k);
+      const cell=i=>s.arr[i]===undefined?'–':(s.valid[i]?f2(s.arr[i]):'<s>'+f2(s.arr[i])+'</s> <span class="small">ตัดทิ้ง</span>');
+      const extra=s.arr.slice(3).map((v,j)=>cell(j+3)).join(', ')||'–';
+      return`<tr><td class="l">${IND[k].name}</td><td>${cell(0)}</td><td>${cell(1)}</td><td>${cell(2)}</td><td>${extra}</td><td><b>${s.mean===null?'–':f2(s.mean)}</b>${s.n&&s.n<3?' <span class="small">(ต้องการอย่างน้อย 3 ค่า)</span>':''}</td></tr>`;}).join('');
+    cfg.onUpdate&&cfg.onUpdate(S,stat);
+    graph();
+  }
+  function graph(){
+    const gw=$$$('gw'),cap=$$$('gcap');
+    gw.classList.toggle('hide',!S.showPH);cap.classList.toggle('hide',!S.showPH);if(!S.showPH)return;
+    const X=v=>46+v/20*350,Y=p=>210-p/14*190;
+    let s='<line x1="46" y1="210" x2="396" y2="210" stroke="#8a93a8"/><line x1="46" y1="20" x2="46" y2="210" stroke="#8a93a8"/>';
+    [0,5,10,15,20].forEach(v=>s+=`<text x="${X(v)}" y="226" font-size="11" text-anchor="middle" fill="#5d6b82">${v}</text>`);
+    [0,2,4,6,8,10,12,14].forEach(p=>s+=`<text x="40" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="46" x2="396" y1="${Y(p)}" y2="${Y(p)}" stroke="#f0f2f8"/>`);
+    cfg.indicators.forEach(k=>{const d=IND[k];s+=`<rect x="46" y="${Y(d.hi)}" width="350" height="${Y(d.lo)-Y(d.hi)}" fill="${mix(d.a==='#eef3fa'?'#f2a0cc':d.a,d.b,.5)}" opacity="${k===S.ind?.3:.1}"/>`;});
+    const pts=[];for(let v=0;v<=20.001;v+=0.05)pts.push(X(v)+','+Y(titrationPH(S.Ca,cfg.Va,cfg.Cb,v,cfg.Ka)));
+    s+='<polyline fill="none" stroke="#c0392b" stroke-width="2" points="'+pts.join(' ')+'"/>';
+    const ve=S.Ca*cfg.Va/cfg.Cb;s+=`<line x1="${X(ve)}" x2="${X(ve)}" y1="20" y2="210" stroke="#7a4fb5" stroke-dasharray="4 3"/><text x="${X(ve)+4}" y="34" font-size="11" fill="#7a4fb5">จุดสมมูล ${ve.toFixed(2)} mL (pH ${titrationPH(S.Ca,cfg.Va,cfg.Cb,ve,cfg.Ka).toFixed(2)})</text>`;
+    cfg.indicators.forEach(k=>stat(k).arr.forEach(v=>s+=`<circle cx="${X(v)}" cy="${Y(titrationPH(S.Ca,cfg.Va,cfg.Cb,v,cfg.Ka))}" r="4" fill="#1769e0"/>`));
+    s+=`<circle cx="${X(Math.min(20,V()))}" cy="${Y(pHnow())}" r="5" fill="#fff" stroke="#172033" stroke-width="2"/>`;
+    s+='<text x="221" y="244" font-size="11" text-anchor="middle" fill="#5d6b82">ปริมาตร NaOH (mL)</text>';
+    $$$('g').innerHTML=s;
+    cap.textContent='เส้นแดง: pH ที่คำนวณจากแบบจำลอง · แถบสีจาง: ช่วง pH เปลี่ยนสีของอินดิเคเตอร์ · จุดน้ำเงิน: จุดยุติที่คุณบันทึก · เส้นประ: จุดสมมูล';
+  }
+  $$('[data-a]',host).forEach(b=>b.onclick=()=>{
+    if(V()+ +b.dataset.a*DROP>49.99)return;
+    S.drops+= +b.dataset.a;const g=$$$('drop');g.classList.remove('hide');setTimeout(()=>g.classList.add('hide'),500);paint();
+  });
+  $$$('ind').onchange=e=>{S.ind=e.target.value;paint();};
+  $$$('ph').onchange=e=>{S.showPH=e.target.checked;paint();};
+  $$$('rec').onclick=()=>{
+    if(S.drops===0){alert('ยังไม่ได้ไทเทรต');return;}
+    if(S.trials[S.ind].length>=5){alert('บันทึกครบ 5 ครั้งสำหรับอินดิเคเตอร์นี้แล้ว');return;}
+    S.trials[S.ind].push(+V().toFixed(2));table();
+  };
+  $$$('new').onclick=()=>{S.drops=0;paint();};
+  S.reset=()=>{S.drops=0;cfg.indicators.forEach(k=>S.trials[k]=[]);S.Ca=cfg.Ca();paint();table();};
+  S.stat=stat;
+  paint();table();return S;
+}
+
+/* ======================= กิจกรรม 10.3 ======================= */
+function act103(){
+  return`<h2>กิจกรรม 10.3 การไทเทรตกรด–เบสโดยใช้อินดิเคเตอร์</h2><p class="sub">หนังสือหน้า 57–58 · เปรียบเทียบจุดยุติของอินดิเคเตอร์แต่ละชนิด</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองเพื่อศึกษาการไทเทรตกรด–เบสโดยใช้อินดิเคเตอร์</li><li>เปรียบเทียบจุดยุติของอินดิเคเตอร์แต่ละชนิด</li><li>อธิบายการเลือกอินดิเคเตอร์ให้ได้จุดยุติใกล้เคียงกับจุดสมมูล</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (ตามหนังสือ)</h3>CH₃COOH 0.10 mol/L · NaOH มาตรฐาน 0.100 mol/L · เมทิลออเรนจ์ · ฟีนอล์ฟทาลีน · ปิเปตต์ 10 mL · บิวเรตต์ 50 mL · ขวดรูปกรวย 125 mL · บีกเกอร์ 100 mL</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ปิเปตต์ CH₃COOH 0.10 mol/L ใส่ขวดรูปกรวย 3 ขวด ขวดละ 10.00 mL หยดเมทิลออเรนจ์ 2 หยด (สารละลายสีแดง)</li><li>บรรจุ NaOH 0.100 mol/L ในบิวเรตต์ ปรับระดับ แล้วบันทึกปริมาตร</li><li>ไขบิวเรตต์ให้ NaOH ไหลลงช้า ๆ พร้อมเขย่าขวด ใกล้จุดยุติให้หยดทีละหยด หยุดเมื่อเป็นสีเหลืองอย่างถาวร บันทึกปริมาตร</li><li>ทำซ้ำอีก 2 ครั้ง คำนวณค่าเฉลี่ย ถ้าค่าใดต่างจากครั้งอื่นเกิน 0.20 mL ให้ตัดทิ้งแล้วทำเพิ่มอีก 1 ครั้ง</li><li>ทำซ้ำทั้งหมดโดยเปลี่ยนเป็นฟีนอล์ฟทาลีน (ไม่มีสี → ชมพู)</li></ol><span class="small">ในแบบจำลองนี้ บิวเรตต์ปรับระดับที่ 0.00 mL ทุกครั้งที่เริ่มขวดใหม่ ใช้สลับอินดิเคเตอร์จากรายการด้านล่าง</span></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: CH₃COOH 0.10 mol/L 10.00 mL ไทเทรตด้วย NaOH 0.100 mol/L</h3><div id="ti103"></div>
+   <div class="box"><h3>สรุปผลที่ได้</h3><div id="sum103" class="small">บันทึกจุดยุติให้ครบอย่างน้อยอินดิเคเตอร์ละ 3 ครั้ง</div></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w103_1','1. ปริมาตรของ NaOH ที่ใช้ในการไทเทรตจนถึงจุดยุติของอินดิเคเตอร์แต่ละชนิดแตกต่างกันหรือไม่ อย่างไร')}${written('w103_2','2. ปริมาตรของ NaOH ที่ควรใช้ในการไทเทรตเพื่อให้ทำปฏิกิริยาพอดีกับ CH₃COOH เป็นเท่าใด')}${written('w103_3','3. อินดิเคเตอร์ใดให้ปริมาตรของ NaOH ที่จุดยุติใกล้เคียงกับปริมาตรของ NaOH ที่จุดสมมูล')}${written('w103_4','4. ช่วง pH การเปลี่ยนสีของเมทิลออเรนจ์และฟีนอล์ฟทาลีน (รูป 10.7) มีความสัมพันธ์กับการเลือกอินดิเคเตอร์ให้ได้จุดยุติใกล้เคียงกับจุดสมมูลอย่างไร')}</div>
+  ${quizHTML('10.3')}`;
+}
+function wire103(){
+  const S=mountTitration($('#ti103'),{id:'t3',indicators:['mo','pp'],Ca:()=>0.10,Va:10.00,Cb:0.100,Ka:KA_AC,acidLabel:'CH₃COOH 0.10 mol/L',
+    onUpdate:(S,stat)=>{
+      const out=['mo','pp'].map(k=>{const s=stat(k);return`<li>${IND[k].name}: ${s.mean===null?'ยังไม่มีข้อมูล':'ใช้ NaOH เฉลี่ย <b>'+f2(s.mean)+' mL</b> (ใช้ '+s.n+' ค่า) → คำนวณ C(CH₃COOH) = '+(0.100*s.mean/10).toFixed(4)+' mol/L'}</li>`;}).join('');
+      const ve=0.10*10/0.100;
+      $('#sum103').innerHTML='<ul>'+out+'</ul>ปริมาตรที่จุดสมมูลตามทฤษฎี = 0.10 × 10.00 / 0.100 = <b>'+f2(ve)+' mL</b>';
+      const pp=stat('pp');if(pp.n>=3&&Math.abs(pp.mean-ve)<=0.2){ls('10.3 ผลการไทเทรต',1,1);}else ls('10.3 ผลการไทเทรต',0,1);
+    }});
+  wireQuiz('10.3');
+}
+
+/* ======================= กิจกรรม 10.4 ======================= */
+const UNK=[0.0850,0.0920,0.1080,0.1150,0.1240];
+let unk=UNK[Math.floor(Math.random()*UNK.length)];
+function act104(){
+  return`<h2>กิจกรรม 10.4 หาความเข้มข้นของสารละลายจากการไทเทรต</h2><p class="sub">หนังสือหน้า 60–61 · ใช้อินดิเคเตอร์บอกจุดยุติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองเพื่อหาความเข้มข้นของสารละลายจากการไทเทรตกรด–เบส โดยใช้อินดิเคเตอร์บอกจุดยุติ</li><li>คำนวณความเข้มข้นของสารละลายตัวอย่าง</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (ตามหนังสือ)</h3>สารละลายตัวอย่าง HCl · NaOH มาตรฐาน · เมทิลเรด · โบรโมไทมอลบลู · ฟีนอล์ฟทาลีน · ปิเปตต์ 10 mL · บิวเรตต์ 50 mL · ขวดรูปกรวย 100 mL · บีกเกอร์ 100 mL</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>ปิเปตต์สารละลายตัวอย่าง HCl ใส่ขวดรูปกรวย 3 ขวด ขวดละ 10.00 mL หยดอินดิเคเตอร์ที่เลือก 1 ชนิด 2 หยด สังเกตสี</li><li>บรรจุ NaOH 0.100 mol/L ในบิวเรตต์ แล้วไทเทรตจนถึงจุดยุติ บันทึกปริมาตร NaOH ในแต่ละขวด</li><li>คำนวณปริมาตรเฉลี่ยของ NaOH และความเข้มข้นของ HCl</li></ol><span class="small">หนังสือไม่ได้ระบุความเข้มข้นของ HCl ตัวอย่าง แบบจำลองสุ่มค่าให้ใหม่ทุกครั้งที่เปิดหน้าหรือกด "สุ่มตัวอย่างใหม่"</span></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: HCl ตัวอย่าง 10.00 mL ไทเทรตด้วย NaOH 0.100 mol/L</h3><p class="small">เลือกอินดิเคเตอร์ได้ทั้ง 3 ชนิด แล้วเปรียบเทียบผล</p><div id="ti104"></div>
+   <div class="btns"><button class="btn alt sm" type="button" id="newUnk">สุ่มตัวอย่างใหม่</button></div>
+   <div class="box"><h3>คำนวณความเข้มข้นของ HCl</h3><div id="sum104" class="small">บันทึกจุดยุติอย่างน้อย 3 ครั้ง (ชนิดอินดิเคเตอร์เดียวกันหรือผสมกันก็ได้) แล้วใส่คำตอบ</div>
+   <label class="lbl" for="ans104">ความเข้มข้นของ HCl ที่คุณคำนวณได้ (mol/L)</label><input type="number" id="ans104" step="0.0001" min="0" inputmode="decimal" placeholder="เช่น 0.1000"><div class="btns"><button class="btn" type="button" id="chk104">ตรวจคำตอบ</button></div><div class="res" id="res104" aria-live="polite"></div></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w104_1','ความเข้มข้นของสารละลายตัวอย่าง HCl เป็นเท่าใด (แสดงวิธีคำนวณ)')}</div>
+  ${quizHTML('10.4')}`;
+}
+function wire104(){
+  let ans104ok=false;
+  const S=mountTitration($('#ti104'),{id:'t4',indicators:['mr','btb','pp'],Ca:()=>unk,Va:10.00,Cb:0.100,Ka:null,acidLabel:'HCl (ไม่ทราบความเข้มข้น)',
+    onUpdate:(S,stat)=>{
+      const all=['mr','btb','pp'].flatMap(k=>{const s=stat(k);return s.arr.filter((_,i)=>s.valid[i]);});
+      if(all.length){const m=all.reduce((a,b)=>a+b,0)/all.length;
+        $('#sum104').innerHTML='ปริมาตร NaOH ที่บันทึกไว้ (ไม่รวมค่าที่ตัดทิ้ง): '+all.map(f2).join(', ')+' mL · เฉลี่ย <b>'+f2(m)+' mL</b><br>จากสมการ HCl + NaOH → NaCl + H₂O (อัตราส่วน 1:1) : C(HCl) = C(NaOH) × V(NaOH) / V(HCl)';}
+      else $('#sum104').textContent='บันทึกจุดยุติอย่างน้อย 3 ครั้ง แล้วใส่คำตอบ';
+    }});
+  $('#newUnk').onclick=()=>{let u;do{u=UNK[Math.floor(Math.random()*UNK.length)];}while(u===unk);unk=u;S.reset();$('#res104').textContent='';$('#ans104').value='';ls('10.4 ความเข้มข้น HCl',0,1);};
+  $('#chk104').onclick=()=>{
+    const v=parseFloat($('#ans104').value),r=$('#res104');
+    if(!(v>0)){r.className='res bad';r.textContent='กรอกตัวเลขความเข้มข้นก่อน';return;}
+    const total=['mr','btb','pp'].reduce((n,k)=>n+S.stat(k).n,0);
+    if(total<3){r.className='res bad';r.textContent='ยังบันทึกจุดยุติไม่ถึง 3 ครั้ง';return;}
+    if(Math.abs(v-unk)<=0.004){r.className='res ok';r.textContent='ถูกต้อง ความเข้มข้นของ HCl ตัวอย่างคือ '+unk.toFixed(4)+' mol/L (คุณตอบ '+v.toFixed(4)+')';ls('10.4 ความเข้มข้น HCl',1,1);}
+    else{r.className='res bad';r.textContent='ยังไม่ตรง ตรวจสอบการอ่านบิวเรตต์ หยุดที่จุดยุติหรือยัง และสูตร C = 0.100 × V / 10.00 (ค่าที่ถูกคือ '+unk.toFixed(4)+' mol/L)';ls('10.4 ความเข้มข้น HCl',0,1);}
+  };
+  wireQuiz('10.4');
+}
+
+/* ======================= กิจกรรม 10.5 ======================= */
+const TUBE_V=2.0,DROPV=0.05;
+function bufPH(kind,hcl,naoh){ // kind: water | buf ; hcl/naoh เป็นจำนวนหยด ความเข้มข้น 0.10 mol/L
+  const nH=hcl*DROPV*0.10,nO=naoh*DROPV*0.10,Vt=TUBE_V+(hcl+naoh)*DROPV;
+  if(kind==='water')return phCB(nO,nH,0,Vt,null);
+  return phCB(0.10+nO,nH,0.20,Vt,KA_AC);
+}
+function act105(){
+  return`<h2>กิจกรรม 10.5 การเปลี่ยนแปลง pH ของน้ำและสารละลายผสม</h2><p class="sub">หนังสือหน้า 64–65 · น้ำเทียบกับสารละลายผสมระหว่างกรดแอซีติกและโซเดียมแอซีเตต</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองเพื่อศึกษาการเปลี่ยนแปลง pH ของน้ำและสารละลายผสมระหว่างกรดแอซีติกและโซเดียมแอซีเตต</li><li>เปรียบเทียบการเปลี่ยนแปลง pH ของน้ำและสารละลายผสมดังกล่าว</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (ตามหนังสือ)</h3>น้ำกลั่น · CH₃COOH 0.10 mol/L · CH₃COONa 0.10 mol/L · ยูนิเวอร์ซัลอินดิเคเตอร์ · HCl 0.10 mol/L · NaOH 0.10 mol/L · หลอดทดลองขนาดเล็ก · หลอดหยด · กระบอกตวง 10 mL</div></div>
+  <div class="box"><h3>วิธีทดลอง (ตามหนังสือ)</h3><ol><li>หลอดที่ 1 และ 2 ใส่น้ำกลั่นหลอดละ 2 mL · หลอดที่ 3 และ 4 ใส่สารละลายผสมของ CH₃COOH 0.10 mol/L 1 mL และ CH₃COONa 0.10 mol/L 1 mL</li><li>หยดยูนิเวอร์ซัลอินดิเคเตอร์ทุกหลอด หลอดละ 1 หยด เขย่า เทียบกับแถบสี บันทึก pH</li><li>หยด HCl 0.10 mol/L ลงในหลอดที่ 1 และ 3 หลอดละ 1 หยด บันทึกสีและ pH</li><li>หยด NaOH 0.10 mol/L ลงในหลอดที่ 2 และ 4 หลอดละ 1 หยด บันทึกสีและ pH</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน</h3>
+   <p class="small">แบบจำลองกำหนด 1 หยด = 0.05 mL (ตามหนังสือ 1 mL = 20 หยด ในแบบฝึกหัด 10.7) และไม่นับปริมาตรของอินดิเคเตอร์ ค่า pH คำนวณจากสมดุลประจุของ CH₃COOH/CH₃COO⁻ (Kₐ = 1.80×10⁻⁵) ส่วนสีที่เห็นคือสีของยูนิเวอร์ซัลอินดิเคเตอร์ที่ pH ปัดเป็นจำนวนเต็ม</p>
+   <div class="btns"><button class="btn" type="button" id="s1">ขั้น 2: หยดอินดิเคเตอร์ทุกหลอด</button><button class="btn alt" type="button" id="sH" disabled>ขั้น 3: หยด HCl 1 หยด (หลอด 1 และ 3)</button><button class="btn alt" type="button" id="sO" disabled>ขั้น 4: หยด NaOH 1 หยด (หลอด 2 และ 4)</button><button class="btn alt" type="button" id="sR">เริ่มใหม่</button></div>
+   <div class="fig"><svg viewBox="0 0 440 190" id="tubes5" role="img" aria-label="หลอดทดลอง 4 หลอด"></svg></div>
+   <div class="tw"><table id="t5"><thead><tr><th class="l">หลอด</th><th>สารในหลอด</th><th>pH เริ่มต้น</th><th>หยด HCl/NaOH</th><th>pH หลังเติม</th><th>pH เปลี่ยน</th></tr></thead><tbody></tbody></table></div>
+   <div class="fig" style="margin-top:10px"><svg id="g5" viewBox="0 0 420 250" role="img" aria-label="กราฟ pH เมื่อหยดกรดหรือเบสเพิ่ม"></svg></div><p class="small">กราฟเปรียบเทียบน้ำ (เส้นแดง) กับบัฟเฟอร์ (เส้นน้ำเงิน) เมื่อหยด HCl (ซ้าย) หรือ NaOH (ขวา) 0–10 หยด คำนวณจากแบบจำลอง จุดที่ระบายสีคือค่าที่คุณเติมจริงในหลอดบนหน้านี้</p></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w105_1','1. เมื่อเติม HCl ค่า pH ของสารละลายหลอดที่ 1 และ 3 เปลี่ยนแปลงเหมือนหรือต่างกันอย่างไร')}${written('w105_2','2. เมื่อเติม NaOH ค่า pH ของสารละลายหลอดที่ 2 และ 4 เปลี่ยนแปลงเหมือนหรือต่างกันอย่างไร')}</div>
+  <div class="box"><h3>ความรู้เสริมจากหนังสือ</h3>pH = pKₐ − log([กรด]/[เกลือ]) เมื่อความเข้มข้นกรดเท่ากับเกลือ pH = pKₐ · บัฟเฟอร์ที่ควบคุม pH ได้ดี อัตราส่วนความเข้มข้นของคู่กรด–เบสควรอยู่ระหว่าง 0.1–10 · บัฟเฟอร์ที่เข้มข้นสูงควบคุม pH ได้ดีกว่าที่เข้มข้นต่ำ (หน้า 67)</div>
+  ${quizHTML('10.5')}`;
+}
+function wire105(){
+  const S={step:0,hcl:[0,0,0,0],naoh:[0,0,0,0]};
+  const kinds=['water','water','buf','buf'];
+  const ph=i=>S.step===0?null:bufPH(kinds[i],S.hcl[i],S.naoh[i]);
+  const initPH=i=>bufPH(kinds[i],0,0);
+  function draw(){
+    let s='';
+    for(let i=0;i<4;i++){
+      const x=30+i*105,p=ph(i);const fill=S.step===0?'#eef3fa':uiColor(p);
+      s+=`<rect x="${x}" y="30" width="46" height="110" rx="20" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect class="tube" x="${x+2}" y="82" width="42" height="56" rx="18" fill="${fill}"/>`;
+      s+=`<text x="${x+23}" y="20" text-anchor="middle" font-size="12" fill="#33415c">หลอด ${i+1}</text><text x="${x+23}" y="158" text-anchor="middle" font-size="11" fill="#5d6b82">${i<2?'น้ำ 2 mL':'CH₃COOH+CH₃COONa'}</text>`;
+      s+=`<text x="${x+23}" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#33415c">${p===null?'':'pH ≈ '+Math.max(1,Math.min(14,Math.round(p)))}</text>`;
+    }
+    $('#tubes5').innerHTML=s;
+    $('#t5 tbody').innerHTML=[0,1,2,3].map(i=>{const p=ph(i);if(p===null)return`<tr><td class="l">${i+1}</td><td>${i<2?'น้ำ':'CH₃COOH + CH₃COONa'}</td><td colspan="4" class="small">ยังไม่ได้หยดอินดิเคเตอร์</td></tr>`;
+      const i0=initPH(i),added=S.hcl[i]?S.hcl[i]+' หยด HCl':S.naoh[i]?S.naoh[i]+' หยด NaOH':'–';
+      const rd=x=>Math.max(1,Math.min(14,Math.round(x)));
+      return`<tr><td class="l">${i+1}</td><td>${i<2?'น้ำ':'CH₃COOH + CH₃COONa'}</td><td>${rd(i0)} <span class="small">(${i0.toFixed(2)})</span></td><td>${added}</td><td>${rd(p)} <span class="small">(${p.toFixed(2)})</span></td><td><b>${Math.abs(p-i0).toFixed(2)}</b></td></tr>`;}).join('');
+    $('#sH').disabled=S.step===0;$('#sO').disabled=S.step===0;
+    graph();
+  }
+  function graph(){
+    const X=d=>210+d*19,Y=p=>215-p/14*195;
+    let s='<line x1="20" y1="215" x2="400" y2="215" stroke="#8a93a8"/><line x1="210" y1="20" x2="210" y2="215" stroke="#d3d8e6"/>';
+    [-10,-5,0,5,10].forEach(d=>s+=`<text x="${X(d)}" y="231" font-size="11" text-anchor="middle" fill="#5d6b82">${d<0?'HCl '+(-d):d>0?'NaOH '+d:'0'}</text>`);
+    [0,2,4,6,8,10,12,14].forEach(p=>s+=`<text x="14" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="20" x2="400" y1="${Y(p)}" y2="${Y(p)}" stroke="#f0f2f8"/>`);
+    [['water','#c0392b'],['buf','#1769e0']].forEach(([k,c])=>{const pts=[];for(let d=-10;d<=10;d+=.5)pts.push(X(d)+','+Y(d<0?bufPH(k,-d,0):bufPH(k,0,d)));s+=`<polyline fill="none" stroke="${c}" stroke-width="2" points="${pts.join(' ')}"/>`;});
+    if(S.step){[0,1,2,3].forEach(i=>{const d=S.hcl[i]?-S.hcl[i]:S.naoh[i];s+=`<circle cx="${X(d)}" cy="${Y(ph(i))}" r="5" fill="${kinds[i]==='water'?'#c0392b':'#1769e0'}" stroke="#fff" stroke-width="2"/>`;});}
+    s+='<text x="60" y="34" font-size="11" fill="#c0392b">— น้ำ</text><text x="110" y="34" font-size="11" fill="#1769e0">— บัฟเฟอร์ CH₃COOH/CH₃COONa</text><text x="210" y="246" font-size="11" text-anchor="middle" fill="#5d6b82">จำนวนหยด (0.05 mL ต่อหยด)</text>';
+    $('#g5').innerHTML=s;
+  }
+  $('#s1').onclick=()=>{S.step=1;$('#s1').disabled=true;draw();};
+  $('#sH').onclick=()=>{if(S.hcl[0]>=10)return;S.hcl[0]++;S.hcl[2]++;draw();};
+  $('#sO').onclick=()=>{if(S.naoh[1]>=10)return;S.naoh[1]++;S.naoh[3]++;draw();};
+  $('#sR').onclick=()=>{S.step=0;S.hcl=[0,0,0,0];S.naoh=[0,0,0,0];$('#s1').disabled=false;draw();};
+  draw();wireQuiz('10.5');
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'10.1':[act101,wire101],'10.2':[act102,wire102],'10.3':[act103,wire103],'10.4':[act104,wire104],'10.5':[act105,wire105]};
+function paintTabs(){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" role="tab" aria-selected="${i===cur}" data-i="${i}">${a} ${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>b.onclick=()=>select(+b.dataset.i));
+}
+function paintProgress(){const n=ACTS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';}
+function select(i){
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 10','เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel">'+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs();
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(10\.\d)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
