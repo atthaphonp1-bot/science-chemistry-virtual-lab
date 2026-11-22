@@ -266,6 +266,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -279,6 +292,26 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 3 ความกดอากาศและลม (ตอน: ลม)</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 124–129 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>ลมคืออะไร พัดไปทางไหน</h3>
+<p>ลมคืออากาศที่เคลื่อนที่ เพราะความกดอากาศสองบริเวณไม่เท่ากัน ลมเคลื่อนจากบริเวณที่ความกดอากาศ<b>สูงกว่า</b>ไปยังบริเวณที่ความกดอากาศ<b>ต่ำกว่า</b></p>
+<h3>อัตราเร็วลมขึ้นกับอะไร</h3>
+<ul><li><b>ผลต่างความกดอากาศ</b> ของสองบริเวณ: ต่างกันมาก ลมเร็ว</li><li><b>ระยะห่าง</b> ระหว่างสองบริเวณ: ไกลมาก ลมช้า</li><li><b>ลักษณะพื้นที่</b> ที่ลมผ่าน: ถ้ามีสิ่งกีดขวาง ลมจะช้าลงและเปลี่ยนทิศ บางพื้นที่จึงปลูกต้นไม้กันลมแรง</li></ul>
+<h3>วัดและบอกลม</h3>
+<ul><li>อัตราเร็วลม = ระยะทางที่ลมเคลื่อนที่ในเวลาหนึ่ง หน่วยเช่น m/s, km/hr, นอต (knot)</li><li><b>ศรลม</b> วัดทิศทาง ปลายลูกศรชี้ไปยังทิศที่ลมพัดมา</li><li><b>มาตรวัดลม</b> วัดอัตราเร็ว ถ้วยครึ่งทรงกลมหมุนตามลม จำนวนรอบเป็นสัดส่วนโดยตรงกับอัตราเร็วลม</li></ul>
+<h3>ลมกับลมฟ้าอากาศ</h3>
+<p>ลมทำให้พื้นที่ที่ผ่านมีอุณหภูมิ ความชื้น หรือปริมาณเมฆเปลี่ยนไป ลมฟ้าอากาศจึงเปลี่ยนตามความกดอากาศ อัตราเร็วลมและทิศทางลมด้วย</p>
+<h3>ข้อสังเกตจากชุดทดลอง</h3>
+<p>ชุดทดลอง 2 กับ 3 ต่างกันที่ความยาวท่อ (จำนวนแผ่นใส) ส่วนอย่างอื่นเหมือนกัน ผลจึงบอกได้ว่าระยะห่างมีผลต่ออัตราเร็วลมอย่างไร</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>อัตราเร็วลม</li><li>ทิศทางลม</li></ul>
+<details><summary>ลองคิด: ศรลมชี้ไปทางทิศตะวันออกเฉียงเหนือ ลมพัดมาจากทิศใด</summary><p>ลมพัดมาจากทิศตะวันออกเฉียงเหนือ เพราะปลายลูกศรชี้ไปยังทิศที่ลมพัดมา</p></details>
+<details><summary>ลองคิด: ถ้าความกดอากาศสองบริเวณต่างกันเท่าเดิม แต่ย้ายให้ไกลกันขึ้น อัตราเร็วลมจะเป็นอย่างไร</summary><p>ลมจะเร็วน้อยลง เพราะระยะห่างมากทำให้อัตราเร็วลมต่ำ</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>สังเกต ทดลอง วิเคราะห์ และอธิบายปัจจัยที่มีผลต่ออัตราเร็วลม</p>

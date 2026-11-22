@@ -204,6 +204,20 @@ pre.out{background:#f7f8fb;border-radius:14px;padding:14px;white-space:pre-wrap;
 .sw{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle}
 @media(max-width:820px){.lab,.two{grid-template-columns:1fr}.calc{grid-template-columns:1fr 1fr}ul.mat{columns:1}.wrap{padding:0 16px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -278,6 +292,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>เรื่องที่ 2 สมดุลความร้อน</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 78–86 (PDF หน้า 89–97) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>เมื่อสสารสองอย่างที่อุณหภูมิต่างกันสัมผัสกัน</h3><p>ความร้อนถ่ายโอนจากสสารที่อุณหภูมิสูงกว่าไปยังสสารที่อุณหภูมิต่ำกว่า ฝ่ายร้อนสูญเสียความร้อนจึงอุณหภูมิลดลง ฝ่ายเย็นได้รับความร้อนจึงอุณหภูมิสูงขึ้น เวลาผ่านไป อุณหภูมิของทั้งสองจะเท่ากันและคงที่ สภาวะนี้เรียกว่า <b>สมดุลความร้อน</b> อุณหภูมิที่ได้เรียกว่าอุณหภูมิผสมสุดท้าย</p><p>ตัวอย่างที่คุ้นเคยคือการวัดไข้ เมื่อเทอร์มอมิเตอร์สัมผัสร่างกายที่ร้อนกว่า ของเหลวในเทอร์มอมิเตอร์จะรับความร้อนและขยายตัว จนอุณหภูมิเท่ากับร่างกาย ระดับของเหลวจึงหยุดนิ่ง ตอนนั้นจึงอ่านค่าได้ นั่นคือสมดุลความร้อนระหว่างเทอร์มอมิเตอร์กับร่างกาย</p><h3>ความร้อนที่เสียเท่ากับความร้อนที่ได้รับ</h3><div class="rd-f"><b>Q<sub>สูญเสีย</sub> = Q<sub>ได้รับ</sub></b><br>ใช้ Q = mcΔt คำนวณของแต่ละฝ่าย โดยหา Δt จากอุณหภูมิเริ่มต้นไปจนถึงอุณหภูมิสมดุล</div><p>ตัวอย่างในหนังสือ: น้ำ 300 g ที่ 70 °C ผสมน้ำ 300 g ที่ 50 °C จนสมดุลที่ 60 °C น้ำร้อนเสีย 300 × 1 × (70 − 60) = 3,000 cal น้ำเย็นได้รับ 300 × 1 × (60 − 50) = 3,000 cal เท่ากันพอดี</p><h3>ถ้าไม่ทราบอุณหภูมิสมดุล</h3><ul><li>ให้อุณหภูมิสมดุลเป็น X แล้ววิเคราะห์ว่าฝ่ายใดร้อนกว่าและเย็นกว่า</li><li>ฝ่ายที่ร้อนกว่ามี Δt = (อุณหภูมิเดิม − X) ส่วนฝ่ายที่เย็นกว่ามี Δt = (X − อุณหภูมิเดิม)</li><li>เขียน Q<sub>สูญเสีย</sub> = Q<sub>ได้รับ</sub> แล้วแก้สมการหา X เช่น น้ำ 3,500 g ที่ 30 °C ผสมน้ำ 1,000 g ที่ 70 °C ได้อุณหภูมิสมดุลประมาณ 38.9 °C</li><li>ถ้ามีการเปลี่ยนสถานะด้วย (เช่น น้ำแข็งในน้ำหวาน) ต้องรวมความร้อนแฝง Q = mL เข้าไปในฝั่งที่ได้รับความร้อน</li></ul><p><b>คำสำคัญ:</b> สมดุลความร้อน</p><details><summary>ลองคิด: น้ำ 100 g ที่ 20 °C ผสมกับน้ำ 100 g ที่ 60 °C อุณหภูมิสมดุลควรเป็นเท่าไร</summary><p>ประมาณ 40 °C เพราะมวลเท่ากันและเป็นน้ำเหมือนกัน ฝ่ายร้อนลดลงเท่าใด ฝ่ายเย็นก็เพิ่มขึ้นเท่านั้น (ถ้าไม่มีความร้อนสูญเสียออกนอกระบบ)</p></details><details><summary>ลองคิด: นำกล่องนมออกจากตู้เย็นวางไว้ในห้องนาน 3 ชั่วโมง อุณหภูมิของนมจะเป็นอย่างไร</summary><p>อุณหภูมิของนมจะสูงขึ้นจนใกล้เคียงอุณหภูมิห้อง เพราะความร้อนจากอากาศในห้องถ่ายโอนมายังนม จนเกิดสมดุลความร้อน</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>วัดอุณหภูมิน้ำและอธิบายการถ่ายโอนความร้อนระหว่างน้ำที่มีอุณหภูมิต่างกัน</p>
 <h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>

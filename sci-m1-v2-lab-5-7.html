@@ -206,6 +206,20 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 .wave{stroke-dasharray:6 6;animation:flow .7s linear infinite}.rise{animation:rise 1.6s linear infinite}.flm{transform-origin:center bottom;transform-box:fill-box;animation:flame .4s ease-in-out infinite}
 @media(max-width:820px){.lab,.two,.cards{grid-template-columns:1fr}.wrap{padding:0 16px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -280,6 +294,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>การถ่ายโอนความร้อนโดยไม่อาศัยตัวกลาง: การแผ่รังสีความร้อน</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 74–77 (PDF หน้า 85–88) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>ความร้อนจากดวงอาทิตย์มาถึงโลกได้อย่างไร</h3><p>การนำความร้อนและการพาความร้อนต้องมีอนุภาคของสสารเป็นตัวกลาง แต่ระหว่างดวงอาทิตย์กับโลกมีบริเวณที่ไม่มีสสารเลย (สุญญากาศ) ความร้อนยังมาถึงโลกได้ เพราะสสารที่มีพลังงานความร้อนจะแผ่ความร้อนออกมาในรูปของ<b>รังสีอินฟราเรด</b> ซึ่งเป็นคลื่นแม่เหล็กไฟฟ้าชนิดหนึ่ง คลื่นชนิดนี้เดินทางได้โดยไม่ต้องอาศัยตัวกลาง การถ่ายโอนความร้อนวิธีนี้เรียกว่า <b>การแผ่รังสีความร้อน</b></p><h3>ลักษณะสำคัญ</h3><ul><li>แหล่งความร้อนแผ่คลื่นออกไปโดยรอบทุกทิศทาง</li><li>ไม่ต้องอาศัยตัวกลาง แต่ก็เกิดในบริเวณที่มีตัวกลางได้ เช่น คลื่นแผ่ผ่านอากาศ</li><li>ความร้อนยังคงถ่ายโอนจากที่ที่อุณหภูมิสูงกว่าไปยังที่ที่อุณหภูมิต่ำกว่า</li></ul><h3>สรุปการถ่ายโอนความร้อน 3 วิธี</h3><div class="rd-tw"><table><thead><tr><th>วิธี</th><th>ต้องมีตัวกลางหรือไม่</th><th>ลักษณะ</th></tr></thead><tbody><tr><td>การนำความร้อน</td><td>ใช่ (อนุภาคของสสาร)</td><td>อนุภาคสั่นแล้วชนกัน ส่งต่อความร้อน เกิดกับสสารทุกสถานะ</td></tr><tr><td>การพาความร้อน</td><td>ใช่ (อนุภาคของของเหลวหรือแก๊ส)</td><td>อนุภาคเคลื่อนที่พาความร้อนไปด้วย</td></tr><tr><td>การแผ่รังสีความร้อน</td><td>ไม่ต้อง</td><td>คลื่นแม่เหล็กไฟฟ้า (รังสีอินฟราเรด) แผ่ออกจากแหล่งความร้อน</td></tr></tbody></table></div><p>การถ่ายโอนความร้อนมักเกิดหลายวิธีพร้อมกัน เช่น การย่างอาหารบนกองไฟ ความร้อนส่วนหนึ่งถูกอากาศร้อนพาไปยังอาหาร (การพาความร้อน) และอีกส่วนหนึ่งแผ่จากกองไฟไปยังอาหารโดยตรง (การแผ่รังสีความร้อน)</p><p>เกร็ดน่ารู้: เครื่องตรวจจับรังสีอินฟราเรดจากผิวหนังใช้คัดกรองผู้ที่มีไข้ในสนามบิน เพราะร่างกายที่ไข้สูงแผ่รังสีความร้อนออกมามากกว่าปกติ</p><p><b>คำสำคัญ:</b> การแผ่รังสีความร้อน (เทียบกับการนำและการพาความร้อนจากกิจกรรม 5.5 และ 5.6)</p><details><summary>ลองคิด: การนั่งข้างกองไฟแล้วรู้สึกอุ่น เกิดจากการถ่ายโอนความร้อนวิธีใด</summary><p>การแผ่รังสีความร้อน เพราะกองไฟแผ่รังสีอินฟราเรดมายังตัวเราโดยตรง (อาจมีการพาความร้อนของอากาศร่วมด้วย)</p></details><details><summary>ลองคิด: ทำไมโลกจึงได้รับความร้อนจากดวงอาทิตย์ทั้งที่ระหว่างทางมีบริเวณที่เป็นสุญญากาศ</summary><p>เพราะความร้อนแผ่มาเป็นคลื่นแม่เหล็กไฟฟ้า ซึ่งเดินทางได้โดยไม่ต้องอาศัยตัวกลาง</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('s1');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>สืบค้นข้อมูลและสร้างแบบจำลองการถ่ายโอนความร้อนโดยไม่อาศัยตัวกลาง</p>
 <p class="pc">หนังสือไม่ได้ระบุวัสดุอุปกรณ์และข้อควรระวังสำหรับกิจกรรมนี้ (เป็นกิจกรรมสร้างแบบจำลองและสืบค้นข้อมูล)</p>

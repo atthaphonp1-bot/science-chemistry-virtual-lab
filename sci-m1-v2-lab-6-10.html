@@ -262,6 +262,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -275,6 +288,24 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 2 การเปลี่ยนแปลงภูมิอากาศโลก</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 171–179 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>ลมฟ้าอากาศ ต่างจากภูมิอากาศอย่างไร</h3>
+<div class="rd-tw"><table><thead><tr><th></th><th>ความหมาย</th><th>ตัวอย่าง</th></tr></thead><tbody><tr><td>ลมฟ้าอากาศ</td><td>สภาพอากาศ ณ พื้นที่หนึ่ง ในช่วงเวลาหนึ่ง</td><td>ความชื้นสัมพัทธ์วันนี้ 70%</td></tr><tr><td>ภูมิอากาศ</td><td>สภาพอากาศโดยทั่วไปของพื้นที่ เป็นแบบรูปจากค่าเฉลี่ยนานตั้งแต่ 30 ปีขึ้นไป</td><td>ภาคกลางฤดูหนาวชื้นเฉลี่ย 70%</td></tr></tbody></table></div><p>ประเทศไทยอยู่ใกล้เส้นศูนย์สูตร อุณหภูมิเฉลี่ยราว 27.0 °C พื้นที่ส่วนใหญ่ฝน 1,200–1,600 mm ต่อปี และมีพายุหมุนเขตร้อนผ่านเฉลี่ย 3–4 ลูกต่อปี</p>
+<h3>หลักฐานว่าภูมิอากาศเปลี่ยน</h3>
+<ul><li>อุณหภูมิเฉลี่ยในรอบ 30 ปีที่ผ่านมาสูงที่สุดในรอบกว่า 1,400 ปี (IPCC ตั้งขึ้นปี พ.ศ. 2531)</li><li>วันฝนตกหนักเพิ่ม พายุหมุนเขตร้อนรุนแรงขึ้น แล้งนานขึ้น ระดับทะเลสูงขึ้น น้ำแข็งขั้วโลกลดลง ปะการังฟอกขาว โรคบางชนิดระบาดในที่ใหม่</li><li>ในกราฟใช้ <b>ผลต่างจากค่าเฉลี่ย</b> = ค่าของปีนั้น − ค่าเฉลี่ยช่วงเวลาทั้งหมด (เช่น 31.5 − 30.0 = 1.5 °F)</li></ul>
+<h3>สาเหตุหลัก: แก๊สเรือนกระจก</h3>
+<p>แก๊สเรือนกระจกดูดซับรังสีความร้อน ทำให้บรรยากาศอุ่นขึ้น เช่น ไอน้ำ คาร์บอนไดออกไซด์ มีเทน ไนตรัสออกไซด์ คลอโรฟลูออโรคาร์บอน แม้มีข้อถกเถียงเรื่องสาเหตุ แต่ข้อมูลส่วนใหญ่สนับสนุนว่าเกิดจากแก๊สเรือนกระจกที่เพิ่มจากกิจกรรมมนุษย์ คาร์บอนไดออกไซด์เป็นสามในสี่ของที่ปล่อยทั้งหมด (EPA 2016) และไม่ใช่แก๊สพิษ</p>
+<h3>วัฏจักรคาร์บอน</h3>
+<ul><li>ดึง CO<sub>2</sub> ออกจากบรรยากาศ: การสังเคราะห์ด้วยแสงของพืช การละลายในมหาสมุทร</li><li>ปล่อย CO<sub>2</sub> สู่บรรยากาศ: การหายใจ การย่อยสลาย การเผาไหม้ เชื้อเพลิงฟอสซิล</li><li>ตามธรรมชาติสมดุลกัน แต่ปัจจุบันมนุษย์ปล่อยมากขึ้น ลดได้ด้วยการใช้พลังงานและสร้างขยะให้น้อยลง</li></ul>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ปรากฏการณ์เรือนกระจก</li><li>แก๊สเรือนกระจก</li><li>ภูมิอากาศ</li><li>การเปลี่ยนแปลงภูมิอากาศ</li></ul>
+<details><summary>ลองคิด: อุณหภูมิเฉลี่ยพื้นที่หนึ่ง ปี 2444–2543 เท่ากับ 30.0 °F ปี 2553 เท่ากับ 31.5 °F ผลต่างจากค่าเฉลี่ยเท่าใด</summary><p>31.5 − 30.0 = 1.5 °F (สูงกว่าค่าเฉลี่ย)</p></details>
+<details><summary>ลองคิด: “พายุฝนฟ้าคะนองมักเกิดเดือนเมษายน–ตุลาคม” เป็นลมฟ้าอากาศหรือภูมิอากาศ</summary><p>ภูมิอากาศ เพราะเป็นแบบรูปทั่วไปของพื้นที่ ไม่ใช่สภาพอากาศของวันใดวันหนึ่ง</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>วิเคราะห์ และอภิปรายข้อมูลภูมิอากาศ พร้อมทั้งอธิบายผลกระทบต่อสิ่งมีชีวิตและสิ่งแวดล้อม</p>

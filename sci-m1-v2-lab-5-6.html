@@ -202,6 +202,20 @@ textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;paddi
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
 .flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -276,6 +290,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>การถ่ายโอนความร้อนของของเหลวและแก๊ส: การพาความร้อน</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 69–74 (PDF หน้า 80–85) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>น้ำที่ถูกให้ความร้อนเคลื่อนที่อย่างไร</h3><p>เมื่อให้ความร้อนแก่น้ำในภาชนะ น้ำที่ก้นภาชนะได้รับความร้อนก่อน อนุภาคของน้ำบริเวณนั้นมีพลังงานมากขึ้น เคลื่อนที่เร็วขึ้น และอยู่ห่างกันมากขึ้น น้ำจึงขยายตัวและมีความหนาแน่นลดลง น้ำส่วนที่ร้อนกว่าจึงเคลื่อนที่ขึ้นข้างบน พร้อมกับพาความร้อนไปด้วย ขณะเดียวกันน้ำที่เย็นกว่าข้างเคียงจะเคลื่อนเข้ามาแทนที่ แล้วได้รับความร้อนต่อ วนเป็นรอบเช่นนี้เรื่อย ๆ</p><p>วิธีถ่ายโอนความร้อนที่ความร้อนเคลื่อนที่ไปพร้อมกับอนุภาคของของเหลวหรือแก๊สเช่นนี้ เรียกว่า <b>การพาความร้อน</b> ในกิจกรรมจะเห็นได้จากเมล็ดแมงลักที่ถูกน้ำพาให้เคลื่อนที่ และพู่กระดาษที่ถูกอากาศร้อนจากเทียนยกให้ไหว</p><h3>แก๊สก็พาความร้อนได้เช่นกัน</h3><p>เมื่ออากาศได้รับความร้อน อนุภาคจะเคลื่อนที่เร็วขึ้นและห่างกันมากขึ้น ความหนาแน่นลดลง อากาศร้อนจึงลอยสูงขึ้นพร้อมกับพาความร้อนไปด้วย</p><h3>เปรียบเทียบการนำกับการพาความร้อน</h3><div class="rd-tw"><table><thead><tr><th>หัวข้อ</th><th>การนำความร้อน</th><th>การพาความร้อน</th></tr></thead><tbody><tr><td>ตัวกลางส่งความร้อน</td><td>อนุภาคสั่นแล้วชนอนุภาคข้างเคียง</td><td>อนุภาคเคลื่อนที่ไปพร้อมกับความร้อน</td></tr><tr><td>เกิดกับสถานะ</td><td>ทุกสถานะ</td><td>ของเหลวและแก๊สเท่านั้น</td></tr><tr><td>เหตุผลสำคัญ</td><td>อนุภาคส่งต่อการสั่นกันไป</td><td>อนุภาคของแข็งสั่นอยู่กับที่ ไม่เคลื่อนที่ไปไหน จึงพาความร้อนไม่ได้</td></tr></tbody></table></div><p>ของเหลวและแก๊สเกิดได้ทั้งการนำและการพาความร้อน</p><h3>ใช้ประโยชน์และพบในธรรมชาติ</h3><ul><li>อาคารต้องมีช่องระบายอากาศร้อนหรือควันไว้ด้านบน เพราะอากาศร้อนและควันลอยขึ้น</li><li>การเกิดลม และการเคลื่อนที่ของกระแสน้ำในมหาสมุทรเกิดจากการพาความร้อน</li><li>ในเนื้อโลก การถ่ายโอนความร้อนจากบริเวณใกล้แก่นโลกก็เกี่ยวข้องกับการเคลื่อนที่ของเปลือกโลก</li></ul><p><b>คำสำคัญ:</b> การพาความร้อน (ต่อเนื่องจากการนำความร้อนในกิจกรรม 5.5)</p><details><summary>ลองคิด: ทำไมน้ำร้อนที่ก้นหม้อจึงลอยขึ้น และน้ำเย็นจึงเลื่อนลงมาแทนที่</summary><p>น้ำที่ร้อนจะขยายตัว ความหนาแน่นลดลง จึงลอยขึ้น ส่วนน้ำที่เย็นกว่าหนาแน่นกว่า จึงเข้ามาแทนที่ แล้วถูกให้ความร้อนต่อ</p></details><details><summary>ลองคิด: ของแข็งพาความร้อนได้หรือไม่ เพราะเหตุใด</summary><p>ไม่ได้ เพราะอนุภาคของของแข็งสั่นอยู่กับที่ ไม่สามารถเคลื่อนที่ไปพร้อมกับความร้อนได้</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab1');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <ol><li>สังเกตและอธิบายการถ่ายโอนความร้อนของน้ำและอากาศ</li><li>รวบรวมข้อมูลและสร้างแบบจำลองเพื่ออธิบายการถ่ายโอนความร้อนของของเหลวและแก๊ส</li></ol>
 <h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>

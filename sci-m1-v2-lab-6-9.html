@@ -268,6 +268,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -281,6 +294,25 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 1 พายุ (บทที่ 2 มนุษย์และการเปลี่ยนแปลงลมฟ้าอากาศ)</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 164–170 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>พายุฝนฟ้าคะนอง</h3>
+<p>เกิดได้ทั่วประเทศไทย บ่อยในภาคเหนือและตะวันออกเฉียงเหนือ ที่เกิดช่วงฤดูร้อนรุนแรงกว่า เรียกว่า พายุฤดูร้อน มี 3 ระยะ</p><div class="rd-tw"><table><thead><tr><th>ระยะ</th><th>เกิดอะไรขึ้น</th></tr></thead><tbody><tr><td>เจริญเติบโต</td><td>อากาศร้อนชื้นลอยตัวสูง อุณหภูมิลดลงตามความสูง ไอน้ำควบแน่นต่อเนื่อง เกิดเมฆใหญ่</td></tr><tr><td>เจริญเติบโตเต็มที่</td><td>ยอดเมฆชนรอยต่อโทรโพสเฟียร์กับสตราโตสเฟียร์ จึงแผ่ออกด้านข้าง เกิดฝนหนัก ลมแรง ฟ้าแลบ ฟ้าผ่า อาจมีลูกเห็บ</td></tr><tr><td>สลายตัว</td><td>ฝนค่อย ๆ หมด ลมที่พัดลงช้าลง เมฆสลาย</td></tr></tbody></table></div><p>ฟ้าแลบ: ประจุไฟฟ้าแลกเปลี่ยนกันในก้อนเมฆหรือระหว่างก้อนเมฆ ฟ้าผ่า: ระหว่างเมฆคิวมูโลนิมบัสกับพื้นโลก ฟ้าร้อง: อากาศรอบประกายไฟร้อนจัด (อาจถึง 30,000 °C) ขยายตัวรวดเร็วเกิดเสียงดัง</p>
+<h3>พายุหมุนเขตร้อน</h3>
+<ul><li>เกิดเหนือมหาสมุทรที่น้ำทะเลอุ่นตั้งแต่ 26–27 °C ขึ้นไป น้ำระเหยเป็นไอน้ำมาก ลอยสูงเร็วเป็นบริเวณกว้าง</li><li>อากาศรอบ ๆ เคลื่อนเข้ามาแทนที่ และพัดเวียนเป็นเกลียวเข้าหาศูนย์กลางเพราะโลกหมุนรอบตัวเอง ยิ่งใกล้ศูนย์กลางยิ่งเร็วที่สุด ศูนย์กลางลมสงบไม่มีเมฆเรียก <b>ตาพายุ</b></li><li>ซีกโลกเหนือหมุนทวนเข็มนาฬิกา ซีกโลกใต้หมุนตามเข็ม</li><li>อ่อนกำลังหรือสลายตัวเมื่อเข้าสู่แผ่นดิน หรือไปอยู่เหนือน้ำที่เย็นกว่า 26–27 °C</li><li>ที่ผ่านไทยส่วนใหญ่เกิดเหนือมหาสมุทรแปซิฟิกใกล้ฟิลิปปินส์</li></ul>
+<h3>เรียกชื่อตามความแรง (แปซิฟิกเหนือฝั่งตะวันตก)</h3>
+<div class="rd-tw"><table><thead><tr><th>ชื่อ</th><th>อัตราเร็วลมใกล้ศูนย์กลาง</th></tr></thead><tbody><tr><td>พายุดีเปรสชัน</td><td>น้อยกว่า 63 km/hr</td></tr><tr><td>พายุโซนร้อน</td><td>63 ถึงน้อยกว่า 118 km/hr</td></tr><tr><td>พายุไต้ฝุ่น</td><td>118 km/hr ขึ้นไป</td></tr></tbody></table></div><p>แหล่งอื่นเรียกต่างกัน: ไซโคลน (มหาสมุทรอินเดีย ทะเลอาหรับ อ่าวเบงกอล) เฮอร์ริเคน (แปซิฟิกเหนือฝั่งตะวันออกและแอตแลนติก)</p>
+<h3>เปรียบเทียบผลกระทบ</h3>
+<p>พายุฝนฟ้าคะนองเกิดสั้น ๆ เฉพาะถิ่น พื้นที่ไม่กว้างมาก ส่วนพายุหมุนเขตร้อนอยู่นานไม่เกิน 7 วัน เมื่อขึ้นฝั่งกระทบหลายร้อยตารางกิโลเมตรนานหลายวัน</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>พายุฝนฟ้าคะนอง</li><li>พายุหมุนเขตร้อน</li></ul>
+<details><summary>ลองคิด: ในพายุฝนฟ้าคะนอง ระยะใดมีฝนหนักและลมแรง</summary><p>ระยะเจริญเติบโตเต็มที่</p></details>
+<details><summary>ลองคิด: พายุหมุนเขตร้อนที่ลมใกล้ศูนย์กลางแรง 70 km/hr ในแปซิฟิกเหนือฝั่งตะวันตก เรียกว่าอะไร</summary><p>พายุโซนร้อน เพราะอยู่ในช่วง 63 ถึงน้อยกว่า 118 km/hr</p></details>
+<details><summary>ลองคิด: ทำไมพายุหมุนเขตร้อนอ่อนกำลังเมื่อขึ้นฝั่ง</summary><p>ตามหนังสือ อัตราเร็วลมรอบพายุลดลง ทำให้พายุลดกำลังหรือสลายตัว (เหนือแผ่นดินไม่มีทะเลอุ่นให้ไอน้ำระเหยเหมือนกลางมหาสมุทร)</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>รวบรวมข้อมูล เพื่ออธิบายและเปรียบเทียบกระบวนการเกิดพายุฝนฟ้าคะนอง และพายุหมุนเขตร้อน</p>

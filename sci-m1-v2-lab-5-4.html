@@ -205,6 +205,20 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 @keyframes steam{0%{transform:translateY(0) scale(.8);opacity:.7}100%{transform:translateY(-46px) scale(1.4);opacity:0}}
 @keyframes flame{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.18)}}
 .bub{animation:bub 1.3s linear infinite}.stm{animation:steam 1.8s linear infinite}.flame{transform-origin:center bottom;transform-box:fill-box;animation:flame .35s ease-in-out infinite}
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -279,6 +293,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>เรื่องที่ 4 ความร้อนกับการเปลี่ยนสถานะของสสาร</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 43–57 (PDF หน้า 54–68) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>กราฟของน้ำเมื่อได้รับความร้อน</h3><p>เมื่อให้ความร้อนแก่น้ำแข็ง อุณหภูมิจะเพิ่มขึ้นจนถึง 0 °C ซึ่งเป็น<b>จุดหลอมเหลว</b> น้ำแข็งเริ่มเปลี่ยนเป็นน้ำ และอุณหภูมิ<b>คงที่</b>ตลอดช่วงที่กำลังหลอม เมื่อหลอมหมดแล้ว อุณหภูมิของน้ำจึงเพิ่มต่อจนถึง 100 °C ซึ่งเป็น<b>จุดเดือด</b> ช่วงที่น้ำกลายเป็นไอ อุณหภูมิก็คงที่อีกครั้ง จากนั้นไอน้ำจึงร้อนขึ้นต่อไป</p><p>ในทางกลับกัน เมื่อสูญเสียความร้อน ไอน้ำจะควบแน่นที่ 100 °C (<b>จุดควบแน่น</b>) และน้ำจะแข็งตัวที่ 0 °C (<b>จุดเยือกแข็ง</b>) โดยอุณหภูมิคงที่ขณะเปลี่ยนสถานะเช่นกัน</p><div class="rd-tw"><table><thead><tr><th>สาร</th><th>จุดหลอมเหลว (°C)</th><th>จุดเดือด (°C)</th></tr></thead><tbody><tr><td>เอทานอล</td><td>−114.1</td><td>78.3</td></tr><tr><td>น้ำ</td><td>0</td><td>100</td></tr><tr><td>ปรอท</td><td>−38.9</td><td>356.7</td></tr></tbody></table></div><p>ค่าในตารางเป็นที่ความดัน 1 บรรยากาศ ซึ่งแต่ละสารมีค่าต่างกัน</p><h3>ความร้อนไปไหนเมื่ออุณหภูมิคงที่</h3><p>ขณะเปลี่ยนสถานะ ความร้อนทั้งหมดถูกใช้ไปกับการเปลี่ยนสถานะ ไม่ได้ทำให้อุณหภูมิสูงขึ้น อนุภาคได้พลังงานเพิ่มจนอยู่ห่างกันมากขึ้นและแรงยึดเหนี่ยวลดลง <b>ความร้อนแฝง</b>คือความร้อนที่สสารมวล 1 หน่วยใช้ในการเปลี่ยนสถานะ มีสองแบบ คือ ความร้อนแฝงของการหลอมเหลว และความร้อนแฝงของการกลายเป็นไอ เป็นสมบัติเฉพาะตัวของสาร เช่น น้ำแข็ง 80 cal/g, ทองแดง 32 cal/g (หลอมเหลว) และน้ำ 540 cal/g (กลายเป็นไอ) ปริมาณที่ได้รับตอนหลอมเหลวเท่ากับที่สูญเสียตอนแข็งตัว</p><div class="rd-f"><b>Q = mL</b><br>Q = ความร้อนที่ใช้เปลี่ยนสถานะ (cal) · m = มวล (g) · L = ความร้อนแฝง (cal/g)</div><p>ตัวอย่างจากหนังสือ: น้ำแข็ง 5 g ที่ 0 °C หลอมเป็นน้ำหมดต้องใช้ 5 × 80 = 400 cal ถ้ามวลมากขึ้นก็ต้องใช้ความร้อนมากขึ้น ส่วนกรณีที่ทั้งอุณหภูมิและสถานะเปลี่ยน ให้แยกเป็นช่วง เช่น น้ำ 200 g จาก 15 °C กลายเป็นน้ำแข็ง 0 °C สูญเสีย 3,000 + 16,000 = 19,000 cal</p><p><b>คำสำคัญ:</b> การเปลี่ยนสถานะ · ความร้อนแฝงของการเปลี่ยนสถานะ</p><details><summary>ลองคิด: ขณะน้ำแข็งกำลังหลอมเหลวในบีกเกอร์ อุณหภูมิเป็นเท่าไร และยังได้รับความร้อนอยู่หรือไม่</summary><p>อุณหภูมิคงที่ที่ 0 °C แต่ยังได้รับความร้อนอยู่ ความร้อนถูกใช้ในการเปลี่ยนสถานะ จึงไม่ทำให้อุณหภูมิเพิ่ม</p></details><details><summary>ลองคิด: น้ำแข็ง 20 g ที่ 0 °C หลอมเป็นน้ำหมดที่ 0 °C ใช้ความร้อนกี่แคลอรี</summary><p>Q = mL = 20 × 80 = 1,600 cal</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>สังเกตและอธิบายการเปลี่ยนสถานะของน้ำเนื่องจากความร้อน</p>
 <h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>
