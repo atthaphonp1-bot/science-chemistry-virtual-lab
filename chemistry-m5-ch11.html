@@ -230,6 +230,7 @@ textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;
 .footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
 .footer a{color:var(--acc)}
 .btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--acc)}
+sub{font-size:.75em;line-height:0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 <!-- ap:start -->
@@ -359,16 +360,16 @@ const QUIZ={
  {q:'ไอออนใดเป็นตัวออกซิไดส์ที่ดีที่สุดในกลุ่ม Mg²⁺, Zn²⁺, Cu²⁺',o:['Cu²⁺','Zn²⁺','Mg²⁺','เท่ากันทั้งสาม'],a:0,w:'โลหะที่เป็นตัวรีดิวซ์ได้แย่ที่สุด (Cu) มีไอออนที่เป็นตัวออกซิไดส์ดีที่สุด ลำดับตัวออกซิไดส์จึงตรงข้ามกับตัวรีดิวซ์'},
  {q:'ใส่สร้อยคอทองคำ (Au) ในกรดไฮโดรคลอริก (HCl) ทองคำจะถูกออกซิไดส์เป็นไอออนหรือไม่',o:['ไม่ เพราะ Au อยู่ต่ำกว่า H₂ ในตาราง 11.2 เป็นตัวรีดิวซ์ที่ไม่ดีพอจะให้อิเล็กตรอนแก่ H⁺','ได้ เพราะ HCl เป็นกรดแก่','ได้ เพราะ Au เป็นโลหะ','ไม่ เพราะ Au เป็นอโลหะ'],a:0,w:'ตาราง 11.2 ระบุว่า Au เป็นตัวรีดิวซ์ที่ไม่ดี และ H⁺ ไม่ใช่ตัวออกซิไดส์ที่ดีพอจะทำให้ Au เกิดปฏิกิริยา'}],
 '11.3':[
- {q:'E°cell ของเซลล์ Zn(s)|Zn²⁺(aq)||Cu²⁺(aq)|Cu(s) ที่ภาวะมาตรฐานเท่ากับเท่าใด',o:['+1.10 V','+0.42 V','−1.10 V','+0.76 V'],a:0,w:'E°cell = E°cathode − E°anode = 0.34 − (−0.76) = +1.10 V (ผลวัดในรูป 11.3 ของหนังสือได้ 1.04 V เพราะภาวะจริงไม่เป็นมาตรฐานทุกประการ)'},
+ {q:'E°<sub>cell</sub> ของเซลล์ Zn(s)|Zn²⁺(aq)||Cu²⁺(aq)|Cu(s) ที่ภาวะมาตรฐานเท่ากับเท่าใด',o:['+1.10 V','+0.42 V','−1.10 V','+0.76 V'],a:0,w:'E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> = 0.34 − (−0.76) = +1.10 V (ผลวัดในรูป 11.3 ของหนังสือได้ 1.04 V เพราะภาวะจริงไม่เป็นมาตรฐานทุกประการ)'},
  {q:'ในเซลล์ Zn–Cu อิเล็กตรอนเคลื่อนที่ในลวดอย่างไร',o:['จากขั้ว Zn (แอโนด) ไปยังขั้ว Cu (แคโทด)','จากขั้ว Cu ไปยังขั้ว Zn','ไม่เคลื่อนที่','ผ่านสะพานเกลือ'],a:0,w:'Zn มีศักย์ไฟฟ้าต่ำกว่า จึงเกิดออกซิเดชันที่ Zn ปล่อยอิเล็กตรอนไปยัง Cu ที่ Cu²⁺ รับอิเล็กตรอน'},
- {q:'เซลล์ Fe(s)|Fe²⁺(aq)||Cl⁻(aq)|Cl₂(g)|Pt(s) มี E°cell เท่าใด (E° ของ Cl₂/Cl⁻ = +1.36 V, Fe²⁺/Fe = −0.44 V)',o:['+1.80 V','+0.92 V','−1.80 V','+1.36 V'],a:0,w:'แคโทดคือ Cl₂ แอโนดคือ Fe: 1.36 − (−0.44) = +1.80 V (แบบฝึกหัด 11.4 ข้อ 1.1)'}],
+ {q:'เซลล์ Fe(s)|Fe²⁺(aq)||Cl⁻(aq)|Cl₂(g)|Pt(s) มี E°<sub>cell</sub> เท่าใด (E° ของ Cl₂/Cl⁻ = +1.36 V, Fe²⁺/Fe = −0.44 V)',o:['+1.80 V','+0.92 V','−1.80 V','+1.36 V'],a:0,w:'แคโทดคือ Cl₂ แอโนดคือ Fe: 1.36 − (−0.44) = +1.80 V (แบบฝึกหัด 11.4 ข้อ 1.1)'}],
 '11.4':[
  {q:'ถ้าต้องการชุบเหล็กด้วยสังกะสี ควรต่อเหล็กและแผ่นสังกะสีกับขั้วใดของแบตเตอรี่',o:['เหล็กต่อขั้วลบ (เป็นแคโทด) สังกะสีต่อขั้วบวก (เป็นแอโนด)','เหล็กต่อขั้วบวก สังกะสีต่อขั้วลบ','ต่อกับขั้วใดก็ได้','ต่อเหล็กอย่างเดียวไม่ต้องต่อสังกะสี'],a:0,w:'หนังสือสรุป: ต่อวัตถุที่ต้องการชุบกับขั้วลบ และโลหะที่ใช้ชุบกับขั้วบวก'},
  {q:'ความเข้มข้นของสารละลาย ZnSO₄ ระหว่างชุบเป็นอย่างไร',o:['แทบไม่เปลี่ยน เพราะ Zn²⁺ ที่ถูกรีดิวซ์ที่แคโทดเท่ากับ Zn²⁺ ที่เกิดจากการออกซิไดส์ที่แอโนด','เข้มข้นขึ้นมาก','เจือจางลงมาก','เปลี่ยนเป็น ZnCl₂'],a:0,w:'แอโนด Zn → Zn²⁺ + 2e⁻ ส่วนแคโทด Zn²⁺ + 2e⁻ → Zn จำนวนโมลเท่ากัน'},
  {q:'ถ้าใช้ไฟฟ้ากระแสสลับแทนกระแสตรง จะชุบโลหะได้ดีหรือไม่',o:['ไม่ดี เพราะขั้วสลับกันตลอด ปฏิกิริยาจึงไม่ดำเนินไปในทิศทางเดียว','ดีกว่า','ดีเท่ากัน','ชุบได้เร็วขึ้น'],a:0,w:'หนังสือระบุว่าต้องใช้ไฟฟ้ากระแสตรงเพื่อให้ปฏิกิริยาดำเนินไปในทิศทางเดียว'}],
 '11.5':[
  {q:'ที่แคโทดในการแยกสลายสารละลาย KI เกิดสิ่งใด',o:['H₂O ถูกรีดิวซ์เป็นแก๊ส H₂ และ OH⁻ (ฟีนอล์ฟทาลีนเป็นสีชมพู)','K⁺ ถูกรีดิวซ์เป็นโลหะ K','I⁻ ถูกรีดิวซ์','เกิดแก๊ส O₂'],a:0,w:'E° ของ H₂O (−0.83 V) สูงกว่า K⁺ (−2.93 V) จึงรับอิเล็กตรอนได้ง่ายกว่า ได้ H₂ และ OH⁻'},
- {q:'การแยกสลายสารละลาย CuSO₄ ด้วยไฟฟ้า ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีแรงเคลื่อนไฟฟ้ามากกว่าเท่าใด',o:['0.89 V','1.57 V','0.34 V','1.23 V'],a:0,w:'แคโทด Cu²⁺ (+0.34 V) แอโนด H₂O (+1.23 V) E°cell = 0.34 − 1.23 = −0.89 V (หน้า 145)'},
+ {q:'การแยกสลายสารละลาย CuSO₄ ด้วยไฟฟ้า ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีแรงเคลื่อนไฟฟ้ามากกว่าเท่าใด',o:['0.89 V','1.57 V','0.34 V','1.23 V'],a:0,w:'แคโทด Cu²⁺ (+0.34 V) แอโนด H₂O (+1.23 V) E°<sub>cell</sub> = 0.34 − 1.23 = −0.89 V (หน้า 145)'},
  {q:'ที่แอโนดของสารละลาย KI เกิดสิ่งใดและมีสีอย่างไร',o:['I⁻ ถูกออกซิไดส์เป็น I₂ (สีน้ำตาลเหลือง)','H₂O ถูกออกซิไดส์เป็น O₂','K⁺ ถูกออกซิไดส์','เกิด Cl₂'],a:0,w:'E° ของ I₂/I⁻ (+0.53 V) ต่ำกว่า O₂/H₂O (+1.23 V) จึงให้อิเล็กตรอนได้ง่ายกว่า'}]
 };
 function quizHTML(act){
@@ -384,7 +385,7 @@ function wireQuiz(act){
       $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
       if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;sel.closest('.opt').classList.add(v===qs[i].a?'good':'wrong');}
       $$('.opt',el)[qs[i].a].classList.add('good');
-      why.classList.remove('hide');why.textContent=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
     });
     const r=$('.res',root);
     if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
@@ -507,7 +508,7 @@ function act113(){
    <div class="fig" style="margin-top:8px"><svg viewBox="0 0 520 260" id="g113" role="img" aria-label="เซลล์กัลวานิก Zn–Cu ต่อกับโวลต์มิเตอร์"></svg></div>
    <p>ค่าที่อ่านได้: <span class="read" id="rd113">0.00 V</span> <span class="small" id="dir113"></span></p>
    <div class="tip" id="note113"></div></div>
-  <div class="lab"><h3>สำรวจเซลล์อื่น ๆ (ตาราง 11.3)</h3><p class="small">เลือกครึ่งเซลล์สองอัน คำนวณ E°cell = E°cathode − E°anode และเขียนแผนภาพเซลล์ตามตัวอย่าง 11 (หน้า 115)</p>
+  <div class="lab"><h3>สำรวจเซลล์อื่น ๆ (ตาราง 11.3)</h3><p class="small">เลือกครึ่งเซลล์สองอัน คำนวณ E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> และเขียนแผนภาพเซลล์ตามตัวอย่าง 11 (หน้า 115)</p>
    <div class="rowflex"><label>ครึ่งเซลล์ที่ 1<select id="h1">${opts}</select></label><label>ครึ่งเซลล์ที่ 2<select id="h2" >${opts.replace('value="Zn"','value="Zn" ').replace(/<option value="Cu">/,'<option value="Cu" selected>')}</select></label></div><div id="out113" class="tip" aria-live="polite"></div></div>
   <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w113_1','1. เขียนแผนภาพครึ่งเซลล์ที่เกิดปฏิกิริยาออกซิเดชันและครึ่งเซลล์ที่เกิดปฏิกิริยารีดักชัน และแผนภาพเซลล์')}${written('w113_2','2. ระบุทิศทางการเคลื่อนที่ของอิเล็กตรอนและกระแสไฟฟ้า')}${written('w113_3','3. ทิศทางการเบนของเข็มมิเตอร์สอดคล้องกับทิศทางการเคลื่อนที่ของอิเล็กตรอนหรือกระแสไฟฟ้า')}${written('w113_4','4. ศักย์ไฟฟ้าของเซลล์มีค่าเท่าใด พร้อมทั้งระบุว่าขั้วใดมีศักย์ไฟฟ้าสูงกว่า และสูงกว่าอยู่เท่าใด')}</div>
   ${quizHTML('11.3')}`;
@@ -539,7 +540,7 @@ function wire113(){
     $('#g113').innerHTML=s;
     $('#rd113').textContent=(reading>=0?'':'−')+Math.abs(reading).toFixed(2)+' V';
     $('#dir113').textContent=bridge?(red==='Cu'?'(ต่อ Cu กับขั้วบวก: ค่าเป็นบวก)':'(ต่อ Zn กับขั้วบวก: ค่าเป็นลบ เพราะสลับขั้ว)'):'(วงจรไม่ครบ ไม่มีกระแสไหล)';
-    $('#note113').innerHTML=bridge?'Zn (แอโนด): Zn → Zn²⁺ + 2e⁻ · Cu (แคโทด): Cu²⁺ + 2e⁻ → Cu · E°cell = 0.34 − (−0.76) = <b>+1.10 V</b> ศักย์ไฟฟ้าขั้ว Cu สูงกว่า Zn อยู่ 1.10 V<br><span class="small">รูป 11.3 ในหนังสืออ่านได้ 1.04 V (ภาวะจริงต่างจากมาตรฐานเล็กน้อย) แบบจำลองนี้แสดงค่ามาตรฐาน 1.10 V</span>':'ไม่มีสะพานเกลือ ประจุสะสมที่ครึ่งเซลล์ทั้งสอง ปฏิกิริยาดำเนินต่อไม่ได้ โวลต์มิเตอร์จึงไม่แสดงค่าที่คงที่ (แบบจำลองแสดง 0.00 V)';
+    $('#note113').innerHTML=bridge?'Zn (แอโนด): Zn → Zn²⁺ + 2e⁻ · Cu (แคโทด): Cu²⁺ + 2e⁻ → Cu · E°<sub>cell</sub> = 0.34 − (−0.76) = <b>+1.10 V</b> ศักย์ไฟฟ้าขั้ว Cu สูงกว่า Zn อยู่ 1.10 V<br><span class="small">รูป 11.3 ในหนังสืออ่านได้ 1.04 V (ภาวะจริงต่างจากมาตรฐานเล็กน้อย) แบบจำลองนี้แสดงค่ามาตรฐาน 1.10 V</span>':'ไม่มีสะพานเกลือ ประจุสะสมที่ครึ่งเซลล์ทั้งสอง ปฏิกิริยาดำเนินต่อไม่ได้ โวลต์มิเตอร์จึงไม่แสดงค่าที่คงที่ (แบบจำลองแสดง 0.00 V)';
   }
   $('#red113').onchange=draw;$('#sb113').onchange=draw;
   const explore=()=>{const a=$('#h1').value,b=$('#h2').value,o=$('#out113');
@@ -548,7 +549,7 @@ function wire113(){
     const side=k=>k==='H2'?'Pt(s)|H₂(g, 1 atm)':null;
     const left=A==='H2'?'Pt(s)|H₂(g)|H⁺(aq)':`${A}(s)|${HALF[A].ion}(aq)`,right=C==='H2'?'H⁺(aq)|H₂(g)|Pt(s)':`${HALF[C].ion}(aq)|${C}(s)`;
     const half=(k,ox)=>k==='H2'?(ox?'H₂ → 2H⁺ + 2e⁻':'2H⁺ + 2e⁻ → H₂'):(ox?`${k} → ${HALF[k].ion} + ${HALF[k].n}e⁻`:`${HALF[k].ion} + ${HALF[k].n}e⁻ → ${k}`);
-    o.innerHTML=`แอโนด (ออกซิเดชัน): <span class="eq">${half(A,true)}</span> (E° = ${sgn(HALF[A].E)} V)<br>แคโทด (รีดักชัน): <span class="eq">${half(C,false)}</span> (E° = ${sgn(HALF[C].E)} V)<br>E°cell = ${HALF[C].E.toFixed(2)} − (${HALF[A].E.toFixed(2)}) = <b>${sgn(c.E)} V</b><br>แผนภาพเซลล์: <span class="eq">${left} || ${right}</span><br><span class="small">E° เป็นบวก แสดงว่าเป็นเซลล์กัลวานิกที่ให้ไฟฟ้า อิเล็กตรอนเคลื่อนที่จาก ${NAME[A]} ไป ${NAME[C]}</span>`;};
+    o.innerHTML=`แอโนด (ออกซิเดชัน): <span class="eq">${half(A,true)}</span> (E° = ${sgn(HALF[A].E)} V)<br>แคโทด (รีดักชัน): <span class="eq">${half(C,false)}</span> (E° = ${sgn(HALF[C].E)} V)<br>E°<sub>cell</sub> = ${HALF[C].E.toFixed(2)} − (${HALF[A].E.toFixed(2)}) = <b>${sgn(c.E)} V</b><br>แผนภาพเซลล์: <span class="eq">${left} || ${right}</span><br><span class="small">E° เป็นบวก แสดงว่าเป็นเซลล์กัลวานิกที่ให้ไฟฟ้า อิเล็กตรอนเคลื่อนที่จาก ${NAME[A]} ไป ${NAME[C]}</span>`;};
   $('#h1').onchange=explore;$('#h2').onchange=explore;explore();
   draw();wireQuiz('11.3');
 }
@@ -645,7 +646,7 @@ function wire115(){
   const pred=()=>{const id=$('#sol115').value,r=electrolysis(id),s=SOL[id];
     const list=(arr,kind)=>arr.map(x=>`<li>${x.sp}: <span class="eq">${x.eq}</span> (E° ${sgn(x.E)} V)</li>`).join('');
     const why=s.molten?'ไม่มีน้ำ จึงมีเพียงไอออนของเกลือเท่านั้นที่เกิดปฏิกิริยา':'ที่แคโทด ตัวที่รับอิเล็กตรอนง่ายที่สุด (E° สูงสุด) ถูกรีดิวซ์ · ที่แอโนด ตัวที่ให้อิเล็กตรอนง่ายที่สุด (E° ต่ำสุด) ถูกออกซิไดส์';
-    $('#out115').innerHTML=`<p class="small">${why}</p><div class="cols"><div><b>ตัวเลือกที่แคโทด</b><ul>${list(r.candC)}</ul><p>→ เกิด: <b class="eq">${r.cathode.eq}</b></p></div><div><b>ตัวเลือกที่แอโนด (E° ของครึ่งเซลล์รีดักชัน)</b><ul>${list(r.candA)}</ul><p>→ เกิด: <b class="eq">${r.anode.eq}</b></p></div></div><p>E°cell = E°cathode − E°anode = ${r.cathode.E.toFixed(2)} − (${r.anode.E.toFixed(2)}) = <b>${sgn(r.E)} V</b> · ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีอีเอ็มเอฟมากกว่า <b>${r.min.toFixed(2)} V</b>${id==='ki'?' (แบตเตอรี่ 9 V ในกิจกรรมจึงเพียงพอ)':''}</p>`;};
+    $('#out115').innerHTML=`<p class="small">${why}</p><div class="cols"><div><b>ตัวเลือกที่แคโทด</b><ul>${list(r.candC)}</ul><p>→ เกิด: <b class="eq">${r.cathode.eq}</b></p></div><div><b>ตัวเลือกที่แอโนด (E° ของครึ่งเซลล์รีดักชัน)</b><ul>${list(r.candA)}</ul><p>→ เกิด: <b class="eq">${r.anode.eq}</b></p></div></div><p>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> = ${r.cathode.E.toFixed(2)} − (${r.anode.E.toFixed(2)}) = <b>${sgn(r.E)} V</b> · ต้องใช้แหล่งกำเนิดไฟฟ้าที่มีอีเอ็มเอฟมากกว่า <b>${r.min.toFixed(2)} V</b>${id==='ki'?' (แบตเตอรี่ 9 V ในกิจกรรมจึงเพียงพอ)':''}</p>`;};
   $('#sol115').onchange=pred;pred();
   draw();wireQuiz('11.5');
 }
