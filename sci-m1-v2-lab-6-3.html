@@ -267,6 +267,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -280,6 +293,27 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 3 ความกดอากาศและลม (ตอน: ความดันอากาศ)</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 117–124 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>อากาศมีแรงกระทำต่อวัตถุ</h3>
+<p>อากาศมีมวล มีปริมาตร ต้องการที่อยู่ และยังมีแรงกระทำต่อวัตถุด้วย อากาศดันได้ทุกทิศทาง แรงที่อากาศกระทำต่อพื้นที่ 1 ตารางหน่วย เรียกว่า <b>ความดันอากาศ</b> (ทางอุตุนิยมวิทยาเรียก ความกดอากาศ) เมื่อรีดถุงให้แนบกับขวดโหลและรัดปากขวด จะไม่มีอากาศอยู่ระหว่างขวดกับถุง อากาศที่ดันถุงอยู่ด้านในจึงกดถุงไว้ ทำให้ดึงยากขึ้น</p>
+<h3>หน่วยและค่าที่ควรรู้</h3>
+<ul><li>1 ปาสกาล (Pa) = แรง 1 นิวตัน ที่กระทำบนพื้นที่ 1 ตารางเมตร</li><li>ความดันอากาศที่ระดับทะเล = 101,325 Pa หรือประมาณ 101 kPa</li><li>วัดด้วยบารอมิเตอร์ เช่น บารอมิเตอร์ปรอท แอนนิรอยด์บารอมิเตอร์ และบารอกราฟ</li></ul>
+<h3>ความสูง: ยิ่งสูงยิ่งความดันต่ำ</h3>
+<p>ใกล้ผิวโลกอากาศหนาแน่นกว่าที่สูงขึ้นไป ความดันจึงลดลงเมื่อสูงขึ้น ตัวอย่างจากตาราง 6.1 ของหนังสือ</p><div class="rd-tw"><table><thead><tr><th>ความสูงจากระดับทะเล (m)</th><th>ความดันอากาศ (kPa)</th></tr></thead><tbody><tr><td>0</td><td>101</td></tr><tr><td>305</td><td>97.7</td></tr><tr><td>1,067</td><td>89.1</td></tr><tr><td>2,134</td><td>78.2</td></tr></tbody></table></div><p>ถ้าเปลี่ยนที่สูงอย่างรวดเร็ว ร่างกายปรับตัวไม่ทัน ความดันในร่างกายต่างจากภายนอก จึงเกิดอาการหูอื้อ นักปีนเขาจึงไม่ควรเปลี่ยนระดับความสูงเกิน 500 เมตรต่อวัน</p>
+<h3>อุณหภูมิ: อากาศอุ่นกว่า ความกดอากาศที่ผิวโลกต่ำกว่า</h3>
+<ul><li><b>ในลูกโป่ง (ระบบปิด)</b> อากาศร้อนทำให้อนุภาคเคลื่อนที่เร็วขึ้น ชนผนังบ่อยและแรงขึ้น ความดันสูงขึ้น ลูกโป่งขยาย</li><li><b>ที่ผิวโลก (ระบบเปิด)</b> อากาศร้อนกระจายออกทุกทิศ จำนวนอนุภาคต่อปริมาตรลดลง ชนพื้นผิวน้อยลง ความดันลดลง</li><li>ผิวโลกบริเวณที่อากาศอุณหภูมิสูงจึงมีความกดอากาศน้อยกว่าบริเวณที่อากาศเย็น</li></ul>
+<h3>ความกดอากาศที่ต่างกันทำให้เกิดลม</h3>
+<p>การเปลี่ยนแปลงความกดอากาศทำให้อากาศเคลื่อนที่เป็นลม ซึ่งจะเรียนต่อในกิจกรรม 6.4</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ความดันอากาศ</li><li>ความกดอากาศ</li></ul>
+<details><summary>ลองคิด: นั่งลิฟต์ขึ้นตึกสูงเร็ว ๆ แล้วหูอื้อ เพราะอะไร</summary><p>ความดันอากาศลดลงเมื่อสูงขึ้น ร่างกายปรับตัวไม่ทัน ความดันภายในร่างกายจึงต่างจากความดันภายนอก</p></details>
+<details><summary>ลองคิด: ผิวโลกบริเวณที่อากาศร้อน กับบริเวณที่อากาศเย็น บริเวณใดมีความกดอากาศต่ำกว่า</summary><p>บริเวณที่อากาศร้อน เพราะอากาศร้อนกระจายตัว จำนวนอนุภาคต่อปริมาตรจึงน้อยลง</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>สังเกตและอธิบายแรงและทิศทางของแรงที่อากาศกระทำต่อวัตถุ</p>

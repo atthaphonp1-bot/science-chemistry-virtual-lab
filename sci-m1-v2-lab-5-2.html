@@ -213,6 +213,20 @@ select,input[type=number]{border:1px solid var(--line);border-radius:10px;paddin
 .compare td,.compare th{font-size:.88rem}.good{background:#effaf4}.badc{background:#fff1f0}
 .assume{background:#f4f1ff;border-left:4px solid #6b4fd6;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.92rem}
 
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -287,6 +301,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>เรื่องที่ 2 ความร้อนกับการเปลี่ยนแปลงอุณหภูมิของสสาร</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 11–25 (PDF หน้า 22–36) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>ความร้อนกับอุณหภูมิ</h3><p>อนุภาคที่สั่นหรือเคลื่อนที่ทำให้สสารมีพลังงานความร้อน เราวัดปริมาณพลังงานนี้ตรง ๆ ไม่ได้ แต่วัด <b>ระดับ</b> ของพลังงานความร้อนได้ด้วยการวัด<b>อุณหภูมิ</b> ด้วยเทอร์มอมิเตอร์ สสารที่อุณหภูมิสูงมีระดับพลังงานความร้อนสูง</p><h3>ปัจจัยที่ทำให้อุณหภูมิเปลี่ยน</h3><ul><li><b>มวลของสสาร</b> เมื่อได้รับความร้อนเท่ากัน สสารที่มวลมากกว่าจะมีอุณหภูมิเพิ่มน้อยกว่า</li><li><b>ปริมาณความร้อนที่ได้รับ</b> ได้รับมาก อุณหภูมิก็เปลี่ยนมาก</li><li><b>ชนิดของสสาร</b> แม้มวลเท่ากันและได้รับความร้อนเท่ากัน อุณหภูมิที่เปลี่ยนไปก็ไม่เท่ากัน เช่น ทรายร้อนกว่าน้ำทะเลกลางแดด</li></ul><h3>ความร้อนจำเพาะ</h3><p><b>ความร้อนจำเพาะ</b> คือปริมาณความร้อนที่ทำให้สารมวล 1 กรัมมีอุณหภูมิเพิ่มขึ้น 1 องศาเซลเซียส เป็นค่าเฉพาะตัวของสารแต่ละชนิด น้ำมีค่า 1 cal/g·°C (หรือ 4.18 J/g·°C) โดย 1 แคลอรี = 4.18 จูล สารที่ความร้อนจำเพาะน้อยจะร้อนขึ้นเร็วกว่าเมื่อได้รับความร้อนเท่ากัน</p><div class="rd-tw"><table><thead><tr><th>สาร</th><th>ความร้อนจำเพาะ (cal/g·°C)</th></tr></thead><tbody><tr><td>ทอง</td><td>0.03</td></tr><tr><td>ทองแดง</td><td>0.09</td></tr><tr><td>แก้ว</td><td>0.20</td></tr><tr><td>น้ำแข็ง</td><td>0.50</td></tr><tr><td>เอทานอล</td><td>0.59</td></tr><tr><td>น้ำ</td><td>1.00</td></tr></tbody></table></div><h3>คำนวณปริมาณความร้อน</h3><div class="rd-f"><b>Q = mcΔt</b><br>Q = ปริมาณความร้อนที่ได้รับหรือสูญเสีย (cal) · m = มวล (g) · c = ความร้อนจำเพาะ (cal/g·°C) · Δt = อุณหภูมิที่เปลี่ยนไป = อุณหภูมิสูงสุด − อุณหภูมิต่ำสุด (°C)</div><p>ตัวอย่างจากหนังสือ: น้ำ 100 g อุณหภูมิเพิ่มจาก 20 °C เป็น 50 °C ใช้ Q = 100 × 1 × 30 = 3,000 cal ถ้าน้ำก้อนเดียวกันเย็นลงจาก 50 °C เป็น 20 °C จะสูญเสียความร้อน 3,000 cal เท่ากัน ส่วนทอง 100 g ที่เพิ่มอุณหภูมิเท่ากันใช้เพียง 100 × 0.03 × 30 = 90 cal</p><details><summary>ลองคิด: น้ำ 10 g ต้องได้รับความร้อนกี่แคลอรี เพื่อให้อุณหภูมิสูงขึ้น 20 °C</summary><p>Q = mcΔt = 10 × 1 × 20 = 200 cal</p></details><details><summary>ลองคิด: ถ้าต้องการให้อุณหภูมิเพิ่มเท่ากัน น้ำหรือทองแดงมวลเท่ากันต้องใช้ความร้อนมากกว่า</summary><p>น้ำ เพราะน้ำมีความร้อนจำเพาะ 1.00 ซึ่งมากกว่าทองแดงที่มี 0.09</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>ทดลองและระบุปัจจัยที่มีผลต่อการเปลี่ยนแปลงอุณหภูมิของน้ำและสารอื่น</p>
 <h3>วัสดุและอุปกรณ์ (ตามหนังสือเรียน)</h3>

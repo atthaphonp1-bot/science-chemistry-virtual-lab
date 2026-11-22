@@ -260,6 +260,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -273,6 +286,24 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 6 การพยากรณ์อากาศ (ตอน: ข้อมูลและขั้นตอน)</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 150–153 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>ข้อมูลที่ใช้พยากรณ์</h3>
+<p>องค์ประกอบลมฟ้าอากาศ ได้แก่ อุณหภูมิอากาศ ความกดอากาศ ความชื้น เมฆ ฝน อัตราเร็วและทิศทางลม ลมฟ้าอากาศเปลี่ยนตลอดเวลา และอากาศเคลื่อนที่ไปมาได้ในวงกว้าง จึงต้องใช้ข้อมูลทั้งจากพื้นที่นั้นและพื้นที่ข้างเคียง ตรวจให้ครอบคลุม และแลกเปลี่ยนข้อมูลทั้งในและต่างประเทศ</p>
+<h3>ขั้นตอนของการพยากรณ์อากาศ</h3>
+<ol><li><b>การตรวจอากาศ</b> เก็บข้อมูลปัจจุบันด้วยเครื่องมือ เช่น เทอร์มอมิเตอร์ ศรลม ดาวเทียม เรดาร์ตรวจอากาศ</li><li><b>การสื่อสาร</b> รวบรวมและแลกเปลี่ยนข้อมูลจากหลายแหล่ง</li><li><b>การวิเคราะห์ข้อมูล</b> คาดหมายอากาศ สร้างคำพยากรณ์ แล้วเผยแพร่ทางช่องทางต่าง ๆ</li></ol>
+<h3>พยากรณ์อย่างง่ายในกิจกรรม 6.7</h3>
+<ul><li>เก็บข้อมูล 6 วัน จัดเป็นกราฟ ตาราง หรือแผนภูมิ</li><li>ดูแนวโน้มและความสัมพันธ์ของข้อมูล แล้วพยากรณ์วันที่ 7 (อุณหภูมิต่ำสุด สูงสุด และปริมาณฝน)</li><li>เทียบกับสิ่งที่เกิดจริงในวันที่ 7 แล้วอภิปรายว่าอะไรทำให้แม่นหรือไม่แม่น</li><li>การพยากรณ์จริงซับซ้อนกว่านี้มาก ต้องใช้ความรู้ทางอุตุนิยมวิทยาและวิธีวิเคราะห์ข้อมูลที่ซับซ้อนกว่า</li></ul>
+<h3>แผนที่อากาศผิวพื้น</h3>
+<p>นักอุตุนิยมวิทยานำข้อมูลมาทำเป็นแผนที่อากาศผิวพื้น ตัวอย่างในหนังสือเป็นของวันที่ 24 มีนาคม 2560 มีความกดอากาศต่ำจากความร้อนปกคลุมไทยตอนบน และมีบริเวณความกดอากาศสูง (H) จากประเทศจีนแผ่ลงมา ลมใต้และลมตะวันออกเฉียงใต้นำความชื้นเข้ามา จึงมีฝนฟ้าคะนองบางแห่ง</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ลมฟ้าอากาศ</li><li>องค์ประกอบลมฟ้าอากาศ</li><li>การพยากรณ์อากาศ</li></ul>
+<details><summary>ลองคิด: สถานีอุตุนิยมวิทยาใช้เครื่องมือตรวจวัดองค์ประกอบลมฟ้าอากาศ จัดเป็นขั้นตอนใด</summary><p>ขั้นการตรวจอากาศ (ขั้นที่ 1)</p></details>
+<details><summary>ลองคิด: ทำไมพยากรณ์อากาศต้องมีข้อมูลจากพื้นที่ข้างเคียงด้วย</summary><p>เพราะอากาศเคลื่อนที่ และการเปลี่ยนแปลงเกิดได้ในวงกว้าง สภาพอากาศของพื้นที่หนึ่งจึงขึ้นกับพื้นที่รอบข้าง</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>รวบรวมข้อมูลและวิเคราะห์ความสัมพันธ์ระหว่างองค์ประกอบลมฟ้าอากาศเพื่อพยากรณ์อากาศอย่างง่าย</p>

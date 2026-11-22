@@ -268,6 +268,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -281,6 +294,27 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 4 ความชื้น</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 130–138 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>ความชื้นสัมบูรณ์</h3>
+<p>น้ำจากแหล่งต่าง ๆ ระเหยเป็นไอน้ำในอากาศ ทำให้อากาศมีความชื้น ซึ่งเป็นปัจจัยให้เกิดเมฆ หมอก น้ำค้าง ปริมาณไอน้ำที่มีอยู่จริงบอกด้วย <b>ความชื้นสัมบูรณ์ (g/m<sup>3</sup>) = มวลไอน้ำ (g) ÷ ปริมาตรอากาศ (m<sup>3</sup>)</b> เช่น ไอน้ำ 5,000 g ในห้อง 200 m<sup>3</sup> ได้ 25 g/m<sup>3</sup></p>
+<h3>ไอน้ำอิ่มตัวและความชื้นสัมพัทธ์</h3>
+<ul><li>ที่อุณหภูมิและความดันหนึ่ง อากาศรับไอน้ำได้จำกัด ค่าสูงสุดเรียก <b>ปริมาณไอน้ำอิ่มตัว</b> ซึ่งมากขึ้นเมื่ออุณหภูมิสูงขึ้น</li><li><b>ความชื้นสัมพัทธ์ (%) = (ปริมาณไอน้ำจริง ÷ ปริมาณไอน้ำอิ่มตัว) × 100</b> บอกว่าอากาศชื้นมากหรือน้อยเมื่อเทียบกับที่รับได้</li><li>ตัวอย่าง: ที่ 30 °C มีไอน้ำจริง 24 g/m<sup>3</sup> ขณะที่อิ่มตัว 30 g/m<sup>3</sup> ได้ความชื้นสัมพัทธ์ 24 × 100 ÷ 30 = 80%</li></ul>
+<h3>วัดด้วยไซครอมิเตอร์</h3>
+<p>มีเทอร์มอมิเตอร์กระเปาะแห้งและกระเปาะเปียก น้ำระเหยจากกระเปาะเปียกจึงเย็นกว่า เทียบผลต่างอุณหภูมิทั้งสองกับตารางมาตรฐานจะได้ความชื้นสัมพัทธ์ (ตัวอย่างในหนังสือ: แห้ง 32 °C เปียก 26 °C ต่างกัน 6 °C ได้ร้อยละ 61)</p>
+<h3>อะไรทำให้ความชื้นสัมพัทธ์เปลี่ยน</h3>
+<ul><li>อุณหภูมิอากาศ: ถ้าไอน้ำจริงเท่าเดิม แต่อุณหภูมิลดลง ปริมาณไอน้ำอิ่มตัวลดลง ความชื้นสัมพัทธ์จึงเพิ่ม</li><li>สิ่งแวดล้อม: ที่มีต้นไม้หนาแน่นหรืออยู่ใกล้แหล่งน้ำ ความชื้นสัมพัทธ์สูงกว่าที่โล่งหรือไกลน้ำ</li></ul>
+<h3>อากาศอิ่มตัวและจุดน้ำค้าง</h3>
+<p>ความชื้นสัมพัทธ์ 100% คืออากาศอิ่มตัว ถ้าอุณหภูมิลดลงอีก ไอน้ำส่วนเกินจะควบแน่นเป็นละอองน้ำ เกิดเมฆ หมอก หรือน้ำค้าง (ตัวอย่างในหนังสือ: ที่ 5 °C อิ่มตัว 8 g/m<sup>3</sup> พอเหลือ 0 °C รับได้ 5 g/m<sup>3</sup> ส่วนเกิน 3 g/m<sup>3</sup> กลายเป็นละอองน้ำ) อุณหภูมิที่ไอน้ำเริ่มควบแน่นเรียก <b>จุดน้ำค้าง</b> ประเทศไทยมีความชื้นสัมพัทธ์เฉลี่ยทั้งปีราวร้อยละ 70–80 ฤดูฝนสูงสุด รองลงมาคือฤดูหนาวและฤดูร้อน</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ความชื้น</li><li>ความชื้นสัมบูรณ์</li><li>ความชื้นสัมพัทธ์</li></ul>
+<details><summary>ลองคิด: ห้อง 250 m<sup>3</sup> ความชื้นสัมบูรณ์ 30 g/m<sup>3</sup> มีไอน้ำกี่กรัม</summary><p>250 × 30 = 7,500 กรัม (จากสูตรความชื้นสัมบูรณ์)</p></details>
+<details><summary>ลองคิด: ทำไมเกิดหยดน้ำที่ข้างแก้วน้ำเย็น</summary><p>อากาศติดแก้วเย็นลง ปริมาณไอน้ำอิ่มตัวต่ำลงจนน้อยกว่าไอน้ำจริง ไอน้ำส่วนเกินจึงควบแน่นเป็นหยดน้ำ</p></details>
+<details><summary>ลองคิด: ถ้าเทอร์มอมิเตอร์กระเปาะแห้งกับเปียกอ่านค่าเท่ากัน ความชื้นสัมพัทธ์เป็นเท่าใด</summary><p>ร้อยละ 100 เพราะอากาศอิ่มตัว น้ำที่กระเปาะเปียกระเหยไม่ได้ อุณหภูมิจึงไม่ลดต่างจากกระเปาะแห้ง</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>วัดความชื้นสัมพัทธ์และอธิบายปัจจัยที่มีผลต่อความชื้นสัมพัทธ์</p>

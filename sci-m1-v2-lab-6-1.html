@@ -266,6 +266,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -279,6 +292,24 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 1 บรรยากาศของเรา</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 103–108 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>บรรยากาศของโลกพิเศษอย่างไร</h3>
+<p>โลกเป็นดาวเคราะห์ดวงเดียวในระบบสุริยะที่พบว่ามีอากาศห่อหุ้มเหมาะกับสิ่งมีชีวิต ดาวศุกร์มีบรรยากาศส่วนใหญ่เป็นแก๊สคาร์บอนไดออกไซด์ ดวงจันทร์ไม่มีบรรยากาศ ส่วนดวงจันทร์ไททันของดาวเสาร์มีแก๊สไนโตรเจนมากเหมือนโลก แต่มีออกซิเจนน้อยมาก และยังไม่พบสิ่งมีชีวิตบนดาวทั้งสามนี้</p>
+<h3>บรรยากาศโลกเปลี่ยนมาอย่างไร</h3>
+<ul><li>ตอนกำเนิด โลกยังไม่มีบรรยากาศ ภูเขาไฟระเบิดปล่อยไอน้ำ แก๊สคาร์บอนไดออกไซด์และแอมโมเนีย</li><li>แบคทีเรียในมหาสมุทรใช้คาร์บอนไดออกไซด์แล้วปล่อยออกซิเจน ส่วนแอมโมเนียได้รับพลังงานจากดวงอาทิตย์จนแตกตัวเป็นไนโตรเจนกับไฮโดรเจน</li><li>ใช้เวลาหลายพันล้านปีจึงได้บรรยากาศปัจจุบัน: ไนโตรเจนร้อยละ 78 ออกซิเจนร้อยละ 21 และอาร์กอน คาร์บอนไดออกไซด์ กับแก๊สอื่น ๆ รวมร้อยละ 1 (ยังไม่นับไอน้ำ เพราะปริมาณไอน้ำเปลี่ยนไปตามสภาพแวดล้อม)</li></ul>
+<h3>แบ่งบรรยากาศเป็น 5 ชั้นตามอุณหภูมิ</h3>
+<p>นักวิทยาศาสตร์มักใช้เกณฑ์ว่าอุณหภูมิเปลี่ยนไปอย่างไรเมื่อสูงขึ้น ตัวเลขความสูงอ่านจากภาพ 6.3 ของหนังสือ</p><div class="rd-tw"><table><thead><tr><th>ชั้น (จากล่างขึ้นบน)</th><th>อุณหภูมิเมื่อสูงขึ้น</th><th>ลักษณะเด่น</th></tr></thead><tbody><tr><td>โทรโพสเฟียร์ (ถึงประมาณ 11 km)</td><td>ลดลง</td><td>อากาศหนาแน่นที่สุด มีไอน้ำมากที่สุด เกิดเมฆ ฝน พายุฟ้าคะนอง</td></tr><tr><td>สตราโตสเฟียร์ (ประมาณ 11–48 km)</td><td>เพิ่มขึ้น</td><td>มีโอโซนมาก (O<sub>3</sub> 1 โมเลกุลมีออกซิเจน 3 อะตอม) ดูดกลืนรังสีอัลตราไวโอเลต โอโซนเข้มข้นสุดราว 20–30 km</td></tr><tr><td>มีโซสเฟียร์ (ประมาณ 48–95 km)</td><td>ลดลงอีกครั้ง</td><td>เป็นชั้นสุดท้ายที่สัดส่วนแก๊สคงที่ วัตถุจากนอกโลกเริ่มเผาไหม้ที่ชั้นนี้</td></tr><tr><td>เทอร์โมสเฟียร์ (ประมาณ 95–600 km)</td><td>เพิ่มขึ้นถึงราว 1,727 °C</td><td>อากาศเบาบางมาก แตกตัวเป็นไอออน สะท้อนคลื่นวิทยุได้ เกิดแสงเหนือแสงใต้</td></tr><tr><td>เอกโซสเฟียร์</td><td>-</td><td>ขอบนอกสุด เชื่อมต่อกับอวกาศ แทบไม่มีอนุภาคอากาศ</td></tr></tbody></table></div>
+<h3>เกร็ด: ชั้นโอโซน</h3>
+<p>ช่วงปี พ.ศ. 2523–2533 พบช่องโหว่โอโซนเหนือขั้วโลกใต้ สาเหตุมาจากสารซีเอฟซี (CFCs) ที่มนุษย์ปล่อยจากตู้เย็น เครื่องปรับอากาศและกระป๋องสเปรย์ หลังข้อตกลงพิธีสารมอนทรีออลปี พ.ศ. 2530 ที่ให้เลิกใช้ สถานการณ์ดีขึ้น</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ชั้นบรรยากาศ</li><li>การเปลี่ยนอุณหภูมิตามความสูง</li></ul>
+<details><summary>ลองคิด: ชั้นบรรยากาศใดมีโอโซนมาก และโอโซนช่วยเราอย่างไร</summary><p>ชั้นสตราโตสเฟียร์ โอโซนดูดกลืนรังสีอัลตราไวโอเลตจากดวงอาทิตย์ ทำให้รังสีที่ถึงผิวโลกน้อยลง</p></details>
+<details><summary>ลองคิด: ทำไมเมฆและฝนจึงเกิดในชั้นโทรโพสเฟียร์</summary><p>เพราะชั้นนี้มีไอน้ำมากที่สุดและอากาศหนาแน่นที่สุด (ตามที่หนังสือระบุ) จึงมีไอน้ำพอให้ควบแน่นเป็นเมฆและฝน</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <ol class="steps"><li>วิเคราะห์และแปลความหมายข้อมูลเพื่อสร้างแบบจำลองการแบ่งชั้นบรรยากาศตามเกณฑ์ของตนเอง และเปรียบเทียบกับเกณฑ์ของนักวิทยาศาสตร์</li><li>อธิบายลักษณะของชั้นบรรยากาศของโลก</li></ol>

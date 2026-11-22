@@ -268,6 +268,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -281,6 +294,22 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 5 เมฆและฝน</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 139–148 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>เมฆคืออะไร จัดกลุ่มอย่างไร</h3>
+<p>เมฆเกิดจากไอน้ำควบแน่นเป็นละอองน้ำเล็ก ๆ แล้วรวมกัน แบ่งได้สองแบบพร้อมกัน</p><ul><li><b>ตามรูปร่าง</b> 3 แบบ: เมฆก้อน (cumulus) เมฆแผ่น (stratus) เมฆเป็นริ้ว (cirrus)</li><li><b>ตามความสูงของฐานเมฆ</b>: ระดับสูง (มากกว่า 6,000 m) ระดับกลาง (2,000–6,000 m) ระดับต่ำ (ต่ำกว่า 2,000 m)</li><li>รวมเป็น 10 ชนิดสำคัญ เช่น เซอร์รัส อัลโตสตราตัส คิวมูลัส นิมโบสตราตัส คิวมูโลนิมบัส (เมฆฝนฟ้าคะนอง) ชื่อมาจากรากศัพท์ละติน เช่น อัลโต = กลาง สตราตัส = แผ่น คิวมูลัส = ปุย นิมโบ = ฝนรุนแรง</li></ul><p>เมฆระดับสูงเป็นผลึกน้ำแข็งเกือบทั้งหมด ระดับกลางมีทั้งผลึกน้ำแข็งและละอองน้ำ ระดับต่ำเป็นละอองน้ำทั้งหมด</p>
+<h3>วัดปริมาณเมฆปกคลุม</h3>
+<p>ให้นักเรียน 4 คนยืนหันหลังชนกัน กางแขนทำมุม 90° แบ่งท้องฟ้าเป็น 4 ส่วน แต่ละคนประมาณร้อยละของเมฆในส่วนตน แล้วรวมกันหารด้วย 4</p><div class="rd-tw"><table><thead><tr><th>ปริมาณเมฆปกคลุม</th><th>ค่าประมาณ</th></tr></thead><tbody><tr><td>ท้องฟ้าแจ่มใส</td><td>น้อยกว่า 10%</td></tr><tr><td>เมฆบางส่วน</td><td>10–25%</td></tr><tr><td>เมฆกระจัดกระจาย</td><td>25–50%</td></tr><tr><td>เมฆเป็นหย่อม ๆ</td><td>50–90%</td></tr><tr><td>เมฆครึ้ม</td><td>มากกว่า 90%</td></tr></tbody></table></div><p>วันที่เมฆน้อย แสงอาทิตย์ถึงพื้นมาก อุณหภูมิอากาศสูง วันที่เมฆมากอุณหภูมิจะต่ำ ชนิดเมฆช่วยทายอากาศง่าย ๆ ได้: เซอร์รัส = อากาศดี นิมโบสตราตัส = อาจมีฝนพรำ คิวมูโลนิมบัส = อาจมีฝนหนักเร็ว ๆ นี้</p>
+<h3>ฝนและการวัดปริมาณฝน</h3>
+<p>น้ำหรือน้ำแข็งที่ตกจากเมฆ (ฝน หิมะ ลูกเห็บ) เรียก <b>หยาดน้ำฟ้า</b> ปริมาณฝนวัดด้วยเครื่องวัดฝน บอกเป็นมิลลิเมตรหรือนิ้ว เกณฑ์ฝนรายวันตามหนังสือ:</p><div class="rd-tw"><table><thead><tr><th>ระดับ</th><th>ปริมาณฝนต่อวัน</th></tr></thead><tbody><tr><td>ฝนเล็กน้อย</td><td>0.1–10.0 mm</td></tr><tr><td>ฝนปานกลาง</td><td>10.1–35.0 mm</td></tr><tr><td>ฝนหนัก</td><td>35.1–90.0 mm</td></tr><tr><td>ฝนหนักมาก</td><td>90.1 mm ขึ้นไป</td></tr></tbody></table></div><p>ถ้าฝนเกิน 100 mm ต่อวัน ถือว่าเสี่ยงดินถล่มและน้ำป่าไหลหลาก</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>ลักษณะเมฆ</li><li>ปริมาณเมฆปกคลุม</li><li>ปริมาณฝน</li><li>เมฆระดับต่ำ</li><li>เมฆระดับสูง</li><li>เมฆก่อตัวในแนวตั้ง</li></ul>
+<details><summary>ลองคิด: นักเรียน 4 คนประมาณเมฆได้ 70, 60, 80, 70 % ท้องฟ้าเป็นอย่างไร</summary><p>ค่าเฉลี่ย (70+60+80+70) ÷ 4 = 70% อยู่ในช่วง 50–90% จึงเรียกเมฆเป็นหย่อม ๆ</p></details>
+<details><summary>ลองคิด: ฝนตก 40 mm ใน 1 วัน จัดเป็นฝนระดับใด</summary><p>ฝนหนัก เพราะอยู่ในช่วง 35.1–90.0 mm</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <ol class="steps" style="margin-top:0"><li>สังเกต อธิบายลักษณะ และจำแนกประเภทของเมฆ</li><li>ตรวจวัดปริมาณเมฆปกคลุมท้องฟ้า</li></ol>

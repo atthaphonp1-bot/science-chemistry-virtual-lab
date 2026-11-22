@@ -267,6 +267,19 @@ section.card{border-radius:28px}
 a{text-underline-offset:.18em}
 @media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+/* reading:start */
+#read h3{margin:1.1rem 0 .3rem;font-size:1.05rem}
+#read ul{padding-left:1.25rem;margin:.3rem 0}#read li{margin:.2rem 0}
+#read .rd-terms{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .2rem;padding:0;list-style:none}
+#read .rd-terms li{margin:0;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-weight:650;font-size:.88rem}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;margin:.6rem 0}
+#read table{min-width:440px;margin:0}
+#read th{position:static;text-align:left}#read td{text-align:left;vertical-align:top}
+#read details{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:8px 14px;margin:8px 0}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.5rem 0 .2rem}
+#read .rd-go{margin-top:14px}
+/* reading:end */
 </style>
 <!-- ap:end -->
 </head>
@@ -280,6 +293,26 @@ a{text-underline-offset:.18em}
   <p class="pc" id="pText" aria-live="polite">ทำแล้ว 0 จาก 4 ส่วน</p>
 </div></header>
 <main class="wrap">
+
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p><h2>เรื่องที่ 2 อุณหภูมิอากาศ</h2>
+<p class="pc">สรุปโดยผู้จัดทำหน้านี้จากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 109–116 ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย</p>
+<h3>อุณหภูมิอากาศเปลี่ยนไปอย่างไรในรอบวัน</h3>
+<ul><li>กลางวัน พื้นผิวโลกดูดกลืนรังสีจากดวงอาทิตย์ แล้วค่อย ๆ ถ่ายโอนความร้อนให้อากาศเหนือพื้นนั้น</li><li>โลกได้รับพลังงานเพิ่มขึ้นตั้งแต่ดวงอาทิตย์ขึ้น มากที่สุดราว 12.00 น. แต่ความร้อนสะสมต่อเนื่อง อุณหภูมิอากาศสูงสุดจึงอยู่ราว <b>14.00–16.00 น.</b></li><li>กลางคืน พื้นผิวยังคายความร้อนที่สะสมไว้ให้อากาศ อุณหภูมิลดลงเรื่อย ๆ จนต่ำสุดช่วงก่อนดวงอาทิตย์ขึ้น ราว <b>05.00–06.00 น.</b> แล้วเริ่มสูงขึ้นอีกทุกวัน</li></ul>
+<h3>ทำไมแต่ละที่จึงอุณหภูมิไม่เท่ากัน</h3>
+<ul><li><b>ร่มเงา</b> ใต้ต้นไม้รับพลังงานจากดวงอาทิตย์น้อยกว่า จึงถ่ายโอนความร้อนให้อากาศน้อยกว่า อุณหภูมิต่ำกว่าที่กลางแจ้ง</li><li>ปริมาณเมฆ อัตราเร็วลมและทิศทางลมที่พัดผ่าน ก็มีผล</li><li>ลักษณะภูมิประเทศ ละติจูด และความสูงต่ำของพื้นที่ มีผลเช่นกัน</li></ul>
+<h3>วัดอย่างไรให้ถูกวิธี</h3>
+<ul><li>ไม่จับกระเปาะเทอร์มอมิเตอร์ เพราะความร้อนจากมือทำให้ค่าคลาดเคลื่อน และไม่ให้กระเปาะโดนแดดโดยตรง</li><li>เทอร์มอมิเตอร์รูปตัวยูอ่านอุณหภูมิ<b>สูงสุด</b>ได้ที่ด้านขวา และ<b>ต่ำสุด</b>ที่ด้านซ้าย ปรอทดันเข็มชี้ค้างไว้ให้อ่าน อ่านเสร็จกดปุ่มรีเซตจนเข็มลงมาแตะปรอท จึงพร้อมวัดรอบต่อไป</li><li>ตัวเลขที่ควรบันทึก: อุณหภูมิปัจจุบัน และค่าสูงสุด–ต่ำสุดของแต่ละวัน</li></ul>
+<h3>พลังงานจากดวงอาทิตย์ไปไหนบ้าง</h3>
+<div class="rd-tw"><table><thead><tr><th>ถ้ารังสีจากดวงอาทิตย์ = 100%</th><th>ร้อยละ</th></tr></thead><tbody><tr><td>ถูกเมฆสะท้อน</td><td>20</td></tr><tr><td>ถูกบรรยากาศสะท้อน</td><td>6</td></tr><tr><td>ถูกพื้นผิวสะท้อน</td><td>4</td></tr><tr><td>ถูกบรรยากาศดูดกลืน</td><td>19</td></tr><tr><td>ถูกพื้นผิวดูดกลืน</td><td>51</td></tr></tbody></table></div>
+<h3>ทำไมต้องรู้อุณหภูมิ</h3>
+<p>อากาศร้อนเสี่ยงโรคลมแดดและโรคท้องร่วงบางชนิด อากาศหนาวเสี่ยงไข้หวัด ปอดบวม อุณหภูมิยังมีผลต่ออาชีพอย่างเกษตรกรรม และค่าสูงสุด–ต่ำสุดใช้ในการพยากรณ์อากาศ</p>
+<h3>คำสำคัญ</h3><ul class="rd-terms"><li>อุณหภูมิอากาศ</li><li>อุณหภูมิอากาศสูงสุด</li><li>อุณหภูมิอากาศต่ำสุด</li></ul>
+<details><summary>ลองคิด: ทำไมอุณหภูมิสูงสุดไม่เกิดตอนเที่ยงที่แดดแรงที่สุด</summary><p>เพราะพื้นผิวยังคงสะสมและถ่ายโอนความร้อนให้อากาศต่อไปหลังเที่ยง อุณหภูมิอากาศจึงสูงสุดช่วงบ่าย</p></details>
+<details><summary>ลองคิด: ทำไมไม่ควรให้กระเปาะเทอร์มอมิเตอร์โดนแดดโดยตรง</summary><p>เพราะค่าที่อ่านได้จะคลาดเคลื่อนไปจากอุณหภูมิอากาศจริง</p></details>
+<div class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('lab');if(e){e.scrollIntoView({behavior:'smooth',block:'start'})}}catch(_){}">ไปที่การทดลอง ↓</button></div>
+</section>
+<!-- reading:end -->
 
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <p>ตรวจวัดอุณหภูมิอากาศ และวิเคราะห์การเปลี่ยนแปลงอุณหภูมิอากาศในรอบวัน</p>

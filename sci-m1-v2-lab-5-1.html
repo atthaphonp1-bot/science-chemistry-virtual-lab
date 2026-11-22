@@ -213,6 +213,20 @@ select,input[type=number]{border:1px solid var(--line);border-radius:10px;paddin
 .compare td,.compare th{font-size:.88rem}.good{background:#effaf4}.badc{background:#fff1f0}
 .assume{background:#f4f1ff;border-left:4px solid #6b4fd6;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.92rem}
 
+/* reading:start */
+#read .rd-pg{color:var(--muted);font-size:.84rem;margin:.1rem 0 .6rem}
+#read h3{font-size:1.08rem;margin:1.1rem 0 .25rem;color:var(--ink)}
+#read p{margin:.4rem 0}
+#read ul{padding-left:1.3rem;margin:.35rem 0}#read li{margin:.2rem 0}
+#read .rd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0;border:1px solid var(--line);border-radius:14px}
+#read .rd-tw table{min-width:520px;margin:0}
+#read .rd-tw th,#read .rd-tw td{text-align:left;vertical-align:top;font-size:.9rem}
+#read .rd-f{background:var(--soft);border-left:4px solid var(--orange);border-radius:12px;padding:10px 16px;margin:.7rem 0}
+#read details{border:1px dashed var(--line);border-radius:14px;padding:8px 14px;margin:.7rem 0;background:var(--soft)}
+#read summary{cursor:pointer;font-weight:650}
+#read details p{margin:.45rem 0 .2rem}
+#read .rd-go{margin:1.1rem 0 0}
+/* reading:end */
 </style>
 <!-- ap:start -->
 <style>
@@ -287,6 +301,14 @@ a{text-underline-offset:.18em}
 </div></header>
 <main class="wrap">
 
+<!-- reading:start -->
+<section class="card" id="read"><p class="kicker">อ่านก่อนทดลอง</p>
+<h2>เรื่องที่ 1 แบบจำลองอนุภาคของสสารในแต่ละสถานะ</h2>
+<p class="pc">สรุปจากหนังสือเรียนวิทยาศาสตร์และเทคโนโลยี ม.1 เล่ม 2 (สสวท.) หน้า 4–10 (PDF หน้า 15–21) สรุปโดยผู้จัดทำหน้านี้ ไม่ใช่ข้อความต้นฉบับของหนังสือ ควรอ่านฉบับเต็มในหนังสือเรียนด้วย อ่านให้จบก่อน แล้วจึงลงมือทำการทดลองเสมือนด้านล่าง</p>
+<h3>สสารกับอนุภาค</h3><p>สสารคือสิ่งที่มีมวลและต้องการที่อยู่ พบได้ในสถานะของแข็ง ของเหลว และแก๊ส สสารแต่ละสถานะมีรูปร่างและปริมาตรไม่เหมือนกัน เมื่อ “ขยายภาพ” เข้าไปจะพบว่าสสารประกอบด้วย <b>อนุภาค</b> ซึ่งอาจเป็นอะตอม โมเลกุล หรือไอออน เล็กเกินกว่าจะมองเห็นด้วยตาเปล่า เราจึงต้องใช้ <b>แบบจำลอง</b> คือวิธีนำเสนอแนวคิดหรือข้อมูลให้คนอื่นเข้าใจ เช่น กราฟ รูปภาพ สมการ แผนผัง หรือภาพเคลื่อนไหว</p><h3>เปรียบเทียบสามสถานะ</h3><div class="rd-tw"><table><thead><tr><th>สถานะ</th><th>การจัดเรียงอนุภาค</th><th>แรงยึดเหนี่ยวระหว่างอนุภาค</th><th>การเคลื่อนที่ของอนุภาค</th><th>รูปร่าง / ปริมาตร</th></tr></thead><tbody><tr><td>ของแข็ง</td><td>เรียงชิดกัน</td><td>มากที่สุด</td><td>สั่นอยู่กับที่</td><td>คงที่ / คงที่</td></tr><tr><td>ของเหลว</td><td>อยู่ใกล้กัน (ห่างกว่าของแข็ง แต่ใกล้กว่าแก๊ส)</td><td>น้อยกว่าของแข็ง แต่มากกว่าแก๊ส</td><td>เคลื่อนที่ได้ แต่ไม่อิสระ เคลื่อนที่รอบ ๆ อนุภาคใกล้เคียง</td><td>ไม่คงที่ (เปลี่ยนตามภาชนะ) / คงที่</td></tr><tr><td>แก๊ส</td><td>อยู่ห่างกันมาก</td><td>น้อยมาก</td><td>เคลื่อนที่อิสระทุกทิศทาง</td><td>ไม่คงที่ / ไม่คงที่ (ฟุ้งเต็มภาชนะ)</td></tr></tbody></table></div><h3>ตัวอย่างที่หนังสือใช้อธิบาย</h3><ul><li>ก้อนหิน (ของแข็ง) ใส่ภาชนะใดก็ตาม รูปร่างและปริมาตรก็เหมือนเดิม</li><li>น้ำสี 100 cm³ (ของเหลว) เทลงกระบอกตวง ขวดรูปกรวย หรือบีกเกอร์ รูปร่างเปลี่ยนตามภาชนะ แต่ปริมาตรยังเป็น 100 cm³</li><li>แก๊สจากลูกโป่ง (แก๊ส) เมื่อปล่อยให้ไหลไปยังถุงมือยาง จะฟุ้งกระจายเต็มถุงมือ ทำให้รูปร่างและปริมาตรเปลี่ยนไปตามภาชนะ</li></ul><p><b>คำสำคัญ:</b> อนุภาค · การจัดเรียงอนุภาค · แรงยึดเหนี่ยวระหว่างอนุภาค · การเคลื่อนที่ของอนุภาค</p><p>เกร็ดน่ารู้: นอกจากสามสถานะนี้ ยังมีสถานะ <b>พลาสมา</b> ซึ่งเกิดเมื่อแก๊สได้รับพลังงานสูงมาก พบได้ในหลอดฟลูออเรสเซนต์ ขณะฟ้าผ่า และในอวกาศ</p><details><summary>ลองคิด: ทำไมน้ำสี 100 cm³ จึงเปลี่ยนรูปร่างตามภาชนะ แต่ปริมาตรไม่เปลี่ยน</summary><p>อนุภาคของเหลวอยู่ใกล้กันและมีแรงยึดเหนี่ยวพอสมควร ปริมาตรจึงคงที่ แต่ยังเคลื่อนที่รอบ ๆ กันได้ จึงไหลไปตามรูปร่างของภาชนะ</p></details><details><summary>ลองคิด: อนุภาคของแก๊สอยู่ห่างกันมากและมีแรงยึดเหนี่ยวน้อยมาก ส่งผลอย่างไรต่อปริมาตรของแก๊ส</summary><p>อนุภาคเคลื่อนที่อิสระและฟุ้งกระจายจนเต็มภาชนะ ปริมาตรของแก๊สจึงเปลี่ยนตามปริมาตรของภาชนะ</p></details>
+<p class="rd-go"><button type="button" class="btn" onclick="try{var e=document.getElementById('p1');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}">ไปที่การทดลอง ↓</button></p>
+</section>
+<!-- reading:end -->
 <section class="card"><p class="kicker">จุดประสงค์</p><h2>สิ่งที่จะทำ</h2>
 <ol class="steps"><li>รวบรวมข้อมูลและสร้างแบบจำลองเพื่ออธิบายการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส</li>
 <li>วิเคราะห์และเปรียบเทียบการจัดเรียงอนุภาค แรงยึดเหนี่ยวระหว่างอนุภาค และการเคลื่อนที่ของอนุภาคของสารในสถานะของแข็ง ของเหลว และแก๊ส</li></ol>
