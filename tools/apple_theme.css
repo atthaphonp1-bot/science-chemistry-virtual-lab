@@ -34,7 +34,9 @@ button{touch-action:manipulation}
 
 /* โฟกัสด้วยคีย์บอร์ดชัดเจน */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
-  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
 
 /* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
 input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}

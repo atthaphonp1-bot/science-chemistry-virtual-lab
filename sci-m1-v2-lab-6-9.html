@@ -174,25 +174,6 @@
 
 </script>
 <!-- ls:end -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
 :root{color-scheme:light;--ink:#1d2433;--muted:#66708a;--line:rgba(140,150,180,.25);--pur:#6a2c91;--pur2:#b57ae0;--blue:#1769e0;--ok:#176553;--red:#b63f43;--soft:#f6efff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 24px 60px rgba(50,40,70,.1),0 2px 8px rgba(50,40,70,.05)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
@@ -266,7 +247,9 @@ button{touch-action:manipulation}
 
 /* โฟกัสด้วยคีย์บอร์ดชัดเจน */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
-  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
 
 /* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
 input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}

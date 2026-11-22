@@ -162,7 +162,6 @@
 
 </script>
 <!-- ls:end -->
-
 <style>
 :root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#e0e9f2;--soft:#f0f8fc;--acc:#12708f;--acc2:#e1f3f9;--ok:#157a55;--bad:#b63f43;--acc3:#6fc3dc;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -231,6 +230,7 @@ textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;
 .footer a{color:var(--acc)}
 .btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--acc)}
 sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 <!-- ap:start -->
@@ -271,7 +271,9 @@ button{touch-action:manipulation}
 
 /* โฟกัสด้วยคีย์บอร์ดชัดเจน */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
-  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
 
 /* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
 input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
@@ -345,7 +347,7 @@ function sgn(x){return(x>=0?'+':'−')+Math.abs(x).toFixed(2);}
 const KEY='chemistry-m5-ch11-v1';
 let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
-const ACTS=['11.1','11.2','11.3','11.4','11.5'];
+const ACTS=['11.1','11.2','11.3','11.4','11.5','11.6','sum','ex'];const LABS=ACTS.slice(0,5);
 const TITLES={'11.1':'รีดอกซ์: โลหะกับไอออนของโลหะ','11.2':'เปรียบเทียบตัวรีดิวซ์/ตัวออกซิไดส์','11.3':'วัดศักย์ไฟฟ้าของเซลล์','11.4':'ชุบเหล็กด้วยสังกะสี','11.5':'แยกสลาย KI ด้วยไฟฟ้า'};
 let cur=0;
 
@@ -651,14 +653,143 @@ function wire115(){
   draw();wireQuiz('11.5');
 }
 
+
+/* ======================= เครื่องตรวจแบบฝึกหัดท้ายบท (ช่องตัวเลข/ตัวเลือกตรวจอัตโนมัติ ช่องเขียนส่งครู) ======================= */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อย) ช่องเขียนส่งให้ครูตรวจ</p>`+
+  list.map((q,i)=>`<div class="q"><p>${i+1}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}">${q.s}</div></div>`).join('')+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;
+    auto.forEach(([i,j,p])=>{
+      const mk=$('#mk_'+i+'_'+j);let ok=false,has=false;
+      if(p.t==='num'){const raw=$('#ex_'+i+'_'+j).value.trim();has=raw!=='';const v=parseFloat(raw);
+        ok=has&&Number.isFinite(v)&&Math.abs(v-p.a)<=(p.abs!==undefined?p.abs:Math.abs(p.a)*(p.rel||0.05));}
+      else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+      if(has)answered++;if(ok)got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน'+(answered<auto.length?' (ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก)':'');
+    ls('ท้ายบท',got,auto.length);
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+/* ======================= แบบฟอร์มสืบค้น (กิจกรรม X.6: ไม่มีคะแนน ส่งเป็นข้อเขียน) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (ตามหนังสือ)</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่งด้านล่างหน้า ตัวอย่างหัวข้อเป็นข้อเสนอของผู้จัดทำหน้า เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจโปสเตอร์ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m5-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+
+function ex11(){
+  const E=h=>HALF[h].E;
+  const e33=eCell(0.77,E('Zn')),e41=eCell(0.13,0.77),e42=eCell(E('Fe'),1.51),e51=eCell(1.36,E('Cr')),e52=eCell(E('H2'),E('Al'));
+  return {e33,e41,e42,e51,e52};
+}
+const E11=ex11();
+const YN=['เป็นปฏิกิริยารีดอกซ์','ไม่เป็นปฏิกิริยารีดอกซ์'];
+const SPON=['เกิดขึ้นได้เอง','เกิดขึ้นเองไม่ได้'];
+/* ผลการแยกสลายสารละลายในข้อ 6 ตัดสินด้วยค่า E° (cathode = E° สูงสุด, anode = E° ต่ำสุด) */
+const EXSOL={coi2:{cat:{sp:'Co²⁺',E:-0.28},an:{sp:'I⁻',E:0.53}},al2so4:{cat:{sp:'Al³⁺',E:-1.66},an:{sp:'SO₄²⁻',E:2.01}}};
+function exWho(id){const s=EXSOL[id];return{cathode:s.cat.E>E_H2O_RED?s.cat.sp:'H₂O',anode:s.an.E<E_O2_H2O?s.an.sp:'H₂O'};}
+const W1=exWho('coi2'),W2=exWho('al2so4');
+const EX11=[
+ {t:'ปฏิกิริยาต่อไปนี้เป็นปฏิกิริยารีดอกซ์หรือไม่ เพราะเหตุใด',
+  p:[['1.1 H₃O⁺(aq) + S²⁻(aq) ⇌ HS⁻(aq) + H₂O(l)',1],['1.2 SO₃(g) + H₂O(l) → H₂SO₄(aq)',1],['1.3 I₂(aq) + 2S₂O₃²⁻(aq) → 2I⁻(aq) + S₄O₆²⁻(aq)',0],['1.4 2NO₂(g) + H₂O(l) → HNO₃(aq) + HNO₂(aq)',0]].map(([l,a])=>({t:'mcq',l,o:YN,a})),
+  s:'1.1 ไม่มีธาตุใดเปลี่ยนเลขออกซิเดชัน (เป็นการถ่ายโอนโปรตอน) · 1.2 S เป็น +6 ทั้งก่อนและหลัง · 1.3 I: 0 → −1 และ S: +2 → +2.5 (เป็นรีดอกซ์) · 1.4 N: +4 → +5 (HNO₃) และ +3 (HNO₂) ธาตุเดียวกันทั้งเพิ่มและลดเลขออกซิเดชัน (เป็นรีดอกซ์)'},
+ {t:'ผลการทดลอง: (ก) จุ่มโลหะ A ลงใน HCl(aq) โลหะ A กร่อนอย่างรวดเร็วและมี H₂ เกิดขึ้นมาก (ข) จุ่มโลหะ B ลงใน ASO₄(aq) ไม่เกิดการเปลี่ยนแปลง แต่เมื่อจุ่มลงใน HCl(aq) จะเกิด H₂ (ค) จุ่มโลหะ C ลงใน ASO₄(aq) โลหะ C กร่อนและมีสารสีเทามาเกาะที่โลหะ C จงเรียงลำดับความสามารถในการเป็นตัวออกซิไดส์ของ A²⁺, B²⁺, C²⁺ และ H⁺ จากมากไปน้อย',
+  p:[{t:'mcq',l:'ลำดับตัวออกซิไดส์ มาก → น้อย',o:['A²⁺ > B²⁺ > H⁺ > C²⁺','H⁺ > B²⁺ > A²⁺ > C²⁺','C²⁺ > A²⁺ > B²⁺ > H⁺','H⁺ > A²⁺ > B²⁺ > C²⁺'],a:1}],
+  s:'(ข) B ไม่ทำปฏิกิริยากับ A²⁺ → A²⁺ ออกซิไดส์ B ไม่ได้ แต่ B ทำปฏิกิริยากับ H⁺ ได้ → H⁺ เป็นตัวออกซิไดส์ที่ดีกว่า B²⁺ และ B²⁺ ดีกว่า A²⁺ · (ค) C ทำปฏิกิริยากับ A²⁺ (สารสีเทาคือ A) → A²⁺ ออกซิไดส์ C ได้ ดังนั้น A²⁺ ดีกว่า C²⁺ · รวมเป็น <b>H⁺ > B²⁺ > A²⁺ > C²⁺</b> (ลำดับตัวรีดิวซ์ตรงข้าม: C > A > B > H₂)'},
+ {t:'เมื่อนำครึ่งเซลล์ Zn(s)|Zn²⁺(aq) ไปต่อกับครึ่งเซลล์ Pt(s)|Fe²⁺(aq), Fe³⁺(aq) (E° ของ Fe³⁺/Fe²⁺ = +0.77 V) จงเขียนแผนภาพเซลล์กัลวานิก สมการออกซิเดชัน รีดักชัน และรีดอกซ์ และหาค่าศักย์ไฟฟ้ามาตรฐานของเซลล์',
+  p:[{t:'mcq',l:'3.1 แผนภาพเซลล์ที่ถูกต้อง',o:['Pt(s)|Fe²⁺(aq), Fe³⁺(aq)||Zn²⁺(aq)|Zn(s)','Zn²⁺(aq)|Zn(s)||Fe³⁺(aq), Fe²⁺(aq)|Pt(s)','Zn(s)|Zn²⁺(aq)||Fe³⁺(aq), Fe²⁺(aq)|Pt(s)','Zn(s)|Zn²⁺(aq)||Fe²⁺(aq)|Fe(s)'],a:2},
+     {t:'text',l:'3.2 เขียนสมการออกซิเดชัน รีดักชัน และรีดอกซ์'},
+     {t:'num',l:'3.3 E°<sub>cell</sub>',u:'V',a:E11.e33,abs:.02}],
+  s:`แอโนด: Zn → Zn²⁺ + 2e⁻ · แคโทด: 2Fe³⁺ + 2e⁻ → 2Fe²⁺ (Pt เป็นขั้วเฉื่อย) · รีดอกซ์: Zn + 2Fe³⁺ → Zn²⁺ + 2Fe²⁺ · E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> = 0.77 − (−0.76) = <b>+${E11.e33.toFixed(2)} V</b>`},
+ {t:'คำนวณค่าศักย์ไฟฟ้ามาตรฐานของเซลล์ของปฏิกิริยาที่กำหนดให้ และระบุว่าปฏิกิริยาต่อไปนี้เป็นปฏิกิริยาที่เกิดขึ้นได้เองหรือไม่ เพราะเหตุใด',
+  p:[{t:'num',l:'4.1 2Fe²⁺ + Sn⁴⁺ → Sn²⁺ + 2Fe³⁺ : E°',u:'V',a:E11.e41,abs:.02},{t:'mcq',l:'4.1 ปฏิกิริยานี้',o:SPON,a:1},
+     {t:'num',l:'4.2 2Mn²⁺ + 8H₂O + 5Fe²⁺ → 2MnO₄⁻ + 16H⁺ + 5Fe(s) : E°',u:'V',a:E11.e42,abs:.02},{t:'mcq',l:'4.2 ปฏิกิริยานี้',o:SPON,a:1}],
+  s:`4.1 แคโทด Sn⁴⁺/Sn²⁺ (+0.13 V) แอโนด Fe²⁺ → Fe³⁺ (E° Fe³⁺/Fe²⁺ = +0.77 V) → 0.13 − 0.77 = <b>${E11.e41.toFixed(2)} V</b> เป็นลบ เกิดเองไม่ได้ · 4.2 แคโทด Fe²⁺/Fe (−0.44 V) แอโนด Mn²⁺ → MnO₄⁻ (E° MnO₄⁻/Mn²⁺ = +1.51 V) → −0.44 − 1.51 = <b>${E11.e42.toFixed(2)} V</b> เป็นลบ เกิดเองไม่ได้ (E°<sub>cell</sub> เป็นบวกจึงเกิดเองได้)`},
+ {t:'จงเขียนแผนภาพเซลล์กัลวานิกและหาค่าศักย์ไฟฟ้ามาตรฐานของเซลล์จากปฏิกิริยาต่อไปนี้',
+  p:[{t:'mcq',l:'5.1 2Cr(s) + 3Cl₂(g) → 2Cr³⁺(aq) + 6Cl⁻(aq) แผนภาพเซลล์',o:['Pt(s)|Cl₂(g)|Cl⁻(aq)||Cr³⁺(aq)|Cr(s)','Cr(s)|Cr³⁺(aq)||Cl⁻(aq)|Cl₂(g)|Pt(s)','Cr³⁺(aq)|Cr(s)||Cl⁻(aq)|Cl₂(g)|Pt(s)','Cr(s)|Cr³⁺(aq)||Cl₂(g)|Cl⁻(aq)|Pt(s)'],a:1},
+     {t:'num',l:'5.1 E°<sub>cell</sub>',u:'V',a:E11.e51,abs:.02},
+     {t:'mcq',l:'5.2 2Al(s) + 6H⁺(aq) → 2Al³⁺(aq) + 3H₂(g) แผนภาพเซลล์',o:['Al³⁺(aq)|Al(s)||H⁺(aq)|H₂(g)|Pt(s)','Pt(s)|H₂(g)|H⁺(aq)||Al³⁺(aq)|Al(s)','Al(s)|H⁺(aq)||Al³⁺(aq)|H₂(g)|Pt(s)','Al(s)|Al³⁺(aq)||H⁺(aq)|H₂(g)|Pt(s)'],a:3},
+     {t:'num',l:'5.2 E°<sub>cell</sub>',u:'V',a:E11.e52,abs:.02}],
+  s:`5.1 แอโนด Cr → Cr³⁺ (−0.74 V) แคโทด Cl₂ → Cl⁻ (+1.36 V) · แผนภาพ Cr(s)|Cr³⁺(aq)||Cl⁻(aq)|Cl₂(g)|Pt(s) · E°<sub>cell</sub> = 1.36 − (−0.74) = <b>+${E11.e51.toFixed(2)} V</b> · 5.2 แอโนด Al (−1.66 V) แคโทด H⁺/H₂ (0.00 V) · แผนภาพ Al(s)|Al³⁺(aq)||H⁺(aq)|H₂(g)|Pt(s) · E°<sub>cell</sub> = 0.00 − (−1.66) = <b>+${E11.e52.toFixed(2)} V</b> (แอโนดเขียนทางซ้าย แคโทดทางขวาเสมอ)`},
+ {t:'เมื่อผ่านกระแสไฟฟ้าลงในสารละลายต่อไปนี้ ผลิตภัณฑ์ที่เกิดขึ้นที่แคโทดและแอโนดคืออะไร (ใช้ค่า E° จากตาราง 11.3 เปรียบเทียบกับน้ำ; ข้อ 6.1 CoI₂(aq), ข้อ 6.2 Al₂(SO₄)₃(aq))',
+  p:[{t:'mcq',l:'6.1 แคโทด (CoI₂)',o:['Co(s)','H₂ และ OH⁻','I₂','O₂ และ H⁺'],a:W1.cathode==='Co²⁺'?0:1},
+     {t:'mcq',l:'6.1 แอโนด (CoI₂)',o:['I₂','O₂ และ H⁺','Co²⁺','H₂'],a:W1.anode==='I⁻'?0:1},
+     {t:'mcq',l:'6.2 แคโทด (Al₂(SO₄)₃)',o:['Al(s)','H₂ และ OH⁻','O₂ และ H⁺','S₂O₈²⁻'],a:W2.cathode==='Al³⁺'?0:1},
+     {t:'mcq',l:'6.2 แอโนด (Al₂(SO₄)₃)',o:['S₂O₈²⁻','O₂ และ H⁺','Al(s)','H₂'],a:W2.anode==='SO₄²⁻'?0:1},
+     {t:'text',l:'เขียนสมการออกซิเดชัน รีดักชัน และปฏิกิริยารวมของทั้งสองข้อ'}],
+  s:`6.1 แคโทด: Co²⁺ (−0.28 V) รับอิเล็กตรอนง่ายกว่า H₂O (−0.83 V) → Co²⁺ + 2e⁻ → Co(s) · แอโนด: I⁻ (E° 0.53 V ต่ำกว่า H₂O 1.23 V) ให้อิเล็กตรอนง่ายกว่า → 2I⁻ → I₂ + 2e⁻ · 6.2 แคโทด: Al³⁺ (−1.66 V) รับอิเล็กตรอนยากกว่า H₂O (−0.83 V) → 2H₂O + 2e⁻ → H₂ + 2OH⁻ · แอโนด: SO₄²⁻ (+2.01 V) ให้อิเล็กตรอนยากกว่า H₂O (+1.23 V) → 2H₂O → O₂ + 4H⁺ + 4e⁻`}
+];
+function actEx(){return exHTML(EX11,'หนังสือหน้า 153–154','แบบฝึกหัดท้ายบท 11');}
+function wireEx(){exWire(EX11);}
+function actSum(){return `<h2>สรุปเนื้อหาบท 11 เคมีไฟฟ้า</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงสรุปท้ายบท (หน้า 152) และเนื้อหาในบท ไม่ใช่ข้อความต้นฉบับ</p>
+ <div class="cols"><div class="box"><h3>แนวคิดหลัก</h3><ul>
+ <li>ปฏิกิริยารีดอกซ์มีการถ่ายโอนอิเล็กตรอน ประกอบด้วยครึ่งปฏิกิริยาออกซิเดชัน (ตัวรีดิวซ์ให้อิเล็กตรอน เลขออกซิเดชันเพิ่ม) และครึ่งปฏิกิริยารีดักชัน (ตัวออกซิไดส์รับอิเล็กตรอน เลขออกซิเดชันลด)</li>
+ <li>ดุลสมการรีดอกซ์ได้ด้วยวิธีเลขออกซิเดชันหรือวิธีครึ่งปฏิกิริยา</li>
+ <li>ความสามารถเป็นตัวรีดิวซ์/ตัวออกซิไดส์เรียงได้ตามตาราง 11.2 และค่า E° ในตาราง 11.3</li>
+ <li>เซลล์เคมีไฟฟ้าประกอบด้วยขั้วไฟฟ้าและอิเล็กโทรไลต์ ต่อครึ่งเซลล์ด้วยสะพานเกลือหรือเยื่อ ขั้วที่เกิดออกซิเดชันคือแอโนด ขั้วที่เกิดรีดักชันคือแคโทด</li>
+ <li>E°<sub>cell</sub> เป็นบวก ปฏิกิริยาเกิดได้เอง (เซลล์กัลวานิก) เป็นลบ ต้องให้พลังงานไฟฟ้าจากภายนอก (เซลล์อิเล็กโทรลิติก)</li>
+ <li>การใช้ประโยชน์: แบตเตอรี่ ชุบโลหะ แยกสลายด้วยไฟฟ้า ทำโลหะให้บริสุทธิ์ ป้องกันการกัดกร่อน และเทคโนโลยีพลังงานที่เป็นมิตรต่อสิ่งแวดล้อม</li></ul></div>
+ <div class="box"><h3>สูตรและวิธีที่ใช้บ่อย</h3><ul>
+ <li>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> (E° เป็นของครึ่งปฏิกิริยารีดักชัน)</li>
+ <li>แผนภาพเซลล์: แอโนด(s)|ไอออน(aq) || ไอออน(aq)|แคโทด(s) (แอโนดซ้าย แคโทดขวา)</li>
+ <li>ชุบโลหะ: วัตถุที่จะชุบต่อขั้วลบ (แคโทด) โลหะที่ใช้ชุบต่อขั้วบวก (แอโนด) ไฟฟ้ากระแสตรง อิเล็กโทรไลต์มีไอออนของโลหะที่ชุบ</li>
+ <li>แยกสลายสารละลาย: แคโทด = ตัวที่รับอิเล็กตรอนง่ายที่สุด (E° สูงสุดรวมน้ำ −0.83 V) แอโนด = ตัวที่ให้อิเล็กตรอนง่ายที่สุด (E° ต่ำสุดรวมน้ำ +1.23 V)</li>
+ <li>ต้องใช้แหล่งไฟฟ้าที่มีอีเอ็มเอฟมากกว่า |E°<sub>cell</sub>| จึงจะเกิดปฏิกิริยาในเซลล์อิเล็กโทรลิติก</li></ul></div></div>
+ <div class="box"><h3>ศัพท์ที่ควรรู้ (จากภาคผนวกของหนังสือ)</h3>${glossHTML([['เคมีไฟฟ้า','electrochemistry'],['ตัวรีดิวซ์','reducing agent'],['ตัวออกซิไดส์','oxidizing agent'],['ครึ่งปฏิกิริยาออกซิเดชัน','oxidation half-reaction'],['ครึ่งปฏิกิริยารีดักชัน','reduction half-reaction'],['แคโทด','cathode'],['เซลล์กัลวานิก (เซลล์โวลตาอิก)','galvanic cell (voltaic cell)'],['เซลล์อิเล็กโทรลิติก','electrolytic cell'],['เซลล์เคมีไฟฟ้า','electrochemical cell'],['เซลล์ปฐมภูมิ','primary cell'],['เซลล์ทุติยภูมิ','secondary cell'],['ครึ่งเซลล์ไฮโดรเจนมาตรฐาน','standard hydrogen half cell'],['ขั้วไฟฟ้าไฮโดรเจนมาตรฐาน','standard hydrogen electrode'],['การชุบโลหะ','electroplating'],['การแยกสลายด้วยไฟฟ้า','electrolysis']])}</div>`;}
+const RES11={id:'11.6',ch:'ch11',title:'กิจกรรม 11.6 สืบค้นข้อมูลเทคโนโลยีที่เกี่ยวข้องกับเซลล์เคมีไฟฟ้า',page:'หนังสือหน้า 151',
+ goal:'สืบค้นข้อมูลและนำเสนอความก้าวหน้าทางเทคโนโลยีที่เกี่ยวข้องกับเซลล์เคมีไฟฟ้า',
+ steps:['สืบค้นข้อมูลความก้าวหน้าทางเทคโนโลยีที่เกี่ยวข้องกับเซลล์เคมีไฟฟ้าที่สอดคล้องกับการพัฒนาสารที่เกิดปฏิกิริยารีดอกซ์ ขั้วไฟฟ้า หรืออิเล็กโทรไลต์ที่สนใจมา 1 หัวข้อ','จัดทำโปสเตอร์นำเสนอข้อมูลที่สืบค้น ระบุว่าการพัฒนานั้นปรับเปลี่ยนองค์ประกอบใด มีผลอย่างไรต่ออุปกรณ์ เพราะเหตุใด แล้วนำไปติดแสดงในบริเวณที่กำหนด','วางแผนการทำงานกับสมาชิกในกลุ่ม (สลับบทบาททุก ๆ 5 นาที): บทบาทที่ 1 อยู่ประจำโปสเตอร์เพื่ออธิบายข้อมูลให้สมาชิกจากกลุ่มอื่น บทบาทที่ 2 ชมการนำเสนอของกลุ่มอื่นพร้อมแลกเปลี่ยนข้อมูล','ร่วมกันสรุปองค์ความรู้ที่ได้จากการทำกิจกรรม'],
+ topics:['แบตเตอรี่ลิเทียมไอออน','เซลล์เชื้อเพลิงไฮโดรเจน','การป้องกันการกัดกร่อนของโลหะ','การทำโลหะให้บริสุทธิ์ด้วยไฟฟ้า'],
+ fields:['หัวข้อเทคโนโลยีที่เลือก','การพัฒนานั้นปรับเปลี่ยนองค์ประกอบใด (สารที่เกิดรีดอกซ์ ขั้วไฟฟ้า หรืออิเล็กโทรไลต์) มีผลอย่างไรต่ออุปกรณ์ และเพราะเหตุใด','แหล่งอ้างอิงที่ใช้สืบค้น','สรุปองค์ความรู้ที่ได้จากการแลกเปลี่ยนในกลุ่ม (ไม่บังคับ)'],
+ check:['ระบุองค์ประกอบที่ปรับเปลี่ยน (สารรีดอกซ์ ขั้วไฟฟ้า หรืออิเล็กโทรไลต์)','อธิบายผลต่ออุปกรณ์พร้อมเหตุผล','ระบุแหล่งอ้างอิง','พร้อมสลับบทบาทอธิบายให้กลุ่มอื่น']};
+function act116(){return resHTML(RES11);}
+function wire116(){resWire(RES11);}
+Object.assign(TITLES,{'11.6':'สืบค้นเทคโนโลยี','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'});
+
 /* ======================= โครงหน้า ======================= */
-const BUILD={'11.1':[act111,wire111],'11.2':[act112,wire112],'11.3':[act113,wire113],'11.4':[act114,wire114],'11.5':[act115,wire115]};
+const BUILD={'11.6':[act116,wire116],'sum':[actSum,()=>{}],'ex':[actEx,wireEx],'11.1':[act111,wire111],'11.2':[act112,wire112],'11.3':[act113,wire113],'11.4':[act114,wire114],'11.5':[act115,wire115]};
 function paintTabs(refocus){
-  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${a} ${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
-  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%5,ArrowLeft:(cur+4)%5,Home:0,End:4}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
   if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
 }
-function paintProgress(){const n=ACTS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
 function select(i,refocus){
   cur=i;const a=ACTS[i];
   try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 11','เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)');}catch(_){}
@@ -669,7 +800,7 @@ function select(i,refocus){
   try{history.replaceState(null,'','#act-'+a);}catch(_){}
 }
 paintProgress();
-const h=(location.hash.match(/act-(11\.\d)/)||[])[1];
+const h=(location.hash.match(/act-(11\.\d|sum|ex)/)||[])[1];
 select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
 </script>
 <!-- wm:foot:start -->
