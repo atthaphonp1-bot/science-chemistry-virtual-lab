@@ -162,8 +162,6 @@
 
 </script>
 <!-- ls:end -->
-
-
 <style>
 :root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#e3e8f2;--soft:#f6f4fb;--acc:#7a4fb5;--acc2:#efe8f8;--blue:#1769e0;--ok:#157a55;--bad:#b63f43;--acc3:#b99ae0;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -230,6 +228,7 @@ textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;
 .lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
 .btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--acc)}
 sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 <!-- ap:start -->
@@ -270,7 +269,9 @@ button{touch-action:manipulation}
 
 /* โฟกัสด้วยคีย์บอร์ดชัดเจน */
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
-  outline:3px solid var(--ap-focus);outline-offset:3px;border-radius:12px}
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
 
 /* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
 input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
@@ -350,7 +351,7 @@ function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max)
 const KEY='chemistry-m5-ch10-v1';
 let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
-const ACTS=['10.1','10.2','10.3','10.4','10.5'];
+const ACTS=['10.1','10.2','10.3','10.4','10.5','10.6','sum','ex'];const LABS=ACTS.slice(0,5);
 const TITLES={'10.1':'ร้อยละการแตกตัวของกรดและเบส','10.2':'สมบัติกรด–เบสของสารละลายเกลือ','10.3':'ไทเทรตด้วยอินดิเคเตอร์','10.4':'หาความเข้มข้นของ HCl','10.5':'สารละลายบัฟเฟอร์'};
 let cur=0;
 
@@ -714,14 +715,134 @@ function wire105(){
   draw();wireQuiz('10.5');
 }
 
+
+/* ======================= เครื่องตรวจแบบฝึกหัดท้ายบท (ช่องตัวเลข/ตัวเลือกตรวจอัตโนมัติ ช่องเขียนส่งครู) ======================= */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อย) ช่องเขียนส่งให้ครูตรวจ</p>`+
+  list.map((q,i)=>`<div class="q"><p>${i+1}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}">${q.s}</div></div>`).join('')+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;
+    auto.forEach(([i,j,p])=>{
+      const mk=$('#mk_'+i+'_'+j);let ok=false,has=false;
+      if(p.t==='num'){const raw=$('#ex_'+i+'_'+j).value.trim();has=raw!=='';const v=parseFloat(raw);
+        ok=has&&Number.isFinite(v)&&Math.abs(v-p.a)<=(p.abs!==undefined?p.abs:Math.abs(p.a)*(p.rel||0.05));}
+      else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+      if(has)answered++;if(ok)got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน'+(answered<auto.length?' (ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก)':'');
+    ls('ท้ายบท',got,auto.length);
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+/* ======================= แบบฟอร์มสืบค้น (กิจกรรม X.6: ไม่มีคะแนน ส่งเป็นข้อเขียน) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (ตามหนังสือ)</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่งด้านล่างหน้า ตัวอย่างหัวข้อเป็นข้อเสนอของผู้จัดทำหน้า เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจโปสเตอร์ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m5-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+
+const M_HCOOH=46.03,M_NH3=17.03,M_AC=60.05;
+function ex10(){
+  const c1=23/M_HCOOH/10,x1=3.0e-3;
+  const c2=4.3/M_NH3/0.250,x2=4.2e-3;
+  const xb=weakIon(5.75e-5,0.20).x,pHb=-Math.log10(xb);
+  const xp=weakIon(7.41e-10,0.20).x,pOHp=-Math.log10(xp);
+  const x4=Math.pow(10,-2.45),C4=x4*x4/1.80e-5+x4;
+  const n6=(25.00*0.10-20.00*0.10)/45.00,pH6=14+Math.log10(n6);
+  const sal=['กรด','เบส','กลาง'];
+  return {c1,x1,c2,x2,pHb,pOHb:14-pHb,pHp:14-pOHp,pOHp,wv:C4*M_AC/10,C4,pH6,sal};
+}
+const E10=ex10();
+const EX10=[
+ {t:'ระบุความแตกต่างของนิยามกรดและเบสตามทฤษฎีกรด–เบสอาร์เรเนียส ทฤษฎีกรด–เบสเบรินสเตด–ลาวรี และทฤษฎีกรด–เบสลิวอิส',p:[{t:'text',l:'คำตอบข้อ 1 (เขียนอธิบาย)'}],
+  s:'<b>แนวคำตอบ:</b> อาร์เรเนียส: กรดให้ H⁺ (H₃O⁺) ในน้ำ เบสให้ OH⁻ · เบรินสเตด–ลาวรี: กรดให้โปรตอน เบสรับโปรตอน · ลิวอิส: กรดรับคู่อิเล็กตรอน เบสให้คู่อิเล็กตรอน (ข้อนี้ไม่ตรวจอัตโนมัติ ครูตรวจจากข้อเขียน)'},
+ {t:'กรดฟอร์มิก (HCOOH) 23 กรัม ละลายอยู่ในสารละลายปริมาตร 10 ลิตร และที่สมดุลมีความเข้มข้นของไฮโดรเนียมไอออน (H₃O⁺) 3.0 × 10⁻³ โมลต่อลิตร จงคำนวณร้อยละการแตกตัวและค่าคงที่การแตกตัว (ข้อ 2.1)',
+  p:[{t:'num',l:'ร้อยละการแตกตัว',u:'%',a:E10.x1/E10.c1*100,rel:.05},{t:'num',l:'K<sub>a</sub> (ตอบเฉพาะเลขหน้า)',u:'× 10⁻⁴',a:1.86,rel:.07}],
+  s:`M(HCOOH) = 46.03 g/mol → n = 23/46.03 = 0.4997 mol → C = 0.4997/10 = ${E10.c1.toFixed(4)} mol/L · ร้อยละการแตกตัว = 3.0×10⁻³/${E10.c1.toFixed(4)} × 100 = <b>${(E10.x1/E10.c1*100).toFixed(2)}</b> · K<sub>a</sub> = x²/(C − x) = (3.0×10⁻³)²/(${E10.c1.toFixed(4)} − 0.0030) = <b>1.9 × 10⁻⁴</b> (ถ้าประมาณ C − x ≈ C ได้ 1.8 × 10⁻⁴ รับได้ทั้งสองวิธี)`},
+ {t:'แก๊สแอมโมเนีย (NH₃) 4.3 กรัม ละลายในน้ำได้สารละลายปริมาตร 250 มิลลิลิตร และที่สมดุลมีความเข้มข้นของไฮดรอกไซด์ไอออน (OH⁻) 4.2 × 10⁻³ โมลต่อลิตร จงคำนวณร้อยละการแตกตัวและค่าคงที่การแตกตัว (ข้อ 2.2)',
+  p:[{t:'num',l:'ร้อยละการแตกตัว',u:'%',a:E10.x2/E10.c2*100,rel:.06},{t:'num',l:'K<sub>b</sub> (ตอบเฉพาะเลขหน้า)',u:'× 10⁻⁵',a:1.75,rel:.06}],
+  s:`M(NH₃) = 17.03 g/mol → n = 4.3/17.03 = 0.2525 mol → C = 0.2525/0.250 = ${E10.c2.toFixed(3)} mol/L · ร้อยละการแตกตัว = 4.2×10⁻³/${E10.c2.toFixed(3)} × 100 = <b>${(E10.x2/E10.c2*100).toFixed(2)}</b> · K<sub>b</sub> = (4.2×10⁻³)²/(${E10.c2.toFixed(3)} − 0.0042) = <b>1.75 × 10⁻⁵</b> (ใกล้ค่า 1.80 × 10⁻⁵ ในตาราง 10.3)`},
+ {t:'คำนวณ pH และ pOH ของสารละลายกรดเบนโซอิก (C₆H₅COOH, K<sub>a</sub> = 5.75 × 10⁻⁵ จากตาราง 10.2) และสารละลายฟีนิลเอมีน (C₆H₅NH₂, K<sub>b</sub> = 7.41 × 10⁻¹⁰ จากตาราง 10.3) เข้มข้นชนิดละ 0.20 โมลต่อลิตร',
+  p:[{t:'num',l:'pH ของกรดเบนโซอิก',a:E10.pHb,abs:.03},{t:'num',l:'pOH ของกรดเบนโซอิก',a:E10.pOHb,abs:.03},{t:'num',l:'pH ของฟีนิลเอมีน',a:E10.pHp,abs:.03},{t:'num',l:'pOH ของฟีนิลเอมีน',a:E10.pOHp,abs:.03}],
+  s:`กรดเบนโซอิก: C/K<sub>a</sub> = 0.20/5.75×10⁻⁵ > 1000 จึง [H₃O⁺] = √(K<sub>a</sub>C) = √(5.75×10⁻⁵ × 0.20) = 3.39×10⁻³ mol/L → pH = <b>${E10.pHb.toFixed(2)}</b>, pOH = 14.00 − ${E10.pHb.toFixed(2)} = <b>${E10.pOHb.toFixed(2)}</b> ([OH⁻] = 2.9×10⁻¹² mol/L) · ฟีนิลเอมีน: [OH⁻] = √(K<sub>b</sub>C) = √(7.41×10⁻¹⁰ × 0.20) = 1.22×10⁻⁵ mol/L → pOH = <b>${E10.pOHp.toFixed(2)}</b>, pH = <b>${E10.pHp.toFixed(2)}</b> ([H₃O⁺] = 8.2×10⁻¹⁰ mol/L)`},
+ {t:'น้ำส้มสายชูเป็นสารละลายของกรดแอซีติกในน้ำ มี pH 2.45 จงหาร้อยละโดยมวลต่อปริมาตรของกรดแอซีติกในน้ำส้มสายชู (K<sub>a</sub> = 1.80 × 10⁻⁵, M = 60.05 g/mol)',
+  p:[{t:'num',l:'ร้อยละโดยมวลต่อปริมาตร',u:'% (w/v)',a:E10.wv,rel:.04}],
+  s:`[H₃O⁺] = 10<sup>−2.45</sup> = 3.55×10⁻³ mol/L · K<sub>a</sub> = x²/(C − x) → C = x²/K<sub>a</sub> + x = (3.55×10⁻³)²/1.80×10⁻⁵ + 0.0035 = ${E10.C4.toFixed(3)} mol/L · มวล = ${E10.C4.toFixed(3)} × 60.05 = ${(E10.C4*M_AC).toFixed(1)} g ต่อลิตร = <b>${E10.wv.toFixed(2)} g ต่อ 100 mL</b>`},
+ {t:'สารประกอบประเภทเกลือต่อไปนี้ เมื่อนำมาละลายน้ำ สารละลายจะมีสมบัติเป็นกรด เป็นเบส หรือเป็นกลาง',
+  p:[['CaCl₂',2],['K₂CO₃',1],['LiCN',1],['NH₄NO₃',0],['(NH₄)₃PO₄',1]].map(([n,a])=>({t:'mcq',l:n,o:E10.sal,a})),
+  s:'CaCl₂: Ca²⁺ และ Cl⁻ ไม่ไฮโดรลิซิส → กลาง · K₂CO₃: CO₃²⁻ เป็นคู่เบสของกรดอ่อน (K<sub>b</sub> = 2.14×10⁻⁴) → เบส · LiCN: CN⁻ เป็นคู่เบสของกรดอ่อน HCN → เบส · NH₄NO₃: NH₄⁺ ให้โปรตอน (K<sub>a</sub> = 5.56×10⁻¹⁰) ส่วน NO₃⁻ ไม่ทำปฏิกิริยา → กรด · (NH₄)₃PO₄: PO₄³⁻ มี K<sub>b</sub> = 2.09×10⁻² มากกว่า K<sub>a</sub> ของ NH₄⁺ (5.56×10⁻¹⁰) มาก → เบส'},
+ {t:'เติมสารละลายโซเดียมไฮดรอกไซด์ (NaOH) 0.10 โมลต่อลิตร ปริมาตร 25.00 มิลลิลิตร ลงในสารละลายกรดไฮโดรคลอริก (HCl) 0.10 โมลต่อลิตร ปริมาตร 20.00 มิลลิลิตร สารละลายที่ได้จะมี pH เท่าใด',
+  p:[{t:'num',l:'pH ของสารละลายผสม',a:E10.pH6,abs:.03}],
+  s:`n(OH⁻) = 0.10×25.00 = 2.50 mmol, n(H⁺) = 0.10×20.00 = 2.00 mmol → OH⁻ เหลือ 0.50 mmol ในปริมาตร 45.00 mL → [OH⁻] = ${(0.5/45).toFixed(4)} mol/L → pOH = ${(-Math.log10(0.5/45)).toFixed(2)} → pH = 14.00 − ${(-Math.log10(0.5/45)).toFixed(2)} = <b>${E10.pH6.toFixed(2)}</b>`}
+];
+function actEx(){return exHTML(EX10,'หนังสือหน้า 75','แบบฝึกหัดท้ายบท 10');}
+function wireEx(){exWire(EX10);}
+function actSum(){return `<h2>สรุปเนื้อหาบท 10 กรด–เบส</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงสรุปท้ายบท (หน้า 74) และเนื้อหาในบท ไม่ใช่ข้อความต้นฉบับ</p>
+ <div class="cols"><div class="box"><h3>แนวคิดหลัก</h3><ul>
+ <li>นิยามกรด–เบสมี 3 ทฤษฎี คือ อาร์เรเนียส เบรินสเตด–ลาวรี และลิวอิส คู่กรด–เบสพิจารณาด้วยทฤษฎีเบรินสเตด–ลาวรี</li>
+ <li>กรดแก่และเบสแก่ถือว่าแตกตัวสมบูรณ์ กรดอ่อนและเบสอ่อนแตกตัวบางส่วน เปรียบเทียบด้วย K<sub>a</sub>, K<sub>b</sub> หรือร้อยละการแตกตัว K<sub>a</sub> และ K<sub>b</sub> ไม่ขึ้นกับความเข้มข้น แต่ร้อยละการแตกตัวลดลงเมื่อความเข้มข้นเพิ่ม</li>
+ <li>เกลือบางชนิดเกิดไฮโดรลิซิสแล้วให้สารละลายเป็นกรดหรือเบส ตัดสินจาก K<sub>a</sub> เทียบกับ K<sub>b</sub> ของไอออน</li>
+ <li>ปฏิกิริยาสะเทินคือกรดกับเบสทำปฏิกิริยาพอดีกัน จุดที่ทำปฏิกิริยาพอดีคือจุดสมมูล จุดที่อินดิเคเตอร์เปลี่ยนสีคือจุดยุติ ซึ่งควรอยู่ใกล้จุดสมมูล</li>
+ <li>จุดสมมูล: กรดแก่–เบสแก่ pH = 7 · กรดอ่อน–เบสแก่ pH &gt; 7 · กรดแก่–เบสอ่อน pH &lt; 7 กรดอ่อน–เบสอ่อนไม่นิยมนำมาไทเทรต</li>
+ <li>สารละลายบัฟเฟอร์ประกอบด้วยคู่กรด–เบสที่ควบคุม pH ไม่ให้เปลี่ยนมากเมื่อเติมกรด เบส หรือน้ำเล็กน้อย</li></ul></div>
+ <div class="box"><h3>สูตรที่ใช้บ่อย</h3><ul>
+ <li>pH = −log[H₃O⁺] · pOH = −log[OH⁻]</li><li>pH + pOH = 14.00 (25 °C)</li><li>K<sub>w</sub> = [H₃O⁺][OH⁻] = 1.0 × 10⁻¹⁴ (25 °C)</li><li>K<sub>a</sub> × K<sub>b</sub> = K<sub>w</sub> (ของคู่กรด–เบส)</li>
+ <li>ร้อยละการแตกตัว = (x / C) × 100 · K = x²/(C − x) ถ้า C/K &gt; 1000 ใช้ x = √(KC)</li>
+ <li>ไทเทรตอัตราส่วน 1 : 1 → C<sub>กรด</sub>V<sub>กรด</sub> = C<sub>เบส</sub>V<sub>เบส</sub></li>
+ <li>บัฟเฟอร์: pH = pK<sub>a</sub> − log([HA]/[A⁻]) อัตราส่วนควรอยู่ระหว่าง 0.1–10</li></ul></div></div>
+ <div class="box"><h3>ศัพท์ที่ควรรู้ (จากภาคผนวกของหนังสือ)</h3>${glossHTML([['การไทเทรต','titration'],['กราฟการไทเทรต','titration curve'],['จุดสมมูล','equivalent point'],['จุดยุติ','end point'],['ค่าคงที่การแตกตัวของกรด','acid ionization constant'],['ค่าคงที่การแตกตัวของเบส','base ionization constant'],['ค่าคงที่การแตกตัวของน้ำ','water dissociation constant'],['คู่กรด–เบส','conjugate acid–base pairs'],['ทฤษฎีกรด–เบสเบรินสเตด–ลาวรี','Brønsted–Lowry theory']])}</div>`;}
+const RES10={id:'10.6',ch:'ch10',title:'กิจกรรม 10.6 สืบค้นข้อมูลการประยุกต์ใช้ความรู้เกี่ยวกับกรด–เบส',page:'หนังสือหน้า 73',
+ goal:'สืบค้นข้อมูลและนำเสนอตัวอย่างการนำความรู้เกี่ยวกับกรด–เบสไปใช้ประโยชน์หรือแก้ปัญหาในชีวิตประจำวัน',
+ steps:['สืบค้นข้อมูลการนำความรู้เกี่ยวกับกรด–เบสไปใช้ประโยชน์หรือแก้ปัญหาในชีวิตประจำวัน','นำเสนอข้อมูล และอภิปรายเพื่อแลกเปลี่ยนความรู้ในห้องเรียน'],
+ topics:['สารละลายบัฟเฟอร์ในร่างกายและผลิตภัณฑ์','ยาลดกรดและกรดในกระเพาะอาหาร','การไทเทรตวิเคราะห์ปริมาณกรดในอาหาร','การปรับ pH ของดินและน้ำ'],
+ fields:['หัวข้อที่เลือก','การนำความรู้กรด–เบสไปใช้ประโยชน์หรือแก้ปัญหา (อธิบายหลักการที่เกี่ยวข้อง เช่น pH บัฟเฟอร์ การสะเทิน)','แหล่งอ้างอิงที่ใช้สืบค้น','สรุปองค์ความรู้ที่ได้จากการแลกเปลี่ยนในห้องเรียน (ไม่บังคับ)'],
+ check:['ระบุหัวข้อและหลักการกรด–เบสที่เกี่ยวข้องชัดเจน','มีตัวอย่างในชีวิตประจำวันอย่างน้อย 1 ตัวอย่าง','ระบุแหล่งอ้างอิง','พร้อมอธิบายให้เพื่อนในกลุ่มอื่นฟัง']};
+function act106(){return resHTML(RES10);}
+function wire106(){resWire(RES10);}
+Object.assign(TITLES,{'10.6':'สืบค้นการประยุกต์ใช้','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'});
+
 /* ======================= โครงหน้า ======================= */
-const BUILD={'10.1':[act101,wire101],'10.2':[act102,wire102],'10.3':[act103,wire103],'10.4':[act104,wire104],'10.5':[act105,wire105]};
+const BUILD={'10.6':[act106,wire106],'sum':[actSum,()=>{}],'ex':[actEx,wireEx],'10.1':[act101,wire101],'10.2':[act102,wire102],'10.3':[act103,wire103],'10.4':[act104,wire104],'10.5':[act105,wire105]};
 function paintTabs(refocus){
-  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${a} ${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
-  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%5,ArrowLeft:(cur+4)%5,Home:0,End:4}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
   if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
 }
-function paintProgress(){const n=ACTS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
 function select(i,refocus){
   cur=i;const a=ACTS[i];
   try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 10','เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)');}catch(_){}
@@ -732,7 +853,7 @@ function select(i,refocus){
   try{history.replaceState(null,'','#act-'+a);}catch(_){}
 }
 paintProgress();
-const h=(location.hash.match(/act-(10\.\d)/)||[])[1];
+const h=(location.hash.match(/act-(10\.\d|sum|ex)/)||[])[1];
 select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
 </script>
 <!-- wm:foot:start -->

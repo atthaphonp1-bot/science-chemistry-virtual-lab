@@ -70,7 +70,7 @@ WM_FOOT = f'<!-- wm:foot:start -->\n<footer class="site-credit">{CREDIT}</footer
 def strip(s):
     for tag in ("og", "wm:css", "wm:foot", "ls", "ap"):
         s = re.sub(rf"<!-- {tag}:start -->.*?<!-- {tag}:end -->\n?", "", s, flags=re.S)
-    return s
+    return re.sub(r"(</title>)\n+", r"\1", s, count=1)   # ไม่ให้บรรทัดว่างสะสมทุกครั้งที่รัน
 
 
 for f in sorted(glob.glob("sci-m1-v2*.html")):
