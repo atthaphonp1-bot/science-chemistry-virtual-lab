@@ -34,6 +34,13 @@ WM_CSS = (
     "@media print{body::after{opacity:.12}}"
     "</style>\n<!-- wm:css:end -->\n"
 )
+M5_TITLES = {
+    "7": "เคมี ม.5 เล่ม 3 บทที่ 7 แก๊สและสมบัติของแก๊ส (กิจกรรม 7.1–7.5)",
+    "8": "เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (กิจกรรม 8.1–8.5)",
+    "9": "เคมี ม.5 เล่ม 3 บทที่ 9 สมดุลเคมี (กิจกรรม 9.1–9.5)",
+    "10": "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)",
+    "11": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)",
+}
 CHEM_LAB_ID = "เคมี ม.4 ปฏิบัติการเบื้องต้น"
 CFG = json.load(open("tools/submit_config.json", encoding="utf8"))
 MODULE = open("tools/submit_module.js", encoding="utf8").read()
@@ -45,10 +52,10 @@ def submit_block(f, title):
     if base == "chemistry-m4.html":      # หลายบทในไฟล์เดียว: หน้าเรียก LabScore.use(id, title) เองเมื่อเปลี่ยนบท
         cfg = json.dumps({"id": "", "title": "", "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
-    if base in ("chemistry-m5-ch10.html", "chemistry-m5-ch11.html"):    # หน้าเดียวรวมกิจกรรมของบท ส่งคะแนนรวมภายใต้รหัสเดียว (หน้าเรียก LabScore.use ซ้ำเอง)
-        ch = "10" if base.endswith("ch10.html") else "11"
-        ttl = {"10": "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)", "11": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)"}[ch]
-        cfg = json.dumps({"id": "เคมี ม.5 บทที่ " + ch, "title": ttl, "url": CFG.get("url", "")}, ensure_ascii=False)
+    mm = re.match(r"chemistry-m5-ch(\d+)\.html$", base)
+    if mm and mm.group(1) in M5_TITLES:    # หน้าเดียวรวมกิจกรรมของบท ส่งคะแนนรวมภายใต้รหัสของบท
+        ch = mm.group(1)
+        cfg = json.dumps({"id": "เคมี ม.5 บทที่ " + ch, "title": M5_TITLES[ch], "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     if base == "chemistry-m4-lab.html":
         cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)

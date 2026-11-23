@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.5 เล่ม 3 บทที่ 9 สมดุลเคมี · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.5 บทที่ 9", "title": "เคมี ม.5 เล่ม 3 บทที่ 9 สมดุลเคมี (กิจกรรม 9.1–9.5)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#dde6f3;--soft:#f3f7fd;--acc:#1f5fbf;--acc2:#e6effb;--ok:#157a55;--bad:#b63f43;--acc3:#7fa9e4;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #edf1f8;border-radius:30px;background:linear-gradient(130deg,#fff,#f3f7fd);box-shadow:0 28px 65px #31508012;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #ecdca8;background:#fffaf0;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#6b5619;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12,0 3px 10px #28416e08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #c4d6f1;border-radius:22px;padding:16px;background:linear-gradient(160deg,#f3f7fd,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #a9c3ea;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#17458a;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--acc)}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⇌</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 5 · BOOK 3 · CHAPTER 9</div>
+<h1>สมดุลเคมี: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 9.1–9.5 ตามหนังสือเรียนเคมี ม.5 เล่ม 3 ของ สสวท. ตั้งแต่การเปลี่ยนแปลงที่ผันกลับได้ การเข้าสู่สมดุล ค่าคงที่สมดุล จนถึงผลของความเข้มข้น ความดัน และอุณหภูมิตามหลักของเลอชาเตอลิเอ แล้วตอบคำถามและทำแบบทดสอบสั้น ส่วนกิจกรรม 9.6 เป็นงานสืบค้นข้อมูล</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 5 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ตัวเลขในกิจกรรมที่หนังสือมีข้อมูล (9.1, 9.3, ตัวอย่างการคำนวณ) ตรงกับตัวอย่างผลในหนังสือ ส่วนสีและความเร็วในการเปลี่ยนแปลงเป็นภาพประกอบเชิงคุณภาพหรือค่าสมมติของแบบจำลอง ซึ่งระบุไว้ในแต่ละกิจกรรม<br>
+<b>ข้อควรระวังทั่วไปเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในหนังสือทั้งหมด): สวมแว่นตานิรภัยและถุงมือ กรดไนทริกเข้มข้นกัดกร่อนและแก๊ส NO₂ เป็นอันตราย ต้องทำในที่อากาศถ่ายเทหรือในตู้ดูดควัน K₃Fe(CN)₆ ห้ามให้ความร้อนหรือใส่กรดแก่เพราะเกิด HCN เป็นพิษ และทิ้งสารตามที่ครูกำหนด</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 9"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: หนังสือเรียนรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 5 เล่ม 3 บทที่ 9 สมดุลเคมี (สสวท.) ตัวเลขและตัวอย่างผลอ้างอิงจากคู่มือครูเล่มเดียวกันซึ่งรวมหน้าหนังสือเรียน เลขหน้าที่แสดงเป็นเลขหน้าของคู่มือครู: กิจกรรม 9.1 หน้า 129–131 · 9.2 หน้า 132–137 · 9.3 หน้า 138–139 · 9.4 หน้า 159–162 · 9.5 หน้า 168–171 · 9.6 หน้า 179–180 · แบบฝึกหัดท้ายบท หน้า 183–200 · ค่า K ของ N₂O₄ ⇌ 2NO₂ จากตารางในข้อ "ตรวจสอบความเข้าใจ" หน้า 171</footer>
+</div>
+<script>
+'use strict';
+/* ======================= แบบจำลอง (ฟังก์ชันบริสุทธิ์) ======================= */
+/* model:start */
+/* ICE: nu = เลขสัมประสิทธิ์มีเครื่องหมาย (สารตั้งต้นติดลบ) เฉพาะสารที่อยู่ในนิพจน์ K (ไม่รวมของแข็ง/ของเหลวบริสุทธิ์), c0 = ความเข้มข้นเริ่มต้น mol/L
+   หา x ที่ทำให้ Q = K ด้วยการแบ่งครึ่งช่วงบน ln Q (Q เพิ่มตาม x) */
+function solveExtent(nu,K,c0){
+  const n=nu.length;let lo=-Infinity,hi=Infinity;
+  for(let i=0;i<n;i++){if(nu[i]>0)lo=Math.max(lo,-c0[i]/nu[i]);else hi=Math.min(hi,c0[i]/-nu[i]);}
+  if(!(lo<hi))return{x:0,c:c0.slice(),degenerate:true};
+  const lq=x=>{let s=0;for(let i=0;i<n;i++){const c=c0[i]+nu[i]*x;if(c<=0)return nu[i]>0?-Infinity:Infinity;s+=nu[i]*Math.log(c);}return s;};
+  const lk=Math.log(K);let x;
+  const q0=lq(0);
+  if(Number.isFinite(q0)&&Math.abs(q0-lk)<=1e-12*Math.max(1,Math.abs(lk)))x=0;
+  else{
+    for(let it=0;it<400;it++){x=(lo+hi)/2;const v=lq(x);if(v<lk)lo=x;else hi=x;if(hi-lo<=1e-16*Math.max(1,Math.abs(x)))break;}
+    x=(lo+hi)/2;
+  }
+  return{x,c:c0.map((c,i)=>Math.max(0,c+nu[i]*x))};
+}
+function kOf(nu,c){let k=1;for(let i=0;i<nu.length;i++)k*=Math.pow(c[i],nu[i]);return k;}
+/* กิจกรรม 9.1: ย้ายลวดเสียบกระดาษพร้อมกันทั้งสองกลุ่ม A→B ครึ่งหนึ่งของ A, B→A หนึ่งในสี่ของ B ปัดครึ่งขึ้น
+   (กฎนี้ผู้จัดทำหน้าสรุปจากตารางตัวอย่างผลในหนังสือ ให้ตรงทุกแถวทั้งตอนที่ 1 และ 2) */
+const rnd=x=>Math.floor(x+0.5);
+function clipStep(A,B){const mA=rnd(A/2),mB=rnd(B/4);return{mA,mB,A:A-mA+mB,B:B+mA-mB};}
+function clipRun(A0,B0,n){const rows=[];let A=A0,B=B0;for(let i=0;i<n;i++){const s=clipStep(A,B);A=s.A;B=s.B;rows.push(s);}return rows;}
+/* กิจกรรม 9.3: 3X₂ + Y₂ ⇌ 2X₃Y  ระบบ 1 เริ่ม [X₂]=3.00 [Y₂]=1.00 ; ระบบ 2 เริ่ม [X₃Y]=2.00
+   ค่าที่สมดุลอ่านจากกราฟในหนังสือ (X₂ 1.5, Y₂ 0.5, X₃Y 1.0) ; รูปเส้นโค้งเป็นการประมาณแบบเอ็กซ์โพเนนเชียลให้ใกล้กราฟ (τ เป็นค่าสมมติของแบบจำลอง) */
+const TAU={1:1.44,2:1.5};
+function xy(sys,t){
+  const e=Math.exp(-t/TAU[sys]);
+  if(sys===1){const xi=0.5*(1-e);return{X2:3-3*xi,Y2:1-xi,X3Y:2*xi};}
+  const xi=-0.5*(1-e);return{X2:-3*xi,Y2:-xi,X3Y:2+2*xi};
+}
+const Q93=c=>c.X3Y*c.X3Y/(c.X2*c.X2*c.X2*c.Y2);
+const K93=1.0*1.0/(1.5*1.5*1.5*0.5);
+/* กิจกรรม 9.5: 2NO₂ ⇌ N₂O₄ ; K' = 1/K ของ N₂O₄ ⇌ 2NO₂ ตามตารางในหนังสือ (298 K: 4.0×10⁻², 400 K: 1.4, 500 K: 41)
+   ใช้ ln K' เชิงเส้นกับ 1/T ระหว่างจุดข้อมูล (นอกช่วงต่อเส้นตรงจากช่วงที่ใกล้ที่สุด) */
+const KT=[[298,1/0.040],[400,1/1.4],[500,1/41]];
+function kPrime(T){
+  const f=i=>Math.log(KT[i][1]);const inv=i=>1/KT[i][0];
+  let a=0;if(T>400)a=1;
+  const s=(f(a+1)-f(a))/(inv(a+1)-inv(a));
+  return Math.exp(f(a)+s*(1/T-inv(a)));
+}
+/* ท่อปิด: ไนโตรเจนรวม (หน่วย NO₂) = 0.100 + 2×0.250 = 0.600 mol/L (องค์ประกอบที่ 25 °C จากตัวอย่างในหนังสือ) */
+const NTOT=0.600;
+function tube(T){const K=kPrime(T);const a=2*K;const y=(-1+Math.sqrt(1+4*a*NTOT))/(2*a);return{K,no2:y,n2o4:K*y*y};}
+/* ความดัน/ปริมาตร: 2NO₂ ⇌ N₂O₄ K=25.0, เริ่มที่ [NO₂]=0.100 [N₂O₄]=0.250; เปลี่ยนปริมาตรเป็น f เท่า (ความเข้มข้นหารด้วย f) */
+function volShift(f){const r=solveExtent([-2,1],25.0,[0.100/f,0.250/f]);return{no2:r.c[0],n2o4:r.c[1],x:r.x};}
+/* แบบจำลองสีของน้ำดอกอัญชัน: สัดส่วนรูปสีแดง AH⁺ (ค่าสมมติเชิงคุณภาพ) */
+const PEA={start:0.50,water:0.38,hcl:0.72,naoh:0.12};
+/* model:end */
+
+/* ======================= ตัวช่วยทั่วไป ======================= */
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function mixc(c1,c2,t){const h=x=>[1,3,5].map(i=>parseInt(x.substr(i,2),16));const a=h(c1),b=h(c2);return'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+function sig(x,d){if(!isFinite(x))return'ไม่นิยาม';if(x===0)return'0';const a=Math.abs(x);if(a>=1e4||a<1e-3){const e=Math.floor(Math.log10(a));const m=x/Math.pow(10,e);return m.toFixed((d||3)-1)+' × 10<sup>'+String(e).replace('-','−')+'</sup>';}return String(+x.toPrecision(d||3));}
+const REDUCED=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* กราฟเส้น SVG: o={aria,xmax,ymax,xstep,ystep,xl,yl,series:[{n,c,pts,dash,dots}],vline} */
+function chart(o){
+  const W=o.w||540,H=o.h||280,L=52,R=16,T=14,B=46;
+  const X=x=>L+(W-L-R)*x/o.xmax,Y=y=>H-B-(H-T-B)*y/o.ymax;
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+o.aria+'"><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#fff"/>';
+  for(let y=0;y<=o.ymax+1e-9;y+=o.ystep)s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(y)+'" y2="'+Y(y)+'" stroke="#e3e9f3"/><text x="'+(L-6)+'" y="'+(Y(y)+4)+'" text-anchor="end" font-size="11" fill="#5d6b82">'+(+y.toFixed(2))+'</text>';
+  for(let x=0;x<=o.xmax+1e-9;x+=o.xstep)s+='<line x1="'+X(x)+'" x2="'+X(x)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#eef2f9"/><text x="'+X(x)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11" fill="#5d6b82">'+x+'</text>';
+  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+(H-B)+'" y2="'+(H-B)+'" stroke="#8a93a8"/><line x1="'+L+'" x2="'+L+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#8a93a8"/>';
+  s+='<text x="'+((L+W-R)/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="12" fill="#33415c">'+o.xl+'</text><text transform="translate(13 '+((T+H-B)/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="#33415c">'+o.yl+'</text>';
+  if(o.vline!==undefined&&o.vline!==null)s+='<line x1="'+X(o.vline)+'" x2="'+X(o.vline)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#b63f43" stroke-dasharray="4 4"/>';
+  (o.series||[]).forEach((se,k)=>{
+    if(!se.pts.length)return;
+    s+='<polyline fill="none" stroke="'+se.c+'" stroke-width="2.4" '+(se.dash?'stroke-dasharray="6 4" ':'')+'points="'+se.pts.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ')+'"/>';
+    if(se.dots)se.pts.forEach(p=>{s+='<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3.4" fill="'+se.c+'"/>';});
+    s+='<rect x="'+(W-R-118)+'" y="'+(T+4+k*17-9)+'" width="12" height="3" fill="'+se.c+'"/><text x="'+(W-R-102)+'" y="'+(T+4+k*17)+'" font-size="11.5" fill="#33415c">'+se.n+'</text>';
+  });
+  return s+'</svg>';
+}
+function bars(o){ // แท่งเปรียบเทียบ o={aria,names,groups:[{n,c,v:[...]}],ymax}
+  const W=520,H=230,L=46,B=34,T=16,gw=(W-L-10)/o.names.length;
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+o.aria+'"><rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+  const Y=v=>H-B-(H-B-T)*v/o.ymax;
+  for(let i=0;i<=4;i++){const v=o.ymax*i/4;s+='<line x1="'+L+'" x2="'+(W-6)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#e3e9f3"/><text x="'+(L-5)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="11" fill="#5d6b82">'+(+v.toPrecision(2))+'</text>';}
+  o.names.forEach((nm,i)=>{
+    const bw=(gw-14)/o.groups.length;
+    o.groups.forEach((g,k)=>{const v=Math.min(o.ymax,g.v[i]);const x=L+i*gw+7+k*bw;s+='<rect x="'+x.toFixed(1)+'" y="'+Y(v).toFixed(1)+'" width="'+(bw-3).toFixed(1)+'" height="'+(H-B-Y(v)).toFixed(1)+'" fill="'+g.c+'"/><text x="'+(x+(bw-3)/2).toFixed(1)+'" y="'+(Y(v)-3).toFixed(1)+'" text-anchor="middle" font-size="10" fill="#33415c">'+(+g.v[i].toPrecision(3))+'</text>';});
+    s+='<text x="'+(L+i*gw+gw/2)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="12" fill="#33415c">'+nm+'</text>';
+  });
+  o.groups.forEach((g,k)=>{s+='<rect x="'+(L+k*110)+'" y="'+(H-12)+'" width="11" height="8" fill="'+g.c+'"/><text x="'+(L+k*110+15)+'" y="'+(H-4)+'" font-size="11" fill="#33415c">'+g.n+'</text>';});
+  return s+'</svg>';
+}
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m5-ch9-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['9.1','9.2','9.3','9.4','9.5','9.6','sum','ex'];const LABS=ACTS.slice(0,5);
+const TITLES={'9.1':'การเปลี่ยนแปลงที่ผันกลับได้','9.2':'ปฏิกิริยาของ Fe³⁺ กับ I⁻','9.3':'ความเข้มข้นกับเวลา และค่า K','9.4':'ผลของความเข้มข้นต่อสมดุล','9.5':'ผลของอุณหภูมิและความดัน','9.6':'สืบค้นสมดุลเคมีรอบตัว','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'};
+let cur=0;
+const KEYAB='ABCDEFGH';
+
+/* ======================= แบบทดสอบ ======================= */
+const QUIZ={
+'9.1':[
+ {q:'ในกิจกรรมตอนที่ 1 เมื่อย้ายลวดครบหลายครั้ง จำนวนลวดรวมของกลุ่ม A (13 อัน) และกลุ่ม B (27 อัน) คงที่ แต่ยังมีการย้ายกลุ่มละ 7 อันทุกครั้ง เรื่องนี้สอดคล้องกับข้อใด',o:['ที่สมดุลไม่มีการเปลี่ยนแปลงใด ๆ เกิดขึ้นแล้ว','ที่สมดุลมีการเปลี่ยนแปลงไปข้างหน้าและย้อนกลับต่อเนื่องด้วยอัตราเท่ากัน','ที่สมดุลสารตั้งต้นและผลิตภัณฑ์มีปริมาณเท่ากัน','ที่สมดุลมีเฉพาะการเปลี่ยนแปลงย้อนกลับ'],a:1,w:'สมดุลเป็นสมดุลพลวัต ปริมาณสารคงที่เพราะอัตราไปข้างหน้าเท่ากับอัตราย้อนกลับ ไม่ได้แปลว่าการเปลี่ยนแปลงหยุด และไม่ได้แปลว่าปริมาณสารสองฝั่งเท่ากัน (13 กับ 27)'},
+ {q:'ตอนที่ 2 เริ่มจาก A = 40 และ B = 0 แต่ตอนที่ 1 เริ่มจาก A = 30 และ B = 10 ผลสุดท้ายเป็นอย่างไร',o:['ต่างกันเพราะเริ่มต้นไม่เหมือนกัน','ตอนที่ 2 ไม่เข้าสู่สมดุลเพราะ B เริ่มจาก 0','ได้ A = 13 และ B = 27 เหมือนกัน','ได้ A = B = 20'],a:2,w:'ผลรวมเท่ากัน (40) และเงื่อนไขการย้ายเหมือนกัน ระบบจึงเข้าสู่สถานะเดียวกัน คือ A = 13 และ B = 27 ตรงกับตัวอย่างผลในหนังสือ'},
+ {q:'ถ้าตีความจำนวนลวดที่ย้ายจาก A ไป B เป็น "อัตราการเปลี่ยนแปลงไปข้างหน้า" การที่จำนวนที่ย้ายจาก A ไป B ลดลงตามครั้งที่ย้ายสะท้อนอะไร',o:['สารตั้งต้นลดลง อัตราไปข้างหน้าจึงลดลง','อัตราไปข้างหน้าลดลงเพราะอุณหภูมิลดลง','ผลิตภัณฑ์ถูกทำลายหมด','ปฏิกิริยาย้อนกลับหยุดไปแล้ว'],a:0,w:'จำนวนที่ย้ายขึ้นกับจำนวนลวดที่อยู่ในกลุ่มต้นทาง เมื่อ A ลดลง จำนวนที่ย้ายออกจาก A ก็ลดลง คล้ายอัตราปฏิกิริยาที่ลดลงเมื่อความเข้มข้นสารตั้งต้นลดลง'}],
+'9.2':[
+ {q:'จากผลตอนที่ 2 และ 3 ทั้งสองหลอดมีสารใดอยู่ด้วยกัน',o:['เฉพาะ Fe³⁺ และ I⁻','เฉพาะ Fe²⁺ และ I₂','Fe³⁺ Fe²⁺ I⁻ และ I₂ ครบทั้งสี่','ไม่มีสารใดเหลือ'],a:2,w:'ทั้งสี่การทดสอบ (NaOH, K₃Fe(CN)₆, AgNO₃ และน้ำแป้ง) ให้ผลบวกในหลอดผสมทั้งสอง แสดงว่ามีทั้งสารตั้งต้นและผลิตภัณฑ์อยู่พร้อมกัน'},
+ {q:'ปฏิกิริยา 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂ ในตอนที่ 2 กับปฏิกิริยา 2Fe²⁺ + I₂ → 2Fe³⁺ + 2I⁻ ในตอนที่ 3 สัมพันธ์กันอย่างไร',o:['เป็นปฏิกิริยาคนละชนิดที่ไม่เกี่ยวข้องกัน','เป็นปฏิกิริยาไปข้างหน้ากับปฏิกิริยาย้อนกลับของกันและกัน','ทั้งคู่ไม่มีทางเกิดขึ้นพร้อมกัน','เป็นปฏิกิริยาที่เกิดได้ทิศทางเดียวเท่านั้น'],a:1,w:'สารตั้งต้นของปฏิกิริยาหนึ่งเป็นผลิตภัณฑ์ของอีกปฏิกิริยาหนึ่ง จึงเขียนเป็นปฏิกิริยาผันกลับได้ 2Fe³⁺ + 2I⁻ ⇌ 2Fe²⁺ + I₂'},
+ {q:'เหตุผลหลักที่หนังสือสรุปว่า "น่าจะมีสมดุลเกิดขึ้น" ในหลอดผสมคือข้อใด',o:['สีของสารละลายเปลี่ยนไปเรื่อย ๆ ไม่หยุด','หลังผสมพบทั้งสารตั้งต้นและผลิตภัณฑ์ และเมื่อตั้งไว้สีไม่เปลี่ยน แสดงว่าความเข้มข้นคงที่','เกิดตะกอนสีน้ำตาลแดงทุกหลอด','สารละลายมีสีน้ำตาลแกมเหลือง'],a:1,w:'สมดุลดูจากสารทุกชนิดยังอยู่ครบ และความเข้มข้นคงที่ตามเวลา (สีไม่เปลี่ยน)'}],
+'9.3':[
+ {q:'ในระบบที่ 1 และ 2 ของกิจกรรม 3X₂ + Y₂ ⇌ 2X₃Y แม้เริ่มต้นต่างกัน (ระบบ 1 เริ่มจาก X₂ กับ Y₂ ระบบ 2 เริ่มจาก X₃Y) ที่สมดุลได้ความเข้มข้นเท่ากันเพราะอะไร',o:['เป็นเรื่องบังเอิญ','จำนวนอะตอมรวมเท่ากันและอุณหภูมิเท่ากัน จึงได้ภาวะสมดุลเดียวกัน','ระบบ 2 ไม่เกิดปฏิกิริยา','X₃Y เป็นตัวเร่งปฏิกิริยา'],a:1,w:'ปฏิกิริยาผันกลับได้ในระบบปิด เริ่มจากสารตั้งต้นหรือผลิตภัณฑ์ก็เข้าสู่สมดุลเดียวกันได้เมื่อสารรวมและอุณหภูมิเท่ากัน (ที่นี่ K ≈ 0.59 เท่ากันทั้งสองระบบ)'},
+ {q:'ในช่วงที่ Q < K ของปฏิกิริยาหนึ่ง ระบบจะเปลี่ยนไปทางใดเพื่อเข้าสู่สมดุล',o:['ไปข้างหน้า (ผลิตภัณฑ์เพิ่ม)','ย้อนกลับ (ผลิตภัณฑ์ลด)','ไม่เปลี่ยนแปลง','ขึ้นกับตัวเร่งปฏิกิริยา'],a:0,w:'Q น้อยกว่า K แปลว่ามีผลิตภัณฑ์น้อยกว่าที่สมดุล จึงต้องเกิดปฏิกิริยาไปข้างหน้ามากขึ้นจน Q เท่ากับ K (หัวข้อ Q ในหน้านี้เป็นส่วนเสริมของผู้จัดทำหน้า)'},
+ {q:'ปฏิกิริยา A + B ⇌ 2C มีค่า K สูงมาก ข้อใดสรุปได้ถูกต้อง',o:['ปฏิกิริยาเกิดเร็วมาก','ปฏิกิริยาเข้าสู่สมดุลภายในเวลาสั้น','ที่สมดุลมีผลิตภัณฑ์มากกว่าสารตั้งต้นมาก แต่ไม่บอกว่าเกิดเร็วหรือช้า','ที่สมดุลมีสารตั้งต้นมากกว่า'],a:2,w:'K คำนวณจากความเข้มข้นที่สมดุล จึงบอกปริมาณสัมพัทธ์ที่สมดุล ไม่บอกอัตราการเกิดปฏิกิริยาก่อนถึงสมดุล'}],
+'9.4':[
+ {q:'เติม HCl ลงในน้ำดอกอัญชันที่สมดุล สีเปลี่ยนจากม่วงเป็นม่วงแดง สรุปได้ว่าอย่างไร',o:['H₃O⁺ เพิ่มทำให้ AH⁺ (สีแดง) เพิ่ม และ A (สีน้ำเงิน) ลด','H₃O⁺ เพิ่มทำให้ A เพิ่ม','HCl เป็นตัวเร่งปฏิกิริยา','สีเปลี่ยนเพราะความเจือจาง'],a:0,w:'เพิ่ม H₃O⁺ ซึ่งเป็นสารตั้งต้นของปฏิกิริยาไปข้างหน้า (A + H₃O⁺ → AH⁺ + H₂O) สมดุลจึงเลื่อนไปทางผลิตภัณฑ์สีแดง'},
+ {q:'จากตัวอย่างการคำนวณ Fe³⁺ + SCN⁻ ⇌ [FeSCN]²⁺ เมื่อลด [Fe³⁺] จาก 0.200 เป็น 0.100 mol/L ที่สมดุลใหม่ [Fe³⁺] เป็นเท่าใด',o:['0.100 mol/L (ไม่เปลี่ยนจากหลังลด)','0.200 mol/L (กลับเท่าเดิม)','0.155 mol/L','0.0552 mol/L'],a:2,w:'ระบบเลื่อนย้อนกลับเพื่อชดเชย Fe³⁺ ที่ลดลง ความเข้มข้นใหม่จึงอยู่ระหว่าง 0.100 กับ 0.200 คือ 0.155 mol/L (K = 142 คงเดิม)'},
+ {q:'การเปลี่ยนความเข้มข้นของสารตัวใดตัวหนึ่งในระบบสมดุลมีผลต่อค่าคงที่สมดุลอย่างไร',o:['K เพิ่มเมื่อเพิ่มสารตั้งต้น','K ลดเมื่อเพิ่มผลิตภัณฑ์','ไม่มีผล K เปลี่ยนเฉพาะเมื่อเปลี่ยนอุณหภูมิ','K เปลี่ยนตามปริมาตรเสมอ'],a:2,w:'ที่อุณหภูมิหนึ่ง K คงที่ การเปลี่ยนความเข้มข้นทำให้ระบบเลื่อนไปทางใดทางหนึ่งแล้วกลับมามี Q = K เท่าเดิม'}],
+'9.5':[
+ {q:'จุ่มหลอดแก๊สผสม NO₂ และ N₂O₄ ในน้ำร้อน สีน้ำตาลแดงเข้มขึ้น ข้อใดอธิบายถูก',o:['เพิ่มอุณหภูมิทำให้เกิดปฏิกิริยาย้อนกลับมากขึ้น [NO₂] เพิ่ม','เพิ่มอุณหภูมิทำให้เกิดปฏิกิริยาไปข้างหน้ามากขึ้น','N₂O₄ ถูกทำลายหมด','แก๊สสลายตัวเป็นอะตอม'],a:0,w:'2NO₂ ⇌ N₂O₄ ปฏิกิริยาไปข้างหน้าคายพลังงาน เมื่อเพิ่มอุณหภูมิระบบเลื่อนไปทางดูดพลังงาน (ย้อนกลับ) NO₂ ซึ่งมีสีน้ำตาลแดงจึงเพิ่ม'},
+ {q:'ข้อมูล N₂(g) + 3H₂(g) ⇌ 2NH₃(g) ค่า K = 3.3×10⁸ (298 K), 3.9×10⁴ (400 K), 1.7×10² (500 K) ปฏิกิริยาไปข้างหน้าเป็นแบบใด',o:['ดูดพลังงาน เพราะ K ลดเมื่ออุณหภูมิเพิ่ม','คายพลังงาน เพราะ K ลดเมื่ออุณหภูมิเพิ่ม','ดูดพลังงาน เพราะ K เพิ่มเมื่ออุณหภูมิเพิ่ม','บอกไม่ได้'],a:1,w:'K ลดลงเมื่อเพิ่มอุณหภูมิ แสดงว่าเพิ่มอุณหภูมิแล้วผลิตภัณฑ์ที่สมดุลน้อยลง ปฏิกิริยาไปข้างหน้าจึงคายพลังงาน'},
+ {q:'ปฏิกิริยา CaCO₃(s) ⇌ CaO(s) + CO₂(g) ในภาชนะปิด เมื่อเพิ่มความดันโดยลดปริมาตร ที่สมดุลใหม่ [CO₂] เป็นอย่างไร',o:['มากกว่าเดิมมาก','น้อยกว่าเดิมมาก','เท่ากับเดิม เพราะ K = [CO₂] ไม่เปลี่ยน','เป็นศูนย์'],a:2,w:'K = [CO₂] ที่อุณหภูมิเดิม ระบบเลื่อนย้อนกลับจนความเข้มข้นของ CO₂ กลับมาเท่าเดิม (ปริมาณ CO₂ ลดลงแต่ปริมาตรก็ลดลง) ตามตัวอย่างในหนังสือ'}]
+};
+function quizHTML(act){
+  return'<div class="box" id="quiz-'+act.replace('.','_')+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+act.replace('.','_')+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act){
+  const root=$('#quiz-'+act.replace('.','_')),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(act+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.opt',root).forEach(o=>o.classList.remove('good','wrong'));$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>';}
+
+/* ======================= 9.1 ลวดเสียบกระดาษ ======================= */
+const BOOK91={
+ 1:{A0:30,B0:10,mA:[15,9,8,7,7],A:[18,15,13,13,13],mB:[3,6,6,7,7],B:[22,25,27,27,27]},
+ 2:{A0:40,B0:0,mA:[20,10,8,7,7],A:[20,15,13,13,13],mB:[0,5,6,7,7],B:[20,25,27,27,27]}};
+function act91(){
+  return`<h2>กิจกรรม 9.1 การเปลี่ยนแปลงที่ผันกลับได้</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 129–131</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>อธิบายการเปลี่ยนแปลงที่ผันกลับได้ของระบบ</li></ol></div>
+  <div class="box"><h3>วัสดุ (ตามหนังสือ)</h3>ลวดเสียบกระดาษ 40 อัน ต่อกลุ่ม (ใช้ลูกอมหรือเหรียญบาทแทนได้) ใช้ลวดแทนสาร A และ B ที่เปลี่ยนไปมาหากัน</div></div>
+  <div class="box"><h3>แนวทำกิจกรรม (สรุปจากตัวอย่างผลในหนังสือ)</h3><ol><li>แบ่งลวดเป็นสองกลุ่ม A และ B แล้วย้ายลวดจากทั้งสองกลุ่ม<b>พร้อมกัน</b>ในแต่ละครั้ง (หนังสือเน้นข้อนี้)</li><li>ตอนที่ 1 เริ่ม A = 30, B = 10 · ตอนที่ 2 เริ่ม A = 40, B = 0</li><li>ครั้งละหนึ่งรอบ บันทึกจำนวนที่ย้ายและจำนวนรวมของแต่ละกลุ่ม รวม 5 ครั้ง</li></ol><p class="small">รายละเอียดวิธีกำหนดจำนวนที่ย้ายในแต่ละครั้งอยู่ในหนังสือเรียน แบบจำลองนี้ใช้กฎที่ผู้จัดทำหน้าสรุปจากตัวอย่างผลของหนังสือ (ย้ายครึ่งหนึ่งของ A และหนึ่งในสี่ของ B ปัดครึ่งขึ้น) ซึ่งให้ตัวเลขตรงทุกแถวของตัวอย่างผลทั้งสองตอน</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ย้ายลวดเสียบกระดาษ</h3>
+   <div class="btns" role="group" aria-label="เลือกตอน"><button class="chip" type="button" id="p91_1" aria-pressed="true">ตอนที่ 1 (A 30 · B 10)</button><button class="chip" type="button" id="p91_2" aria-pressed="false">ตอนที่ 2 (A 40 · B 0)</button></div>
+   <div class="btns"><button class="btn sm" type="button" id="n91">ย้ายครั้งถัดไป</button><button class="btn alt sm" type="button" id="a91">ย้ายครบ 5 ครั้ง</button><button class="btn alt sm" type="button" id="r91">เริ่มใหม่</button></div>
+   <div class="fig"><svg viewBox="0 0 560 250" id="g91" role="img" aria-label="กลุ่ม A และกลุ่ม B ของลวดเสียบกระดาษ"></svg></div>
+   <div class="tip" id="obs91" aria-live="polite"></div>
+   <div class="tw"><table><thead><tr><th rowspan="2">ครั้งที่</th><th colspan="2">A</th><th colspan="2">B</th></tr><tr><th>ย้ายออก (อัน)</th><th>รวม (อัน)</th><th>ย้ายออก (อัน)</th><th>รวม (อัน)</th></tr></thead><tbody id="tb91"></tbody></table></div>
+   <div class="cols"><div class="fig" id="c91a"></div><div class="fig" id="c91b"></div></div>
+   <div class="res" id="m91" aria-live="polite"></div>
+  </div>
+  <div class="box"><h3>คำถามอภิปรายหลังกิจกรรม (จากแนวอภิปรายในหนังสือ)</h3>${written('w91_1','จำนวนลวดที่ย้ายจาก A ไป B และจาก B ไป A ในแต่ละครั้งมีแนวโน้มอย่างไร และตั้งแต่ครั้งใดที่จำนวนที่ย้ายสองทิศเท่ากัน')}${written('w91_2','ถ้าให้จำนวนลวดในกลุ่ม A และ B เป็นปริมาณสาร A และ B และจำนวนที่ย้ายเป็นอัตราการเปลี่ยนแปลงไปข้างหน้ากับย้อนกลับ จะสรุปเรื่องปริมาณสารที่คงที่ได้อย่างไร')}</div>
+  ${quizHTML('9.1')}`;
+}
+function wire91(){
+  const S={p:1,n:0};
+  const data=()=>{const b=BOOK91[S.p];return clipRun(b.A0,b.B0,5);};
+  function dots(x,n,col){let s='';for(let i=0;i<n;i++){const r=Math.floor(i/10),c=i%10;s+='<rect x="'+(x+c*15)+'" y="'+(70+r*24)+'" width="10" height="18" rx="4" fill="none" stroke="'+col+'" stroke-width="2.5"/>';}return s;}
+  function draw(){
+    const b=BOOK91[S.p],rows=data().slice(0,S.n);
+    const A=S.n?rows[S.n-1].A:b.A0,B=S.n?rows[S.n-1].B:b.B0,last=S.n?rows[S.n-1]:null;
+    let s='<rect x="20" y="40" width="170" height="130" rx="12" fill="#f3f7fd" stroke="#1f5fbf" stroke-width="2"/><rect x="370" y="40" width="170" height="130" rx="12" fill="#fff7ec" stroke="#d9811c" stroke-width="2"/>';
+    s+='<text x="105" y="32" text-anchor="middle" font-weight="700" fill="#1f5fbf">กลุ่ม A: '+A+' อัน</text><text x="455" y="32" text-anchor="middle" font-weight="700" fill="#b8650d">กลุ่ม B: '+B+' อัน</text>';
+    s+=dots(28,A,'#1f5fbf')+dots(378,B,'#d9811c');
+    if(last){s+='<text x="280" y="86" text-anchor="middle" font-size="13" fill="#1f5fbf">A → B ย้าย '+last.mA+' อัน</text><line x1="210" x2="350" y1="95" y2="95" stroke="#1f5fbf" stroke-width="3"/><polygon points="350,95 340,89 340,101" fill="#1f5fbf"/><text x="280" y="140" text-anchor="middle" font-size="13" fill="#b8650d">B → A ย้าย '+last.mB+' อัน</text><line x1="350" x2="210" y1="125" y2="125" stroke="#d9811c" stroke-width="3"/><polygon points="210,125 220,119 220,131" fill="#d9811c"/>';}
+    $('#g91').innerHTML=s+'<text x="280" y="215" text-anchor="middle" font-size="13" fill="#33415c">ครั้งที่ '+S.n+' จาก 5</text>';
+    $('#tb91').innerHTML='<tr><td>เริ่มต้น</td><td>-</td><td>'+b.A0+'</td><td>-</td><td>'+b.B0+'</td></tr>'+rows.map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+r.mA+'</td><td>'+r.A+'</td><td>'+r.mB+'</td><td>'+r.B+'</td></tr>').join('');
+    const pa=[[0,b.A0]].concat(rows.map((r,i)=>[i+1,r.A])),pb=[[0,b.B0]].concat(rows.map((r,i)=>[i+1,r.B]));
+    $('#c91a').innerHTML=chart({aria:'จำนวนลวดรวมในกลุ่ม A และ B ตามครั้งที่ย้าย',xmax:5,ymax:40,xstep:1,ystep:10,xl:'ครั้งที่ย้าย',yl:'จำนวนรวม (อัน)',h:240,series:[{n:'กลุ่ม A',c:'#1f5fbf',pts:pa,dots:1},{n:'กลุ่ม B',c:'#d9811c',pts:pb,dots:1}]});
+    $('#c91b').innerHTML=chart({aria:'จำนวนลวดที่ย้ายออกจาก A และ B ตามครั้งที่ย้าย',xmax:5,ymax:20,xstep:1,ystep:5,xl:'ครั้งที่ย้าย',yl:'ย้ายออก (อัน)',h:240,series:[{n:'A → B',c:'#1f5fbf',pts:rows.map((r,i)=>[i+1,r.mA]),dots:1},{n:'B → A',c:'#d9811c',pts:rows.map((r,i)=>[i+1,r.mB]),dots:1,dash:1}]});
+    let o='เลือกตอนแล้วกด "ย้ายครั้งถัดไป"';
+    if(last){o='ครั้งที่ '+S.n+': ย้าย A→B '+last.mA+' อัน และ B→A '+last.mB+' อัน '+(last.mA===last.mB?'<b>จำนวนที่ย้ายสองทิศเท่ากันแล้ว</b> ':'จำนวนที่ย้ายสองทิศยังไม่เท่ากัน ')+(S.n>1&&last.A===rows[S.n-2].A&&last.B===rows[S.n-2].B?'· จำนวนรวมของแต่ละกลุ่มคงที่ (สมดุลพลวัต)':'');}
+    $('#obs91').innerHTML=o;
+    const m=$('#m91');
+    if(S.n===5){const ok=rows.every((r,i)=>r.mA===b.mA[i]&&r.A===b.A[i]&&r.mB===b.mB[i]&&r.B===b.B[i]);m.className='res '+(ok?'ok':'bad');m.textContent=ok?'ตรงกับตารางตัวอย่างผลในหนังสือทุกแถว (ตอนที่ '+S.p+') · สรุป: A = '+A+', B = '+B+' คงที่ ทั้งที่ยังมีการย้ายทั้งสองทิศ':'ไม่ตรงกับตัวอย่างผลในหนังสือ';}
+    else{m.className='res';m.textContent='';}
+    $('#n91').disabled=S.n>=5;$('#a91').disabled=S.n>=5;
+  }
+  const pick=p=>{S.p=p;S.n=0;$('#p91_1').setAttribute('aria-pressed',String(p===1));$('#p91_2').setAttribute('aria-pressed',String(p===2));draw();};
+  $('#p91_1').onclick=()=>pick(1);$('#p91_2').onclick=()=>pick(2);
+  $('#n91').onclick=()=>{if(S.n<5){S.n++;draw();}};$('#a91').onclick=()=>{S.n=5;draw();};$('#r91').onclick=()=>{S.n=0;draw();};
+  draw();wireQuiz('9.1');
+}
+
+/* ======================= 9.2 ปฏิกิริยาของ Fe³⁺ และ Fe²⁺ ======================= */
+const FE_R=[{k:'A',n:'NaOH',f:'ทดสอบ Fe³⁺'},{k:'B',n:'K₃Fe(CN)₆',f:'ทดสอบ Fe²⁺'},{k:'C',n:'AgNO₃',f:'ทดสอบ I⁻'},{k:'D',n:'น้ำแป้งสุก',f:'ทดสอบ I₂'}];
+const FE_RES={A:{t:'ตะกอนสีน้ำตาลแดง',c:'#8b3a1c'},B:{t:'ตะกอนสีน้ำเงิน',c:'#2447a8'},C:{t:'ตะกอนสีเหลืองอ่อน',c:'#efe39a'},D:{t:'สารสีน้ำเงินเข้ม',c:'#1c2160'}};
+const FE_S=[{id:'s1',n:'Fe(NO₃)₃ (มี Fe³⁺)',pos:['A'],row:'ตอนที่ 1'},{id:'s2',n:'(NH₄)₂Fe(SO₄)₂ (มี Fe²⁺)',pos:['B'],row:'ตอนที่ 1'},{id:'s3',n:'KI (มี I⁻)',pos:['C'],row:'ตอนที่ 1'},{id:'s4',n:'I₂ ในเอทานอล',pos:['D'],row:'ตอนที่ 1'},{id:'m1',n:'ผสม Fe(NO₃)₃ + KI (ตอนที่ 2)',pos:['A','B','C','D'],row:'ตอนที่ 2',mix:'#b58a34'},{id:'m2',n:'ผสม (NH₄)₂Fe(SO₄)₂ + I₂ (ตอนที่ 3)',pos:['A','B','C','D'],row:'ตอนที่ 3',mix:'#b58a34'}];
+function act92(){
+  return`<h2>กิจกรรม 9.2 การทดสอบปฏิกิริยาของไอร์ออน(III)ไอออน (Fe³⁺) และไอร์ออน(II)ไอออน (Fe²⁺)</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 132–137</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดสอบปฏิกิริยาระหว่าง Fe³⁺ กับ I⁻ พร้อมเขียนสมการเคมี</li><li>ทดสอบปฏิกิริยาระหว่าง Fe²⁺ กับ I₂ พร้อมเขียนสมการเคมี</li><li>บอกความสัมพันธ์ของสองปฏิกิริยานี้</li></ol></div>
+  <div class="box"><h3>สารเคมี (ตามหนังสือ)</h3>Fe(NO₃)₃ 0.05 mol/L · (NH₄)₂Fe(SO₄)₂ 0.05 mol/L · KI 0.05 mol/L · I₂ ในเอทานอล 1% · NaOH 0.1 mol/L · K₃Fe(CN)₆ 0.1 mol/L · AgNO₃ 0.1 mol/L · น้ำแป้งสุก 1%</div></div>
+  <div class="box"><h3>วิธีทำ (สรุปจากตัวอย่างผลในหนังสือ)</h3><ol><li><b>ตอนที่ 1</b> ทดสอบสารที่รู้จัก: Fe³⁺ ด้วย NaOH · Fe²⁺ ด้วย K₃Fe(CN)₆ · I⁻ ด้วย AgNO₃ · I₂ ด้วยน้ำแป้งสุก เพื่อดูว่าผลบวกของแต่ละการทดสอบเป็นอย่างไร</li><li><b>ตอนที่ 2</b> ผสม Fe(NO₃)₃ กับ KI แล้วนำสารละลายผสมไปทดสอบทั้งสี่แบบ</li><li><b>ตอนที่ 3</b> ผสม (NH₄)₂Fe(SO₄)₂ กับ I₂ แล้วทดสอบทั้งสี่แบบเช่นกัน</li></ol><p class="small">หนังสือเตือนให้ใช้ปริมาณสารตามกำหนด ห้ามใช้อุปกรณ์คนร่วมกัน และ K₃Fe(CN)₆ เมื่อได้รับความร้อนหรือกรดแก่จะเกิดแก๊ส HCN ที่เป็นพิษ</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: แผ่นหลุมทดสอบ</h3><p class="small">กดปุ่ม "หยด" ในช่องที่เปิดให้ทดสอบ (12 ช่องตามตารางในหนังสือ) ช่องที่ไม่ได้อยู่ในตารางของหนังสือถูกปิดไว้</p>
+   <div class="tw"><table id="t92"><thead><tr><th class="l">ตัวอย่าง</th>${FE_R.map(r=>'<th>'+r.k+'<br><span class="small">'+r.n+'<br>'+r.f+'</span></th>').join('')}</tr></thead><tbody>${FE_S.map(s=>'<tr><th class="l" scope="row">'+s.n+'</th>'+FE_R.map(r=>s.pos.indexOf(r.k)>=0?'<td><button class="btn alt sm" type="button" data-s="'+s.id+'" data-r="'+r.k+'">หยด</button><div class="res92" id="r92_'+s.id+r.k+'" aria-live="polite"></div></td>':'<td class="small" aria-label="ไม่ได้ทดสอบ">—</td>').join('')+'</tr>').join('')}</tbody></table></div>
+   <div class="btns"><button class="btn alt sm" type="button" id="r92">ล้างแผ่นหลุม</button></div>
+   <div class="tip" id="o92" aria-live="polite"></div>
+   <div class="box" id="sum92" hidden><h3>สรุปผล (ตรงกับตัวอย่างผลในหนังสือ)</h3><p>ตอนที่ 1 บอกว่าผลบวกของแต่ละการทดสอบคือ: Fe³⁺ + NaOH ตะกอนสีน้ำตาลแดง · Fe²⁺ + K₃Fe(CN)₆ ตะกอนสีน้ำเงิน · I⁻ + AgNO₃ ตะกอนสีเหลืองอ่อน · I₂ + น้ำแป้งสุก สารสีน้ำเงินเข้ม หลอดผสมทั้งสอง (สีน้ำตาลแกมเหลือง) ให้ผลบวกครบทั้งสี่ แสดงว่ามี Fe³⁺, Fe²⁺, I⁻ และ I₂ อยู่ด้วยกัน</p><p class="eq">2Fe³⁺(aq) + 2I⁻(aq) ⇌ 2Fe²⁺(aq) + I₂(aq)</p><p class="small">ปฏิกิริยาในตอนที่ 2 กับตอนที่ 3 เป็นปฏิกิริยาไปข้างหน้าและย้อนกลับของกันและกัน หมายเหตุจากคู่มือ: NaOH ทำปฏิกิริยากับ Fe²⁺ ได้ตะกอนสีเขียวด้วย จึงอาจเห็นตะกอนเขียวปนในหลอดผสม</p></div>
+  </div>
+  <div class="box"><h3>ตรวจสอบความเข้าใจ (จากหนังสือ)</h3><p>กำหนดให้ปฏิกิริยาในตอนที่ 2 เป็นปฏิกิริยาไปข้างหน้า คือ 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂ เลือกสมการของ<b>ปฏิกิริยาย้อนกลับ</b></p>
+   <label class="lbl" for="sel92">ปฏิกิริยาย้อนกลับ</label><select id="sel92"><option value="">เลือก…</option><option value="a">2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂</option><option value="b">2Fe²⁺ + I₂ → 2Fe³⁺ + 2I⁻</option><option value="c">Fe³⁺ + I⁻ → Fe²⁺ + I₂</option></select>
+   <div class="btns"><button class="btn sm" type="button" id="c92">ตรวจ</button></div><div class="res" id="x92" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายกิจกรรม</h3>${written('w92_1','เขียนสมการไอออนิกสุทธิของปฏิกิริยาในตอนที่ 2 และตอนที่ 3 พร้อมบอกความสัมพันธ์ของสองปฏิกิริยา')}${written('w92_2','เพราะเหตุใดการที่พบสารตั้งต้นและผลิตภัณฑ์ครบทุกชนิดในหลอดเดียวกัน และสีไม่เปลี่ยนเมื่อตั้งไว้ จึงบอกว่าน่าจะมีสมดุลเกิดขึ้น')}</div>
+  ${quizHTML('9.2')}`;
+}
+function wire92(){
+  const done={};
+  function upd(){
+    const n=Object.keys(done).length;
+    $('#o92').textContent=n?'ทดสอบแล้ว '+n+' / 12 ช่อง':'ยังไม่ได้ทดสอบ';
+    $('#sum92').hidden=n<12;
+  }
+  $$('#t92 button[data-s]').forEach(b=>b.onclick=()=>{
+    const s=FE_S.find(x=>x.id===b.dataset.s),r=FE_RES[b.dataset.r];
+    const el=$('#r92_'+s.id+b.dataset.r);
+    el.innerHTML='<svg viewBox="0 0 60 30" width="60" height="30" aria-hidden="true"><rect x="2" y="2" width="56" height="26" rx="8" fill="'+(s.mix||'#fff')+'" stroke="#9aa5bb"/><circle cx="30" cy="15" r="9" fill="'+r.c+'"/></svg><div class="small">'+r.t+'</div>';
+    done[s.id+b.dataset.r]=1;upd();
+  });
+  $('#r92').onclick=()=>{$$('.res92').forEach(e=>e.innerHTML='');for(const k in done)delete done[k];upd();};
+  $('#c92').onclick=()=>{const v=$('#sel92').value,m=$('#x92');
+    if(!v){m.className='res bad';m.textContent='เลือกสมการก่อน';return;}
+    if(v==='b'){m.className='res ok';m.textContent='ถูกต้อง ปฏิกิริยาย้อนกลับสลับสารตั้งต้นกับผลิตภัณฑ์ได้ 2Fe²⁺ + I₂ → 2Fe³⁺ + 2I⁻ และปฏิกิริยาผันกลับได้คือ 2Fe³⁺ + 2I⁻ ⇌ 2Fe²⁺ + I₂';}
+    else{m.className='res bad';m.textContent=v==='a'?'ข้อนี้คือปฏิกิริยาไปข้างหน้าที่โจทย์ให้มา ปฏิกิริยาย้อนกลับต้องสลับข้าง':'สมการนี้ไม่ดุลและไม่ใช่การสลับข้างของสมการที่กำหนด';}
+  };
+  upd();wireQuiz('9.2');
+}
+
+/* ======================= 9.3 ความเข้มข้นกับเวลา + ค่า K ======================= */
+const PRE=[
+ {id:'nh3',n:'N₂ + 3H₂ ⇌ 2NH₃ (700 K)',sp:['N₂','H₂','NH₃'],nu:[-1,-3,2],eq:[0.800,3.00,1.60],init:[0.800,3.00,1.60],src:'ตัวอย่าง 1: ที่สมดุลมี N₂ 0.200 mol, H₂ 0.750 mol, NH₃ 0.400 mol ในภาชนะ 250 mL → 0.800, 3.00, 1.60 mol/L → K = 0.119 (ในแผงล่างเริ่มที่สมดุล ลองเปลี่ยนความเข้มข้นเพื่อรบกวนระบบ)'},
+ {id:'abc',n:'A + 2B ⇌ 2C',sp:['A','B','C'],nu:[-1,-2,2],eq:[0.325,0.400,0.350],init:[0.500,0.750,0],src:'ตัวอย่าง 3: A 1.00 mol และ B 1.50 mol ในภาชนะ 2.00 L ที่สมดุล [C] = 0.350 mol/L → K = 2.36'},
+ {id:'feo',n:'FeO(s) + CO(g) ⇌ Fe(s) + CO₂(g)',sp:['CO','CO₂'],nu:[-1,1],K:0.516,init:[0.065,0],src:'ตัวอย่าง 4: K = 0.516 เริ่มต้น CO 0.065 mol/L (ของแข็ง FeO และ Fe ไม่ใส่ในนิพจน์ K) หนังสือได้ [CO] = 0.043 และ [CO₂] = 0.022 mol/L'},
+ {id:'so3',n:'2SO₃ ⇌ 2SO₂ + O₂ (1000 K)',sp:['SO₃','SO₂','O₂'],nu:[-2,2,1],eq:[2.44e-3,3.65e-3,1.82e-3],init:[6.09e-3,0,0],src:'ตัวอย่าง 5 ในแบบฝึกหัด 9.2: เริ่ม SO₃ 6.09 × 10⁻³ mol/L ที่สมดุล SO₃ 2.44 × 10⁻³ → K = 4.07 × 10⁻³'},
+ {id:'hi',n:'H₂ + I₂ ⇌ 2HI',sp:['H₂','I₂','HI'],nu:[-1,-1,2],K:64,init:[1.00,1.00,0],src:'แบบฝึกหัดท้ายบทข้อ 1: เริ่ม H₂ และ I₂ อย่างละ 1.00 mol/L ที่สมดุล [HI] = 1.60 mol/L → K = 64'},
+ {id:'fescn',n:'Fe³⁺ + SCN⁻ ⇌ [FeSCN]²⁺ (25 °C)',sp:['Fe³⁺','SCN⁻','[FeSCN]²⁺'],nu:[-1,-1,1],K:142,init:[0.100,0.200,5.68],src:'ตัวอย่าง 11: สมดุลเดิม 0.200, 0.200, 5.68 mol/L (K = 142) แล้วลด [Fe³⁺] เป็น 0.100 → สมดุลใหม่ 0.155, 0.255, 5.62 mol/L'},
+ {id:'no2',n:'2NO₂ ⇌ N₂O₄ (25 °C)',sp:['NO₂','N₂O₄'],nu:[-2,1],K:25.0,init:[0.0500,0.125],src:'ตรวจสอบความเข้าใจ (ความดัน): K = 25.0 เดิม [NO₂] 0.100, [N₂O₄] 0.250 เพิ่มปริมาตร 2 เท่า → ความเข้มข้นเหลือ 0.0500 และ 0.125 แล้วหาสมดุลใหม่'},
+ {id:'pcl',n:'PCl₃ + Cl₂ ⇌ PCl₅ (25 °C)',sp:['PCl₃','Cl₂','PCl₅'],nu:[-1,-1,1],K:130,init:[0.400,0.400,5.20],src:'แบบฝึกหัด 9.3 ข้อ 5: K = 130 ลดปริมาตรจาก 2.00 L เป็น 0.500 L ความเข้มข้นกลายเป็น 0.400, 0.400, 5.20 → สมดุลใหม่ 0.204, 0.204, 5.40 mol/L'},
+ {id:'a1',n:'A ⇌ B + C (เพิ่ม A)',sp:['A','B','C'],nu:[-1,1,1],K:0.80,init:[0.40,0.40,0.40],src:'แบบฝึกหัดท้ายบทข้อ 6: K = 0.80 สมดุลเดิม A 0.20, B = C = 0.40 เพิ่ม A อีก 0.20 → [A] = 0.40 แล้วหาสมดุลใหม่ ได้ [B] = 0.49 mol/L'},
+ {id:'a2',n:'A ⇌ B + C (ลด C)',sp:['A','B','C'],nu:[-1,1,1],K:0.80,init:[0.20,0.40,0.20],src:'แบบฝึกหัดท้ายบทข้อ 6: ลด C ลง 0.20 mol/L → [C] = 0.20 แล้วหาสมดุลใหม่ ได้ [B] = 0.46 mol/L'}
+];
+PRE.forEach(p=>{if(p.K===undefined)p.K=kOf(p.nu,p.eq);if(!p.eq)p.eq=solveExtent(p.nu,p.K,p.init).c;});
+function act93(){
+  return`<h2>กิจกรรม 9.3 ความเข้มข้นของสารเมื่อระบบเข้าสู่สมดุล</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 138–139 · แผงคำนวณ K อ้างอิงตัวอย่างและแบบฝึกหัดหน้า 144–157 และ 163–176</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>อธิบายความเข้มข้นของสารตั้งต้นและผลิตภัณฑ์เมื่อเริ่มต้นปฏิกิริยาจนกระทั่งระบบอยู่ในสมดุล</li></ol></div>
+  <div class="box"><h3>อุปกรณ์ (ตามหนังสือ)</h3>กระดาษกราฟ 1 แผ่น (คู่มือแนะนำให้ใช้โปรแกรมตารางคำนวณช่วยเขียนกราฟได้) นำข้อมูลความเข้มข้นของ X₂, Y₂ และ X₃Y ที่เวลาต่าง ๆ มาเขียนกราฟของระบบที่ 1 และ 2</div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: กราฟความเข้มข้นกับเวลา</h3>
+   <p class="small">ปฏิกิริยา 3X₂ + Y₂ ⇌ 2X₃Y ในระบบปิด · ระบบ 1 เริ่มจาก X₂ 3.00 และ Y₂ 1.00 mol/L · ระบบ 2 เริ่มจาก X₃Y 2.00 mol/L · ค่าที่สมดุลและเส้นโค้งอ่านจากกราฟตัวอย่างของหนังสือ (ค่าประมาณ ไม่ใช่ตารางต้นฉบับ)</p>
+   <div class="btns" role="group" aria-label="เลือกระบบ"><button class="chip" type="button" id="s93_1" aria-pressed="true">ระบบที่ 1</button><button class="chip" type="button" id="s93_2" aria-pressed="false">ระบบที่ 2</button></div>
+   <div class="rowflex"><label>เวลา (ชั่วโมง): <b id="tv93">0</b><input type="range" id="t93" min="0" max="8" step="0.1" value="0" style="width:100%"></label><button class="btn alt sm" type="button" id="p93">เล่นอัตโนมัติ</button></div>
+   <div class="fig" id="c93"></div>
+   <div class="tw"><table><thead><tr><th>เวลา</th><th>[X₂] (mol/L)</th><th>[Y₂]</th><th>[X₃Y]</th><th>Q</th></tr></thead><tbody id="tb93"></tbody></table></div>
+   <div class="tip" id="o93" aria-live="polite"></div>
+   <p class="small">หมายเหตุของแบบจำลอง: (1) เส้นโค้งใช้รูปเอ็กซ์โพเนนเชียลที่ผู้จัดทำหน้าปรับให้ใกล้กราฟของหนังสือ (τ = 1.44 ชม. ระบบ 1, τ = 1.5 ชม. ระบบ 2) (2) Q = [X₃Y]²/([X₂]³[Y₂]) และ K ≈ 0.59 คำนวณจากค่าสมดุลที่อ่านจากกราฟ หนังสือไม่ได้ให้ค่า K ของระบบนี้ (3) อัตราไปข้างหน้า : ย้อนกลับ = K/Q ใช้ได้เมื่อมองเป็นปฏิกิริยาขั้นตอนเดียว ซึ่งเป็นข้อสมมติของแบบจำลอง</p>
+  </div>
+  <div class="lab"><h3>เครื่องคำนวณค่าคงที่สมดุลและความเข้มข้นที่สมดุล (ตัวอย่างในหนังสือ)</h3>
+   <label class="lbl" for="pre93">เลือกปฏิกิริยา</label><select id="pre93">${PRE.map(p=>'<option value="'+p.id+'">'+p.n+'</option>').join('')}</select>
+   <p class="small" id="src93"></p>
+   <div class="cols"><div class="box"><h3>ก. หา K จากความเข้มข้นที่สมดุล</h3><div class="rowflex" id="ka93"></div><div class="btns"><button class="btn sm" type="button" id="kb93">คำนวณ K</button></div><div class="res" id="kr93" aria-live="polite"></div></div>
+   <div class="box"><h3>ข. หาความเข้มข้นที่สมดุลใหม่ (ICE)</h3><div class="rowflex" id="ia93"></div><label class="lbl" for="ki93">ค่า K</label><input type="number" id="ki93" step="any" min="0"><div class="btns"><button class="btn sm" type="button" id="ib93">หาความเข้มข้นที่สมดุล</button></div><div class="res" id="ir93" aria-live="polite"></div></div></div>
+   <p class="small">ไม่ใส่สารที่เป็นของแข็งหรือของเหลวบริสุทธิ์ในนิพจน์ K · K ไม่มีหน่วย ใช้ตัวเลขความเข้มข้นหน่วย mol/L · ตัวแก้สมการใช้วิธีแบ่งครึ่งช่วง จึงได้รากที่เป็นไปได้ทางกายภาพเพียงค่าเดียว (ไม่ต้องตัดรากติดลบเอง)</p>
+  </div>
+  <div class="box"><h3>คำถามท้ายกิจกรรม</h3>${written('w93_1','เขียนสมการเคมีของปฏิกิริยาผันกลับได้ในกิจกรรมนี้ และบอกว่าเมื่อเริ่มปฏิกิริยา ความเข้มข้นของสารตั้งต้นและผลิตภัณฑ์เปลี่ยนไปอย่างไร')}${written('w93_2','ระบบเข้าสู่สมดุลเมื่อเวลาประมาณเท่าใดในแต่ละระบบ ดูจากอะไร')}</div>
+  ${quizHTML('9.3')}`;
+}
+function wire93(){
+  const S={sys:1,t:0,timer:null};
+  function draw(){
+    const ts=[];for(let t=0;t<=S.t+1e-9;t+=0.1)ts.push(+t.toFixed(1));
+    const ser=k=>ts.map(t=>[t,xy(S.sys,t)[k]]);
+    $('#c93').innerHTML=chart({aria:'ความเข้มข้นของ X₂ Y₂ และ X₃Y ตามเวลา ระบบที่ '+S.sys,xmax:8,ymax:3.5,xstep:1,ystep:0.5,xl:'เวลา (ชั่วโมง)',yl:'ความเข้มข้น (mol/L)',h:300,vline:S.sys===1?6:5,series:[{n:'X₂',c:'#1f5fbf',pts:ser('X2')},{n:'Y₂',c:'#c0392b',pts:ser('Y2')},{n:'X₃Y',c:'#4c9a2a',pts:ser('X3Y')}]});
+    $('#tv93').textContent=S.t.toFixed(1);
+    const hrs=[0,1,2,3,4,5,6,7,8].filter(h=>h<=S.t+1e-9);
+    $('#tb93').innerHTML=hrs.map(h=>{const c=xy(S.sys,h);return'<tr><td>'+h+'</td><td>'+c.X2.toFixed(2)+'</td><td>'+c.Y2.toFixed(2)+'</td><td>'+c.X3Y.toFixed(2)+'</td><td>'+(h===0&&S.sys===1?'0':h===0?'ไม่นิยาม (มี X₃Y เท่านั้น)':Q93(c).toFixed(2))+'</td></tr>';}).join('');
+    const c=xy(S.sys,S.t),q=(S.sys===1&&S.t===0)?0:(S.sys===2&&S.t===0?Infinity:Q93(c));
+    let o='เวลา '+S.t.toFixed(1)+' ชม. · ';
+    if(S.t===0)o+=S.sys===1?'เริ่มต้นมีเฉพาะสารตั้งต้น Q = 0 < K จึงเกิดปฏิกิริยาไปข้างหน้า':'เริ่มต้นมีเฉพาะผลิตภัณฑ์ Q มากกว่า K มาก จึงเกิดปฏิกิริยาย้อนกลับ';
+    else{o+='Q = '+q.toFixed(2)+' เทียบกับ K ≈ '+K93.toFixed(2)+' · อัตราไปข้างหน้า : ย้อนกลับ = K/Q = '+(K93/q).toFixed(2)+' · '+(Math.abs(q-K93)/K93<0.10?'ใกล้สมดุล อัตราสองทิศเกือบเท่ากัน ความเข้มข้นแทบไม่เปลี่ยน':(q<K93?'Q < K ไปข้างหน้ามากกว่าย้อนกลับ':'Q > K ย้อนกลับมากกว่าไปข้างหน้า'));}
+    o+=' · หนังสือสรุปว่าเข้าสู่สมดุลประมาณชั่วโมงที่ '+(S.sys===1?6:5)+' (เส้นประแดง)';
+    $('#o93').textContent=o;
+  }
+  const pick=k=>{S.sys=k;$('#s93_1').setAttribute('aria-pressed',String(k===1));$('#s93_2').setAttribute('aria-pressed',String(k===2));draw();};
+  $('#s93_1').onclick=()=>pick(1);$('#s93_2').onclick=()=>pick(2);
+  $('#t93').oninput=e=>{S.t=+e.target.value;draw();};
+  $('#p93').onclick=()=>{
+    if(S.timer){clearInterval(S.timer);S.timer=null;$('#p93').textContent='เล่นอัตโนมัติ';return;}
+    if(REDUCED){S.t=8;$('#t93').value=8;draw();return;}
+    if(S.t>=8){S.t=0;}
+    $('#p93').textContent='หยุด';
+    S.timer=setInterval(()=>{if(!document.getElementById('t93')){clearInterval(S.timer);return;}S.t=Math.min(8,+(S.t+0.1).toFixed(1));$('#t93').value=S.t;draw();if(S.t>=8){clearInterval(S.timer);S.timer=null;$('#p93').textContent='เล่นอัตโนมัติ';}},120);
+  };
+  /* แผงคำนวณ K / ICE */
+  const fld=(id,sp,v)=>'<label>'+sp+'<input type="number" step="any" min="0" id="'+id+'" value="'+(+v.toPrecision(6))+'"></label>';
+  function loadPre(){
+    const p=PRE.find(x=>x.id===$('#pre93').value);
+    $('#src93').textContent=p.src;
+    $('#ka93').innerHTML=p.sp.map((s,i)=>fld('ke93_'+i,'['+s+'] ที่สมดุล',p.eq[i])).join('');
+    $('#ia93').innerHTML=p.sp.map((s,i)=>fld('ie93_'+i,'['+s+'] เริ่มต้น/หลังรบกวน',p.init[i])).join('');
+    $('#ki93').value=+p.K.toPrecision(4);$('#kr93').textContent='';$('#ir93').textContent='';
+  }
+  function expr(p){const num=[],den=[];p.sp.forEach((s,i)=>{const a=Math.abs(p.nu[i]);const t='['+s+']'+(a>1?'<sup>'+a+'</sup>':'');(p.nu[i]>0?num:den).push(t);});return'K = '+num.join('')+' / '+den.join('');}
+  $('#pre93').onchange=loadPre;
+  $('#kb93').onclick=()=>{
+    const p=PRE.find(x=>x.id===$('#pre93').value),c=p.sp.map((s,i)=>parseFloat($('#ke93_'+i).value)),m=$('#kr93');
+    if(c.some(v=>!(v>0))){m.className='res bad';m.innerHTML='ใส่ความเข้มข้นที่มากกว่า 0 ทุกช่อง';return;}
+    m.className='res ok';m.innerHTML=expr(p)+' = <b>'+sig(kOf(p.nu,c),3)+'</b>';
+  };
+  $('#ib93').onclick=()=>{
+    const p=PRE.find(x=>x.id===$('#pre93').value),c=p.sp.map((s,i)=>parseFloat($('#ie93_'+i).value)),K=parseFloat($('#ki93').value),m=$('#ir93');
+    if(c.some(v=>!(v>=0))||!(K>0)){m.className='res bad';m.textContent='ใส่ความเข้มข้นที่ไม่ติดลบและ K ที่มากกว่า 0';return;}
+    const hasP=p.nu.some((n,i)=>n>0&&c[i]>0),hasR=p.nu.some((n,i)=>n<0&&c[i]>0);
+    if(!hasP&&!hasR){m.className='res bad';m.textContent='ต้องมีสารอย่างน้อยหนึ่งชนิดที่ความเข้มข้นมากกว่า 0';return;}
+    let q=1;p.sp.forEach((s,i)=>{q*=Math.pow(c[i],p.nu[i]);});
+    const r=solveExtent(p.nu,K,c);
+    if(r.degenerate){m.className='res bad';m.textContent='ไม่มีปฏิกิริยาเกิดขึ้น เพราะขาดสารตั้งต้นหรือผลิตภัณฑ์ (ต้องมีทั้งสารตั้งต้นทุกชนิดหรือมีผลิตภัณฑ์อย่างน้อยหนึ่งชนิด)';return;}
+    const dir=isFinite(q)&&Math.abs(q-K)<=2e-3*K?'Q ≈ K อยู่ในสมดุลแล้ว (ไม่มีการเลื่อน)':(!isFinite(q)||q>K)?'Q > K ระบบเลื่อนย้อนกลับ':'Q < K ระบบเลื่อนไปข้างหน้า';
+    m.className='res ok';m.innerHTML='Q = '+(isFinite(q)?sig(q,3):'ไม่นิยาม')+' · '+dir+'<br>สมดุลใหม่: '+p.sp.map((s,i)=>'['+s+'] = <b>'+sig(r.c[i],3)+'</b>').join(' · ')+' mol/L';
+  };
+  loadPre();draw();wireQuiz('9.3');
+}
+
+/* ======================= 9.4 ผลของความเข้มข้นต่อสมดุล ======================= */
+const PEA_BLUE='#3a4fd8',PEA_RED='#d4337a';
+const peaColor=x=>mixc(PEA_BLUE,PEA_RED,x);
+function act94(){
+  return`<h2>กิจกรรม 9.4 การทดลองผลของความเข้มข้นของสารต่อสมดุล</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 159–162 · ตัวอย่างการคำนวณ Fe³⁺/SCN⁻ จากหน้า 163–164</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองศึกษาผลของความเข้มข้นของสารต่อสมดุล</li><li>อธิบายการเปลี่ยนแปลงสมดุลเมื่อเพิ่มหรือลดความเข้มข้นของสารตั้งต้นหรือผลิตภัณฑ์</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (ตามหนังสือ ต่อกลุ่ม)</h3>HCl 0.02 mol/L 1.0 mL · NaOH 0.02 mol/L 0.5 mL · น้ำดอกอัญชัน 3.0 mL · น้ำกลั่น 0.5 mL · หลอดทดลองเล็ก 3 หลอด · หลอดหยด · กระบอกตวง 10 mL<br><span class="small">คู่มือเตือนว่าปริมาณสารมีผลต่อสีที่เห็น และถ้าเติม NaOH มากเกินไปสารละลายอาจกลายเป็นสีเขียว</span></div></div>
+  <div class="box"><h3>วิธีทำ (สรุปจากตัวอย่างผลในหนังสือ)</h3><ol><li>หลอดที่ 1 เติมน้ำกลั่น · หลอดที่ 2 เติม HCl · หลอดที่ 3 เติม NaOH ลงในน้ำดอกอัญชัน (สีม่วง) ในปริมาณที่กำหนด</li><li>สังเกตสีหลังเติมสาร แล้ววางไว้ 1 นาทีและสังเกตอีกครั้ง</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: น้ำดอกอัญชัน</h3>
+   <p class="small">สมดุลของแอนโทไซยานินตามที่หนังสืออธิบาย: รูป A (สีน้ำเงิน) อยู่ในสมดุลกับ AH⁺ (สีแดง) เขียนเป็น <span class="eq">A + H₃O⁺ ⇌ AH⁺ + H₂O</span> · สัดส่วนสีแดงต่อน้ำเงินในแต่ละหลอดเป็นค่าสมมติเชิงคุณภาพของแบบจำลอง เพื่อให้สีที่เห็นเรียงตามผลในหนังสือ</p>
+   <div class="fig"><svg viewBox="0 0 560 250" id="g94" role="img" aria-label="หลอดทดลองน้ำดอกอัญชัน 4 หลอด"></svg></div>
+   <div class="btns"><button class="btn sm" type="button" id="b94_1">หลอด 1: เติมน้ำกลั่น</button><button class="btn sm" type="button" id="b94_2">หลอด 2: เติม HCl</button><button class="btn sm" type="button" id="b94_3">หลอด 3: เติม NaOH</button><button class="btn alt sm" type="button" id="w94">วางไว้ 1 นาที</button><button class="btn alt sm" type="button" id="r94">เริ่มใหม่</button></div>
+   <div class="tip" id="o94" aria-live="polite">กดเติมสารทีละหลอด</div>
+   <div class="tw"><table><thead><tr><th>หลอดที่</th><th>สารที่เติม</th><th>หลังเติมสาร</th><th>วางไว้ 1 นาที</th></tr></thead><tbody id="tb94"></tbody></table></div>
+  </div>
+  <div class="lab"><h3>เครื่องคำนวณ: รบกวนสมดุล Fe³⁺ + SCN⁻ ⇌ [FeSCN]²⁺ (25 °C)</h3>
+   <p class="small">จากตัวอย่าง 11 ในหนังสือ: สมดุลเดิม [Fe³⁺] = 0.200, [SCN⁻] = 0.200, [[FeSCN]²⁺] = 5.68 mol/L จึงได้ K = 5.68/(0.200 × 0.200) = 142 ลองเปลี่ยนความเข้มข้นของสารหนึ่งชนิด (ค่าเริ่มต้นคือกรณีในหนังสือ: ลด Fe³⁺ เหลือ 0.100)</p>
+   <div class="rowflex"><label>สารที่เปลี่ยน<select id="sp94"><option value="0">Fe³⁺</option><option value="1">SCN⁻</option><option value="2">[FeSCN]²⁺</option></select></label><label>ความเข้มข้นใหม่ทันทีหลังรบกวน (mol/L)<input type="number" id="nv94" step="any" min="0" value="0.100"></label><button class="btn sm" type="button" id="c94">คำนวณสมดุลใหม่</button></div>
+   <div class="fig" id="f94"></div><div class="res" id="x94" aria-live="polite"></div>
+  </div>
+  <div class="box"><h3>คำถามท้ายการทดลอง</h3>${written('w94_1','การเติมน้ำกลั่น HCl และ NaOH ทำให้ความเข้มข้นของ A และ AH⁺ เปลี่ยนอย่างไร พิจารณาจากสีที่สังเกตได้')}${written('w94_2','เมื่อเพิ่มหรือลดความเข้มข้นของสารตั้งต้น ระบบเปลี่ยนไปทางใด และสีของสารละลายเมื่อวางไว้ 1 นาทีบอกอะไร')}</div>
+  ${quizHTML('9.4')}`;
+}
+function wire94(){
+  const S={a:[0,0,0],w:false};
+  const X={start:PEA.start,1:PEA.water,2:PEA.hcl,3:PEA.naoh};
+  const NM={1:'น้ำกลั่น',2:'HCl',3:'NaOH'};
+  const AFTER={1:'ม่วงเปลี่ยนเป็นม่วงน้ำเงิน',2:'ม่วงเปลี่ยนเป็นม่วงแดง',3:'ม่วงเปลี่ยนเป็นน้ำเงิน'};
+  const WAIT={1:'ม่วงน้ำเงิน',2:'ม่วงแดง',3:'น้ำเงิน'};
+  function tubeSvg(x,label,col,sub){return'<rect x="'+(x-22)+'" y="50" width="44" height="130" rx="10" fill="#f5f7fb" stroke="#8a93a8" stroke-width="2"/><rect class="tube" x="'+(x-20)+'" y="82" width="40" height="96" rx="8" fill="'+col+'" opacity=".92"/><text x="'+x+'" y="40" text-anchor="middle" font-size="12.5" font-weight="700" fill="#33415c">'+label+'</text><text x="'+x+'" y="198" text-anchor="middle" font-size="11" fill="#5d6b82">'+sub+'</text>';}
+  function draw(){
+    let s=tubeSvg(70,'เริ่มต้น',peaColor(X.start),'ม่วง');
+    [1,2,3].forEach((k,i)=>{s+=tubeSvg(210+i*130,'หลอดที่ '+k,peaColor(S.a[k-1]?X[k]:X.start),S.a[k-1]?'+ '+NM[k]:'ยังไม่เติม');});
+    s+='<text x="280" y="232" text-anchor="middle" font-size="11.5" fill="#33415c">แถบสี: น้ำเงิน (A) '+'→ แดง (AH⁺) · สัดส่วนสีแดง (ค่าสมมติ): เริ่มต้น '+X.start+(S.a[0]?' · น้ำ '+X[1]:'')+(S.a[1]?' · HCl '+X[2]:'')+(S.a[2]?' · NaOH '+X[3]:'')+'</text>';
+    $('#g94').innerHTML=s;
+    $('#tb94').innerHTML=[1,2,3].map(k=>'<tr><td>'+k+'</td><td>'+NM[k]+'</td><td>'+(S.a[k-1]?AFTER[k]:'—')+'</td><td>'+(S.a[k-1]&&S.w?'สารละลายมีสี'+WAIT[k]+' (สีคงที่)':'—')+'</td></tr>').join('');
+    const n=S.a.filter(Boolean).length;
+    let o=n?'เติมแล้ว '+n+' หลอด':'กดเติมสารทีละหลอด';
+    if(S.a[1])o+=' · HCl เพิ่ม H₃O⁺ ซึ่งเป็นสารตั้งต้น สมดุลเลื่อนไปทาง AH⁺ (แดง) จึงม่วงแดง';
+    if(S.a[2])o+=' · NaOH ทำปฏิกิริยากับ H₃O⁺ ทำให้ H₃O⁺ ลด สมดุลเลื่อนไปทาง A (น้ำเงิน) จึงเป็นสีน้ำเงิน';
+    if(S.w)o+=' · วางไว้ 1 นาที สีไม่เปลี่ยน แสดงว่าเข้าสู่สมดุลใหม่แล้ว';
+    $('#o94').textContent=o;
+  }
+  [1,2,3].forEach(k=>$('#b94_'+k).onclick=()=>{S.a[k-1]=1;draw();});
+  $('#w94').onclick=()=>{S.w=true;draw();};$('#r94').onclick=()=>{S.a=[0,0,0];S.w=false;draw();};
+  /* Fe/SCN */
+  const nu=[-1,-1,1],K=142,eq0=[0.200,0.200,5.68],NMS=['Fe³⁺','SCN⁻','[FeSCN]²⁺'];
+  function calc(){
+    const i=+$('#sp94').value,v=parseFloat($('#nv94').value),m=$('#x94');
+    if(!(v>=0)){m.className='res bad';m.textContent='ใส่ความเข้มข้นที่ไม่ติดลบ';return;}
+    const d=eq0.slice();d[i]=v;
+    const r=solveExtent(nu,K,d);
+    if(r.degenerate){m.className='res bad';m.textContent='ไม่มีปฏิกิริยาเกิดขึ้น ต้องมี Fe³⁺ และ SCN⁻ ทั้งคู่ หรือมี [FeSCN]²⁺ อย่างน้อยหนึ่งชนิดที่มากกว่า 0';return;}
+    const q=d[2]/(d[0]*d[1]);
+    $('#f94').innerHTML=bars({aria:'ความเข้มข้นของ Fe³⁺ SCN⁻ และ FeSCN²⁺ ก่อนรบกวน หลังรบกวน และสมดุลใหม่',names:NMS,ymax:Math.max(1,Math.max.apply(null,eq0.concat(d,r.c)))*1.05,groups:[{n:'สมดุลเดิม',c:'#9fb4d6',v:eq0},{n:'หลังรบกวนทันที',c:'#e0a23a',v:d},{n:'สมดุลใหม่',c:'#1f5fbf',v:r.c}]});
+    const dir=Math.abs(q-K)<=2e-3*K?'ไม่เลื่อน (Q ≈ K)':(q<K?'ไปข้างหน้า (สร้าง [FeSCN]²⁺)':'ย้อนกลับ (สร้าง Fe³⁺ และ SCN⁻)');
+    m.className='res ok';m.innerHTML='Q = '+sig(q,3)+' เทียบกับ K = 142 → ระบบเลื่อน'+dir+' · สมดุลใหม่: '+NMS.map((s,j)=>'['+s+'] = <b>'+sig(r.c[j],3)+'</b>').join(' · ')+' mol/L'+(i===0&&Math.abs(v-0.1)<1e-9?' (ตรงกับหนังสือ: 0.155, 0.255, 5.62)':'');
+  }
+  $('#c94').onclick=calc;calc();draw();wireQuiz('9.4');
+}
+
+/* ======================= 9.5 ผลของอุณหภูมิ (และความดัน) ======================= */
+const TBL1={t:'N₂O₄(g) ⇌ 2NO₂(g)',rows:[[298,0.90,0.19,4.0e-2],[400,0.55,0.89,1.4],[500,0.088,1.9,41]]};
+const TBL2={t:'N₂(g) + 3H₂(g) ⇌ 2NH₃(g)',rows:[[298,0.014,0.0048,2.1,3.3e8],[400,0.13,0.042,1.9,3.9e4],[500,0.47,0.16,1.7,1.7e2]]};
+function act95(){
+  return`<h2>กิจกรรม 9.5 การทดลองผลของอุณหภูมิต่อสมดุล</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 168–171 · ส่วนความดันอ้างอิงหน้า 165–167</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองศึกษาผลของอุณหภูมิต่อสมดุล</li><li>อธิบายการเปลี่ยนแปลงสมดุลเมื่อเปลี่ยนอุณหภูมิของระบบ</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (ตามหนังสือ)</h3>หลอดทดลองเล็กพร้อมจุกยางที่บรรจุแก๊สผสม NO₂ และ N₂O₄ (ครูเตรียมไว้ให้จาก Cu 0.01 g กับ HNO₃ เข้มข้น 4 หยด) · บีกเกอร์ 250 mL 2 ใบ · น้ำแข็ง · น้ำร้อน · เทอร์มอมิเตอร์<br><span class="small">ห้ามเปิดจุกหลอดแก๊ส HNO₃ เข้มข้นกัดกร่อนและ NO₂ มีอันตราย ใช้ในที่อากาศถ่ายเทหรือตู้ดูดควัน</span></div></div>
+  <div class="box"><h3>วิธีทำ (สรุปจากตัวอย่างผลในหนังสือ)</h3><ol><li>สังเกตสีแก๊สในหลอดที่อุณหภูมิห้อง (สีน้ำตาลแดง)</li><li>จุ่มหลอดในน้ำร้อน สังเกตสีจนคงที่</li><li>จุ่มหลอดในน้ำแข็ง สังเกตสีจนคงที่</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: แก๊ส NO₂ ⇌ N₂O₄ ในหลอดปิด</h3>
+   <p class="small">ปฏิกิริยา <span class="eq">2NO₂(g) ⇌ N₂O₄(g)</span> (NO₂ สีน้ำตาลแดง · N₂O₄ ไม่มีสี) · <b>ข้อสมมติของแบบจำลอง:</b> (1) หนังสือไม่ได้ให้อุณหภูมิของน้ำร้อนและน้ำแข็ง จึงใช้ 80 °C (353 K) และ 0 °C (273 K) (2) องค์ประกอบที่ 25 °C ใช้ [NO₂] = 0.100 และ [N₂O₄] = 0.250 mol/L จากตัวอย่างความดันในหนังสือ (K = 25.0) รวมไนโตรเจน 0.600 mol/L (หน่วย NO₂) คงที่ในหลอดปิด (3) ค่า K ที่อุณหภูมิอื่นประมาณจากค่า K ของ N₂O₄ ⇌ 2NO₂ ในตารางของหนังสือ (298 K: 4.0×10⁻², 400 K: 1.4) โดยให้ ln K เป็นเส้นตรงกับ 1/T ซึ่งเป็นการประมาณของผู้จัดทำหน้า และต่อเส้นออกไปสำหรับ 273 K และ 353 K</p>
+   <div class="btns" role="group" aria-label="เลือกอ่างน้ำ"><button class="chip" type="button" data-bath="273" aria-pressed="false">น้ำแข็ง (0 °C)</button><button class="chip" type="button" data-bath="298" aria-pressed="true">อุณหภูมิห้อง (25 °C)</button><button class="chip" type="button" data-bath="353" aria-pressed="false">น้ำร้อน (80 °C)</button></div>
+   <div class="rowflex"><label>อุณหภูมิของอ่างน้ำ: <b id="tv95">298</b> K (<span id="tc95">25</span> °C)<input type="range" id="t95" min="273" max="373" step="1" value="298" style="width:100%"></label></div>
+   <div class="cols"><div class="fig"><svg viewBox="0 0 280 240" id="g95" role="img" aria-label="หลอดแก๊ส NO₂ และ N₂O₄ ในอ่างน้ำ"></svg></div>
+   <div><div class="tw"><table><tbody><tr><th class="l">[NO₂] (mol/L)</th><td id="a95">—</td></tr><tr><th class="l">[N₂O₄] (mol/L)</th><td id="b95">—</td></tr><tr><th class="l">K ของ 2NO₂ ⇌ N₂O₄</th><td id="k95">—</td></tr></tbody></table></div><div class="tip" id="o95" aria-live="polite"></div></div></div>
+  </div>
+  <div class="box"><h3>ตรวจสอบความเข้าใจ: อ่านค่า K ตามอุณหภูมิ (จากตารางของหนังสือ)</h3>
+   <div class="cols"><div class="tw"><table><caption class="small">${TBL1.t}</caption><thead><tr><th>T (K)</th><th>[N₂O₄]</th><th>[NO₂]</th><th>K (คำนวณ)</th></tr></thead><tbody>${TBL1.rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+sig(r[2]*r[2]/r[1],2)+'</td></tr>').join('')}</tbody></table></div>
+   <div class="tw"><table><caption class="small">${TBL2.t}</caption><thead><tr><th>T (K)</th><th>[H₂]</th><th>[N₂]</th><th>[NH₃]</th><th>K (คำนวณ)</th></tr></thead><tbody>${TBL2.rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+sig(r[3]*r[3]/(r[2]*Math.pow(r[1],3)),2)+'</td></tr>').join('')}</tbody></table></div></div>
+   <div class="rowflex"><label>ปฏิกิริยา N₂O₄ ⇌ 2NO₂ ไปข้างหน้า<select id="e1_95"><option value="">เลือก…</option><option value="en">ดูดพลังงาน</option><option value="ex">คายพลังงาน</option></select></label><label>ปฏิกิริยา N₂ + 3H₂ ⇌ 2NH₃ ไปข้างหน้า<select id="e2_95"><option value="">เลือก…</option><option value="en">ดูดพลังงาน</option><option value="ex">คายพลังงาน</option></select></label><button class="btn sm" type="button" id="ec95">ตรวจ</button></div><div class="res" id="er95" aria-live="polite"></div></div>
+  <div class="lab"><h3>ผลของความดัน (เปลี่ยนปริมาตร): 2NO₂ ⇌ N₂O₄ ที่ 25 °C, K = 25.0</h3>
+   <p class="small">เริ่มจากสมดุลเดิม [NO₂] = 0.100 และ [N₂O₄] = 0.250 mol/L (ตัวอย่างในหนังสือ) เลือกเปลี่ยนปริมาตรของภาชนะเป็นกี่เท่าของเดิม</p>
+   <div class="rowflex"><label>ปริมาตรใหม่ (เท่าของเดิม)<select id="v95"><option value="0.5">0.5 (ความดันเพิ่ม)</option><option value="1">1 (เดิม)</option><option value="2" selected>2 (ความดันลด)</option><option value="3">3</option><option value="4">4</option></select></label><button class="btn alt sm" type="button" id="ig95">เติมแก๊สเฉื่อยโดยปริมาตรคงที่</button></div>
+   <div class="fig" id="f95"></div><div class="res" id="x95" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายการทดลอง</h3>${written('w95_1','เมื่อจุ่มหลอดในน้ำร้อนและน้ำแข็ง สีของแก๊สเปลี่ยนอย่างไร บอกอะไรเกี่ยวกับ [NO₂] และทิศทางของปฏิกิริยา')}${written('w95_2','ปฏิกิริยาไปข้างหน้าของ 2NO₂ ⇌ N₂O₄ เป็นปฏิกิริยาดูดหรือคายพลังงาน เพราะเหตุใด')}</div>
+  ${quizHTML('9.5')}`;
+}
+function wire95(){
+  const S={y:tube(298).no2,tg:298,anim:null};
+  function paintTube(y,T){
+    const I=Math.min(1,y/0.35),col=mixc('#fdf3e9','#a2410f',I);
+    const wc=T>=330?'#f4b8a8':T<=285?'#cfe8f7':'#d8ecf5';
+    let s='<rect x="40" y="110" width="200" height="120" rx="10" fill="'+wc+'" stroke="#8a93a8" stroke-width="2"/><text x="140" y="224" text-anchor="middle" font-size="12" fill="#33415c">อ่างน้ำ '+T+' K</text>';
+    s+='<rect x="105" y="20" width="70" height="170" rx="16" fill="#f7f9fc" stroke="#6d7482" stroke-width="2.5"/><rect x="108" y="46" width="64" height="141" rx="13" fill="'+col+'"/><rect x="100" y="14" width="80" height="16" rx="5" fill="#9a8f84" stroke="#6d7482"/>';
+    s+='<text x="140" y="6" text-anchor="middle" font-size="12" fill="#5d6b82">จุกยางปิดสนิท</text>';
+    return s;
+  }
+  function paintVals(y,T){const K=kPrime(T);$('#a95').textContent=y.toFixed(3);$('#b95').textContent=(K*y*y).toFixed(3);$('#k95').textContent=sig(K,3);}
+  function setTemp(T,animate){
+    $('#tv95').textContent=T;$('#tc95').textContent=T-273;$('#t95').value=T;
+    $$('[data-bath]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.bath===T)));
+    const t=tube(T),from=S.y;S.tg=T;
+    const msg=()=>{const d=t.no2-from;$('#o95').textContent=Math.abs(d)<1e-6?'ที่ '+T+' K [NO₂] = '+t.no2.toFixed(3)+' mol/L (สมดุลเริ่มต้นที่อุณหภูมิห้อง)':(d>0?'สีน้ำตาลแดงเข้มขึ้นแล้วคงที่ [NO₂] เพิ่มจาก '+from.toFixed(3)+' เป็น '+t.no2.toFixed(3)+' แสดงว่าเกิดปฏิกิริยาย้อนกลับมากขึ้นเมื่อเพิ่มอุณหภูมิ':'สีน้ำตาลแดงจางลงแล้วคงที่ [NO₂] ลดจาก '+from.toFixed(3)+' เป็น '+t.no2.toFixed(3)+' แสดงว่าเกิดปฏิกิริยาไปข้างหน้ามากขึ้นเมื่อลดอุณหภูมิ')+' · K ของปฏิกิริยาไปข้างหน้า '+(d>0?'ลดลง':d<0?'เพิ่มขึ้น':'เท่าเดิม')+' แปลว่าปฏิกิริยาไปข้างหน้าคายพลังงาน';};
+    if(S.anim){cancelAnimationFrame(S.anim);S.anim=null;}
+    if(!animate||REDUCED){S.y=t.no2;$('#g95').innerHTML=paintTube(S.y,T);paintVals(S.y,T);msg();return;}
+    const t0=performance.now(),dur=1200;
+    const step=now=>{if(!$('#g95')){S.anim=null;return;}const u=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-u,3);S.y=from+(t.no2-from)*e;$('#g95').innerHTML=paintTube(S.y,T);paintVals(S.y,T);if(u<1)S.anim=requestAnimationFrame(step);else{S.anim=null;msg();}};
+    S.anim=requestAnimationFrame(step);
+  }
+  S.base=tube(298).no2;
+  $$('[data-bath]').forEach(b=>b.onclick=()=>setTemp(+b.dataset.bath,true));
+  $('#t95').oninput=e=>setTemp(+e.target.value,false);
+  $('#ec95').onclick=()=>{const a=$('#e1_95').value,b=$('#e2_95').value,m=$('#er95');
+    if(!a||!b){m.className='res bad';m.textContent='เลือกให้ครบสองช่อง';return;}
+    if(a==='en'&&b==='ex'){m.className='res ok';m.textContent='ถูกต้อง K ของ N₂O₄ ⇌ 2NO₂ เพิ่มขึ้นเมื่ออุณหภูมิสูงขึ้น (0.040 → 1.4 → 41) จึงดูดพลังงาน ส่วน K ของการสังเคราะห์ NH₃ ลดลง (3.3×10⁸ → 3.9×10⁴ → 1.7×10²) จึงคายพลังงาน';}
+    else{m.className='res bad';m.textContent='ยังไม่ถูก ดูแนวโน้มของ K: K เพิ่มตามอุณหภูมิ = ปฏิกิริยาไปข้างหน้าดูดพลังงาน, K ลดตามอุณหภูมิ = คายพลังงาน';}
+  };
+  /* ความดัน */
+  function vol(f,inert){
+    const v=volShift(f),m=$('#x95'),q0=0.250/f/Math.pow(0.100/f,2);
+    $('#f95').innerHTML=bars({aria:'ความเข้มข้นของ NO₂ และ N₂O₄ เดิม ทันทีหลังรบกวน และสมดุลใหม่',names:['NO₂','N₂O₄'],ymax:Math.max(0.3,0.100/f,0.250/f,v.no2,v.n2o4,0.25)*1.1,groups:[{n:'สมดุลเดิม',c:'#9fb4d6',v:[0.100,0.250]},{n:'หลังเปลี่ยนปริมาตรทันที',c:'#e0a23a',v:[0.100/f,0.250/f]},{n:'สมดุลใหม่',c:'#1f5fbf',v:[v.no2,v.n2o4]}]});
+    if(inert){m.className='res ok';m.textContent='เติมแก๊สเฉื่อยโดยปริมาตรคงที่: ความเข้มข้นของ NO₂ และ N₂O₄ ไม่เปลี่ยน Q ยังเท่ากับ K จึงไม่มีผลต่อสมดุล (ความดันรวมเพิ่มแต่ความดันย่อยของสารในปฏิกิริยาเท่าเดิม)';return;}
+    const dir=f>1?'ลดความดัน ระบบเลื่อนไปทางที่มีจำนวนโมลแก๊สมากกว่า คือย้อนกลับ ได้ NO₂ เพิ่ม (Q = '+q0.toFixed(1)+' > K = 25.0)':f<1?'เพิ่มความดัน ระบบเลื่อนไปทางที่มีจำนวนโมลแก๊สน้อยกว่า คือไปข้างหน้า ได้ N₂O₄ เพิ่ม (Q = '+q0.toFixed(1)+' < K = 25.0)':'ไม่มีการรบกวน';
+    m.className='res ok';m.innerHTML=dir+'<br>สมดุลใหม่: [NO₂] = <b>'+v.no2.toFixed(4)+'</b> · [N₂O₄] = <b>'+v.n2o4.toFixed(3)+'</b> mol/L'+(f===2?' (ตรงกับหนังสือ: x = 0.00905 → [NO₂] = 0.0500 + 2(0.00905) = 0.0681 และ [N₂O₄] = 0.116 mol/L)':'');
+  }
+  $('#v95').onchange=e=>vol(+e.target.value,false);$('#ig95').onclick=()=>vol(+$('#v95').value,true);
+  setTemp(298,false);vol(2,false);wireQuiz('9.5');
+}
+
+/* ======================= แบบฟอร์มสืบค้น (กิจกรรม 9.6) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (สรุปโดยผู้จัดทำหน้า)</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่งด้านล่างหน้า ตัวอย่างหัวข้อเป็นหัวข้อที่หนังสือยกเป็นตัวอย่างผลหรือผู้จัดทำหน้าเสนอ เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจงานนำเสนอ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m5-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+const RES9={id:'9.6',ch:'ch9',title:'กิจกรรม 9.6 สืบค้นข้อมูลเกี่ยวกับสมดุลเคมีในชีวิตประจำวัน สิ่งมีชีวิต สิ่งแวดล้อม และอุตสาหกรรม',page:'คู่มือครู เล่ม 3 หน้า 177–180',
+ goal:'สืบค้นข้อมูลและนำเสนอเกี่ยวกับสมดุลเคมีของกระบวนการที่เกิดขึ้นในชีวิตประจำวัน สิ่งมีชีวิต สิ่งแวดล้อม และอุตสาหกรรม',
+ steps:['เลือกกระบวนการหนึ่งเรื่องจากชีวิตประจำวัน สิ่งมีชีวิต ปรากฏการณ์ในธรรมชาติ หรืออุตสาหกรรม แล้วสืบค้นว่ามีสมดุลเคมีอะไรเกี่ยวข้อง','เขียนสมการเคมีของสมดุลนั้น และอธิบายด้วยหลักของเลอชาเตอลิเอว่าการรบกวนระบบ (ความเข้มข้น ความดัน หรืออุณหภูมิ) ทำให้ระบบเลื่อนไปทางใด','เตรียมนำเสนอกลุ่มละประมาณ 10 นาที ด้วยสื่อชนิดใดก็ได้ เช่น โปสเตอร์ บทบาทสมมติ หรือวีดิทัศน์ (ตามที่คู่มือเสนอ)','ให้แต่ละกลุ่มตั้งคำถามถามเพื่อนกลุ่มละ 1 คำถามหลังการนำเสนอ'],
+ topics:['ฟองแก๊สในน้ำอัดลม','การเกิดฟันผุ','เปลือกไข่บางในหน้าร้อน','การผลิตแอมโมเนียด้วยกระบวนการฮาเบอร์','โรคหายใจเกิน','การเกิดหินงอกหินย้อย','โรคเก๊าท์'],
+ fields:['หัวข้อที่เลือก','สมดุลเคมีที่เกี่ยวข้อง (สมการ) และการรบกวนสมดุลตามหลักของเลอชาเตอลิเอ พร้อมอธิบายผล','แหล่งอ้างอิงที่ใช้สืบค้น','คำถามที่จะถามเพื่อนหลังนำเสนอ (ไม่บังคับ)'],
+ check:['เขียนสมการสมดุลและระบุสารตั้งต้นกับผลิตภัณฑ์','บอกว่ารบกวนสมดุลด้วยปัจจัยใดและระบบเลื่อนไปทางใด','ระบุแหล่งอ้างอิง','เตรียมคำถามสำหรับเพื่อน']};
+function act96(){return resHTML(RES9);}
+function wire96(){resWire(RES9);}
+
+/* ======================= เครื่องตรวจแบบฝึกหัดท้ายบท ======================= */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อย) ช่องเขียนส่งให้ครูตรวจ · โจทย์ย่อความโดยผู้จัดทำหน้า ดูโจทย์เต็มและรูปกราฟในหนังสือเรียน</p>`+
+  list.map((q,i)=>`<div class="q"><p>${i+1}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}">${q.s}</div></div>`).join('')+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;
+    auto.forEach(([i,j,p])=>{
+      const mk=$('#mk_'+i+'_'+j);let ok=false,has=false;
+      if(p.t==='num'){const raw=$('#ex_'+i+'_'+j).value.trim();has=raw!=='';const v=parseFloat(raw);
+        ok=has&&Number.isFinite(v)&&Math.abs(v-p.a)<=(p.abs!==undefined?p.abs:Math.abs(p.a)*(p.rel||0.05));}
+      else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+      if(has)answered++;if(ok)got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน'+(answered<auto.length?' (ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก)':'');
+    ls('ท้ายบท',got,auto.length);
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+
+/* ตัวเลขเฉลยคำนวณจากสูตรเดียวกับแบบจำลอง (ตรวจด้วยมือและโปรแกรมแล้วว่าตรงกับเฉลยในหนังสือ) */
+function ex9(){
+  const kHI=kOf([-1,-1,2],[0.20,0.20,1.60]);
+  const k2=0.50*0.50/(0.50*0.50*0.75),k3=0.50*0.50/(0.75*0.50*0.50),k1=k3/k2;
+  const nA=5.63*7.0/(0.0821*300),nB=13.14*3.0/(0.0821*300),cA=nA/10.0,cB=nB/10.0;
+  const rC=solveExtent([-1,-1,2],196,[cA,cB,0]).c[2],pC=rC*0.0821*300;
+  const ester=4,acid=Math.sqrt(ester*ester/4),start=acid+ester;
+  const kSO=0.65*0.65/(0.35*0.35);
+  const b1=solveExtent([-1,1,1],0.80,[0.40,0.40,0.40]).c[1],b2=solveExtent([-1,1,1],0.80,[0.20,0.40,0.20]).c[1];
+  return{kHI,k2,k3,k1,pC,start,kSO,b1,b2,kA:Math.pow(4.0,2)/1.0,kB:Math.pow(3.0,2)/1.5};
+}
+const E9=ex9();
+const UPDOWN=['เพิ่มขึ้น','ลดลง','เท่าเดิม'];
+const EX9=[
+ {t:'ปฏิกิริยา H₂(g) + I₂(g) ⇌ 2HI(g) ผสม H₂ และ I₂ อย่างละ 1.00 mol ในภาชนะ 1.00 L จากกราฟของหนังสือ [HI] เริ่มที่ 0 และคงที่ที่ 1.60 mol/L ตั้งแต่นาทีที่ 5',
+  p:[{t:'num',l:'1.1 [H₂] ที่สมดุล',u:'mol/L',a:1.00-1.60/2,abs:.02},{t:'num',l:'1.2 [I₂] ที่สมดุล',u:'mol/L',a:1.00-1.60/2,abs:.02},
+     {t:'mcq',l:'1.3 ความดันรวมของแก๊สระหว่างเกิดปฏิกิริยา',o:UPDOWN,a:2},
+     {t:'mcq',l:'1.4 ที่สมดุล ความดันย่อยของ HI เทียบกับสารตั้งต้น',o:['มากกว่า','น้อยกว่า','เท่ากัน'],a:0},
+     {t:'num',l:'1.5 ค่าคงที่สมดุล K',u:'',a:E9.kHI,rel:.03}],
+  s:'ที่สมดุล [HI] = 1.60 จึงมี HI เกิด 1.60 mol/L ใช้ H₂ ไปครึ่งหนึ่งคือ 0.80 เหลือ 1.00 − 0.80 = <b>0.20 mol/L</b> (I₂ เท่ากัน) · จำนวนโมลรวมคงที่ (2.00 → 0.20 + 0.20 + 1.60) ความดันรวมจึงไม่เปลี่ยน · HI มีโมลมากกว่า จึงมีความดันย่อยมากกว่า · K = (1.60)²/((0.20)(0.20)) = <b>64</b>'},
+ {t:'ปฏิกิริยา (1) A₂ + B₂ ⇌ 2AB (2) 2AB + B₂ ⇌ 2AB₂ (3) A₂ + 2B₂ ⇌ 2AB₂ ที่อุณหภูมิเดียวกัน ทดลอง (2) ด้วย AB และ B₂ อย่างละ 1.00 mol ในภาชนะ 1.00 L พบ B₂ ลดลง 0.25 mol ส่วน (3) ใช้ A₂ และ B₂ อย่างละ 1.00 mol ได้ AB₂ 0.50 mol',
+  p:[{t:'num',l:'K₂',u:'',a:E9.k2,rel:.05},{t:'num',l:'K₃',u:'',a:E9.k3,rel:.05},{t:'num',l:'K₁ (จาก K₃ = K₁ × K₂)',u:'',a:E9.k1,rel:.05}],
+  s:'(2) สมดุล [AB] = 0.50, [B₂] = 0.75, [AB₂] = 0.50 → K₂ = (0.50)²/((0.50)²(0.75)) = 1.3 · (3) [A₂] = 0.75, [B₂] = 0.50, [AB₂] = 0.50 → K₃ = (0.50)²/((0.75)(0.50)²) = 1.3 · (3) = (1) + (2) จึง K₃ = K₁K₂ → K₁ = 1.3/1.3 = <b>1.0</b>'},
+ {t:'ปฏิกิริยา A(g) + B(g) ⇌ 2C(g) ที่ 27 °C มี K = 196 แก๊ส A 5.63 atm ในภาชนะ 7.0 L และแก๊ส B 13.14 atm ในภาชนะ 3.0 L เปิดวาล์วให้ผสมกัน (รวม 10.0 L) ที่สมดุลแก๊ส C มีความดันกี่บรรยากาศ (R = 0.0821 L·atm/(mol·K))',
+  p:[{t:'num',l:'ความดันของ C ที่สมดุล',u:'atm',a:E9.pC,rel:.03}],
+  s:'n(A) = PV/RT = (5.63)(7.0)/((0.0821)(300)) = 1.6 mol และ n(B) = 1.6 mol ความเข้มข้นหลังผสม 0.16 mol/L ทั้งคู่ · 196 = (2x)²/(0.16 − x)² → 2x/(0.16 − x) = 14 → x = 0.14 → [C] = 0.28 mol/L · P = (0.28)(0.0821)(300) = <b>6.9 atm</b>'},
+ {t:'CH₃CO₂H(l) + CH₃CH₂OH(l) ⇌ CH₃CO₂CH₂CH₃(l) + H₂O(l) มี K = 4 (สารทุกชนิดละลายเป็นเนื้อเดียวกัน) ที่สมดุลต้องการเอทิลแอซีเตต 4 mol และกรดกับเอทานอลมีโมลเท่ากัน',
+  p:[{t:'num',l:'ต้องใช้กรดแอซีติกและเอทานอลอย่างละ',u:'mol',a:E9.start,rel:.03}],
+  s:'เกิดเอทิลแอซีเตต 4 mol ก็เกิดน้ำ 4 mol · K = (4)(4)/(a × a) = 4 → a = 2 mol ที่สมดุล · โมลเริ่มต้น = 2 + 4 = <b>6 mol</b> (ปริมาตรหักล้างกันไปในสูตร K)'},
+ {t:'SO₂(g) + NO₂(g) ⇌ SO₃(g) + NO(g) เริ่มจาก SO₂ และ NO₂ ความดันอย่างละ 1.00 atm ที่สมดุล NO มีความดัน 0.65 atm',
+  p:[{t:'num',l:'ค่าคงที่สมดุล K',u:'',a:E9.kSO,rel:.04}],
+  s:'ที่สมดุล ความดัน SO₂ = NO₂ = 1.00 − 0.65 = 0.35 atm และ SO₃ = NO = 0.65 atm (ความดันเป็นสัดส่วนกับความเข้มข้น RT หักล้างกัน) → K = (0.65)(0.65)/((0.35)(0.35)) = <b>3.4</b>'},
+ {t:'A(aq) ⇌ B(aq) + C(aq) มี K = 0.80 ที่สมดุลเดิม [A] = 0.20 mol/L (จึง [B] = [C] = 0.40 mol/L) กรณีที่ 1 เพิ่ม A อีก 0.20 mol/L กรณีที่ 2 ลด C ลง 0.20 mol/L เทียบ [B] ที่สมดุลใหม่ของสองกรณี',
+  p:[{t:'num',l:'[B] ใหม่ เมื่อเพิ่ม A',u:'mol/L',a:E9.b1,rel:.03},{t:'num',l:'[B] ใหม่ เมื่อลด C',u:'mol/L',a:E9.b2,rel:.03},{t:'mcq',l:'กรณีใดได้ [B] ที่สมดุลใหม่มากกว่า',o:['เพิ่ม A','ลด C','เท่ากัน'],a:0}],
+  s:'เพิ่ม A: เริ่ม 0.40, 0.40, 0.40 → 0.80 = (0.40 + x)²/(0.40 − x) → x = 0.094 → [B] = <b>0.49</b> · ลด C: เริ่ม 0.20, 0.40, 0.20 → 0.80 = (0.40 + x)(0.20 + x)/(0.20 − x) → x = 0.055 → [B] = <b>0.46</b> · กรณีเพิ่ม A ได้ B มากกว่า'},
+ {t:'CH₄(g) + H₂O(g) + พลังงาน ⇌ CO(g) + 3H₂(g) (ผลิตไฮโดรเจนในอุตสาหกรรม) ปริมาณ H₂ ที่สมดุลเปลี่ยนอย่างไรเมื่อ',
+  p:[{t:'mcq',l:'7.1 เพิ่มความดัน',o:UPDOWN,a:1},{t:'mcq',l:'7.2 เพิ่มอุณหภูมิ',o:UPDOWN,a:0},{t:'mcq',l:'7.3 เติมตัวเร่งปฏิกิริยา (ปริมาณ H₂ ที่สมดุล)',o:UPDOWN,a:2}],
+  s:'7.1 ฝั่งผลิตภัณฑ์มีโมลแก๊ส 4 ฝั่งสารตั้งต้น 2 เพิ่มความดันแล้วระบบเลื่อนย้อนกลับ H₂ ลด · 7.2 ไปข้างหน้าดูดพลังงาน เพิ่มอุณหภูมิจึงเลื่อนไปข้างหน้า H₂ เพิ่ม · 7.3 ตัวเร่งทำให้ถึงสมดุลเร็วขึ้น แต่ปริมาณที่สมดุลเท่าเดิม'},
+ {t:'N₂(g) + 3H₂(g) ⇌ 2NH₃(g) อยู่ในสมดุล แล้วเติม N₂ เข้าไป (โจทย์ให้ร่างกราฟความเข้มข้นของ H₂ และ NH₃ ตามเวลา)',
+  p:[{t:'text',l:'อธิบายว่ากราฟของ H₂ และ NH₃ ควรเปลี่ยนอย่างไรหลังเติม N₂ จนถึงสมดุลใหม่'}],
+  s:'เติม N₂ = เพิ่มความเข้มข้นสารตั้งต้น ระบบเลื่อนไปข้างหน้า [H₂] ลดลงและ [NH₃] เพิ่มขึ้นจนคงที่ที่สมดุลใหม่ (N₂ เพิ่มขึ้นทันทีแล้วลดลงบางส่วน)'},
+ {t:'H₂(g) + I₂(g) ⇌ 2HI(g) (I₂ สีม่วง H₂ และ HI ไม่มีสี) K = 160 ที่ 500 K และ 54 ที่ 700 K สีของแก๊สผสมเปลี่ยนอย่างไรเมื่อ',
+  p:[{t:'mcq',l:'9.1 เพิ่มอุณหภูมิ',o:['สีม่วงเข้มขึ้น','สีม่วงจางลง','สีไม่เปลี่ยน'],a:0},{t:'mcq',l:'9.2 เพิ่มความดัน',o:['สีม่วงเข้มขึ้น','สีม่วงจางลง','สีไม่เปลี่ยน'],a:2}],
+  s:'K ลดเมื่ออุณหภูมิสูงขึ้น แสดงว่าปฏิกิริยาไปข้างหน้าคายพลังงาน เพิ่มอุณหภูมิจึงเลื่อนย้อนกลับ ได้ I₂ มากขึ้น สีม่วงเข้มขึ้น · จำนวนโมลแก๊สสองข้างเท่ากัน (2 : 2) ความดันจึงไม่มีผลต่อสมดุล'},
+ {t:'X₂(g) + Y₂(g) ⇌ 2XY(g) ΔE = +250 kJ/mol การทดลองที่ 1: 300 K, X₂ และ Y₂ อย่างละ 1.0 mol ในภาชนะ 2 L · การทดลองที่ 2: 300 K, อย่างละ 2.0 mol ในภาชนะ 2 L · การทดลองที่ 3: 700 K, อย่างละ 1.0 mol ในภาชนะ 2 L',
+  p:[{t:'mcq',l:'เปรียบเทียบค่าคงที่สมดุล',o:['K₁ = K₂ < K₃','K₁ < K₂ = K₃','K₁ = K₂ = K₃','K₁ > K₂ > K₃'],a:0}],
+  s:'K ขึ้นกับอุณหภูมิเท่านั้น การทดลอง 1 และ 2 อุณหภูมิเดียวกัน K จึงเท่ากัน ปฏิกิริยาดูดพลังงาน (ΔE เป็นบวก) เพิ่มอุณหภูมิเป็น 700 K ทำให้ K เพิ่ม จึง K₁ = K₂ < K₃'},
+ {t:'A(g) ⇌ 2B(g) ในภาชนะ 1.0 L จากกราฟของหนังสือ ก่อนเวลา 15 วินาที สมดุลที่ [A] = 1.0, [B] = 4.0 mol/L จากนั้นลดอุณหภูมิ ได้สมดุลใหม่ [A] = 1.5, [B] = 3.0 mol/L',
+  p:[{t:'num',l:'11.1 K ก่อน 15 วินาที',u:'',a:E9.kA,rel:.03},{t:'num',l:'11.1 K หลัง 15 วินาที',u:'',a:E9.kB,rel:.03},{t:'mcq',l:'11.2 ปฏิกิริยาไปข้างหน้า',o:['ดูดพลังงาน','คายพลังงาน'],a:0}],
+  s:'K = [B]²/[A] → ก่อน (4.0)²/1.0 = <b>16</b> · หลัง (3.0)²/1.5 = <b>6.0</b> · ลดอุณหภูมิแล้ว K ลดลง แสดงว่าปฏิกิริยาไปข้างหน้าดูดพลังงาน'},
+ {t:'CO(g) + Cl₂(g) ⇌ COCl₂(g) + พลังงาน อยู่ในสมดุล แล้วรบกวนที่เวลา A, B และ C (กราฟในหนังสือ: ที่เวลา A ความเข้มข้นของสารทุกชนิดเพิ่มพร้อมกัน ที่เวลา B Cl₂ เพิ่มทันที ที่เวลา C สารตั้งต้นค่อยลดขณะผลิตภัณฑ์ค่อยเพิ่ม)',
+  p:[{t:'mcq',l:'12.2 การรบกวนที่เวลาใดทำให้ค่าคงที่สมดุลเปลี่ยน',o:['เวลา A (ความดัน/ปริมาตร)','เวลา B (เติม Cl₂)','เวลา C (ลดอุณหภูมิ)'],a:2},{t:'text',l:'12.1 บอกการรบกวนที่เวลา A, B และ C พร้อมเหตุผลจากรูปกราฟ'}],
+  s:'A: ลดปริมาตรหรือเพิ่มความดัน เพราะความเข้มข้นทุกสารเพิ่มพร้อมกัน · B: เติม Cl₂ · C: ลดอุณหภูมิ (ปฏิกิริยาคายพลังงานจึงเลื่อนไปข้างหน้า) · มีเพียงการเปลี่ยนอุณหภูมิที่เปลี่ยนค่า K'},
+ {t:'ยูเรีย: 2NH₃(g) + CO₂(g) ⇌ NH₂CONH₂(s) + H₂O(g) + 135.7 kJ ผลิตที่ความดันสูง 190 °C ใช้ NH₃ : CO₂ = 3 : 1 และกำจัดไอน้ำด้วยตัวดูดซับ',
+  p:[{t:'mcq',l:'13.1 เหตุผลที่ใช้ความดันสูง',o:['แก๊สสารตั้งต้นมีจำนวนโมลมากกว่าแก๊สผลิตภัณฑ์ ความดันสูงเลื่อนไปข้างหน้า','แก๊สผลิตภัณฑ์มีจำนวนโมลมากกว่า','เพื่อเพิ่มค่า K','เพื่อเป็นตัวเร่งปฏิกิริยา'],a:0},
+     {t:'mcq',l:'13.3 ตัวดูดซับไอน้ำช่วยอย่างไร',o:['ลดผลิตภัณฑ์ (H₂O) ทำให้เลื่อนไปข้างหน้า ได้ยูเรียมากขึ้น','เพิ่ม K','ลดความดัน','ทำให้ปฏิกิริยาย้อนกลับเร็วขึ้น'],a:0},
+     {t:'text',l:'13.2 และ 13.4 เพราะเหตุใดจึงใช้ NH₃ : CO₂ = 3 : 1 แทน 2 : 1 และถ้าทำที่อุณหภูมิต่ำหรือสูงกว่า 190 °C จะเกิดอะไรขึ้น'}],
+  s:'13.1 โมลแก๊สสารตั้งต้น 3 มากกว่าผลิตภัณฑ์ที่เป็นแก๊ส 1 (ยูเรียเป็นของแข็ง) · 13.2 NH₃ ส่วนเกินเพิ่มความเข้มข้นสารตั้งต้นจึงเลื่อนไปข้างหน้า · 13.3 กำจัดไอน้ำ = ลดผลิตภัณฑ์ · 13.4 ปฏิกิริยาคายพลังงาน ต่ำกว่า 190 °C เลื่อนไปข้างหน้าได้ยูเรียมากขึ้นแต่เกิดช้าลง สูงกว่า 190 °C เลื่อนย้อนกลับได้ยูเรียน้อยลงแต่เร็วขึ้น'},
+ {t:'ข้อความแนวคิดจากข้อ 14 (เส้นทาง START → FINISH) เลือกข้อที่ถูกต้อง',
+  p:[{t:'mcq',l:'14.1 MgCl₂(s) ⇌ Mg²⁺(aq) + 2Cl⁻(aq) นิพจน์ K',o:['K = [Mg²⁺][Cl⁻]²','K = [Mg²⁺][Cl⁻]²/[MgCl₂]','K = [Mg²⁺][2Cl⁻]','K = [Mg²⁺][Cl⁻]'],a:0},
+     {t:'mcq',l:'14.2 CO₂(g) + C(s) ⇌ 2CO(g) นิพจน์ K',o:['K = [CO]²/[CO₂]','K = [CO]²/([CO₂][C])','K = [CO]/[CO₂]','K = [CO₂]/[CO]²'],a:0},
+     {t:'mcq',l:'14.3 การเติมแก๊สเฉื่อยในภาชนะปริมาตรคงที่ต่อสมดุลของแก๊ส',o:['ไม่มีผลต่อความเข้มข้นของแก๊สที่สมดุล','เลื่อนไปข้างหน้าเสมอ','เลื่อนย้อนกลับเสมอ','เปลี่ยนค่า K'],a:0},
+     {t:'mcq',l:'14.4 ที่สมดุล อัตราไปข้างหน้ากับย้อนกลับ',o:['เท่ากันและไม่เป็นศูนย์','เท่ากันและเป็นศูนย์','ไม่เท่ากัน','ไม่มีนิยาม'],a:0}],
+  s:'ของแข็งและของเหลวบริสุทธิ์ไม่ใส่ในนิพจน์ K · แก๊สเฉื่อยที่ปริมาตรคงที่ไม่เปลี่ยนความเข้มข้นของสารที่ทำปฏิกิริยา · ที่สมดุล อัตราสองทิศเท่ากันแต่ไม่เป็นศูนย์ (สมดุลพลวัต)'}
+];
+function actEx(){return exHTML(EX9,'คู่มือครู เล่ม 3 หน้า 183–200 (แบบฝึกหัดท้ายบทและเฉลย)','แบบฝึกหัดท้ายบท 9');}
+function wireEx(){exWire(EX9);}
+
+/* ======================= สรุปเนื้อหา ======================= */
+function actSum(){return `<h2>สรุปเนื้อหาบท 9 สมดุลเคมี</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงสาระสำคัญของบท (คู่มือครู หน้า 126) และเนื้อหาในบท ไม่ใช่ข้อความต้นฉบับ</p>
+ <div class="cols"><div class="box"><h3>แนวคิดหลัก</h3><ul>
+ <li>การเปลี่ยนแปลงที่ผันกลับได้ในระบบปิดมีทั้งทิศไปข้างหน้าและย้อนกลับ ที่สมดุลปริมาณสารคงที่เพราะอัตราสองทิศเท่ากัน (สมดุลพลวัต) ไม่ได้แปลว่าปฏิกิริยาหยุด หรือปริมาณสารตั้งต้นเท่ากับผลิตภัณฑ์</li>
+ <li>เริ่มจากสารตั้งต้นหรือผลิตภัณฑ์ก็เข้าสู่สมดุลเดียวกันได้ เมื่อเริ่มปฏิกิริยา อัตราไปข้างหน้ามากสุดแล้วลดลง อัตราย้อนกลับเริ่มที่ศูนย์แล้วเพิ่มขึ้นจนเท่ากัน</li>
+ <li>ที่อุณหภูมิหนึ่ง ความเข้มข้นที่สมดุลสัมพันธ์กันเป็นค่าคงที่สมดุล K เฉพาะแต่ละปฏิกิริยา K ไม่บอกอัตราการเกิดปฏิกิริยา และไม่มีหน่วย</li>
+ <li>K มากแปลว่าที่สมดุลมีผลิตภัณฑ์มากกว่าสารตั้งต้น K น้อยแปลว่ามีสารตั้งต้นมากกว่า</li>
+ <li>รบกวนสมดุลด้วยความเข้มข้น ความดัน หรืออุณหภูมิ ระบบปรับตัวลดผลของการรบกวนเพื่อเข้าสู่สมดุลใหม่ (หลักของเลอชาเตอลิเอ) เฉพาะการเปลี่ยนอุณหภูมิเท่านั้นที่ทำให้ค่า K เปลี่ยน</li>
+ <li>ความดันมีผลเมื่อมีแก๊สและจำนวนโมลแก๊สสองข้างต่างกัน ตัวเร่งปฏิกิริยาทำให้ถึงสมดุลเร็วขึ้นแต่ไม่เปลี่ยนปริมาณหรือ K</li>
+ <li>ใช้หลักสมดุลเคมีอธิบายกระบวนการในอุตสาหกรรม (เช่น กระบวนการฮาเบอร์) สิ่งมีชีวิต และปรากฏการณ์ธรรมชาติ</li></ul></div>
+ <div class="box"><h3>สูตรและวิธีที่ใช้บ่อย</h3><ul>
+ <li>aA + bB ⇌ cC + dD : K = [C]<sup>c</sup>[D]<sup>d</sup> / ([A]<sup>a</sup>[B]<sup>b</sup>) ไม่ใส่ของแข็งและของเหลวบริสุทธิ์</li>
+ <li>กลับข้างสมการ: K ใหม่ = 1/K · คูณสัมประสิทธิ์ด้วย n: K ใหม่ = K<sup>n</sup> · รวมสมการ: K รวม = K₁ × K₂</li>
+ <li>ตาราง ICE: เริ่มต้น (I) · เปลี่ยนไป (C) ตามสัดส่วนสัมประสิทธิ์ · สมดุล (E) แล้วแทนใน K ได้สมการ ax² + bx + c = 0 ใช้ x = (−b ± √(b² − 4ac))/2a และเลือกรากที่ทำให้ความเข้มข้นไม่ติดลบ</li>
+ <li>เปรียบเทียบ Q กับ K: Q &lt; K เลื่อนไปข้างหน้า · Q &gt; K เลื่อนย้อนกลับ · Q = K สมดุล (Q เป็นเนื้อหาเสริมของผู้จัดทำหน้า)</li>
+ <li>อุณหภูมิ: ไปข้างหน้าดูดพลังงาน K เพิ่มเมื่อ T เพิ่ม · ไปข้างหน้าคายพลังงาน K ลดเมื่อ T เพิ่ม</li>
+ <li>ความดันจากปริมาตร: เพิ่มปริมาตรให้ความเข้มข้นแก๊สทุกชนิดลดลงเท่ากัน แล้วระบบเลื่อนไปทางที่มีโมลแก๊สมากกว่า</li>
+ <li>P = (n/V)RT : ความเข้มข้นแก๊ส = P/RT (R = 0.0821 L·atm/(mol·K))</li></ul></div></div>
+ <div class="box"><h3>สรุปการเลื่อนของสมดุล</h3><div class="tw"><table><thead><tr><th class="l">การรบกวน</th><th class="l">ระบบเลื่อนไปทาง</th><th>K</th></tr></thead><tbody>
+ <tr><td class="l">เพิ่มสารตั้งต้น หรือลดผลิตภัณฑ์</td><td class="l">ไปข้างหน้า</td><td>เท่าเดิม</td></tr>
+ <tr><td class="l">ลดสารตั้งต้น หรือเพิ่มผลิตภัณฑ์</td><td class="l">ย้อนกลับ</td><td>เท่าเดิม</td></tr>
+ <tr><td class="l">เพิ่มความดัน (ลดปริมาตร) ของระบบแก๊ส</td><td class="l">ทางที่มีโมลแก๊สน้อยกว่า</td><td>เท่าเดิม</td></tr>
+ <tr><td class="l">ลดความดัน (เพิ่มปริมาตร)</td><td class="l">ทางที่มีโมลแก๊สมากกว่า</td><td>เท่าเดิม</td></tr>
+ <tr><td class="l">เพิ่มอุณหภูมิ</td><td class="l">ทางที่ดูดพลังงาน</td><td>เปลี่ยน</td></tr>
+ <tr><td class="l">ลดอุณหภูมิ</td><td class="l">ทางที่คายพลังงาน</td><td>เปลี่ยน</td></tr>
+ <tr><td class="l">เติมตัวเร่งปฏิกิริยา หรือแก๊สเฉื่อยที่ปริมาตรคงที่</td><td class="l">ไม่เลื่อน (ถึงสมดุลเร็วขึ้นสำหรับตัวเร่ง)</td><td>เท่าเดิม</td></tr></tbody></table></div></div>
+ <div class="box"><h3>ศัพท์ที่พบในบท (ผู้จัดทำหน้ารวบรวม ไม่ได้คัดจากภาคผนวกของหนังสือ)</h3>${glossHTML([['สมดุลเคมี','chemical equilibrium'],['สมดุลพลวัต','dynamic equilibrium'],['ปฏิกิริยาผันกลับได้','reversible reaction'],['ปฏิกิริยาไปข้างหน้า','forward reaction'],['ปฏิกิริยาย้อนกลับ','reverse reaction'],['ระบบปิด','closed system'],['ระบบเปิด','open system'],['ค่าคงที่สมดุล','equilibrium constant'],['หลักของเลอชาเตอลิเอ',"Le Chatelier's principle"],['ปฏิกิริยาดูดพลังงาน','endothermic reaction'],['ปฏิกิริยาคายพลังงาน','exothermic reaction'],['ตัวเร่งปฏิกิริยา','catalyst'],['กระบวนการฮาเบอร์','Haber process'],['ความดันย่อย','partial pressure'],['ตารางไอซีอี (เริ่มต้น เปลี่ยนไป สมดุล)','ICE table (initial, change, equilibrium)'],['ผลหารของปฏิกิริยา (Q)','reaction quotient']])}</div>`;}
+
+/* ======================= อ่านก่อนทดลอง ======================= */
+/* reading-data:start */
+const READ={
+'9.1':{lead:'อ่านเรื่องระบบปิด ปฏิกิริยาผันกลับได้ และสมดุลพลวัตก่อน แล้วทดลองย้ายลวดเสียบกระดาษ',secs:[
+{h:'สภาวะสมดุล: การเปลี่ยนแปลงที่ผันกลับได้ในระบบปิด',pg:'คู่มือครู เล่ม 3 หน้า 126–131',html:`
+<p>การเปลี่ยนแปลงบางอย่างดูเหมือนไปทางเดียว เช่น น้ำมันเชื้อเพลิงที่ถูกเผาไหม้ อาหารที่บูดเน่า หรือน้ำแข็งแห้งที่ระเหิดหายไป แต่ยังมีปรากฏการณ์ที่ดูเหมือนไม่เปลี่ยนแปลง เช่น ระดับน้ำในขวดที่ปิดฝา หินงอกหินย้อยในถ้ำ ทั้งที่ภายในอาจมีการเปลี่ยนแปลงเกิดขึ้นตลอดเวลา</p>
+<p><b>ระบบเปิด</b>กับ<b>ระบบปิด</b>ต่างกันที่สารแลกเปลี่ยนกับภายนอกได้หรือไม่ น้ำในภาชนะเปิดระเหยออกไป ระดับจึงลดลง แต่น้ำในภาชนะปิดฝา ไอน้ำที่ระเหยขึ้นไปควบแน่นกลับลงมาได้ ระดับน้ำจึงคงที่</p>
+<div class="box"><h3>สมดุลพลวัต</h3><ul><li>ในระบบปิด การเปลี่ยนแปลงที่ผันกลับได้มีทิศไปข้างหน้าและย้อนกลับ</li><li>เมื่อสองทิศมีอัตราเท่ากัน ปริมาณของสารแต่ละชนิดคงที่ เรียกสภาวะนี้ว่า <b>สมดุลพลวัต</b></li><li>สมดุลพลวัตของปฏิกิริยาเคมีที่ผันกลับได้เรียกว่า <b>สมดุลเคมี</b> คือความเข้มข้นของสารตั้งต้นและผลิตภัณฑ์คงที่ตามเวลา</li></ul></div>
+<div class="box"><h3>ความเข้าใจคลาดเคลื่อนที่พบบ่อย</h3><ul><li>"สารตั้งต้นต้องหมดก่อนจึงเกิดปฏิกิริยาย้อนกลับ" ไม่จริง ผลิตภัณฑ์ที่เกิดแล้วย้อนกลับได้ทันทีโดยสารตั้งต้นยังไม่หมด</li><li>"ที่สมดุลไม่มีปฏิกิริยาเกิดขึ้น" ไม่จริง ปฏิกิริยาสองทิศเกิดต่อเนื่องด้วยอัตราเท่ากัน</li><li>"ที่สมดุลสารตั้งต้นกับผลิตภัณฑ์มีความเข้มข้นเท่ากัน" ไม่จริง อัตราเท่ากัน แต่ความเข้มข้นอาจเท่าหรือไม่เท่าก็ได้</li></ul></div>`,
+ q:['น้ำในขวดปิดฝาที่ระดับคงที่ แปลว่าไม่มีการระเหยเลยหรือไม่','ไม่ใช่ ทั้งการระเหยและการควบแน่นยังเกิดอยู่ แต่เกิดด้วยอัตราเท่ากัน ระดับน้ำจึงคงที่']}
+]},
+'9.2':{lead:'อ่านเรื่องปฏิกิริยาไปข้างหน้า ย้อนกลับ และผันกลับได้ แล้วทดสอบหาสารในหลอดผสมของ Fe และ I',secs:[
+{h:'ปฏิกิริยาผันกลับได้และสมดุลเคมี',pg:'คู่มือครู เล่ม 3 หน้า 131–137',html:`
+<p>เมื่อเขียนปฏิกิริยาที่ผันกลับได้ ใช้ลูกศรสองทิศ ⇌ ทิศที่เราเลือกเรียกว่า<b>ปฏิกิริยาไปข้างหน้า</b> ส่วนทิศตรงข้ามเรียก<b>ปฏิกิริยาย้อนกลับ</b> เช่น กำหนดให้ 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂ เป็นปฏิกิริยาไปข้างหน้า ปฏิกิริยาย้อนกลับก็คือ 2Fe²⁺ + I₂ → 2Fe³⁺ + 2I⁻ และเขียนรวมเป็น 2Fe³⁺ + 2I⁻ ⇌ 2Fe²⁺ + I₂</p>
+<p>ในกิจกรรม 9.2 หนังสือใช้การทดสอบเฉพาะของแต่ละไอออนเพื่อตรวจสอบว่าสารละลายผสมมีสารอะไรอยู่บ้าง ได้แก่ Fe³⁺ กับ NaOH เกิดตะกอนสีน้ำตาลแดง · Fe²⁺ กับ K₃Fe(CN)₆ เกิดตะกอนสีน้ำเงิน · I⁻ กับ AgNO₃ เกิดตะกอนสีเหลืองอ่อน · I₂ กับน้ำแป้งสุกได้สารสีน้ำเงินเข้ม</p>
+<ul><li>ถ้าหลอดผสมให้ผลบวกครบสี่แบบ แปลว่าสารตั้งต้นและผลิตภัณฑ์อยู่ด้วยกันครบ</li><li>ถ้าตั้งไว้แล้วสีไม่เปลี่ยน แปลว่าความเข้มข้นของแต่ละสารคงที่ จึงเข้าข่ายสมดุล</li><li>ระบบต้องเป็น<b>ระบบปิด</b> จึงจะเกิดสมดุลได้ (ปฏิกิริยาที่แก๊สหนีออกจากภาชนะได้ไม่ถึงสมดุล)</li></ul>`,
+ q:['ถ้าผสม Fe²⁺ กับ I₂ แทนที่จะผสม Fe³⁺ กับ I⁻ จะได้สารผสมที่ต่างกันหรือไม่','ไม่ต่าง ตามผลของหนังสือ ทั้งสองการผสมได้ผลทดสอบบวกครบทั้งสี่ แสดงว่าเข้าสู่สมดุลเดียวกันได้จากทั้งสองด้าน']}
+]},
+'9.3':{lead:'อ่านเรื่องความเข้มข้นและอัตราตามเวลา และเรื่องค่าคงที่สมดุล ก่อนดูกราฟและฝึกคำนวณ',secs:[
+{h:'ความเข้มข้นและอัตราเมื่อระบบเข้าสู่สมดุล',pg:'คู่มือครู เล่ม 3 หน้า 138–140',html:`
+<p>เมื่อเริ่มปฏิกิริยาผันกลับได้จากสารตั้งต้น ความเข้มข้นของสารตั้งต้นลดลงและผลิตภัณฑ์เพิ่มขึ้น จนทั้งหมดคงที่ ซึ่งแสดงว่าเข้าสู่สมดุล ถ้าเริ่มจากผลิตภัณฑ์ก็เกิดกลับกัน และในระบบปิดไม่ว่าเริ่มจากสารใด (เช่นเริ่มจาก NO₂ หรือ N₂O₄ หรือทั้งสอง) ก็เข้าสู่สมดุลได้</p>
+<ul><li><b>อัตราไปข้างหน้า</b> สูงสุดเมื่อเริ่มต้น เพราะสารตั้งต้นมีมากที่สุด แล้วลดลง</li><li><b>อัตราย้อนกลับ</b> เริ่มจากศูนย์ (ยังไม่มีผลิตภัณฑ์) แล้วเพิ่มขึ้น</li><li>ที่สมดุล สองอัตราเท่ากัน ความเข้มข้นจึงคงที่</li></ul>`,
+ q:['ในกราฟ ถ้าเริ่มจากผลิตภัณฑ์อย่างเดียว อัตราไหนเริ่มที่ศูนย์','อัตราไปข้างหน้า เพราะยังไม่มีสารตั้งต้น มีเฉพาะอัตราย้อนกลับที่สูงสุดในตอนแรก']},
+{h:'ค่าคงที่สมดุลและการคำนวณ',pg:'คู่มือครู เล่ม 3 หน้า 144–157',html:`
+<p>สำหรับ aA + bB ⇌ cC + dD ที่สมดุล อัตราส่วนความเข้มข้นต่อไปนี้คงที่ที่อุณหภูมิหนึ่ง เรียกว่า<b>ค่าคงที่สมดุล</b> (K) เลขยกกำลังของแต่ละสารตรงกับเลขสัมประสิทธิ์ในสมการ</p>
+<div class="box eq">K = [C]<sup>c</sup>[D]<sup>d</sup> / ([A]<sup>a</sup>[B]<sup>b</sup>)</div>
+<ul><li>ใช้ความเข้มข้นหน่วย mol/L ตัวเลขนี้ไม่มีหน่วย</li><li>ของแข็ง ของเหลวบริสุทธิ์ และตัวทำละลายไม่ใส่ในนิพจน์ เพราะความเข้มข้นคงที่ ส่วนแก๊สในระบบปิดต้องใส่</li><li>K มากแปลว่าที่สมดุลมีผลิตภัณฑ์มากกว่าสารตั้งต้น แต่ไม่ได้บอกว่าเกิดเร็วหรือช้า</li><li>กลับข้างสมการ K ใหม่ = 1/K · คูณสัมประสิทธิ์ด้วย n ได้ K ยกกำลัง n · รวมสมการได้ผลคูณของ K</li></ul>
+<div class="box"><h3>ตัวอย่างในหนังสือ (ตัวอย่าง 3)</h3>A + 2B ⇌ 2C ผสม A 1.00 mol กับ B 1.50 mol ใน 2.00 L ได้ [C] ที่สมดุล 0.700/2.00 = 0.350 mol/L ตาราง ICE: [A] 0.500 → 0.325 · [B] 0.750 → 0.400 · [C] 0 → 0.350 ได้ K = (0.350)²/((0.325)(0.400)²) = 2.36</div>
+<p>เมื่อรู้ K และความเข้มข้นเริ่มต้น หา x จากสมการที่ได้ ถ้าเป็นกำลังสองให้จัดรูป ax² + bx + c = 0 แล้วตัดรากที่ทำให้ความเข้มข้นติดลบหรือเป็นไปไม่ได้</p>`,
+ q:['K ของปฏิกิริยาหนึ่งเท่ากับ 4.1 × 10⁻⁴ แปลว่าอะไร','ที่สมดุลมีสารตั้งต้นมากกว่าผลิตภัณฑ์มาก (ผลิตภัณฑ์ได้น้อย) แต่ยังบอกไม่ได้ว่าปฏิกิริยาเกิดเร็วหรือช้า']}
+]},
+'9.4':{lead:'อ่านเรื่องผลของความเข้มข้นตามหลักของเลอชาเตอลิเอ ก่อนทดลองกับน้ำดอกอัญชัน',secs:[
+{h:'ปัจจัยที่มีผลต่อสมดุล: ความเข้มข้น',pg:'คู่มือครู เล่ม 3 หน้า 158–164',html:`
+<p>สมดุลถูกรบกวนได้ด้วยปัจจัยบางอย่าง ได้แก่ ความเข้มข้นของสาร ความดัน และอุณหภูมิ เมื่อถูกรบกวน ระบบจะปรับตัวไปในทิศทางที่ลดผลของการรบกวนแล้วเข้าสู่สมดุลใหม่ นี่คือ<b>หลักของเลอชาเตอลิเอ</b></p>
+<ul><li>เพิ่มความเข้มข้นของสารตั้งต้น (หรือลดผลิตภัณฑ์) เกิดปฏิกิริยาไปข้างหน้ามากขึ้น</li><li>ลดความเข้มข้นของสารตั้งต้น (หรือเพิ่มผลิตภัณฑ์) เกิดปฏิกิริยาย้อนกลับมากขึ้น</li><li>การเปลี่ยนความเข้มข้นไม่เปลี่ยนค่า K ที่อุณหภูมิเดิม</li></ul>
+<p>ในน้ำดอกอัญชัน แอนโทไซยานินในรูป A (น้ำเงิน) อยู่ในสมดุลกับ AH⁺ (แดง) การเติมกรดเพิ่ม H₃O⁺ ทำให้ AH⁺ เพิ่มขึ้นจึงเห็นม่วงแดง ส่วนการเติมเบสทำให้ H₃O⁺ ลดลง A เพิ่มขึ้นจึงเห็นสีน้ำเงิน</p>
+<div class="box"><h3>ตัวอย่างในหนังสือ: Fe³⁺ + SCN⁻ ⇌ [FeSCN]²⁺</h3>ที่ 25 °C สมดุลเดิม [Fe³⁺] = [SCN⁻] = 0.200 และ [[FeSCN]²⁺] = 5.68 mol/L ได้ K = 142 ลด [Fe³⁺] เป็น 0.100 ระบบเลื่อนย้อนกลับ ที่สมดุลใหม่ [Fe³⁺] = 0.155, [SCN⁻] = 0.255 และ [[FeSCN]²⁺] = 5.62 mol/L ค่าใหม่ของสารที่ถูกรบกวนจะอยู่ระหว่างค่าหลังรบกวนกับค่าสมดุลเดิมเสมอ</div>`,
+ q:['ถ้าเพิ่ม [FeSCN]²⁺ ระบบเลื่อนไปทางใด และ [Fe³⁺] เปลี่ยนอย่างไร','เลื่อนย้อนกลับเพื่อลด [FeSCN]²⁺ ทำให้ [Fe³⁺] และ [SCN⁻] เพิ่มขึ้น']}
+]},
+'9.5':{lead:'อ่านเรื่องผลของความดันและอุณหภูมิ ก่อนทดลองกับแก๊ส NO₂ และ N₂O₄',secs:[
+{h:'ความดัน อุณหภูมิ และตัวเร่งปฏิกิริยา',pg:'คู่มือครู เล่ม 3 หน้า 165–172',html:`
+<p><b>ความดัน</b> เปลี่ยนความเข้มข้นของแก๊สได้เมื่อปริมาตรเปลี่ยน ลดปริมาตร (เพิ่มความดัน) ระบบเลื่อนไปทางที่มีจำนวนโมลแก๊สน้อยกว่า เพิ่มปริมาตรเลื่อนไปทางที่มีจำนวนโมลแก๊สมากกว่า ถ้าจำนวนโมลแก๊สสองข้างเท่ากัน ความดันไม่มีผลต่อสมดุล ของแข็งและของเหลวไม่ได้รับผลจากการเปลี่ยนความดัน การเติมแก๊สเฉื่อยที่ปริมาตรคงที่ก็ไม่เปลี่ยนความเข้มข้นของสารที่ทำปฏิกิริยา จึงไม่มีผล</p>
+<div class="box"><h3>ตัวอย่างในหนังสือ: 2NO₂(g) ⇌ N₂O₄(g) ที่ 25 °C</h3>สมดุลเดิม [NO₂] = 0.100 และ [N₂O₄] = 0.250 mol/L จึง K = 0.250/(0.100)² = 25.0 เพิ่มปริมาตรเป็น 2 เท่า ความเข้มข้นทุกสารลดลงครึ่งหนึ่งทันที ระบบเลื่อนย้อนกลับ (ทางที่มีโมลแก๊สมากกว่า) ได้ [NO₂] = 0.0681 และ [N₂O₄] = 0.116 mol/L</div>
+<p><b>อุณหภูมิ</b> เป็นปัจจัยเดียวที่เปลี่ยนค่า K ปฏิกิริยาไปข้างหน้าที่ดูดพลังงาน K เพิ่มเมื่ออุณหภูมิเพิ่ม ปฏิกิริยาไปข้างหน้าที่คายพลังงาน K ลดเมื่ออุณหภูมิเพิ่ม ดังนั้นการบอกค่า K ต้องบอกอุณหภูมิด้วย ในกิจกรรม 9.5 แก๊ส NO₂ (น้ำตาลแดง) ⇌ N₂O₄ (ไม่มีสี) เมื่อจุ่มในน้ำร้อนสีเข้มขึ้น จุ่มในน้ำแข็งสีจางลง แสดงว่าปฏิกิริยาไปข้างหน้า (2NO₂ → N₂O₄) คายพลังงาน</p>
+<p>สำหรับ [Co(H₂O)₆]²⁺ กับ Cl⁻ หนังสือยกเป็นตัวอย่างของปฏิกิริยาไปข้างหน้าที่ดูดพลังงาน ส่วน<b>ตัวเร่งปฏิกิริยา</b>ทำให้ระบบถึงสมดุลเร็วขึ้นเท่านั้น ไม่เพิ่มผลิตภัณฑ์ที่สมดุลและไม่เปลี่ยน K</p>`,
+ q:['ปฏิกิริยา H₂(g) + I₂(g) ⇌ 2HI(g) เพิ่มความดันแล้วสมดุลเปลี่ยนไหม','ไม่เปลี่ยน เพราะจำนวนโมลแก๊สสองข้างเท่ากัน (2 : 2)']}
+]},
+'9.6':{lead:'อ่านตัวอย่างสมดุลเคมีรอบตัวก่อนเลือกหัวข้อสืบค้น',secs:[
+{h:'สมดุลเคมีในสิ่งมีชีวิต สิ่งแวดล้อม และอุตสาหกรรม',pg:'คู่มือครู เล่ม 3 หน้า 177–181',html:`
+<ul><li><b>การผลิตแอมโมเนีย (กระบวนการฮาเบอร์):</b> N₂ + 3H₂ ⇌ 2NH₃ คายพลังงานและโมลแก๊สลดลง ได้ผลิตภัณฑ์มากเมื่อความดันสูงและอุณหภูมิต่ำ แต่ที่อุณหภูมิต่ำปฏิกิริยาช้าและเครื่องมือทนความดันสูงมีราคาแพง จึงใช้อุณหภูมิและความดันที่เหมาะสมร่วมกับตัวเร่งปฏิกิริยา และแยกแอมโมเนียออกจากระบบเพื่อให้ได้ผลิตภัณฑ์มากขึ้น</li>
+<li><b>ฟองแก๊สในน้ำอัดลม:</b> อัดแก๊ส CO₂ ที่ความดันสูงและอุณหภูมิต่ำ มีสมดุล CO₂(g) ⇌ CO₂(aq) และ CO₂(aq) + H₂O ⇌ H₂CO₃(aq) เปิดฝาแล้วความดันลด สมดุลเลื่อนย้อนกลับ ได้ฟองแก๊ส</li>
+<li><b>ฟันผุ:</b> เคลือบฟันเป็นไฮดรอกซิลแอพาไทต์ Ca₅(PO₄)₃OH ⇌ 5Ca²⁺ + 3PO₄³⁻ + OH⁻ มี K = 6.8 × 10⁻³⁷ เกิดน้อยมาก แต่กรดในปากทำปฏิกิริยากับ OH⁻ สมดุลจึงเลื่อนไปข้างหน้า ฟันละลายมากขึ้น</li>
+<li><b>เปลือกไข่บางในหน้าร้อน:</b> ไก่หายใจถี่ CO₂ ในเลือดลดลง ทำให้สมดุลของการสร้างแคลเซียมคาร์บอเนตเลื่อนย้อนกลับ เปลือกไข่จึงบาง</li>
+<li><b>โรคเก๊าท์:</b> กรดยูริกแตกตัวเป็นยูเรตไอออน ซึ่งรวมกับ Na⁺ เป็นผลึกโซเดียมยูเรต ลดอาหารที่มี Na⁺ สูงและพิวรีนช่วยให้สมดุลเลื่อนย้อนกลับ</li></ul>`,
+ q:['เปิดฝาขวดน้ำอัดลมแล้วเกิดฟัน เพราะรบกวนสมดุลด้วยปัจจัยใด','ลดความดัน ระบบเลื่อนไปทางที่มีแก๊สมากกว่า จึงได้ CO₂(g) ออกมา']}
+]}
+};
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่การทดลอง ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทดลอง</span></div></div>`;}
+/* reading-engine:end */
+/* ======================= โครงหน้า ======================= */
+const BUILD={'9.1':[act91,wire91],'9.2':[act92,wire92],'9.3':[act93,wire93],'9.4':[act94,wire94],'9.5':[act95,wire95],'9.6':[act96,wire96],'sum':[actSum,()=>{}],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 9','เคมี ม.5 เล่ม 3 บทที่ 9 สมดุลเคมี (กิจกรรม 9.1–9.5)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+a.replace('.','_')+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(9\.\d|sum|ex)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>

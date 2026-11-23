@@ -405,8 +405,7 @@ function wireQuiz(act,extra){
     $$('.q',root).forEach((el,i)=>{
       const sel=el.querySelector('input:checked');const why=$('.why',el);
       $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
-      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;sel.closest('.opt').classList.add(v===qs[i].a?'good':'wrong');}
-      $$('.opt',el)[qs[i].a].classList.add('good');
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;}
       why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
     });
     const r=$('.res',root);
