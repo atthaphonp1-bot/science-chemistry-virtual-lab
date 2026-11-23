@@ -40,6 +40,8 @@ M5_TITLES = {
     "9": "เคมี ม.5 เล่ม 3 บทที่ 9 สมดุลเคมี (กิจกรรม 9.1–9.5)",
     "10": "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)",
     "11": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)",
+    "m6-12": "เคมี ม.6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ (กิจกรรม 12.1–12.10)",
+    "m6-13": "เคมี ม.6 เล่ม 5 บทที่ 13 พอลิเมอร์ (กิจกรรม 13.1–13.3)",
 }
 CHEM_LAB_ID = "เคมี ม.4 ปฏิบัติการเบื้องต้น"
 CFG = json.load(open("tools/submit_config.json", encoding="utf8"))
@@ -52,10 +54,11 @@ def submit_block(f, title):
     if base == "chemistry-m4.html":      # หลายบทในไฟล์เดียว: หน้าเรียก LabScore.use(id, title) เองเมื่อเปลี่ยนบท
         cfg = json.dumps({"id": "", "title": "", "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
-    mm = re.match(r"chemistry-m5-ch(\d+)\.html$", base)
-    if mm and mm.group(1) in M5_TITLES:    # หน้าเดียวรวมกิจกรรมของบท ส่งคะแนนรวมภายใต้รหัสของบท
-        ch = mm.group(1)
-        cfg = json.dumps({"id": "เคมี ม.5 บทที่ " + ch, "title": M5_TITLES[ch], "url": CFG.get("url", "")}, ensure_ascii=False)
+    mm = re.match(r"chemistry-m([56])-ch(\d+)\.html$", base)
+    if mm and (mm.group(2) if mm.group(1) == "5" else "m6-" + mm.group(2)) in M5_TITLES:    # หน้าเดียวรวมกิจกรรมของบท ส่งคะแนนรวมภายใต้รหัสของบท
+        gr, ch = mm.groups()
+        key = ch if gr == "5" else "m6-" + ch
+        cfg = json.dumps({"id": f"เคมี ม.{gr} บทที่ " + ch, "title": M5_TITLES[key], "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     if base == "chemistry-m4-lab.html":
         cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)
@@ -102,7 +105,7 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
     print(f)
 
 # หน้าเคมี: ลายน้ำ + เครดิตอย่างเดียว (ไม่แตะ meta เดิมของหน้า)
-for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")) + sorted(glob.glob("chemistry-m5*.html")):
+for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")) + sorted(glob.glob("chemistry-m5*.html")) + sorted(glob.glob("chemistry-m6*.html")):
     s = strip(open(f, encoding="utf8").read())
     title = re.search(r"<title>(.*?)</title>", s).group(1)
     s = s.replace("</title>", "</title>\n" + WM_CSS + submit_block(f, title), 1)
