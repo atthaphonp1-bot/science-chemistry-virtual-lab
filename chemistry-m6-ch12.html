@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.6 บทที่ 12", "title": "เคมี ม.6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ (กิจกรรม 12.1–12.10)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#efdadd;--soft:#fdf5f6;--acc:#a3303f;--acc2:#fbeaec;--ok:#157a55;--bad:#b63f43;--acc3:#d98a95;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #f3e6e8;border-radius:30px;background:linear-gradient(130deg,#fff,#fdf5f6);box-shadow:0 28px 65px #6e283412;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #ecdca8;background:#fffaf0;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#6b5619;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #6e283412,0 3px 10px #6e283408;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #e4c2c7;border-radius:22px;padding:16px;background:linear-gradient(160deg,#fdf5f6,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #dfaab1;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#7a1f2c;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}
+.fig svg text{font-family:var(--font)}
+.mol{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0}
+.mcard{border:1px solid var(--line);border-radius:14px;padding:6px;background:#fff;text-align:center;font-size:.85rem}
+.mcard svg{width:100%;height:auto;display:block}
+.mcard b{display:block}
+.atom{cursor:pointer}.atom:focus-visible{outline:3px solid #0a84ff}
+.pill{display:inline-block;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:650;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3)}
+.found{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:8px 0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.row2{grid-template-columns:1fr}}
+.tubes{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tubebox{flex:1 1 150px;min-width:0;text-align:center;border:1px solid var(--line);border-radius:14px;padding:6px;background:#fff}
+.tubebox svg{width:100%;max-width:150px;height:auto}
+.meter{height:10px;border-radius:99px;background:var(--acc2);overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--acc3),var(--acc));width:0;transition:width .3s}
+.obs{background:#1b2a30;color:#e6f6ee;border-radius:12px;padding:8px 12px;font-size:.92rem;min-height:2.6em}
+.warn{border:1px solid #e9b8bd;background:#fdf0f1;border-radius:14px;padding:10px 14px;font-size:.92rem;color:#7a1f2c;margin:10px 0}
+.stat{display:flex;gap:14px;flex-wrap:wrap;font-size:.92rem}.stat b{font-size:1.1rem}
+select,input[type=text]{border:1px solid #cdb9bc;border-radius:12px;padding:6px 10px;background:#fff;max-width:100%}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin:4px 0}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+@media(max-width:480px){.panel{padding:14px 12px}.rd-sec{padding:12px}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⬡</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 6 · BOOK 5 · CHAPTER 12</div>
+<h1>เคมีอินทรีย์: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 12.1–12.10 ตามหนังสือเรียนเคมี ม.6 เล่ม 5 ของ สสวท. ตั้งแต่พันธะของคาร์บอนและไอโซเมอร์ จุดเดือดและการละลายของสารอินทรีย์ ไปจนถึงปฏิกิริยาฟอกจางสี เอสเทอริฟิเคชัน ไฮโดรลิซิส และสะปอนนิฟิเคชัน</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 10 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ตัวเลขที่ตรงกับตัวอย่างผลในคู่มือครู (เช่น จุดเดือด 56.0 และ 82.5 °C, จำนวนหยด 7 และ 2, ตารางจุดเดือด/จุดหลอมเหลวแอลเคน) แยกจากค่าที่ผู้จัดทำหน้าสมมติเอง ซึ่งจะมีป้ายกำกับ "สมมติ" ในแต่ละกิจกรรม เช่น ความเร็วในการให้ความร้อน ค่าคงที่สมดุล และเวลาที่สีเปลี่ยน<br>
+<b>ข้อควรระวังเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในคู่มือทั้งหมด): สวมแว่นตานิรภัยและถุงมือ ตัวทำละลายอินทรีย์ติดไฟง่าย ห้ามอยู่ใกล้เปลวไฟ กรดซัลฟิวริกเข้มข้นและสารละลาย NaOH กัดกร่อน ทำในที่ระบายอากาศ และให้ครูควบคุมการใช้สารเคมีทุกขั้นตอน</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 12"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: หนังสือเรียนรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ (สสวท.) อ้างอิงเลขหน้าของคู่มือครูเล่มเดียวกันซึ่งรวมหน้าหนังสือเรียนไว้ ตัวเลขผลการทดลองมาจาก "ตัวอย่างผลการทดลอง" ในคู่มือ ข้อความอ่านก่อนทดลองเป็นการสรุปด้วยถ้อยคำของผู้จัดทำหน้า ภาพทั้งหมดวาดด้วย SVG ใหม่ ไม่ใช้ภาพสแกนจากหนังสือ</footer>
+</div>
+<script>
+'use strict';
+/* model:start */
+const PFX=['','meth','eth','prop','but','pent','hex','hept','oct','non','dec'];
+const MULT=['','','di','tri','tetra','penta'];
+/* ชื่อแอลเคนโซ่เปิดตาม IUPAC (สูงสุดหมู่แทนที่เมทิล/เอทิล) edges = [[a,b],...] เป็นต้นไม้บนอะตอม 0..n-1 */
+function alkaneInfo(edges){
+  const n=edges.length+1;if(n===1)return{name:'methane',chain:[0],subs:[]};
+  const adj=Array.from({length:n},()=>[]);edges.forEach(([a,b])=>{adj[a].push(b);adj[b].push(a);});
+  const far=(s)=>{const d=new Array(n).fill(-1),p=new Array(n).fill(-1);d[s]=0;const q=[s];for(let i=0;i<q.length;i++){const u=q[i];adj[u].forEach(v=>{if(d[v]<0){d[v]=d[u]+1;p[v]=u;q.push(v);}});}let m=s;for(let i=0;i<n;i++)if(d[i]>d[m])m=i;return{d,p,m};};
+  const paths=[];
+  for(let s=0;s<n;s++){const{d,p}=far(s);for(let t=s+1;t<n;t++){const path=[];for(let x=t;x!==-1;x=p[x])path.push(x);path.reverse();paths.push(path);}}
+  const L=Math.max.apply(null,paths.map(p=>p.length));
+  const size=(root,block)=>{let c=0;const st=[[root,block]];while(st.length){const[u,pr]=st.pop();c++;adj[u].forEach(v=>{if(v!==pr)st.push([v,u]);});}return c;};
+  const lineOk=(root,block)=>{let u=root,pr=block;for(;;){const nx=adj[u].filter(v=>v!==pr);if(nx.length>1)return false;if(!nx.length)return true;pr=u;u=nx[0];}};
+  let best=null;
+  paths.filter(p=>p.length===L).forEach(path=>{
+    [path,path.slice().reverse()].forEach(ch=>{
+      const subs=[];
+      ch.forEach((a,i)=>adj[a].forEach(v=>{if(ch.indexOf(v)<0){const k=size(v,a);if(k>2||!lineOk(v,a))throw new Error('substituent');subs.push([i+1,k===1?'methyl':'ethyl']);}}));
+      const key=[-subs.length].concat(subs.map(s=>s[0]).sort((x,y)=>x-y));
+      if(!best||cmp(key,best.key)<0)best={key,subs,L,ch:ch.slice()};
+    });
+  });
+  function cmp(a,b){for(let i=0;i<Math.min(a.length,b.length);i++)if(a[i]!==b[i])return a[i]-b[i];return a.length-b.length;}
+  const g={};best.subs.forEach(([loc,nm])=>{(g[nm]=g[nm]||[]).push(loc);});
+  const names=Object.keys(g).sort();
+  const pre=names.map(nm=>g[nm].sort((x,y)=>x-y).join(',')+'-'+MULT[g[nm].length]+nm).join('-');
+  return{name:pre+PFX[best.L]+'ane',chain:best.ch,subs:best.subs};
+}
+function alkaneName(edges){return alkaneInfo(edges).name;}
+/* สมการการเผาไหม้สมบูรณ์ของ CcHh: (ไฮโดรคาร์บอน, O2, CO2, H2O) จำนวนเต็มน้อยที่สุด */
+function gcd(a,b){return b?gcd(b,a%b):a;}
+function combustionCoeffs(c,h){
+  // ต่อ 1 โมเลกุล: O2 = c + h/4 , CO2 = c , H2O = h/2  -> คูณ 4 แล้วหารด้วย gcd
+  const v=[4,4*c+h,4*c,2*h];const g=v.reduce(gcd);return v.map(x=>x/g);
+}
+/* สมดุลเอสเทอริฟิเคชัน: โมลเอสเทอร์เมื่อถึงสมดุล (กรด a โมล แอลกอฮอล์ b โมล) */
+function esterEq(K,a,b,removeWater){
+  if(removeWater)return Math.min(a,b);
+  if(K===1)return a*b/(a+b);
+  const A=K-1,B=-K*(a+b),C=K*a*b,D=Math.sqrt(B*B-4*A*C),m=Math.min(a,b);
+  const x1=(-B+D)/(2*A),x2=(-B-D)/(2*A);
+  return(x1>=0&&x1<=m+1e-12)?x1:x2;
+}
+function dbe(C,H,N,X){return(2*C+2+(N||0)-(X||0)-H)/2;}
+/* model:end */
+/* ======================= ตัวช่วยทั่วไป ======================= */
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+function svg(w,h,label,inner,cls,style){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"${cls?' class="'+cls+'"':''}${style?' style="'+style+'"':''} xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;}
+function mixc(c1,c2,t){const h=x=>[1,3,5].map(i=>parseInt(x.substr(i,2),16));const a=h(c1),b=h(c2);return'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+const REDUCE=(()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}})();
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m6-ch12-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['12.1','12.2','12.3','12.4','12.5','12.6','12.7','12.8','12.9','12.10','sum','ex'];const LABS=ACTS.slice(0,10);
+const TITLES={'12.1':'พันธะของคาร์บอน','12.2':'การจัดเรียงอะตอมคาร์บอน (ไอโซเมอร์)','12.3':'จุดเดือด-จุดหลอมเหลวของแอลเคน','12.4':'แอลกอฮอล์ละลายน้ำ','12.5':'จุดเดือด propan-2-one / propan-2-ol','12.6':'ปฏิกิริยาฟอกจางสี','12.7':'กรดคาร์บอกซิลิก + แอลกอฮอล์','12.8':'ไฮโดรลิซิสของเอสเทอร์','12.9':'สะปอนนิฟิเคชัน','12.10':'สืบค้นประโยชน์สารอินทรีย์','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'};
+let cur=0;const CLEAN=[];
+
+/* ======================= แบบทดสอบ (ข้อละ 1 คะแนน; ตรวจแล้วไม่ไฮไลต์ตัวเลือก) ======================= */
+function quizHTML(act){
+  const k=act.replace('.','_');
+  return'<div class="box" id="quiz-'+k+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+k+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act){
+  const root=$('#quiz-'+act.replace('.','_')),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      if(sel){answered++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(!sel?'ยังไม่ได้ตอบ · ':(+sel.value===qs[i].a?'ตอบถูก · ':'ตอบยังไม่ถูก · '))+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว ได้ '+got+' คะแนน';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(act+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>';}
+function marker(){return`<div class="notice" style="margin-top:14px"><b>ค่าที่สมมติโดยผู้จัดทำหน้า</b> `;}
+
+/* ======================= อ่านก่อนทดลอง ======================= */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่การทดลอง ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทดลอง</span></div></div>`;}
+/* reading-engine:end */
+
+/* ======================= เครื่องตรวจแบบฝึกหัด ======================= */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อย) ช่องเขียนส่งให้ครูตรวจ</p>`+
+  list.map((q,i)=>`<div class="q"><p>${i+1}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}">${q.s}</div></div>`).join('')+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;
+    auto.forEach(([i,j,p])=>{
+      const mk=$('#mk_'+i+'_'+j);let ok=false,has=false;
+      if(p.t==='num'){const raw=$('#ex_'+i+'_'+j).value.trim();has=raw!=='';const v=parseFloat(raw);
+        ok=has&&Number.isFinite(v)&&Math.abs(v-p.a)<=(p.abs!==undefined?p.abs:Math.abs(p.a)*(p.rel||0.05));}
+      else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+      if(has)answered++;if(ok)got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน'+(answered<auto.length?' (ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก)':'');
+    ls('ท้ายบท',got,auto.length);
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+/* ======================= แบบฟอร์มสืบค้น (ไม่มีคะแนนอัตโนมัติ) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือครู)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>แนวทางทำกิจกรรม</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ ตัวอย่างหัวข้อเป็นข้อเสนอของผู้จัดทำหน้า (บางหัวข้อมาจากตัวอย่างผลในคู่มือ) เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจโปสเตอร์ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m6-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+/* ======================= ภาพโมเลกุล (SVG วาดเอง) ======================= */
+const ECOL={C:'#3a3f4b',H:'#ffffff',N:'#3b6fd1',O:'#c63d4a'};
+function bondLines(a,b,order){
+  const dx=b.x-a.x,dy=b.y-a.y,l=Math.hypot(dx,dy)||1,nx=-dy/l,ny=dx/l;
+  const offs=order===1?[0]:order===2?[-3,3]:[-5,0,5];
+  return offs.map(o=>`<line x1="${(a.x+nx*o).toFixed(1)}" y1="${(a.y+ny*o).toFixed(1)}" x2="${(b.x+nx*o).toFixed(1)}" y2="${(b.y+ny*o).toFixed(1)}" stroke="#555" stroke-width="2.4" stroke-linecap="round"/>`).join('');
+}
+function molInner(m,skel){
+  let s='';m.bonds.forEach(([i,j,o])=>{s+=bondLines(m.atoms[i],m.atoms[j],o||1);});
+  m.atoms.forEach(a=>{
+    if(skel){
+      if(a.t){s+=`<rect x="${a.x-16}" y="${a.y-10}" width="32" height="20" rx="6" fill="#fff"/><text x="${a.x}" y="${a.y+5}" text-anchor="middle" font-size="13" font-weight="700" fill="#333">${a.t}</text>`;}
+      else if(a.e!=='C'){s+=`<circle cx="${a.x}" cy="${a.y}" r="11" fill="#fff"/><text x="${a.x}" y="${a.y+5}" text-anchor="middle" font-size="14" font-weight="700" fill="${ECOL[a.e]}">${a.e}</text>`;}
+    }else{
+      const r=a.e==='H'?8:12;
+      s+=`<circle cx="${a.x}" cy="${a.y}" r="${r}" fill="${ECOL[a.e]}" stroke="${a.e==='H'?'#999':'none'}" stroke-width="1.2"/><text x="${a.x}" y="${a.y+4}" text-anchor="middle" font-size="${a.e==='H'?10:12}" font-weight="700" fill="${a.e==='H'?'#333':'#fff'}">${a.e}</text>`;
+    }
+  });
+  return s;
+}
+const MOLS={
+ ch4:{name:'มีเทน CH₄',f:'CH₄',w:120,h:120,s:4,d:0,t:0,ring:false,atoms:[{e:'C',x:60,y:60},{e:'H',x:60,y:18},{e:'H',x:60,y:102},{e:'H',x:18,y:60},{e:'H',x:102,y:60}],bonds:[[0,1],[0,2],[0,3],[0,4]],note:'C 1 อะตอมต่อกับ H 4 อะตอมด้วยพันธะเดี่ยว 4 พันธะ'},
+ c2h6:{name:'อีเทน C₂H₆',f:'C₂H₆',w:160,h:120,s:7,d:0,t:0,ring:false,atoms:[{e:'C',x:50,y:60},{e:'C',x:110,y:60},{e:'H',x:20,y:35},{e:'H',x:20,y:85},{e:'H',x:50,y:20},{e:'H',x:140,y:35},{e:'H',x:140,y:85},{e:'H',x:110,y:100}],bonds:[[0,1],[0,2],[0,3],[0,4],[1,5],[1,6],[1,7]],note:'พันธะ C–C 1 พันธะ และ C–H 6 พันธะ เป็นพันธะเดี่ยวทั้งหมด'},
+ c2h4:{name:'อีทีน C₂H₄',f:'C₂H₄',w:160,h:120,s:4,d:1,t:0,ring:false,atoms:[{e:'C',x:50,y:60},{e:'C',x:110,y:60},{e:'H',x:22,y:32},{e:'H',x:22,y:88},{e:'H',x:138,y:32},{e:'H',x:138,y:88}],bonds:[[0,1,2],[0,2],[0,3],[1,4],[1,5]],note:'C=C เป็นพันธะคู่ 1 พันธะ และ C–H เป็นพันธะเดี่ยว 4 พันธะ'},
+ c2h2:{name:'อะเซทิลีน (อีไทน์) C₂H₂',f:'C₂H₂',w:180,h:100,s:2,d:0,t:1,ring:false,atoms:[{e:'H',x:20,y:50},{e:'C',x:65,y:50},{e:'C',x:115,y:50},{e:'H',x:160,y:50}],bonds:[[0,1],[1,2,3],[2,3]],note:'C≡C เป็นพันธะสาม 1 พันธะ และ C–H เป็นพันธะเดี่ยว 2 พันธะ (ตรงกับตัวอย่างผลในคู่มือ หน้า 13) โครงสร้างแบบโซ่เปิด'},
+ caf:{name:'คาเฟอีน C₈H₁₀N₄O₂',f:'C₈H₁₀N₄O₂',w:270,h:215,s:21,d:4,t:0,ring:true,skel:true,atoms:[
+  {e:'C',x:100,y:68},{e:'C',x:136,y:89},{e:'C',x:136,y:131},{e:'N',x:100,y:152},{e:'C',x:64,y:131},{e:'N',x:64,y:89},
+  {e:'O',x:100,y:28},{e:'O',x:34,y:148},{e:'C',x:28,y:68,t:'CH₃'},{e:'C',x:100,y:196,t:'CH₃'},
+  {e:'N',x:178,y:76},{e:'C',x:204,y:110},{e:'N',x:178,y:144},{e:'C',x:210,y:50,t:'CH₃'},{e:'H',x:246,y:110,t:'H'}],
+  bonds:[[0,1],[1,2,2],[2,3],[3,4],[4,5],[5,0],[0,6,2],[4,7,2],[5,8],[3,9],[1,10],[10,11],[11,12,2],[12,2],[10,13],[11,14]],
+  note:'มีพันธะเดี่ยว 21 พันธะ (ตัวเลขในคู่มือ หน้า 12) และพันธะคู่ 4 พันธะ (C=O 2, C=C 1, C=N 1 ผู้จัดทำหน้านับเพิ่มจากโครงสร้าง) โครงสร้างแบบวง · ต้องนับ C–H ในหมู่ CH₃ แต่ละหมู่ 3 พันธะ และ C–H ที่วง 1 พันธะด้วย'}
+};
+const ORG=[
+ ['CH₄ มีเทน','o','ไฮโดรคาร์บอนอย่างง่าย เป็นสารประกอบอินทรีย์'],
+ ['เพชร (C)','i','เป็นอัญรูปของธาตุคาร์บอน ไม่ใช่สารประกอบอินทรีย์ (คู่มือ หน้า 10)'],
+ ['CH₃CH₂OH เอทานอล','o','แอลกอฮอล์ เป็นสารประกอบอินทรีย์'],
+ ['CO คาร์บอนมอนอกไซด์','i','ออกไซด์ของคาร์บอน จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['Na₂CO₃ โซเดียมคาร์บอเนต','i','เกลือของกรดคาร์บอนิก จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['CH₃COOH กรดแอซีติก','o','กรดคาร์บอกซิลิก เป็นสารประกอบอินทรีย์'],
+ ['KCN โพแทสเซียมไซยาไนด์','i','เกลือไซยาไนด์ จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['CaC₂ แคลเซียมคาร์ไบด์','i','เกลือคาร์ไบด์ จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['C₆H₁₂O₆ กลูโคส','o','พบในสิ่งมีชีวิต มีโครงสร้างคาร์บอนต่อกับ H และ O เป็นสารประกอบอินทรีย์'],
+ ['HCN ไฮโดรเจนไซยาไนด์','a','คู่มือ (หน้า 10) บอกว่าพิจารณาได้ยาก ยังสรุปไม่ได้แน่ชัดว่าเป็นสารอินทรีย์หรืออนินทรีย์'],
+ ['Na₂C₂O₄ โซเดียมออกซาเลต','i','เกลือออกซาเลต จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['CCl₄ คาร์บอนเตตระคลอไรด์','a','คู่มือ (หน้า 10) จัดเป็นกรณีที่สรุปได้ยากเช่นกัน'],
+ ['H₂CO₃ กรดคาร์บอนิก','i','กรดคาร์บอนิกและเกลือของมัน จัดเป็นสารอนินทรีย์ (คู่มือ หน้า 10)'],
+ ['C₂H₂ อะเซทิลีน','o','ไฮโดรคาร์บอนที่มีพันธะสาม เป็นสารประกอบอินทรีย์']
+];
+/* ======================= 12.1 ======================= */
+let m121='ch4',orgIdx=0,orgScore=0,orgDone=[];
+function act121(){
+  return `<h2>กิจกรรม 12.1 สืบค้นข้อมูลสารประกอบอินทรีย์ที่พบในชีวิตประจำวัน</h2>
+  <p class="sub">คู่มือครู หน้า 10–13 · เวลาตามคู่มือ 30 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>สืบค้นและนำเสนอตัวอย่างสารประกอบอินทรีย์ที่มีพันธะเดี่ยว พันธะคู่ หรือพันธะสาม ที่พบในชีวิตประจำวัน</p></div>
+  <div class="box"><h3>ในหน้านี้ทำอะไรได้</h3><ol><li>นับชนิดพันธะในโมเลกุลตัวอย่าง (รวมคาเฟอีนและอะเซทิลีนที่คู่มือใช้เป็นตัวอย่าง)</li><li>จัดสารเป็นอินทรีย์/อนินทรีย์</li><li>บันทึกผลสืบค้นของตนเอง</li></ol></div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน 1: นับพันธะของคาร์บอน</h3>
+   <p class="small">เลือกโมเลกุล ดูภาพ แล้วนับพันธะ (พันธะคู่/สามนับเป็น 1 พันธะ) ก่อนกดตรวจ · ภาพวาดเองด้วย SVG เพื่อการศึกษา</p>
+   <div class="btns" id="molChips" role="group" aria-label="เลือกโมเลกุล">${Object.keys(MOLS).map(k=>`<button class="chip" type="button" data-m="${k}" aria-pressed="${k===m121}">${MOLS[k].name}</button>`).join('')}</div>
+   <div class="row2"><div class="fig" id="molFig"></div>
+   <div><div class="rowflex"><label>พันธะเดี่ยว<input type="number" min="0" step="1" id="nS" inputmode="numeric"></label><label>พันธะคู่<input type="number" min="0" step="1" id="nD" inputmode="numeric"></label><label>พันธะสาม<input type="number" min="0" step="1" id="nT" inputmode="numeric"></label></div>
+   <p><span class="lbl" style="display:inline">โครงสร้างแบบ</span> <select id="nR" aria-label="โครงสร้างแบบโซ่เปิดหรือวง"><option value="">เลือก</option><option value="0">โซ่เปิด</option><option value="1">วง</option></select></p>
+   <div class="btns"><button class="btn" type="button" id="molChk">ตรวจ</button></div><div class="res" id="molRes" aria-live="polite"></div><div class="tip" id="molNote" hidden></div></div></div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน 2: สารที่มีคาร์บอน เป็นสารอินทรีย์หรือไม่</h3>
+   <p class="small">รายการอ้างอิงจากความรู้เพิ่มเติมสำหรับครูในคู่มือ หน้า 10 (สารที่มีคาร์บอนแต่จัดเป็นอนินทรีย์) มี 2 สารที่คู่มือบอกว่าจัดยาก</p>
+   <div class="box" id="orgCard"></div><div class="stat"><span>ทำแล้ว <b id="orgN">0</b> / ${ORG.length}</span><span>ถูก <b id="orgS">0</b></span></div></div>
+  ${quizHTML('12.1')}
+  ${resHTML(RES121)}`;
+}
+function drawMol(){
+  const m=MOLS[m121];$('#molFig').innerHTML=svg(m.w,m.h,'ภาพโมเลกุล '+m.name+(m.skel?' แบบเส้นพันธะ':' แบบลูกกลมและก้าน'),molInner(m,m.skel),'','width:'+Math.round(m.w*1.7)+'px;max-width:100%;margin:auto');
+  $('#nS').value='';$('#nD').value='';$('#nT').value='';$('#nR').value='';$('#molRes').textContent='';$('#molRes').className='res';$('#molNote').hidden=true;
+  $$('#molChips .chip').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m121)));
+}
+function orgDraw(){
+  const box=$('#orgCard');
+  if(orgIdx>=ORG.length){box.innerHTML=`<p><b>ครบแล้ว</b> ถูก ${orgScore} / ${ORG.length} ข้อ</p><div class="btns"><button class="btn alt sm" type="button" id="orgAgain">เล่นอีกครั้ง</button></div>`;$('#orgAgain').onclick=()=>{orgIdx=0;orgScore=0;orgDone=[];orgDraw();};}
+  else{const it=ORG[orgIdx];box.innerHTML=`<p style="font-size:1.15rem"><b>${it[0]}</b> จัดเป็น</p><div class="btns"><button class="btn sm" type="button" data-v="o">สารอินทรีย์</button><button class="btn sm" type="button" data-v="i">สารอนินทรีย์</button><button class="btn sm alt" type="button" data-v="a">จัดยาก (คู่มือไม่สรุป)</button></div><div class="why hide" id="orgWhy" aria-live="polite"></div>`;
+    $$('[data-v]',box).forEach(b=>b.onclick=()=>{const ok=b.dataset.v===it[1];if(ok)orgScore++;const w=$('#orgWhy');w.classList.remove('hide');w.innerHTML=(ok?'ถูก · ':'ยังไม่ถูก · ')+it[2]+' <button class="btn sm" type="button" id="orgNext">ข้อต่อไป</button>';$$('[data-v]',box).forEach(x=>x.disabled=true);orgIdx++;
+      $('#orgN').textContent=orgIdx;$('#orgS').textContent=orgScore;$('#orgNext').onclick=orgDraw;});}
+  $('#orgN').textContent=Math.min(orgIdx,ORG.length);$('#orgS').textContent=orgScore;
+}
+function wire121(){
+  drawMol();orgDraw();
+  $$('#molChips .chip').forEach(b=>b.onclick=()=>{m121=b.dataset.m;drawMol();});
+  $('#molChk').onclick=()=>{
+    const m=MOLS[m121],v=['#nS','#nD','#nT'].map(s=>$(s).value.trim()),r=$('#nR').value;
+    if(v.some(x=>x==='')||r===''){$('#molRes').className='res bad';$('#molRes').textContent='กรอกให้ครบทุกช่องก่อน';return;}
+    const n=v.map(Number),ok=[n[0]===m.s,n[1]===m.d,n[2]===m.t,(r==='1')===m.ring];
+    $('#molRes').className='res '+(ok.every(Boolean)?'ok':'bad');
+    $('#molRes').textContent=ok.every(Boolean)?'ถูกต้องทุกช่อง ✓':'ยังไม่ถูก: '+['พันธะเดี่ยว','พันธะคู่','พันธะสาม','โซ่/วง'].filter((_,i)=>!ok[i]).join(', ');
+    $('#molNote').hidden=false;$('#molNote').textContent='เฉลย: เดี่ยว '+m.s+' · คู่ '+m.d+' · สาม '+m.t+' · '+(m.ring?'วง':'โซ่เปิด')+' — '+m.note;
+  };
+  wireQuiz('12.1');resWire(RES121);
+}
+/* ======================= 12.2 ตัวสร้างไอโซเมอร์ ======================= */
+const ISO_NAMES={4:['butane','2-methylpropane'],5:['pentane','2-methylbutane','2,2-dimethylpropane'],6:['hexane','2-methylpentane','3-methylpentane','2,2-dimethylbutane','2,3-dimethylbutane'],7:['heptane','2-methylhexane','3-methylhexane','2,2-dimethylpentane','2,3-dimethylpentane','2,4-dimethylpentane','3,3-dimethylpentane','3-ethylpentane','2,2,3-trimethylbutane']};
+const SUBS=['','','₂','₃','₄'];
+let b122={n:5,edges:[],atoms:1,sel:0,found:{}};
+function degs(e,n){const d=new Array(n).fill(0);e.forEach(([a,b])=>{d[a]++;d[b]++;});return d;}
+function layout(edges,n){
+  const info=alkaneInfo(edges),adj=Array.from({length:n},()=>[]);edges.forEach(([a,b])=>{adj[a].push(b);adj[b].push(a);});
+  const pos=new Array(n),ch=info.chain,D=44,H=26;
+  ch.forEach((a,i)=>{pos[a]={x:i*D,y:(i%2?H:-H)};});
+  const inCh=new Set(ch);
+  function place(node,parent,ang){ // ตำแหน่งของ node ถูกกำหนดแล้ว วางลูกของมัน
+    const kids=adj[node].filter(v=>v!==parent&&!pos[v]);
+    kids.forEach((k,i)=>{
+      const off=kids.length===1?0:(i-(kids.length-1)/2)*70;
+      const a=ang+off*Math.PI/180;pos[k]={x:pos[node].x+Math.cos(a)*D*0.95,y:pos[node].y+Math.sin(a)*D*0.95};
+      place(k,node,a+(kids.length===1?0.7:0));
+    });
+  }
+  ch.forEach((a,i)=>{const out=(i%2?Math.PI/2:-Math.PI/2);const kids=adj[a].filter(v=>!inCh.has(v));
+    kids.forEach((k,j)=>{const off=kids.length===1?0:(j-(kids.length-1)/2)*(kids.length===2?80:60);const an=out+off*Math.PI/180;pos[k]={x:pos[a].x+Math.cos(an)*D,y:pos[a].y+Math.sin(an)*D};place(k,a,an+(Math.PI/10)*(i%2?-1:1));});});
+  return{pos,info};
+}
+function drawAlk(edges,n,sel,opt){
+  opt=opt||{};const{pos,info}=layout(edges,n),d=degs(edges,n);
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;pos.forEach(p=>{x0=Math.min(x0,p.x);x1=Math.max(x1,p.x);y0=Math.min(y0,p.y);y1=Math.max(y1,p.y);});
+  const R=opt.small?10:16,pad=R+8,W=x1-x0+2*pad,Hh=y1-y0+2*pad,ox=pad-x0,oy=pad-y0;
+  let s='';edges.forEach(([a,b])=>{s+=`<line x1="${pos[a].x+ox}" y1="${pos[a].y+oy}" x2="${pos[b].x+ox}" y2="${pos[b].y+oy}" stroke="#666" stroke-width="${opt.small?2.5:3.5}" stroke-linecap="round"/>`;});
+  for(let i=0;i<n;i++){const h=4-d[i],lab='C'+(h>0?'H'+(h>1?SUBS[h]:''):'');
+    const cx=pos[i].x+ox,cy=pos[i].y+oy,isSel=!opt.small&&i===sel;
+    s+=`<g class="${opt.small?'':'atom'}" ${opt.small?'':`data-i="${i}" tabindex="0" role="button" aria-label="อะตอมคาร์บอนที่ ${i+1} มี H ${h} อะตอม${isSel?' (เลือกอยู่)':''}"`}><circle cx="${cx}" cy="${cy}" r="${R}" fill="${ECOL.C}" ${isSel?'stroke="#e0a100" stroke-width="4"':''}/><text x="${cx}" y="${cy+(opt.small?3.5:4.5)}" text-anchor="middle" font-size="${opt.small?9:12}" font-weight="700" fill="#fff">${opt.small?'':lab}</text></g>`;}
+  return{html:svg(W,Hh,opt.label||'โครงสร้างของแอลเคนที่สร้างขึ้น ('+info.name+')',s,'',opt.small?'':'width:'+Math.round(Math.min(W*1.25,560))+'px;max-width:100%;margin:auto'),name:info.name,w:W};
+}
+function act122(){
+  return `<h2>กิจกรรม 12.2 การจัดเรียงอะตอมของคาร์บอนในสารประกอบอินทรีย์</h2>
+  <p class="sub">คู่มือครู หน้า 33–38 (ในหัวข้อ 12.5 ไอโซเมอร์) · เวลาตามคู่มือ 50 นาที · ใช้ลูกกลมสีดำ (C) สีขาว (H) และก้านพันธะ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>ต่อแบบจำลองสารตามจำนวนอะตอมคาร์บอนและไฮโดรเจนที่กำหนด</li><li>เขียนสูตรโครงสร้างแต่ละไอโซเมอร์และระบุจำนวน</li><li>อธิบายผลของการจัดเรียงอะตอมคาร์บอนต่อโครงสร้าง</li></ol></div>
+  <div class="box"><h3>วัสดุในกิจกรรมจริง (ต่อกลุ่ม)</h3><ul><li>ลูกกลมสีดำเจาะ 4 รู 5 ลูก (แทน C)</li><li>ลูกกลมสีขาวเจาะ 1 รู 12 ลูก (แทน H)</li><li>ก้านพลาสติก 16 อัน (แทนพันธะ)</li></ul></div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ต่อโซ่คาร์บอนแล้วหาไอโซเมอร์</h3>
+   <p class="small">คลิก (หรือกด Enter) ที่อะตอมเพื่อเลือก แล้วกด "ต่อ C" เพื่อเพิ่มคาร์บอนที่ต่อกับอะตอมนั้น (คาร์บอนต่อได้อย่างมาก 4 พันธะ ส่วนที่เหลือคือ H เติมให้อัตโนมัติ) เมื่อครบจำนวน C แล้วกดบันทึก ระบบจะตั้งชื่อ IUPAC ให้ และบอกถ้าซ้ำกับที่พบแล้ว</p>
+   <div class="rowflex"><label>สูตรโมเลกุลที่จะหาไอโซเมอร์<select id="isoN" aria-label="เลือกสูตรโมเลกุล">${[4,5,6,7].map(n=>`<option value="${n}"${n===b122.n?' selected':''}>C${n===4?'₄':n===5?'₅':n===6?'₆':'₇'}H${n*2+2===10?'₁₀':n*2+2===12?'₁₂':n*2+2===14?'₁₄':'₁₆'}${n===5?' (กิจกรรมในคู่มือ)':''}</option>`).join('')}</select></label></div>
+   <div class="fig" id="isoFig" style="margin:8px 0"></div>
+   <div class="stat"><span>อะตอม C <b id="isoCnt">1</b> / <b id="isoTot">5</b></span><span>สูตรโมเลกุล <b id="isoF"></b></span><span>ชื่อ IUPAC ของรูปปัจจุบัน <b id="isoNm"></b></span></div>
+   <div class="btns"><button class="btn sm" type="button" id="isoAdd">ต่อ C ที่อะตอมที่เลือก</button><button class="btn alt sm" type="button" id="isoDel">ลบอะตอมปลายที่เลือก</button><button class="btn alt sm" type="button" id="isoClr">ล้างโครงสร้าง</button><button class="btn sm" type="button" id="isoSave">บันทึกเป็นไอโซเมอร์</button></div>
+   <div class="res" id="isoMsg" aria-live="polite"></div>
+   <h3>ไอโซเมอร์ที่พบ <span class="pill" id="isoFound">0 / 3</span></h3><div class="found" id="isoList"></div>
+   <details class="rd-q"><summary>ดูชื่อไอโซเมอร์ทั้งหมด (เฉลย)</summary><p id="isoAns"></p></details>
+   <p class="small">จำนวนไอโซเมอร์โครงสร้างของแอลเคน C₄H₁₀ ถึง C₇H₁₆ คือ 2, 3, 5, 9 ตามลำดับ (C₅H₁₂ = 3 ตรงกับตัวอย่างผลในคู่มือ หน้า 35 ส่วน C₄, C₆, C₇ เป็นความรู้เพิ่มของผู้จัดทำหน้า ตรวจโดยการนับต้นไม้คาร์บอนด้วยโปรแกรม) ไม่นับไอโซเมอร์เชิงสเตอริโอ</p></div>
+  <div class="lab"><h3>ตัวอย่างไอโซเมอร์ C₄H₈: โซ่เปิดและวง</h3><p class="small">คู่มือ หน้า 37 (ตรวจสอบความเข้าใจ): C₄H₈ มีไอโซเมอร์แบบโซ่เปิด 3 และแบบวง 2</p><div class="mol" id="c4h8"></div></div>
+  <div class="lab"><h3>เครื่องคำนวณ degree of unsaturation (DBE)</h3><p class="small">สูตรจากความรู้เพิ่มเติมสำหรับครู (หน้า 36): DBE = (2C + 2 + N − X − H) / 2 ค่านี้บอกจำนวนพันธะคู่หรือวงรวมกัน (พันธะสามนับเป็น 2)</p>
+   <div class="rowflex"><label>C<input type="number" min="0" step="1" id="dC" value="6"></label><label>H<input type="number" min="0" step="1" id="dH" value="12"></label><label>N<input type="number" min="0" step="1" id="dN" value="0"></label><label>แฮโลเจน X<input type="number" min="0" step="1" id="dX" value="0"></label></div>
+   <p class="res" id="dOut" aria-live="polite"></p></div>
+  ${quizHTML('12.2')}`;
+}
+function c4h8Cards(){
+  const P=(pts,bonds,label,name)=>{const m={atoms:pts.map(p=>({e:'C',x:p[0],y:p[1]})),bonds};let s='';bonds.forEach(([i,j,o])=>{s+=bondLines(m.atoms[i],m.atoms[j],o||1);});pts.forEach(p=>{s+=`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#555"/>`;});return`<div class="mcard">${svg(110,80,label,s)}<b>${name}</b></div>`;};
+  const sq=[[35,15],[75,15],[75,60],[35,60]];
+  return P([[10,55],[35,25],[65,55],[95,25]],[[0,1,2],[1,2],[2,3]],'but-1-ene โซ่เปิด','but-1-ene (โซ่เปิด)')+
+  P([[10,55],[35,25],[65,25],[95,55]],[[0,1],[1,2,2],[2,3]],'but-2-ene โซ่เปิด','but-2-ene (โซ่เปิด)')+
+  P([[15,60],[50,40],[85,60],[50,8]],[[0,1],[1,2],[1,3,2]],'2-methylpropene โซ่กิ่ง','2-methylpropene (โซ่เปิด มีกิ่ง)')+
+  P(sq,[[0,1],[1,2],[2,3],[3,0]],'cyclobutane วง','cyclobutane (วง)')+
+  P([[35,45],[75,45],[55,12],[95,70]],[[0,1],[1,2],[2,0],[1,3]],'methylcyclopropane วง','methylcyclopropane (วง)');
+}
+function isoRefresh(){
+  const b=b122,n=b.atoms,{name}=alkaneInfo(b.edges);
+  const f=drawAlk(b.edges,n,b.sel);$('#isoFig').innerHTML=f.html;
+  $('#isoCnt').textContent=n;$('#isoTot').textContent=b.n;
+  $('#isoF').textContent='C'+n+'H'+(2*n+2);$('#isoNm').textContent=name;
+  $$('#isoFig .atom').forEach(g=>{const pick=()=>{b.sel=+g.dataset.i;isoRefresh();const el=$('#isoFig .atom[data-i="'+b.sel+'"]');if(el)el.focus();};g.onclick=pick;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}};});
+  const total=ISO_NAMES[b.n].length;$('#isoFound').textContent=Object.keys(b.found).length+' / '+total;
+  $('#isoList').innerHTML=Object.keys(b.found).map(k=>`<div class="mcard">${b.found[k].html}<b>${k}</b></div>`).join('');
+  $('#isoAns').textContent=ISO_NAMES[b.n].join(' · ');
+  $('#isoAdd').disabled=n>=b.n||degs(b.edges,n)[b.sel]>=4;
+  $('#isoSave').disabled=n!==b.n;$('#isoDel').disabled=n<=1||degs(b.edges,n)[b.sel]!==1;
+}
+function isoReset(n){b122={n:n,edges:[],atoms:1,sel:0,found:{}};$('#isoMsg').textContent='';$('#isoMsg').className='res';isoRefresh();}
+function wire122(){
+  $('#c4h8').innerHTML=c4h8Cards();
+  isoReset(b122.n);
+  $('#isoN').onchange=e=>isoReset(+e.target.value);
+  $('#isoAdd').onclick=()=>{const b=b122;if(b.atoms>=b.n||degs(b.edges,b.atoms)[b.sel]>=4)return;b.edges.push([b.sel,b.atoms]);b.sel=b.atoms;b.atoms++;$('#isoMsg').textContent='';isoRefresh();};
+  $('#isoDel').onclick=()=>{const b=b122,s=b.sel;if(b.atoms<=1||degs(b.edges,b.atoms)[s]!==1)return;const nb=b.edges.find(e=>e[0]===s||e[1]===s);const o=nb[0]===s?nb[1]:nb[0];
+    b.edges=b.edges.filter(e=>e!==nb).map(([x,y])=>[x>s?x-1:x,y>s?y-1:y]);b.atoms--;b.sel=o>s?o-1:o;$('#isoMsg').textContent='';isoRefresh();};
+  $('#isoClr').onclick=()=>{const f=b122.found;isoReset(b122.n);b122.found=f;isoRefresh();};
+  $('#isoSave').onclick=()=>{const b=b122;if(b.atoms!==b.n)return;const d=drawAlk(b.edges,b.atoms,-1,{small:true,label:'โครงสร้าง '+alkaneInfo(b.edges).name});const nm=d.name;
+    const r=$('#isoMsg');
+    if(b.found[nm]){r.className='res bad';r.textContent='ซ้ำ: โครงสร้างนี้คือ '+nm+' ที่บันทึกแล้ว แม้จะวางต่างทิศแต่ลำดับการต่อกันของ C เหมือนเดิม ลองต่อให้ต่างออกไป';}
+    else{b.found[nm]=d;r.className='res ok';r.textContent='พบไอโซเมอร์ใหม่: '+nm;
+      if(Object.keys(b.found).length===ISO_NAMES[b.n].length){r.textContent+=' · ครบทั้ง '+ISO_NAMES[b.n].length+' ไอโซเมอร์แล้ว ✓';if(b.n===5){st.done['12.2']=true;save();paintTabs();paintProgress();}}}
+    isoRefresh();};
+  const dbeUp=()=>{const v=['#dC','#dH','#dN','#dX'].map(s=>+($(s).value||0)),x=dbe(v[0],v[1],v[2],v[3]);
+    $('#dOut').textContent=(Number.isInteger(x)&&x>=0)?'DBE = '+x+(x===0?' → อิ่มตัวและไม่มีวง':x===1?' → มีพันธะคู่ 1 พันธะ หรือมีวง 1 วง':' → รวมพันธะคู่ วง และพันธะสาม (นับ 2) ได้ '+x):'ค่าที่ได้ ('+x+') ไม่ใช่จำนวนเต็มไม่ติดลบ ตรวจสูตรอีกครั้ง';};
+  ['#dC','#dH','#dN','#dX'].forEach(s=>$(s).oninput=dbeUp);dbeUp();
+  wireQuiz('12.2');
+}
+/* ======================= 12.3 จุดเดือด/จุดหลอมเหลวของแอลเคน ======================= */
+/* ข้อมูลตัวอย่างผลในคู่มือ หน้า 46 (°C) */
+const ALK={c:[3,4,5,6,7,8],
+ s:[{k:'alkBp',n:'แอลเคน จุดเดือด',v:[-42,-0.5,36,69,98,126],col:'#a3303f',g:1},{k:'cycBp',n:'ไซโคลแอลเคน จุดเดือด',v:[-33,23,49,80,118,149],col:'#2563a8',g:1},
+     {k:'alkMp',n:'แอลเคน จุดหลอมเหลว',v:[-188,-138,-129,-95,-91,-57],col:'#a3303f',g:2},{k:'cycMp',n:'ไซโคลแอลเคน จุดหลอมเหลว',v:[-128,-91,-93,7,-12,15],col:'#2563a8',g:2}]};
+const P123=new Set();
+function chart123(g){
+  const W=460,H=290,L=48,R=14,T=14,B=40,y0=g===1?-60:-200,y1=g===1?170:40,xs=x=>L+(x-2)*(W-L-R)/7,ys=y=>H-B-(y-y0)*(H-T-B)/(y1-y0);
+  let s=`<rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="#fff" stroke="#cbb"/>`;
+  for(let y=y0;y<=y1;y+=(g===1?50:50)){s+=`<line x1="${L}" x2="${W-R}" y1="${ys(y)}" y2="${ys(y)}" stroke="#eee"/><text x="${L-6}" y="${ys(y)+4}" text-anchor="end" font-size="11" fill="#555">${y}</text>`;}
+  for(let x=2;x<=9;x++)s+=`<text x="${xs(x)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="#555">${x}</text>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="#333">จำนวนอะตอมคาร์บอน</text><text x="12" y="${(T+H-B)/2}" font-size="12" fill="#333" transform="rotate(-90 12 ${(T+H-B)/2})" text-anchor="middle">อุณหภูมิ (°C)</text>`;
+  ALK.s.filter(q=>q.g===g).forEach(q=>{
+    const pts=ALK.c.map((c,i)=>P123.has(q.k+i)?[xs(c),ys(q.v[i]),i]:null).filter(Boolean);
+    if(pts.length>1)s+=`<polyline fill="none" stroke="${q.col}" stroke-width="2" ${q.k.startsWith('cyc')?'stroke-dasharray="6 4"':''} points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/>`;
+    pts.forEach(p=>{s+=q.k.startsWith('cyc')?`<rect x="${p[0]-5}" y="${p[1]-5}" width="10" height="10" fill="${q.col}"/>`:`<circle cx="${p[0]}" cy="${p[1]}" r="5.5" fill="${q.col}"/>`;});
+  });
+  return svg(W,H,g===1?'กราฟจุดเดือดของแอลเคนและไซโคลแอลเคนที่มีคาร์บอน 3 ถึง 8 อะตอม':'กราฟจุดหลอมเหลวของแอลเคนและไซโคลแอลเคนที่มีคาร์บอน 3 ถึง 8 อะตอม',s);
+}
+function analysis123(){
+  const full=ALK.s.every(q=>ALK.c.every((c,i)=>P123.has(q.k+i)));
+  const df=v=>v.slice(1).map((x,i)=>+(x-v[i]).toFixed(1));
+  const mono=v=>df(v).every(d=>d>0);
+  const rows=ALK.s.map(q=>`<tr><td class="l">${q.n}</td><td>${df(q.v).join(', ')}</td><td>${mono(q.v)?'เพิ่มขึ้นทุกช่วง':'ไม่เพิ่มต่อเนื่อง (มีช่วงที่ลดลง)'}</td></tr>`).join('');
+  const cmp=ALK.c.every((c,i)=>ALK.s[1].v[i]>ALK.s[0].v[i]);
+  return `<div class="tw"><table><caption class="small">ผลต่างของค่าเมื่อคาร์บอนเพิ่มทีละ 1 อะตอม (คำนวณจากตาราง)</caption><thead><tr><th class="l">ข้อมูล</th><th>ผลต่างแต่ละช่วง C3→C4 … C7→C8 (°C)</th><th>แนวโน้ม</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="${full?'tip':'small'}">${full?'วางจุดครบทุกค่าแล้ว · จุดเดือดของแอลเคนและไซโคลแอลเคนเพิ่มขึ้นตามจำนวนคาร์บอนทุกช่วง'+(cmp?' และไซโคลแอลเคนมีจุดเดือดสูงกว่าแอลเคนที่มี C เท่ากันทุกค่าในตาราง':'')+' ส่วนจุดหลอมเหลวเพิ่มไม่สม่ำเสมอ ผลต่างขึ้นลงมาก (ไซโคลแอลเคนมีบางช่วงลดลงด้วย) ซึ่งตรงกับที่คู่มือสรุปว่าจุดหลอมเหลวต่อเนื่องน้อยกว่าจุดเดือด':'วางจุดให้ครบทั้ง 24 ค่าเพื่อดูสรุปแนวโน้ม'}</p>`;
+}
+function act123(){
+  const head=`<tr><th>C</th>${ALK.s.map(q=>`<th>${q.n.replace(' จุด','<br>จุด')}</th>`).join('')}</tr>`;
+  const rows=ALK.c.map((c,i)=>`<tr><th>${c}</th>${ALK.s.map(q=>`<td><button type="button" class="chip" data-k="${q.k}${i}" aria-pressed="false" aria-label="${q.n} คาร์บอน ${c} อะตอม ${q.v[i]} องศาเซลเซียส วางจุดบนกราฟ">${q.v[i]}</button></td>`).join('')}</tr>`).join('');
+  return `<h2>กิจกรรม 12.3 สืบค้นข้อมูลจุดเดือดและจุดหลอมเหลวของแอลเคน</h2>
+  <p class="sub">คู่มือครู หน้า 45–49 · เวลาตามคู่มือ 50 นาที · อุปกรณ์จริง: กระดาษกราฟ ไม้บรรทัด ดินสอสี 2 สี</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>สืบค้นจุดเดือดและจุดหลอมเหลวของแอลเคน</li><li>นำเสนอแนวโน้ม</li><li>เปรียบเทียบจุดเดือดของแอลเคน</li></ol></div>
+  <div class="box"><h3>ข้อตกลงการเขียนกราฟ (คู่มือ หน้า 46)</h3><p>จำนวนคาร์บอนเป็นตัวแปรต้น ใส่บนแกน X · จุดเดือดหรือจุดหลอมเหลวเป็นตัวแปรตาม ใส่บนแกน Y · ใช้สีต่างกันสำหรับแอลเคนโซ่ตรงและไซโคลแอลเคน (ในหน้านี้ แดงทึบ = แอลเคน เส้นประสี่เหลี่ยมน้ำเงิน = ไซโคลแอลเคน)</p></div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: เขียนกราฟจากตารางข้อมูล</h3>
+   <p class="small">ค่าในตารางคือ "ตัวอย่างผลการทำกิจกรรม" ของคู่มือ หน้า 46 (ค่าของ cyclobutane ในตารางนี้คือ 23 °C แต่ตำราทั่วไปให้ประมาณ 12–13 °C จึงควรใช้เฉพาะแนวโน้มของกราฟ ไม่ควรใช้ค่านี้เป็นข้อเท็จจริง) คลิกที่ตัวเลขเพื่อวางหรือเอาจุดออกจากกราฟ</p>
+   <div class="btns"><button class="btn sm" type="button" id="plotAll">วางจุดทั้งหมด</button><button class="btn alt sm" type="button" id="plotClr">ล้างกราฟ</button></div>
+   <div class="tw"><table><caption class="small">จำนวนคาร์บอน กับจุดเดือด/จุดหลอมเหลว (°C)</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>
+   <div class="row2"><div><h3 class="small" style="margin:.6rem 0 0">กราฟที่ 1 จุดเดือด</h3><div class="fig" id="g1"></div></div><div><h3 class="small" style="margin:.6rem 0 0">กราฟที่ 2 จุดหลอมเหลว</h3><div class="fig" id="g2"></div></div></div>
+   <div id="an123"></div></div>
+  <div class="lab"><h3>ผลของโครงสร้างกิ่งต่อจุดเดือด (C₅H₁₂ สามไอโซเมอร์)</h3>
+   <p>คู่มือ หน้า 49 ให้เรียงจุดเดือดจากสูงไปต่ำ: <b>pentane &gt; 2-methylbutane &gt; 2,2-dimethylpropane</b> ยิ่งโซ่แตกกิ่งมาก โมเลกุลยิ่งสัมผัสกันได้น้อย แรงแผ่กระจายลอนดอนจึงน้อยลง</p>
+   <p class="small">หมายเหตุ: ตาราง "แบบฝึกหัด 12.5 ข้อ 3" ในคู่มือ (หน้า 57) ระบุจุดเดือด 36.1 / 27.8 / −11.7 °C ของสามสารนี้ แต่ค่าของ 2,2-dimethylpropane ในตำราทั่วไปประมาณ 9.5 °C หน้านี้จึงใช้เฉพาะ "ลำดับ" ไม่ใช้ตัวเลขดังกล่าว</p></div>
+  ${quizHTML('12.3')}`;
+}
+function wire123(){
+  const paint=()=>{$('#g1').innerHTML=chart123(1);$('#g2').innerHTML=chart123(2);$('#an123').innerHTML=analysis123();
+    $$('[data-k]').forEach(b=>b.setAttribute('aria-pressed',String(P123.has(b.dataset.k))));
+    if(ALK.s.every(q=>ALK.c.every((c,i)=>P123.has(q.k+i)))&&!st.done['12.3']){st.done['12.3']=true;save();paintTabs();paintProgress();}};
+  $$('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;P123.has(k)?P123.delete(k):P123.add(k);paint();});
+  $('#plotAll').onclick=()=>{ALK.s.forEach(q=>ALK.c.forEach((c,i)=>P123.add(q.k+i)));paint();};
+  $('#plotClr').onclick=()=>{P123.clear();paint();};
+  paint();wireQuiz('12.3');
+}
+/* ======================= 12.4 การละลายของแอลกอฮอล์ ======================= */
+/* ตัวอย่างผลการทดลองคู่มือ หน้า 51: propan-1-ol ละลายได้ดี, butan-1-ol 7 หยด, pentan-1-ol 2 หยด */
+const AL4=[{k:'p',n:'propan-1-ol',c:3,lim:Infinity},{k:'b',n:'butan-1-ol',c:4,lim:7},{k:'t',n:'pentan-1-ol',c:5,lim:2}];
+let t124={p:0,b:0,t:0};const MAXD=15;
+function tube124(a){
+  const d=t124[a.k],bead=d>a.lim,layer=d>=a.lim+4;
+  const water=`<rect x="22" y="90" width="46" height="90" fill="${bead?'#dff0ff':'#e6f3ff'}"/>`;
+  const oil=layer?`<rect x="22" y="70" width="46" height="26" fill="#f4e7b0" opacity=".9"/><text x="45" y="88" text-anchor="middle" font-size="9" fill="#6b5619">2 ชั้น</text>`:(bead?`<ellipse cx="45" cy="92" rx="${Math.min(14,5+(d-a.lim)*2)}" ry="3.5" fill="#f2dc7b" stroke="#c9a81f"/>`:'');
+  return svg(90,200,'หลอดทดลอง '+a.n+' หยดแล้ว '+d+' หยด'+(layer?' แยกเป็น 2 ชั้น':bead?' เห็นหยดลอยบนผิวน้ำ':' ละลายเป็นเนื้อเดียว'),
+   `${water}${oil}<path d="M20 30 V176 a25 25 0 0 0 50 0 V30" fill="none" stroke="#6a7a8c" stroke-width="3"/><line x1="16" y1="30" x2="74" y2="30" stroke="#6a7a8c" stroke-width="3"/><text x="45" y="20" text-anchor="middle" font-size="11" fill="#333">${d} หยด</text>`);
+}
+function status124(a){
+  const d=t124[a.k];
+  if(d===0)return'ยังไม่ได้หยด (น้ำกลั่น 1 mL สมมติต่อหลอด)';
+  if(d>=a.lim+4)return'แยกเป็น 2 ชั้น: หยดมากเกินไป ตามคำแนะนำในคู่มือควรทดลองใหม่';
+  if(d>a.lim)return'เห็นหยดคล้ายน้ำมันลอยบนผิวน้ำ → ละลายหมดได้ '+a.lim+' หยด';
+  if(a.lim===Infinity&&d>=MAXD)return'หยดครบ '+MAXD+' หยด ยังละลายเป็นเนื้อเดียว → ละลายได้ดี';
+  return'ละลายเป็นเนื้อเดียวกับน้ำ (ใส)';
+}
+function rec124(a){const d=t124[a.k];if(d>a.lim&&a.lim!==Infinity)return a.lim;if(a.lim===Infinity&&d>=MAXD)return'ดี';return null;}
+function act124(){
+  return `<h2>กิจกรรม 12.4 การทดลองการละลายได้ในน้ำของแอลกอฮอล์</h2>
+  <p class="sub">คู่มือครู หน้า 49–52 · เวลาตามคู่มือ 50 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>ทดลองหาการละลายในน้ำของแอลกอฮอล์บางชนิด</li><li>อธิบายความสัมพันธ์ระหว่างจำนวนคาร์บอนกับการละลายในน้ำ</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (คู่มือ หน้า 50)</h3><ul><li>propan-1-ol, butan-1-ol, pentan-1-ol อย่างละ 1 mL, น้ำกลั่น 3 mL</li><li>หลอดทดลองขนาดเล็ก 3 หลอด หลอดหยด 4 อัน บีกเกอร์ 50 mL 4 ใบ</li></ul><p class="small">ข้อแนะนำในคู่มือ: หยดแอลกอฮอล์ทีละหยดพร้อมเขย่า และสังเกตดี ๆ เพราะสารใสไม่มีสี</p></div></div>
+  <div class="warn"><b>ข้อควรระวัง (เพิ่มโดยผู้จัดทำหน้า):</b> แอลกอฮอล์ระเหยและติดไฟได้ ห้ามอยู่ใกล้เปลวไฟ ไม่ดมโดยตรง และล้างมือหลังทำ</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: หยดแอลกอฮอล์ลงในน้ำทีละหยด</h3>
+   <p class="small">แบบจำลองใช้ผลของคู่มือ: propan-1-ol ละลายได้ดี · butan-1-ol 7 หยด · pentan-1-ol 2 หยด (คู่มือหมายเหตุว่าผลแต่ละกลุ่มอาจต่างกันตามขนาดหยด) <b>การตีความ:</b> ในหน้านี้ถือว่า "จำนวนหยด" คือจำนวนหยดสูงสุดที่ยังละลายหมดก่อนเริ่มเห็นหยดลอย ซึ่งเป็นการตีความของผู้จัดทำหน้า และหยดที่เกินแล้วแยก 2 ชั้นเมื่อเกิน 4 หยดเป็นค่าสมมติ</p>
+   <div class="tubes">${AL4.map(a=>`<div class="tubebox"><div id="tb_${a.k}">${tube124(a)}</div><b>${a.n}</b><div class="small" id="st_${a.k}" aria-live="polite">${status124(a)}</div><div class="btns" style="justify-content:center"><button class="btn sm" type="button" data-add="${a.k}">หยด +1</button><button class="btn alt sm" type="button" data-rs="${a.k}">ใหม่</button></div></div>`).join('')}</div>
+   <div class="tw" style="margin-top:10px"><table><caption class="small">บันทึกผล (หยดที่ละลายหมด)</caption><thead><tr><th class="l">แอลกอฮอล์</th><th>C</th><th>จำนวนหยดที่ละลายหมด</th></tr></thead><tbody id="rec4"></tbody></table></div>
+   <div class="fig" id="mol4" style="margin-top:10px"></div>
+   <p class="tip" id="sum4" aria-live="polite"></p></div>
+  ${quizHTML('12.4')}`;
+}
+function wire124(){
+  const mol=()=>{let s='';[3,4,5].forEach((c,i)=>{const y=24+i*40;s+=`<text x="10" y="${y+5}" font-size="12" fill="#333">${AL4[i].n}</text><rect x="120" y="${y-8}" width="${c*28}" height="16" rx="8" fill="#e9c9ce"/><text x="${120+c*14}" y="${y+4}" text-anchor="middle" font-size="11" fill="#7a1f2c">ส่วนไฮโดรคาร์บอน (ไม่มีขั้ว) ${c} C</text><rect x="${120+c*28+6}" y="${y-8}" width="40" height="16" rx="8" fill="#a3303f"/><text x="${120+c*28+26}" y="${y+4}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">–OH</text>`;});
+    return svg(420,140,'แผนภาพแสดงความยาวส่วนไฮโดรคาร์บอนของ propan-1-ol butan-1-ol และ pentan-1-ol ที่ยาวขึ้นตามจำนวนคาร์บอน',s);};
+  $('#mol4').innerHTML=mol();
+  const up=()=>{AL4.forEach(a=>{$('#tb_'+a.k).innerHTML=tube124(a);$('#st_'+a.k).textContent=status124(a);});
+    $('#rec4').innerHTML=AL4.map(a=>{const r=rec124(a);return`<tr><td class="l">${a.n}</td><td>${a.c}</td><td>${r===null?'—':(r==='ดี'?'ละลายได้ดี (ครบ '+MAXD+' หยด)':r)}</td></tr>`;}).join('');
+    const all=AL4.every(a=>rec124(a)!==null);
+    $('#sum4').textContent=all?'สรุป: ยิ่งมีคาร์บอนมาก (ส่วนไฮโดรคาร์บอนยาว) แอลกอฮอล์ยิ่งละลายในน้ำได้น้อยลง · หมู่ –OH เกิดพันธะไฮโดรเจนกับน้ำได้ แต่ส่วนที่ไม่มีขั้วใหญ่ขึ้นลดการละลาย':'หยดจนพบหยดลอยในหลอด butan-1-ol และ pentan-1-ol และหยดครบ '+MAXD+' หยดใน propan-1-ol เพื่อดูสรุป';
+    if(all&&!st.done['12.4']){st.done['12.4']=true;save();paintTabs();paintProgress();}};
+  $$('[data-add]').forEach(b=>b.onclick=()=>{const k=b.dataset.add,a=AL4.find(x=>x.k===k);if(t124[k]<MAXD&&!(a.lim!==Infinity&&t124[k]>=a.lim+4)){t124[k]++;up();}});
+  $$('[data-rs]').forEach(b=>b.onclick=()=>{t124[b.dataset.rs]=0;up();});
+  up();wireQuiz('12.4');
+}
+/* ======================= 12.5 จุดเดือดของ propan-2-one / propan-2-ol ======================= */
+const SMP5={ac:{n:'propan-2-one (แอซีโทน)',bp:56.0,col:'#e9d8a0'},ol:{n:'propan-2-ol',bp:82.5,col:'#e6eef7'}};
+let s125={sample:'ac',T:25,heat:false,speed:2,rec:{ac:null,ol:null},raf:null,last:0,acc:0,bub:[],tm:null};
+function bubState(){const bp=SMP5[s125.sample].bp,T=s125.T;return T>=bp-1?2:T>=bp-25?1:0;}
+function act125(){
+  return `<h2>กิจกรรม 12.5 การทดลองหาจุดเดือดของ propan-2-one และ propan-2-ol</h2>
+  <p class="sub">คู่มือครู หน้า 52–54 · เวลาตามคู่มือ 50 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>ทดลองหาจุดเดือดของ propan-2-one และ propan-2-ol</li><li>เปรียบเทียบจุดเดือดของสองสาร</li></ol></div>
+  <div class="box"><h3>อุปกรณ์ (คู่มือ หน้า 52–53)</h3><ul><li>สารอย่างละ 1 mL หลอดทดลองเล็ก 2 หลอด หลอดคะปิลลารี 2 หลอด (หลอมปิดห่างปลายหนึ่งประมาณ 1 cm)</li><li>เทอร์มอมิเตอร์ 0–100 °C บีกเกอร์ 100 mL แท่งแก้วคน ตะเกียงแอลกอฮอล์ ด้าย 20 cm</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (เพิ่มโดยผู้จัดทำหน้า):</b> propan-2-one และ propan-2-ol ระเหยง่ายและติดไฟ ให้ความร้อนผ่านอ่างน้ำ ไม่ให้ไอสัมผัสเปลวไฟ สวมแว่นตา และปลายหลอดทดลองไม่หันเข้าหาตัวหรือผู้อื่น</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: อ่างน้ำให้ความร้อนและหลอดคะปิลลารี</h3>
+   <p class="small">ที่ไม่ใช่ข้อมูลของคู่มือ (ค่าสมมติของแบบจำลอง): อัตราการให้ความร้อน 1.5 °C ต่อวินาทีจริง (ปรับเร็วขึ้นได้ ×2 ×4) อุณหภูมิสารเท่ากับอ่างน้ำ ฟองอากาศเริ่มออกเป็นระยะเมื่ออ่างน้ำเข้าใกล้จุดเดือดประมาณ 25 °C และเกณฑ์อ่านค่า "ฟองออกเป็นสายต่อเนื่อง" ขั้นตอนอ่านค่าจริงให้ทำตามหนังสือเรียน</p>
+   <div class="btns" id="smp5" role="group" aria-label="เลือกสาร">${Object.keys(SMP5).map(k=>`<button class="chip" type="button" data-s="${k}" aria-pressed="${k===s125.sample}">${SMP5[k].n}</button>`).join('')}</div>
+   <div class="row2"><div class="fig" id="app5"></div>
+   <div><p>อุณหภูมิที่อ่านได้ <span class="read" id="t5">25.0 °C</span></p><div class="meter" aria-hidden="true"><i id="m5"></i></div>
+    <div class="obs" id="obs5" aria-live="polite">เริ่มให้ความร้อน แล้วสังเกตฟองที่ปลายหลอดคะปิลลารี</div>
+    <div class="btns"><button class="btn" type="button" id="heat5">เริ่มให้ความร้อน</button><button class="btn alt" type="button" id="rec5">บันทึกอุณหภูมิ ณ ตอนนี้</button><button class="btn alt" type="button" id="rst5">ทำให้เย็น/ทดลองใหม่</button></div>
+    <div class="btns" id="spd5" role="group" aria-label="ความเร็วการให้ความร้อน">${[1,2,4].map(v=>`<button class="chip" type="button" data-v="${v}" aria-pressed="${v===s125.speed}">×${v}</button>`).join('')}</div></div></div>
+   <div class="tw"><table><caption class="small">ผลการทดลอง</caption><thead><tr><th class="l">สาร</th><th>บันทึกได้ (°C)</th><th>ตัวอย่างผลในคู่มือ (°C)</th><th>ผลต่าง</th></tr></thead><tbody id="tab5"></tbody></table></div>
+   <p class="tip" id="sum5" aria-live="polite"></p></div>
+  <div class="lab"><h3>เหตุผล: พันธะไฮโดรเจนระหว่างโมเลกุล</h3><div class="fig" id="hb5"></div><p class="small">propan-2-ol มี –OH ต่อกับ H จึงเกิดพันธะไฮโดรเจนระหว่างโมเลกุลได้ ส่วน propan-2-one มี C=O แต่ไม่มี H ต่อกับ O จึงไม่เกิดพันธะไฮโดรเจนระหว่างโมเลกุลของตัวเอง (คู่มือ หน้า 54)</p></div>
+  ${quizHTML('12.5')}`;
+}
+function hb5(){
+  const mol=(x,y,lab)=>`<text x="${x}" y="${y}" font-size="14" fill="#333">${lab}</text>`;
+  return svg(460,150,'แผนภาพเปรียบเทียบ propan-2-ol ที่เกิดพันธะไฮโดรเจนระหว่างโมเลกุล กับ propan-2-one ที่ไม่เกิด',
+   `<text x="10" y="18" font-size="13" font-weight="700" fill="#a3303f">propan-2-ol: เกิดพันธะไฮโดรเจน</text>${mol(20,50,'(CH₃)₂CH–O–H')}<line x1="118" y1="44" x2="168" y2="44" stroke="#2563a8" stroke-width="2" stroke-dasharray="4 4"/>${mol(172,50,'O(H)–CH(CH₃)₂')}<text x="120" y="38" font-size="11" fill="#2563a8">พันธะ H</text>
+    <text x="10" y="92" font-size="13" font-weight="700" fill="#555">propan-2-one: ไม่เกิดพันธะไฮโดรเจนระหว่างกันเอง</text>${mol(20,124,'(CH₃)₂C=O')}<text x="130" y="124" font-size="12" fill="#666">⋯ ไม่มี H ต่อกับ O จึงไม่มีพันธะ H ระหว่างโมเลกุลชนิดเดียวกัน</text>`);
+}
+function draw125(){
+  const sp=SMP5[s125.sample],T=s125.T,st5=bubState(),hot=clamp((T-25)/70,0,1);
+  const mh=20+(T-25)/70*150;
+  let b='';
+  if(REDUCE){const n=st5===2?7:st5===1?2:0;for(let i=0;i<n;i++)b+=`<circle cx="${172+(i%2)*4}" cy="${195-i*13}" r="3" fill="#fff" stroke="#6a7a8c"/>`;}
+  else s125.bub.forEach(p=>{b+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.r}" fill="#fff" fill-opacity=".85" stroke="#6a7a8c"/>`;});
+  $('#app5').innerHTML=svg(300,300,'ชุดอุปกรณ์: บีกเกอร์น้ำให้ความร้อน มีหลอดทดลองบรรจุ '+sp.n+' พร้อมหลอดคะปิลลารีคว่ำ และเทอร์มอมิเตอร์ อุณหภูมิ '+T.toFixed(1)+' องศาเซลเซียส',
+   `<rect x="60" y="120" width="190" height="150" rx="6" fill="${mixc('#dcecff','#bcd8f5',hot)}" stroke="#6a7a8c" stroke-width="3"/>
+    <rect x="165" y="100" width="26" height="130" fill="${sp.col}" fill-opacity=".9"/><rect x="165" y="60" width="26" height="170" rx="4" fill="none" stroke="#6a7a8c" stroke-width="3"/>
+    <rect x="171" y="115" width="3" height="90" fill="#6a7a8c" opacity=".7"/>
+    <g>${b}</g>
+    <rect x="95" y="30" width="14" height="190" rx="7" fill="#fff" stroke="#6a7a8c" stroke-width="2"/><rect x="99" y="${215-mh}" width="6" height="${mh}" fill="#c63d4a"/>
+    <text x="100" y="22" text-anchor="middle" font-size="11" fill="#333">${T.toFixed(0)}°C</text>
+    <line x1="109" y1="90" x2="165" y2="90" stroke="#999" stroke-dasharray="3 3"/>
+    ${s125.heat?`<path d="M130 280 q-10 -18 0 -30 q4 12 14 8 q4 8 -2 22 z" fill="#f59e0b"/><path d="M150 282 q-8 -14 0 -24 q3 9 11 6 q3 6 -2 18 z" fill="#ef4444"/>`:''}
+    <rect x="95" y="284" width="100" height="10" rx="3" fill="#8a8f98"/>`);
+  $('#t5').textContent=T.toFixed(1)+' °C';$('#m5').style.width=((T-25)/70*100)+'%';
+  const o=$('#obs5');o.textContent=st5===2?'ฟองออกจากปลายหลอดคะปิลลารีเป็นสายต่อเนื่อง':st5===1?'มีฟองอากาศหลุดออกเป็นครั้งคราว (ยังไม่เป็นสาย)':'ยังไม่เห็นฟองจากปลายหลอดคะปิลลารี';
+}
+function tab125(){
+  $('#tab5').innerHTML=Object.keys(SMP5).map(k=>{const r=s125.rec[k],b=SMP5[k].bp;return`<tr><td class="l">${SMP5[k].n}</td><td>${r===null?'—':r.toFixed(1)}</td><td>${b.toFixed(1)}</td><td>${r===null?'—':(r-b>=0?'+':'−')+Math.abs(r-b).toFixed(1)}</td></tr>`;}).join('');
+  const both=s125.rec.ac!==null&&s125.rec.ol!==null;
+  $('#sum5').textContent=both?(s125.rec.ol>s125.rec.ac?'สรุป: จุดเดือดของ propan-2-ol สูงกว่า propan-2-one ทั้งที่ขนาดโมเลกุลใกล้เคียงกัน เพราะ propan-2-ol เกิดพันธะไฮโดรเจนระหว่างโมเลกุลได้':'ค่าที่บันทึกยังสลับกับค่าในคู่มือ ลองทดลองใหม่'):'บันทึกอุณหภูมิตอนเห็นฟองออกเป็นสายต่อเนื่อง ทั้งสองสาร';
+  if(both&&s125.rec.ol>s125.rec.ac&&!st.done['12.5']){st.done['12.5']=true;save();paintTabs();paintProgress();}
+}
+function stop125(){if(s125.raf){cancelAnimationFrame(s125.raf);s125.raf=null;}if(s125.tm){clearInterval(s125.tm);s125.tm=null;}}
+function frame125(ts){
+  if(!$('#app5')){stop125();return;}
+  const dt=Math.min(0.1,(ts-(s125.last||ts))/1000);s125.last=ts;
+  if(s125.heat){s125.T=Math.min(95,s125.T+1.5*s125.speed*dt);if(s125.T>=95){s125.heat=false;$('#heat5').textContent='เริ่มให้ความร้อน';}}
+  const stt=bubState();s125.acc+=dt;
+  const gap=stt===2?0.07:stt===1?0.9:1e9;
+  while(s125.acc>=gap&&gap<1e8){s125.acc-=gap;s125.bub.push({x:172.5+(Math.random()*4-2),y:205,r:2+Math.random()*2,v:60+Math.random()*30});}
+  if(stt===0)s125.acc=0;
+  s125.bub.forEach(p=>{p.y-=p.v*dt;p.x+=Math.sin(p.y/9)*0.3;});s125.bub=s125.bub.filter(p=>p.y>102);
+  draw125();s125.raf=requestAnimationFrame(frame125);
+}
+function wire125(){
+  s125.T=25;s125.heat=false;s125.bub=[];s125.last=0;s125.acc=0;
+  CLEAN.push(stop125);draw125();tab125();$('#hb5').innerHTML=hb5();
+  const startLoop=()=>{if(REDUCE){if(!s125.tm)s125.tm=setInterval(()=>{if(!$('#app5')){stop125();return;}if(s125.heat){s125.T=Math.min(95,s125.T+1.5*s125.speed*0.5);if(s125.T>=95)s125.heat=false;}draw125();},500);}else if(!s125.raf){s125.last=0;s125.raf=requestAnimationFrame(frame125);}};
+  $('#heat5').onclick=()=>{s125.heat=!s125.heat;$('#heat5').textContent=s125.heat?'หยุดให้ความร้อน':'เริ่มให้ความร้อน';startLoop();};
+  $$('#smp5 .chip').forEach(b=>b.onclick=()=>{s125.sample=b.dataset.s;s125.T=25;s125.heat=false;s125.bub=[];$('#heat5').textContent='เริ่มให้ความร้อน';$$('#smp5 .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw125();});
+  $$('#spd5 .chip').forEach(b=>b.onclick=()=>{s125.speed=+b.dataset.v;$$('#spd5 .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  $('#rst5').onclick=()=>{s125.T=25;s125.heat=false;s125.bub=[];$('#heat5').textContent='เริ่มให้ความร้อน';draw125();};
+  $('#rec5').onclick=()=>{const stt=bubState(),o=$('#obs5');
+    if(stt<2){o.textContent='ยังไม่เห็นฟองออกเป็นสายต่อเนื่อง ยังบันทึกไม่ได้ ให้ความร้อนต่อ';return;}
+    s125.rec[s125.sample]=Math.round(s125.T*2)/2;tab125();
+    const d=Math.abs(s125.rec[s125.sample]-SMP5[s125.sample].bp);o.textContent='บันทึก '+s125.rec[s125.sample].toFixed(1)+' °C'+(d<=3?' (ใกล้ค่าในคู่มือ)':' (เลยจุดเดือดไปค่อนข้างมาก ลองทดลองใหม่ให้ทันเมื่อฟองเริ่มเป็นสาย)');};
+  startLoop();
+  wireQuiz('12.5');
+}
+/* ======================= 12.6 ปฏิกิริยาการฟอกจางสี ======================= */
+function fm(s){return String(s).replace(/([A-Za-z)])(\d+)/g,'$1<sub>$2</sub>');}
+const A126=[{k:'A',n:'ไซโคลเฮกเซน (แอลเคน)',f:'C6H12'},{k:'B',n:'ไซโคลเฮกซีน (แอลคีน)',f:'C6H10'},{k:'C',n:'เมทิลเบนซีน (แอโรแมติก)',f:'C7H8'}];
+let t126={A:{add:0,shk:0},B:{add:0,shk:0},C:{add:0,shk:0}};
+const OBS126={A:'สารละลายยังคงมีสีม่วงเช่นเดิม',B:'สารละลายสีม่วงจางหายไป และมีตะกอนสีน้ำตาลเกิดขึ้นเล็กน้อย (หรือสารผสมเป็นสีน้ำตาล)',C:'สารละลายยังคงมีสีม่วงเช่นเดิม'};
+function tube126(a){
+  const d=t126[a.k],fade=a.k==='B'&&d.shk;
+  const sol=d.add?(fade?'#c8a37a':'#8a2fb5'):'none';
+  return svg(100,190,'หลอดทดลอง '+a.n+(d.add?(d.shk?(fade?' หลังเขย่า สีม่วงจางหาย มีตะกอนสีน้ำตาล':' หลังเขย่า ยังเป็นสีม่วง'):' เติม KMnO4 แล้ว ยังไม่เขย่า'):' ยังไม่เติม KMnO4'),
+   `${d.add?`<rect x="26" y="95" width="48" height="75" fill="${sol}" style="transition:fill 3s linear" class="tube"/>`:''}<rect x="26" y="${d.add?60:100}" width="48" height="${d.add?35:70}" fill="${d.add?'#f4f6f8':'#f4f6f8'}" fill-opacity=".8"/>${d.add&&d.shk?(fade?'<circle cx="40" cy="150" r="2.5" fill="#6b4423"/><circle cx="55" cy="160" r="3" fill="#6b4423"/><circle cx="48" cy="140" r="2" fill="#6b4423"/><circle cx="60" cy="150" r="2" fill="#6b4423"/>':''):''}<path d="M24 30 V166 a26 26 0 0 0 52 0 V30" fill="none" stroke="#6a7a8c" stroke-width="3"/><line x1="20" y1="30" x2="80" y2="30" stroke="#6a7a8c" stroke-width="3"/>`);
+}
+const BR={
+ hex:{n:'ไซโคลเฮกเซน (แอลเคน)',dark:0,light:1,spd:'ช้า',type:'ปฏิกิริยาการแทนที่',hbr:true,eq:'C6H12 + Br2 → C6H11Br + HBr (แสง)'},
+ hene:{n:'ไซโคลเฮกซีน (แอลคีน)',dark:1,light:1,spd:'ทันที',type:'ปฏิกิริยาการเติม',hbr:false,eq:'C6H10 + Br2 → C6H10Br2'},
+ tol:{n:'เมทิลเบนซีน (โทลูอีน)',dark:0,light:1,spd:'ช้า ๆ',type:'ปฏิกิริยาการแทนที่ที่หมู่เมทิล (ไม่ใช่ที่วงเบนซีน)',hbr:true,eq:'C6H5CH3 + Br2 → C6H5CH2Br + HBr (แสง)'},
+ ben:{n:'เบนซีน (แอโรแมติก ไม่มีโซ่ข้าง)',dark:0,light:0,spd:'',type:'พันธะในวงเบนซีนไม่เกิดทั้งปฏิกิริยาการเติมและการแทนที่',hbr:false,eq:'ไม่เกิดปฏิกิริยา'},
+ yne:{n:'pent-1-yne (แอลไคน์)',dark:1,light:1,spd:'เร็ว',type:'ปฏิกิริยาการเติม (แอลไคน์ทำเช่นเดียวกับแอลคีน)',hbr:false,eq:'CH≡C–CH2CH2CH3 + 2Br2 → CHBr2–CBr2–CH2CH2CH3 (Br2 เกินพอ)'}
+};
+const SOOT=[{n:'pentane',f:[5,12],t:'แอลเคน'},{n:'pent-1-ene',f:[5,10],t:'แอลคีน'},{n:'pent-1-yne',f:[5,8],t:'แอลไคน์'},{n:'hexane',f:[6,14],t:'แอลเคน'},{n:'cyclohexane',f:[6,12],t:'ไซโคลแอลเคน'},{n:'benzene',f:[6,6],t:'แอโรแมติก'},{n:'methylbenzene',f:[7,8],t:'แอโรแมติก'},{n:'heptene (C7H14)',f:[7,14],t:'แอลคีน (ตัวอย่างในคู่มือ)'}];
+let unk=null;
+const UT={alk:{n:'แอลเคน/ไซโคลแอลเคน',k:0,d:0,l:1},ene:{n:'แอลคีนหรือแอลไคน์',k:1,d:1,l:1},ar:{n:'แอโรแมติกไฮโดรคาร์บอน (วงเบนซีน ไม่มีโซ่ข้าง)',k:0,d:0,l:0}};
+function newUnk(){const t=['alk','ene','ar'].sort(()=>Math.random()-.5);t.push(['alk','ene','ar'][Math.floor(Math.random()*3)]);unk=t.sort(()=>Math.random()-.5).map(x=>({t:x,res:{},guess:''}));}
+function act126(){
+  if(!unk)newUnk();
+  return `<h2>กิจกรรม 12.6 การทดลองปฏิกิริยาการฟอกจางสีของสารละลายโพแทสเซียมเปอร์แมงกาเนต</h2>
+  <p class="sub">คู่มือครู หน้า 60–66 · กิจกรรมตามคู่มือคือส่วน ก (เวลา 50 นาที) ส่วน ข–ง เป็นห้องทดลองเสริมจากเนื้อหาในหัวข้อเดียวกัน (โบรมีน การเผาไหม้)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ หน้า 63)</h3><ol><li>ทดลองการฟอกจางสี KMnO₄ ของไซโคลเฮกเซน ไซโคลเฮกซีน และเมทิลเบนซีน</li><li>เปรียบเทียบการเกิดปฏิกิริยา</li></ol></div>
+  <div class="box"><h3>สารและอุปกรณ์ (คู่มือ หน้า 63)</h3><ul><li>ไซโคลเฮกเซน ไซโคลเฮกซีน เมทิลเบนซีน อย่างละ 1 mL</li><li>สารละลาย KMnO₄ 0.01% โดยมวลต่อปริมาตร 2 mL</li><li>หลอดทดลองเล็ก 3 หลอด หลอดหยด 4 อัน บีกเกอร์ 50 mL 4 ใบ</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (เพิ่มโดยผู้จัดทำหน้า):</b> ไฮโดรคาร์บอนเหล่านี้ระเหยง่ายและติดไฟ ไอของเมทิลเบนซีนและไซโคลเฮกซีนเป็นอันตรายหากสูดดม ทำในที่ระบายอากาศ สวมแว่นตา ถุงมือ และกำจัดของเสียตามที่ครูกำหนด</div>
+  <div class="lab"><h3>ส่วน ก: ฟอกจางสี KMnO₄ (กิจกรรมตามคู่มือ)</h3>
+   <p class="small">แบบจำลองแสดงผลตามตัวอย่างผลของคู่มือ หน้า 64 ส่วนเวลาที่สีจาง (ประมาณ 3 วินาทีของภาพ) เป็นค่าสมมติของแบบจำลอง</p>
+   <div class="tubes">${A126.map(a=>`<div class="tubebox"><div id="k_${a.k}">${tube126(a)}</div><b>${a.n}</b><div class="btns" style="justify-content:center"><button class="btn sm" type="button" data-ka="${a.k}">เติม KMnO₄</button><button class="btn alt sm" type="button" data-ks="${a.k}">เขย่า</button></div></div>`).join('')}</div>
+   <div class="tw" style="margin-top:10px"><table><caption class="small">ผลการสังเกต</caption><thead><tr><th class="l">สาร</th><th class="l">ผลการสังเกต</th></tr></thead><tbody id="obs6a"></tbody></table></div>
+   <p class="tip" id="sum6a" aria-live="polite"></p></div>
+  <div class="lab"><h3>ส่วน ข: ฟอกจางสีสารละลายโบรมีน ในที่มืดและที่สว่าง</h3>
+   <p class="small">ข้อมูลจากเนื้อหาหัวข้อ 12.7.2 (คู่มือ หน้า 61–62, 66): แอลเคนฟอกจางสีโบรมีนเมื่อมีแสง (แทนที่ ได้ HBr) · แอลคีน/แอลไคน์ฟอกจางทั้งในที่มืดและที่สว่าง (เติม) · เมทิลเบนซีนในที่สว่างจางช้า ๆ ที่หมู่เมทิล · ความเร็วที่แสดง "ช้า/เร็ว" เป็นค่าเชิงภาพของผู้จัดทำหน้า</p>
+   <div class="rowflex"><label>ไฮโดรคาร์บอน<select id="brS">${Object.keys(BR).map(k=>`<option value="${k}">${BR[k].n}</option>`).join('')}</select></label><label>สภาพแวดล้อม<select id="brC"><option value="dark">ที่มืด</option><option value="light">ที่สว่าง</option></select></label><button class="btn" type="button" id="brGo">ทดสอบ</button></div>
+   <div class="row2"><div class="fig" id="brFig"></div><div><div class="obs" id="brObs" aria-live="polite">เลือกสารและสภาพแวดล้อม แล้วกดทดสอบ</div><div class="tip" id="brEq" style="margin-top:8px"></div></div></div></div>
+  <div class="lab"><h3>ส่วน ค: เขม่าจากการเผาไหม้ กับอัตราส่วน C : H</h3>
+   <p class="small">เนื้อหาคู่มือ หน้า 60: ไฮโดรคาร์บอนที่มีสัดส่วน C ต่อ H สูงเผาไหม้ในบรรยากาศปกติแล้วเกิดเขม่ามากกว่า ตัวชี้วัดเขม่าด้านล่างเป็นเชิงคุณภาพที่ผู้จัดทำหน้าสร้างจากอัตราส่วน C:H (ไม่ใช่ปริมาณจริง)</p>
+   <div class="rowflex"><label>เลือกไฮโดรคาร์บอน<select id="cbS">${SOOT.map((s,i)=>`<option value="${i}">${s.n} · ${s.t}</option>`).join('')}</select></label></div>
+   <div class="row2"><div><p>อัตราส่วน C : H = <b id="cbR"></b></p><div class="meter" aria-hidden="true"><i id="cbM"></i></div><p class="small" id="cbL"></p></div>
+   <div><p class="small">สมการเผาไหม้สมบูรณ์ (ดุลแล้ว จำนวนเต็มน้อยที่สุด)</p><p class="eq" id="cbE" style="font-size:1.1rem"></p><div id="cbX"></div></div></div></div>
+  <div class="lab"><h3>ส่วน ง: สารไม่ทราบชนิด A–D เป็นไฮโดรคาร์บอนประเภทใด</h3>
+   <p class="small">ทดสอบแต่ละสารด้วย KMnO₄, Br₂ ในที่มืด และ Br₂ ในที่สว่าง แล้วจำแนกเป็น แอลเคน, แอลคีน/แอลไคน์ หรือแอโรแมติก (เกมนี้ใช้แอโรแมติกที่ไม่มีโซ่ข้าง จึงไม่เกิดปฏิกิริยาแม้ในที่สว่าง ต่างจากเมทิลเบนซีนที่คู่มือกล่าวถึง) การสุ่มชุดสารเป็นการออกแบบของผู้จัดทำหน้า</p>
+   <div class="tw"><table><caption class="small">ตารางการทดสอบ</caption><thead><tr><th>สาร</th><th>KMnO₄</th><th>Br₂ ที่มืด</th><th>Br₂ ที่สว่าง</th><th class="l">จำแนกเป็น</th></tr></thead><tbody id="unkT"></tbody></table></div>
+   <div class="btns"><button class="btn" type="button" id="unkChk">ตรวจคำตอบ</button><button class="btn alt" type="button" id="unkNew">สุ่มชุดใหม่</button></div><div class="res" id="unkRes" aria-live="polite"></div></div>
+  ${quizHTML('12.6')}`;
+}
+function unkDraw(){
+  const test=(u,k)=>{const t=UT[u.t],v=k==='k'?t.k:k==='d'?t.d:t.l;return v?'✓ จางสี':'✗ ไม่เปลี่ยน';};
+  $('#unkT').innerHTML=unk.map((u,i)=>`<tr><th>${'ABCD'[i]}</th>${['k','d','l'].map(k=>`<td>${u.res[k]?`<span>${test(u,k)}</span>`:`<button class="btn sm alt" type="button" data-u="${i}${k}" aria-label="ทดสอบสาร ${'ABCD'[i]} ${k==='k'?'ด้วย KMnO4':k==='d'?'ด้วย Br2 ที่มืด':'ด้วย Br2 ที่สว่าง'}">ทดสอบ</button>`}</td>`).join('')}<td class="l"><select data-g="${i}" aria-label="จำแนกสาร ${'ABCD'[i]}"><option value="">เลือก</option>${Object.keys(UT).map(k=>`<option value="${k}"${u.guess===k?' selected':''}>${UT[k].n}</option>`).join('')}</select></td></tr>`).join('');
+  $$('[data-u]').forEach(b=>b.onclick=()=>{const i=+b.dataset.u[0],k=b.dataset.u[1];unk[i].res[k]=1;unkDraw();});
+  $$('[data-g]').forEach(s=>s.onchange=()=>{unk[+s.dataset.g].guess=s.value;});
+}
+function wire126(){
+  const up=()=>{A126.forEach(a=>{$('#k_'+a.k).innerHTML=tube126(a);});
+    $('#obs6a').innerHTML=A126.map(a=>`<tr><td class="l">${a.n}</td><td class="l">${t126[a.k].shk?OBS126[a.k]:(t126[a.k].add?'(เติม KMnO₄ แล้ว กดเขย่า)':'—')}</td></tr>`).join('');
+    const all=A126.every(a=>t126[a.k].shk);$('#sum6a').textContent=all?'สรุป: ไซโคลเฮกซีน (แอลคีน) ฟอกจางสี KMnO₄ ได้ ส่วนไซโคลเฮกเซนและเมทิลเบนซีนไม่ฟอกจางสี':'เติม KMnO₄ แล้วเขย่าให้ครบทั้ง 3 หลอดเพื่อดูสรุป';
+    if(all&&!st.done['12.6']){st.done['12.6']=true;save();paintTabs();paintProgress();}};
+  $$('[data-ka]').forEach(b=>b.onclick=()=>{t126[b.dataset.ka].add=1;up();});
+  $$('[data-ks]').forEach(b=>b.onclick=()=>{const k=b.dataset.ks;if(!t126[k].add){t126[k].add=1;}t126[k].shk=1;up();});
+  up();
+  const brDraw=(col,txt)=>{$('#brFig').innerHTML=svg(160,170,'หลอดทดลองสารละลายโบรมีน'+txt,`<rect x="40" y="55" width="80" height="95" fill="${col}" style="transition:fill 2.5s linear" class="tube"/><path d="M38 20 V132 a42 42 0 0 0 84 0 V20" fill="none" stroke="#6a7a8c" stroke-width="3"/><line x1="32" y1="20" x2="128" y2="20" stroke="#6a7a8c" stroke-width="3"/>`);};
+  brDraw('#b5522a',' สีน้ำตาลแดง ยังไม่ทดสอบ');
+  $('#brGo').onclick=()=>{const b=BR[$('#brS').value],c=$('#brC').value,react=c==='dark'?b.dark:b.light;
+    brDraw('#b5522a',' สีน้ำตาลแดง');
+    setTimeout(()=>{if(!$('#brFig'))return;brDraw(react?'#f3f3ee':'#b5522a',react?' จางเป็นไม่มีสี':' ยังเป็นสีน้ำตาลแดง');},40);
+    $('#brObs').textContent=b.n+' · '+(c==='dark'?'ที่มืด':'ที่สว่าง')+': '+(react?'สีน้ำตาลแดงของโบรมีนจางหาย'+(c==='light'||b.dark?(b.spd?' ('+b.spd+')':''):'')+(b.hbr?' · กระดาษลิตมัสชื้นสีน้ำเงินที่ปากหลอดเปลี่ยนเป็นสีแดง (เกิดแก๊ส HBr เป็นกรด)':' · ลิตมัสไม่เปลี่ยนสี (ไม่มี HBr)'):'สีโบรมีนไม่เปลี่ยน ไม่เกิดปฏิกิริยา');
+    $('#brEq').innerHTML=(react?'<b>'+b.type+'</b> · ':'<b>ไม่เกิดปฏิกิริยา</b> ในสภาวะนี้ · ')+'<span class="eq">'+(react?fm(b.eq).replace('→','→'):(b.dark||b.light?'—':fm(b.eq)))+'</span>';};
+  const cb=()=>{const s=SOOT[+$('#cbS').value],c=s.f[0],h=s.f[1],r=c/h,co=combustionCoeffs(c,h);
+    $('#cbR').textContent=c+' : '+h+' = '+r.toFixed(2);$('#cbM').style.width=(clamp((r-0.4)/0.65,0.03,1)*100)+'%';
+    $('#cbL').textContent=r<0.45?'เขม่าน้อยมาก (คาดว่าเผาไหม้สมบูรณ์ได้ง่ายในบรรยากาศปกติ)':r<0.6?'เขม่าปานกลาง':'เขม่ามาก (คาดว่าเกิดเปลวควันและเขม่า)';
+    $('#cbE').innerHTML=(co[0]>1?co[0]:'')+fm('C'+c+'H'+h)+' + '+(co[1]>1?co[1]:'')+fm('O2')+' → '+(co[2]>1?co[2]:'')+fm('CO2')+' + '+(co[3]>1?co[3]:'')+fm('H2O');
+    $('#cbX').innerHTML=s.f[1]===14&&s.f[0]===7?`<div class="tip"><b>ตัวอย่างในคู่มือ (หน้า 60) ปริมาณ O₂ ต่างกัน</b><br>O₂ มากกว่า: 2C₇H₁₄ + 17O₂ → 8CO₂ + 14H₂O + 4CO + 2C<br>O₂ น้อยกว่า: 2C₇H₁₄ + 16O₂ → 8CO₂ + 14H₂O + 2CO + 4C<br>O₂ น้อยลง เขม่า (C) เพิ่มจาก 2 เป็น 4</div>`:'';};
+  $('#cbS').onchange=cb;cb();
+  unkDraw();
+  $('#unkNew').onclick=()=>{newUnk();$('#unkRes').textContent='';unkDraw();};
+  $('#unkChk').onclick=()=>{const ok=unk.map(u=>u.guess===u.t);const done=unk.filter(u=>u.guess).length,got=ok.filter(Boolean).length;
+    $('#unkRes').className='res '+(got===4?'ok':'bad');$('#unkRes').textContent=done<4?'จำแนกให้ครบ 4 สารก่อน':(got===4?'ถูกทั้ง 4 สาร ✓ เฉลย: '+unk.map((u,i)=>'ABCD'[i]+' = '+UT[u.t].n).join(' · '):'ถูก '+got+' / 4 สาร ทดสอบเพิ่มแล้วลองอีกครั้ง (ดูว่าผลสอดคล้องกับประเภทใด)');};
+  wireQuiz('12.6');
+}
+/* ======================= ชุดให้ความร้อนหลอดทดลอง (12.7 และ 12.8) ======================= */
+function heaterSVG(h){
+  const hot=clamp((h.T-25)/60,0,1),fillc=h.e>0.15?mixc(h.c0,h.c1,Math.min(1,h.e)):h.c0;
+  return svg(280,260,h.label+' อุณหภูมิอ่างน้ำ '+h.T.toFixed(0)+' องศาเซลเซียส ความคืบหน้าของปฏิกิริยา '+Math.round(h.e*100)+' เปอร์เซ็นต์',
+   `<rect x="60" y="110" width="170" height="120" rx="6" fill="${mixc('#dcecff','#bcd8f5',hot)}" stroke="#6a7a8c" stroke-width="3"/>
+   <rect x="140" y="70" width="26" height="150" fill="${fillc}" fill-opacity=".85"/><rect x="140" y="50" width="26" height="170" rx="4" fill="none" stroke="#6a7a8c" stroke-width="3"/>
+   <rect x="85" y="30" width="14" height="170" rx="7" fill="#fff" stroke="#6a7a8c" stroke-width="2"/><rect x="89" y="${195-(15+hot*130)}" width="6" height="${15+hot*130}" fill="#c63d4a"/><text x="92" y="22" text-anchor="middle" font-size="11" fill="#333">${h.T.toFixed(0)}°C</text>
+   <ellipse cx="153" cy="46" rx="14" ry="6" fill="#fff" stroke="#bbb"/><text x="153" y="38" text-anchor="middle" font-size="9" fill="#555">สำลี</text>
+   ${h.heat?`<path d="M120 252 q-10 -18 0 -30 q4 12 14 8 q4 8 -2 22 z" fill="#f59e0b"/><path d="M140 254 q-8 -14 0 -24 q3 9 11 6 q3 6 -2 18 z" fill="#ef4444"/>`:''}<rect x="85" y="255" width="100" height="5" rx="2" fill="#8a8f98"/>`);
+}
+function makeHeater(P,cfg){
+  const h={T:25,heat:false,e:0,speed:2,raf:null,last:0,label:cfg.label,c0:cfg.c0,c1:cfg.c1,tm:null};
+  const draw=()=>{const f=$('#'+P+'fig');if(!f)return false;f.innerHTML=heaterSVG(h);$('#'+P+'T').textContent=h.T.toFixed(0)+' °C';$('#'+P+'E').style.width=(h.e*100)+'%';$('#'+P+'Ev').textContent=Math.round(h.e*100)+'%';return true;};
+  const step=dt=>{if(h.heat)h.T=Math.min(90,h.T+3*h.speed*dt);else h.T=Math.max(25,h.T-1.2*dt);
+    const ok=cfg.cond(),Tm=cfg.Tmin;if(ok&&h.T>=Tm&&h.e<cfg.emax())h.e=Math.min(cfg.emax(),h.e+cfg.rate*h.speed*dt);};
+  const stop=()=>{if(h.raf){cancelAnimationFrame(h.raf);h.raf=null;}if(h.tm){clearInterval(h.tm);h.tm=null;}};
+  const loop=ts=>{if(!$('#'+P+'fig')){stop();return;}const dt=Math.min(0.1,(ts-(h.last||ts))/1000);h.last=ts;step(dt);draw();h.raf=requestAnimationFrame(loop);};
+  const start=()=>{if(REDUCE){if(!h.tm)h.tm=setInterval(()=>{if(!draw()){stop();return;}step(0.5);draw();},500);}else if(!h.raf){h.last=0;h.raf=requestAnimationFrame(loop);}};
+  return{h,draw,stop,start};
+}
+let H7=null,H8=null;
+const ACID7=[{k:'bz',n:'กรดเบนโซอิก',f:'C6H5COOH',R:'C6H5',nm:'benzoate',c:7,hh:6,o:2},{k:'ac',n:'กรดเอทาโนอิก (กรดแอซีติก)',f:'CH3COOH',R:'CH3',nm:'ethanoate',c:2,hh:4,o:2},{k:'me',n:'กรดเมทาโนอิก',f:'HCOOH',R:'H',nm:'methanoate',c:1,hh:2,o:2},{k:'pr',n:'กรดโพรพาโนอิก',f:'CH3CH2COOH',R:'CH3CH2',nm:'propanoate',c:3,hh:6,o:2}];
+const ALC7=[{k:'et',n:'เอทานอล',R:'CH3CH2',Q:'CH2CH3',nm:'ethyl',c:2,hh:6,o:1,OH:'CH3CH2OH'},{k:'mt',n:'เมทานอล',R:'CH3',Q:'CH3',nm:'methyl',c:1,hh:4,o:1,OH:'CH3OH'},{k:'pp',n:'propan-1-ol',R:'CH3CH2CH2',Q:'CH2CH2CH3',nm:'propyl',c:3,hh:8,o:1,OH:'CH3CH2CH2OH'},{k:'iso',n:'3-methylbutan-1-ol',R:'(CH3)2CHCH2CH2',Q:'CH2CH2CH(CH3)2',nm:'3-methylbutyl',c:5,hh:12,o:1,OH:'(CH3)2CHCH2CH2OH'},{k:'bn',n:'phenylmethanol (เบนซิลแอลกอฮอล์)',R:'C6H5CH2',Q:'CH2C6H5',nm:'benzyl',c:7,hh:8,o:1,OH:'C6H5CH2OH'}];
+const ODOR={'bz|et':'ตามกิจกรรม 12.7 กลิ่นต่างจากเอทานอลอย่างชัดเจน (คู่มือยกตัวอย่าง เช่น กลิ่นคล้ายน้ำมันมวย ดอกไม้ หรือผลไม้บางชนิด)','ac|iso':'ตามแบบฝึกหัดท้ายบทข้อ 10 เอสเทอร์นี้มีกลิ่นคล้ายกล้วยหอม','ac|bn':'ตามแบบฝึกหัด 12.6 ข้อ 7 เอสเทอร์นี้มีกลิ่นหอมของดอกมะลิ','bz|mt':'ตามกิจกรรม 12.10 methyl benzoate ใช้เป็นสารให้กลิ่นหอมในอาหารหรือน้ำหอม'};
+function cf(c,h,o){return 'C'+(c>1?c:'')+'H'+(h>1?h:'')+'O'+(o>1?o:'');}
+function esterOf(a,b){return{name:b.nm+' '+a.nm,formula:a.R+'COO'+b.Q,C:a.c+b.c,H:a.hh+b.hh-2,O:2};}
+function smell7(){
+  const e=H7.h.e;
+  if(e<0.08)return'กลิ่นเอทานอล (ยังไม่มีสารใหม่)';
+  if(e<0.4)return'กลิ่นเอทานอลเริ่มเจือกลิ่นอื่น';
+  return'กลิ่นแตกต่างจากเอทานอลอย่างชัดเจน (คู่มือ หน้า 67: เช่น คล้ายน้ำมันมวย ดอกไม้ หรือผลไม้บางชนิด)';
+}
+function act127(){
+  const aO=ACID7.map(a=>`<option value="${a.k}">${a.n} ${a.f}</option>`).join(''),bO=ALC7.map(a=>`<option value="${a.k}">${a.n}</option>`).join('');
+  return `<h2>กิจกรรม 12.7 การทดสอบปฏิกิริยาเคมีระหว่างกรดคาร์บอกซิลิกกับแอลกอฮอล์</h2>
+  <p class="sub">คู่มือครู หน้า 66–68 · เวลาตามคู่มือ 30 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดสอบปฏิกิริยาเคมีระหว่างกรดคาร์บอกซิลิกกับแอลกอฮอล์</p></div>
+  <div class="box"><h3>สารและอุปกรณ์ (คู่มือ หน้า 67)</h3><ul><li>กรดเบนโซอิก 0.5 g (ครึ่งช้อนเบอร์ 1), เอทานอล 2 mL, H₂SO₄ เข้มข้น 18 mol/L 3 หยด</li><li>หลอดทดลองเล็ก 1 หลอด บีกเกอร์ 100 mL ตะเกียงแอลกอฮอล์ เทอร์มอมิเตอร์ สำลี</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (เพิ่มโดยผู้จัดทำหน้า):</b> กรดซัลฟิวริกเข้มข้นกัดกร่อนรุนแรง เอทานอลติดไฟ ให้ความร้อนผ่านอ่างน้ำ ห้ามเอาจมูกชิดหลอด ใช้มือโบกไอเข้าหาจมูกเบา ๆ และให้ครูควบคุมการเติมกรด</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ให้ความร้อนแล้วดมกลิ่นก่อน/หลัง</h3>
+   <p class="small">ค่าสมมติของแบบจำลอง: ปฏิกิริยาเริ่มเมื่ออ่างน้ำถึงประมาณ 60 °C และต้องมีกรดซัลฟิวริกเป็นตัวเร่ง (ตามหลักในคู่มือ หน้า 68 ที่ระบุว่าใช้ความร้อนสูงและกรดเข้มข้นเป็นตัวเร่ง) อัตราเกิดเอสเทอร์ ความร้อน และ K = 4 ของสมดุลเป็นค่าของผู้จัดทำหน้า ส่วนปริมาณสารคำนวณจากน้ำหนัก/ปริมาตรในคู่มือ (กรด 0.5 g ≈ 4.1 mmol, เอทานอล 2 mL ≈ 34 mmol ใช้ความหนาแน่นเอทานอล 0.79 g/mL ของผู้จัดทำหน้า)</p>
+   <div class="rowflex"><label>กรดซัลฟิวริกเข้มข้นที่เติม<select id="h7acid"><option value="3">3 หยด (ตามคู่มือ)</option><option value="0">ไม่เติม</option></select></label></div>
+   <div class="row2"><div class="fig" id="h7fig"></div><div>
+    <p>อุณหภูมิอ่างน้ำ <span class="read" id="h7T">25 °C</span></p><p class="small">ปริมาณเอสเทอร์ที่เกิด <b id="h7Ev">0%</b> ของกรดที่ใช้ได้สูงสุดตามสมดุลของแบบจำลอง</p><div class="meter" aria-hidden="true"><i id="h7E"></i></div>
+    <div class="obs" id="h7obs" aria-live="polite">ดมกลิ่นสารผสมก่อนให้ความร้อน แล้วให้ความร้อน</div>
+    <div class="btns"><button class="btn sm" type="button" id="h7smell">ดมกลิ่น (โบกไอเบา ๆ)</button><button class="btn" type="button" id="h7heat">เริ่มให้ความร้อน</button><button class="btn alt sm" type="button" id="h7rst">เริ่มใหม่</button></div></div></div>
+   <div class="tw"><table><caption class="small">บันทึกกลิ่น (ตัวอย่างผลในคู่มือ หน้า 67)</caption><thead><tr><th class="l">ขั้นตอน</th><th class="l">กลิ่นที่ดมได้ในแบบจำลอง</th></tr></thead><tbody id="h7tab"><tr><td class="l">ก่อนให้ความร้อน</td><td class="l">—</td></tr><tr><td class="l">หลังให้ความร้อน</td><td class="l">—</td></tr></tbody></table></div>
+   <p class="tip" id="h7sum" aria-live="polite"></p></div>
+  <div class="lab"><h3>เครื่องเขียนสมการเอสเทอริฟิเคชัน</h3>
+   <p class="small">เลือกกรดและแอลกอฮอล์ ระบบเขียนสมการ ตั้งชื่อเอสเทอร์ (แอลคิล + ชื่อกรดที่ลงท้าย -oate) และตรวจสูตรโมเลกุลให้ดุล รายชื่อกลิ่นแสดงเฉพาะคู่ที่คู่มือกล่าวถึง</p>
+   <div class="rowflex"><label>กรดคาร์บอกซิลิก<select id="esA">${aO}</select></label><label>แอลกอฮอล์<select id="esB">${bO}</select></label></div>
+   <p class="eq" id="esEq" style="font-size:1.05rem"></p><p id="esN"></p><p class="small" id="esO"></p></div>
+  ${quizHTML('12.7')}`;
+}
+function wire127(){
+  H7=makeHeater('h7',{label:'หลอดทดลองบรรจุกรดเบนโซอิก เอทานอล และกรดซัลฟิวริก แช่ในอ่างน้ำ',c0:'#f2f2ee',c1:'#f0dfa8',Tmin:60,rate:0.02,cond:()=>$('#h7acid')&&$('#h7acid').value!=='0',emax:()=>esterEq(KEQ,4.1,34.2)/4.1});
+  CLEAN.push(H7.stop);const h=H7.h;
+  const rec=(i,t)=>{const rows=$$('#h7tab tr');if(rows[i])rows[i].children[1].textContent=t;};
+  H7.draw();
+  $('#h7smell').onclick=()=>{const t=smell7(),first=h.T<=26&&h.e<0.05;$('#h7obs').textContent='ดมกลิ่น: '+t;rec(first?0:1,t);if(!first&&h.e>=0.4){st.done['12.7']=true;save();paintTabs();paintProgress();$('#h7sum').textContent='สรุป: กรดคาร์บอกซิลิกเกิดปฏิกิริยากับแอลกอฮอล์ได้เมื่อให้ความร้อนและมีกรดเข้มข้นเป็นตัวเร่ง (กลิ่นเปลี่ยนไป แสดงว่ามีสารใหม่เกิดขึ้น)';}};
+  $('#h7heat').onclick=()=>{h.heat=!h.heat;$('#h7heat').textContent=h.heat?'หยุดให้ความร้อน':'เริ่มให้ความร้อน';H7.start();};
+  $('#h7rst').onclick=()=>{h.T=25;h.e=0;h.heat=false;$('#h7heat').textContent='เริ่มให้ความร้อน';rec(0,'—');rec(1,'—');$('#h7obs').textContent='เริ่มใหม่ ดมกลิ่นก่อนให้ความร้อน';H7.draw();};
+  H7.start();
+  const es=()=>{const a=ACID7.find(x=>x.k===$('#esA').value),b=ALC7.find(x=>x.k===$('#esB').value),e=esterOf(a,b);
+    $('#esEq').innerHTML=fm(a.f)+' + '+fm(b.OH)+' ⇌ '+fm(e.formula)+' + H<sub>2</sub>O <span class="small">(H⁺, ความร้อน)</span>';
+    $('#esN').innerHTML='ชื่อเอสเทอร์: <b>'+e.name+'</b> · สูตรโมเลกุล <b>'+fm(cf(e.C,e.H,e.O))+'</b> (กรด '+fm(cf(a.c,a.hh,a.o))+' + แอลกอฮอล์ '+fm(cf(b.c,b.hh,b.o))+' − H₂O)';
+    $('#esO').textContent=ODOR[a.k+'|'+b.k]||'คู่นี้ไม่ได้ระบุกลิ่นไว้ในคู่มือ';};
+  $('#esA').onchange=es;$('#esB').onchange=es;es();
+  wireQuiz('12.7');
+}
+/* ======================= 12.8 ไฮโดรลิซิสของเอสเทอร์ ======================= */
+const KEQ=4; // สมมติ
+function act128(){
+  return `<h2>กิจกรรม 12.8 การทดสอบปฏิกิริยาย้อนกลับของการเกิดเอสเทอร์ในภาวะกรด</h2>
+  <p class="sub">คู่มือครู หน้า 68–71 · เวลาตามคู่มือ 30 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดสอบปฏิกิริยาย้อนกลับของการเกิดเอสเทอร์ในภาวะกรด</p></div>
+  <div class="box"><h3>สารและอุปกรณ์ (คู่มือ หน้า 69)</h3><ul><li>เอทิลแอซีเตต 10 หยด, สารละลาย H₂SO₄ เจือจาง 1 mol/L 5 หยด</li><li>หลอดทดลองเล็ก บีกเกอร์ 100 mL ตะเกียงแอลกอฮอล์ หลอดหยด สำลี</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (เพิ่มโดยผู้จัดทำหน้า):</b> เอทิลแอซีเตตระเหยและติดไฟง่าย ให้ความร้อนผ่านอ่างน้ำ ดมกลิ่นโดยโบกไอเบา ๆ เท่านั้น</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ไฮโดรลิซิสของเอทิลแอซีเตตด้วยกรดเจือจาง</h3>
+   <p class="small">ค่าสมมติ: เริ่มเกิดปฏิกิริยาที่ประมาณ 60 °C, อัตราเกิดปฏิกิริยา, หยดละ 0.05 mL (เอทิลแอซีเตต 10 หยด ≈ 5.1 mmol น้ำจากกรดเจือจาง 5 หยด ≈ 14 mmol) และ K = ${KEQ} ของสมดุลเอสเทอริฟิเคชัน ทำให้ไฮโดรลิซิสถึงสมดุลที่ประมาณครึ่งหนึ่ง ส่วนกลิ่นก่อน/หลังตรงกับคู่มือ หน้า 70</p>
+   <div class="row2"><div class="fig" id="h8fig"></div><div>
+    <p>อุณหภูมิอ่างน้ำ <span class="read" id="h8T">25 °C</span></p><p class="small">เอสเทอร์ที่ถูกไฮโดรลิซิส <b id="h8Ev">0%</b></p><div class="meter" aria-hidden="true"><i id="h8E"></i></div>
+    <div class="obs" id="h8obs" aria-live="polite">ดมกลิ่นก่อนให้ความร้อน แล้วให้ความร้อนและดมอีกครั้ง</div>
+    <div class="btns"><button class="btn sm" type="button" id="h8smell">ดมกลิ่น</button><button class="btn" type="button" id="h8heat">เริ่มให้ความร้อน</button><button class="btn alt sm" type="button" id="h8rst">เริ่มใหม่</button></div></div></div>
+   <div class="tw"><table><caption class="small">บันทึกกลิ่น</caption><thead><tr><th class="l">ขั้นตอน</th><th class="l">กลิ่น</th></tr></thead><tbody id="h8tab"><tr><td class="l">ก่อนให้ความร้อน</td><td class="l">—</td></tr><tr><td class="l">หลังให้ความร้อน</td><td class="l">—</td></tr></tbody></table></div>
+   <div class="fig"><p class="eq" style="padding:6px 10px">CH₃COOCH₂CH₃ + H₂O ⇌ CH₃COOH + CH₃CH₂OH <span class="small">(H⁺, ความร้อน)</span></p></div>
+   <p class="tip" id="h8sum" aria-live="polite"></p></div>
+  <div class="lab"><h3>สมดุลเอสเทอร์: เพิ่มผลได้อย่างไร (ชวนคิด คู่มือ หน้า 71)</h3>
+   <p class="small">ใช้ K = ${KEQ} (สมมติของผู้จัดทำหน้า) คำนวณโมลที่สมดุลจาก K(กรด)(แอลกอฮอล์) = (เอสเทอร์)(น้ำ) สำหรับกรด 1 mol</p>
+   <div class="rowflex"><label>แอลกอฮอล์ต่อกรด (mol/mol)<input type="range" id="eqR" min="1" max="10" step="0.5" value="1"></label><b id="eqRv">1</b><label class="opt"><input type="checkbox" id="eqW"><span>ดึงน้ำออกตลอดเวลา</span></label></div>
+   <p>ผลได้เอสเทอร์ที่สมดุล <b id="eqY"></b></p><div class="meter" aria-hidden="true"><i id="eqM"></i></div>
+   <div class="rowflex" style="margin-top:12px"><label>น้ำต่อเอสเทอร์ ในการไฮโดรลิซิส (mol/mol)<input type="range" id="hyR" min="1" max="30" step="1" value="3"></label><b id="hyRv">3</b></div>
+   <p>เอสเทอร์ถูกไฮโดรลิซิสที่สมดุล <b id="hyY"></b></p><div class="meter" aria-hidden="true"><i id="hyM"></i></div>
+   <p class="small">เหตุผลที่ใช้กรดเจือจาง: น้ำเป็นสารตั้งต้นของไฮโดรลิซิส ส่วนกรดทำหน้าที่เป็นตัวเร่งเท่านั้น (คู่มือ หน้า 71) · เพิ่มผลได้ของเอสเทอร์โดยดึงน้ำหรือเอสเทอร์ออก หรือใช้สารตั้งต้นตัวหนึ่งมากเกินพอ</p></div>
+  ${quizHTML('12.8')}`;
+}
+function wire128(){
+  const e0=5.1,w0=14;
+  const emax=()=>esterEq(1/KEQ,e0,w0)/e0;
+  H8=makeHeater('h8',{label:'หลอดทดลองบรรจุเอทิลแอซีเตตและสารละลายกรดซัลฟิวริกเจือจาง แช่ในอ่างน้ำ',c0:'#f4f4ef',c1:'#f1ead2',Tmin:60,rate:0.02,cond:()=>true,emax});
+  CLEAN.push(H8.stop);const h=H8.h;
+  const rec=(i,t)=>{const rows=$$('#h8tab tr');if(rows[i])rows[i].children[1].textContent=t;};
+  H8.draw();
+  $('#h8smell').onclick=()=>{const first=h.T<=26&&h.e<0.02,t=h.e<0.08?'กลิ่นคล้ายลูกโป่งวิทยาศาสตร์ (คือกลิ่นของเอสเทอร์ ตามที่คู่มือบันทึก)':'กลิ่นต่างจากเดิม มีกลิ่นคล้ายน้ำส้มสายชูหรือกรดแอซีติก (ตามคู่มือ หน้า 70)';
+    $('#h8obs').textContent='ดมกลิ่น: '+t;rec(first?0:1,t);
+    if(!first&&h.e>=0.2){$('#h8sum').textContent='สรุป: เอสเทอร์ทำปฏิกิริยากับน้ำในสารละลายกรดเจือจางได้กรดคาร์บอกซิลิกกับแอลกอฮอล์ (ปฏิกิริยาย้อนกลับของการเกิดเอสเทอร์) และเป็นปฏิกิริยาผันกลับได้ จึงมีเอสเทอร์เหลืออยู่เสมอ';st.done['12.8']=true;save();paintTabs();paintProgress();}};
+  $('#h8heat').onclick=()=>{h.heat=!h.heat;$('#h8heat').textContent=h.heat?'หยุดให้ความร้อน':'เริ่มให้ความร้อน';H8.start();};
+  $('#h8rst').onclick=()=>{h.T=25;h.e=0;h.heat=false;$('#h8heat').textContent='เริ่มให้ความร้อน';rec(0,'—');rec(1,'—');$('#h8obs').textContent='เริ่มใหม่ ดมกลิ่นก่อนให้ความร้อน';$('#h8sum').textContent='';H8.draw();};
+  H8.start();
+  const q=()=>{const r=+$('#eqR').value,rm=$('#eqW').checked,y=esterEq(KEQ,1,r,rm);$('#eqRv').textContent=r;$('#eqY').textContent=(y*100).toFixed(1)+'% ของกรด'+(rm?' (ดึงน้ำออก ปฏิกิริยาไปจนสิ้นสุด)':'');$('#eqM').style.width=(y*100)+'%';
+    const w=+$('#hyR').value,x=esterEq(1/KEQ,1,w);$('#hyRv').textContent=w;$('#hyY').textContent=(x*100).toFixed(1)+'% ของเอสเทอร์ (เหลือ '+((1-x)*100).toFixed(1)+'%)';$('#hyM').style.width=(x*100)+'%';};
+  ['#eqR','#eqW','#hyR'].forEach(s=>$(s).oninput=q);q();
+  wireQuiz('12.8');
+}
+/* ======================= 12.9 สะปอนนิฟิเคชัน ======================= */
+let s129={step:0,heatLv:0,p:0,burn:0,dry:0,state:'mix',foam:0,raf:null,last:0,tm:null};
+const HEATN=['ปิด','ต่ำ','กลาง','สูง'];
+function act129(){
+  return `<h2>กิจกรรม 12.9 การทดสอบปฏิกิริยาสะปอนนิฟิเคชัน</h2>
+  <p class="sub">คู่มือครู หน้า 71–75 · เวลาตามคู่มือ 30 นาที</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดสอบปฏิกิริยาสะปอนนิฟิเคชัน</p></div>
+  <div class="box"><h3>สารและอุปกรณ์ (คู่มือ หน้า 72)</h3><ul><li>น้ำมันพืช 1 mL, สารละลาย NaOH 2.5 mol/L 2 mL, เอทานอล 1 mL, น้ำกลั่น 5 mL</li><li>ถ้วยกระเบื้อง ขวดรูปกรวย 100 mL พร้อมจุกยาง กระบอกตวง 10 mL แท่งแก้วคน ตะเกียงแอลกอฮอล์</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (ตามคู่มือ หน้า 72):</b> ให้ความร้อนอย่างช้า ๆ ไม่ให้สารแห้ง และไม่สัมผัสผลิตภัณฑ์โดยตรงเพราะมีความเป็นเบสสูงอาจระคายเคืองผิวหนัง · <b>เพิ่มโดยผู้จัดทำหน้า:</b> NaOH เข้มข้นกัดกร่อน สวมแว่นตา ถุงมือ และเสื้อคลุม เอทานอลติดไฟ</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ทำสบู่จากน้ำมันพืช</h3>
+   <p class="small">ผลที่สังเกตตรงกับคู่มือ หน้า 73: เริ่มต้นเป็นของเหลวที่ไม่รวมเป็นเนื้อเดียว → ให้ความร้อนได้ผลิตภัณฑ์ขาวข้น → เติมน้ำแล้วเขย่าเกิดฟองคล้ายสบู่ <b>ค่าสมมติของแบบจำลอง:</b> ความเร็วเกิดปฏิกิริยาตามระดับความร้อน (ต่ำ 1 / กลาง 2.5 / สูง 5 หน่วยต่อวินาที) ความร้อนสูงเกินไปทำให้ไหม้ และการให้ความร้อนต่อหลังเสร็จทำให้แห้ง</p>
+   <div class="row2"><div class="fig" id="sapFig"></div><div>
+    <ol id="sapSteps" style="padding-left:1.2rem"><li>ผสมน้ำมันพืช 1 mL + NaOH 2.5 mol/L 2 mL + เอทานอล 1 mL ในถ้วยกระเบื้อง</li><li>คนให้เข้ากัน</li><li>ให้ความร้อนอย่างช้า ๆ จนได้ผลิตภัณฑ์ขาวข้น แล้วหยุดความร้อน</li><li>ปล่อยให้เย็น แล้วเติมน้ำ 5 mL ในขวดรูปกรวย ปิดจุก เขย่า</li></ol>
+    <div class="obs" id="sapObs" aria-live="polite">เริ่มจากขั้นตอนที่ 1</div>
+    <p class="small">ความคืบหน้าปฏิกิริยา</p><div class="meter" aria-hidden="true"><i id="sapP"></i></div><p class="small">ความเสี่ยงไหม้/แห้ง</p><div class="meter" aria-hidden="true"><i id="sapB" style="background:#c63d4a"></i></div>
+    <div class="btns"><button class="btn sm" type="button" id="sapMix">1 ผสมสาร</button><button class="btn sm" type="button" id="sapStir" disabled>2 คน</button></div>
+    <div class="rowflex"><label>3 ระดับความร้อน<input type="range" id="sapH" min="0" max="3" step="1" value="0" disabled aria-valuetext="ปิด"></label><b id="sapHv">ปิด</b></div>
+    <div class="btns"><button class="btn sm" type="button" id="sapCool" disabled>4 ปล่อยให้เย็น</button><button class="btn sm" type="button" id="sapShake" disabled>5 เติมน้ำ 5 mL แล้วเขย่า</button><button class="btn alt sm" type="button" id="sapRst">เริ่มใหม่</button></div></div></div>
+   <div class="fig" style="margin-top:10px"><p class="eq" style="padding:6px 10px">น้ำมันพืช (ไตรกลีเซอไรด์) + 3NaOH → 3RCOONa (สบู่) + C₃H₅(OH)₃ (กลีเซอรอล) <span class="small">เอสเทอร์ถูกไฮโดรลิซิสในภาวะเบส</span></p></div>
+   <p class="tip" id="sapSum" aria-live="polite"></p></div>
+  ${quizHTML('12.9')}`;
+}
+function sapDraw(){
+  const f=$('#sapFig');if(!f)return false;const S=s129;
+  const dish=S.state==='burnt'?'#4a3326':S.state==='dry'?'#d8c9a8':S.p>=100?'#fbfbf4':S.step>=2?mixc('#f6e9a8','#f4f1de',clamp(S.p/60,0,1)):S.step===1?'#f6efc8':'#ffffff';
+  const oil=S.step===0?'<rect x="30" y="118" width="120" height="14" rx="3" fill="#f2d86b"/>':'';
+  const flask=S.step>=5?`<g><path d="M205 70 h30 v50 l25 55 q4 14 -10 14 h-60 q-14 0 -10 -14 l25 -55 z" fill="#e9f4ff" stroke="#6a7a8c" stroke-width="2.5"/><rect x="208" y="60" width="24" height="14" rx="3" fill="#9a7b4f"/><g style="transition:opacity .6s;opacity:${S.foam}">${[0,1,2,3,4,5,6,7].map(i=>`<circle cx="${190+i*11+(i%2)*5}" cy="${150-(i%3)*4}" r="${6+(i%3)*2}" fill="#fff" stroke="#9bb"/>`).join('')}</g></g>`:'';
+  f.innerHTML=svg(300,220,'ถ้วยกระเบื้องบรรจุสารผสมน้ำมันพืช NaOH และเอทานอล สถานะ: '+({mix:'ยังไม่ผสม',burnt:'ไหม้',dry:'แห้ง'}[S.state]||(S.p>=100?'ผลิตภัณฑ์ขาวข้น':S.step>=2?'กำลังทำปฏิกิริยา':'ผสมแล้ว'))+(S.step>=5?' และเติมน้ำเขย่าแล้วเกิดฟอง':''),
+   `<path d="M20 110 h140 q-5 50 -70 52 q-65 -2 -70 -52 z" fill="${S.step===0?'#e8f1fb':dish}" stroke="#6a7a8c" stroke-width="3"/>${oil}<rect x="60" y="164" width="60" height="6" rx="3" fill="#9aa1ab"/>${S.heatLv>0&&!['burnt','dry'].includes(S.state)?`<path d="M80 205 q-8 -16 0 -26 q3 10 11 6 q4 8 -1 20 z" fill="${S.heatLv>2?'#ef4444':'#f59e0b'}"/>`:''}${flask}`);
+  $('#sapP').style.width=clamp(S.p,0,100)+'%';$('#sapB').style.width=clamp(Math.max(S.burn,S.dry),0,100)+'%';
+  return true;
+}
+function sapStop(){if(s129.raf){cancelAnimationFrame(s129.raf);s129.raf=null;}if(s129.tm){clearInterval(s129.tm);s129.tm=null;}}
+function sapStep(dt){const S=s129;if(S.step!==2||S.state==='burnt'||S.state==='dry')return;const lv=S.heatLv,k=[0,1,2.5,5][lv];
+  if(S.p<100){S.p=Math.min(100,S.p+k*dt*4);S.burn=Math.max(0,S.burn+(lv===3?30:lv===2?1.2:-2)*dt);if(S.burn>=100){S.state='burnt';S.heatLv=0;$('#sapH').value=0;$('#sapHv').textContent='ปิด';$('#sapObs').textContent='ไหม้ก่อนเกิดปฏิกิริยาสมบูรณ์ (ความร้อนสูงเกินไป) คู่มือเตือนให้ให้ความร้อนช้า ๆ กดเริ่มใหม่';}
+    else if(S.p>=100){$('#sapObs').textContent='ได้ผลิตภัณฑ์ขาวข้น ควรหยุดให้ความร้อนแล้ว (ไม่ให้สารแห้ง)';}}
+  else{S.dry=Math.min(100,S.dry+[0,3,8,18][lv]*dt);S.burn=S.dry;if(S.dry>=100){S.state='dry';S.heatLv=0;$('#sapH').value=0;$('#sapHv').textContent='ปิด';$('#sapObs').textContent='ให้ความร้อนต่อจนสารแห้ง ซึ่งคู่มือห้ามไว้ กดเริ่มใหม่';}}
+}
+function wire129(){
+  s129={step:0,heatLv:0,p:0,burn:0,dry:0,state:'mix',foam:0,raf:null,last:0,tm:null};const S=s129;
+  const en=()=>{$('#sapMix').disabled=S.step!==0;$('#sapStir').disabled=S.step!==1;$('#sapH').disabled=S.step!==2||['burnt','dry'].includes(S.state);$('#sapCool').disabled=!(S.step===2&&S.p>=100&&S.heatLv===0&&!['burnt','dry'].includes(S.state));$('#sapShake').disabled=S.step!==4;};
+  const loop=ts=>{if(!$('#sapFig')){sapStop();return;}const dt=Math.min(0.1,(ts-(S.last||ts))/1000);S.last=ts;sapStep(dt);sapDraw();en();S.raf=requestAnimationFrame(loop);};
+  const start=()=>{if(REDUCE){if(!S.tm)S.tm=setInterval(()=>{if(!$('#sapFig')){sapStop();return;}sapStep(0.5);sapDraw();en();},500);}else if(!S.raf){S.last=0;S.raf=requestAnimationFrame(loop);}};
+  CLEAN.push(sapStop);
+  $('#sapMix').onclick=()=>{S.step=1;S.state='ok';$('#sapObs').textContent='ผสมแล้ว: ของเหลวไม่รวมเป็นเนื้อเดียวกัน (น้ำมันกับสารละลายด่าง) ให้คนต่อ';sapDraw();en();};
+  $('#sapStir').onclick=()=>{S.step=2;$('#sapObs').textContent='คนแล้ว เริ่มให้ความร้อนอย่างช้า ๆ (ระดับต่ำหรือกลาง)';sapDraw();en();start();};
+  $('#sapH').oninput=e=>{S.heatLv=+e.target.value;$('#sapHv').textContent=HEATN[S.heatLv];e.target.setAttribute('aria-valuetext',HEATN[S.heatLv]);if(S.step===2&&S.p<100)$('#sapObs').textContent='ให้ความร้อนระดับ'+HEATN[S.heatLv]+' · ความคืบหน้า '+Math.round(S.p)+'%';sapDraw();en();start();};
+  $('#sapCool').onclick=()=>{S.step=4;$('#sapObs').textContent='เย็นแล้ว ผลิตภัณฑ์เป็นก้อนขาวข้น (อย่าสัมผัสโดยตรง) เติมน้ำ 5 mL แล้วเขย่า';sapDraw();en();};
+  $('#sapShake').onclick=()=>{S.step=5;S.foam=0;sapDraw();setTimeout(()=>{S.foam=1;if($('#sapFig')){sapDraw();$('#sapObs').textContent='เกิดฟองคล้ายฟองสบู่ แสดงว่าได้สบู่ (เกลือคาร์บอกซิเลตของกรดไขมัน)';$('#sapSum').textContent='สรุป: เอสเทอร์ (น้ำมันพืช) เกิดไฮโดรลิซิสในภาวะเบสหรือสะปอนนิฟิเคชัน ได้สบู่ที่ละลายน้ำแล้วเกิดฟอง และกลีเซอรอลเป็นผลิตภัณฑ์พลอยได้';st.done['12.9']=true;save();paintTabs();paintProgress();}},60);en();};
+  $('#sapRst').onclick=()=>{sapStop();select(cur);};
+  sapDraw();en();
+  wireQuiz('12.9');
+}
+/* ======================= 12.1 / 12.10 แบบฟอร์มสืบค้น ======================= */
+const RES121={id:'12.1',ch:'ch12-1',title:'กิจกรรม 12.1 สืบค้นสารประกอบอินทรีย์ที่พบในชีวิตประจำวัน (ส่วนบันทึกผลสืบค้น)',page:'คู่มือครู หน้า 12–13',
+ goal:'สืบค้นและนำเสนอสารประกอบอินทรีย์ที่มีพันธะเดี่ยว พันธะคู่ หรือพันธะสาม ที่พบในชีวิตประจำวัน',
+ steps:['เลือกสารอินทรีย์ที่พบในชีวิตประจำวัน (อย่างน้อย 1 สาร)','เขียนสูตรโครงสร้าง ระบุชนิดพันธะระหว่างอะตอมคาร์บอน และบอกว่าเป็นโซ่เปิดหรือวง','บอกประโยชน์หรือที่พบ และเขียนแหล่งอ้างอิง'],
+ topics:['คาเฟอีน (ตัวอย่างในคู่มือ)','อะเซทิลีน (ตัวอย่างในคู่มือ)','เอทิลีน','เอทานอล','กรดแอซีติก'],
+ fields:['ชื่อสารอินทรีย์ที่เลือก','ชนิดพันธะ (เดี่ยว/คู่/สาม) โครงสร้างโซ่เปิดหรือวง และประโยชน์ที่พบในชีวิตประจำวัน','แหล่งอ้างอิง (ชื่อเว็บไซต์/หนังสือและวันที่เข้าถึง)'],
+ check:['ระบุชนิดพันธะของคาร์บอนถูกต้อง','บอกได้ว่าเป็นโซ่เปิดหรือวง','มีแหล่งอ้างอิงที่เชื่อถือได้','เล่าให้เพื่อนฟังได้ใน 1 นาที']};
+const RES1210={id:'12.10',ch:'ch12-10',title:'กิจกรรม 12.10 สืบค้นข้อมูลของสารประกอบอินทรีย์',page:'คู่มือครู หน้า 83–89 · เวลาตามคู่มือ 50 นาที',
+ goal:'สืบค้นและนำเสนอข้อมูลของสารประกอบอินทรีย์เกี่ยวกับประโยชน์ อันตราย และข้อควรระวัง',
+ steps:['เลือกสารประกอบอินทรีย์ 1 ชนิด (คู่มือแนะนำให้สืบค้นล่วงหน้า และแบ่งหัวข้อให้ทุกคนมีส่วนร่วม)','สืบค้นโครงสร้าง ประโยชน์ อันตรายและข้อควรระวัง ปฏิกิริยาเคมีที่เกี่ยวข้อง','นำเสนอ เช่น Gallery Walk บทบาทสมมติ หรือโต้วาที (ข้อเสนอในคู่มือ หน้า 85)'],
+ topics:['methyl benzoate (ตัวอย่างในคู่มือ)','โมโนโซเดียมกลูตาเมต (ตัวอย่างในคู่มือ)','โพรเพนและบิวเทน (ตัวอย่างในคู่มือ)','ไคโตซาน (ตัวอย่างในคู่มือ)','เพนิซิลลิน (ตัวอย่างในคู่มือ)'],
+ fields:['ชื่อสารและประเภทของสารประกอบอินทรีย์ (หมู่ฟังก์ชัน)','ประโยชน์ในชีวิตประจำวันหรืออุตสาหกรรม','แหล่งอ้างอิง (ชื่อเว็บไซต์/หนังสือและวันที่เข้าถึง)','อันตรายและข้อควรระวังในการใช้','ปฏิกิริยาเคมีที่เกี่ยวข้อง (เขียนสมการ ถ้ามี)'],
+ check:['ระบุหมู่ฟังก์ชันของสารถูกต้อง','บอกทั้งประโยชน์และอันตราย','ยกปฏิกิริยาเคมีที่เกี่ยวข้องอย่างน้อย 1 ปฏิกิริยา','อ้างอิงแหล่งข้อมูลที่เชื่อถือได้ (ไม่คัดลอกข้อความยาว ๆ)']};
+function act1210(){return resHTML(RES1210)+quizHTML('12.10');}
+function wire1210(){resWire(RES1210);wireQuiz('12.10');}
+/* ======================= อ่านก่อนทดลอง (สรุปด้วยถ้อยคำของผู้จัดทำหน้า) ======================= */
+/* reading-data:start */
+const READ={
+'12.1':{lead:'อ่านเรื่องพันธะของคาร์บอนก่อน แล้วลองนับพันธะและแยกสารอินทรีย์ออกจากสารอนินทรีย์',secs:[
+{h:'พันธะของคาร์บอนในสารประกอบอินทรีย์',pg:'คู่มือครู หน้า 10–11',html:`
+<p>สารอินทรีย์ส่วนใหญ่เป็นสารประกอบของ<b>คาร์บอน</b> พบมากในสิ่งมีชีวิต เช่น อาหาร ยา เครื่องสำอาง พลาสติก และเชื้อเพลิง คาร์บอนมีเวเลนซ์อิเล็กตรอน 4 ตัว จึงสร้าง<b>พันธะโคเวเลนต์</b>ได้ 4 พันธะ ทั้งกับคาร์บอนด้วยกันเอง และกับ H, O, N และธาตุอื่น</p>
+<div class="box"><h3>รูปแบบการต่อกันของคาร์บอน</h3><ul><li><b>พันธะเดี่ยว</b> C–C (เช่น อีเทน)</li><li><b>พันธะคู่</b> C=C (เช่น อีทีน) และ <b>พันธะสาม</b> C≡C (เช่น อะเซทิลีน)</li><li>ต่อเป็น<b>โซ่เปิด</b> (ตรงหรือแตกกิ่ง) หรือ<b>วง</b> เช่น คาเฟอีนที่มีวงในโมเลกุล</li></ul></div>
+<p>ความหลากหลายของพันธะและรูปแบบการต่อนี้ ทำให้มีสารอินทรีย์จำนวนมาก คู่มือยังเตือนว่าสารบางตัวที่มีคาร์บอนไม่นับเป็นสารอินทรีย์ เช่น เพชร แกรไฟต์ CO เกลือคาร์บอเนต ไซยาไนด์ และคาร์ไบด์ ส่วน HCN กับ CCl₄ พิจารณาได้ยาก</p>`,q:['ในโมเลกุลอะเซทิลีน (C₂H₂) มีพันธะเดี่ยวกี่พันธะ','มี 2 พันธะ คือ C–H สองพันธะ และมีพันธะสาม C≡C อีก 1 พันธะ (คู่มือ หน้า 13)']}]},
+'12.2':{lead:'อ่านเรื่องไอโซเมอร์และการตั้งชื่อแอลเคนโซ่กิ่ง ก่อนต่อโมเลกุลของ C₅H₁₂',secs:[
+{h:'ไอโซเมอร์โครงสร้าง',pg:'คู่มือครู หน้า 33–38',html:`
+<p>สารที่มี<b>สูตรโมเลกุลเดียวกัน</b>แต่<b>ลำดับการต่อกันของอะตอมต่างกัน</b> เรียกว่า<b>ไอโซเมอร์โครงสร้าง</b> เช่น C₃H₈O เขียนได้ทั้งเป็นแอลกอฮอล์และอีเทอร์ ถ้าการจัดเรียงอะตอมคาร์บอนต่างกัน (โซ่ตรงหรือโซ่กิ่ง) ก็เป็นไอโซเมอร์ของกันเช่นกัน</p>
+<p>ตัวอย่างในกิจกรรม: C₅H₁₂ ต่อได้ 3 แบบ คือ pentane (โซ่ตรง), 2-methylbutane (กิ่งหนึ่งกิ่ง) และ 2,2-dimethylpropane (สองกิ่งที่คาร์บอนตัวเดียวกัน)</p>
+<p>สูตรช่วยตรวจ: <b>DBE = (2C + 2 + N − X − H)/2</b> บอกจำนวนพันธะคู่และวงรวมกัน เช่น C₆H₁₂ ได้ 1 จึงอาจเป็น hex-1-ene (มีพันธะคู่) หรือ cyclohexane (มีวง)</p>`,q:['เขียนโครงสร้างแบบวางต่างทิศ แต่ลำดับการต่อเหมือนกัน เป็นไอโซเมอร์กันหรือไม่','ไม่เป็น เป็นสารเดียวกัน เพราะคำว่าไอโซเมอร์ดูที่ลำดับการต่อกันของอะตอม ไม่ใช่ทิศที่เขียน (คู่มือ หน้า 33)']},
+{h:'หลักตั้งชื่อแอลเคนโซ่กิ่งตาม IUPAC (ทบทวน)',pg:'คู่มือครู หน้า 26–32 (หัวข้อ 12.4)',html:`
+<ol><li>หา<b>โซ่คาร์บอนที่ยาวที่สุด</b> เป็นโซ่หลัก ลงท้าย -ane (meth-, eth-, prop-, but-, pent-, hex-, hept-, …)</li><li>ถ้ามีกิ่งมากกว่าหนึ่งแบบ ให้เลือกโซ่ที่มีหมู่แทนที่มากที่สุด แล้วให้เลขลำดับตำแหน่งจากปลายที่ทำให้<b>ตำแหน่งกิ่งต่ำที่สุด</b></li><li>เรียกกิ่งเป็นหมู่แอลคิล (methyl, ethyl) ใส่เลขตำแหน่ง ถ้าซ้ำใช้ di-, tri-</li><li>เรียงชื่อกิ่งตามตัวอักษร แล้วต่อด้วยชื่อโซ่หลัก เช่น 2,2-dimethylpropane</li></ol>
+<p>เครื่องมือต่อโมเลกุลในหน้านี้ใช้หลักเดียวกันตั้งชื่อให้อัตโนมัติ (ผู้จัดทำหน้าเขียนโปรแกรมนับไอโซเมอร์ C₄–C₇ ได้ 2, 3, 5, 9 ตรงกับความรู้ทั่วไป)</p>`}]},
+'12.3':{lead:'อ่านเรื่องแรงยึดเหนี่ยวระหว่างโมเลกุลของแอลเคน แล้วลองวางข้อมูลลงกราฟ',secs:[
+{h:'ทำไมแอลเคนที่ใหญ่ขึ้นจึงเดือดสูงขึ้น',pg:'คู่มือครู หน้า 44–49',html:`
+<p>ไฮโดรคาร์บอนเป็นโมเลกุลไม่มีขั้ว แรงยึดเหนี่ยวระหว่างโมเลกุลจึงเป็น<b>แรงแผ่กระจายลอนดอน</b>เท่านั้น แรงนี้ขึ้นกับ<b>ขนาดโมเลกุล</b>และ<b>รูปร่าง</b> ยิ่งมีคาร์บอนมาก แรงยิ่งมาก ต้องใช้พลังงานมากขึ้นเพื่อแยกโมเลกุลออกจากกัน จุดเดือดจึงเพิ่มขึ้น</p>
+<p>ผลจากข้อมูลในกิจกรรม: ทั้งแอลเคนโซ่ตรงและไซโคลแอลเคนมีจุดเดือดเพิ่มตามจำนวนคาร์บอน และไซโคลแอลเคนเดือดสูงกว่าเล็กน้อยเมื่อมีคาร์บอนเท่ากัน ส่วนจุดหลอมเหลวเพิ่มไม่สม่ำเสมอ เพราะขึ้นกับการจัดเรียงโมเลกุลในของแข็งด้วย การเปรียบเทียบแรงยึดเหนี่ยวจึงนิยมดูจุดเดือดมากกว่า</p>
+<p>โครงสร้างโซ่กิ่งทำให้โมเลกุลมีรูปร่างกลมขึ้น พื้นที่สัมผัสกันน้อยลง จุดเดือดต่ำลง เช่น pentane &gt; 2-methylbutane &gt; 2,2-dimethylpropane</p>`,q:['ถ้าไม่ดูตาราง ไซโคลเฮกเซนกับเฮกเซน อะไรเดือดสูงกว่า','ไซโคลเฮกเซน (80 °C เทียบกับ 69 °C ในตารางของคู่มือ) เพราะโมเลกุลแบบวงสัมผัสกันได้ดีกว่าและมีแรงลอนดอนมากกว่าเล็กน้อย']}]},
+'12.4':{lead:'อ่านเรื่องการละลายในน้ำของแอลกอฮอล์ก่อนหยดแอลกอฮอล์ลงน้ำ',secs:[
+{h:'ละลายหรือไม่ละลาย: "like dissolves like"',pg:'คู่มือครู หน้า 44–52',html:`
+<p>น้ำเป็นโมเลกุลมีขั้วและสร้างพันธะไฮโดรเจนได้ สารที่มีขั้วหรือสร้างพันธะไฮโดรเจนกับน้ำได้จึงละลายได้ดี ส่วนไฮโดรคาร์บอนไม่มีขั้วจึงไม่ละลายน้ำ</p>
+<p>แอลกอฮอล์มีสองส่วนในโมเลกุล: หมู่ <b>–OH</b> ที่มีขั้ว สร้างพันธะไฮโดรเจนกับน้ำได้ และ<b>โซ่ไฮโดรคาร์บอน</b>ที่ไม่มีขั้ว เมื่อโซ่ยาวขึ้น ส่วนไม่มีขั้วมีอิทธิพลมากขึ้น การละลายในน้ำจึงลดลง</p>
+<p>เหตุผลเดียวกันใช้กับอีเทอร์ แอลดีไฮด์ คีโทน และกรดคาร์บอกซิลิกที่มีขนาดโมเลกุลเล็ก ซึ่ง O สร้างพันธะไฮโดรเจนกับ H ของน้ำได้</p>`,q:['เมทานอลกับเฮกซาน-1-ออล อันไหนน่าจะละลายน้ำได้ดีกว่า','เมทานอล เพราะโซ่ไฮโดรคาร์บอนสั้นมาก ส่วน –OH เด่น (เป็นการคาดการณ์ตามแนวโน้ม ไม่ใช่ข้อมูลของกิจกรรม)']}]},
+'12.5':{lead:'อ่านเรื่องพันธะไฮโดรเจนกับจุดเดือดก่อนวัดจุดเดือดของ propan-2-one และ propan-2-ol',secs:[
+{h:'ปัจจัยที่ทำให้จุดเดือดต่างกัน',pg:'คู่มือครู หน้า 52–55',html:`
+<p>จุดเดือดของสารอินทรีย์ขึ้นกับแรงยึดเหนี่ยวระหว่างโมเลกุล ไม่ใช่พลังงานพันธะภายในโมเลกุล แรงมีสามแบบ: <b>แรงแผ่กระจายลอนดอน</b> (ทุกโมเลกุล ยิ่งใหญ่ยิ่งแรง) <b>แรงระหว่างขั้ว</b> และ<b>พันธะไฮโดรเจน</b> (ต้องมี H ต่ออยู่กับ O หรือ N ในโมเลกุลเดียวกัน)</p>
+<p>เมื่อขนาดโมเลกุลใกล้เคียงกัน สารที่สร้างพันธะไฮโดรเจนระหว่างโมเลกุลได้จะเดือดสูงกว่า เช่น แอลกอฮอล์สูงกว่าคีโทนและอีเทอร์ กรดคาร์บอกซิลิกสูงกว่าเอสเทอร์ที่มวลใกล้กัน และเอทานอลเป็นของเหลวที่อุณหภูมิห้อง แต่ไอโซเมอร์ของมันคือ methoxymethane เป็นแก๊ส</p>
+<p>สารที่มีธาตุไนโตรเจน (เอมีน เอไมด์) ใช้หลักการเดียวกัน แต่ N–H มีขั้วน้อยกว่า O–H พันธะไฮโดรเจนของเอมีนจึงอ่อนกว่าแอลกอฮอล์ที่มีขนาดใกล้กัน</p>`,q:['ทำไมต้องทำให้ปลายหลอดคะปิลลารีมีที่ว่างเพียงเล็กน้อย','เพื่อให้ไอของสารไล่อากาศออกได้หมดอย่างรวดเร็ว ถ้ามีอากาศมากจะต้องรอนาน ทำให้จุดเดือดที่วัดคลาดเคลื่อน (คู่มือ หน้า 53)']}]},
+'12.6':{lead:'อ่านเรื่องการเผาไหม้และการฟอกจางสี ซึ่งใช้แยกประเภทไฮโดรคาร์บอนได้',secs:[
+{h:'การเผาไหม้และเขม่า',pg:'คู่มือครู หน้า 59–60',html:`
+<p>ไฮโดรคาร์บอนเผาไหม้กับ O₂ ได้ CO₂ และ H₂O (<b>สมบูรณ์</b>) ถ้า O₂ ไม่พอ จะได้ CO และ/หรือ C (<b>เขม่า</b>) ด้วย ความสมบูรณ์ขึ้นกับสัดส่วน C:H ของสาร และปริมาณ O₂ เช่น เตาถ่านมีเขม่ามากเพราะถ่านเป็นคาร์บอนเกือบทั้งหมด ส่วนแก๊สหุงต้ม (โพรเพน บิวเทน) มี C:H ต่ำ เผาไหม้สมบูรณ์ได้ง่าย</p>`},
+{h:'ฟอกจางสีโบรมีนและ KMnO₄',pg:'คู่มือครู หน้า 61–66',html:`
+<table><thead><tr><th class="l">ประเภท</th><th>Br₂ ที่มืด</th><th>Br₂ ที่สว่าง</th><th>KMnO₄</th></tr></thead><tbody>
+<tr><td class="l">แอลเคน</td><td>ไม่เปลี่ยน</td><td>จางสี (แทนที่ ได้ HBr)</td><td>ไม่เปลี่ยน</td></tr>
+<tr><td class="l">แอลคีน/แอลไคน์</td><td>จางสี (เติม)</td><td>จางสี (เติม)</td><td>จางสี มีตะกอนสีน้ำตาล</td></tr>
+<tr><td class="l">แอโรแมติก</td><td>ไม่เปลี่ยน</td><td>วงเบนซีนไม่ทำปฏิกิริยา (เมทิลเบนซีนจางช้า ๆ ที่หมู่เมทิล)</td><td>ไม่เปลี่ยน</td></tr></tbody></table>
+<p class="small">สรุปจากเนื้อหาและตัวอย่างในคู่มือ หน้า 61–66 (ตารางด้านบนเรียบเรียงใหม่โดยผู้จัดทำหน้า)</p>
+<p>การ<b>แทนที่</b> (แอลเคน) ให้ผลิตภัณฑ์พลอยได้ HBr ซึ่งเป็นกรด ทำให้ลิตมัสชื้นสีน้ำเงินกลายเป็นแดง ส่วนการ<b>เติม</b> (แอลคีน แอลไคน์) เกิดสารตัวเดียวและไม่มี HBr</p>`,q:['ลิตมัสชื้นที่ปากหลอดไม่เปลี่ยนสี แต่โบรมีนจางหายในที่มืด สารนั้นเป็นอะไร','น่าจะเป็นแอลคีนหรือแอลไคน์ เพราะเกิดการเติมที่ไม่มี HBr (คู่มือ หน้า 62)']}]},
+'12.7':{lead:'อ่านเรื่องการเกิดเอสเทอร์และการสังเคราะห์เอไมด์ก่อนให้ความร้อนกรดเบนโซอิกกับเอทานอล',secs:[
+{h:'เอสเทอริฟิเคชัน',pg:'คู่มือครู หน้า 66–68',html:`
+<p>กรดคาร์บอกซิลิกทำปฏิกิริยากับแอลกอฮอล์ได้<b>เอสเทอร์</b>กับน้ำ โดยต้องให้ความร้อนและใช้กรดเข้มข้นเป็นตัวเร่ง สมการทั่วไป: RCOOH + R'OH ⇌ RCOOR' + H₂O ปฏิกิริยานี้<b>ผันกลับได้</b></p>
+<p>ชื่อเอสเทอร์: ชื่อหมู่แอลคิลจากแอลกอฮอล์ ตามด้วยชื่อกรดที่เปลี่ยนท้ายเป็น -oate เช่น เอทานอล + กรดเอทาโนอิก ได้ ethyl ethanoate (เอทิลแอซีเตต) เอสเทอร์หลายชนิดมีกลิ่นหอม</p>`,q:['ทำไมกลิ่นที่เปลี่ยนไปจึงบอกว่าเกิดปฏิกิริยาเคมี','เพราะกลิ่นเป็นสมบัติเฉพาะของสาร กลิ่นใหม่แสดงว่ามีสารชนิดใหม่เกิดขึ้น (คู่มือ หน้า 67)']},
+{h:'การสังเคราะห์เอไมด์',pg:'คู่มือครู หน้า 74–75',html:`
+<p>กรดคาร์บอกซิลิกทำปฏิกิริยากับแอมโมเนียหรือเอมีน ได้<b>เอไมด์</b>และน้ำ ที่อุณหภูมิห้องจะได้เกลือแอมโมเนียมคาร์บอกซิเลตก่อน เมื่อ<b>ให้ความร้อน</b>จึงได้เอไมด์ เช่น CH₃COOH + NH₃ → CH₃COO⁻NH₄⁺ → (ความร้อน) CH₃CONH₂ + H₂O ปฏิกิริยาเหล่านี้เรียกว่าปฏิกิริยาการควบแน่นเพราะได้โมเลกุลเล็ก (น้ำ) ออกมา</p>`}]},
+'12.8':{lead:'อ่านเรื่องปฏิกิริยาย้อนกลับของการเกิดเอสเทอร์',secs:[
+{h:'ไฮโดรลิซิสของเอสเทอร์ในภาวะกรด',pg:'คู่มือครู หน้า 68–71',html:`
+<p>เอสเทอร์ทำปฏิกิริยากับน้ำ (โดยมีกรดเป็นตัวเร่ง และอาจให้ความร้อนเพื่อให้เร็วขึ้น) ได้<b>กรดคาร์บอกซิลิกกับแอลกอฮอล์</b> เรียกว่า<b>ไฮโดรลิซิส</b> เป็นปฏิกิริยาย้อนกลับของเอสเทอริฟิเคชัน จึงเป็นปฏิกิริยาผันกลับได้ และมีเอสเทอร์เหลืออยู่เสมอ</p>
+<p>เหตุที่ใช้กรดเจือจาง: น้ำเป็นสารตั้งต้นของไฮโดรลิซิส ส่วนกรดเป็นเพียงตัวเร่ง · ถ้าอยากได้เอสเทอร์มากที่สุดในเอสเทอริฟิเคชัน ให้ดึงน้ำหรือเอสเทอร์ออก หรือใช้สารตั้งต้นตัวหนึ่งมากเกินพอ (คู่มือ หน้า 71)</p>`,q:['ในการทดลองนี้กลิ่นหลังให้ความร้อนบอกอะไร','กลิ่นคล้ายน้ำส้มสายชูแสดงว่ามีกรดแอซีติกเกิดขึ้น (คู่มือ หน้า 70)']}]},
+'12.9':{lead:'อ่านเรื่องสะปอนนิฟิเคชันก่อนทำสบู่จากน้ำมันพืช',secs:[
+{h:'ไฮโดรลิซิสของเอสเทอร์ในภาวะเบส',pg:'คู่มือครู หน้า 71–74',html:`
+<p>น้ำมันพืชและไขมันเป็น<b>เอสเทอร์</b> (ไตรกลีเซอไรด์ ที่ประกอบด้วยกลีเซอรอลกับกรดไขมัน 3 โมเลกุล) เมื่อทำปฏิกิริยากับเบส เช่น NaOH จะเกิด<b>สะปอนนิฟิเคชัน</b> ได้<b>เกลือโซเดียมของกรดไขมัน (สบู่)</b> กับ<b>กลีเซอรอล</b></p>
+<p>กลไกมี 2 ขั้น: (1) เอสเทอร์ + OH⁻ → กรดคาร์บอกซิลิก + แอลกอฮอล์ (2) กรดคาร์บอกซิลิก + OH⁻ → เกลือคาร์บอกซิเลต + น้ำ ขั้นที่สองเป็นปฏิกิริยากรด-เบสที่ผันกลับไม่ได้ จึงดึงกรดออกจากปฏิกิริยาและทำให้ภาวะเบสเกิดครบสมบูรณ์ ต่างจากภาวะกรดที่ยังมีเอสเทอร์เหลือ</p>`,q:['ทำไมต้องหยุดให้ความร้อนก่อนสารแห้ง','คู่มือ (หน้า 72) แนะนำไม่ให้ให้ความร้อนจนสารแห้ง เพื่อป้องกันการไหม้ก่อนปฏิกิริยาสมบูรณ์ และผลิตภัณฑ์เป็นเบสสูงจึงห้ามสัมผัสโดยตรง']}]},
+'12.10':{lead:'อ่านก่อนเลือกหัวข้อสืบค้น: สารอินทรีย์มีทั้งประโยชน์และอันตราย',secs:[
+{h:'สารอินทรีย์ในชีวิตประจำวันและการนำไปใช้',pg:'คู่มือครู หน้า 83–89',html:`
+<p>ตัวอย่างในคู่มือ: methyl benzoate (สารให้กลิ่นหอม ได้จากเอสเทอริฟิเคชันของกรดเบนโซอิกกับเมทานอล) · โมโนโซเดียมกลูตาเมต (ปรุงรส) · โพรเพนและบิวเทน (แก๊สหุงต้ม) · ไคโตซาน (กระตุ้นการเจริญเติบโตของพืช ได้จากไฮโดรลิซิสของไคติน) · เพนิซิลลิน (ยาปฏิชีวนะ ที่ต้องระวังการแพ้)</p>
+<p>ข้อคิดจากคู่มือ: สารจากธรรมชาติไม่จำเป็นต้องปลอดภัยเสมอไป และสารสังเคราะห์ก็ไม่ได้อันตรายทุกชนิด ควรตรวจสอบความเป็นพิษและข้อควรระวังก่อนใช้ เช่น ไม่ใช้เกินปริมาณ ปรึกษาแพทย์หรือเภสัชกรเมื่อใช้ยา</p>
+<p>ความรู้ทั่วไปที่เกี่ยวข้องกับบทนี้: ปฏิกิริยาทรานส์เอสเทอริฟิเคชันใช้เอสเทอร์เป็นสารตั้งต้นและได้แอลกอฮอล์ เช่น กลีเซอรอล เป็นผลิตภัณฑ์พลอยได้ (คู่มือ หน้า 84)</p>`}]}
+};
+/* reading-data:end */
+/* ======================= แบบทดสอบสั้น ======================= */
+const QUIZ={
+'12.1':[
+ {q:'ตามตัวอย่างในคู่มือ คาเฟอีนมีพันธะและโครงสร้างแบบใด',o:['พันธะเดี่ยวและพันธะคู่ โครงสร้างแบบวง','พันธะเดี่ยวและพันธะสาม โครงสร้างแบบโซ่เปิด','พันธะเดี่ยวเท่านั้น โครงสร้างแบบโซ่เปิด','พันธะคู่และพันธะสามเท่านั้น'],a:0,w:'คู่มือ (หน้า 12) ระบุว่าโมเลกุลคาเฟอีนมีพันธะเดี่ยวและพันธะคู่ และมีโครงสร้างแบบวง'},
+ {q:'ข้อใดถูกต้องเกี่ยวกับอะเซทิลีน (C₂H₂)',o:['มีพันธะสามระหว่างคาร์บอน 1 พันธะ และพันธะ C–H เดี่ยว 2 พันธะ','มีพันธะคู่ 1 พันธะและพันธะ C–H 2 พันธะ','มีพันธะเดี่ยวทั้งหมด 5 พันธะ','เป็นโครงสร้างแบบวง'],a:0,w:'คู่มือ (หน้า 13) อะเซทิลีนมีพันธะสาม 1 พันธะ พันธะเดี่ยว 2 พันธะ และเป็นโซ่เปิด'},
+ {q:'สารใดจัดเป็นสารอนินทรีย์ แม้มีธาตุคาร์บอนเป็นองค์ประกอบ',o:['Na₂CO₃ (โซเดียมคาร์บอเนต)','CH₃OH (เมทานอล)','C₂H₅OH (เอทานอล)','CH₃COOH (กรดแอซีติก)'],a:0,w:'คู่มือ (หน้า 10) จัดเกลือคาร์บอเนตเป็นสารอนินทรีย์ ส่วนอีกสามสารเป็นสารประกอบอินทรีย์'}],
+'12.2':[
+ {q:'สารที่มีสูตรโมเลกุล C₅H₁₂ มีไอโซเมอร์โครงสร้างกี่ไอโซเมอร์',o:['3','2','4','5'],a:0,w:'pentane, 2-methylbutane และ 2,2-dimethylpropane (คู่มือ หน้า 35–36)'},
+ {q:'C(CH₃)₄ มีชื่อ IUPAC ว่าอย่างไร',o:['2,2-dimethylpropane','2-methylbutane','pentane','neopentyl butane'],a:0,w:'โซ่หลักยาว 3 C (propane) และมีเมทิล 2 กิ่งที่ C ตำแหน่งที่ 2 (คู่มือ หน้า 35)'},
+ {q:'สารมีสูตร C₆H₁₂ ได้ค่า DBE = 1 หมายความว่าอย่างไร',o:['อาจมีพันธะคู่ 1 พันธะ หรือมีวง 1 วง','ต้องมีพันธะคู่ 1 พันธะเท่านั้น','ต้องมีวง 1 วงเท่านั้น','ต้องมีพันธะสาม'],a:0,w:'DBE นับพันธะคู่และวงรวมกัน เช่น hex-1-ene หรือ cyclohexane (คู่มือ หน้า 36)'},
+ {q:'ไอโซเมอร์โครงสร้างต่างกันที่จุดใด',o:['ลำดับการต่อกันของอะตอม','สูตรโมเลกุล','จำนวนอะตอมคาร์บอน','จำนวนอะตอมไฮโดรเจน'],a:0,w:'ไอโซเมอร์มีสูตรโมเลกุลเดียวกัน แต่การต่อกันของอะตอมต่างกัน (คู่มือ หน้า 33)'}],
+'12.3':[
+ {q:'เมื่อจำนวนอะตอมคาร์บอนของแอลเคนโซ่ตรงเพิ่มขึ้น จุดเดือดเป็นอย่างไร',o:['เพิ่มขึ้น','ลดลง','ไม่เปลี่ยน','เพิ่มแล้วลด'],a:0,w:'ข้อมูลในคู่มือ (หน้า 46–48) จุดเดือดเพิ่มทุกช่วงเพราะแรงลอนดอนมากขึ้นตามขนาดโมเลกุล'},
+ {q:'เมื่อมีคาร์บอนเท่ากัน ไซโคลแอลเคนกับแอลเคนโซ่ตรงอะไรมีจุดเดือดสูงกว่า',o:['ไซโคลแอลเคน','แอลเคนโซ่ตรง','เท่ากัน','ขึ้นกับสี'],a:0,w:'ตารางในคู่มือ (หน้า 46) ไซโคลแอลเคนสูงกว่าทุกค่า แสดงว่าโครงสร้างมีผลต่อจุดเดือดด้วย'},
+ {q:'เหตุใดการเปรียบเทียบแรงยึดเหนี่ยวระหว่างโมเลกุลจึงนิยมใช้จุดเดือดมากกว่าจุดหลอมเหลว',o:['จุดหลอมเหลวขึ้นกับการจัดเรียงโมเลกุลในของแข็งด้วย จึงเพิ่มไม่ต่อเนื่อง','จุดเดือดวัดได้ง่ายกว่าเท่านั้น','จุดหลอมเหลวไม่เกี่ยวกับแรงยึดเหนี่ยว','จุดเดือดไม่ขึ้นกับขนาดโมเลกุล'],a:0,w:'คู่มือ (หน้า 48) ระบุว่าจุดหลอมเหลวเพิ่มไม่ต่อเนื่องเหมือนจุดเดือด เพราะมีปัจจัยอื่นเช่นการจัดเรียงตัวของโมเลกุลในของแข็ง'},
+ {q:'ลำดับจุดเดือดของ C₅H₁₂ ที่ถูกต้องคือ',o:['pentane > 2-methylbutane > 2,2-dimethylpropane','2,2-dimethylpropane > 2-methylbutane > pentane','2-methylbutane > pentane > 2,2-dimethylpropane','ทั้งสามเดือดที่อุณหภูมิเดียวกัน'],a:0,w:'ยิ่งโซ่แตกกิ่งมาก โมเลกุลยิ่งสัมผัสกันได้น้อย แรงลอนดอนน้อยลง (คู่มือ หน้า 49)'}],
+'12.4':[
+ {q:'จากผลของคู่มือ แอลกอฮอล์ตัวใดละลายน้ำได้ดีที่สุด',o:['propan-1-ol','butan-1-ol','pentan-1-ol','ละลายเท่ากันทุกตัว'],a:0,w:'propan-1-ol ละลายได้ดี ส่วน butan-1-ol ละลายได้ 7 หยด และ pentan-1-ol 2 หยด (คู่มือ หน้า 51)'},
+ {q:'เมื่อจำนวนคาร์บอนของแอลกอฮอล์เพิ่มขึ้น การละลายในน้ำเป็นอย่างไร',o:['ละลายได้น้อยลง','ละลายได้มากขึ้น','ไม่เปลี่ยน','ไม่ละลายเลยทุกกรณี'],a:0,w:'สรุปผลในคู่มือ (หน้า 51): แอลกอฮอล์ที่มีคาร์บอนเพิ่มขึ้นละลายในน้ำได้น้อยลง'},
+ {q:'เหตุผลที่ถูกต้องที่สุดคือข้อใด',o:['–OH สร้างพันธะไฮโดรเจนกับน้ำได้ แต่ส่วนไฮโดรคาร์บอนที่ไม่มีขั้วยาวขึ้น ทำให้ละลายน้อยลง','–OH หายไปเมื่อโซ่ยาวขึ้น','โมเลกุลใหญ่ทำให้น้ำหนักมากจึงจม','แอลกอฮอล์ทุกตัวไม่มีขั้ว'],a:0,w:'ส่วนที่ไม่มีขั้วยาวขึ้นลดการละลายในน้ำที่เป็นโมเลกุลมีขั้ว (คู่มือ หน้า 44, 52)'}],
+'12.5':[
+ {q:'จากตัวอย่างผลในคู่มือ สารใดมีจุดเดือดสูงกว่า',o:['propan-2-ol (82.5 °C)','propan-2-one (56.0 °C)','เท่ากัน','อ่านค่าไม่ได้'],a:0,w:'ตัวอย่างผล (หน้า 53): propan-2-one 56.0 °C และ propan-2-ol 82.5 °C'},
+ {q:'เหตุใด propan-2-ol จึงเดือดสูงกว่า propan-2-one ทั้งที่ขนาดโมเลกุลใกล้เคียงกัน',o:['propan-2-ol สร้างพันธะไฮโดรเจนระหว่างโมเลกุลได้ แต่ propan-2-one สร้างไม่ได้','propan-2-one มีมวลโมเลกุลมากกว่า','propan-2-ol ไม่มีแรงลอนดอน','propan-2-one มีพันธะไฮโดรเจนมากกว่า'],a:0,w:'propan-2-ol มี –OH ต่อ H กับ O (คู่มือ หน้า 54)'},
+ {q:'เอทานอลเป็นของเหลวที่อุณหภูมิห้อง แต่ methoxymethane (ไอโซเมอร์) เป็นแก๊ส เพราะเหตุใด',o:['เอทานอลเกิดพันธะไฮโดรเจนระหว่างโมเลกุล แต่ methoxymethane ไม่เกิด','methoxymethane มีมวลโมเลกุลมากกว่า','เอทานอลไม่มีแรงลอนดอน','methoxymethane มีพันธะคู่'],a:0,w:'เฉลยแบบฝึกหัด 12.5 ข้อ 4 (คู่มือ หน้า 57)'},
+ {q:'hexan-1-ol กับ hexan-1-amine สารใดเดือดสูงกว่า เพราะอะไร',o:['hexan-1-ol เพราะผลต่าง EN ของ O–H มากกว่า N–H พันธะไฮโดรเจนแข็งแรงกว่า','hexan-1-amine เพราะมีไนโตรเจน','เท่ากัน เพราะมีคาร์บอน 6 เหมือนกัน','hexan-1-amine เพราะไม่มีขั้ว'],a:0,w:'เฉลยแบบฝึกหัด 12.5 ข้อ 6.3 (คู่มือ หน้า 58)'}],
+'12.6':[
+ {q:'ผลของไซโคลเฮกซีนกับสารละลาย KMnO₄ ตามคู่มือคือข้อใด',o:['สีม่วงจางหาย และมีตะกอนสีน้ำตาลเล็กน้อย','สีม่วงยังอยู่เหมือนเดิม','เกิดแก๊สไม่มีสี','สารละลายกลายเป็นสีเขียว'],a:0,w:'ตัวอย่างผล (คู่มือ หน้า 64) แอลคีนฟอกจางสี KMnO₄ ได้'},
+ {q:'ไฮโดรคาร์บอนประเภทใดฟอกจางสีโบรมีนได้แม้ในที่มืด',o:['แอลคีนและแอลไคน์','แอลเคน','แอโรแมติก (วงเบนซีน)','ไม่มีประเภทใด'],a:0,w:'แอลเคนต้องมีแสง ส่วนแอลคีนและแอลไคน์เกิดการเติมได้ทั้งในที่มืดและที่สว่าง (คู่มือ หน้า 59, 61)'},
+ {q:'ถ้ากระดาษลิตมัสชื้นสีน้ำเงินที่ปากหลอดกลายเป็นสีแดงหลังโบรมีนจาง แสดงว่าเกิดอะไร',o:['ปฏิกิริยาการแทนที่ ได้ HBr เป็นผลิตภัณฑ์พลอยได้','ปฏิกิริยาการเติม','ไม่เกิดปฏิกิริยา','การเผาไหม้สมบูรณ์'],a:0,w:'HBr เป็นกรด (คู่มือ หน้า 62)'},
+ {q:'ไฮโดรคาร์บอนที่มีอัตราส่วน C:H สูง เผาไหม้ในบรรยากาศปกติแล้วเป็นอย่างไร',o:['เกิดเขม่ามากกว่า','เกิดเขม่าน้อยกว่า','ไม่ติดไฟ','ได้เฉพาะ H₂O'],a:0,w:'เช่น pent-1-yne เขม่ามากที่สุด pentane น้อยที่สุด (เฉลยแบบฝึกหัด 12.6 ข้อ 1 หน้า 77)'}],
+'12.7':[
+ {q:'ปฏิกิริยาระหว่างกรดเบนโซอิกกับเอทานอลในกิจกรรมนี้ต้องใช้เงื่อนไขใด',o:['ให้ความร้อน และมีกรดซัลฟิวริกเข้มข้นเป็นตัวเร่ง','ใช้ NaOH เป็นตัวเร่ง','ทำที่อุณหภูมิห้องโดยไม่ใช้ตัวเร่ง','ต้องใช้แสงอัลตราไวโอเลต'],a:0,w:'คู่มือ (หน้า 68) ปฏิกิริยาเกิดที่อุณหภูมิสูงและมีกรดเข้มข้นเป็นตัวเร่ง'},
+ {q:'ผลิตภัณฑ์ของกรดเอทาโนอิกกับเอทานอลคือข้อใด',o:['ethyl ethanoate และน้ำ','ethyl ethanoate และ H₂','ethanamide และน้ำ','methyl ethanoate และน้ำ'],a:0,w:'CH₃COOH + CH₃CH₂OH ⇌ CH₃COOCH₂CH₃ + H₂O (คู่มือ หน้า 68)'},
+ {q:'กลิ่นหลังให้ความร้อนต่างจากกลิ่นเอทานอล บอกอะไร',o:['มีสารใหม่ (เอสเทอร์) เกิดขึ้น','เอทานอลระเหยหมดเท่านั้น','เกิดการเปลี่ยนแปลงทางกายภาพล้วน ๆ','ไม่มีนัยสำคัญ'],a:0,w:'คู่มือ (หน้า 67) สรุปว่ากรดคาร์บอกซิลิกเกิดปฏิกิริยาเคมีกับแอลกอฮอล์ได้'},
+ {q:'จะเพิ่มผลได้ของเอสเทอร์ที่สมดุลได้อย่างไร',o:['ดึงน้ำหรือเอสเทอร์ออก หรือใช้สารตั้งต้นตัวหนึ่งมากเกินพอ','เติมน้ำเพิ่ม','ลดปริมาณแอลกอฮอล์','ลดอุณหภูมิลงมาก ๆ'],a:0,w:'คู่มือ (หน้า 71) ชวนคิดข้อ 2 รบกวนสมดุลโดยดึงน้ำหรือเอสเทอร์ออก หรือใช้สารตั้งต้นเกิน'}],
+'12.8':[
+ {q:'ไฮโดรลิซิสของ ethyl ethanoate ในภาวะกรดให้สารใด',o:['กรด ethanoic และเอทานอล','เมทานอลและกรดฟอร์มิก','เอทานอลและก๊าซ CO₂','โซเดียมเอทาโนเอตและเอทานอล'],a:0,w:'CH₃COOCH₂CH₃ + H₂O ⇌ CH₃COOH + CH₃CH₂OH (คู่มือ หน้า 70)'},
+ {q:'เหตุใดไฮโดรลิซิสของเอสเทอร์จึงใช้สารละลายกรดเจือจาง',o:['น้ำเป็นสารตั้งต้น กรดเป็นเพียงตัวเร่ง จึงใช้กรดเจือจางที่มีน้ำมาก','กรดเจือจางเป็นสารตั้งต้น','เพื่อลดราคา','เพราะกรดเข้มข้นระเหยหมด'],a:0,w:'คู่มือ (หน้า 71) ชวนคิดข้อ 1'},
+ {q:'กลิ่นหลังให้ความร้อนคล้ายสิ่งใดและแสดงว่าอะไร',o:['คล้ายน้ำส้มสายชู แสดงว่าเกิดกรดแอซีติก','คล้ายผลไม้ แสดงว่าเกิดเอสเทอร์เพิ่ม','ไม่มีกลิ่น แสดงว่าไม่เกิดปฏิกิริยา','คล้ายไข่เน่า'],a:0,w:'ตัวอย่างผล (คู่มือ หน้า 70)'},
+ {q:'เหตุใดเมื่อสิ้นสุดแล้วยังเหลือเอสเทอร์เสมอในภาวะกรด',o:['เป็นปฏิกิริยาผันกลับได้ ถึงสมดุลที่มีทั้งสารตั้งต้นและผลิตภัณฑ์','เพราะกรดดูดเอสเทอร์ไว้','เพราะเอสเทอร์ไม่ทำปฏิกิริยา','เพราะอุณหภูมิไม่พอเสมอ'],a:0,w:'คู่มือ (หน้า 74) ชวนคิด'}],
+'12.9':[
+ {q:'สะปอนนิฟิเคชันของน้ำมันพืชด้วย NaOH ให้ผลิตภัณฑ์ใด',o:['สบู่ (เกลือโซเดียมของกรดไขมัน) และกลีเซอรอล','กรดไขมันและน้ำ','เอสเทอร์ชนิดใหม่และแก๊ส H₂','แอลเคนและ CO₂'],a:0,w:'ไฮโดรลิซิสของเอสเทอร์ในภาวะเบสได้เกลือคาร์บอกซิเลตกับแอลกอฮอล์ (คู่มือ หน้า 73–74)'},
+ {q:'เหตุใดภาวะเบสจึงทำให้ไฮโดรลิซิสเกิดสมบูรณ์ แต่ภาวะกรดไม่',o:['ขั้นที่สองคือกรด-เบสที่ผันกลับไม่ได้ และดึงกรดคาร์บอกซิลิกออกจากสมดุล','เพราะ NaOH เร่งทุกปฏิกิริยา','เพราะน้ำในเบสมากกว่า','เพราะเบสไม่ทำปฏิกิริยากับเอสเทอร์'],a:0,w:'คู่มือ (หน้า 74) ชวนคิด'},
+ {q:'ข้อควรระวังจากคู่มือในกิจกรรมนี้คือข้อใด',o:['ให้ความร้อนช้า ๆ ไม่ให้สารแห้ง และไม่สัมผัสผลิตภัณฑ์โดยตรง','ให้ความร้อนสูงเพื่อให้เสร็จเร็ว','ให้ความร้อนจนแห้งสนิท','สัมผัสผลิตภัณฑ์เพื่อทดสอบ'],a:0,w:'ข้อเสนอแนะสำหรับครู (หน้า 72)'},
+ {q:'การเกิดฟองหลังเติมน้ำแล้วเขย่าแสดงว่าอะไร',o:['ได้สารคล้ายสบู่ที่ละลายน้ำแล้วเกิดฟอง','ได้แก๊ส CO₂','น้ำมันยังไม่ทำปฏิกิริยา','ได้เอทานอลบริสุทธิ์'],a:0,w:'ตัวอย่างผล (หน้า 73) ผลิตภัณฑ์ละลายน้ำแล้วเกิดฟองคล้ายสบู่'}],
+'12.10':[
+ {q:'methyl benzoate ในตัวอย่างของคู่มือใช้เป็นอะไร',o:['สารให้กลิ่นหอม เติมแต่งอาหารหรือทำน้ำหอม','ยาปฏิชีวนะ','เชื้อเพลิง','สารเร่งการเจริญเติบโตของพืช'],a:0,w:'คู่มือ (หน้า 85) พร้อมข้อควรระวังเรื่องการระคายเคือง'},
+ {q:'โพรเพนและบิวเทนใช้ประโยชน์อย่างไร และมีอันตรายหลักอะไร',o:['แก๊สหุงต้ม ติดไฟและอาจทำให้วิงเวียนถ้าสูดดม','ยารักษาโรค ทำให้ง่วง','พลาสติก ทำให้ผิวระคายเคือง','ผงชูรส ทำให้คลื่นไส้'],a:0,w:'คู่มือ (หน้า 87)'},
+ {q:'เพนิซิลลินมีข้อควรระวังอะไรเป็นพิเศษ',o:['ผู้ใช้บางรายแพ้ ต้องปรึกษาแพทย์หรือเภสัชกร','ใช้เป็นเชื้อเพลิงได้','ไม่มีผลข้างเคียงใด ๆ','ใช้กับพืชเท่านั้น'],a:0,w:'คู่มือ (หน้า 89)'},
+ {q:'ข้อใดถูกต้องเกี่ยวกับสารจากธรรมชาติกับสารสังเคราะห์',o:['ทั้งสองแบบอาจเป็นอันตรายได้ จึงควรตรวจสอบความเป็นพิษก่อนใช้','สารจากธรรมชาติปลอดภัยเสมอ','สารสังเคราะห์อันตรายเสมอ','ไม่ต้องตรวจสอบข้อมูล'],a:0,w:'ความเข้าใจที่ถูกต้องตามคู่มือ (หน้า 83)'}]
+};
+Object.keys(QUIZ).forEach((act,ai)=>QUIZ[act].forEach((q,qi)=>{const n=q.o.length,s=(qi*3+ai*2+1)%n;q.o=q.o.slice(s).concat(q.o.slice(0,s));q.a=(q.a-s+n)%n;}));
+/* ======================= สรุปเนื้อหา ======================= */
+const FG=[
+ ['แอลเคน','C–C เดี่ยวทั้งหมด','-ane','CH₃CH₂CH₃ propane'],['แอลคีน','C=C','-ene','CH₃CH=CH₂ propene'],['แอลไคน์','C≡C','-yne','CH₃C≡CH propyne'],['แอโรแมติกไฮโดรคาร์บอน','วงเบนซีน','benzene, methylbenzene','C₆H₆ benzene'],
+ ['แอลกอฮอล์','–OH','-ol','CH₃CH₂OH ethanol'],['อีเทอร์','C–O–C','alkoxyalkane','CH₃OCH₃ methoxymethane'],['แอลดีไฮด์','–CHO','-al','CH₃CH₂CHO propanal'],['คีโทน','C=O ระหว่าง C สองตัว','-one','CH₃COCH₃ propanone'],
+ ['กรดคาร์บอกซิลิก','–COOH','-oic acid','CH₃COOH ethanoic acid'],['เอสเทอร์','–COO–','alkyl …-oate','CH₃COOCH₂CH₃ ethyl ethanoate'],['เอมีน','–NH₂ (หรือ N ต่อ C)','-amine','CH₃CH₂NH₂ ethanamine'],['เอไมด์','–CONH₂','-amide','CH₃CONH₂ ethanamide']];
+const FGG=[['CH₃CH₂CHO',6],['CH₃CH₂OH',4],['CH₃COOH',8],['CH₃COOCH₂CH₃',9],['CH₃COCH₂CH₃',7],['CH₃OCH₂CH₃',5],['CH₃CH₂NH₂',10],['CH₃CONH₂',11],['CH₃CH=CH₂',1],['CH₃C≡CH',2],['C₆H₆ (วงเบนซีน)',3],['CH₃CH₂CH₃',0],['HCOOCH₃',9],['CH₃CH(OH)CH₃',4]];
+let fgI=0,fgS=0;
+function fgDraw(){
+  const b=$('#fgCard');if(!b)return;
+  if(fgI>=FGG.length){b.innerHTML=`<p><b>ครบแล้ว</b> ถูก ${fgS} / ${FGG.length}</p><button class="btn alt sm" type="button" id="fgAgain">เล่นอีกครั้ง</button>`;$('#fgAgain').onclick=()=>{fgI=0;fgS=0;fgDraw();};return;}
+  const it=FGG[fgI];b.innerHTML=`<p style="font-size:1.2rem" class="eq"><b>${it[0]}</b> เป็นสารประกอบประเภทใด</p><div class="btns">${FG.map((f,i)=>`<button class="chip" type="button" data-f="${i}">${f[0]}</button>`).join('')}</div><div class="why hide" id="fgW" aria-live="polite"></div>`;
+  $$('[data-f]',b).forEach(x=>x.onclick=()=>{const ok=+x.dataset.f===it[1];if(ok)fgS++;const w=$('#fgW');w.classList.remove('hide');w.innerHTML=(ok?'ถูก · ':'ยังไม่ถูก · ')+'<b>'+it[0]+'</b> คือ'+FG[it[1]][0]+' (หมู่ฟังก์ชัน '+FG[it[1]][1]+') <button class="btn sm" type="button" id="fgN">ข้อต่อไป</button>';$$('[data-f]',b).forEach(y=>y.disabled=true);fgI++;$('#fgN').onclick=fgDraw;$('#fgScore').textContent=fgS+' / '+fgI;});
+}
+function actSum(){
+  return `<h2>สรุปเนื้อหาบท 12 เคมีอินทรีย์</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงเนื้อหาในคู่มือครู หน้า 1–99 ไม่ใช่ข้อความต้นฉบับ</p>
+  <div class="box"><h3>หัวข้อ 12.1 – 12.2 พันธะและสูตรโครงสร้าง (คู่มือ หน้า 10–19)</h3><ul><li>คาร์บอนสร้างพันธะโคเวเลนต์ 4 พันธะ ต่อกันเป็นพันธะเดี่ยว คู่ หรือสาม และเป็นโซ่เปิดหรือวง</li><li>สูตรที่ใช้เขียน: สูตรโมเลกุล สูตรโครงสร้างลิวอิส สูตรโครงสร้างแบบย่อ (CH₃CH₂OH) และสูตรโครงสร้างแบบเส้นพันธะ (เส้นซิกแซ็ก มุมคือ C)</li></ul></div>
+  <div class="box"><h3>หัวข้อ 12.3 หมู่ฟังก์ชัน (คู่มือ หน้า 20–25)</h3><div class="tw"><table><thead><tr><th class="l">ประเภท</th><th class="l">หมู่ฟังก์ชัน</th><th class="l">ท้ายชื่อ IUPAC</th><th class="l">ตัวอย่าง</th></tr></thead><tbody>${FG.map(f=>`<tr><td class="l">${f[0]}</td><td class="l">${f[1]}</td><td class="l">${f[2]}</td><td class="l">${f[3]}</td></tr>`).join('')}</tbody></table></div><p class="small">ตัวอย่างชื่อสารที่ไม่ได้อยู่ในหน้าคู่มือเขียนโดยผู้จัดทำหน้าตามหลัก IUPAC</p></div>
+  <div class="lab"><h3>เกมจำแนกหมู่ฟังก์ชัน</h3><p class="small">ผู้จัดทำหน้าสร้างโจทย์ (ไม่มีคะแนนส่งครู) เลือกประเภทให้ตรงกับสูตร <span class="pill" id="fgScore">0 / 0</span></p><div class="box" id="fgCard"></div></div>
+  <div class="box"><h3>หัวข้อ 12.4 การตั้งชื่อ IUPAC (คู่มือ หน้า 26–32)</h3><ol><li>หาโซ่คาร์บอนต่อเนื่องที่ยาวที่สุดที่มีหมู่ฟังก์ชัน เป็นชื่อหลัก (meth, eth, prop, but, pent, hex, …)</li><li>ลงท้ายตามประเภท: -ane, -ene, -yne, -ol, -al, -one, -oic acid, -oate, -amine, -amide</li><li>ให้เลขตำแหน่งจากปลายที่ทำให้หมู่ฟังก์ชันได้เลขต่ำที่สุด แล้วบอกตำแหน่งของกิ่ง</li><li>เรียงชื่อกิ่งตามตัวอักษร ใช้ di-, tri- เมื่อซ้ำ</li></ol></div>
+  <div class="box"><h3>หัวข้อ 12.5 ไอโซเมอร์ (คู่มือ หน้า 33–43)</h3><p>สูตรโมเลกุลเดียวกัน แต่ลำดับการต่อกันต่างกัน (โซ่ตรง/กิ่ง ตำแหน่งพันธะคู่หรือสาม หมู่ฟังก์ชันต่างชนิด โซ่เปิด/วง) เช่น C₅H₁₂ มี 3 ไอโซเมอร์ C₃H₆O มี 9 ไอโซเมอร์</p></div>
+  <div class="box"><h3>หัวข้อ 12.6 สมบัติ (คู่มือ หน้า 44–58)</h3><ul><li><b>จุดเดือด</b>: เพิ่มตามขนาดโมเลกุล (แรงลอนดอน) · โซ่กิ่งเดือดต่ำกว่าโซ่ตรง · มีแรงระหว่างขั้วและพันธะไฮโดรเจนเดือดสูงขึ้น</li><li><b>การละลายในน้ำ</b>: ไฮโดรคาร์บอนไม่ละลาย · หมู่ที่สร้างพันธะไฮโดรเจนกับน้ำได้ช่วยให้ละลาย แต่โซ่คาร์บอนยาวขึ้นละลายน้อยลง</li></ul></div>
+  <div class="box"><h3>หัวข้อ 12.7 ปฏิกิริยา (คู่มือ หน้า 59–82)</h3><div class="tw"><table><thead><tr><th class="l">ปฏิกิริยา</th><th class="l">สารตั้งต้น → ผลิตภัณฑ์</th><th class="l">เงื่อนไข/หมายเหตุ</th></tr></thead><tbody>
+  <tr><td class="l">เผาไหม้สมบูรณ์</td><td class="l">C<sub>x</sub>H<sub>y</sub> + O₂ → CO₂ + H₂O</td><td class="l">O₂ ไม่พอ ได้ CO และ C (เขม่า)</td></tr>
+  <tr><td class="l">การแทนที่</td><td class="l">แอลเคน + Br₂ → R–Br + HBr</td><td class="l">ต้องมีแสง</td></tr>
+  <tr><td class="l">การเติม</td><td class="l">แอลคีน/แอลไคน์ + Br₂ → ไดโบรโม</td><td class="l">ที่มืดและที่สว่าง</td></tr>
+  <tr><td class="l">ฟอกจางสี KMnO₄</td><td class="l">แอลคีน + KMnO₄ + H₂O → ไดออล + MnO₂ (ตะกอนสีน้ำตาล) + KOH</td><td class="l">แอลไคน์ก็ฟอกจางได้ ผลิตภัณฑ์ต่างกัน</td></tr>
+  <tr><td class="l">เอสเทอริฟิเคชัน</td><td class="l">RCOOH + R'OH ⇌ RCOOR' + H₂O</td><td class="l">ความร้อน + กรดเข้มข้น ผันกลับได้</td></tr>
+  <tr><td class="l">ไฮโดรลิซิสของเอสเทอร์ (กรด)</td><td class="l">RCOOR' + H₂O ⇌ RCOOH + R'OH</td><td class="l">กรดเจือจางเป็นตัวเร่ง ไม่สมบูรณ์</td></tr>
+  <tr><td class="l">สะปอนนิฟิเคชัน</td><td class="l">เอสเทอร์ + NaOH → RCOONa + แอลกอฮอล์</td><td class="l">ภาวะเบส สมบูรณ์ (ไขมัน → สบู่ + กลีเซอรอล)</td></tr>
+  <tr><td class="l">สังเคราะห์เอไมด์</td><td class="l">RCOOH + R'NH₂ → RCONHR' + H₂O</td><td class="l">อุณหภูมิห้องได้เกลือ ให้ความร้อนได้เอไมด์</td></tr>
+  <tr><td class="l">ไฮโดรลิซิสของเอไมด์</td><td class="l">เอไมด์ + H₂O → กรดคาร์บอกซิลิก (หรือเกลือ) + แอมโมเนีย/เอมีน (หรือเกลือแอมโมเนียม)</td><td class="l">ภาวะกรดหรือเบส</td></tr></tbody></table></div></div>
+  <div class="box"><h3>หัวข้อ 12.8 การใช้ประโยชน์ (คู่มือ หน้า 83–89)</h3><p>สารอินทรีย์ใช้เป็นเชื้อเพลิง สารปรุงแต่ง ยา และวัสดุ ทั้งสารจากธรรมชาติและสังเคราะห์อาจมีอันตราย ต้องศึกษาข้อควรระวังก่อนใช้</p></div>
+  <div class="box"><h3>ศัพท์ที่ควรรู้</h3>${glossHTML([['สารประกอบอินทรีย์','organic compound'],['หมู่ฟังก์ชัน','functional group'],['ไอโซเมอร์โครงสร้าง','structural isomer'],['แอลเคน / แอลคีน / แอลไคน์','alkane / alkene / alkyne'],['แอโรแมติกไฮโดรคาร์บอน','aromatic hydrocarbon'],['แอลกอฮอล์ / อีเทอร์','alcohol / ether'],['แอลดีไฮด์ / คีโทน','aldehyde / ketone'],['กรดคาร์บอกซิลิก / เอสเทอร์','carboxylic acid / ester'],['เอมีน / เอไมด์','amine / amide'],['ปฏิกิริยาการแทนที่ / การเติม','substitution / addition reaction'],['ปฏิกิริยาการเผาไหม้','combustion'],['เอสเทอริฟิเคชัน','esterification'],['ไฮโดรลิซิส','hydrolysis'],['สะปอนนิฟิเคชัน','saponification'],['พันธะไฮโดรเจน','hydrogen bond'],['แรงแผ่กระจายลอนดอน','London dispersion force']])}</div>`;
+}
+function wireSum(){fgI=0;fgS=0;fgDraw();}
+/* ======================= แบบฝึกหัดท้ายบท ======================= */
+const EX12=[
+ {t:'(ท้ายบท ข้อ 2) สารที่มีสูตรโมเลกุล C₃H₆O เขียนไอโซเมอร์โครงสร้างได้ทั้งหมดกี่ไอโซเมอร์ (ไม่นับสเตอริโอไอโซเมอร์)',p:[{t:'num',l:'จำนวนไอโซเมอร์',a:9,abs:0}],s:'เฉลย 9 ไอโซเมอร์ (คู่มือ หน้า 91) เช่น propanal, propanone, prop-2-en-1-ol, prop-1-en-1-ol, prop-1-en-2-ol, methoxyethene, cyclopropanol, methyloxirane และ oxetane (ชื่อเหล่านี้ผู้จัดทำหน้าเขียนเอง DBE = 1 จึงมีพันธะคู่หรือวง 1 อย่าง)'},
+ {t:'(ท้ายบท ข้อ 3) เหตุใดเพนเทนไม่ละลายน้ำ แต่เอทอกซีอีเทน (CH₃CH₂OCH₂CH₃) ละลายน้ำได้',p:[{t:'mcq',l:'เลือกเหตุผลที่ถูกที่สุด',o:['เอทอกซีอีเทนมีขั้วและ O สร้างพันธะไฮโดรเจนกับ H ของน้ำได้ ส่วนเพนเทนไม่มีขั้วและไม่มีหมู่ที่สร้างพันธะไฮโดรเจนกับน้ำ','เอทอกซีอีเทนมีมวลโมเลกุลน้อยกว่าเพนเทนเสมอ','เพนเทนมีพันธะคู่ จึงไม่ละลาย','เอทอกซีอีเทนมีหมู่ –OH'],a:0},{t:'text',l:'อธิบายด้วยคำพูดของคุณ (ส่งครู)'}],s:'เฉลย (หน้า 92): เพนเทนเป็นโมเลกุลไม่มีขั้ว ไม่มีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำ ส่วนเอทอกซีอีเทนมีขั้วและเกิดพันธะไฮโดรเจนกับน้ำได้'},
+ {t:'(ท้ายบท ข้อ 4) เรียงจุดเดือดของ propanamide, methyl ethanoate, pent-2-ene จากสูงไปต่ำ',p:[{t:'mcq',l:'ลำดับ',o:['propanamide > methyl ethanoate > pent-2-ene','pent-2-ene > methyl ethanoate > propanamide','methyl ethanoate > propanamide > pent-2-ene','propanamide > pent-2-ene > methyl ethanoate'],a:0}],s:'เฉลย (หน้า 92): propanamide มีพันธะไฮโดรเจน แรงระหว่างขั้ว และแรงลอนดอน · methyl ethanoate มีแรงระหว่างขั้วและลอนดอน · pent-2-ene มีแรงลอนดอนอย่างเดียว'},
+ {t:'(ท้ายบท ข้อ 5) เผาโทลูอีน (C₇H₈) 23 g ได้ CO₂ 33 g, H₂O 18 g, CO 14 g และเขม่า C (M: H = 1, C = 12, O = 16 g/mol)',p:[{t:'num',l:'มวลเขม่า C ที่เกิด',u:'g',a:6,abs:0.2},{t:'num',l:'สมการ C₇H₈ + □O₂ → 3CO₂ + 4H₂O + 2CO + 2C ค่าของ □ คือ',a:6,abs:0}],s:'เฉลย (หน้า 93–94): C ใน C₇H₈ 23 g = 21 g · ใน CO₂ 33 g = 9.0 g · ใน CO 14 g = 6.0 g → เขม่า = 21 − 9 − 6 = 6 g · สมการ C₇H₈ + 6O₂ → 3CO₂ + 4H₂O + 2CO + 2C'},
+ {t:'(ท้ายบท ข้อ 6) ไฮโดรคาร์บอนชนิดหนึ่ง 1 mol เผาไหม้สมบูรณ์ได้ H₂O 3 mol และ CO₂ 3 mol ในที่มืดไม่ทำให้สารละลายโบรมีนเปลี่ยน แต่ในที่สว่าง 5 นาทีโบรมีนจางหาย',p:[{t:'mcq',l:'สูตรโมเลกุล',o:['C₃H₆','C₃H₈','C₃H₄','C₆H₆'],a:0},{t:'mcq',l:'สารนี้คือ',o:['cyclopropane','propene','propane','propyne'],a:0}],s:'เฉลย (หน้า 94): C = 3, H = 6 → C₃H₆ มี DBE = 1 · ไม่ฟอกจางในที่มืด แต่จางในที่สว่าง เป็นการแทนที่ จึงเป็น cyclopropane (ถ้าเป็น propene จะจางในที่มืดด้วย)'},
+ {t:'(ท้ายบท ข้อ 7) การแทนที่ 1 ตำแหน่งของ 2-methylbutane ด้วย Br₂ ได้ผลิตภัณฑ์โครงสร้างต่างกันกี่ชนิด',p:[{t:'num',l:'จำนวนชนิด',a:4,abs:0}],s:'เฉลย (หน้า 95): 1-bromo-2-methylbutane, 2-bromo-2-methylbutane, 2-bromo-3-methylbutane, 1-bromo-3-methylbutane'},
+ {t:'(ท้ายบท ข้อ 8) สารไฮโดรคาร์บอน A และ B มีสูตร C₄H₈ A ฟอกจางสี KMnO₄ แต่ B ไม่ฟอก จงนับโครงสร้างที่เป็นไปได้ (ไม่นับไอโซเมอร์ซิส-ทรานส์)',p:[{t:'num',l:'จำนวนโครงสร้างที่เป็นไปได้ของ A',a:3,abs:0},{t:'num',l:'จำนวนโครงสร้างที่เป็นไปได้ของ B',a:2,abs:0}],s:'เฉลย (หน้า 95; ตัวเลขอ้างจากเฉลยในคู่มือ หน้า 37 ที่ให้โซ่เปิด 3 วง 2): A = but-1-ene, but-2-ene, 2-methylpropene · B = cyclobutane, methylcyclopropane'},
+ {t:'(ท้ายบท ข้อ 9) แอลกอฮอล์ A + สาร B ⇌ CH₃COOCH₂CH₂CH₃ + H₂O (ภาวะ H⁺, ความร้อน)',p:[{t:'mcq',l:'ปฏิกิริยาไปข้างหน้าคือ',o:['เอสเทอริฟิเคชัน','ไฮโดรลิซิส','สะปอนนิฟิเคชัน','การเผาไหม้'],a:0},{t:'mcq',l:'แอลกอฮอล์ A และสาร B คือ',o:['propan-1-ol และ ethanoic acid','ethanol และ propanoic acid','propan-2-ol และ methanoic acid','methanol และ butanoic acid'],a:0}],s:'เฉลย (หน้า 96): ไปข้างหน้าเป็นเอสเทอริฟิเคชัน ย้อนกลับเป็นไฮโดรลิซิส · A = propan-1-ol, B = ethanoic acid (CH₃COOH)'},
+ {t:'(ท้ายบท ข้อ 10) เอสเทอร์กลิ่นกล้วยหอมได้จาก ethanoic acid กับ 3-methylbutan-1-ol',p:[{t:'mcq',l:'ชื่อเอสเทอร์',o:['3-methylbutyl ethanoate','2-methylpropyl ethanoate','pentyl ethanoate','ethyl 3-methylbutanoate'],a:0}],s:'เฉลย (หน้า 96): CH₃COOCH₂CH₂CH(CH₃)₂ ชื่อ 3-methylbutyl ethanoate (หมู่แอลคิลจากแอลกอฮอล์ + ชื่อกรดท้าย -oate)'},
+ {t:'(ท้ายบท ข้อ 11) เหตุใดยาแอสไพรินที่เก็บไว้นานจึงมีกลิ่นน้ำส้มสายชู',p:[{t:'mcq',l:'เหตุผล',o:['แอสไพรินมีหมู่เอสเทอร์ เกิดไฮโดรลิซิสกับความชื้น ได้กรดเอทาโนอิก (แอซีติก)','แอสไพรินเกิดเอสเทอริฟิเคชันกับอากาศ','แอสไพรินสลายเป็นเอทานอล','แอสไพรินถูกออกซิไดส์เป็นกรดฟอร์มิก'],a:0},{t:'text',l:'เขียนสมการแสดงปฏิกิริยา (ส่งครู)'}],s:'เฉลย (หน้า 96): ไฮโดรลิซิสของเอสเทอร์ได้กรดแอซีติก (กลิ่นน้ำส้มสายชู) และกรดซาลิซิลิก'},
+ {t:'(ท้ายบท ข้อ 12) สะปอนนิฟิเคชันของไตรกลีเซอไรด์กับ NaOH ให้ผลิตภัณฑ์ใด',p:[{t:'mcq',l:'ผลิตภัณฑ์',o:['RCOONa (สบู่) 3 โมเลกุล และ propane-1,2,3-triol (กลีเซอรอล)','RCOOH 3 โมเลกุลและน้ำ','RCOONa และเอทานอล','R–OH และ CO₂'],a:0},{t:'text',l:'เขียนสูตรโครงสร้างของสบู่และผลิตภัณฑ์พลอยได้ (ส่งครู)'}],s:'เฉลย (หน้า 97): สบู่คือเกลือโซเดียมของกรดไขมัน ผลิตภัณฑ์พลอยได้คือกลีเซอรอล'},
+ {t:'(ท้ายบท ข้อ 13) การเตรียมเอทานาไมด์ ต้องให้ความร้อนกับเกลือแอมโมเนียมแอซีเตต เพราะเหตุใด',p:[{t:'mcq',l:'เหตุผล',o:['ระเหยน้ำออกทำให้สมดุลไปข้างหน้าได้มากขึ้น และทำให้ปฏิกิริยาเร็วขึ้น','เพื่อให้เกิดเกลือเพิ่ม','เพื่อลดอุณหภูมิ','ความร้อนทำให้เกิดแก๊สไฮโดรเจน'],a:0}],s:'เฉลย (หน้า 97): ความร้อนช่วยระเหยน้ำ ทำให้สมดุลดำเนินไปข้างหน้า และช่วยให้ปฏิกิริยาเกิดเร็วขึ้นตามทฤษฎีการชน'},
+ {t:'(ท้ายบท ข้อ 15) วิตามินดี 3 (C₂₇H₄₄O) ได้จากสารที่เป็นไอโซเมอร์กับมัน ตัวใดอาจเป็นสารตั้งต้น (สูตรโมเลกุลที่ให้: ดีไฮโดรคอเลสเตอรอล C₂₇H₄₄O คอเลสเตอรอล C₂₇H₄₆O เทสโทสเทอโรน C₁₉H₂₈O₂ เอสตราไดออล (อีสโทรเจน) C₁₈H₂₄O₂)',p:[{t:'mcq',l:'สารตั้งต้นที่เป็นไปได้',o:['ดีไฮโดรคอเลสเตอรอล','คอเลสเตอรอล','เทสโทสเทอโรน','เอสตราไดออล'],a:0}],s:'เฉลย (หน้า 99): ดีไฮโดรคอเลสเตอรอลมีสูตรโมเลกุลเดียวกับวิตามินดี 3 (C₂₇H₄₄O) เป็นไอโซเมอร์โครงสร้างกัน · สูตรโมเลกุลของคอเลสเตอรอล เทสโทสเทอโรน เอสตราไดออลเป็นความรู้ทั่วไปของผู้จัดทำหน้า'},
+ {t:'(แบบฝึกหัด 12.5 ข้อ 6.2) เปรียบเทียบจุดเดือดของ ethanoic acid กับ methyl methanoate',p:[{t:'mcq',l:'ข้อใดถูก',o:['ethanoic acid สูงกว่า เพราะเกิดพันธะไฮโดรเจนระหว่างโมเลกุลได้','methyl methanoate สูงกว่า เพราะมีเอสเทอร์','เท่ากัน เพราะมีมวลโมเลกุลเท่ากัน','methyl methanoate สูงกว่า เพราะมีพันธะไฮโดรเจน'],a:0}],s:'เฉลย (หน้า 58): มวลโมเลกุลใกล้เคียงกัน แต่กรดสร้างพันธะไฮโดรเจนได้ เอสเทอร์สร้างไม่ได้'},
+ {t:'(แบบฝึกหัด 12.6 ข้อ 1) เผา pentane, pent-1-ene และ pent-1-yne ในบรรยากาศปกติ',p:[{t:'mcq',l:'สารที่เกิดเขม่ามากที่สุดคือ',o:['pent-1-yne','pent-1-ene','pentane','เท่ากันทั้งสาม'],a:0}],s:'เฉลย (หน้า 77): pent-1-yne มี C:H สูงสุดจึงเขม่ามากที่สุด pentane น้อยที่สุด'},
+ {t:'(แบบฝึกหัด 12.6 ข้อ 2) ดุลสมการการเผาไหม้สมบูรณ์ของเฮกเซนและไซโคลเฮกเซน',p:[{t:'num',l:'2C₆H₁₄ + □O₂ → 12CO₂ + 14H₂O ค่า □ คือ',a:19,abs:0},{t:'num',l:'C₆H₁₂ + □O₂ → 6CO₂ + 6H₂O ค่า □ คือ',a:9,abs:0}],s:'เฉลย (หน้า 77): 2C₆H₁₄ + 19O₂ → 12CO₂ + 14H₂O · C₆H₁₂ + 9O₂ → 6CO₂ + 6H₂O (ตรวจด้วยฟังก์ชันคำนวณสัมประสิทธิ์ของหน้านี้)'},
+ {t:'(แบบฝึกหัด 12.6 ข้อ 5) X + Br₂ →(แสง) C₄H₉Br + HBr ; Y + Br₂ → C₄H₈Br₂ ; 2Z + 15O₂ → 10H₂O + 10CO₂',p:[{t:'num',l:'Z มีคาร์บอนกี่อะตอมต่อโมเลกุล',a:5,abs:0},{t:'mcq',l:'ปฏิกิริยาแรก (X + Br₂) เป็นปฏิกิริยาประเภท',o:['การแทนที่','การเติม','การเผาไหม้','เอสเทอริฟิเคชัน'],a:0}],s:'เฉลย (หน้า 79): Z = C₅H₁₀ (2Z → 10CO₂ ดังนั้น Z มี C 5 อะตอม) · X = C₄H₁₀ เป็นการแทนที่ · Y = C₄H₈ เป็นการเติม'},
+ {t:'(แบบฝึกหัด 12.6 ข้อ 6) นำน้ำมัน 3 ชนิดปริมาณเท่ากัน หยดทิงเจอร์ไอโอดีนจนสีไม่จางหาย ถั่วเหลือง 12 หยด ทานตะวัน 15 หยด น้ำมันหมู 2 หยด',p:[{t:'mcq',l:'น้ำมันใดมีกรดไขมันอิ่มตัวเป็นองค์ประกอบมากที่สุด',o:['น้ำมันหมู','น้ำมันถั่วเหลือง','น้ำมันดอกทานตะวัน','เท่ากันทั้งสาม'],a:0}],s:'เฉลย (หน้า 80): ไอโอดีนทำปฏิกิริยากับพันธะคู่ ใช้หยดน้อยแสดงว่ามีพันธะคู่น้อย คือกรดไขมันไม่อิ่มตัวน้อย จึงอิ่มตัวมาก'},
+ {t:'(แบบฝึกหัด 12.6 ข้อ 7) เขียนสมการเอสเทอริฟิเคชันเตรียม benzyl ethanoate (CH₃COOCH₂C₆H₅)',p:[{t:'text',l:'เขียนสมการ (ส่งครู)'}],s:'เฉลย (หน้า 81): CH₃COOH + C₆H₅CH₂OH ⇌ CH₃COOCH₂C₆H₅ + H₂O (H⁺, ความร้อน) · ใช้เครื่องเขียนสมการในกิจกรรม 12.7 ตรวจได้'}
+];
+EX12.forEach((q,qi)=>q.p.forEach(p=>{if(p.t==='mcq'){const n=p.o.length,s=(qi*3+2)%n;p.o=p.o.slice(s).concat(p.o.slice(0,s));p.a=(p.a-s+n)%n;}}));
+function actEx(){return exHTML(EX12,'คู่มือครู หน้า 18–99 (เฉลยแบบฝึกหัด 12.5, 12.6 และท้ายบท) · ตัวเลือกและตัวเลขตรวจโดยผู้จัดทำหน้า','แบบฝึกหัดท้ายบท 12');}
+function wireEx(){exWire(EX12);}
+/* ======================= โครงหน้า ======================= */
+const BUILD={'12.1':[act121,wire121],'12.2':[act122,wire122],'12.3':[act123,wire123],'12.4':[act124,wire124],'12.5':[act125,wire125],'12.6':[act126,wire126],'12.7':[act127,wire127],'12.8':[act128,wire128],'12.9':[act129,wire129],'12.10':[act1210,wire1210],'sum':[actSum,wireSum],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 10 กิจกรรม';$('#progBar').style.width=(n/10*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.6 บทที่ 12','เคมี ม.6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ (กิจกรรม 12.1–12.10)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+a.replace('.','_')+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(12\.\d+|sum|ex)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
