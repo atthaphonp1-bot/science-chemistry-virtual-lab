@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.5 บทที่ 8", "title": "เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (กิจกรรม 8.1–8.5)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#dfece4;--soft:#f0f9f4;--acc:#2e7d4f;--acc2:#e3f3ea;--ok:#157a55;--bad:#b63f43;--acc3:#7cc79c;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #e6f1ea;border-radius:30px;background:linear-gradient(130deg,#fff,#f2faf5);box-shadow:0 28px 65px #31508012;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #ecdca8;background:#fffaf0;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#6b5619;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12,0 3px 10px #28416e08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #bfe3cc;border-radius:22px;padding:16px;background:linear-gradient(160deg,#f2faf5,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #a9d9bb;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#1d5a37;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--acc)}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.legend{margin-top:6px}
+table.tight th,table.tight td{padding:4px 7px;font-size:.88rem}
+input[type=range]{width:100%;min-height:32px;accent-color:var(--acc)}
+canvas{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:#fbfdfc;margin:6px 0}
+.stat{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.stat>div{flex:1 1 110px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px 10px;font-size:.82rem;color:var(--muted)}.stat b{display:block;font-size:1.1rem;color:var(--ink)}
+.chip:focus-visible,.btn:focus-visible{outline-offset:2px}
+.panel,.lab,.box{min-width:0}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 5 · BOOK 3 · CHAPTER 8</div>
+<h1>อัตราการเกิดปฏิกิริยาเคมี: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 8.1–8.5 ตามหนังสือเรียนเคมี ม.5 เล่ม 3 ของ สสวท. ตั้งแต่การเกิดแก๊สไฮโดรเจน การคำนวณอัตราจากความเข้มข้น ไปจนถึงผลของความเข้มข้น พื้นที่ผิว อุณหภูมิ และตัวเร่งปฏิกิริยา พร้อมกิจกรรมสืบค้น 8.6 แล้วตอบคำถามและทำแบบทดสอบสั้น</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 5 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ตัวเลขผลการทดลองในกิจกรรม 8.1, 8.2, 8.3 และ 8.4 ใช้ค่าตามตัวอย่างผลในคู่มือครู ส่วนเส้นโค้งระหว่างจุดข้อมูล จำนวนฟอง การเคลื่อนที่ของอนุภาค และค่าที่หน้านี้ระบุว่าเป็นข้อสมมติ เป็นภาพประกอบหรือการประมาณของผู้จัดทำหน้า กิจกรรม 8.5 เป็นผลเชิงคุณภาพเท่านั้น<br>
+<b>ข้อควรระวังทั่วไปเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในหนังสือ): สวมแว่นตานิรภัยและถุงมือ ล้างมือหลังทดลอง กรด HCl กัดกร่อน H₂O₂ ระคายเคือง ใช้ตะเกียงแอลกอฮอล์ตามคำแนะนำของครู และทิ้งสารตามที่ครูกำหนด</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 8"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: คู่มือครูรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (สสวท., ฉบับปรับปรุง พ.ค. 2566) เลขหน้าที่อ้างในหน้านี้เป็นเลขหน้าของคู่มือครู (เลขหน้าในหนังสือเรียนอาจต่างกัน) · กิจกรรม 8.1 หน้า 75–77 · 8.2 หน้า 79–81 · 8.3 หน้า 85–88 · 8.4 หน้า 102–105 · 8.5 หน้า 106–110 · 8.6 หน้า 111 (สืบค้นข้อมูล ไม่ได้ทำเป็นแล็บเสมือน) · แบบฝึกหัดอ้างอิงเฉลยหน้า 89–120 · <a href="https://www.scimath.org/ebook-chemistry/item/10299-4" target="_blank" rel="noopener">หน้าหนังสือที่ สสวท.</a></footer>
+</div>
+<script>
+'use strict';
+/* ======================= ฟังก์ชันคำนวณ (พอร์ตจากโค้ด Python ที่ผ่าน checks) ======================= */
+function sgn0(x){return(x>0)-(x<0);}
+function pchipSlopes(xs,ys){
+  const n=xs.length;if(n<2)throw new Error('need 2 points');
+  if(n===2){const s=(ys[1]-ys[0])/(xs[1]-xs[0]);return[s,s];}
+  const h=[],s=[];for(let i=0;i<n-1;i++){h.push(xs[i+1]-xs[i]);s.push((ys[i+1]-ys[i])/h[i]);}
+  const d=new Array(n).fill(0);
+  for(let k=1;k<n-1;k++){
+    if(s[k-1]===0||s[k]===0||sgn0(s[k-1])!==sgn0(s[k]))d[k]=0;
+    else{const w1=2*h[k]+h[k-1],w2=h[k]+2*h[k-1];d[k]=(w1+w2)/(w1/s[k-1]+w2/s[k]);}
+  }
+  let d0=((2*h[0]+h[1])*s[0]-h[0]*s[1])/(h[0]+h[1]);
+  if(sgn0(d0)!==sgn0(s[0]))d0=0;else if(sgn0(s[0])!==sgn0(s[1])&&Math.abs(d0)>3*Math.abs(s[0]))d0=3*s[0];
+  d[0]=d0;const m=n-1;
+  let dn=((2*h[m-1]+h[m-2])*s[m-1]-h[m-1]*s[m-2])/(h[m-1]+h[m-2]);
+  if(sgn0(dn)!==sgn0(s[m-1]))dn=0;else if(sgn0(s[m-1])!==sgn0(s[m-2])&&Math.abs(dn)>3*Math.abs(s[m-1]))dn=3*s[m-1];
+  d[m]=dn;return d;
+}
+function pchipFind(xs,x){let lo=0,hi=xs.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(xs[mid]<=x)lo=mid;else hi=mid;}return lo;}
+function pchipEval(xs,ys,x,d){
+  if(x<=xs[0])return ys[0];if(x>=xs[xs.length-1])return ys[ys.length-1];
+  d=d||pchipSlopes(xs,ys);const i=pchipFind(xs,x),h=xs[i+1]-xs[i],t=(x-xs[i])/h;
+  return(2*t**3-3*t**2+1)*ys[i]+(t**3-2*t**2+t)*h*d[i]+(-2*t**3+3*t**2)*ys[i+1]+(t**3-t**2)*h*d[i+1];
+}
+function pchipDeriv(xs,ys,x,d){
+  d=d||pchipSlopes(xs,ys);if(x<=xs[0])return d[0];if(x>=xs[xs.length-1])return d[d.length-1];
+  const i=pchipFind(xs,x),h=xs[i+1]-xs[i],t=(x-xs[i])/h;
+  return((6*t**2-6*t)*ys[i]+(3*t**2-4*t+1)*h*d[i]+(-6*t**2+6*t)*ys[i+1]+(3*t**2-2*t)*h*d[i+1])/h;
+}
+/* อัตราการเกิดปฏิกิริยา r = dir·Δc/(ν·Δt); dir = −1 สำหรับสารตั้งต้น, +1 สำหรับผลิตภัณฑ์ */
+function avgRate(c1,c2,t1,t2,nu,dir){if(t2===t1||!(nu>0))throw new Error('bad');return dir*(c2-c1)/(nu*(t2-t1));}
+function concFromRates(c0,bounds,rates,dir){
+  if(rates.length!==bounds.length-1||(dir!==1&&dir!==-1))throw new Error('bad');
+  const out=[c0];for(let i=0;i<rates.length;i++)out.push(out[i]+dir*rates[i]*(bounds[i+1]-bounds[i]));return out;}
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const RM=()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}};
+function sci(x,d){d=d===undefined?2:d;if(x===0)return'0';let e=Math.floor(Math.log10(Math.abs(x))),m=x/Math.pow(10,e),ms=m.toFixed(d);if(Math.abs(+ms)>=10){e++;ms=(x/Math.pow(10,e)).toFixed(d);}
+  return ms+' × 10<sup>'+(e<0?'−':'')+Math.abs(e)+'</sup>';}
+function svgEl(w,h,inner,label){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}">${inner}</svg>`;}
+/* กราฟเส้น/จุดแบบ SVG: o={w,h,xmax,ymax,xstep,ystep,xl,yl,series:[{xs,ys,color,line,dots,dash,name}],segs:[{x1,y1,x2,y2,color,dash}],fy,fx} */
+function chart(o){
+  const W=o.w||420,H=o.h||280,L=58,R=14,T=12,B=44,pw=W-L-R,ph=H-T-B,X=x=>L+x/o.xmax*pw,Y=y=>T+ph-y/o.ymax*ph;
+  const fy=o.fy||(v=>String(+v.toPrecision(4))),fx=o.fx||(v=>String(+v.toPrecision(4)));
+  let s=`<rect x="${L}" y="${T}" width="${pw}" height="${ph}" fill="#fff" stroke="#c9d4cd"/>`;
+  for(let v=0;v<=o.xmax+1e-12;v+=o.xstep){const x=X(v);s+=`<line x1="${x}" y1="${T}" x2="${x}" y2="${T+ph}" stroke="#eef3f0"/><text x="${x}" y="${T+ph+15}" text-anchor="middle" font-size="11" fill="#5d6b82">${fx(v)}</text>`;}
+  for(let v=0;v<=o.ymax+1e-12;v+=o.ystep){const y=Y(v);s+=`<line x1="${L}" y1="${y}" x2="${L+pw}" y2="${y}" stroke="#eef3f0"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="#5d6b82">${fy(v)}</text>`;}
+  s+=`<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="#172033">${o.xl}</text><text transform="translate(13 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#172033">${o.yl}</text>`;
+  (o.segs||[]).forEach(g=>{s+=`<line x1="${X(g.x1)}" y1="${Y(g.y1)}" x2="${X(g.x2)}" y2="${Y(g.y2)}" stroke="${g.color||'#b63f43'}" stroke-width="2"${g.dash?' stroke-dasharray="6 4"':''}/>`;});
+  (o.series||[]).forEach(r=>{
+    if(r.line&&r.xs.length>1)s+=`<polyline fill="none" stroke="${r.color}" stroke-width="2"${r.dash?' stroke-dasharray="4 4"':''} points="${r.xs.map((x,i)=>X(x).toFixed(1)+','+Y(r.ys[i]).toFixed(1)).join(' ')}"/>`;
+    if(r.dots)r.xs.forEach((x,i)=>{s+=`<circle cx="${X(x)}" cy="${Y(r.ys[i])}" r="3.6" fill="${r.color}" stroke="#fff" stroke-width="1"/>`;});
+  });
+  (o.marks||[]).forEach(m=>{s+=`<circle cx="${X(m.x)}" cy="${Y(m.y)}" r="5" fill="none" stroke="${m.color||'#b63f43'}" stroke-width="2"/>`;});
+  return svgEl(W,H,s,o.label||'กราฟ');
+}
+const CURVE_N=80;
+function curvePts(xs,ys,x0,x1){const d=pchipSlopes(xs,ys),X=[],Yv=[];for(let i=0;i<=CURVE_N;i++){const x=x0+(x1-x0)*i/CURVE_N;X.push(x);Yv.push(pchipEval(xs,ys,x,d));}return{xs:X,ys:Yv};}
+
+/* ======================= ข้อมูลจากหนังสือ ======================= */
+/* กิจกรรม 8.1 ตัวอย่างผลการทดลอง: ปริมาตร H₂ (mL) กับเวลา (s) ; เพิ่มจุดเริ่มต้น (0,0) เอง */
+const H2V=[0,1,2,3,4,5,6,7,8,9,10],H2T=[0,10,28,48,71,95,125,155,200,252,305];
+/* กิจกรรม 8.2 ตัวอย่างผลการทำกิจกรรม: อัตราการเปลี่ยนแปลงของ NO₂, NO, O₂ ในแต่ละช่วงเวลา (M s⁻¹) */
+const B82=[0,100,240,320,500,780,1000,1500,2000];
+const R82={NO2:[1.17e-5,5.93e-6,3.50e-6,2.33e-6,1.29e-6,7.27e-7,4.60e-7,2.40e-7],NO:[1.18e-5,5.86e-6,3.50e-6,2.33e-6,1.29e-6,7.27e-7,4.80e-7,2.00e-7],O2:[5.90e-6,2.93e-6,1.75e-6,1.17e-6,6.43e-7,3.64e-7,2.40e-7,1.00e-7]};
+const NU82={NO2:2,NO:2,O2:1},NAME82={NO2:'NO₂',NO:'NO',O2:'O₂'},DIR82={NO2:-1,NO:1,O2:1};
+const C0_NO2=0.0100; /* สมมติเอง: ตาราง 8.1 ในหนังสือเรียนไม่อยู่ในคู่มือที่ใช้ */
+const C82={};{['NO2','NO','O2'].forEach(k=>{C82[k]=concFromRates(k==='NO2'?C0_NO2:0,B82,R82[k],DIR82[k]);});}
+/* กิจกรรม 8.3: 2A → 4B + C */
+const T83=[0,100,200,300,400,500,600];
+const A83=[0.0200,0.0168,0.0142,0.0120,0.0102,0.0086,0.0072],B83=[0,0.0064,0.012,0.016,0.020,0.023,0.026],C83=[0,0.0016,0.0029,0.0040,0.0049,0.0057,0.0064];
+const SP83={A:{ys:A83,nu:2,dir:-1,color:'#1d6fb8'},B:{ys:B83,nu:4,dir:1,color:'#d9822b'},C:{ys:C83,nu:1,dir:1,color:'#2e7d4f'}};
+/* กิจกรรม 8.4: เวลาที่ปฏิกิริยาสิ้นสุด (s) */
+const B84=[{id:1,form:'powder',hcl:0.2,warm:false,t:48},{id:2,form:'powder',hcl:0.5,warm:false,t:36},{id:3,form:'tablet',hcl:0.2,warm:false,t:null},{id:4,form:'powder',hcl:0.2,warm:true,t:25}];
+/* ค่าพลังงานจากแบบฝึกหัด 8.2 ข้อ 2 (kJ): A+B = 52, สถานะแทรนซิชัน = 120, C+D = 20 */
+const EN={R:52,TS:120,P:20};
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m5-ch8-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['8.1','8.2','8.3','8.4','8.5','8.6','sum','ex'];const LABS=ACTS.slice(0,5);
+const TITLES={'8.1':'การเกิด H₂ จาก Mg + HCl','8.2':'อัตราการเปลี่ยนแปลงของสาร','8.3':'กราฟสารที่ไม่ได้วัด','8.4':'ความเข้มข้น พื้นที่ผิว อุณหภูมิ','8.5':'ตัวเร่งปฏิกิริยา (KI กับ H₂O₂)','8.6':'สืบค้นชีวิตประจำวัน','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'};
+let cur=0;const CLEAN=[];
+
+/* ======================= แบบทดสอบ ======================= */
+const QUIZ={
+'8.1':[
+ {q:'ในกิจกรรม 8.1 กราฟระหว่างปริมาตร H₂ กับเวลา ความชันของกราฟบอกอะไร',o:['อัตราการเกิดแก๊ส H₂ (ชันมาก = เกิดเร็ว)','ปริมาตร H₂ ทั้งหมดที่เกิดขึ้น','ความเข้มข้นของ HCl ในตอนเริ่มต้น','มวลของแมกนีเซียมที่ใช้'],a:0,w:'ความชัน = ΔV/Δt คือปริมาตรแก๊สที่เพิ่มขึ้นต่อหนึ่งหน่วยเวลา ถ้ากราฟชันมากแสดงว่า H₂ เกิดได้เร็ว (คู่มือครู หน้า 77)'},
+ {q:'จากตัวอย่างผล H₂ ที่เกิดทุก 1 mL ใช้เวลา 10 s ในช่วงแรก (0–1 mL) แต่ 1 mL สุดท้าย (9–10 mL) ใช้เวลา 53 s (252→305 s) ข้อสรุปใดถูกต้อง',o:['H₂ เกิดเร็วในช่วงแรกและช้าลงเมื่อเวลาผ่านไป','H₂ เกิดด้วยอัตราคงที่ตลอดการทดลอง','H₂ เกิดช้าในช่วงแรกและเร็วขึ้นในช่วงท้าย','ไม่สามารถเปรียบเทียบอัตราได้'],a:0,w:'อัตราเฉลี่ยช่วงแรก = 1 mL / 10 s = 0.10 mL/s ส่วนช่วงท้าย = 1 mL / 53 s ≈ 0.019 mL/s จึงช้าลงมาก'},
+ {q:'ปฏิกิริยา CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g) ควรติดตามความก้าวหน้าโดยวัดสารใดเป็นสะดวกที่สุด',o:['CO₂ เพราะเป็นแก๊ส วัดปริมาตรได้ง่าย','CaCl₂ เพราะละลายในน้ำ','H₂O เพราะเป็นของเหลว','CaCO₃ เพราะเป็นของแข็งสีขาว'],a:0,w:'คู่มือครู หน้า 78 ให้เลือกสารที่วัดได้สะดวกที่สุด ในปฏิกิริยานี้คือ CO₂ ที่แยกออกมาเป็นแก๊ส'}],
+'8.2':[
+ {q:'2NO₂ → 2NO + O₂ ถ้าอัตราการเปลี่ยนแปลงปริมาณของ O₂ ในช่วงหนึ่งเท่ากับ 5.90 × 10⁻⁶ M s⁻¹ อัตราการเกิดปฏิกิริยา (r) ในช่วงนั้นเป็นเท่าใด',o:['5.90 × 10⁻⁶ M s⁻¹','1.18 × 10⁻⁵ M s⁻¹','2.95 × 10⁻⁶ M s⁻¹','5.90 × 10⁻⁷ M s⁻¹'],a:0,w:'สัมประสิทธิ์ของ O₂ เป็น 1 จึง r = Δ[O₂]/Δt ÷ 1 = 5.90 × 10⁻⁶ M s⁻¹ (ถ้าคิดจาก NO₂ ต้องหารด้วย 2 ได้ค่าเดียวกันโดยประมาณ)'},
+ {q:'การเผาไหม้มีเทน CH₄ + 2O₂ → CO₂ + 2H₂O ที่ r = 0.936 M s⁻¹ อัตราการเปลี่ยนแปลงปริมาณของ H₂O เท่ากับเท่าใด',o:['1.87 M s⁻¹','0.936 M s⁻¹','0.468 M s⁻¹','3.74 M s⁻¹'],a:0,w:'Δ[H₂O]/Δt = สัมประสิทธิ์ × r = 2 × 0.936 = 1.87 M s⁻¹ (ตรวจสอบความเข้าใจ คู่มือครู หน้า 80–81)'},
+ {q:'N₂ + 3H₂ → 2NH₃ ถ้า H₂ ลดลงด้วยอัตรา 0.30 M s⁻¹ (ตัวอย่างของผู้จัดทำหน้า) NH₃ เพิ่มขึ้นด้วยอัตราเท่าใด',o:['0.20 M s⁻¹','0.30 M s⁻¹','0.45 M s⁻¹','0.10 M s⁻¹'],a:0,w:'r = 0.30/3 = 0.10 M s⁻¹ แล้ว Δ[NH₃]/Δt = 2 × 0.10 = 0.20 M s⁻¹'}],
+'8.3':[
+ {q:'จาก 2A → 4B + C ที่ 0–600 s [A] ลดจาก 0.0200 เป็น 0.0072 M อัตราการเกิดปฏิกิริยาเฉลี่ยเป็นเท่าใด',o:['1.07 × 10⁻⁵ M s⁻¹','2.13 × 10⁻⁵ M s⁻¹','4.27 × 10⁻⁵ M s⁻¹','1.07 × 10⁻⁶ M s⁻¹'],a:0,w:'r = −(1/2)(0.0072 − 0.0200)/(600 − 0) = 1.07 × 10⁻⁵ M s⁻¹ (คู่มือครู หน้า 86)'},
+ {q:'ถ้าวัด [C] ที่ 300 s ได้ 0.0040 M [A] ที่เวลาเดียวกันเป็นเท่าใด (2A → 4B + C, [A]₀ = 0.0200 M)',o:['0.0120 M','0.0160 M','0.0080 M','0.0036 M'],a:0,w:'C เกิด 0.0040 M ต้องใช้ A ไป 2 × 0.0040 = 0.0080 M จึงเหลือ 0.0200 − 0.0080 = 0.0120 M (และ B = 4 × 0.0040 = 0.016 M)'},
+ {q:'อัตราการเกิดปฏิกิริยา ณ เวลาหนึ่ง หาได้จากอะไร',o:['ความชันของเส้นสัมผัสกราฟที่เวลานั้น หารด้วยสัมประสิทธิ์ของสาร','ความชันของเส้นตรงที่ลากจากจุดเริ่มต้นถึงจุดสิ้นสุด','ค่าความเข้มข้นที่เวลานั้น','ผลต่างของความเข้มข้นเริ่มต้นกับสุดท้าย'],a:0,w:'อัตรา ณ ขณะหนึ่งคือความชันที่จุดนั้นของกราฟ (เส้นสัมผัส) ส่วนเส้นตรงเริ่มต้น–สิ้นสุดให้อัตราเฉลี่ย (คู่มือครู หน้า 82)'}],
+'8.4':[
+ {q:'บีกเกอร์ 1 (ผง CaCO₃ + HCl 0.2 M, 48 s) กับ 2 (ผง CaCO₃ + HCl 0.5 M, 36 s) สรุปได้ว่าอย่างไร',o:['เพิ่มความเข้มข้นของ HCl ทำให้ปฏิกิริยาเร็วขึ้น','เพิ่มความเข้มข้นทำให้ปฏิกิริยาช้าลง','ความเข้มข้นไม่มีผล','ผลขึ้นกับปริมาตรสารละลายเท่านั้น'],a:0,w:'ตัวแปรที่ต่างกันมีแค่ความเข้มข้น เมื่อเข้มข้นขึ้นใช้เวลาน้อยลง แสดงว่าอัตราเพิ่ม (คู่มือครู หน้า 104)'},
+ {q:'ทำไม CaCO₃ แบบผงจึงทำปฏิกิริยากับ HCl ได้เร็วกว่าแบบเม็ด (ที่มวลเท่ากัน)',o:['พื้นที่ผิวสัมผัสกับกรดมากกว่า จึงชนกันได้บ่อยขึ้น','ผงมีพลังงานก่อกัมมันต์ต่ำกว่าเม็ด','ผงมีความเข้มข้นมากกว่า','ผงเป็นตัวเร่งปฏิกิริยา'],a:0,w:'การบดให้ละเอียดเพิ่มพื้นที่ผิวของสารตั้งต้นที่เป็นของแข็ง โอกาสที่อนุภาคกรดชนผิวของแข็งจึงมากขึ้น (ชนิดสารเดิม พลังงานก่อกัมมันต์เท่าเดิม)'},
+ {q:'เมื่อเพิ่มอุณหภูมิ ปฏิกิริยา (ทั้งคายและดูดพลังงาน) เกิดเร็วขึ้นเพราะเหตุใด',o:['อนุภาคมีพลังงานจลน์สูงขึ้น มีสัดส่วนของอนุภาคที่พลังงานพอจะเกิดปฏิกิริยามากขึ้น และชนกันบ่อยขึ้น','พลังงานก่อกัมมันต์ของปฏิกิริยาลดลง','จำนวนอนุภาคสารตั้งต้นเพิ่มขึ้น','ปฏิกิริยาเปลี่ยนจากดูดเป็นคายพลังงาน'],a:0,w:'อุณหภูมิไม่เปลี่ยนค่าพลังงานก่อกัมมันต์ แต่ทำให้อนุภาคที่มีพลังงานเท่ากับหรือมากกว่านั้นมีมากขึ้น (ความเข้าใจที่ถูกต้อง คู่มือครู หน้า 101)'}],
+'8.5':[
+ {q:'ในการออกแบบการทดลองของกิจกรรม 8.5 ตัวแปรต้นคืออะไร',o:['สารละลาย KI ที่เติมลงไป','ปริมาณฟองแก๊สที่เกิดขึ้น','ความเข้มข้นและปริมาตรของ H₂O₂','อุณหภูมิ'],a:0,w:'ตัวอย่างรายงานในคู่มือกำหนดตัวแปรต้น = KI ตัวแปรตาม = ปริมาณฟองแก๊ส ตัวแปรควบคุม = ความเข้มข้นและปริมาตร H₂O₂ อุณหภูมิ ขนาดภาชนะ เวลา'},
+ {q:'ทำไมจึงสรุปว่า KI เป็นตัวเร่งปฏิกิริยา ไม่ใช่สารตั้งต้น',o:['ทำให้ปฏิกิริยาเร็วขึ้น และเมื่อสิ้นสุดแล้วได้ KI กลับคืน (สารละลายกลับเป็นใสไม่มีสี)','ทำให้ได้ผลิตภัณฑ์เพิ่มขึ้น','ถูกใช้หมดไปในปฏิกิริยา','ทำให้อุณหภูมิลดลง'],a:0,w:'สารละลายเปลี่ยนเป็นสีเหลืองระหว่างปฏิกิริยา แล้วกลับใสเมื่อสิ้นสุด แสดงว่า KI มีส่วนร่วมแต่ถูกคืนกลับมา (คู่มือครู หน้า 109–110)'},
+ {q:'ตัวเร่งปฏิกิริยาเปลี่ยนแปลงสิ่งใดในแผนภาพพลังงาน',o:['ลดพลังงานก่อกัมมันต์ แต่พลังงานของปฏิกิริยา (ΔH) ไม่เปลี่ยน','เพิ่มพลังงานของผลิตภัณฑ์','ลดพลังงานของสารตั้งต้น','เปลี่ยนปฏิกิริยาดูดพลังงานให้เป็นคายพลังงาน'],a:0,w:'ตัวเร่งเปิดเส้นทางที่มีพลังงานก่อกัมมันต์ต่ำกว่า แต่ระดับพลังงานของสารตั้งต้นและผลิตภัณฑ์เท่าเดิม (คู่มือครู หน้า 110)'}]
+};
+/* สลับตำแหน่งตัวเลือกแบบคงที่ (ไม่สุ่ม) เพื่อไม่ให้เฉลยอยู่ข้อแรกทุกข้อ */
+Object.keys(QUIZ).forEach((act,ai)=>QUIZ[act].forEach((q,qi)=>{const n=q.o.length,s=(qi*3+ai*2+1)%n;q.o=q.o.slice(s).concat(q.o.slice(0,s));q.a=(q.a-s+n)%n;}));
+function quizHTML(act){
+  return'<div class="box" id="quiz-'+act.replace('.','_')+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+act.replace('.','_')+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act){
+  const root=$('#quiz-'+act.replace('.','_')),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(act+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.opt',root).forEach(o=>o.classList.remove('good','wrong'));$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>';}
+
+/* ======================= 8.1 ======================= */
+function act81(){
+  return`<h2>กิจกรรม 8.1 การทดลองศึกษาการเกิดแก๊สไฮโดรเจนจากปฏิกิริยาระหว่างโลหะแมกนีเซียมกับกรดไฮโดรคลอริก</h2><p class="sub">อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 75–77 (ตัวอย่างผลการทดลอง)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ศึกษาการเกิดแก๊ส H₂ จากปฏิกิริยา Mg กับ HCl ในช่วงเวลาต่าง ๆ</li><li>เขียนกราฟระหว่างปริมาตรแก๊ส H₂ กับเวลา</li><li>เปรียบเทียบอัตราการเกิดแก๊ส H₂ ในช่วงเวลาต่าง ๆ</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>ลวด Mg ยาว 10 cm · HCl 0.15 M 10 mL · กระบอกตวง 10 mL · หลอดทดลองขนาดกลาง · จุกยางที่เจาะรูพอดีกับปลายกระบอกฉีดยา · กระบอกฉีดยา 10 mL · นาฬิกาจับเวลา · กระดาษทราย · ขาตั้งพร้อมที่จับหลอดทดลอง<p class="small" style="margin:.4rem 0 0"><b>ข้อควรระวัง (ตามหนังสือ):</b> HCl มีฤทธิ์กัดกร่อน ควรสวมถุงมือ</p></div></div>
+  <div class="box"><h3>ลำดับการทำในแบบจำลอง (เรียบเรียงโดยผู้จัดทำหน้าจากรายการอุปกรณ์ ไม่ใช่ข้อความต้นฉบับ)</h3><ol><li>ขัดลวด Mg ด้วยกระดาษทราย ใส่ HCl 0.15 M ปริมาตร 10 mL ลงในหลอดทดลอง</li><li>ใส่ลวด Mg ลงในหลอด ปิดด้วยจุกยางที่ต่อกับกระบอกฉีดยา แล้วเริ่มจับเวลา</li><li>อ่านเวลาที่ลูกสูบเลื่อนผ่านทุก ๆ 1 mL บันทึกลงตาราง แล้วเขียนกราฟ</li></ol></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน</h3><p class="small" style="margin:0 0 6px">ตัวเลขเวลาในตารางคือ <b>ตัวอย่างผลการทดลองของหนังสือ</b> ส่วนจุดเริ่มต้น (0 mL, 0 s) และเส้นโค้งที่ต่อระหว่างจุดเป็นการประมาณของแบบจำลอง (สร้างเส้นโค้งเรียบที่ผ่านทุกจุดข้อมูล)</p>
+   <div class="btns"><button class="btn" type="button" id="play81">▶ เริ่มทดลอง</button><button class="btn alt" type="button" id="end81">ข้ามไปสิ้นสุดการทดลอง</button><button class="btn alt" type="button" id="rst81">เริ่มใหม่</button></div>
+   <div class="rowflex"><label>เวลาที่ผ่านไป: <b id="tm81v">0</b> s<input type="range" id="tm81" min="0" max="305" step="1" value="0" aria-label="เวลาที่ผ่านไป วินาที"></label><span class="read" id="vol81" aria-live="polite">0.00 mL</span></div>
+   <div class="cols"><div class="fig"><svg viewBox="0 0 320 170" id="sy81" role="img" aria-label="หลอดทดลองใส่ Mg กับ HCl ต่อกับกระบอกฉีดยาที่วัดปริมาตรแก๊ส H₂"></svg></div>
+   <div class="tw"><table class="tight"><thead><tr><th>V (mL)</th><th>t (s)</th><th>Δt ของแต่ละ 1 mL (s)</th><th>ΔV/Δt (mL/s)</th></tr></thead><tbody id="tb81"></tbody></table></div></div>
+   <div class="fig" style="margin-top:10px"><div id="g81"></div></div>
+   <div class="legend small"><span class="sw" style="background:#2e7d4f"></span>ข้อมูลที่บันทึก <span class="sw" style="background:#1d6fb8;margin-left:10px"></span>เส้นโค้งประมาณ <span class="sw" style="background:#7a3fb0;margin-left:10px"></span>เส้นตรงเชื่อมสองจุด (อัตราเฉลี่ย) <span class="sw" style="background:#b63f43;margin-left:10px"></span>เส้นแทนเส้นสัมผัส</div></div>
+  <div class="box" id="an81"><h3>วิเคราะห์กราฟ (ทำได้เมื่อทดลองครบ 305 s)</h3><div id="an81msg" class="tip"></div>
+   <div class="rowflex"><label>อัตราเฉลี่ยจากจุดที่<select id="pa81"></select></label><label>ถึงจุดที่<select id="pb81"></select></label></div>
+   <div class="tip" id="avg81" aria-live="polite"></div>
+   <div class="rowflex"><label>อัตรา ณ ขณะหนึ่ง ที่เวลา t = <b id="tt81v">100</b> s<input type="range" id="tt81" min="10" max="295" step="1" value="100"></label><label>ครึ่งความกว้างช่วง h = <b id="hh81v">40</b> s<input type="range" id="hh81" min="2" max="60" step="1" value="40"></label></div>
+   <div class="tip" id="ins81" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามชวนคิดท้ายการทดลอง (ของผู้จัดทำหน้า ไม่ใช่คำถามต้นฉบับ)</h3>${written('w81_1','1. ช่วงเวลาใดที่เกิด H₂ ได้เร็วที่สุดและช้าที่สุด ดูได้จากส่วนใดของกราฟ')}${written('w81_2','2. เขียนสมการเคมีของปฏิกิริยา และอธิบายว่าเหตุใดอัตราการเกิด H₂ จึงลดลงเมื่อเวลาผ่านไป')}</div>
+  <div class="box"><h3>สรุป (ตามหนังสือ)</h3>การเกิด H₂ จากปฏิกิริยา Mg กับ HCl ช่วงแรกเกิดเร็วและค่อย ๆ ช้าลงเมื่อเวลาผ่านไป สัมพันธ์กับความชันของกราฟระหว่างปริมาตร H₂ กับเวลา <div class="eq" style="margin-top:6px">Mg(s) + 2HCl(aq) → MgCl<sub>2</sub>(aq) + H<sub>2</sub>(g)</div></div>
+  ${quizHTML('8.1')}`;
+}
+function wire81(){
+  const D=pchipSlopes(H2T,H2V);let timer=null,last=0;
+  const pa=$('#pa81'),pb=$('#pb81');
+  pa.innerHTML=pb.innerHTML=H2V.map((v,i)=>`<option value="${i}">${v} mL (${H2T[i]} s)</option>`).join('');pa.value='0';pb.value='10';
+  function sy(V,run){
+    const hx=110+V/10*160;let s='<rect x="30" y="46" width="50" height="104" rx="22" fill="#fff" stroke="#6b7a72" stroke-width="2"/><path d="M32 86H78V128a21 21 0 0 1-21 21H53a21 21 0 0 1-21-21Z" fill="#dfeef6" opacity=".85"/>';
+    s+='<line x1="42" y1="132" x2="70" y2="110" stroke="#9aa3a0" stroke-width="5" stroke-linecap="round"/><rect x="26" y="38" width="58" height="10" rx="3" fill="#c0894f"/>';
+    s+='<path d="M55 38V16H110" fill="none" stroke="#6b7a72" stroke-width="3"/><rect x="110" y="4" width="162" height="26" fill="#eaf6ef" stroke="#6b7a72" stroke-width="2"/>';
+    s+=`<rect x="111" y="5" width="${Math.max(0,hx-111)}" height="24" fill="#cfe9d8"/>`;
+    for(let i=0;i<=10;i++){const x=110+i*16;s+=`<line x1="${x}" y1="${i%5===0?30:25}" x2="${x}" y2="${i%5===0?39:30}" stroke="#5d6b82"/>${i%5===0?`<text x="${x}" y="51" text-anchor="middle" font-size="10" fill="#5d6b82">${i}</text>`:''}`;}
+    s+=`<rect x="${hx-3}" y="2" width="6" height="30" rx="2" fill="#7a8a82"/><line x1="${hx}" y1="17" x2="312" y2="17" stroke="#7a8a82" stroke-width="4"/><rect x="306" y="8" width="8" height="18" rx="2" fill="#7a8a82"/>`;
+    if(run)for(let i=0;i<5;i++)s+=`<circle class="bub" cx="${40+i*8}" cy="${120-i*6}" r="2.6" fill="#fff" stroke="#8fb5c6" style="animation-delay:${i*.2}s"/>`;
+    s+='<text x="160" y="70" font-size="11" fill="#5d6b82">แก๊ส H₂ ดันลูกสูบ (อ่านที่ mL)</text><text x="55" y="165" text-anchor="middle" font-size="11" fill="#5d6b82">Mg + HCl 0.15 M</text>';
+    $('#sy81').innerHTML=s;
+  }
+  function draw(){
+    const t=+$('#tm81').value,V=pchipEval(H2T,H2V,t,D);$('#tm81v').textContent=t;$('#vol81').textContent=V.toFixed(2)+' mL';
+    sy(V,t>0&&t<305);
+    $('#tb81').innerHTML=H2V.slice(1).map((v,k)=>{const i=k+1,ok=t>=H2T[i],dt=H2T[i]-H2T[i-1];return`<tr><td>${v}</td><td>${ok?H2T[i]:'—'}</td><td>${ok?dt:'—'}</td><td>${ok?(1/dt).toFixed(3):'—'}</td></tr>`;}).join('');
+    const rec=H2T.map((x,i)=>i).filter(i=>H2T[i]<=t);
+    const series=[];if(t>0){const c=curvePts(H2T,H2V,0,t);series.push({xs:c.xs,ys:c.ys,color:'#1d6fb8',line:true});}
+    series.push({xs:rec.map(i=>H2T[i]),ys:rec.map(i=>H2V[i]),color:'#2e7d4f',dots:true});
+    const segs=[],full=t>=305;
+    $('#an81msg').textContent=full?'ข้อมูลครบแล้ว ลองเลือกช่วงเวลาและเลื่อนแถบด้านล่างเพื่อหาอัตรา':'เลื่อนเวลา (หรือกด "ข้ามไปสิ้นสุดการทดลอง") ให้ถึง 305 s ก่อน แล้วจึงวิเคราะห์ได้';
+    ['pa81','pb81','tt81','hh81'].forEach(id=>$('#'+id).disabled=!full);
+    const marks=[];
+    if(full){
+      let a=+pa.value,b=+pb.value;
+      if(a===b){$('#avg81').innerHTML='เลือกสองจุดที่ต่างกัน';}
+      else{if(a>b){const x=a;a=b;b=x;}const r=(H2V[b]-H2V[a])/(H2T[b]-H2T[a]);
+        $('#avg81').innerHTML=`อัตราเฉลี่ย ช่วง ${H2T[a]}–${H2T[b]} s = ΔV/Δt = (${H2V[b]} − ${H2V[a]}) mL ÷ (${H2T[b]} − ${H2T[a]}) s = <b>${r.toFixed(4)} mL/s</b>`;
+        segs.push({x1:H2T[a],y1:H2V[a],x2:H2T[b],y2:H2V[b],color:'#7a3fb0',dash:true});}
+      const tt=+$('#tt81').value,h=+$('#hh81').value;$('#tt81v').textContent=tt;$('#hh81v').textContent=h;
+      const t1=Math.max(0,tt-h),t2=Math.min(305,tt+h),v1=pchipEval(H2T,H2V,t1,D),v2=pchipEval(H2T,H2V,t2,D),sl=(v2-v1)/(t2-t1),tan=pchipDeriv(H2T,H2V,tt,D);
+      $('#ins81').innerHTML=`ที่ t = ${tt} s: เส้นตรงที่ผ่านจุดที่ t = ${t1.toFixed(0)} และ ${t2.toFixed(0)} s มีความชัน <b>${sl.toFixed(4)} mL/s</b> · ความชันของเส้นสัมผัสบนเส้นโค้งประมาณ ≈ ${tan.toFixed(4)} mL/s (ช่วงแคบลง ค่าทั้งสองใกล้กันมากขึ้น)`;
+      const vm=pchipEval(H2T,H2V,tt,D);segs.push({x1:t1,y1:v1,x2:t2,y2:v2,color:'#b63f43'});marks.push({x:tt,y:vm});
+    }else{$('#avg81').textContent='';$('#ins81').textContent='';}
+    $('#g81').innerHTML=chart({xmax:350,ymax:10,xstep:50,ystep:1,xl:'เวลา (s)',yl:'ปริมาตร H₂ (mL)',series,segs,marks,label:'กราฟปริมาตร H₂ กับเวลา'});
+  }
+  function stop(){if(timer){cancelAnimationFrame(timer);timer=null;}$('#play81').textContent='▶ เริ่มทดลอง';}
+  function tick(ts){if(!last)last=ts;const dt=(ts-last)/1000;last=ts;const sl=$('#tm81');sl.value=Math.min(305,+sl.value+dt*25);draw();if(+sl.value>=305){stop();return;}timer=requestAnimationFrame(tick);}
+  $('#play81').onclick=()=>{if(timer){stop();return;}if(RM()){$('#tm81').value=305;draw();return;}if(+$('#tm81').value>=305)$('#tm81').value=0;last=0;$('#play81').textContent='⏸ หยุด';timer=requestAnimationFrame(tick);};
+  $('#end81').onclick=()=>{stop();$('#tm81').value=305;draw();};
+  $('#rst81').onclick=()=>{stop();$('#tm81').value=0;draw();};
+  ['tm81','pa81','pb81','tt81','hh81'].forEach(id=>$('#'+id).addEventListener('input',()=>{if(id==='tm81')stop();draw();}));
+  CLEAN.push(stop);wireQuiz('8.1');draw();
+}
+/* ======================= 8.2 ======================= */
+function act82(){
+  return`<h2>กิจกรรม 8.2 การคำนวณอัตราการเปลี่ยนแปลงปริมาณของสารที่เวลาต่าง ๆ</h2><p class="sub">อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 79–83 (ตัวอย่างผลการทำกิจกรรม และตรวจสอบความเข้าใจ)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>คำนวณอัตราการเปลี่ยนแปลงปริมาณของสารในแต่ละช่วงเวลา</li><li>เปรียบเทียบอัตราการเปลี่ยนแปลงปริมาณของสารแต่ละชนิดในช่วงเวลาเดียวกัน</li></ol></div>
+  <div class="box"><h3>ปฏิกิริยาที่ศึกษา</h3><div class="eq">2NO<sub>2</sub>(g) → 2NO(g) + O<sub>2</sub>(g)</div><p class="small" style="margin:.4rem 0 0">กิจกรรมนี้ไม่ใช้อุปกรณ์ เป็นการคำนวณจากข้อมูลความเข้มข้น ตัวเลขอัตราในตารางด้านล่างเป็นค่าตามตัวอย่างในหนังสือ</p></div></div>
+  <div class="notice" style="margin:8px 0"><b>ข้อสมมติของแบบจำลอง</b> ตารางความเข้มข้นต้นฉบับ (ตาราง 8.1) ไม่อยู่ในเอกสารที่ใช้อ้างอิง ผู้จัดทำหน้าจึงสร้างค่าความเข้มข้น ณ ปลายแต่ละช่วงเวลาย้อนจากอัตราในตัวอย่างผลของหนังสือ โดยสมมติ [NO<sub>2</sub>]<sub>0</sub> = 0.0100 M, [NO]<sub>0</sub> = [O<sub>2</sub>]<sub>0</sub> = 0 ผลที่คำนวณกลับจึงตรงกับตารางอัตราของหนังสือ แต่ตัวความเข้มข้นเองไม่ใช่ค่าจากหนังสือ</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: คำนวณอัตราการเปลี่ยนแปลงของแต่ละสาร</h3>
+   <div class="rowflex"><label>ช่วงเวลา<select id="iv82">${B82.slice(0,-1).map((b,i)=>`<option value="${i}">${b} – ${B82[i+1]} s</option>`).join('')}</select></label></div>
+   <div class="btns" id="sp82" role="group" aria-label="เลือกสาร">${['NO2','NO','O2'].map((k,i)=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${i===0}">${NAME82[k]}</button>`).join('')}</div>
+   <div class="tip" id="calc82" aria-live="polite"></div>
+   <div class="tw"><table class="tight"><thead><tr><th rowspan="2">ช่วงเวลา (s)</th><th colspan="3">อัตราการเปลี่ยนแปลงปริมาณของสาร (M s<sup>−1</sup>)</th><th colspan="3">หารด้วยสัมประสิทธิ์ (M s<sup>−1</sup>)</th></tr><tr><th>NO<sub>2</sub></th><th>NO</th><th>O<sub>2</sub></th><th>NO<sub>2</sub> ÷ 2</th><th>NO ÷ 2</th><th>O<sub>2</sub> ÷ 1</th></tr></thead><tbody id="tb82"></tbody></table></div>
+   <p class="small">ตัวเลขชุดซ้ายเป็นค่าตามตัวอย่างของหนังสือ ชุดขวาคำนวณโดยหน้านี้ จะเห็นว่าค่าในแถวเดียวกันใกล้เคียงกัน (ต่างกันเล็กน้อยในช่วงท้าย ๆ เพราะค่าที่วัดมีความคลาดเคลื่อน)</p>
+   <div class="fig"><div id="g82"></div></div>
+   <div class="btns" id="sh82" role="group" aria-label="เลือกสารที่แสดงในกราฟ">${['NO2','NO','O2'].map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="true">${NAME82[k]}</button>`).join('')}</div></div>
+  <div class="lab"><h3>ตัวช่วยคำนวณ: จากอัตราการเกิดปฏิกิริยา (r) เป็นอัตราการเปลี่ยนแปลงของแต่ละสาร</h3>
+   <div class="rowflex"><label>สมการเคมี<select id="pre82"><option value="0">CH₄ + 2O₂ → CO₂ + 2H₂O (ข้อตรวจสอบความเข้าใจ)</option><option value="1">N₂ + 3H₂ → 2NH₃</option><option value="2">กำหนดเอง</option></select></label></div>
+   <div class="rowflex">${['A','B','C','D'].map((n,i)=>`<label><span id="nm82_${i}">${n}</span> สัมประสิทธิ์<input type="number" id="nu82_${i}" min="0" step="1" value="1"></label>`).join('')}<label>r (M s<sup>−1</sup>)<input type="number" id="r82" step="any" value="0.936"></label></div>
+   <div class="tip" id="out82" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามท้ายกิจกรรม (ของผู้จัดทำหน้า ไม่ใช่คำถามต้นฉบับ)</h3>${written('w82_1','1. ในช่วงเวลาเดียวกัน อัตราการเปลี่ยนแปลงของ NO₂, NO และ O₂ เปรียบเทียบกันอย่างไร เพราะเหตุใด')}${written('w82_2','2. อัตราการเปลี่ยนแปลงของสารตั้งต้นเป็นค่าลบ แต่เหตุใดเมื่อเขียนสมการอัตราการเกิดปฏิกิริยาจึงใส่เครื่องหมายลบนำหน้า')}</div>
+  <div class="box"><h3>สรุป (ตามหนังสือ)</h3>ในช่วงเวลาเดียวกัน อัตราการเปลี่ยนแปลงปริมาณของ NO<sub>2</sub> ใกล้เคียงกับ NO และมากกว่าของ O<sub>2</sub> ประมาณ 2 เท่า เมื่อหารด้วยสัมประสิทธิ์ในสมการที่ดุลแล้ว จะได้ค่าเท่ากัน คืออัตราการเกิดปฏิกิริยา <div class="eq" style="margin-top:6px">r = −(1/a)·Δ[A]/Δt = −(1/b)·Δ[B]/Δt = (1/c)·Δ[C]/Δt = (1/d)·Δ[D]/Δt</div></div>
+  ${quizHTML('8.2')}`;
+}
+function wire82(){
+  let sel='NO2';const shown={NO2:true,NO:true,O2:true},COL={NO2:'#b63f43',NO:'#1d6fb8',O2:'#d9822b'};
+  function recalc(k,i){return avgRate(C82[k][i],C82[k][i+1],B82[i],B82[i+1],1,DIR82[k]);}
+  function draw(){
+    const i=+$('#iv82').value,k=sel,c1=C82[k][i],c2=C82[k][i+1],t1=B82[i],t2=B82[i+1],dir=DIR82[k],nm=NAME82[k],nu=NU82[k];
+    const rate=recalc(k,i);
+    $('#calc82').innerHTML=`${dir<0?'−':''}Δ[${nm}]/Δt = ${dir<0?'−':''}(${c2.toFixed(5)} − ${c1.toFixed(5)}) M ÷ (${t2} − ${t1}) s = <b>${sci(rate,2)} M s<sup>−1</sup></b> (ตัวอย่างในหนังสือ: ${sci(R82[k][i],2)}) · r = ${sci(rate,2)} ÷ ${nu} = <b>${sci(rate/nu,2)} M s<sup>−1</sup></b>`;
+    $('#tb82').innerHTML=B82.slice(0,-1).map((b,j)=>{const hl=j===i?' style="background:#e3f3ea"':'';return`<tr${hl}><td>${b} – ${B82[j+1]}</td>${['NO2','NO','O2'].map(q=>`<td>${sci(R82[q][j],2)}</td>`).join('')}${['NO2','NO','O2'].map(q=>`<td>${sci(recalc(q,j)/NU82[q],2)}</td>`).join('')}</tr>`;}).join('');
+    const series=['NO2','NO','O2'].filter(q=>shown[q]).map(q=>({xs:B82,ys:C82[q],color:COL[q],line:true,dots:true}));
+    $('#g82').innerHTML=chart({xmax:2000,ymax:0.010,xstep:500,ystep:0.002,xl:'เวลา (s)',yl:'ความเข้มข้น (M)',series,segs:[{x1:t1,y1:c1,x2:t2,y2:c2,color:'#172033',dash:true}],fy:v=>v.toFixed(3),label:'กราฟความเข้มข้นของ NO₂ NO และ O₂ กับเวลา (ค่าที่สร้างจากอัตราในหนังสือ)'});
+  }
+  $('#iv82').onchange=draw;
+  $$('#sp82 .chip').forEach(b=>b.onclick=()=>{sel=b.dataset.k;$$('#sp82 .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw();});
+  $$('#sh82 .chip').forEach(b=>b.onclick=()=>{const k=b.dataset.k;shown[k]=!shown[k];b.setAttribute('aria-pressed',String(shown[k]));draw();});
+  const PRE=[{n:['CH₄','O₂','CO₂','H₂O'],nu:[1,2,1,2],r:0.936},{n:['N₂','H₂','NH₃','—'],nu:[1,3,2,0],r:0.1},{n:['A','B','C','D'],nu:[1,1,1,1],r:0.01}];
+  function out(){
+    const p=+$('#pre82').value,nm=PRE[p].n,r=parseFloat($('#r82').value);let h='';
+    nm.forEach((n,i)=>{$('#nm82_'+i).textContent=n;const nu=parseFloat($('#nu82_'+i).value);if(nu>0&&Number.isFinite(r)){const re=i<2;h+=`<div>${re?'−':''}Δ[${n}]/Δt = ${nu} × r = ${nu} × ${r} = <b>${+(nu*r).toPrecision(3)} M s<sup>−1</sup></b> ${re?'(สารตั้งต้น: ความเข้มข้นลดลง)':'(ผลิตภัณฑ์: ความเข้มข้นเพิ่มขึ้น)'}</div>`;}});
+    $('#out82').innerHTML=h||'กรอก r และสัมประสิทธิ์ที่มากกว่า 0';
+  }
+  $('#pre82').onchange=()=>{const p=PRE[+$('#pre82').value];p.nu.forEach((v,i)=>$('#nu82_'+i).value=v);$('#r82').value=p.r;out();};
+  ['nu82_0','nu82_1','nu82_2','nu82_3','r82'].forEach(id=>$('#'+id).addEventListener('input',out));
+  wireQuiz('8.2');draw();out();
+}
+
+/* ======================= 8.3 ======================= */
+function act83(){
+  return`<h2>กิจกรรม 8.3 การเขียนกราฟแสดงการเปลี่ยนแปลงปริมาณของสารที่ไม่ได้วัดในปฏิกิริยาเคมี และการคำนวณอัตราการเกิดปฏิกิริยาเคมี</h2><p class="sub">อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 85–87 (ตัวอย่างผลการทำกิจกรรม)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3>เขียนกราฟแสดงการเปลี่ยนแปลงปริมาณของสารที่ไม่ได้วัดในปฏิกิริยาเคมี และคำนวณอัตราการเกิดปฏิกิริยาเคมี</div>
+  <div class="box"><h3>วัสดุและอุปกรณ์ (ตามหนังสือ)</h3>กระดาษกราฟ (ในหน้านี้ใช้กราฟบนจอแทน)<div class="eq" style="margin-top:6px">2A → 4B + C</div><p class="small" style="margin:.3rem 0 0">กำหนดความเข้มข้นของ C ที่เวลาต่าง ๆ ให้ [A]<sub>0</sub> = 0.0200 M และ [B]<sub>0</sub> = [C]<sub>0</sub> = 0</p></div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน</h3>
+   <p class="small" style="margin:0 0 6px"><b>ขั้นที่ 1</b> คำนวณ [A] และ [B] จาก [C]: A ลดลง 2 เท่าของที่ C เพิ่ม และ B เพิ่ม 4 เท่าของ C</p>
+   <div class="btns"><button class="btn" type="button" id="cal83">คำนวณ [A] และ [B] จาก [C]</button></div>
+   <div class="tw"><table class="tight"><thead><tr><th>t (s)</th><th>[C] (M) ให้มา</th><th>[A] = 0.0200 − 2[C]</th><th>[A] หนังสือ</th><th>[B] = 4[C]</th><th>[B] หนังสือ</th></tr></thead><tbody id="tb83"></tbody></table></div>
+   <p class="small">ค่า [A] ที่คำนวณตรงกับตารางหนังสือทุกแถว ส่วน [B] ที่คำนวณได้ต่างจากตารางหนังสือเล็กน้อยที่ 200, 400, 500 และ 600 s (เช่น 0.0116 กับ 0.012) เพราะตารางหนังสือปัดเป็นทศนิยมน้อยกว่า กราฟและการคำนวณอัตราด้านล่างใช้ค่าตามตารางหนังสือ</p>
+   <div class="btns" id="sh83" role="group" aria-label="เลือกสารที่แสดงในกราฟ">${['A','B','C'].map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="true">[${k}]</button>`).join('')}</div>
+   <div class="fig"><div id="g83"></div></div>
+   <p class="small" style="margin:10px 0 4px"><b>ขั้นที่ 2</b> อัตราการเกิดปฏิกิริยาเฉลี่ย r = ±(1/ค่าสัมประสิทธิ์) · Δ[สาร]/Δt</p>
+   <div class="rowflex"><label>จาก t =<select id="a83"></select></label><label>ถึง t =<select id="b83"></select></label></div>
+   <div class="tip" id="avg83" aria-live="polite"></div>
+   <p class="small" style="margin:10px 0 4px"><b>ขั้นที่ 3</b> อัตราการเกิดปฏิกิริยา ณ ขณะหนึ่ง = ความชันของเส้นสัมผัส ÷ ค่าสัมประสิทธิ์</p>
+   <div class="btns" id="ss83" role="group" aria-label="เลือกสารสำหรับเส้นสัมผัส">${['A','B','C'].map((k,i)=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${k==='B'}">ใช้สาร ${k}</button>`).join('')}</div>
+   <div class="rowflex"><label>เวลา t = <b id="tt83v">340</b> s<input type="range" id="tt83" min="20" max="580" step="1" value="340"></label><label>ครึ่งความกว้างช่วง h = <b id="hh83v">65</b> s<input type="range" id="hh83" min="5" max="100" step="1" value="65"></label></div>
+   <div class="tip" id="ins83" aria-live="polite"></div></div>
+  <div class="box"><h3>ตัวอย่างในหนังสือ (คู่มือครู หน้า 86–87)</h3><ul><li>อัตราเฉลี่ย 0–600 s จากสาร A: r = −(1/2)(0.0072 − 0.0200)/(600 − 0) = <b>1.07 × 10<sup>−5</sup> M s<sup>−1</sup></b></li><li>อัตรา ณ 340 s จากเส้นสัมผัสของสาร B ที่ผ่านจุด (270 s, 0.0150 M) และ (400 s, 0.0200 M): r = (1/4)(0.0200 − 0.0150)/(400 − 270) = <b>9.62 × 10<sup>−6</sup> M s<sup>−1</sup></b> (หนังสือระบุว่านักเรียนอาจตอบต่างได้ ขึ้นกับการลากเส้นสัมผัส)</li></ul></div>
+  <div class="box"><h3>คำถามท้ายกิจกรรม (ของผู้จัดทำหน้า ไม่ใช่คำถามต้นฉบับ)</h3>${written('w83_1','1. ถ้าวัดความเข้มข้นของสาร C ได้เพียงสารเดียว จะหาความเข้มข้นของ A และ B ที่เวลาต่าง ๆ ได้อย่างไร')}${written('w83_2','2. อัตราการเกิดปฏิกิริยา ณ 340 s ที่คำนวณจากสาร A, B และ C ควรเท่ากันหรือไม่ เพราะเหตุใด')}</div>
+  <div class="box"><h3>สรุป (ตามหนังสือ)</h3>เมื่อทราบการเปลี่ยนแปลงปริมาณของสารใดสารหนึ่ง ก็เขียนกราฟการเปลี่ยนแปลงของสารที่ไม่ได้วัดได้ โดยใช้ความสัมพันธ์ของเลขสัมประสิทธิ์ในสมการเคมี</div>
+  ${quizHTML('8.3')}`;
+}
+function wire83(){
+  const shown={A:true,B:true,C:true};let selT='B',calc=false;const DS={};['A','B','C'].forEach(k=>DS[k]=pchipSlopes(T83,SP83[k].ys));
+  const a=$('#a83'),b=$('#b83');a.innerHTML=b.innerHTML=T83.map((t,i)=>`<option value="${i}">${t} s</option>`).join('');a.value='0';b.value='6';
+  function draw(){
+    $('#tb83').innerHTML=T83.map((t,i)=>`<tr><td>${t}</td><td>${C83[i].toFixed(4)}</td><td>${calc?(0.0200-2*C83[i]).toFixed(4):'?'}</td><td>${A83[i].toFixed(4)}</td><td>${calc?(4*C83[i]).toFixed(4):'?'}</td><td>${B83[i]}</td></tr>`).join('');
+    const series=['A','B','C'].filter(k=>shown[k]).map(k=>{const c=curvePts(T83,SP83[k].ys,0,600);return[{xs:c.xs,ys:c.ys,color:SP83[k].color,line:true,dash:true},{xs:T83,ys:SP83[k].ys,color:SP83[k].color,dots:true}];}).flat();
+    const segs=[],i1=+a.value,i2=+b.value;
+    let lo=Math.min(i1,i2),hi=Math.max(i1,i2);
+    if(lo===hi)$('#avg83').textContent='เลือกสองเวลาที่ต่างกัน';
+    else{let h=`ช่วง ${T83[lo]}–${T83[hi]} s: `;h+=['A','B','C'].map(k=>{const S=SP83[k],r=avgRate(S.ys[lo],S.ys[hi],T83[lo],T83[hi],S.nu,S.dir);return`จาก ${k}: r = ${S.dir<0?'−':''}(1/${S.nu})·Δ[${k}]/Δt = <b>${sci(r,2)}</b>`;}).join(' · ');$('#avg83').innerHTML=h+' M s<sup>−1</sup> (ค่าจากสารต่างกันใกล้เคียงกัน ต่างเล็กน้อยจากการปัดค่าในตาราง)';
+      const S=SP83[selT];segs.push({x1:T83[lo],y1:S.ys[lo],x2:T83[hi],y2:S.ys[hi],color:'#7a3fb0',dash:true});}
+    const tt=+$('#tt83').value,h=+$('#hh83').value;$('#tt83v').textContent=tt;$('#hh83v').textContent=h;
+    const S=SP83[selT],t1=Math.max(0,tt-h),t2=Math.min(600,tt+h),y1=pchipEval(T83,S.ys,t1,DS[selT]),y2=pchipEval(T83,S.ys,t2,DS[selT]);
+    const r=S.dir*(y2-y1)/(S.nu*(t2-t1)),rt=S.dir*pchipDeriv(T83,S.ys,tt,DS[selT])/S.nu;
+    $('#ins83').innerHTML=`ที่ t = ${tt} s จากสาร ${selT}: ความชันของเส้นแดง (ผ่านจุดที่ t = ${t1.toFixed(0)} และ ${t2.toFixed(0)} s) ÷ ${S.nu} → r = <b>${sci(r,2)} M s<sup>−1</sup></b> · จากเส้นสัมผัสของเส้นโค้งประมาณ ≈ ${sci(rt,2)} M s<sup>−1</sup> · ค่าในหนังสือที่ 340 s (สาร B) = 9.62 × 10<sup>−6</sup> M s<sup>−1</sup>`;
+    segs.push({x1:t1,y1,x2:t2,y2,color:'#b63f43'});
+    $('#g83').innerHTML=chart({xmax:600,ymax:0.028,xstep:100,ystep:0.004,xl:'เวลา (s)',yl:'ความเข้มข้น (M)',series,segs,marks:[{x:tt,y:pchipEval(T83,S.ys,tt,DS[selT])}],fy:v=>v.toFixed(3),label:'กราฟความเข้มข้นของ A B และ C กับเวลา'});
+  }
+  $('#cal83').onclick=()=>{calc=true;draw();};
+  $$('#sh83 .chip').forEach(x=>x.onclick=()=>{const k=x.dataset.k;shown[k]=!shown[k];x.setAttribute('aria-pressed',String(shown[k]));draw();});
+  $$('#ss83 .chip').forEach(x=>x.onclick=()=>{selT=x.dataset.k;shown[selT]=true;$$('#sh83 .chip').forEach(y=>y.setAttribute('aria-pressed',String(shown[y.dataset.k])));$$('#ss83 .chip').forEach(y=>y.setAttribute('aria-pressed',String(y===x)));draw();});
+  ['a83','b83','tt83','hh83'].forEach(id=>$('#'+id).addEventListener('input',draw));
+  wireQuiz('8.3');draw();
+}
+/* ======================= แบบจำลองการชนของอนุภาค (ใช้ใน 8.4 และ 8.5) ======================= */
+/* ข้อสมมติ: อนุภาค A กับ B ชนกัน; เกิดปฏิกิริยาเมื่อทิศทางเหมาะสม (สุ่ม 50%) และพลังงานจลน์สัมพัทธ์ ≥ เกณฑ์พลังงานก่อกัมมันต์
+   เกณฑ์ที่ 298 K ปรับให้คู่อนุภาคสุ่มมีพลังงานพอ 20% (ในการนับจริงสัดส่วนที่ชนแล้วเกิดปฏิกิริยาจะต่างไปเพราะอนุภาคเร็วชนบ่อยกว่า) ตัวเร่งลดเกณฑ์ลงครึ่งหนึ่ง; เมื่อเกิดปฏิกิริยา เติมสารตั้งต้นใหม่เพื่อให้ความเข้มข้นคงที่ */
+const CS_P0=0.2,CS_ORI=0.5;
+function collisionSimHTML(p,withCat){
+  return`<div class="lab"><h3>แบบจำลองการชนของอนุภาค (ทฤษฎีการชน)</h3><p class="small" style="margin:0 0 6px">อนุภาค A (น้ำเงิน) ชนกับ B (ส้ม) ถ้าชนในทิศทางเหมาะสมและมีพลังงานจลน์พอ จึงเกิดปฏิกิริยา (แสดงเป็นวงแหวนสีเขียว ภาพนี้ให้ความเข้มข้นของสารตั้งต้นคงที่ตลอดการนับ อนุภาคจึงเด้งออกจากกันต่อไปและไม่หายไป) ตัวเลขเกณฑ์พลังงานและสัดส่วนทิศทาง 50% เป็นค่าสมมติของแบบจำลอง ไม่ได้มาจากหนังสือ</p>
+  <canvas id="${p}cv" width="480" height="240" role="img" aria-label="อนุภาคสารตั้งต้นเคลื่อนที่และชนกันในกล่อง"></canvas>
+  <div class="rowflex"><label>ความเข้มข้นของ A: <b id="${p}cv1">5</b><input type="range" id="${p}c" min="1" max="10" step="1" value="5"></label><label>พื้นที่ผิวของ B: <b id="${p}cv2">3</b><input type="range" id="${p}s" min="1" max="5" step="1" value="3"></label><label>อุณหภูมิ: <b id="${p}cv3">298</b> K<input type="range" id="${p}t" min="273" max="373" step="5" value="298"></label>${withCat?`<label style="flex:0 0 auto;display:flex;gap:8px;align-items:center"><input type="checkbox" id="${p}k"> เติมตัวเร่งปฏิกิริยา</label>`:''}</div>
+  <div class="btns"><button class="btn" type="button" id="${p}go">⏸ หยุด</button><button class="btn alt" type="button" id="${p}rs">เริ่มนับใหม่</button></div>
+  <div class="stat" aria-live="polite"><div>เวลาแบบจำลอง (s)<b id="${p}st">0</b></div><div>ชนทั้งหมด<b id="${p}sc">0</b></div><div>ชนแล้วเกิดปฏิกิริยา<b id="${p}se">0</b></div><div>อัตรา (ครั้ง/s)<b id="${p}sr">0</b></div><div>สัดส่วนชนที่เกิดปฏิกิริยา<b id="${p}sp">–</b></div></div></div>`;
+}
+function collisionSimWire(p,withCat){
+  const cv=$('#'+p+'cv'),g=cv.getContext('2d'),W=cv.width,H=cv.height,RAD=7,SIG0=70,TL=3;
+  let A=[],B=[],cols=0,eff=0,time=0,run=!RM(),raf=null,lastTs=0,flash=[],win=[];
+  const rnd=()=>{let u=0,v=0;while(u===0)u=Math.random();v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};
+  const par=()=>({c:+$('#'+p+'c').value,s:+$('#'+p+'s').value,T:+$('#'+p+'t').value,k:withCat&&$('#'+p+'k').checked});
+  function mk(col){const T=par().T,sg=SIG0*Math.sqrt(T/298);return{x:RAD+Math.random()*(W-2*RAD),y:RAD+Math.random()*(H-2*RAD),vx:rnd()*sg,vy:rnd()*sg,col};}
+  function resize(){const q=par(),nA=4*q.c,nB=4*q.s;while(A.length<nA)A.push(mk('#1d6fb8'));A.length=nA;while(B.length<nB)B.push(mk('#d9822b'));B.length=nB;
+    const sc=Math.sqrt(q.T/298);[...A,...B].forEach(o=>{if(o.sc){const f=sc/o.sc;o.vx*=f;o.vy*=f;}o.sc=sc;});
+    const all=[...A,...B],tgt=2*Math.pow(SIG0*sc,2);let e=0;all.forEach(o=>{e+=o.vx*o.vx+o.vy*o.vy;});if(e>0){const f=Math.sqrt(tgt*all.length/e);all.forEach(o=>{o.vx*=f;o.vy*=f;});} /* ตรึงพลังงานจลน์เฉลี่ยให้ตรงกับอุณหภูมิ (กันความแปรปรวนจากอนุภาคจำนวนน้อย) */
+    $('#'+p+'cv1').textContent=q.c;$('#'+p+'cv2').textContent=q.s;$('#'+p+'cv3').textContent=q.T;}
+  function step(dt){
+    const q=par();
+    const thr0=4*SIG0*SIG0*Math.log(1/CS_P0)*(q.k?0.5:1);
+    [...A,...B].forEach(o=>{o.x+=o.vx*dt;o.y+=o.vy*dt;if(o.x<RAD){o.x=RAD;o.vx=Math.abs(o.vx);}if(o.x>W-RAD){o.x=W-RAD;o.vx=-Math.abs(o.vx);}if(o.y<RAD){o.y=RAD;o.vy=Math.abs(o.vy);}if(o.y>H-RAD){o.y=H-RAD;o.vy=-Math.abs(o.vy);}});
+    for(let i=0;i<A.length;i++)for(let j=0;j<B.length;j++){const a=A[i],b=B[j],dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy;
+      if(d2<4*RAD*RAD&&d2>0){const rvx=b.vx-a.vx,rvy=b.vy-a.vy;if(rvx*dx+rvy*dy<0){/* กำลังเข้าหากัน = ชนจริง */
+        cols++;const ke=rvx*rvx+rvy*rvy,ok=ke>=thr0&&Math.random()<CS_ORI;
+        if(ok){eff++;win.push(time);flash.push({x:(a.x+b.x)/2,y:(a.y+b.y)/2,l:.4});}
+        const d=Math.sqrt(d2),nx=dx/d,ny=dy/d,vn=rvx*nx+rvy*ny;a.vx+=vn*nx;a.vy+=vn*ny;b.vx-=vn*nx;b.vy-=vn*ny;}}}
+    time+=dt;flash.forEach(f=>f.l-=dt);flash=flash.filter(f=>f.l>0);
+  }
+  function rate(){const t0=time-10;win=win.filter(t=>t>=t0);return win.length/Math.min(10,Math.max(time,1e-9));}
+  function paint(){
+    g.clearRect(0,0,W,H);g.fillStyle='#fbfdfc';g.fillRect(0,0,W,H);
+    A.forEach(o=>{g.fillStyle='#1d6fb8';g.beginPath();g.arc(o.x,o.y,RAD,0,6.283);g.fill();});
+    B.forEach(o=>{g.fillStyle='#d9822b';g.beginPath();g.arc(o.x,o.y,RAD,0,6.283);g.fill();});
+    flash.forEach(f=>{g.strokeStyle='rgba(46,125,79,'+(f.l/.4)+')';g.lineWidth=3;g.beginPath();g.arc(f.x,f.y,RAD+(0.4-f.l)*60,0,6.283);g.stroke();});
+    $('#'+p+'st').textContent=time.toFixed(0);$('#'+p+'sc').textContent=cols;$('#'+p+'se').textContent=eff;$('#'+p+'sr').textContent=rate().toFixed(2);$('#'+p+'sp').textContent=cols?(100*eff/cols).toFixed(0)+'%':'–';
+  }
+  function loop(ts){if(!run){raf=null;return;}if(!lastTs)lastTs=ts;let dt=Math.min(.05,(ts-lastTs)/1000);lastTs=ts;for(let k=0;k<TL;k++)step(dt);paint();raf=requestAnimationFrame(loop);}
+  function start(){run=true;lastTs=0;$('#'+p+'go').textContent='⏸ หยุด';if(!raf)raf=requestAnimationFrame(loop);}
+  function stop(){run=false;$('#'+p+'go').textContent='▶ เริ่ม';}
+  function reset(){cols=0;eff=0;time=0;win=[];flash=[];paint();}
+  ['c','s','t'].concat(withCat?['k']:[]).forEach(x=>$('#'+p+x).addEventListener('input',()=>{resize();reset();}));
+  $('#'+p+'go').onclick=()=>{run?stop():start();};$('#'+p+'rs').onclick=reset;
+  CLEAN.push(()=>{run=false;if(raf){cancelAnimationFrame(raf);raf=null;}});
+  resize();paint();if(run)start();else stop();
+  const api={step:n=>{for(let i=0;i<n;i++)step(1/60);paint();},stats:()=>({cols,eff,time}),reset,stop,setParams:(c,s,T,k)=>{$('#'+p+'c').value=c;$('#'+p+'s').value=s;$('#'+p+'t').value=T;if(withCat)$('#'+p+'k').checked=!!k;resize();reset();}};
+  CSIM[p]=api;return api;
+}
+const CSIM={};
+
+/* ======================= แผนภาพพลังงาน ======================= */
+function energySVG(o){ /* o:{R,TS,P,cat(ลด Ea เท่าไร kJ),max,label} */
+  const W=420,H=260,L=56,Y=v=>230-v/(o.max||140)*205,tsC=o.TS-(o.cat||0);
+  const path=ts=>`M${L},${Y(o.R)} H110 C160,${Y(o.R)} 165,${Y(ts)} 215,${Y(ts)} C265,${Y(ts)} 270,${Y(o.P)} 320,${Y(o.P)} H400`;
+  let s=`<line x1="${L}" y1="14" x2="${L}" y2="230" stroke="#5d6b82"/><line x1="${L}" y1="230" x2="410" y2="230" stroke="#5d6b82"/>`;
+  s+=`<text transform="translate(14 125) rotate(-90)" text-anchor="middle" font-size="12" fill="#172033">พลังงาน (kJ)</text><text x="233" y="252" text-anchor="middle" font-size="12" fill="#172033">การดำเนินไปของปฏิกิริยา</text>`;
+  [o.R,o.P,o.TS].forEach(v=>{s+=`<line x1="${L-4}" y1="${Y(v)}" x2="${L}" y2="${Y(v)}" stroke="#5d6b82"/><text x="${L-7}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#5d6b82">${v}</text>`;});
+  s+=`<line x1="${L}" y1="${Y(o.TS)}" x2="215" y2="${Y(o.TS)}" stroke="#c9d4cd" stroke-dasharray="3 3"/>`;
+  s+=`<path d="${path(o.TS)}" fill="none" stroke="#1d6fb8" stroke-width="3"/>`;
+  if(o.cat>0)s+=`<path d="${path(tsC)}" fill="none" stroke="#2e7d4f" stroke-width="3" stroke-dasharray="7 5"/>`;
+  const ea=tsC-o.R;
+  s+=`<line x1="150" y1="${Y(o.R)}" x2="150" y2="${Y(tsC)}" stroke="#b63f43" stroke-width="2"/><text x="146" y="${(Y(o.R)+Y(tsC))/2+4}" text-anchor="end" font-size="12" fill="#b63f43">Eₐ = ${+ea.toFixed(1)}</text>`;
+  s+=`<line x1="340" y1="${Y(o.R)}" x2="340" y2="${Y(o.P)}" stroke="#7a3fb0" stroke-width="2"/><text x="346" y="${(Y(o.R)+Y(o.P))/2+4}" font-size="12" fill="#7a3fb0">ΔH = ${o.P-o.R}</text>`;
+  s+=`<text x="${L+6}" y="${Y(o.R)-6}" font-size="12" fill="#172033">A + B</text><text x="350" y="${Y(o.P)+16}" font-size="12" fill="#172033">C + D</text><text x="215" y="${Y(tsC)-8}" text-anchor="middle" font-size="12" fill="#172033">สถานะแทรนซิชัน</text>`;
+  return svgEl(W,H,s,o.label||'แผนภาพพลังงานของปฏิกิริยา');
+}
+/* ======================= 8.4 ======================= */
+function beakerSVG(i,form,hcl,warm,inten,tEnd,tNow){
+  const x=14+i*118;let s=`<path d="M${x} 20 V150 a8 8 0 0 0 8 8 H${x+76} a8 8 0 0 0 8 -8 V20" fill="none" stroke="#6b7a72" stroke-width="2.5"/><rect x="${x+2}" y="70" width="80" height="86" fill="${hcl>0.3?'#f3e3a0':'#e3f0f7'}" opacity=".85"/>`;
+  if(form==='powder')for(let k=0;k<14;k++)s+=`<circle cx="${x+14+(k*37)%58}" cy="${150-(k*5)%6}" r="2" fill="#f4f4f0" stroke="#aaa" stroke-width=".5"/>`;
+  else s+=`<rect x="${x+30}" y="140" width="22" height="14" rx="3" fill="#f4f4f0" stroke="#999"/>`;
+  const n=Math.round(inten*9);for(let k=0;k<n;k++)s+=`<circle class="bub" cx="${x+14+(k*23)%56}" cy="${135-(k*13)%50}" r="${2+(k%3)}" fill="#fff" stroke="#8fb5c6" style="animation-delay:${(k%5)*.18}s"/>`;
+  if(warm)s+=`<path d="M${x+30} 190 q4 -10 8 0 q4 -12 8 0 z" fill="#e8872b"/><path d="M${x+22} 176 h40" stroke="#7a8a82" stroke-width="3"/>`;
+  s+=`<text x="${x+42}" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text>`;
+  const done=tEnd!==null&&tNow>=tEnd;
+  s+=`<text x="${x+42}" y="${warm?205:186}" text-anchor="middle" font-size="11" fill="#5d6b82">${form==='powder'?'ผง':'เม็ด'} + HCl ${hcl} M${warm?' (อุ่น)':''}</text>`;
+  return s;
+}
+function modelT84(form,hcl,warm){ /* ข้อสมมติของแบบจำลอง: ตัวคูณจากบีกเกอร์ 1,2,4 ของหนังสือ */
+  const fc=hcl>=0.5?36/48:1,fT=warm?25/48:1;
+  if(form==='tablet')return{t:null,idx:(48/300)/(fc*fT)};
+  const t=48*fc*fT;return{t:Math.round(t),idx:1/(fc*fT)};
+}
+function act84(){
+  return`<h2>กิจกรรม 8.4 การทดลองศึกษาผลของความเข้มข้น พื้นที่ผิว และอุณหภูมิต่ออัตราการเกิดปฏิกิริยาเคมี</h2><p class="sub">อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 102–105 (ตัวอย่างผลการทดลอง)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองศึกษาผลของความเข้มข้น พื้นที่ผิว และอุณหภูมิต่ออัตราการเกิดปฏิกิริยาเคมี</li><li>อธิบายผลของปัจจัยทั้งสามต่ออัตราการเกิดปฏิกิริยา</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>CaCO<sub>3</sub> แบบผง 0.3 g · CaCO<sub>3</sub> แบบเม็ด 0.1 g · HCl 0.2 M 30 mL · HCl 0.5 M 10 mL · กระบอกตวง 10 mL · บีกเกอร์ 100 mL 4 ใบ · นาฬิกาจับเวลา · ตะเกียงแอลกอฮอล์พร้อมที่กั้นลม<p class="small" style="margin:.4rem 0 0"><b>ข้อควรระวัง (ตามหนังสือ):</b> HCl มีฤทธิ์กัดกร่อน ควรสวมถุงมือ</p></div></div>
+  <div class="box"><h3>ลำดับการทำในแบบจำลอง (เรียบเรียงโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ)</h3><ol><li>บีกเกอร์ 1: CaCO<sub>3</sub> ผง + HCl 0.2 M · บีกเกอร์ 2: ผง + HCl 0.5 M · บีกเกอร์ 3: เม็ด + HCl 0.2 M · บีกเกอร์ 4: ผง + HCl 0.2 M ที่อุ่นด้วยตะเกียงแอลกอฮอล์ (ปริมาณต่อบีกเกอร์คำนวณจากรายการสารเคมี: CaCO<sub>3</sub> 0.1 g และ HCl 10 mL)</li><li>เติมกรดลงบนสาร CaCO<sub>3</sub> พร้อมจับเวลา</li><li>บันทึกเวลาจนไม่เห็นฟองแก๊สเกิดขึ้น (บีกเกอร์ 3 หยุดได้ถ้านานเกิน 5 นาที)</li></ol><div class="eq">CaCO<sub>3</sub>(s) + 2HCl(aq) → CaCl<sub>2</sub>(aq) + H<sub>2</sub>O(l) + CO<sub>2</sub>(g)</div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน ตอนที่ 1: ทั้ง 4 บีกเกอร์ตามหนังสือ</h3><p class="small" style="margin:0 0 6px">เวลาสิ้นสุดของแต่ละบีกเกอร์คือ <b>ตัวอย่างผลการทดลองของหนังสือ</b> (48, 36, มากกว่า 300 และ 25 s) ส่วนจำนวนฟองและความถี่ของฟองตามเวลาเป็นภาพประกอบเชิงคุณภาพ ไม่ใช่การวัด</p>
+   <div class="btns"><button class="btn" type="button" id="play84">▶ เริ่มจับเวลา</button><button class="btn alt" type="button" id="end84">ข้ามไปสิ้นสุด</button><button class="btn alt" type="button" id="rst84">เริ่มใหม่</button></div>
+   <div class="rowflex"><label>เวลา: <b id="tm84v">0</b> s<input type="range" id="tm84" min="0" max="300" step="1" value="0" aria-label="เวลาที่ผ่านไป วินาที"></label></div>
+   <div class="fig"><svg viewBox="0 0 480 215" id="bk84" role="img" aria-label="บีกเกอร์ 4 ใบที่ใส่ CaCO₃ กับ HCl ในสภาวะต่างกัน"></svg></div>
+   <div class="tw"><table class="tight"><thead><tr><th>บีกเกอร์</th><th class="l">สภาวะ</th><th>เวลาที่ฟองหยุด (s)</th></tr></thead><tbody id="tb84"></tbody></table></div><div class="tip" id="cmp84" aria-live="polite"></div></div>
+  <div class="lab"><h3>ตอนที่ 2: ลองจัดสภาวะเอง (ใช้ตัวคูณของแบบจำลอง)</h3><p class="small" style="margin:0 0 6px"><b>ข้อสมมติ:</b> หนังสือรายงานเพียง 4 สภาวะ หน้านี้สมมติว่าผลของแต่ละปัจจัยคูณกันได้ โดยใช้ตัวคูณจากบีกเกอร์ 2 (เวลา × 36/48) และบีกเกอร์ 4 (× 25/48) เทียบกับบีกเกอร์ 1 ตัวเลขที่ไม่ตรงกับ 4 สภาวะของหนังสือจึงเป็นค่าประมาณของแบบจำลอง ไม่ใช่ผลการทดลอง</p>
+   <div class="rowflex"><label>สถานะ CaCO₃<select id="f84"><option value="powder">ผง (พื้นที่ผิวมาก)</option><option value="tablet">เม็ด (พื้นที่ผิวน้อย)</option></select></label><label>ความเข้มข้น HCl<select id="h84"><option value="0.2">0.2 M</option><option value="0.5">0.5 M</option></select></label><label>อุณหภูมิ<select id="w84"><option value="0">อุณหภูมิห้อง</option><option value="1">อุ่นด้วยตะเกียงแอลกอฮอล์</option></select></label></div>
+   <div class="tip" id="own84" aria-live="polite"></div></div>
+  ${collisionSimHTML('c4',false)}
+  <div class="box"><h3>คำถามท้ายการทดลอง (ของผู้จัดทำหน้า ไม่ใช่คำถามต้นฉบับ)</h3>${written('w84_1','1. เปรียบเทียบบีกเกอร์ 1 กับ 2, 1 กับ 3 และ 1 กับ 4 แต่ละคู่ต่างกันที่ปัจจัยใด และผลต่ออัตราเป็นอย่างไร')}${written('w84_2','2. ใช้ทฤษฎีการชนอธิบายว่า เหตุใดการเพิ่มความเข้มข้น พื้นที่ผิว และอุณหภูมิจึงทำให้ปฏิกิริยาเกิดเร็วขึ้น')}</div>
+  <div class="box"><h3>สรุป (ตามหนังสือ)</h3>การเพิ่มความเข้มข้น การเพิ่มพื้นที่ผิวของสารตั้งต้น และการเพิ่มอุณหภูมิ เป็นปัจจัยที่ทำให้ปฏิกิริยาเคมีเกิดได้เร็วขึ้น</div>
+  ${quizHTML('8.4')}`;
+}
+function wire84(){
+  let timer=null,last=0;
+  function draw(){
+    const t=+$('#tm84').value;$('#tm84v').textContent=t;let s='';
+    B84.forEach((b,i)=>{const inten=b.t===null?(t>=300?0.3:0.3):Math.max(0,1-t/b.t)*(t<b.t?1:0);s+=beakerSVG(i,b.form,b.hcl,b.warm,t===0?0:inten,b.t,t);
+      const done=b.t!==null&&t>=b.t;if(done)s+=`<text x="${14+i*118+42}" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#157a55">ฟองหยุดที่ ${b.t} s</text>`;});
+    $('#bk84').innerHTML=s;
+    $('#tb84').innerHTML=B84.map(b=>`<tr><td>${b.id}</td><td class="l">${b.form==='powder'?'ผง':'เม็ด'} CaCO₃ + HCl ${b.hcl} M${b.warm?' (อุ่น)':''}</td><td>${b.t===null?(t>=300?'&gt; 300 (หยุดจับเวลา)':'—'):(t>=b.t?b.t:'—')}</td></tr>`).join('');
+    $('#cmp84').innerHTML=t>=300?'<b>เปรียบเทียบ:</b> บีกเกอร์ 2 (HCl เข้มข้นกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 1 · บีกเกอร์ 1 (ผง พื้นที่ผิวมากกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 3 (เม็ด) มาก · บีกเกอร์ 4 (อุณหภูมิสูงกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 1 ดังนั้นความเข้มข้น พื้นที่ผิว และอุณหภูมิที่เพิ่มขึ้นทำให้อัตราเพิ่มขึ้น':'เลื่อนเวลาไปที่ 300 s เพื่อเทียบผลทั้งสี่บีกเกอร์';
+  }
+  function own(){const f=$('#f84').value,h=+$('#h84').value,w=$('#w84').value==='1',m=modelT84(f,h,w);
+    $('#own84').innerHTML=m.t===null?`เม็ด CaCO₃ + HCl ${h} M${w?' (อุ่น)':''}: ช้ามาก (หนังสือบันทึกเฉพาะเม็ด + HCl 0.2 M อุณหภูมิห้องว่าใช้เวลามากกว่า 300 s) อัตราสัมพัทธ์เทียบบีกเกอร์ 1 ต่ำกว่า ${m.idx.toFixed(2)}`:
+      `ผง CaCO₃ + HCl ${h} M${w?' (อุ่น)':''}: เวลาที่ฟองหยุด ≈ <b>${m.t} s</b> (แบบจำลอง) · อัตราสัมพัทธ์เทียบบีกเกอร์ 1 ≈ <b>${m.idx.toFixed(2)} เท่า</b>${[48,36,25,18].includes(m.t)?' (ตรงกับสภาวะที่หนังสือรายงาน หรือคำนวณจากตัวคูณ)':''}`;}
+  function stop(){if(timer){cancelAnimationFrame(timer);timer=null;}$('#play84').textContent='▶ เริ่มจับเวลา';}
+  function tick(ts){if(!last)last=ts;const dt=(ts-last)/1000;last=ts;const sl=$('#tm84');sl.value=Math.min(300,+sl.value+dt*20);draw();if(+sl.value>=300){stop();return;}timer=requestAnimationFrame(tick);}
+  $('#play84').onclick=()=>{if(timer){stop();return;}if(RM()){$('#tm84').value=300;draw();return;}if(+$('#tm84').value>=300)$('#tm84').value=0;last=0;$('#play84').textContent='⏸ หยุด';timer=requestAnimationFrame(tick);};
+  $('#end84').onclick=()=>{stop();$('#tm84').value=300;draw();};$('#rst84').onclick=()=>{stop();$('#tm84').value=0;draw();};
+  $('#tm84').addEventListener('input',()=>{stop();draw();});['f84','h84','w84'].forEach(id=>$('#'+id).addEventListener('input',own));
+  CLEAN.push(stop);wireQuiz('8.4');draw();own();collisionSimWire('c4',false);
+}
+/* ======================= 8.5 ======================= */
+function f85(t){return t<=0?0:100*Math.exp(-t/30);}      /* ฟองแก๊สสัมพัทธ์ บีกเกอร์ 1 (เชิงคุณภาพ) */
+function y85(t){return t<=0?0:(t/10)*Math.exp(1-t/10);}  /* ความเข้มสีเหลืองสัมพัทธ์ (เพิ่มแล้วจางกลับเป็นใส) */
+function act85(){
+  return`<h2>กิจกรรม 8.5 การออกแบบและทดลองเพื่อศึกษาผลของการเติมสารละลายโพแทสเซียมไอโอไดด์ต่ออัตราการสลายตัวของไฮโดรเจนเปอร์ออกไซด์</h2><p class="sub">อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 105–110 (ตัวอย่างการออกแบบและรายงานการทดลอง)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ออกแบบและทดลองเพื่อศึกษาผลของการเติม KI ต่ออัตราการสลายตัวของ H<sub>2</sub>O<sub>2</sub></li><li>อธิบายผลของการเติม KI ต่ออัตราการสลายตัวของ H<sub>2</sub>O<sub>2</sub></li></ol><div class="eq">2H<sub>2</sub>O<sub>2</sub>(aq) → 2H<sub>2</sub>O(l) + O<sub>2</sub>(g)</div></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามหนังสือ)</h3>KI ร้อยละ 1 โดยมวลต่อปริมาตร 0.5 mL · H<sub>2</sub>O<sub>2</sub> ร้อยละ 8 โดยมวลต่อปริมาตร 20 mL · น้ำกลั่น 0.5 mL · บีกเกอร์ 50 mL 2 ใบ · กระบอกตวง 10 mL · หลอดหยด<p class="small" style="margin:.4rem 0 0"><b>ข้อควรระวัง (ตามหนังสือ):</b> H<sub>2</sub>O<sub>2</sub> ระคายเคือง ควรสวมถุงมือ</p></div></div>
+  <div class="box"><h3>การออกแบบตัวอย่างของหนังสือ (คู่มือครู หน้า 108–109)</h3><ul><li><b>สมมติฐาน:</b> H<sub>2</sub>O<sub>2</sub> จะสลายตัวเร็วขึ้นเมื่อเติม KI</li><li><b>ตัวแปรต้น</b> สารละลาย KI · <b>ตัวแปรตาม</b> ปริมาณฟองแก๊สจาก H<sub>2</sub>O<sub>2</sub> · <b>ตัวแปรควบคุม</b> ความเข้มข้นและปริมาตร H<sub>2</sub>O<sub>2</sub> อุณหภูมิ ขนาดภาชนะ เวลา</li><li><b>วิธีทำ:</b> ใส่ H<sub>2</sub>O<sub>2</sub> 10 mL ในบีกเกอร์ 1 และ 2 → เติม KI 0.5 mL ในใบที่ 1 และน้ำกลั่น 0.5 mL ในใบที่ 2 → สังเกตและบันทึก</li></ul></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน ตอนที่ 1: ทำตามการออกแบบ</h3><p class="small" style="margin:0 0 6px">ผลเชิงคุณภาพตามหนังสือ: บีกเกอร์ 1 ฟองมาก สารละลายเป็นสีเหลืองแล้วกลับใส · บีกเกอร์ 2 ฟองน้อยหรือไม่เห็น ใสตลอด หนังสือไม่ระบุตัวเลขหรือเวลา จึงใช้ "หน่วยเวลาของแบบจำลอง" และระดับฟองสัมพัทธ์ที่ผู้จัดทำหน้ากำหนดเอง</p>
+   <div class="btns"><button class="btn" type="button" id="ki85">เติม KI 0.5 mL ลงบีกเกอร์ 1</button><button class="btn" type="button" id="wa85">เติมน้ำกลั่น 0.5 mL ลงบีกเกอร์ 2</button><button class="btn alt" type="button" id="rs85">เริ่มใหม่</button></div>
+   <div class="btns"><button class="btn" type="button" id="play85" disabled>▶ เริ่มสังเกต</button><span class="small" id="stp85"></span></div>
+   <div class="rowflex"><label>เวลาในแบบจำลอง: <b id="tm85v">0</b> หน่วย<input type="range" id="tm85" min="0" max="100" step="1" value="0" disabled aria-label="เวลาในแบบจำลอง"></label></div>
+   <div class="fig"><svg viewBox="0 0 420 215" id="bk85" role="img" aria-label="บีกเกอร์ 2 ใบ ใส่ H₂O₂ ใบแรกเติม KI ใบที่สองเติมน้ำกลั่น"></svg></div>
+   <div class="tip" id="obs85" aria-live="polite"></div></div>
+  <div class="lab"><h3>ตอนที่ 2: แผนภาพพลังงานเมื่อเติมตัวเร่งปฏิกิริยา</h3><p class="small" style="margin:0 0 6px">ระดับพลังงานเริ่มต้น 52 สถานะแทรนซิชัน 120 และผลิตภัณฑ์ 20 kJ เป็นตัวเลขจากแบบฝึกหัด 8.2 ข้อ 2 (ปฏิกิริยา A + B → C + D) ส่วนขนาดที่ตัวเร่งลด Eₐ ปรับได้เองเพื่อดูแนวโน้ม หนังสือไม่ได้ระบุค่านี้</p>
+   <div class="rowflex"><label>ตัวเร่งลดพลังงานก่อกัมมันต์ลง: <b id="cat85v">0</b> kJ<input type="range" id="cat85" min="0" max="40" step="1" value="0"></label></div>
+   <div class="fig"><div id="en85"></div></div><div class="tip" id="enr85" aria-live="polite"></div></div>
+  ${collisionSimHTML('c5',true)}
+  <div class="box"><h3>ออกแบบการทดลองของคุณเอง (ส่งให้ครู)</h3><p class="small">เขียนก่อนแล้วจึงเทียบกับการออกแบบตัวอย่างด้านบน</p>${written('w85_1','1. สมมติฐานของคุณ')}${written('w85_2','2. ตัวแปรต้น ตัวแปรตาม และตัวแปรควบคุม')}${written('w85_3','3. จากผล ทำไมจึงสรุปว่า KI เป็นตัวเร่งปฏิกิริยา และสีเหลืองที่เกิดชั่วคราวบอกอะไร')}</div>
+  <div class="box"><h3>สรุป (ตามหนังสือ)</h3>เมื่อเติม KI ลงใน H<sub>2</sub>O<sub>2</sub> อัตราการสลายตัวของ H<sub>2</sub>O<sub>2</sub> สูงขึ้น KI จึงเป็นตัวเร่งปฏิกิริยา คือสารที่ทำให้ปฏิกิริยาเกิดเร็วขึ้น โดยมีส่วนร่วมในปฏิกิริยาแต่ได้กลับคืนเมื่อสิ้นสุด ตัวเร่งปฏิกิริยาลดพลังงานก่อกัมมันต์ แต่พลังงานของปฏิกิริยาไม่เปลี่ยน</div>
+  ${quizHTML('8.5')}`;
+}
+function wire85(){
+  let a1=false,a2=false,timer=null,last=0;
+  function bk(t){
+    const f1=a1?f85(t):0,f2=a2?4:0,y=a1?y85(t):0;let s='';
+    [0,1].forEach(i=>{const x=40+i*190,fill=i===0?`rgba(236,196,40,${(0.08+0.8*y).toFixed(2)})`:'rgba(220,235,245,.7)';
+      s+=`<path d="M${x} 28 V150 a8 8 0 0 0 8 8 H${x+104} a8 8 0 0 0 8 -8 V28" fill="none" stroke="#6b7a72" stroke-width="2.5"/><rect x="${x+2}" y="78" width="108" height="78" fill="${a1||i===1?fill:'rgba(220,235,245,.7)'}"/>`;
+      const n=Math.round((i===0?f1:f2)/100*14)+(i===1&&f2>0?0:0);
+      for(let k=0;k<n;k++)s+=`<circle class="bub" cx="${x+12+(k*29)%86}" cy="${130-(k*17)%55}" r="${2+(k%3)}" fill="#fff" stroke="#8fb5c6" style="animation-delay:${(k%6)*.17}s"/>`;
+      s+=`<text x="${x+56}" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text><text x="${x+56}" y="178" text-anchor="middle" font-size="11" fill="#5d6b82">H₂O₂ 10 mL ${i===0?(a1?'+ KI 0.5 mL':'(ยังไม่เติม KI)'):(a2?'+ น้ำกลั่น 0.5 mL':'(ยังไม่เติมน้ำ)')}</text>`;});
+    $('#bk85').innerHTML=s;
+    const both=a1&&a2;$('#obs85').innerHTML=!both?'ทำตามการออกแบบ: เติมสารลงบีกเกอร์ทั้งสองก่อน':(t===0?'เริ่มสังเกตได้':`บีกเกอร์ 1: ฟองแก๊ส O₂ ระดับสัมพัทธ์ ≈ ${f1.toFixed(0)} / 100 สีเหลือง ${(y*100).toFixed(0)}% · บีกเกอร์ 2: ฟองแก๊สเล็กน้อย (ระดับ ≈ ${f2}) ใสไม่มีสี ${t>=80?'· บีกเกอร์ 1 กลับเป็นสารละลายใสแล้ว (KI ได้กลับคืน)':''}`);
+    $('#stp85').textContent=`ขั้นตอน: ${a1?'✓':'○'} เติม KI ในบีกเกอร์ 1 · ${a2?'✓':'○'} เติมน้ำในบีกเกอร์ 2`;
+    $('#play85').disabled=!both;$('#tm85').disabled=!both;
+  }
+  function draw(){const t=+$('#tm85').value;$('#tm85v').textContent=t;bk(t);}
+  function stop(){if(timer){cancelAnimationFrame(timer);timer=null;}$('#play85').textContent='▶ เริ่มสังเกต';}
+  function tick(ts){if(!last)last=ts;const dt=(ts-last)/1000;last=ts;const sl=$('#tm85');sl.value=Math.min(100,+sl.value+dt*10);draw();if(+sl.value>=100){stop();return;}timer=requestAnimationFrame(tick);}
+  $('#ki85').onclick=()=>{a1=true;draw();};$('#wa85').onclick=()=>{a2=true;draw();};
+  $('#rs85').onclick=()=>{stop();a1=a2=false;$('#tm85').value=0;draw();};
+  $('#play85').onclick=()=>{if(timer){stop();return;}if(RM()){$('#tm85').value=100;draw();return;}if(+$('#tm85').value>=100)$('#tm85').value=0;last=0;$('#play85').textContent='⏸ หยุด';timer=requestAnimationFrame(tick);};
+  $('#tm85').addEventListener('input',()=>{stop();draw();});
+  function en(){const c=+$('#cat85').value;$('#cat85v').textContent=c;
+    $('#en85').innerHTML=energySVG({R:EN.R,TS:EN.TS,P:EN.P,cat:c,max:140,label:'แผนภาพพลังงานของปฏิกิริยา A + B → C + D เส้นประเขียวแสดงกรณีเติมตัวเร่ง'});
+    const ea=EN.TS-EN.R-c,er=EN.TS-EN.P-c;
+    $('#enr85').innerHTML=`พลังงานก่อกัมมันต์ไปข้างหน้า = ${EN.TS-c} − ${EN.R} = <b>${ea} kJ</b> · ย้อนกลับ = ${EN.TS-c} − ${EN.P} = <b>${er} kJ</b> · พลังงานของปฏิกิริยา ΔH = ${EN.P} − ${EN.R} = <b>${EN.P-EN.R} kJ</b> (คายพลังงาน ไม่เปลี่ยนเมื่อมีตัวเร่ง)`;}
+  $('#cat85').addEventListener('input',en);
+  CLEAN.push(stop);wireQuiz('8.5');draw();en();collisionSimWire('c5',true);
+}
+
+/* ======================= แบบฝึกหัด (คำตอบคำนวณจากสูตรเดียวกับแบบจำลอง) ======================= */
+const YN=['ถูก','ผิด'],UP=['เพิ่มขึ้น','เท่าเดิม','ลดลง'];
+const E8=(()=>{
+  const A=[1.00,0.64,0.44,0.27,0.22,0.22,0.22];
+  const r=(c1,c2,t1,t2,nu,d)=>avgRate(c1,c2,t1,t2,nu,d);
+  return{
+    a1:[r(A[0],A[1],0,5,1,-1),r(A[1],A[2],5,10,1,-1),r(A[2],A[3],10,20,1,-1)],
+    A12:r(1.00,0.22,0,30,1,-1),C12:r(1.00,0.22,0,30,2,-1),R13:r(1.00,0.22,0,30,2,-1),R14:r(0.48,0.32,8,15,2,-1),
+    A3:3.00-3*0.0150*30,B3:5*0.0150*30,
+    rA4:r(0.25,0.05,0,50,1,-1),rB4:r(0,0.20,0,50,1,1),rC4:r(0.20,0.10,0,50,1,-1),R4:r(0.25,0.05,0,50,2,-1),
+    zn1:80/22400/70,zn2:(76-64)/22400/(48-30),ch4h2o:2*0.936,ratioBC:4/3,
+    ea1:EN.TS-EN.R,ea2:EN.TS-EN.P,dH:EN.R-EN.P,
+    T3:[{n:1,Ea:50.56,dH:-70.00},{n:2,Ea:70.45,dH:45.23},{n:3,Ea:110.00,dH:-25.33}],
+    rev4:45+36,
+    c1:2*r(0.20,0.05,0,90,3,-1),c2r:r(1.50,0.50,0,30,1,-1),
+    nO2:11.98*10.0/(0.0821*(55+273)),
+  };
+})();
+E8.cO2=E8.nO2/10.0;E8.c4r=avgRate(0,E8.cO2,0,10,3,1);
+const ORD=(()=>{const L=E8.T3.slice().sort((x,y)=>x.Ea-y.Ea).map(z=>z.n).join(' > ');return L;})();
+const ORDOPT=['1 > 2 > 3','3 > 2 > 1','2 > 1 > 3','1 > 3 > 2'];
+const EX=[
+ {g:'8.1',h:'แบบฝึกหัด 8.1',t:'ปฏิกิริยา 2A + B → C วัด [A] ได้ดังตาราง: t (s) = 0.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0 และ [A] (M) = 1.00, 0.64, 0.44, 0.27, 0.22, 0.22, 0.22 คำนวณอัตราการเปลี่ยนแปลงปริมาณของ A (M s<sup>−1</sup>, เป็นค่าบวก) ช่วง',p:[
+  {t:'num',l:'1.1 ช่วง 0.0–5.0 s',a:E8.a1[0],u:'M s⁻¹'},{t:'num',l:'1.1 ช่วง 5.0–10.0 s',a:E8.a1[1],u:'M s⁻¹'},{t:'num',l:'1.1 ช่วง 10.0–20.0 s',a:E8.a1[2],u:'M s⁻¹'},
+  {t:'num',l:'1.2 อัตราการเปลี่ยนแปลงปริมาณของ A ในช่วงที่เกิดปฏิกิริยา (0.0–30.0 s)',a:E8.A12,u:'M s⁻¹'},{t:'num',l:'1.2 อัตราการเปลี่ยนแปลงปริมาณของ C ช่วงเดียวกัน',a:E8.C12,u:'M s⁻¹'},
+  {t:'num',l:'1.3 อัตราการเกิดปฏิกิริยาเฉลี่ยในช่วงที่เกิดปฏิกิริยา',a:E8.R13,u:'M s⁻¹'},
+  {t:'num',l:'1.4 อัตราการเกิดปฏิกิริยาที่ 11 s (เส้นสัมผัสผ่านจุด (8.0 s, 0.48 M) และ (15.0 s, 0.32 M))',a:E8.R14,rel:0.12,u:'M s⁻¹'}],
+  s:'1.1 ค่าที่ได้ 7.2 × 10⁻², 4.0 × 10⁻² และ 1.7 × 10⁻² M s⁻¹ (เร็วลดลงตามลำดับ) · 1.2 −Δ[A]/Δt = 0.78/30 = 2.6 × 10⁻² และ Δ[C]/Δt = ½ × 2.6 × 10⁻² = 1.3 × 10⁻² · 1.3 r = Δ[C]/Δt = 1.3 × 10⁻² · 1.4 r = −½(0.32 − 0.48)/(15.0 − 8.0) ≈ 1.1 × 10⁻² M s⁻¹ (ตอบต่างได้เล็กน้อยตามเส้นสัมผัสที่ลาก)'},
+ {g:'8.1',t:'สาร P ทำปฏิกิริยากับสาร Q ได้ผลิตภัณฑ์ W พบว่า r เป็น ½ เท่าของอัตราการเปลี่ยนแปลงปริมาณของ P, ¼ เท่าของ Q และ ⅓ เท่าของ W เขียนสมการเคมีของปฏิกิริยาได้อย่างไร',p:[{t:'mcq',l:'2. สมการเคมี',o:['2P + 4Q → 3W','4P + 2Q → 3W','P + Q → W','3P + 3Q → 4W'],a:0}],s:'สัมประสิทธิ์เท่ากับส่วนกลับของตัวคูณ: P = 2, Q = 4, W = 3 จึงได้ 2P + 4Q → 3W'},
+ {g:'8.1',t:'สาร A สลายตัวเป็นสาร B ตามสมการ 3A → 5B เริ่มต้นมี [A] = 3.00 M เมื่อผ่านไป 30.0 นาที อัตราการเกิดปฏิกิริยาเฉลี่ย = 0.0150 M min<sup>−1</sup> ความเข้มข้นของสาร A และ B ที่ 30.0 นาทีเป็นเท่าใด (เริ่มต้น [B] = 0)',p:[{t:'num',l:'3. [A] ที่ 30.0 min',a:E8.A3,u:'M'},{t:'num',l:'3. [B] ที่ 30.0 min',a:E8.B3,u:'M'}],s:'A ลดลง 3 × 0.0150 × 30.0 = 1.35 M จึงเหลือ 1.65 M · B เพิ่มขึ้น 5 × 0.0150 × 30.0 = 2.25 M'},
+ {g:'8.1',t:'ปฏิกิริยาหนึ่งมีสาร A, B และ C ที่เริ่มต้น [A] = 0.25 M, [B] = 0.00 M, [C] = 0.20 M และเมื่อความเข้มข้นไม่เปลี่ยนแปลงที่ 50 s [A] = 0.05 M, [B] = 0.20 M, [C] = 0.10 M (อ่านจากกราฟในหนังสือ) สาร B เป็นผลิตภัณฑ์',p:[
+  {t:'num',l:'4.3 อัตราการเปลี่ยนแปลงปริมาณของ A (0–50 s)',a:E8.rA4,u:'M s⁻¹'},{t:'num',l:'4.3 อัตราการเปลี่ยนแปลงปริมาณของ B',a:E8.rB4,u:'M s⁻¹'},{t:'num',l:'4.3 อัตราการเปลี่ยนแปลงปริมาณของ C',a:E8.rC4,u:'M s⁻¹'},
+  {t:'mcq',l:'4.4 สมการเคมี',o:['2A + C → 2B','A + C → B','2A + 2C → B','A → 2B + C'],a:0},{t:'num',l:'4.4 อัตราการเกิดปฏิกิริยาเฉลี่ย (0–50 s)',a:E8.R4,u:'M s⁻¹'}],
+  s:'A ลด 0.20 M, B เพิ่ม 0.20 M, C ลด 0.10 M ใน 50 s จึงอัตรา 4.0 × 10⁻³, 4.0 × 10⁻³, 2.0 × 10⁻³ M s⁻¹ อัตราส่วน 2 : 2 : 1 ได้ 2A + C → 2B และ r = 2.0 × 10⁻³ M s⁻¹'},
+ {g:'8.1',t:'(ตรวจสอบความเข้าใจ) Zn ทำปฏิกิริยากับ HCl ได้ H₂ ที่ STP: t = 10, 20, 30, 40, 50, 60, 70, 80 s และ V = 25, 45, 60, 70, 75, 78, 80, 80 mL ปฏิกิริยาสิ้นสุดที่ 70 s (ปริมาตรโมลของแก๊สที่ STP = 22.4 L/mol)',p:[
+  {t:'num',l:'อัตราการเกิดปฏิกิริยาเฉลี่ย 0–70 s',a:E8.zn1,u:'mol s⁻¹'},{t:'num',l:'อัตราการเกิดปฏิกิริยาที่ 40 s (เส้นสัมผัสผ่านจุด (30 s, 64 mL) และ (48 s, 76 mL))',a:E8.zn2,rel:0.1,u:'mol s⁻¹'}],
+  s:'เฉลี่ย 0–70 s: (80 mL ÷ 22 400 mL/mol) ÷ 70 s = 5.1 × 10⁻⁵ mol s⁻¹ · ที่ 40 s: (12 mL ÷ 22 400) ÷ 18 s = 3.0 × 10⁻⁵ mol s⁻¹ (ตอบต่างได้ตามเส้นสัมผัส)'},
+ {g:'8.1',t:'(ตรวจสอบความเข้าใจ) การเผาไหม้มีเทน CH₄ + 2O₂ → CO₂ + 2H₂O มีอัตราการเกิดปฏิกิริยา 0.936 M s<sup>−1</sup> และปฏิกิริยา 6A + 4B → 3C',p:[{t:'num',l:'อัตราการเปลี่ยนแปลงปริมาณของ H₂O',a:E8.ch4h2o,u:'M s⁻¹'},{t:'num',l:'อัตราการเปลี่ยนแปลงปริมาณของ B เป็นกี่เท่าของ C (ปฏิกิริยา 6A + 4B → 3C)',a:E8.ratioBC,rel:0.02,u:'เท่า'}],s:'H₂O: 2 × 0.936 = 1.87 M s⁻¹ · B : C = 4 : 3 = 1.33 เท่า (4/3)'},
+ {g:'8.2',h:'แบบฝึกหัด 8.2',t:'ข้อความต่อไปนี้ถูกหรือผิด',p:[
+  {t:'mcq',l:'1.1 ปฏิกิริยาระหว่างของแข็งกับของเหลวอธิบายด้วยทฤษฎีการชนไม่ได้',o:YN,a:1},{t:'mcq',l:'1.2 ปฏิกิริยาเกิดได้ถ้าอนุภาคชนกันในทิศทางเหมาะสมและมีพลังงานอย่างน้อยเท่ากับพลังงานก่อกัมมันต์',o:YN,a:0},{t:'mcq',l:'1.3 อนุภาคแต่ละตัวที่ชนแล้วเกิดปฏิกิริยา ไม่จำเป็นต้องมีพลังงานเท่ากับพลังงานก่อกัมมันต์ (พิจารณาพลังงานของคู่ที่ชนกัน)',o:YN,a:0}],
+  s:'1.1 ผิด: ทฤษฎีการชนใช้ได้ทั้งสถานะ ปฏิกิริยาที่ผิวของแข็งก็เกิดจากการชนของอนุภาค · 1.2 ถูก · 1.3 ถูก: พลังงานรวมของคู่ที่ชนต้องพอ แต่ละอนุภาคไม่จำเป็นต้องมีเท่ากับพลังงานก่อกัมมันต์ตามที่เฉลยระบุ'},
+ {g:'8.2',t:'แผนภาพพลังงานของปฏิกิริยา A + B → C + D: พลังงานของ A + B = 52 kJ, สถานะแทรนซิชัน = 120 kJ, C + D = 20 kJ <div class="fig" style="max-width:420px;margin:6px 0">'+energySVG({R:52,TS:120,P:20,cat:0,max:140,label:'แผนภาพพลังงาน A + B → C + D (วาดใหม่ตามค่าในหนังสือ)'})+'</div>',p:[
+  {t:'num',l:'2.1 พลังงานก่อกัมมันต์ของ A + B → C + D',a:E8.ea1,u:'kJ'},{t:'num',l:'2.2 พลังงานก่อกัมมันต์ของ C + D → A + B',a:E8.ea2,u:'kJ'},
+  {t:'mcq',l:'2.3 ปฏิกิริยา A + B → C + D เป็นปฏิกิริยา',o:['คายพลังงาน','ดูดพลังงาน'],a:0},{t:'num',l:'2.3 ขนาดของพลังงานของปฏิกิริยา',a:E8.dH,u:'kJ'}],
+  s:'2.1 120 − 52 = 68 kJ · 2.2 120 − 20 = 100 kJ · 2.3 ผลิตภัณฑ์พลังงานต่ำกว่าสารตั้งต้น 52 − 20 = 32 kJ จึงคายพลังงาน (ภาพวาดใหม่ตามค่าในหนังสือ)'},
+ {g:'8.2',t:'ปฏิกิริยา 1: A → B มี Eₐ = 50.56 kJ/mol และพลังงานของปฏิกิริยา −70.00 · ปฏิกิริยา 2: C + D → E มี Eₐ = 70.45 และ +45.23 · ปฏิกิริยา 3: H → I + J มี Eₐ = 110.00 และ −25.33 (kJ/mol)',p:[
+  {t:'mcq',l:'3.1 เรียงอัตราการเกิดปฏิกิริยาจากมากไปน้อย',o:ORDOPT,a:ORDOPT.indexOf(ORD)},{t:'num',l:'3.2 สารตั้งต้นของปฏิกิริยา 1 มีพลังงานมากกว่าผลิตภัณฑ์กี่ kJ/mol',a:70.00,rel:0.01,u:'kJ/mol'}],
+  s:'อัตราเรียงตามพลังงานก่อกัมมันต์จากน้อยไปมาก (1 < 2 < 3) จึงเร็วที่สุดคือปฏิกิริยา 1 ไม่ขึ้นกับว่าดูดหรือคายพลังงาน · ปฏิกิริยา 1 คายพลังงาน 70.00 kJ/mol'},
+ {g:'8.2',t:'ปฏิกิริยา A → C คายพลังงาน 36 kJ/mol มี B เป็นสถานะแทรนซิชันที่พลังงานสูงกว่า A อยู่ 45 kJ/mol',p:[{t:'num',l:'4.2 Eₐ ของ A → C',a:45,u:'kJ/mol'},{t:'num',l:'4.2 Eₐ ของ C → A',a:E8.rev4,u:'kJ/mol'},{t:'text',l:'4.1 เขียนแผนภาพการดำเนินไปของปฏิกิริยา (ระบุระดับพลังงานของ A, B, C)'}],s:'Eₐ(A → C) = 45 kJ/mol · Eₐ(C → A) = 45 + 36 = 81 kJ/mol แผนภาพ: A ที่ระดับหนึ่ง ยอด B สูงกว่า 45 และ C ต่ำกว่า A 36'},
+ {g:'8.2',t:'(ตรวจสอบความเข้าใจ) ปฏิกิริยา 1 คายพลังงาน 20 kJ/mol มี Eₐ = 52 kJ/mol ส่วนปฏิกิริยา 2 ดูดพลังงาน 30 kJ/mol มี Eₐ = 45 kJ/mol',p:[{t:'mcq',l:'ปฏิกิริยาใดเกิดได้เร็วกว่า',o:['ปฏิกิริยา 2','ปฏิกิริยา 1','เท่ากัน','บอกไม่ได้'],a:0}],s:'ปฏิกิริยา 2 เร็วกว่าเพราะ Eₐ ต่ำกว่า'},
+ {g:'8.3',h:'แบบฝึกหัด 8.3',t:'ปฏิกิริยา Fe กับ HCl เป็นปฏิกิริยาคายพลังงาน ข้อสรุปต่อไปนี้ถูกหรือผิด',p:[
+  {t:'mcq',l:'1.1 เมื่อเพิ่มอุณหภูมิ อัตราการเกิดปฏิกิริยาเพิ่มขึ้น',o:YN,a:0},{t:'mcq',l:'1.2 แผ่นเหล็กทำปฏิกิริยาเร็วกว่าผงตะไบเหล็กที่มวลเท่ากัน',o:YN,a:1},{t:'mcq',l:'1.3 HCl 0.1 M 20 mL ทำปฏิกิริยาเร็วกว่า HCl 0.1 M 10 mL',o:YN,a:1},{t:'mcq',l:'1.4 การเติมตัวเร่งปฏิกิริยาทำให้ได้ผลิตภัณฑ์เพิ่มขึ้นเมื่อสิ้นสุดปฏิกิริยา',o:YN,a:1},{t:'mcq',l:'1.5 การคนสารในระบบทำให้อัตราการเกิดปฏิกิริยาเพิ่มขึ้น',o:YN,a:0}],
+  s:'1.1 ถูก (ทั้งคายและดูดพลังงาน) · 1.2 ผิด ผงมีพื้นที่ผิวมากกว่า · 1.3 ผิด ความเข้มข้นเท่ากัน อัตราเท่ากัน · 1.4 ผิด ตัวเร่งเปลี่ยนอัตรา ไม่เปลี่ยนปริมาณผลิตภัณฑ์ · 1.5 ถูก ทำให้สารสัมผัสกันมากขึ้น'},
+ {g:'8.3',t:'ผสมสาร A และ B ที่ความเข้มข้นต่าง ๆ เป็นเวลา 10 นาที ได้ผลิตภัณฑ์ A₂B ดังตาราง (การทดลองที่ 1–4: [A]₀ = 1.00, 1.00, 1.00, 0.50 M · [B]₀ = 0.50, 1.00, 1.50, 0.50 M · [A₂B] ที่ 10 min = 0.40, 0.40, 0.40, 0.20 M)',p:[
+  {t:'mcq',l:'2.1 สมการเคมี',o:['2A + B → A₂B','A + B → A₂B','A + 2B → A₂B','A₂B → 2A + B'],a:0},{t:'mcq',l:'2.2 อัตราการเกิดปฏิกิริยาขึ้นกับความเข้มข้นเริ่มต้นของ',o:['A เท่านั้น','B เท่านั้น','ทั้ง A และ B','ไม่ขึ้นกับทั้งสอง'],a:0}],
+  s:'การทดลอง 1–3 เปลี่ยน [B]₀ แต่ A₂B ที่ได้เท่ากัน จึงไม่ขึ้นกับ B ส่วนการทดลอง 4 ลด [A]₀ ลงครึ่งหนึ่ง A₂B ลดลงด้วย จึงขึ้นกับ A'},
+ {g:'8.3',t:'H₂(g) + I₂(g) → 2HI(g) ที่ 458 °C เมื่อเพิ่มปริมาณ H₂ เป็น 2 เท่าที่ปริมาตรภาชนะคงที่ อัตราเพิ่มขึ้น',p:[{t:'mcq',l:'ถ้าลดปริมาตรของภาชนะลงครึ่งหนึ่ง (ปริมาณแก๊สเท่าเดิม) อัตราการเกิดปฏิกิริยา',o:UP,a:0}],s:'ความเข้มข้นของแก๊สเพิ่มเป็น 2 เท่า จึงชนกันบ่อยขึ้น อัตราเพิ่มขึ้น'},
+ {g:'8.3',t:'เมื่อเผาโลหะ Mg ในอากาศจะลุกไหม้อย่างรวดเร็ว แต่วางไว้ในอากาศเฉย ๆ จะทำปฏิกิริยากับ O₂ อย่างช้า ๆ',p:[{t:'text',l:'ทำไมจึงต่างกัน (ใช้ทฤษฎีการชนอธิบาย)'}],s:'การเผาให้พลังงานแก่อนุภาค ทำให้มีอนุภาคที่พลังงานสูงพอมากขึ้นและชนกันบ่อยขึ้น จึงเกิดเร็วกว่าที่อุณหภูมิต่ำของอากาศ'},
+ {g:'8.3',t:'การผลิตเนยเทียมแข็งจากน้ำมันพืชทำโดยเติมแก๊ส H₂ และโลหะนิกเกิล เมื่อสิ้นสุดแยกนิกเกิลออกได้ทั้งหมด',p:[{t:'mcq',l:'5. นิกเกิลทำหน้าที่เป็น',o:['ตัวเร่งปฏิกิริยา','ตัวหน่วงปฏิกิริยา','สารตั้งต้น','ผลิตภัณฑ์'],a:0}],s:'นิกเกิลช่วยให้ปฏิกิริยาเร็วขึ้นและได้กลับคืนเมื่อสิ้นสุด จึงเป็นตัวเร่งปฏิกิริยา'},
+ {g:'โจทย์รวมบท',h:'แบบฝึกหัดท้ายบท',t:'ปฏิกิริยา 3A + 2B → 2C [A]₀ = 0.20 M และที่ 90 s เหลือ 0.05 M',p:[{t:'num',l:'1. อัตราการเปลี่ยนแปลงปริมาณของ C ในช่วงนี้',a:E8.c1,u:'M s⁻¹'}],s:'−(1/3)(0.05 − 0.20)/90 = (1/2)Δ[C]/Δt จึง Δ[C]/Δt = 1.1 × 10⁻³ M s⁻¹'},
+ {g:'โจทย์รวมบท',t:'จากกราฟของหนังสือ: [A] 4.00 → 1.00 M, [B] 1.50 → 0.50 M, [C] 0.00 → 2.00 M และความเข้มข้นหยุดเปลี่ยนที่ 30 s',p:[{t:'mcq',l:'2. สมการเคมี',o:['3A + B → 2C','A + 3B → 2C','3A + 2B → C','A + B → C'],a:0},{t:'num',l:'2. อัตราการเกิดปฏิกิริยาเฉลี่ยตลอดช่วง 0–30 s',a:E8.c2r,u:'M s⁻¹'}],s:'เปลี่ยน 3.00 : 1.00 : 2.00 = 3 : 1 : 2 จึง 3A + B → 2C · r = −Δ[B]/Δt = 1.00/30 = 3.3 × 10⁻² M s⁻¹'},
+ {g:'โจทย์รวมบท',t:'สาร A เกิดปฏิกิริยาเป็น B และเป็น C ตามแผนภาพพลังงานของหนังสือ (เริ่มจาก [A] เท่ากัน) โดยยอดพลังงานของเส้นทาง A → B ต่ำกว่าของ A → C',p:[{t:'mcq',l:'3. อัตราการเกิดปฏิกิริยา',o:['A → B มากกว่า A → C เพราะ Eₐ ต่ำกว่า','A → C มากกว่า A → B','เท่ากัน','เทียบกันไม่ได้'],a:0}],s:'อัตราขึ้นกับพลังงานก่อกัมมันต์ ปฏิกิริยาที่ Eₐ ต่ำกว่าเกิดเร็วกว่า'},
+ {g:'โจทย์รวมบท',t:'2KClO₃(s) → 2KCl(s) + 3O₂(g) ต้องให้ความร้อนและใช้ MnO₂ เป็นตัวเร่ง ทดลองในภาชนะ 10.0 L ที่ 55 °C พบความดันภายใน 11.98 atm หลังผ่านไป 10 นาที (ใช้ R = 0.0821 L·atm/(mol·K) และปริมาตรของแข็งน้อยมาก)',p:[
+  {t:'mcq',l:'4.1 ควรติดตามอัตราโดยวัดสารใด',o:['O₂','KClO₃','KCl','MnO₂'],a:0},{t:'num',l:'4.3 โมลของ O₂ ที่เกิด (n = PV/RT)',a:E8.nO2,rel:0.02,u:'mol'},{t:'num',l:'4.3 อัตราการเกิดปฏิกิริยาเฉลี่ย',a:E8.c4r,u:'M min⁻¹'},{t:'text',l:'4.2 ถ้าต้องการให้ปฏิกิริยาเร็วขึ้นอีก ควรทำอย่างไร'}],
+  s:'4.1 O₂ เป็นแก๊สแยกออกจากของแข็งได้ จึงวัดง่าย · 4.3 n = (11.98 × 10.0)/(0.0821 × 328) = 4.45 mol, [O₂] = 0.445 M, r = (1/3)(0.445/10) = 1.5 × 10⁻² M min⁻¹ · 4.2 บด KClO₃ ให้ละเอียดขึ้น และ/หรือเพิ่มอุณหภูมิ'},
+ {g:'โจทย์รวมบท',t:'เทียนหอมเผาไหม้ ต้องการให้เกิดช้าลงเพื่อจุดได้นานขึ้น',p:[{t:'text',l:'5. ควรทำอย่างไร อธิบายโดยใช้ปัจจัยที่มีผลต่ออัตรา'}],s:'ตัดไส้เทียนให้สั้นลงเพื่อลดพื้นที่ผิวในการเผาไหม้ และครอบด้วยโคมเทียนเพื่อลดปริมาณ O₂ ที่เข้ามา'},
+ {g:'โจทย์รวมบท',t:'A(aq) + B(aq) → P(aq) จับเวลาจนได้ [P] = 0.01 M การทดลอง 1–5: [A]₀/[B]₀ (M) = 0.10/0.10, 0.10/0.10, 0.10/0.10, 0.10/0.20, 0.20/0.10 · สาร X (g) = –, –, 0.01, –, – · อุณหภูมิ (°C) = 25, 45, 25, 25, 25 · เวลา (s) = 30, 15, 5, 10, 15',p:[
+  {t:'mcq',l:'6.1 อัตราการเกิดปฏิกิริยาขึ้นกับความเข้มข้นเริ่มต้นของ (ดูการทดลอง 1, 4, 5)',o:['ทั้ง A และ B','เฉพาะ A','เฉพาะ B','ไม่ขึ้นกับทั้งสอง'],a:0},{t:'mcq',l:'6.2 สาร X ทำหน้าที่เป็น',o:['ตัวเร่งปฏิกิริยา','ตัวหน่วงปฏิกิริยา','สารตั้งต้น','ตัวทำละลาย'],a:0},{t:'mcq',l:'6.3 การทดลอง 2 ใช้เวลาน้อยกว่าการทดลอง 1 เพราะ',o:['อุณหภูมิสูงกว่า','ความเข้มข้นมากกว่า','มีตัวเร่ง','พื้นที่ผิวมากกว่า'],a:0}],s:'6.1 เพิ่ม [A] หรือ [B] อย่างใดอย่างหนึ่ง เวลาลดลง (30 → 15 s และ 30 → 10 s) · 6.2 การทดลอง 3 เติม X เวลาเหลือ 5 s · 6.3 อุณหภูมิ 45 °C สูงกว่า 25 °C'},
+ {g:'โจทย์รวมบท',t:'จรวดขวดน้ำ: CH₃COOH(aq) + NaHCO₃(s) → CH₃COONa(aq) + H₂O(l) + CO₂(g) การปรับปรุงต่อไปนี้ทำให้อัตราการเกิดแก๊ส CO₂ เปลี่ยนไปอย่างไร',p:[{t:'mcq',l:'7.1 เพิ่มปริมาณ NaHCO₃',o:UP,a:0},{t:'mcq',l:'7.2 เพิ่มความเข้มข้นของน้ำส้มสายชู',o:UP,a:0},{t:'mcq',l:'7.3 เปลี่ยนขวดให้ใหญ่ขึ้น (สารตั้งต้นเท่าเดิม)',o:UP,a:1}],s:'7.1 ตามเฉลยหนังสือ การเพิ่มปริมาณสารตั้งต้นทำให้อัตราเพิ่ม · 7.2 ความเข้มข้นมากขึ้นอัตราเพิ่ม · 7.3 ปริมาณสารตั้งต้นเท่าเดิม อัตราเท่าเดิม'}
+];
+/* สลับตำแหน่งตัวเลือกของข้อ mcq แบบคงที่ ไม่ให้เฉลยอยู่ข้อแรกทุกข้อ */
+{let c=0;EX.forEach(g=>(g.p||[]).forEach(p=>{if(p.t==='mcq'&&p.o&&p.o.length>1){const n=p.o.length,s=(c*2+1)%n;p.o=p.o.slice(s).concat(p.o.slice(0,s));p.a=(p.a-s+n)%n;c++;}}));}
+/* ตัวตรวจ (ปรับจาก ch11: แยกคะแนนตามกลุ่ม g เพื่อส่งเป็นส่วนย่อย) */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อย) ช่องเขียนส่งให้ครูตรวจ ตัวเลขในโจทย์ที่อ่านจากกราฟ ผู้จัดทำหน้าสรุปเป็นตารางหรือข้อความแทน</p>`+
+  (()=>{let n=0;return list.map((q,i)=>{if(q.h)n=0;n++;return `${q.h?`<h3 style="margin:1.4rem 0 .2rem">${q.h}</h3>`:''}<div class="q"><p>${n}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}"><b>เฉลย/แนวคิด:</b> ${q.s}</div></div>`;}).join('');})()+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exCheck(list,i,j,p){
+  let ok=false,has=false;
+  if(p.t==='num'){const raw=($('#ex_'+i+'_'+j).value||'').trim();has=raw!=='';const v=parseFloat(raw);ok=has&&Number.isFinite(v)&&Math.abs(v-p.a)<=(p.abs!==undefined?p.abs:Math.abs(p.a)*(p.rel||0.05));}
+  else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+  return{ok,has};
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p,q.g]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;const G={};
+    auto.forEach(([i,j,p,g])=>{
+      const mk=$('#mk_'+i+'_'+j),{ok,has}=exCheck(list,i,j,p);
+      if(has)answered++;if(ok)got++;G[g]=G[g]||{got:0,max:0};G[g].max++;if(ok)G[g].got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน ('+Object.keys(G).map(g=>g+': '+G[g].got+'/'+G[g].max).join(' · ')+')'+(answered<auto.length?' · ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก':'');
+    Object.keys(G).forEach(g=>ls('ท้ายบท '+g,G[g].got,G[g].max));
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+/* ======================= แบบฟอร์มสืบค้น (กิจกรรม X.6: ไม่มีคะแนน ส่งเป็นข้อเขียน) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (ตามหนังสือ)</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่งด้านล่างหน้า ตัวอย่างหัวข้อเป็นข้อเสนอของผู้จัดทำหน้า เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจโปสเตอร์ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m5-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+
+function actEx(){return exHTML(EX,'อ้างอิงเฉลยในคู่มือครู หน้า 89–94 (แบบฝึกหัด 8.1), 98–100 (8.2), 113–115 (8.3) และ 116–120 (ท้ายบท)','แบบฝึกหัดท้ายบท 8');}
+function wireEx(){exWire(EX);}
+function actSum(){return `<h2>สรุปเนื้อหาบท 8 อัตราการเกิดปฏิกิริยาเคมี</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงสาระสำคัญของบท (คู่มือครู หน้า 71) และเนื้อหาในบท ไม่ใช่ข้อความต้นฉบับ</p>
+ <div class="cols"><div class="box"><h3>แนวคิดหลัก</h3><ul>
+ <li>อัตราการเกิดปฏิกิริยาเคมีบอกว่าสารตั้งต้นลดลงหรือผลิตภัณฑ์เพิ่มขึ้นเร็วเพียงใดต่อหนึ่งหน่วยเวลา (mol/s หรือ M s<sup>−1</sup>) เมื่อหารด้วยสัมประสิทธิ์ของสารนั้นในสมการที่ดุลแล้ว สารทุกชนิดให้ค่าเดียวกัน</li>
+ <li>อัตราเฉลี่ยคือการเปลี่ยนแปลงในช่วงเวลาที่กำหนด (จะเป็นช่วงเริ่มต้นถึงสิ้นสุดหรือช่วงใดก็ได้) ส่วนอัตรา ณ ขณะหนึ่งคือความชันของเส้นสัมผัสกราฟที่เวลานั้น ช่วงที่แคบมากให้ค่าเฉลี่ยใกล้ค่าที่จุดกึ่งกลางช่วง</li>
+ <li>ทฤษฎีการชน: ปฏิกิริยาเกิดเมื่ออนุภาคสารตั้งต้นชนกันในทิศทางที่เหมาะสมและมีพลังงานจลน์ของคู่ที่ชนมากพอ</li>
+ <li>ทฤษฎีสถานะแทรนซิชัน: ระหว่างชนพลังงานศักย์เพิ่มจนถึงสถานะแทรนซิชัน ผลต่างจากสถานะเริ่มต้นคือพลังงานก่อกัมมันต์ (Eₐ) ปฏิกิริยาที่ Eₐ ต่ำเกิดเร็วกว่า ไม่ว่าจะดูดหรือคายพลังงาน</li>
+ <li>ปัจจัยหลัก 4 อย่าง: ความเข้มข้น พื้นที่ผิวของสารตั้งต้น อุณหภูมิ และตัวเร่งปฏิกิริยา (ธรรมชาติของสารก็มีผล เช่น ถ่านกับเพชรเป็นคาร์บอนต่างอัญรูป เผาไหม้ได้ไม่เท่ากัน)</li>
+ <li>ตัวเร่งปฏิกิริยาลด Eₐ โดยพลังงานของปฏิกิริยาและปริมาณผลิตภัณฑ์ที่ได้ไม่เปลี่ยน ได้ตัวเร่งกลับคืนเมื่อสิ้นสุด ส่วนตัวหน่วงปฏิกิริยาทำให้เกิดช้าลง</li></ul></div>
+ <div class="box"><h3>สูตรและข้อควรจำ</h3><ul>
+ <li>aA + bB → cC + dD : r = −(1/a)·Δ[A]/Δt = −(1/b)·Δ[B]/Δt = (1/c)·Δ[C]/Δt = (1/d)·Δ[D]/Δt</li>
+ <li>อัตราการเปลี่ยนแปลงปริมาณของสารเป็นค่าบวกเสมอ สารตั้งต้นมี Δ[ ] เป็นลบ จึงต้องมีเครื่องหมายลบนำหน้า</li>
+ <li>อัตรา ณ ขณะหนึ่ง = ความชันของเส้นสัมผัส ÷ สัมประสิทธิ์ (นักเรียนอาจได้ค่าต่างกันเล็กน้อยตามเส้นที่ลาก)</li>
+ <li>Eₐ(ไปข้างหน้า) = พลังงาน(สถานะแทรนซิชัน) − พลังงาน(สารตั้งต้น) · ΔH = พลังงาน(ผลิตภัณฑ์) − พลังงาน(สารตั้งต้น)</li>
+ <li>เพิ่มปริมาตรสารละลายโดยความเข้มข้นเท่าเดิม ไม่เปลี่ยนอัตรา แต่ลดปริมาตรภาชนะของแก๊สแล้ว ความเข้มข้นเพิ่ม อัตราเพิ่ม</li>
+ <li>แก๊สที่ STP: ปริมาตรโมล 22.4 L/mol · กฎแก๊สอุดมคติ PV = nRT (R = 0.0821 L·atm/(mol·K))</li></ul></div></div>
+ <div class="box"><h3>ศัพท์ที่ควรรู้ (ผู้จัดทำหน้าเรียบเรียงจากคำสำคัญของบท ไม่ได้คัดจากภาคผนวกของหนังสือ)</h3>${glossHTML([['อัตราการเกิดปฏิกิริยาเคมี','rate of reaction'],['อัตราการเปลี่ยนแปลงปริมาณของสาร','rate of change in amount of substance'],['อัตราการเกิดปฏิกิริยาเคมีเฉลี่ย','average rate of reaction'],['อัตราการเกิดปฏิกิริยาเคมี ณ ขณะหนึ่ง','instantaneous rate of reaction'],['ความเข้มข้น','concentration'],['พื้นที่ผิว','surface area'],['อุณหภูมิ','temperature'],['ตัวเร่งปฏิกิริยา','catalyst'],['ตัวหน่วงปฏิกิริยา','inhibitor'],['ทฤษฎีการชน','collision theory'],['ทฤษฎีสถานะแทรนซิชัน','transition state theory'],['สถานะแทรนซิชัน','transition state'],['พลังงานก่อกัมมันต์','activation energy'],['พลังงานจลน์','kinetic energy'],['พลังงานศักย์','potential energy'],['ปฏิกิริยาคายพลังงาน','exothermic reaction'],['ปฏิกิริยาดูดพลังงาน','endothermic reaction'],['เส้นสัมผัส','tangent line'],['ความชัน','slope']])}</div>`;}
+const RES8={id:'8.6',ch:'ch8',title:'กิจกรรม 8.6 สืบค้นข้อมูลเกี่ยวกับกระบวนการในชีวิตประจำวันหรืออุตสาหกรรมที่เกี่ยวข้องกับปัจจัยที่มีผลต่ออัตราการเกิดปฏิกิริยาเคมี',page:'อ้างอิงคู่มือครู หน้า 111',
+ goal:'สืบค้นข้อมูลและนำเสนอตัวอย่างกระบวนการที่เกิดขึ้นในชีวิตประจำวันหรืออุตสาหกรรมที่เกี่ยวข้องกับปัจจัยที่มีผลต่ออัตราการเกิดปฏิกิริยาเคมี (หนังสือกำหนดเวลา 50 นาที และให้สืบค้นล่วงหน้าแล้วนำเสนอในห้องเรียน)',
+ steps:['เลือกกระบวนการในชีวิตประจำวันหรืออุตสาหกรรมที่เกี่ยวข้องกับ ความเข้มข้น อุณหภูมิ พื้นที่ผิว หรือตัวเร่งปฏิกิริยา อย่างน้อย 1 ปัจจัย','สืบค้นข้อมูลและอธิบายว่าปัจจัยนั้นมีผลต่ออัตราการเกิดปฏิกิริยาอย่างไร','สรุปความรู้และนำเสนอในรูปแบบที่ผู้อื่นเข้าใจได้ดี เช่น แผนผัง แผ่นพับ หรือวีดิทัศน์ (ตามข้อเสนอของคู่มือครู)'],
+ topics:['ความเข้มข้น: น้ำยาล้างห้องน้ำกับคราบหินปูน','อุณหภูมิ: ไข้กับอัตราหายใจ','พื้นที่ผิว: การเคี้ยวอาหารให้ละเอียด','ตัวเร่ง: เอนไซม์ปาเปนในการหมักเนื้อ','ตัวเร่ง: การแตกสลายไฮโดรคาร์บอนในการกลั่นน้ำมัน'],
+ fields:['หัวข้อกระบวนการที่เลือกและปัจจัยที่เกี่ยวข้อง','อธิบายว่าปัจจัยนั้นมีผลต่ออัตราการเกิดปฏิกิริยาอย่างไร เพราะเหตุใด (ใช้ทฤษฎีการชนอธิบาย)','แหล่งอ้างอิงที่ใช้สืบค้น','รูปแบบที่จะนำเสนอ และสิ่งที่ได้เรียนรู้จากกลุ่มอื่น (ไม่บังคับ)'],
+ check:['ระบุปัจจัยที่เกี่ยวข้อง (ความเข้มข้น พื้นที่ผิว อุณหภูมิ หรือตัวเร่ง)','อธิบายผลต่ออัตราพร้อมเหตุผลตามทฤษฎีการชน','ระบุแหล่งอ้างอิง','เลือกรูปแบบการนำเสนอที่ผู้อื่นเข้าใจง่าย']};
+function act86(){return resHTML(RES8);}
+function wire86(){resWire(RES8);}
+Object.assign(TITLES,{});
+/* reading-data:start */
+const READ={
+'8.1':{lead:'อ่านเรื่องความหมายของอัตราการเปลี่ยนแปลงปริมาณของสารก่อน แล้วทดลองดูการเกิด H₂ จาก Mg กับ HCl',secs:[
+{h:'ความหมายของอัตราการเปลี่ยนแปลงปริมาณของสาร',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 74–79',html:`
+<p>ปฏิกิริยาเคมีบางอย่างเกิดเร็ว เช่น การเผาไหม้เชื้อเพลิงหรือการเกิดแก๊สในถุงลมนิรภัยรถยนต์ แต่บางอย่างเกิดช้า เช่น การเกิดสนิมเหล็กหรืออาหารเน่าเสีย เพื่อบอกว่า "เร็วหรือช้า" อย่างเป็นตัวเลข เราดูว่าปริมาณสารเปลี่ยนไปเท่าใดใน <b>หนึ่งหน่วยเวลา</b> เหมือนที่หาอัตราเร็วของรถยนต์จากระยะทางต่อเวลา</p>
+<div class="box"><h3>อัตราการเปลี่ยนแปลงปริมาณของสาร</h3><div class="eq">อัตรา = | Δ[สาร] | / Δt</div>หน่วยเป็น mol ต่อเวลา หรือโมลาร์ต่อเวลา (M s<sup>−1</sup>) ค่าอัตราเป็นบวกเสมอ แต่ความเข้มข้นของสารตั้งต้นลดลง (Δ[ ] เป็นลบ) จึงเขียน −Δ[สารตั้งต้น]/Δt ส่วนผลิตภัณฑ์เพิ่มขึ้นเขียน Δ[ผลิตภัณฑ์]/Δt</div>
+<p>ในทางปฏิบัติเลือกติดตามสารที่วัดได้สะดวกที่สุด เช่น สารที่มีสี (I<sub>2</sub> สีน้ำตาลแดง) สารที่เป็นแก๊ส (วัดปริมาตรได้) หรือตะกอน (ดูจากเครื่องหมายหลังหลอดที่ถูกบังจนมองไม่เห็น) หรือใช้เครื่องมือ เช่น pH meter วัดความเป็นกรด–เบส spectrophotometer วัดสารมีสี และ conductometer วัดการนำไฟฟ้า</p>
+<p>เมื่อเขียนกราฟปริมาณสารกับเวลา <b>ความชัน</b> ของกราฟบอกอัตรา ชันมากแปลว่าเปลี่ยนเร็ว ชันน้อยแปลว่าเปลี่ยนช้า ในกิจกรรม 8.1 กราฟปริมาตร H<sub>2</sub> กับเวลาชันมากตอนต้น แล้วค่อย ๆ ลดความชันลง</p>`,
+ q:['ในปฏิกิริยา CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g) ติดตามสารใดสะดวกที่สุด','CO₂ เพราะเป็นแก๊สที่วัดปริมาตรได้ง่าย']}
+]},
+'8.2':{lead:'อ่านเรื่องการหาอัตราการเกิดปฏิกิริยาจากสัมประสิทธิ์ ก่อนคำนวณจากข้อมูล NO₂ สลายตัว',secs:[
+{h:'อัตราการเกิดปฏิกิริยาเคมี',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 79–83',html:`
+<p>ในปฏิกิริยาหนึ่ง สารแต่ละชนิดเปลี่ยนปริมาณไม่เท่ากัน เพราะเปลี่ยนตามเลขสัมประสิทธิ์ในสมการที่ดุลแล้ว เช่น 2NO<sub>2</sub> → 2NO + O<sub>2</sub> NO<sub>2</sub> หายไปเร็วเป็นสองเท่าของที่ O<sub>2</sub> เกิดขึ้น เพื่อให้ได้ตัวเลขเดียวที่แทน "ความเร็วของปฏิกิริยา" จึงหารอัตราการเปลี่ยนแปลงของสารแต่ละชนิดด้วยสัมประสิทธิ์ของสารนั้น</p>
+<div class="box"><h3>อัตราการเกิดปฏิกิริยาเคมี (r)</h3><div class="eq">aA + bB → cC + dD<br>r = −(1/a)·Δ[A]/Δt = −(1/b)·Δ[B]/Δt = (1/c)·Δ[C]/Δt = (1/d)·Δ[D]/Δt</div></div>
+<div class="box"><b>ตัวอย่าง</b> การเผาไหม้มีเทน CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O มี r = 0.936 M s<sup>−1</sup> จึงได้ CH<sub>4</sub> และ CO<sub>2</sub> เปลี่ยนด้วยอัตรา 0.936 M s<sup>−1</sup> ส่วน O<sub>2</sub> และ H<sub>2</sub>O เปลี่ยน 2 × 0.936 = 1.87 M s<sup>−1</sup></div>
+<p>ย้อนกลับได้ด้วย ถ้าทราบว่าอัตราการเปลี่ยนแปลงของแต่ละสารเป็นกี่เท่าของ r ก็เขียนสมการเคมีได้ เช่น ถ้า r เป็น ½ เท่าของ P และ ¼ เท่าของ Q และ ⅓ เท่าของ W สมการคือ 2P + 4Q → 3W</p>`,
+ q:['ปฏิกิริยา 2A + B → C มี r = 0.20 M s⁻¹ สาร A ลดลงด้วยอัตราเท่าใด','0.40 M s⁻¹ เพราะ −Δ[A]/Δt = 2 × r']}
+]},
+'8.3':{lead:'อ่านความต่างของอัตราเฉลี่ยกับอัตรา ณ ขณะหนึ่ง และการหาสารที่ไม่ได้วัด',secs:[
+{h:'อัตราเฉลี่ย อัตรา ณ ขณะหนึ่ง และสารที่ไม่ได้วัด',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 82–88',html:`
+<p><b>อัตราการเกิดปฏิกิริยาเฉลี่ย</b> คือค่าในช่วงเวลาที่กำหนด คิดจากการเปลี่ยนแปลงตั้งแต่จุดเริ่มต้นถึงจุดสิ้นสุดของช่วงนั้น ช่วงนั้นอาจเป็นตลอดปฏิกิริยาหรือเพียงช่วงสั้น ๆ ก็ได้ (ไม่ใช่เฉพาะตั้งแต่เริ่มจนจบปฏิกิริยา)</p>
+<p><b>อัตราการเกิดปฏิกิริยา ณ ขณะหนึ่ง</b> คือค่าที่เวลาใดเวลาหนึ่ง หาจากความชันของ <b>เส้นสัมผัส</b> กราฟที่จุดนั้น แล้วหารด้วยสัมประสิทธิ์ของสาร เส้นสัมผัสเส้นเดียวกันจะให้ความชันเท่าเดิมไม่ว่าจะลากยาวเท่าใด แต่แต่ละคนอาจลากเส้นได้ไม่เหมือนกันเล็กน้อย จึงอาจได้ตัวเลขต่างกันนิดหน่อย</p>
+<div class="box">ช่วงเวลาแคบ ๆ ให้อัตราเฉลี่ยใกล้เคียงกับอัตรา ณ ขณะหนึ่งที่<b>จุดกึ่งกลาง</b>ของช่วงนั้น ยิ่งช่วงแคบ ยิ่งใกล้</div>
+<p>ถ้าวัดสารเพียงชนิดเดียวที่เวลาต่าง ๆ ก็คำนวณสารอื่นได้จากสัมประสิทธิ์ เช่น 2A → 4B + C เมื่อ C เพิ่มขึ้น x โมลาร์ A ลดลง 2x และ B เพิ่มขึ้น 4x แล้วเขียนกราฟของสารที่ไม่ได้วัดได้</p>`,
+ q:['ทำไมช่วงเวลาที่แคบลงจึงทำให้อัตราเฉลี่ยใกล้อัตรา ณ ขณะหนึ่งมากขึ้น','เพราะเส้นโค้งในช่วงแคบ ๆ เกือบเป็นเส้นตรง ความชันของเส้นตรงที่เชื่อมสองปลายจึงเกือบเท่าความชันของเส้นสัมผัสที่กึ่งกลาง']}
+]},
+'8.4':{lead:'อ่านแนวคิดของทฤษฎีการชนและสถานะแทรนซิชัน แล้วดูว่าความเข้มข้น พื้นที่ผิว และอุณหภูมิเปลี่ยนอัตราอย่างไร',secs:[
+{h:'ทฤษฎีการชนและทฤษฎีสถานะแทรนซิชัน',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 95–98',html:`
+<p><b>ทฤษฎีการชน</b> อนุภาคของสารตั้งต้นเคลื่อนที่และชนกัน แต่ไม่ใช่ทุกการชนจะเกิดปฏิกิริยา ต้องมี 2 เงื่อนไขพร้อมกัน คือ (1) ชนในทิศทางที่เหมาะสม เช่น ในการเกิด NO<sub>2</sub> + O<sub>2</sub> จาก NO กับ O<sub>3</sub> อะตอม N ของ NO ต้องชนอะตอม O ปลายของ O<sub>3</sub> และ (2) คู่ที่ชนมีพลังงานจลน์มากพอ</p>
+<p><b>ทฤษฎีสถานะแทรนซิชัน</b> เมื่ออนุภาคชนกัน พลังงานศักย์ของระบบสูงขึ้นจนถึงสถานะแทรนซิชัน (จุดพลังงานสูงสุดบนทางผ่านของปฏิกิริยา) แล้วจึงลดลงเป็นผลิตภัณฑ์ ผลต่างของพลังงานศักย์ที่สถานะแทรนซิชันกับสถานะเริ่มต้นคือ <b>พลังงานก่อกัมมันต์ (Eₐ)</b></p>
+<div class="box">ปฏิกิริยาจะเร็วหรือช้าขึ้นกับ Eₐ เท่านั้น ไม่ได้ขึ้นกับว่าเป็นปฏิกิริยาคายหรือดูดพลังงาน เช่น ปฏิกิริยาคาย 20 kJ/mol ที่ Eₐ = 52 ช้ากว่าปฏิกิริยาดูด 30 kJ/mol ที่ Eₐ = 45</div>`},
+{h:'ผลของความเข้มข้น พื้นที่ผิว และอุณหภูมิ',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 101–105',html:`
+<ul><li><b>ความเข้มข้น</b> ยิ่งเข้มข้น มีอนุภาคต่อปริมาตรมากขึ้น ชนกันบ่อยขึ้น อัตราเพิ่ม (ถ้าความเข้มข้นเท่าเดิม การเพิ่มปริมาตรสารละลายไม่เปลี่ยนอัตรา)</li>
+<li><b>พื้นที่ผิว</b> ของแข็งที่บดละเอียดมีผิวสัมผัสมากกว่า อนุภาคอื่นชนผิวได้บ่อยขึ้น</li>
+<li><b>อุณหภูมิ</b> อนุภาคเคลื่อนที่เร็วขึ้น ชนกันบ่อยขึ้น และมีสัดส่วนของอนุภาคที่พลังงานพอจะเกิดปฏิกิริยามากขึ้น อัตราเพิ่มทั้งปฏิกิริยาคายและดูดพลังงาน</li></ul>
+<p>ตัวอย่างในชีวิตประจำวัน: เคี้ยวอาหารให้ละเอียดช่วยย่อยง่ายขึ้น (พื้นที่ผิว) น้ำยาล้างห้องน้ำที่ HCl เข้มข้นกว่าล้างหินปูนเร็วกว่า (ความเข้มข้น)</p>`,
+ q:['ใส่ผง Mg 0.5 g ในกรด HCl 1.0 M ปริมาตร 10 mL และ 20 mL อัตราต่างกันหรือไม่','ไม่ต่างกัน เพราะความเข้มข้นเท่ากัน (หนังสือเฉลยไว้เช่นนี้) และผง Mg เท่ากัน']}
+]},
+'8.5':{lead:'อ่านเรื่องตัวเร่งปฏิกิริยา ก่อนทดลองเติม KI ลงใน H₂O₂',secs:[
+{h:'ตัวเร่งปฏิกิริยา และธรรมชาติของสาร',pg:'อ้างอิงคู่มือครู เคมี ม.5 เล่ม 3 หน้า 105–111',html:`
+<p>H<sub>2</sub>O<sub>2</sub> สลายตัวช้ามากเมื่อตั้งไว้เฉย ๆ แต่เมื่อเติม KI จะเกิดฟองแก๊ส O<sub>2</sub> มากทันที สารที่เติมแล้วทำให้ปฏิกิริยาเกิดเร็วขึ้นเรียกว่า <b>ตัวเร่งปฏิกิริยา</b> KI มีส่วนร่วมในปฏิกิริยา (สารละลายกลายเป็นสีเหลืองชั่วคราว) แต่เมื่อสิ้นสุดแล้วได้ KI กลับคืน สารละลายจึงใสเหมือนเดิม</p>
+<div class="box"><h3>กลไกอย่างง่ายที่ครูอาจเสริม</h3>H<sub>2</sub>O<sub>2</sub> + I<sup>−</sup> → H<sub>2</sub>O + OI<sup>−</sup><br>OI<sup>−</sup> + H<sub>2</sub>O<sub>2</sub> → O<sub>2</sub> + I<sup>−</sup> + H<sub>2</sub>O<br>I<sup>−</sup> ถูกใช้ในขั้นแรกและกลับมาในขั้นที่สอง จึงไม่ปรากฏในสมการรวม</div>
+<p>ตัวเร่งปฏิกิริยาทำให้พลังงานก่อกัมมันต์ลดลง แต่พลังงานของปฏิกิริยา (ΔH) ไม่เปลี่ยน และไม่เพิ่มปริมาณผลิตภัณฑ์ที่ได้ในที่สุด ส่วน <b>ตัวหน่วงปฏิกิริยา</b> ทำให้ปฏิกิริยาช้าลง</p>
+<p>ชนิดของสารก็มีผล เช่น ถ่านและเพชรเป็นคาร์บอนเหมือนกันแต่เป็นอัญรูปต่างกัน จึงเผาไหม้ด้วยอัตราต่างกัน</p>`,
+ q:['การผลิตเนยเทียมใช้โลหะนิกเกิลที่แยกออกได้ทั้งหมดเมื่อเสร็จ นิกเกิลทำหน้าที่อะไร','ตัวเร่งปฏิกิริยา เพราะช่วยให้เกิดเร็วขึ้นและไม่ถูกใช้หมด']}
+]}
+};
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่การทดลอง ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทดลอง</span></div></div>`;}
+/* reading-engine:end */
+/* ======================= โครงหน้า ======================= */
+const BUILD={'8.1':[act81,wire81],'8.2':[act82,wire82],'8.3':[act83,wire83],'8.4':[act84,wire84],'8.5':[act85,wire85],'8.6':[act86,wire86],'sum':[actSum,()=>{}],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 5 กิจกรรม';$('#progBar').style.width=(n/5*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  cur=i;const a=ACTS[i];CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 8','เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (กิจกรรม 8.1–8.5)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+a.replace('.','_')+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(8\.\d|sum|ex)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>

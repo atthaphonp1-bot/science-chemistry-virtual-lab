@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.5 เล่ม 3 บทที่ 7 แก๊สและสมบัติของแก๊ส · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.5 บทที่ 7", "title": "เคมี ม.5 เล่ม 3 บทที่ 7 แก๊สและสมบัติของแก๊ส (กิจกรรม 7.1–7.5)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#ecdfd0;--soft:#fff7ee;--acc:#c46a12;--accb:#a85a0d;--acc2:#fdf0e0;--ok:#157a55;--bad:#b63f43;--acc3:#e8a45a;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--accb);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #f3e7d8;border-radius:30px;background:linear-gradient(130deg,#fff,#fff6ec);box-shadow:0 28px 65px #31508012;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--accb);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #c9d9ee;background:#f2f7fd;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#28466b;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--accb);border-color:var(--accb);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--accb);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--accb)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12,0 3px 10px #28416e08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #f0cfa6;border-radius:22px;padding:16px;background:linear-gradient(160deg,#fff6ec,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--accb);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--accb);border:1.5px solid var(--accb)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #e6bd8e;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--accb);color:#fff;border-color:var(--accb)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.opt.good{background:#e6f6ee;border-color:#9bd9b8}.opt.wrong{background:#fdecec;border-color:#efb0b2}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#8a4a0a;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--accb)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}#lsPanel{width:min(1120px,calc(100% - 24px))}#lsPanel .ls-btn{background:var(--accb)}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+input[type=range]{width:100%;min-height:32px;accent-color:var(--acc)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.cap{font-size:.84rem;color:var(--muted);text-align:center;margin:2px 0 0}
+.stat{display:flex;flex-wrap:wrap;gap:8px 18px;margin:8px 0}.stat span{font-size:.93rem}.stat b{font-variant-numeric:tabular-nums}
+.warn{font-size:.88rem;color:#6b4a12;background:#fff3dc;border-radius:12px;padding:8px 12px;margin:8px 0}
+.bar{display:flex;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin:6px 0}.bar i{display:block;height:100%}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 5 · BOOK 3 · CHAPTER 7</div>
+<h1>แก๊สและสมบัติของแก๊ส: การทดลองเสมือน</h1>
+<p>ลงมือทำกิจกรรม 7.1–7.5 ตามเคมี ม.5 เล่ม 3 ของ สสวท. ตั้งแต่กฎของบอยล์ กฎของชาร์ล กราฟปริมาตร–อุณหภูมิ กฎของอาโวกาโดร การแพร่ของแก๊ส จนถึงการสืบค้นการใช้ประโยชน์ มีเครื่องมือเสริมสำหรับกฎแก๊สอุดมคติและความดันย่อย แล้วตอบคำถามและทำแบบทดสอบสั้น</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 6 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ตัวเลขในห้องทดลองเสมือนคำนวณจากกฎของแก๊สและค่าที่ระบุไว้ในแต่ละกิจกรรม (ภาวะเริ่มต้น เช่น 1.00 atm หรือ 25 °C เป็นค่าสมมติของแบบจำลองที่ระบุไว้ข้างกิจกรรมนั้น) หนังสือเรียนในกิจกรรม 7.1, 7.2 และ 7.5 รายงานผลเชิงคุณภาพ จึงแสดงตัวเลขเป็นค่าที่คำนวณจากกฎ ไม่ใช่ผลวัดจริง<br>
+<b>ข้อควรระวังทั่วไปเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ยกเว้นข้อที่ระบุว่ามาจากคู่มือครู): สวมแว่นตานิรภัย ถุงมือ และล้างมือหลังทดลอง สาร HCl และแอมโมเนียเข้มข้นกัดกร่อน มีกลิ่นฉุนและอันตรายต่อระบบหายใจ</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 7"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: เนื้อหาและตัวเลขเรียบเรียงจากคู่มือครูรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 5 เล่ม 3 บทที่ 7 แก๊สและสมบัติของแก๊ส (สสวท.) เลขหน้าที่อ้างในหน้านี้คือเลขหน้าของคู่มือครู กิจกรรม 7.1 หน้า 8–10 · 7.2 หน้า 11–12 · 7.3 หน้า 13–17 · 7.4 หน้า 21–24 · 7.5 หน้า 44–45 · 7.6 หน้า 51–53 · แบบฝึกหัดท้ายบท หน้า 55–66 · <a href="https://www.scimath.org/ebook-chemistry" target="_blank" rel="noopener">หนังสือเรียนที่ สสวท.</a></footer>
+</div>
+<script>
+'use strict';
+/* ======================= ฟังก์ชันคำนวณ (บริสุทธิ์) ======================= */
+/* อุณหภูมิ °C → K ใช้ +273 และ R = 0.0821 L·atm/(mol·K) ตามที่หนังสือใช้ */
+const R=0.0821,K=t=>t+273;
+const G={
+ boyleV2:(p1,v1,p2)=>p1*v1/p2,
+ charlesV2:(v1,t1c,t2c)=>v1*K(t2c)/K(t1c),
+ gayP2:(p1,t1c,t2c)=>p1*K(t2c)/K(t1c),
+ combV2:(p1,v1,t1c,p2,t2c)=>p1*v1*K(t2c)/(K(t1c)*p2),
+ avoV2:(v1,n1,n2)=>v1*n2/n1,
+ idealN:(p,v,tc)=>p*v/(R*K(tc)),
+ idealP:(n,v,tc)=>n*R*K(tc)/v,
+ idealV:(n,p,tc)=>n*R*K(tc)/p,
+ idealTc:(p,v,n)=>p*v/(n*R)-273,
+ partials(ns,v,tc){const ps=ns.map(n=>G.idealP(n,v,tc));return{ps,total:ps.reduce((a,b)=>a+b,0)};},
+ grahamRatio:(m1,m2)=>Math.sqrt(m2/m1),      /* r1/r2 */
+ grahamTime:(m1,m2)=>Math.sqrt(m1/m2),       /* t1/t2 */
+ molarMassD:(d,p,tc)=>d*R*K(tc)/p,
+ tolOk(u,a,rel,abs){if(u===null||u===undefined||a===null||a===undefined||!Number.isFinite(u)||!Number.isFinite(a))return false;const t=(abs!==undefined&&abs!==null)?abs:Math.abs(a)*(rel===undefined?0.05:rel);return Math.abs(u-a)<=t;}
+};
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const RM=()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}};
+const f=(x,d)=>Number(x).toFixed(d===undefined?2:d).replace('-','−');
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const TIM={raf:0,iv:0};
+function stopTimers(){cancelAnimationFrame(TIM.raf);clearInterval(TIM.iv);TIM.raf=0;TIM.iv=0;}
+
+/* กราฟ SVG ขนาดเล็ก (ไม่ใช้ไลบรารี) */
+let chartN=0;
+function chart(o){
+  const W=o.w||340,H=o.h||240,m={l:48,r:14,t:14,b:40},id='ck'+(++chartN);
+  const sx=x=>m.l+(x-o.x[0])/(o.x[1]-o.x[0])*(W-m.l-m.r),sy=y=>H-m.b-(y-o.y[0])/(o.y[1]-o.y[0])*(H-m.t-m.b);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.label}"><defs><clipPath id="${id}"><rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}"/></clipPath></defs>`;
+  (o.xt||[]).forEach(t=>{s+=`<line x1="${sx(t)}" y1="${m.t}" x2="${sx(t)}" y2="${H-m.b}" stroke="#eee3d3"/><text x="${sx(t)}" y="${H-m.b+15}" text-anchor="middle" font-size="10.5" fill="#5d6b82">${(o.xf||(v=>v))(t)}</text>`;});
+  (o.yt||[]).forEach(t=>{s+=`<line x1="${m.l}" y1="${sy(t)}" x2="${W-m.r}" y2="${sy(t)}" stroke="#eee3d3"/><text x="${m.l-5}" y="${sy(t)+3.5}" text-anchor="end" font-size="10.5" fill="#5d6b82">${(o.yf||(v=>v))(t)}</text>`;});
+  s+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="none" stroke="#b9a58c"/>`;
+  s+=`<g clip-path="url(#${id})">`;
+  (o.series||[]).forEach(se=>{if(se.pts.length>1)s+=`<polyline fill="none" stroke="${se.col||'#c46a12'}" stroke-width="${se.w||2.2}" ${se.dash?'stroke-dasharray="6 4"':''} points="${se.pts.map(p=>sx(p[0]).toFixed(1)+','+sy(p[1]).toFixed(1)).join(' ')}"/>`;});
+  (o.marks||[]).forEach(p=>{s+=`<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="${p.r||4.5}" fill="${p.col||'#1769e0'}" stroke="#fff" stroke-width="1.2"/>`;});
+  s+='</g>';
+  (o.marks||[]).filter(p=>p.label).forEach(p=>{s+=`<text x="${Math.min(W-m.r-2,sx(p.x)+7)}" y="${Math.max(m.t+11,sy(p.y)-7)}" font-size="10.5" fill="#33415c" ${sx(p.x)>W-110?'text-anchor="end"':''}>${p.label}</text>`;});
+  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-5}" text-anchor="middle" font-size="11.5" fill="#33415c">${o.xl}</text><text x="12" y="${(m.t+H-m.b)/2}" text-anchor="middle" font-size="11.5" fill="#33415c" transform="rotate(-90 12 ${(m.t+H-m.b)/2})">${o.yl}</text></svg>`;
+  return s;
+}
+const range=(a,b,n)=>Array.from({length:n+1},(_,i)=>a+(b-a)*i/n);
+
+/* ======================= สถานะ ======================= */
+const KEY='chemistry-m5-ch7-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+const ACTS=['7.1','7.2','7.3','7.4','7.5','7.6','ig','sum','ex'];const LABS=['7.1','7.2','7.3','7.4','7.5','ig'];
+const TITLES={'7.1':'กฎของบอยล์','7.2':'ปริมาตร–อุณหภูมิ','7.3':'กราฟของชาร์ล','7.4':'กฎของอาโวกาโดร','7.5':'การแพร่ของแก๊ส','7.6':'สืบค้นการใช้ประโยชน์','ig':'เครื่องมือ PV=nRT','sum':'สรุปเนื้อหา','ex':'แบบฝึกหัดท้ายบท'};
+let cur=0;
+
+/* ======================= แบบทดสอบ (เครื่องยนต์เดียวกับบท 11) ======================= */
+const QUIZ={
+'7.1':[
+ {q:'ในกิจกรรม เมื่อกดก้านกระบอกฉีดยาจนอากาศเหลือ 5.0 mL แล้วปล่อยมือ ก้านเลื่อนกลับออกมา แสดงว่าอะไร',o:['ความดันของอากาศที่ 5.0 mL มากกว่าความดันบรรยากาศ','ความดันของอากาศที่ 5.0 mL น้อยกว่าความดันบรรยากาศ','จำนวนโมลของอากาศเพิ่มขึ้น','อุณหภูมิของอากาศลดลง'],a:0,w:'ก้านถูกดันกลับออกเพราะความดันภายในสูงกว่าความดันภายนอก ซึ่งสอดคล้องกับกฎของบอยล์: ปริมาตรลด ความดันเพิ่ม (ที่ T และ n คงที่)'},
+ {q:'อากาศในหลอดรูปตัวเจมีปริมาตร 30 mL ที่ 1.0 atm ถ้าความดันเพิ่มเป็น 1.5 atm (T คงที่) ปริมาตรเป็นเท่าใด',o:['20 mL','45 mL','30 mL','15 mL'],a:0,w:'P₁V₁ = P₂V₂ → V₂ = (1.0 × 30)/1.5 = 20 mL (ตัวอย่างตรวจสอบความเข้าใจในคู่มือครู)'},
+ {q:'ตัวแปรใดที่ต้องควบคุมให้คงที่เมื่อศึกษากฎของบอยล์',o:['อุณหภูมิและจำนวนโมลของแก๊ส','ความดันและอุณหภูมิ','ปริมาตรและจำนวนโมล','ไม่ต้องควบคุมตัวแปรใด'],a:0,w:'ตัวแปรต้นคือความดัน ตัวแปรตามคือปริมาตร ตัวแปรควบคุมคืออุณหภูมิและจำนวนโมลของแก๊ส'}],
+'7.2':[
+ {q:'วางขวดพลาสติกที่ปากขวดมีฟิล์มน้ำยาล้างจานลงในน้ำร้อน ฟิล์มพองขึ้น แสดงว่าอะไร',o:['เมื่ออุณหภูมิเพิ่ม ปริมาตรของอากาศเพิ่ม (ความดันและจำนวนโมลคงที่)','เมื่ออุณหภูมิเพิ่ม ปริมาตรของอากาศลดลง','จำนวนโมลของอากาศในขวดเพิ่มขึ้น','ความดันบรรยากาศเพิ่มขึ้น'],a:0,w:'ฟิล์มทำให้ความดันภายในขวดเท่ากับบรรยากาศตลอด และขวดปิดจึงไม่มีโมลเพิ่ม ปริมาตรที่เพิ่มจึงมาจากอุณหภูมิ'},
+ {q:'แก๊ส H₂ ที่ 27 °C ต้องทำให้ถึงกี่ °C จึงมีปริมาตรลดลงครึ่งหนึ่ง (ความดันคงที่)',o:['−123 °C','13.5 °C','−136.5 °C','150 °C'],a:0,w:'V₁/T₁ = V₂/T₂ → T₂ = 300 K × ½ = 150 K = 150 − 273 = −123 °C'},
+ {q:'ลูกโป่งฮีเลียม 10.0 L ที่ 27 °C ถูกนำไปที่ 57 °C (ความดันคงที่) ปริมาตรเป็นเท่าใด',o:['11.0 L','21.1 L','9.5 L','10.0 L'],a:0,w:'V₂ = 10.0 L × 330 K / 300 K = 11.0 L (ต้องใช้อุณหภูมิเป็นเคลวิน ไม่ใช่ 57/27)'}],
+'7.3':[
+ {q:'กราฟ V (mL) กับ t (°C) ในกิจกรรมเป็นเส้นตรง y = 0.39x + 106 ค่า 106 หมายถึงอะไร',o:['ปริมาตรของแก๊สที่ 0 °C','อุณหภูมิที่ปริมาตรเป็นศูนย์','ความชันของเส้นกราฟ','ปริมาตรที่ −273 °C'],a:0,w:'จุดตัดแกน y คือค่า y เมื่อ x (อุณหภูมิ) = 0 °C จึงเป็นปริมาตรที่ 0 °C'},
+ {q:'เมื่อต่อเส้นกราฟจนตัดแกน x พบที่ประมาณ −273 °C จุดนี้คืออะไร',o:['อุณหภูมิศูนย์สัมบูรณ์ (0 K) ซึ่งปริมาตรสมมติเป็นศูนย์','จุดเยือกแข็งของน้ำ','จุดเดือดของแก๊ส','จุดที่แก๊สกลายเป็นของเหลวพอดี'],a:0,w:'การต่อเส้นกราฟเป็นการคาดการณ์ (extrapolation) ตามหนังสือ ที่อุณหภูมิต่ำมากแก๊สจริงกลายเป็นของเหลวก่อนถึงจุดนั้น'},
+ {q:'ข้อใดถูกเกี่ยวกับอัตราส่วน V/T ของแก๊สที่ความดันและจำนวนโมลคงที่',o:['V/T ในหน่วยเคลวินคงที่ แต่ในหน่วย °C ไม่คงที่','V/T ในหน่วย °C คงที่ แต่ในหน่วยเคลวินไม่คงที่','คงที่ทั้งสองหน่วย','ไม่คงที่ทั้งสองหน่วย'],a:0,w:'เส้นตรงผ่านจุดกำเนิดเมื่อใช้เคลวิน (V ∝ T) แต่เส้นกราฟใน °C ไม่ผ่านจุดกำเนิด (ชวนคิดในคู่มือครู)'}],
+'7.4':[
+ {q:'ลูกโป่งใบใดพองมากที่สุดเมื่อใช้ NaHCO₃ 0.10, 0.50 และ 1.00 g กับ HCl เท่ากัน',o:['ใบที่ใช้ 1.00 g','ใบที่ใช้ 0.10 g','ทุกใบเท่ากัน','ใบที่ใช้ 0.50 g'],a:0,w:'NaHCO₃ เป็นสารกำหนดปริมาณ (HCl 0.025 mol เหลือเกิน) ใช้มากกว่าจึงเกิด CO₂ มากกว่า ที่ T และ P คงที่ V ∝ n'},
+ {q:'NaHCO₃ 0.50 g (M = 84.01 g/mol) ให้ CO₂ กี่ mol',o:['0.0060 mol','0.025 mol','0.0012 mol','0.0119 mol'],a:0,w:'0.50/84.01 = 0.0060 mol และ NaHCO₃ : CO₂ = 1 : 1'},
+ {q:'อาร์กอน 2.0 mol มีปริมาตร 3.0 L เติมเพิ่มอีก 1.0 mol (T, P คงที่) ปริมาตรเป็นเท่าใด',o:['4.5 L','9.0 L','3.0 L','1.5 L'],a:0,w:'V₁/n₁ = V₂/n₂ → V₂ = 3.0 × 3.0/2.0 = 4.5 L'}],
+'7.5':[
+ {q:'ในการทดลอง วงแหวนสีขาวของ NH₄Cl เกิดใกล้ปลายด้านใด',o:['ด้านสำลีชุบ HCl เพราะ HCl แพร่ได้ช้ากว่า','ด้านสำลีชุบ NH₃ เพราะ NH₃ แพร่ช้ากว่า','กึ่งกลางหลอดพอดี','ไม่เกิดวงแหวน'],a:0,w:'แก๊สที่มีมวลต่อโมลมากกว่า (HCl 36.46 > NH₃ 17.04 g/mol) แพร่ช้ากว่า จึงเดินทางได้ระยะสั้นกว่าก่อนพบกัน'},
+ {q:'ข้อใดถูกเกี่ยวกับอัตราการแพร่ของแก๊สที่ T และ P เดียวกัน',o:['แปรผกผันกับรากที่สองของมวลต่อโมล','แปรผันตรงกับมวลต่อโมล','ไม่ขึ้นกับมวลต่อโมล','แปรผกผันกับมวลต่อโมลโดยตรง (ไม่มีรากที่สอง)'],a:0,w:'กฎของเกรแฮม: r₁/r₂ = √(M₂/M₁)'},
+ {q:'อัตราการแพร่ของ H₂ (2.02 g/mol) เป็นกี่เท่าของ T₂ (6.04 g/mol)',o:['1.73 เท่า','3.00 เท่า','0.58 เท่า','2.99 เท่า'],a:0,w:'r(H₂)/r(T₂) = √(6.04/2.02) = √2.99 = 1.73 (แบบฝึกหัด 7.3 ข้อ 1)'}],
+'ig':[
+ {q:'ค่าคงที่ของแก๊ส R เมื่อใช้ atm, L, mol, K มีค่าเท่าใด',o:['0.0821 L·atm/(mol·K)','22.4 L·atm/(mol·K)','8.314 L·atm/(mol·K)','1.00 L·atm/(mol·K)'],a:0,w:'ที่ STP แก๊ส 1 mol มี V = 22.4 L: R = (1 atm)(22.4 L)/((1 mol)(273 K)) = 0.0821'},
+ {q:'ถ้าอุณหภูมิและปริมาตรของภาชนะคงที่ แต่เติมแก๊สเพิ่มเป็น 2 เท่าของจำนวนโมล ความดันจะเป็นอย่างไร',o:['เพิ่มเป็น 2 เท่า','ลดลงครึ่งหนึ่ง','เท่าเดิม','เพิ่มเป็น 4 เท่า'],a:0,w:'P = nRT/V ที่ V และ T คงที่ P ∝ n'},
+ {q:'ถังดำน้ำ EANx ความดันรวม 200 atm มี O₂ 32 % โดยปริมาตร ความดันย่อยของ O₂ เป็นเท่าใด',o:['64 atm','32 atm','136 atm','6.4 atm'],a:0,w:'P(O₂) = X(O₂) × P(total) = 0.32 × 200 = 64 atm (ร้อยละโดยปริมาตรเท่ากับร้อยละโดยโมลที่ T, P คงที่) ส่วน N₂ = 136 atm'}]
+};
+/* สลับตำแหน่งตัวเลือก (แบบกำหนดตายตัว) เพื่อไม่ให้เฉลยอยู่ข้อแรกเสมอ */
+Object.keys(QUIZ).forEach((act,ai)=>QUIZ[act].forEach((q,qi)=>{const n=q.o.length,s=(qi*3+ai*2+1)%n;q.o=q.o.slice(s).concat(q.o.slice(0,s));q.a=(q.a-s+n)%n;}));
+function qkey(a){return a.replace('.','_');}
+function quizHTML(act){
+  return'<div class="box" id="quiz-'+qkey(act)+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+qkey(act)+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act){
+  const root=$('#quiz-'+qkey(act)),qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      $$('.opt',el).forEach(o=>o.classList.remove('good','wrong'));
+      if(sel){answered++;const v=+sel.value;if(v===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls((act==='ig'?'เครื่องมือ':act)+' แบบทดสอบ',got,qs.length);
+    if(answered===qs.length){st.done[act]=true;save();paintTabs();paintProgress();}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.opt',root).forEach(o=>o.classList.remove('good','wrong'));$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+function written(id,label){return'<div class="q"><label class="lbl" for="'+id+'">'+label+'</label><textarea id="'+id+'" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>';}
+
+/* ลองคำนวณ: ช่องตัวเลขตรวจทันที (ไม่นับคะแนน) */
+const CALC={};
+function calcHTML(act){const k=qkey(act);
+  return'<div class="box"><h3>ลองคำนวณ (จากตรวจสอบความเข้าใจ/แบบฝึกหัดในคู่มือครู · ตรวจทันที ไม่นับคะแนน)</h3>'+CALC[act].map((c,i)=>`<div class="q"><p>${i+1}. ${c.q}</p><div class="rowflex"><label>คำตอบ<input type="number" step="any" inputmode="decimal" id="c_${k}_${i}"></label><span class="small">${c.u}</span><button class="btn alt sm" type="button" data-ci="${i}">ตรวจ</button></div><div class="why hide" id="cw_${k}_${i}" aria-live="polite"></div></div>`).join('')+'</div>';}
+function wireCalc(act){const k=qkey(act);
+  $$('button[data-ci]').forEach(b=>b.onclick=()=>{const i=+b.dataset.ci,c=CALC[act][i],raw=$('#c_'+k+'_'+i).value.trim(),w=$('#cw_'+k+'_'+i);w.classList.remove('hide');
+    if(raw===''){w.innerHTML='ยังไม่ได้กรอกคำตอบ';return;}
+    const ok=G.tolOk(parseFloat(raw),c.a,c.rel,c.abs);
+    w.innerHTML=(ok?'<b style="color:#157a55">✓ ถูกต้อง</b>':'<b style="color:#b63f43">✗ ยังไม่ถูก</b>')+' · วิธีทำ: '+c.s;});}
+
+/* ======================= 7.1 กฎของบอยล์ ======================= */
+CALC['7.1']=[
+ {q:'หลอดรูปตัวเจ: อากาศด้านปลายปิดมีปริมาตร 30 mL ที่ 1.0 atm เมื่อเติมปรอทจนความดันเป็น 1.5 atm ปริมาตรเป็นกี่ mL (T คงที่)',a:G.boyleV2(1.0,30,1.5),u:'mL',s:'P₁V₁ = P₂V₂ → V₂ = (1.0 atm)(30 mL)/(1.5 atm) = 20 mL'},
+ {q:'(ค่าสมมติของผู้จัดทำหน้า) ระดับปรอทในหลอดปลายเปิดสูงกว่าปลายปิด 380 mmHg ขณะที่ P<sub>atm</sub> = 760 mmHg ความดันของแก๊สปลายปิดเท่าใดในหน่วย atm',a:(760+380)/760,u:'atm',s:'P<sub>gas</sub> = P<sub>atm</sub> + ผลต่างความสูงของปรอท = 760 + 380 = 1140 mmHg = 1140/760 = 1.5 atm'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 1) แก๊สในกระบอกสูบ 1.5 L ต้องเลื่อนก้านให้ปริมาตรเป็นกี่ L ความดันจึงเพิ่มเป็น 1.5 เท่า',a:G.boyleV2(1,1.5,1.5),u:'L',s:'P₁(1.5 L) = (1.5P₁)V₂ → V₂ = 1.0 L'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 2) ถังปั๊ม NGV 1.00×10<sup>4</sup> L ที่ 300 bar เติมถังรถ 70.0 L ให้ 150 bar ได้กี่คัน (ความดันสุดท้ายในถังปั๊มต้องไม่ต่ำกว่า 150 bar)',a:Math.floor((G.boyleV2(300,1e4,150)-1e4)/70),u:'คัน',rel:0.01,s:'ที่ 150 bar แก๊สนี้มี V = (300)(1.00×10⁴)/150 = 2.00×10⁴ L ส่วนที่ปล่อยออกได้ = 2.00×10⁴ − 1.00×10⁴ = 1.00×10⁴ L ÷ 70.0 L ต่อคัน = 142 คัน (หนังสือตอบ 142)'}
+];
+function act71(){return`<h2>กิจกรรม 7.1 การทดลองศึกษาความสัมพันธ์ระหว่างความดันและปริมาตรของอากาศ</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 8–10</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดลองและอธิบายความสัมพันธ์ระหว่างความดันและปริมาตรของอากาศ</p></div>
+  <div class="box"><h3>วัสดุและอุปกรณ์ (ตามคู่มือ)</h3>กระบอกฉีดยาพลาสติก ขนาด 20 mL · 1 อัน ต่อกลุ่ม (เวลาทั้งหมด 30 นาที)</div></div>
+  <div class="box"><h3>วิธีทำ (เรียบเรียงจากตัวอย่างผลการทดลองในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>ตั้งก้านกระบอกฉีดยาที่ 10.0 mL ปิดปลายกระบอก ความดันของอากาศเท่ากับความดันบรรยากาศ</li><li>กดก้านจนอากาศเหลือ 5.0 mL แล้วปล่อยมือ สังเกตการเลื่อนของก้าน</li><li>ดึงก้านจนอากาศเป็น 20.0 mL แล้วปล่อยมือ สังเกตการเลื่อนของก้าน</li></ol><p class="small">ข้อควรระวัง (ผู้จัดทำหน้าเพิ่มเอง): ปิดปลายกระบอกให้แน่น และอย่าปล่อยก้านให้ดีดเข้าหาตัวหรือผู้อื่น</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: กระบอกฉีดยา 20 mL</h3>
+   <p class="small"><b>ค่าของแบบจำลอง:</b> อากาศ 10.0 mL เริ่มต้นมีความดันเท่าบรรยากาศ ซึ่งสมมติเป็น 1.00 atm (= 760 mmHg) และ T กับจำนวนโมลคงที่ จึงคำนวณ P = 10.0 atm·mL ÷ V (หนังสือรายงานผลเชิงคุณภาพ ตัวเลขความดันจึงเป็นค่าที่คำนวณจากกฎ)</p>
+   <div class="fig"><svg viewBox="0 0 470 152" id="g71" role="img" aria-label="กระบอกฉีดยาและอนุภาคอากาศ"></svg></div>
+   <label class="lbl" for="v71">ปริมาตรอากาศในกระบอกฉีดยา (mL)</label><input type="range" id="v71" min="5" max="20" step="0.5" value="10">
+   <div class="btns"><button class="btn sm" type="button" id="p71">กดก้านถึง 5.0 mL</button><button class="btn sm" type="button" id="u71">ดึงก้านถึง 20.0 mL</button><button class="btn alt sm" type="button" id="r71">ปล่อยมือ</button><button class="btn alt sm" type="button" id="s71">บันทึกค่า</button><button class="btn alt sm" type="button" id="c71">ล้างตาราง</button></div>
+   <div class="stat" aria-live="polite"><span>V = <b id="vv71">10.0</b> mL</span><span>P = <b id="pp71">1.00</b> atm (<b id="pm71">760</b> mmHg)</span><span>PV = <b id="pv71">10.0</b> atm·mL</span></div>
+   <div class="tip" id="obs71" aria-live="polite"></div>
+   <div class="grid2"><div><div class="fig" id="ch71a"></div><p class="cap">P กับ V (เส้นโค้งไฮเพอร์โบลา)</p></div><div><div class="fig" id="ch71b"></div><p class="cap">P กับ 1/V (เส้นตรงผ่านจุดกำเนิด)</p></div></div>
+   <div class="tw"><table><thead><tr><th>ครั้งที่</th><th>V (mL)</th><th>P (atm)</th><th>P (mmHg)</th><th>PV (atm·mL)</th></tr></thead><tbody id="tb71"><tr><td colspan="5" class="small">ยังไม่มีข้อมูล กด "บันทึกค่า" หลังปรับปริมาตร</td></tr></tbody></table></div></div>
+  ${calcHTML('7.1')}
+  <div class="box"><h3>คำถามชวนคิด (เขียนคำตอบ)</h3>${written('w71_1','ในการทดลองของบอยล์ ตัวแปรต้น ตัวแปรตาม และตัวแปรควบคุมคืออะไร')}${written('w71_2','ถ้าอุณหภูมิของอากาศในกระบอกฉีดยาสูงขึ้นระหว่างกดก้านอย่างเร็ว ผลที่ได้จะต่างจากกฎของบอยล์อย่างไร')}</div>
+  ${quizHTML('7.1')}`;}
+function wire71(){
+  const S={v:10,rows:[]};
+  const X0=50,PX=14;
+  function draw(){
+    if(!$('#g71'))return;const V=S.v,P=10/V,pxh=X0+PX*V;
+    let s=`<rect x="${X0}" y="55" width="${PX*20}" height="52" fill="#fff" stroke="#8a93a8" stroke-width="2" rx="3"/><rect x="${X0-18}" y="76" width="18" height="10" fill="#fff" stroke="#8a93a8" stroke-width="2"/>`;
+    s+=`<rect x="${X0+1}" y="57" width="${PX*V-1}" height="48" fill="${mixc('#fff2e0','#ffc98a',Math.min(1,Math.max(0,(P-0.5)/1.6)))}"/>`;
+    for(let i=0;i<26;i++){const u=Math.abs(Math.sin(i*12.9898)*43758.5453)%1,w=Math.abs(Math.sin(i*78.233)*12345.679)%1;s+=`<circle cx="${(X0+5+(PX*V-10)*u).toFixed(1)}" cy="${(61+40*w).toFixed(1)}" r="2.6" fill="#c46a12" opacity=".8"/>`;}
+    s+=`<rect x="${pxh}" y="57" width="8" height="48" fill="#6d7482"/><rect x="${pxh+8}" y="76" width="${X0+PX*20+80-pxh}" height="10" fill="#b8bcc6" stroke="#6d7482"/><rect x="${X0+PX*20+80}" y="62" width="10" height="38" rx="3" fill="#6d7482"/>`;
+    s+=`<text x="${X0+PX*V/2}" y="48" text-anchor="middle" font-size="12" fill="#8a4a0a">อากาศ ${f(V,1)} mL</text>`;
+    const gl=Math.min(70,30*P);
+    s+=`<path d="M${pxh-gl} 30 H${pxh-6}" stroke="#c46a12" stroke-width="3" fill="none"/><path d="M${pxh} 30 l-9 -5 v10z" fill="#c46a12"/>`;
+    s+=`<path d="M${pxh+38} 125 H${pxh+17}" stroke="#1769e0" stroke-width="3" fill="none"/><path d="M${pxh+8} 125 l9 -5 v10z" fill="#1769e0"/>`;
+    s+=`<text x="8" y="146" font-size="11" fill="#33415c">ลูกศรส้ม = แรงดันของแก๊สภายใน (ยาวตาม P) · ลูกศรน้ำเงิน = ความดันบรรยากาศ 1.00 atm</text>`;
+    $('#g71').innerHTML=s;
+    $('#v71').value=V;$('#vv71').textContent=f(V,1);$('#pp71').textContent=f(P,2);$('#pm71').textContent=Math.round(P*760);$('#pv71').textContent=f(P*V,1);
+    $('#obs71').textContent=Math.abs(P-1)<0.005?'ความดันของอากาศเท่ากับความดันบรรยากาศ ก้านอยู่นิ่ง':(P>1?'ปริมาตรลดลงแล้ว ความดันภายในมากกว่าบรรยากาศ ถ้าปล่อยมือ ก้านจะเลื่อนกลับออกมาที่ 10.0 mL':'ปริมาตรเพิ่มขึ้นแล้ว ความดันภายในน้อยกว่าบรรยากาศ ถ้าปล่อยมือ ก้านจะเลื่อนกลับเข้าไปที่ 10.0 mL');
+    const marks=S.rows.map(r=>({x:r.v,y:r.p,col:'#1769e0'})).concat([{x:V,y:P,col:'#c46a12',r:6}]);
+    $('#ch71a').innerHTML=chart({label:'กราฟความดันกับปริมาตร',x:[0,22],y:[0,2.2],xt:[0,5,10,15,20],yt:[0,0.5,1,1.5,2],xl:'V (mL)',yl:'P (atm)',series:[{pts:range(4.5,22,70).map(v=>[v,10/v])}],marks});
+    $('#ch71b').innerHTML=chart({label:'กราฟความดันกับส่วนกลับของปริมาตร',x:[0,0.22],y:[0,2.2],xt:[0,0.05,0.1,0.15,0.2],yt:[0,0.5,1,1.5,2],xl:'1/V (1/mL)',yl:'P (atm)',series:[{pts:[[0,0],[0.22,2.2]]}],marks:S.rows.map(r=>({x:1/r.v,y:r.p,col:'#1769e0'})).concat([{x:1/V,y:P,col:'#c46a12',r:6}])});
+    $('#tb71').innerHTML=S.rows.length?S.rows.map((r,i)=>`<tr><td>${i+1}</td><td>${f(r.v,1)}</td><td>${f(r.p,2)}</td><td>${Math.round(r.p*760)}</td><td>${f(r.p*r.v,1)}</td></tr>`).join(''):'<tr><td colspan="5" class="small">ยังไม่มีข้อมูล กด "บันทึกค่า" หลังปรับปริมาตร</td></tr>';
+  }
+  function go(t){stopTimers();if(RM()){S.v=t;draw();return;}const from=S.v,t0=performance.now();const step=now=>{const k=Math.min(1,(now-t0)/700);S.v=from+(t-from)*(1-Math.pow(1-k,3));draw();if(k<1)TIM.raf=requestAnimationFrame(step);};TIM.raf=requestAnimationFrame(step);}
+  $('#v71').oninput=e=>{stopTimers();S.v=+e.target.value;draw();};
+  $('#p71').onclick=()=>{go(5);};$('#u71').onclick=()=>{go(20);};$('#r71').onclick=()=>{go(10);};
+  $('#s71').onclick=()=>{const v=Math.round(S.v*10)/10;if(!S.rows.some(r=>r.v===v))S.rows.push({v,p:10/v});S.rows.sort((a,b)=>a.v-b.v);draw();};
+  $('#c71').onclick=()=>{S.rows=[];draw();};
+  draw();wireCalc('7.1');wireQuiz('7.1');
+}
+function mixc(c1,c2,t){const h=x=>[1,3,5].map(i=>parseInt(x.substr(i,2),16));const a=h(c1),b=h(c2);return'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+
+/* ======================= 7.2 ปริมาตร–อุณหภูมิของอากาศ ======================= */
+const V72=500,T72=25; /* ค่าของแบบจำลอง: อากาศ 500 mL ที่ 25 °C */
+CALC['7.2']=[
+ {q:'แก๊ส H₂ ที่ 27 °C ต้องทำให้อุณหภูมิเป็นกี่ °C จึงมีปริมาตรลดลงครึ่งหนึ่ง (ความดันคงที่)',a:K(27)/2-273,u:'°C',abs:2,s:'V₁/T₁ = V₂/T₂ → T₂ = 300 K × ½ = 150 K → 150 − 273 = −123 °C'},
+ {q:'ลูกโป่งฮีเลียม 10.0 L ที่ 27 °C นำไปไว้ที่ 57 °C (ความดันภายในคงที่) ลูกโป่งมีขนาดกี่ L',a:G.charlesV2(10,27,57),u:'L',s:'V₂ = (10.0 L)(330 K)/(300 K) = 11.0 L'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 4) แก๊สมีปริมาตร 22.4 L ที่ STP ที่ 25 °C ความดันคงที่ จะมีปริมาตรกี่ L',a:G.charlesV2(22.4,0,25),u:'L',rel:0.02,s:'V₂ = (22.4 L)(298 K)/(273 K) = 24.5 L'}
+];
+function act72(){return`<h2>กิจกรรม 7.2 การทดลองศึกษาความสัมพันธ์ระหว่างปริมาตรและอุณหภูมิของอากาศ</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 11–12</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดลองและอธิบายความสัมพันธ์ระหว่างปริมาตรและอุณหภูมิของอากาศ</p></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามคู่มือ)</h3>น้ำ 5 mL · น้ำยาล้างจาน 2.5 mL · น้ำร้อน (ประมาณ 60 °C) 100 mL · น้ำแข็ง 60 g · ขวดพลาสติกใสชนิดไม่ยุบตัวเมื่อถูกความร้อน 500 mL 1 ขวด · บีกเกอร์ 500 mL 2 ใบ</div></div>
+  <div class="box"><h3>วิธีทำ (เรียบเรียงจากตัวอย่างผลการทดลองในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>ทำให้ปากขวดมีฟิล์มของน้ำผสมน้ำยาล้างจาน</li><li>วางขวดลงในบีกเกอร์น้ำร้อน สังเกตฟิล์มที่ปากขวด</li><li>วางขวดลงในบีกเกอร์น้ำผสมน้ำแข็ง สังเกตฟิล์มที่ปากขวด</li></ol><p class="small">ข้อควรระวัง (ผู้จัดทำหน้าเพิ่มเอง): ระวังน้ำร้อนลวกมือ</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ขวด 500 mL ในอ่างน้ำ</h3>
+   <p class="small"><b>ค่าของแบบจำลอง:</b> อากาศในขวดมีปริมาตร 500 mL ที่ 25 °C (อุณหภูมิห้องที่สมมติ) ฟิล์มทำให้ความดันคงที่ และจำนวนโมลคงที่ จึงคำนวณ V = 500 × (T+273)/(25+273) มล. ฟิล์มในภาพวาดพอง/ยุบเกินจริงเพื่อให้เห็นชัด และไม่คิดไอน้ำหรือการขยายตัวของขวด</p>
+   <div class="btns" id="ch72"><button class="chip" type="button" data-t="60" aria-pressed="false">น้ำร้อน 60 °C</button><button class="chip" type="button" data-t="25" aria-pressed="true">อุณหภูมิห้อง 25 °C</button><button class="chip" type="button" data-t="0" aria-pressed="false">น้ำผสมน้ำแข็ง 0 °C</button></div>
+   <label class="lbl" for="t72">อุณหภูมิของอ่างน้ำ (°C)</label><input type="range" id="t72" min="0" max="80" step="1" value="25">
+   <div class="grid2"><div class="fig"><svg viewBox="0 0 300 250" id="g72" role="img" aria-label="ขวดพลาสติกในอ่างน้ำ ปากขวดมีฟิล์มน้ำยาล้างจาน"></svg></div>
+   <div><div class="stat" aria-live="polite"><span>T = <b id="tc72">25</b> °C (<b id="tk72">298</b> K)</span><span>V = <b id="v72">500.0</b> mL</span><span>ΔV = <b id="dv72">0.0</b> mL</span><span>V/T = <b id="vt72">1.678</b> mL/K</span></div><div class="tip" id="obs72" aria-live="polite"></div>
+   <div class="btns"><button class="btn alt sm" type="button" id="s72">บันทึกค่า</button><button class="btn alt sm" type="button" id="c72">ล้างตาราง</button></div>
+   <div class="tw"><table><thead><tr><th>T (°C)</th><th>T (K)</th><th>V (mL)</th><th>V/T (mL/K)</th></tr></thead><tbody id="tb72"><tr><td colspan="4" class="small">ยังไม่มีข้อมูล</td></tr></tbody></table></div></div></div></div>
+  ${calcHTML('7.2')}
+  <div class="box"><h3>คำถามชวนคิด (เขียนคำตอบ)</h3>${written('w72_1','ในการทดลองนี้ควบคุมตัวแปรใดให้คงที่ และทราบได้อย่างไรว่าความดันของอากาศในขวดคงที่')}${written('w72_2','เมื่อวางขวดในน้ำผสมน้ำแข็ง ฟิล์มยุบลง บอกอะไรเกี่ยวกับปริมาตรของอากาศ')}</div>
+  ${quizHTML('7.2')}`;}
+function wire72(){
+  const S={t:25,rows:[]};
+  function draw(){
+    if(!$('#g72'))return;const T=S.t,V=V72*K(T)/K(T72),dv=V-V72,h=Math.max(-26,Math.min(40,dv/V72*260));
+    let s=`<rect x="60" y="130" width="180" height="100" rx="6" fill="${mixc('#bfe0f5','#f6b778',T/80)}" stroke="#8a93a8" stroke-width="2"/>`;
+    if(T<8)s+='<rect x="75" y="136" width="18" height="16" fill="#e9f6ff" stroke="#9cc3df" transform="rotate(-8 84 144)"/><rect x="205" y="140" width="20" height="16" fill="#e9f6ff" stroke="#9cc3df" transform="rotate(10 215 148)"/><rect x="190" y="132" width="16" height="14" fill="#e9f6ff" stroke="#9cc3df"/>';
+    s+=`<path d="M105 100 V70 H137 V54 H163 V70 H195 V100 Q195 112 183 112 V222 H117 V112 Q105 112 105 100Z" fill="#ffffff" fill-opacity=".55" stroke="#6d7482" stroke-width="2"/>`;
+    s+=`<path d="M137 54 Q150 ${54-2*h} 163 54" fill="#cfe9ff" fill-opacity=".6" stroke="#4d8fdc" stroke-width="2"/>`;
+    s+=`<text x="150" y="172" text-anchor="middle" font-size="13" fill="#8a4a0a">อากาศ ${f(V,1)} mL</text><text x="150" y="244" text-anchor="middle" font-size="13" fill="#33415c">อ่างน้ำ ${T} °C</text>`;
+    $('#g72').innerHTML=s;
+    $('#t72').value=T;$('#tc72').textContent=T;$('#tk72').textContent=K(T);$('#v72').textContent=f(V,1);$('#dv72').textContent=(dv>=0.05?'+':'')+f(dv,1);$('#vt72').textContent=f(V/K(T),3);
+    $('#obs72').textContent=Math.abs(dv)<0.05?'เท่ากับภาวะเริ่มต้น (25 °C) ฟิล์มเรียบ':(dv>0?'อุณหภูมิสูงขึ้น ปริมาตรอากาศเพิ่ม ฟิล์มพองขึ้น':'อุณหภูมิลดลง ปริมาตรอากาศลด ฟิล์มยุบลง');
+    $$('#ch72 .chip').forEach(c=>c.setAttribute('aria-pressed',String(+c.dataset.t===T)));
+    $('#tb72').innerHTML=S.rows.length?S.rows.map(r=>`<tr><td>${r.t}</td><td>${K(r.t)}</td><td>${f(r.v,1)}</td><td>${f(r.v/K(r.t),3)}</td></tr>`).join(''):'<tr><td colspan="4" class="small">ยังไม่มีข้อมูล</td></tr>';
+  }
+  $('#t72').oninput=e=>{S.t=+e.target.value;draw();};
+  $$('#ch72 .chip').forEach(c=>c.onclick=()=>{S.t=+c.dataset.t;draw();});
+  $('#s72').onclick=()=>{if(!S.rows.some(r=>r.t===S.t))S.rows.push({t:S.t,v:V72*K(S.t)/K(T72)});S.rows.sort((a,b)=>a.t-b.t);draw();};
+  $('#c72').onclick=()=>{S.rows=[];draw();};
+  draw();wireCalc('7.2');wireQuiz('7.2');
+}
+
+/* ======================= 7.3 กราฟปริมาตร–อุณหภูมิ ======================= */
+/* หนังสือให้ y = 0.39x + 106 (V เป็น mL, x เป็น °C) ข้อมูลดิบไม่ปรากฏในคู่มือ ผู้จัดทำหน้าสร้างจุดจากสมการนี้ */
+const TS73=[0,25,50,75,100,150,200];
+const V73=t=>Math.round((0.39*t+106)*10)/10;
+CALC['7.3']=[
+ {q:'จากสมการ y = 0.39x + 106 เส้นกราฟตัดแกน x ที่อุณหภูมิกี่ °C (หนังสือสรุป "ประมาณ −273 °C")',a:-106/0.39,u:'°C',abs:3,s:'ตั้ง y = 0 → x = −106/0.39 = −271.8 °C ≈ −272 ซึ่งใกล้ −273 °C (ต่างกันเล็กน้อยเพราะความชันปัดเป็น 0.39)'},
+ {q:'หลอดไฟบรรจุแก๊สมีสกุลที่ 22 °C มีความดัน 0.74 atm เมื่อสว่างอุณหภูมิ 418 K ความดันกี่ atm',a:G.gayP2(0.74,22,418-273),u:'atm',s:'P₂ = (0.74 atm)(418 K)/(295 K) = 1.05 atm (คู่มือครูตอบ 1.0 atm ตามเลขนัยสำคัญของ 0.74)'},
+ {q:'ลูกโป่ง 6.0 L, 1.0 atm, 27 °C ลอยขึ้นที่ 0.50 atm, −23 °C ปริมาตรกี่ L',a:G.combV2(1.0,6.0,27,0.50,-23),u:'L',s:'V₂ = (1.0)(6.0)(250)/((300)(0.50)) = 10 L'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 5) ภาชนะปริมาตรคงที่บรรจุแก๊ส 10.00 atm ที่ 25 °C ทนความดันสูงสุด 1.52×10<sup>4</sup> mmHg ทนอุณหภูมิสูงสุดกี่ °C',a:K(25)*15200/7600-273,u:'°C',abs:3,s:'P₁ = 7600 mmHg: T₂ = (1.52×10⁴)(298)/7600 = 596 K = 323 °C'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 6) แก๊ส 22.4 L ที่ 760 mmHg, 25 °C คำนวณ P/T ของการทดลองที่ 1 (mmHg/K)',a:760/K(25),u:'mmHg/K',s:'760/298 = 2.55 และการทดลองอื่นได้ 806/316 = 2.55 และ 707/277 = 2.55 ค่าคงที่ จึงเป็นกฎของเกย์–ลูสแซก'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 6.2) แก๊ส 22.4 L ที่ 1 atm, 25 °C ปรับเป็น 1.50 atm ที่ 60 °C ปริมาตรกี่ L',a:G.combV2(1,22.4,25,1.5,60),u:'L',s:'V₂ = (1)(22.4)(333)/((298)(1.50)) = 16.7 L'}
+];
+function act73(){return`<h2>กิจกรรม 7.3 กราฟความสัมพันธ์ระหว่างปริมาตรและอุณหภูมิของแก๊ส</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 13–17</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>เขียนกราฟและสมการแสดงความสัมพันธ์ระหว่างปริมาตรและอุณหภูมิของแก๊ส</p></div>
+  <div class="box"><h3>วัสดุและอุปกรณ์ (ตามคู่มือ)</h3>กระดาษกราฟ 1 แผ่น ต่อกลุ่ม (เวลาทั้งหมด 40 นาที)</div></div>
+  <div class="box"><h3>ผลที่หนังสือรายงาน</h3><p>กราฟ V (แกน y) กับ t (แกน x, °C) เป็นเส้นตรง สมการ <b>y = 0.39x + 106</b> เมื่อต่อเส้นไปตัดแกน x ที่ประมาณ −273 °C หรือ 0 K (อุณหภูมิศูนย์สัมบูรณ์)</p><p class="small"><b>ค่าของแบบจำลอง:</b> ตารางข้อมูลดิบของกิจกรรมนี้ไม่ปรากฏในคู่มือ ผู้จัดทำหน้าจึงสร้างจุดจากสมการ y = 0.39x + 106 ที่หนังสือให้ (ปัดเป็น 0.1 mL) จึงตรงเส้นตรงพอดี ข้อมูลจริงจะกระจายรอบเส้นเล็กน้อย</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: เขียนกราฟ V–T</h3>
+   <div class="btns"><button class="btn sm" type="button" id="a73">วางจุดข้อมูลถัดไป</button><button class="btn alt sm" type="button" id="all73">วางครบทุกจุด</button><button class="btn alt sm" type="button" id="c73">ล้างจุด</button></div>
+   <div class="rowflex"><fieldset class="exf" style="border:0;padding:0"><legend class="small">หน่วยอุณหภูมิบนแกน x</legend><label class="opt"><input type="radio" name="u73" value="C" checked><span>องศาเซลเซียส (°C)</span></label><label class="opt"><input type="radio" name="u73" value="K"><span>เคลวิน (K)</span></label></fieldset>
+   <label class="opt" style="flex:0 0 auto"><input type="checkbox" id="x73" checked><span>ต่อเส้นกราฟไปจนตัดแกน x</span></label></div>
+   <div class="grid2"><div><div class="fig" id="ch73"></div><p class="cap" id="cap73"></p></div>
+   <div><div class="stat" aria-live="polite"><span>จำนวนจุด <b id="n73">0</b></span><span>สมการที่ได้: <b id="eq73">—</b></span><span>จุดตัดแกน x: <b id="xi73">—</b></span></div><div class="tip" id="obs73" aria-live="polite"></div></div></div>
+   <div class="tw"><table><thead><tr><th>t (°C)</th><th>T (K)</th><th>V (mL)</th><th>V/t (mL/°C)</th><th>V/T (mL/K)</th></tr></thead><tbody id="tb73"></tbody></table></div>
+   <p class="small">ชวนคิด: เทียบคอลัมน์ V/t กับ V/T เมื่อ t เปลี่ยน คอลัมน์ใดคงที่ (ที่ t = 0 °C ค่า V/t หาไม่ได้เพราะหารด้วยศูนย์)</p></div>
+  ${calcHTML('7.3')}
+  <div class="box"><h3>คำถามชวนคิด (เขียนคำตอบ)</h3>${written('w73_1','เขียนสมการแสดงความสัมพันธ์ระหว่างปริมาตรและอุณหภูมิในหน่วยเคลวิน (กฎของชาร์ล) และอธิบายว่าทำไมต้องใช้เคลวิน')}</div>
+  ${quizHTML('7.3')}`;}
+function wire73(){
+  const S={n:0,u:'C',ext:true};
+  function fit(pts){const n=pts.length,mx=pts.reduce((a,p)=>a+p[0],0)/n,my=pts.reduce((a,p)=>a+p[1],0)/n;let sxx=0,sxy=0;pts.forEach(p=>{sxx+=(p[0]-mx)**2;sxy+=(p[0]-mx)*(p[1]-my);});const m=sxy/sxx;return{m,b:my-m*mx};}
+  function draw(){
+    if(!$('#ch73'))return;const C=S.u==='C',ts=TS73.slice(0,S.n),pts=ts.map(t=>[C?t:K(t),V73(t)]);
+    const series=[],marks=pts.map(p=>({x:p[0],y:p[1],col:'#1769e0'}));let eq='—',xi='—',obs='วางจุดข้อมูลอย่างน้อย 2 จุดเพื่อหาสมการเส้นตรง';
+    if(pts.length>=2){const {m,b}=fit(pts),x0=-b/m;
+      series.push({pts:[pts[0],pts[pts.length-1]]});
+      if(S.ext){series.push({pts:[[x0,0],pts[0]],dash:true,col:'#c46a12'});marks.push({x:x0,y:0,col:'#157a55',r:5.5,label:C?'≈ '+f(x0,0)+' °C':'≈ '+f(x0,1)+' K'});}
+      eq=`y = ${f(m,2)}x ${b<0?'−':'+'} ${f(Math.abs(b),C?0:1)}`;xi=f(x0,1)+(C?' °C':' K');
+      obs=C?'เส้นตรงตัดแกน x ใกล้ −272 °C หนังสือสรุปว่าประมาณ −273 °C ซึ่งคือ 0 K (อุณหภูมิศูนย์สัมบูรณ์) เป็นการต่อเส้นกราฟไปคาดการณ์ ไม่ได้วัดจริง':'ในหน่วยเคลวิน เส้นตรงตัดแกน x ใกล้ 0 K (ผ่านจุดกำเนิดโดยประมาณ) แสดงว่า V ∝ T ซึ่งคือกฎของชาร์ล';}
+    $('#ch73').innerHTML=chart({label:'กราฟปริมาตรกับอุณหภูมิ',w:420,h:290,x:C?[-300,250]:[0,550],y:[0,200],xt:C?[-300,-200,-100,0,100,200]:[0,100,200,300,400,500],yt:[0,50,100,150,200],xl:C?'อุณหภูมิ (°C)':'อุณหภูมิ (K)',yl:'ปริมาตร (mL)',series,marks});
+    $('#cap73').textContent=C?'แกน x เป็น °C (เหมือนกราฟในคู่มือ แกนตั้ง 0–200 mL)':'แกน x เป็น K (เส้นตรงผ่านจุดกำเนิดโดยประมาณ)';
+    $('#n73').textContent=S.n;$('#eq73').textContent=eq;$('#xi73').textContent=xi;$('#obs73').textContent=obs;
+    $('#tb73').innerHTML=ts.length?ts.map(t=>`<tr><td>${t}</td><td>${K(t)}</td><td>${f(V73(t),1)}</td><td>${t===0?'—':f(V73(t)/t,3)}</td><td>${f(V73(t)/K(t),3)}</td></tr>`).join(''):'<tr><td colspan="5" class="small">ยังไม่มีจุดข้อมูล</td></tr>';
+    $('#a73').disabled=S.n>=TS73.length;
+  }
+  $('#a73').onclick=()=>{S.n=Math.min(TS73.length,S.n+1);draw();};$('#all73').onclick=()=>{S.n=TS73.length;draw();};$('#c73').onclick=()=>{S.n=0;draw();};
+  $$('input[name=u73]').forEach(r=>r.onchange=()=>{S.u=r.value;draw();});$('#x73').onchange=e=>{S.ext=e.target.checked;draw();};
+  draw();wireCalc('7.3');wireQuiz('7.3');
+}
+
+/* ======================= 7.4 ปริมาตรและจำนวนโมลของแก๊ส ======================= */
+const M_NAHCO3=84.01,N_HCL=0.50*50.0/1000; /* HCl 0.50 mol/L 50.0 mL ต่อลูกโป่ง (ตามข้อมูลเพิ่มเติมสำหรับครู) */
+const T74=25,P74=1.00; /* ค่าของแบบจำลอง: อุณหภูมิ 25 °C ความดัน 1.00 atm */
+const co2Moles=m=>Math.min(m/M_NAHCO3,N_HCL); /* NaHCO₃ : CO₂ = 1 : 1 */
+const vCO2=n=>G.idealV(n,P74,T74)*1000; /* mL */
+const rBalloon=v=>Math.cbrt(3*v/(4*Math.PI)); /* cm */
+CALC['7.4']=[
+ {q:'อาร์กอน 2.0 mol บรรจุในกระบอกสูบมีปริมาตร 3.0 L เติมอาร์กอนอีก 1.0 mol (T, P คงที่) ปริมาตรกี่ L',a:G.avoV2(3.0,2.0,3.0),u:'L',s:'V₁/n₁ = V₂/n₂ → V₂ = (3.0)(3.0)/(2.0) = 4.5 L'},
+ {q:'NaHCO₃ 0.50 g (84.01 g/mol) ทำปฏิกิริยากับ HCl 0.025 mol จนสมบูรณ์ เกิด CO₂ กี่ mol',a:0.50/M_NAHCO3,u:'mol',s:'n(NaHCO₃) = 0.50/84.01 = 0.0060 mol น้อยกว่า HCl (0.025 mol) จึงเป็นสารกำหนดปริมาณ ได้ CO₂ 0.0060 mol'},
+ {q:'(แบบฝึกหัด 7.1 ข้อ 7) เรือเหาะลอยได้เมื่อมีฮีเลียม 5500 L ฮีเลียม 110 mol มี 2620 L ต้องเติมอีกกี่ mol (T, P คงที่)',a:110*5500/2620-110,u:'mol',s:'n₂ = (5500)(110)/2620 = 231 mol → เติมอีก 231 − 110 = 121 mol'}
+];
+function act74(){return`<h2>กิจกรรม 7.4 การทดลองศึกษาความสัมพันธ์ระหว่างปริมาตรและจำนวนโมลของแก๊ส</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 21–24</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ทดลองและอธิบายความสัมพันธ์ระหว่างปริมาตรและจำนวนโมลของแก๊ส</p></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามคู่มือ)</h3>NaHCO₃ 1.6 g · สารละลาย HCl 0.50 mol/L 150 mL · ลูกโป่ง 10 นิ้ว 3 ลูก · ขวดรูปกรวย 125 mL 3 ใบ · กระดาษชั่งสาร · กรวยกรอง · ช้อนตักสาร · บีกเกอร์ 250 mL · กระบอกตวง 50 mL · หลอดหยด · ปากกาเขียนป้าย (เวลาทั้งหมด 50 นาที)</div></div>
+  <div class="box"><h3>วิธีทำ (เรียบเรียงจากข้อมูลเพิ่มเติมสำหรับครูในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>ใส่ HCl 0.50 mol/L ขวดละ 50.0 mL ในขวดรูปกรวย 3 ขวด</li><li>ชั่ง NaHCO₃ 0.10, 0.50 และ 1.00 g ใส่ในลูกโป่งหมายเลข 1, 2 และ 3 ตามลำดับ</li><li>สวมลูกโป่งที่ปากขวด แล้วยกลูกโป่งให้ NaHCO₃ ตกลงไปในกรด สังเกตและเปรียบเทียบขนาดลูกโป่งที่พองขึ้น</li></ol><p class="small"><b>ข้อควรระวัง (จากคู่มือครู):</b> HCl มีฤทธิ์กัดกร่อน ควรสวมถุงมือระหว่างทดลอง</p></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: ลูกโป่งและแก๊ส CO₂</h3>
+   <p class="small"><b>สมการ:</b> HCl(aq) + NaHCO₃(s) → NaCl(aq) + H₂O(l) + CO₂(g) · <b>ค่าของแบบจำลอง:</b> ลูกโป่งใบที่ 4 (ปรับมวลได้) เพิ่มโดยผู้จัดทำหน้า · ปริมาตรลูกโป่งคำนวณจาก V = nRT/P สำหรับ CO₂ ที่เกิดอย่างเดียวที่ 25 °C และ 1.00 atm (ไม่คิดอากาศเดิม แรงตึงของยางลูกโป่ง และก๊าซที่ละลายในสารละลาย ผลจริงจึงต่างจากตัวเลขนี้)</p>
+   <div class="fig"><svg viewBox="0 0 560 270" id="g74" role="img" aria-label="ขวดรูปกรวย 4 ขวดพร้อมลูกโป่ง"></svg></div>
+   <label class="lbl" for="m74">มวล NaHCO₃ ของลูกโป่งใบที่ 4 (g)</label><input type="range" id="m74" min="0" max="3" step="0.05" value="1.5">
+   <div class="btns"><button class="btn sm" type="button" id="go74">ยกลูกโป่งให้ NaHCO₃ ตกลงในกรด</button><button class="btn alt sm" type="button" id="r74">เริ่มใหม่</button></div>
+   <div class="tip" id="obs74" aria-live="polite"></div>
+   <div class="grid2"><div class="tw"><table><thead><tr><th>ลูกโป่ง</th><th>m NaHCO₃ (g)</th><th>n NaHCO₃ (mol)</th><th>n HCl (mol)</th><th>สารกำหนดปริมาณ</th><th>n CO₂ (mol)</th><th>V CO₂ (mL)</th></tr></thead><tbody id="tb74"></tbody></table></div>
+   <div><div class="fig" id="ch74"></div><p class="cap">V กับ n ของ CO₂ (เส้นตรงผ่านจุดกำเนิด)</p></div></div>
+   <p class="small">คู่มือครูคำนวณ n(NaHCO₃) ของลูกโป่งใบที่ 3 ได้ 0.0120 mol แต่ 1.00/84.01 = 0.0119 mol (ต่างที่ตำแหน่งสุดท้าย) หน้านี้แสดงค่าที่คำนวณได้ 0.0119 mol</p></div>
+  ${calcHTML('7.4')}
+  <div class="box"><h3>คำถามชวนคิด (เขียนคำตอบ)</h3>${written('w74_1','ใช้ผลการทดลองอธิบายความสัมพันธ์ระหว่างปริมาตรและจำนวนโมลของ CO₂ ที่อุณหภูมิและความดันคงที่')}${written('w74_2','ถ้าใช้ NaHCO₃ 3.0 g กับ HCl 50.0 mL ของกิจกรรมนี้ ลูกโป่งจะพองตามสัดส่วนเดิมหรือไม่ เพราะเหตุใด')}</div>
+  ${quizHTML('7.4')}`;}
+function wire74(){
+  const S={m4:1.5,k:0};
+  const MS=()=>[0.10,0.50,1.00,S.m4];
+  function draw(){
+    if(!$('#g74'))return;let s='';
+    MS().forEach((m,i)=>{const c=70+140*i,v=vCO2(co2Moles(m)),r1=rBalloon(v)*13,r0=9,r=r0+(r1-r0)*S.k,cy=170-(S.k>0?r+4:12);
+      s+=`<path d="M${c-10} 170 V196 L${c-46} 248 H${c+46} L${c+10} 196 V170Z" fill="#fff" fill-opacity=".7" stroke="#6d7482" stroke-width="2"/><path d="M${c-44} 244 H${c+44} L${c+30} 222 H${c-30}Z" fill="#cfe3f5" opacity=".8"/>`;
+      s+=`<rect x="${c-12}" y="164" width="24" height="10" rx="2" fill="#b9a58c"/><ellipse cx="${c}" cy="${cy}" rx="${r}" ry="${r*1.12}" fill="${S.k>0?'#f4a261':'#e9b98a'}" fill-opacity=".85" stroke="#c46a12" stroke-width="2"/>`;
+      if(S.k>0.1)for(let j=0;j<5;j++)s+=`<circle cx="${c-18+j*9}" cy="${232-((j*7+i*3)%14)}" r="2.4" fill="#fff" stroke="#8aa9c5"/>`;
+      s+=`<text x="${c}" y="264" text-anchor="middle" font-size="12" fill="#33415c">${i<3?'ใบที่ '+(i+1):'ใบที่ 4 (ปรับเอง)'} · ${f(m,2)} g</text>`;});
+    $('#g74').innerHTML=s;
+    $('#tb74').innerHTML=MS().map((m,i)=>{const n=m/M_NAHCO3,nc=co2Moles(m),lim=n<=N_HCL?'NaHCO₃':'HCl';return`<tr><td>${i<3?i+1:'4 (ปรับเอง)'}</td><td>${f(m,2)}</td><td>${f(n,4)}</td><td>${f(N_HCL,3)}</td><td>${lim}</td><td>${f(nc,4)}</td><td>${f(vCO2(nc),0)}</td></tr>`;}).join('');
+    const nmax=0.03;
+    $('#ch74').innerHTML=chart({label:'กราฟปริมาตรกับจำนวนโมลของ CO₂',x:[0,nmax],y:[0,700],xt:[0,0.01,0.02,0.03],yt:[0,200,400,600],xl:'n ของ CO₂ (mol)',yl:'V (mL)',series:[{pts:[[0,0],[nmax,vCO2(nmax)]]}],marks:MS().map((m,i)=>({x:co2Moles(m),y:vCO2(co2Moles(m)),col:i<3?'#1769e0':'#c46a12',r:i<3?4.5:6}))});
+    const big=S.m4/M_NAHCO3>N_HCL;
+    $('#obs74').textContent=S.k===0?'ลูกโป่งยังไม่พอง กดปุ่มเพื่อเริ่มปฏิกิริยา':('เกิดฟองแก๊ส CO₂ ลูกโป่งพองขึ้น ใบที่ 3 ใหญ่กว่าใบที่ 2 และใบที่ 1 ตามลำดับ ตามตัวอย่างผลการทดลองในคู่มือ'+(big?' · ใบที่ 4: NaHCO₃ มากกว่า HCl (0.025 mol) HCl จึงเป็นสารกำหนดปริมาณ ขนาดลูกโป่งไม่เพิ่มอีกเมื่อเพิ่มมวล NaHCO₃':''));
+  }
+  function go(){stopTimers();if(RM()){S.k=1;draw();return;}const t0=performance.now(),k0=S.k;const step=now=>{S.k=Math.min(1,k0+(now-t0)/1200);draw();if(S.k<1)TIM.raf=requestAnimationFrame(step);};TIM.raf=requestAnimationFrame(step);}
+  $('#go74').onclick=go;$('#r74').onclick=()=>{stopTimers();S.k=0;draw();};$('#m74').oninput=e=>{S.m4=+e.target.value;draw();};
+  draw();wireCalc('7.4');wireQuiz('7.4');
+}
+
+/* ======================= 7.5 การแพร่ของแก๊ส ======================= */
+const GAS={H2:{n:'H₂',M:2.02},He:{n:'He',M:4.00},NH3:{n:'NH₃',M:17.04},Ne:{n:'Ne',M:20.18},N2:{n:'N₂',M:28.02},O2:{n:'O₂',M:32.00},HCl:{n:'HCl',M:36.46},CO2:{n:'CO₂',M:44.01}};
+const L75=30,C75=3.0; /* ท่อ 30 cm (ตามหนังสือ: ยาวประมาณ 30 cm) · ความเร็วหน้าแก๊สสมมติ v = 3.0/√M cm/s */
+const meet75=(mA,mB)=>L75*Math.sqrt(mB)/(Math.sqrt(mA)+Math.sqrt(mB)); /* ระยะจากปลายของแก๊ส A */
+CALC['7.5']=[
+ {q:'(แบบฝึกหัด 7.3 ข้อ 1) อัตราการแพร่ของ H₂ (2.02 g/mol) เป็นกี่เท่าของ T₂ (6.04 g/mol)',a:G.grahamRatio(2.02,6.04),u:'เท่า',s:'r(H₂)/r(T₂) = √(6.04/2.02) = 1.73'},
+ {q:'(ข้อ 2.2) He ผ่านท่อ 50 cm ใช้เวลา 15.00 s Ne (20.18 g/mol) จะใช้เวลากี่ s',a:15*G.grahamTime(20.18,4.00)*1,u:'s',rel:0.03,s:'t(Ne)/t(He) = √(20.18/4.00) = 2.25 → t(Ne) = 15.00 × 2.25 ≈ 34 s'},
+ {q:'(ข้อ 3) แก๊สตัวอย่างแพร่ด้วยอัตรา 4.37×10<sup>−6</sup> mol/h ส่วน C₂F₄ (100.02 g/mol) แพร่ 2.30×10<sup>−6</sup> mol/h ภายใต้ภาวะเดียวกัน มวลต่อโมลของแก๊สตัวอย่างกี่ g/mol (หนังสือตอบ B₂H₆)',a:100.02/Math.pow(4.37/2.30,2),u:'g/mol',s:'r(gas)/r(C₂F₄) = √(100.02/M) = 1.90 → M = 100.02/3.61 = 27.7 g/mol ใกล้ B₂H₆ (2 × 10.81 + 6 × 1.01 = 27.7)'},
+ {q:'(ข้อ 4) แก๊สชนิดหนึ่งแพร่ออกหมดใน 6.8 นาที ส่วน N₂ (28.02 g/mol) ใช้ 8.5 นาที มวลต่อโมลของแก๊สกี่ g/mol',a:28.02/Math.pow(8.5/6.8,2),u:'g/mol',abs:2.2,s:'t(N₂)/t(gas) = √(28.02/M) = 8.5/6.8 = 1.25 → M = 28.02/1.5625 = 17.9 g/mol (คู่มือครูปัดอัตราส่วนเป็น 1.2 แล้วยกกำลังสองได้ 1.4 จึงตอบ 20 g/mol จึงรับคำตอบ 18–20)'}
+];
+function act75(){const opts=Object.keys(GAS).map(k=>`<option value="${k}">${GAS[k].n} (${GAS[k].M} g/mol)</option>`).join('');
+  return`<h2>กิจกรรม 7.5 การทดลองการแพร่ของแก๊สแอมโมเนียและแก๊สไฮโดรเจนคลอไรด์</h2><p class="sub">คู่มือครู เล่ม 3 หน้า 44–45 · ครูสาธิต</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>ทดลองเพื่อศึกษาการแพร่ของแก๊สแอมโมเนียกับแก๊สไฮโดรเจนคลอไรด์</li><li>เปรียบเทียบอัตราการแพร่ของแก๊สทั้งสอง</li><li>บอกความสัมพันธ์ระหว่างอัตราการแพร่กับมวลต่อโมลของแก๊ส</li></ol></div>
+  <div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (ตามคู่มือ)</h3>HCl เข้มข้น 1 mL · NH₃ เข้มข้น 1 mL · หลอดแก้วเส้นผ่านศูนย์กลาง 1.0 cm ยาวประมาณ 30 cm 1 อัน · สำลีพันไม้เสียบจุกยางเบอร์ 1 2 อัน · บีกเกอร์ 50 mL 2 ใบ · กระจกนาฬิกา 2 อัน · หลอดหยด 2 อัน · ที่ยึดหลอดแก้วหรือขาตั้งพร้อมที่จับ</div></div>
+  <div class="box"><h3>วิธีทำ (เรียบเรียงจากตัวอย่างผลการทดลองในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>จับหลอดแก้วให้ตั้งนิ่ง ชุบสำลีด้วย HCl เข้มข้นอันหนึ่ง และ NH₃ เข้มข้นอีกอัน</li><li>นำไม้พันสำลีทั้งสองไปอุดปลายสองด้านของหลอดพร้อมกัน</li><li>รอและสังเกตตำแหน่งที่เกิดวงแหวนสีขาวในหลอด</li></ol>
+  <div class="warn"><b>ข้อควรระวัง (จากคู่มือครู):</b> สารทั้งสองมีกลิ่นฉุนและเป็นอันตรายต่อระบบหายใจ อย่าชุบสารมากเกินไป และให้ครูสาธิตในตู้ดูดควันหรือที่อากาศถ่ายเทสะดวก (ห้องทดลองเสมือนนี้ไม่มีไอระเหยจริง)</div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: การแพร่สวนทางในหลอดยาว 30 cm</h3>
+   <p class="small"><b>ค่าของแบบจำลอง:</b> หนังสือรายงานเชิงคุณภาพ (วงแหวนสีขาวอยู่ใกล้ปลายด้าน HCl) แบบจำลองนี้ใช้กฎของเกรแฮมประมาณตำแหน่งที่แก๊สสองชนิดพบกัน โดยให้หน้าแก๊สเคลื่อนด้วยอัตรา v = 3.0/√M cm/s (ค่าสมมติเพื่อดูแนวโน้ม ในอากาศจริงการแพร่ช้ากว่านี้มากและตำแหน่งจริงอาจต่างจากค่าที่คำนวณ)</p>
+   <div class="rowflex"><label>แก๊สปลายซ้าย<select id="ga75">${opts}</select></label><label>แก๊สปลายขวา<select id="gb75">${opts}</select></label></div>
+   <div class="fig"><svg viewBox="0 0 560 150" id="g75" role="img" aria-label="หลอดแก้วที่แก๊สสองชนิดแพร่เข้าหากัน"></svg></div>
+   <label class="lbl" for="t75">เวลา (วินาทีของแบบจำลอง)</label><input type="range" id="t75" min="0" max="40" step="0.5" value="0">
+   <div class="btns"><button class="btn sm" type="button" id="p75">เล่นการแพร่</button><button class="btn alt sm" type="button" id="r75">รีเซ็ต</button></div>
+   <div class="stat" aria-live="polite"><span>t = <b id="tt75">0.0</b> s</span><span>อัตราส่วนอัตราการแพร่ r<sub>ซ้าย</sub>/r<sub>ขวา</sub> = <b id="rr75">—</b></span><span>พบกันที่ <b id="xm75">—</b> cm จากปลายซ้าย</span></div>
+   <div class="tip" id="obs75" aria-live="polite"></div></div>
+  ${calcHTML('7.5')}
+  <div class="box"><h3>คำถามท้ายการทดลอง (เขียนคำตอบ)</h3>${written('w75_1','วงแหวนสีขาวที่เกิดขึ้นคือสารใด เขียนสมการเคมีของการเกิดสารนี้')}${written('w75_2','วงแหวนอยู่ใกล้ปลายด้านใดมากกว่า บอกอะไรเกี่ยวกับอัตราการแพร่ของแก๊สทั้งสองและมวลต่อโมล')}</div>
+  ${quizHTML('7.5')}`;}
+function wire75(){
+  const S={t:0,a:'NH3',b:'HCl'};
+  const st75=()=>{const A=GAS[S.a],B=GAS[S.b],vA=C75/Math.sqrt(A.M),vB=C75/Math.sqrt(B.M),xm=meet75(A.M,B.M);return{A,B,vA,vB,xm,tm:L75/(vA+vB)};};
+  function draw(){
+    if(!$('#g75'))return;const {A,B,vA,vB,xm,tm}=st75(),X0=30,PX=500/L75,dA=Math.min(vA*S.t,xm),dB=Math.min(vB*S.t,L75-xm),met=S.t>=tm,react=S.a!==S.b&&((S.a==='NH3'&&S.b==='HCl')||(S.a==='HCl'&&S.b==='NH3'));
+    let s=`<rect x="${X0}" y="55" width="500" height="34" rx="4" fill="#fff" stroke="#8a93a8" stroke-width="2"/>`;
+    s+=`<rect x="${X0+1}" y="57" width="${dA*PX}" height="30" fill="#6fa8e8" opacity=".55"/><rect x="${X0+500-dB*PX}" y="57" width="${Math.max(0,dB*PX-1)}" height="30" fill="#e8a45a" opacity=".6"/>`;
+    s+=`<rect x="6" y="60" width="24" height="24" fill="#6fa8e8"/><text x="18" y="98" font-size="11" text-anchor="middle" fill="#33415c">${A.n}</text><rect x="${X0+500}" y="60" width="24" height="24" fill="#e8a45a"/><text x="${X0+512}" y="98" font-size="11" text-anchor="middle" fill="#33415c">${B.n}</text>`;
+    if(met){const x=X0+xm*PX;s+=react?`<rect x="${x-9}" y="57" width="18" height="30" fill="#fff" stroke="#b9a58c"/><text x="${x}" y="48" text-anchor="middle" font-size="12" fill="#33415c">วงแหวนขาว NH₄Cl</text>`:`<line x1="${x}" y1="50" x2="${x}" y2="94" stroke="#33415c" stroke-dasharray="4 3" stroke-width="2"/><text x="${x}" y="44" text-anchor="middle" font-size="12" fill="#33415c">พบกัน</text>`;}
+    for(let i=0;i<=6;i++)s+=`<text x="${X0+i*5*PX}" y="118" text-anchor="middle" font-size="10.5" fill="#5d6b82">${i*5}</text>`;
+    s+=`<text x="${X0+250}" y="138" text-anchor="middle" font-size="11.5" fill="#33415c">ระยะจากปลายซ้าย (cm)</text>`;
+    $('#g75').innerHTML=s;$('#t75').value=S.t;
+    $('#tt75').textContent=f(S.t,1);$('#rr75').textContent=S.a===S.b?'1.00':f(G.grahamRatio(A.M,B.M),2);$('#xm75').textContent=f(xm,1);
+    let o;if(S.a===S.b)o='เลือกแก๊สต่างชนิดกัน (ถ้าเป็นแก๊สเดียวกัน หน้าแก๊สพบกันตรงกลางหลอด)';
+    else if(!met)o='หน้าแก๊สกำลังเคลื่อนเข้าหากัน แก๊สที่มีมวลต่อโมลน้อยกว่า ('+(A.M<B.M?A.n:B.n)+') เคลื่อนที่ได้ไกลกว่า';
+    else o=(react?'เกิดวงแหวนสีขาวของ NH₄Cl ที่ '+f(xm,1)+' cm จากปลายซ้าย ('+A.n+') หรือ '+f(L75-xm,1)+' cm จากปลายขวา ('+B.n+') วงแหวนอยู่ใกล้ปลายของแก๊สที่แพร่ช้ากว่า ('+(A.M>B.M?A.n:B.n)+') สอดคล้องกับผลในหนังสือ: ':'แก๊สสองชนิดพบกันที่ '+f(xm,1)+' cm จากปลายซ้าย (ไม่มีปฏิกิริยา จึงไม่เห็นวงแหวน): ')+'แก๊สที่มีมวลต่อโมลมากกว่าแพร่ได้ช้ากว่า จึงเดินทางได้ระยะสั้นกว่า';
+    $('#obs75').textContent=o;
+  }
+  const sel=()=>{S.a=$('#ga75').value;S.b=$('#gb75').value;S.t=0;stopTimers();draw();};
+  $('#ga75').value=S.a;$('#gb75').value=S.b;$('#ga75').onchange=sel;$('#gb75').onchange=sel;
+  $('#t75').oninput=e=>{stopTimers();S.t=+e.target.value;draw();};
+  $('#p75').onclick=()=>{stopTimers();const tm=st75().tm;if(RM()){S.t=Math.min(40,tm+2);draw();return;}S.t=0;const t0=performance.now();const step=now=>{S.t=Math.min(40,(now-t0)/1000*5);draw();if(S.t<Math.min(40,tm+2))TIM.raf=requestAnimationFrame(step);};TIM.raf=requestAnimationFrame(step);};
+  $('#r75').onclick=()=>{stopTimers();S.t=0;draw();};
+  draw();wireCalc('7.5');wireQuiz('7.5');
+}
+
+/* ======================= 7.6 สืบค้นข้อมูล ======================= */
+/* ======================= แบบฟอร์มสืบค้น (กิจกรรม X.6: ไม่มีคะแนน ส่งเป็นข้อเขียน) ======================= */
+function resHTML(c){
+  return `<h2>${c.title}</h2><p class="sub">${c.page} · งานสืบค้นและนำเสนอ ไม่มีการทดลองจริงและไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>${c.goal}</p></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (สรุปจากคู่มือ)</h3><ol>${c.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>
+  <div class="lab"><h3>แบบฟอร์มบันทึกผลการสืบค้น</h3><p class="small">คำตอบบันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่งด้านล่างหน้า ตัวอย่างหัวข้อสามข้อแรกเป็นตัวอย่างผลในคู่มือ ข้อที่เหลือเป็นข้อเสนอของผู้จัดทำหน้า เลือกหัวข้ออื่นได้</p>
+   <div class="btns" id="rchips">${c.topics.map(t=>`<button class="chip" type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>
+   ${c.fields.map((f,i)=>`<div class="q"><label class="lbl" for="r_${i}">${f}</label><textarea id="r_${i}" data-ri="${i}" placeholder="พิมพ์คำตอบของคุณ"></textarea></div>`).join('')}
+   <div class="res" id="rState" aria-live="polite"></div></div>
+  <div class="box"><h3>รายการตรวจงานนำเสนอ (ติ๊กเพื่อทบทวนตัวเอง)</h3>${c.check.map((t,i)=>`<label class="opt"><input type="checkbox" data-ck="${i}"><span>${t}</span></label>`).join('')}</div>`;
+}
+function resWire(c){
+  const KEYR='chemistry-m5-'+c.ch+'-research-v1';let d={};try{d=JSON.parse(localStorage.getItem(KEYR)||'{}')||{};}catch(_){}
+  const sv=()=>{try{localStorage.setItem(KEYR,JSON.stringify(d));}catch(_){}};
+  const state=()=>{const need=[0,1,2].every(i=>(($('#r_'+i)||{}).value||'').trim().length>=10);
+    $('#rState').className='res '+(need?'ok':'');$('#rState').textContent=need?'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงแล้ว ✓':'กรอกหัวข้อ ผลการสืบค้น และแหล่งอ้างอิงให้ครบ (อย่างน้อยช่องละ 10 ตัวอักษร)';
+    if(need&&!st.done[c.id]){st.done[c.id]=true;save();paintTabs();paintProgress();}};
+  $$('#panel textarea[data-ri]').forEach(t=>{const k='f'+t.dataset.ri;if(d[k])t.value=d[k];t.addEventListener('input',()=>{d[k]=t.value;sv();state();});});
+  $$('#panel input[data-ck]').forEach(cb=>{const k='c'+cb.dataset.ck;cb.checked=!!d[k];cb.onchange=()=>{d[k]=cb.checked;sv();};});
+  $$('#rchips .chip').forEach(b=>b.onclick=()=>{const t=$('#r_0');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));$$('#rchips .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});
+  state();
+}
+const RES7={id:'7.6',ch:'ch7',title:'กิจกรรม 7.6 สืบค้นข้อมูลการใช้ประโยชน์จากความรู้เรื่องแก๊สและสมบัติของแก๊ส',page:'คู่มือครู เล่ม 3 หน้า 50–53',
+ goal:'สืบค้นข้อมูลและนำเสนอข้อมูลการใช้ประโยชน์จากความรู้เรื่องแก๊สและสมบัติของแก๊ส',
+ steps:['สืบค้นปรากฏการณ์หรือการใช้ประโยชน์จากความรู้เรื่องแก๊สในชีวิตประจำวันหรืออุตสาหกรรมมา 1 เรื่อง (คู่มือแนะนำให้สืบค้นและเตรียมการนำเสนอล่วงหน้า)','อธิบายปรากฏการณ์นั้นด้วยกฎของแก๊สหรือทฤษฎีจลน์ของแก๊สที่เรียนมา','นำเสนอเพื่อแลกเปลี่ยนความรู้ในห้องเรียน (เวลาทำกิจกรรมประมาณ 50 นาที)'],
+ topics:['อาการหูอื้อเมื่อขึ้นที่สูง','การพ่นสารจากกระป๋องสเปรย์','บอลลูนตรวจสภาพอากาศชั้นบน','ถุงลมนิรภัยในรถยนต์','ถังอากาศสำหรับดำน้ำ'],
+ fields:['หัวข้อที่เลือก','อธิบายปรากฏการณ์หรือการใช้ประโยชน์นั้นด้วยกฎของแก๊ส (ระบุว่าความดัน ปริมาตร อุณหภูมิ หรือจำนวนโมลตัวใดเปลี่ยนและตัวใดคงที่)','แหล่งอ้างอิงที่ใช้สืบค้น','ข้อสังเกตหรือคำถามที่ได้จากการแลกเปลี่ยนกับเพื่อน (ไม่บังคับ)'],
+ check:['ระบุตัวแปรที่เปลี่ยนและตัวแปรที่คงที่','เชื่อมโยงกับกฎของบอยล์ ชาร์ล เกย์-ลูสแซก หรืออาโวกาโดร','ระบุแหล่งอ้างอิง','พร้อมอธิบายให้เพื่อนในห้องฟัง']};
+const MATCH=[
+ {t:'ความดันภายในยางรถยนต์หลังวิ่งจะสูงกว่าปกติ',a:3,w:'ยางร้อนขึ้นขณะวิ่ง V และ n คงที่ P ∝ T (กฎของเกย์–ลูสแซก)'},
+ {t:'อาการหูอื้อเมื่อขึ้นบนที่สูง',a:0,w:'ความดันบรรยากาศลดลง ทำให้ความดันภายนอกและภายในแก้วหูต่างกัน (คู่มืออธิบายด้วยความสัมพันธ์ P กับ V ของบอยล์)'},
+ {t:'บอลลูนตรวจสภาพอากาศขยายตัวเมื่อลอยสูงขึ้น',a:0,w:'ความดันบรรยากาศลดลง ปริมาตรบอลลูนจึงเพิ่ม (V ∝ 1/P)'},
+ {t:'ถุงขนมพองตัวเมื่ออยู่บนภูเขา',a:0,w:'ความดันภายนอกลดลง ถุงจึงพองขึ้นตามกฎของบอยล์'},
+ {t:'โคมลอยพองตัวเมื่อจุดไฟ',a:1,w:'อากาศร้อนขึ้นที่ความดันเท่าเดิม ปริมาตรเพิ่ม (V ∝ T กฎของชาร์ล)'},
+ {t:'ลูกโป่งมีขนาดใหญ่ขึ้นเมื่อสูบลมเข้าไป',a:2,w:'จำนวนโมลของอากาศเพิ่ม ปริมาตรเพิ่ม (V ∝ n กฎของอาโวกาโดร)'}
+];
+const MLAWS=['กฎของบอยล์ (V ∝ 1/P)','กฎของชาร์ล (V ∝ T)','กฎของอาโวกาโดร (V ∝ n)','กฎของเกย์–ลูสแซก (P ∝ T)'];
+function act76(){return resHTML(RES7)+`<div class="box" id="mt76"><h3>ตรวจสอบความเข้าใจ: จับคู่ปรากฏการณ์กับกฎของแก๊ส (คู่มือหน้า 53)</h3>${MATCH.map((m,i)=>`<div class="q"><p>${i+1}. ${m.t}</p><label class="lbl" for="m76_${i}">กฎที่เกี่ยวข้อง</label><select id="m76_${i}"><option value="">เลือก…</option>${MLAWS.map((l,j)=>`<option value="${j}">${l}</option>`).join('')}</select><div class="why hide" id="mw76_${i}"></div></div>`).join('')}<div class="btns"><button class="btn" type="button" id="mc76">ตรวจคำตอบ</button></div><div class="res" id="mr76" aria-live="polite"></div></div>`;}
+function wire76(){resWire(RES7);
+  $('#mc76').onclick=()=>{let got=0,ans=0;MATCH.forEach((m,i)=>{const v=$('#m76_'+i).value,w=$('#mw76_'+i);w.classList.remove('hide');if(v!=='')ans++;const ok=v!==''&&+v===m.a;if(ok)got++;w.innerHTML=(ok?'ถูกต้อง · ':'เฉลย: '+MLAWS[m.a]+' · ')+m.w;});
+    const r=$('#mr76');r.className='res '+(ans<MATCH.length?'bad':'ok');r.textContent='ได้ '+got+' / '+MATCH.length+' คะแนน'+(ans<MATCH.length?' (ตอบแล้ว '+ans+' ข้อ)':'');ls('7.6 จับคู่',got,MATCH.length);};}
+
+/* ======================= เครื่องมือ: กฎแก๊สอุดมคติและความดันย่อย ======================= */
+const IGV={P:{l:'ความดัน P',u:'atm',min:0.1,max:10,step:0.05,d:2},V:{l:'ปริมาตร V',u:'L',min:1,max:50,step:0.5,d:2},T:{l:'อุณหภูมิ T',u:'°C',min:-100,max:500,step:1,d:0},n:{l:'จำนวนโมล n',u:'mol',min:0.05,max:5,step:0.05,d:3}};
+function act_ig(){return`<h2>เครื่องมือเสริม: กฎแก๊สอุดมคติ (PV = nRT) และความดันย่อย</h2><p class="sub">ไม่ใช่กิจกรรมทดลองของหนังสือ (หัวข้อ 7.2 ในคู่มือเป็นการคำนวณ) · เนื้อหาตามคู่มือครู เล่ม 3 หน้า 28–40 · ผู้จัดทำหน้าสร้างเพื่อให้ลองเปลี่ยนตัวแปรและดูกราฟของกฎทั้งสี่</p>
+  <div class="lab"><h3>เครื่องคำนวณ PV = nRT</h3>
+   <p class="small"><b>ค่าของแบบจำลอง:</b> R = 0.0821 L·atm/(mol·K) และ T(K) = t(°C) + 273 ตามที่หนังสือใช้ แก๊สเป็นแก๊สอุดมคติ เลือกตัวแปรที่ต้องการให้เครื่องคำนวณ ตัวแปรที่เหลือปรับได้</p>
+   <div class="rowflex"><label>ให้เครื่องคำนวณหา<select id="sv_ig"><option value="P">P (ความดัน)</option><option value="V">V (ปริมาตร)</option><option value="T">T (อุณหภูมิ)</option><option value="n" selected>n (จำนวนโมล)</option></select></label><label>มวลต่อโมล M (g/mol) สำหรับหามวลและความหนาแน่น<input type="number" id="M_ig" value="28.02" min="0.1" step="any" inputmode="decimal"></label></div>
+   <div class="btns"><button class="chip" type="button" id="ex1_ig">ยางรถยนต์ 29.4 psi · 12 L · 27 °C (หาโมล)</button><button class="chip" type="button" id="ex2_ig">STP: 1 mol · 1 atm · 0 °C (หา V)</button></div>
+   <div id="vars_ig">${['P','V','T','n'].map(k=>`<div class="q"><label class="lbl" for="r_${k}_ig">${IGV[k].l} (${IGV[k].u}): <b id="o_${k}_ig"></b></label><input type="range" id="r_${k}_ig" min="${IGV[k].min}" max="${IGV[k].max}" step="${IGV[k].step}"></div>`).join('')}</div>
+   <div class="stat" aria-live="polite"><span>มวลแก๊ส m = <b id="m_ig">—</b> g</span><span>ความหนาแน่น d = PM/RT = <b id="d_ig">—</b> g/L</span><span>PV/(nT) = <b id="rr_ig">—</b> L·atm/(mol·K)</span></div>
+   <div class="tip" id="obs_ig" aria-live="polite"></div>
+   <div class="grid2"><div><div class="fig" id="c1_ig"></div><p class="cap">บอยล์: V กับ P (n, T คงที่)</p></div><div><div class="fig" id="c2_ig"></div><p class="cap">ชาร์ล: V กับ T ในเคลวิน (n, P คงที่)</p></div><div><div class="fig" id="c3_ig"></div><p class="cap">เกย์–ลูสแซก: P กับ T ในเคลวิน (n, V คงที่)</p></div><div><div class="fig" id="c4_ig"></div><p class="cap">อาโวกาโดร: V กับ n (P, T คงที่)</p></div></div></div>
+  <div class="lab"><h3>ความดันย่อยของแก๊สผสม (กฎของดอลตัน)</h3>
+   <p class="small">แก๊สไม่ทำปฏิกิริยากัน P<sub>i</sub> = n<sub>i</sub>RT/V · P<sub>total</sub> = ΣP<sub>i</sub> · X<sub>i</sub> = n<sub>i</sub>/n<sub>total</sub> · P<sub>i</sub> = X<sub>i</sub>P<sub>total</sub> ค่าเริ่มต้นคือโจทย์แบบฝึกหัด 7.2 ข้อ 3.2 (H₂, Ne, He ในภาชนะรวม 7.00 L ที่ 27 °C)</p>
+   <div class="rowflex"><label>ปริมาตรรวม V (L)<input type="number" id="dv_ig" value="7" min="0.1" step="any" inputmode="decimal"></label><label>อุณหภูมิ (°C)<input type="number" id="dt_ig" value="27" min="-200" step="any" inputmode="decimal"></label></div>
+   <div class="rowflex">${[['H₂',1.00],['Ne',1.506],['He',0.500]].map((g,i)=>`<label>n ของ ${g[0]} (mol)<input type="number" id="dn${i}_ig" value="${g[1]}" min="0" step="any" inputmode="decimal"></label>`).join('')}</div>
+   <div class="bar" id="bar_ig" role="img" aria-label="สัดส่วนเศษส่วนโมล"></div>
+   <div class="tw"><table><thead><tr><th>แก๊ส</th><th>n (mol)</th><th>X<sub>i</sub></th><th>P<sub>i</sub> (atm)</th></tr></thead><tbody id="tbd_ig"></tbody></table></div>
+   <div class="tip" id="dobs_ig" aria-live="polite"></div></div>
+  <div class="box"><h3>คำถามชวนคิด (เขียนคำตอบ)</h3>${written('w_ig_1','จากความรู้เรื่องปริมาตรของแก๊สที่ STP คำนวณค่าคงที่ของแก๊ส R ได้อย่างไร')}</div>
+  ${quizHTML('ig')}`;}
+function wire_ig(){
+  const S={P:2.0,V:12,T:27,n:0.97,solve:'n'};
+  const tick=v=>String(Number(v.toPrecision(2)));
+  const nice=x=>{const e=Math.pow(10,Math.floor(Math.log10(x)));return Math.ceil(x/e*2)/2*e;};
+  function calc(){const q=S.solve;if(q==='P')S.P=G.idealP(S.n,S.V,S.T);else if(q==='V')S.V=G.idealV(S.n,S.P,S.T);else if(q==='T')S.T=G.idealTc(S.P,S.V,S.n);else S.n=G.idealN(S.P,S.V,S.T);}
+  function ch(id,label,xr,xl,yl,fn,cx,cy){const pts=range(xr[0]<=0?xr[1]*0.02:xr[0],xr[1],80).map(x=>[x,fn(x)]),ym=nice(Math.max(cy*1.8,fn(xr[1])*1.05,1e-6));
+    $(id).innerHTML=chart({label,w:300,h:210,x:xr,y:[0,ym],xt:range(xr[0],xr[1],4).map(v=>Math.round(v*100)/100),yt:range(0,ym,4),yf:tick,xf:tick,xl,yl,series:[{pts}],marks:[{x:cx,y:cy,col:'#c46a12',r:6}]});}
+  function draw(){
+    if(!$('#vars_ig'))return;calc();const Tk=K(S.T);
+    ['P','V','T','n'].forEach(k=>{const r=$('#r_'+k+'_ig'),v=S[k];r.disabled=S.solve===k;r.value=Math.max(IGV[k].min,Math.min(IGV[k].max,v));$('#o_'+k+'_ig').textContent=f(v,IGV[k].d)+' '+IGV[k].u+(S.solve===k?' (คำนวณ)':'');});
+    const M=parseFloat($('#M_ig').value)||0;
+    $('#m_ig').textContent=f(S.n*M,2);$('#d_ig').textContent=Tk>0?f(S.P*M/(R*Tk),2):'—';$('#rr_ig').textContent=Tk>0?f(S.P*S.V/(S.n*Tk),4):'—';
+    $('#obs_ig').textContent=Tk<=0?'อุณหภูมิต่ำกว่า 0 K ไม่มีความหมายทางกายภาพ ปรับตัวแปรอื่น':(S.T<-273+1?'':'PV = nRT: '+f(S.P,3)+' × '+f(S.V,2)+' = '+f(S.n,3)+' × 0.0821 × '+Tk.toFixed(0)+' (ทั้งสองข้าง ≈ '+f(S.P*S.V,2)+' L·atm)');
+    if(Tk>0&&S.P>0&&S.V>0&&S.n>0){
+      ch('#c1_ig','กราฟกฎของบอยล์',[0,10],'P (atm)','V (L)',p=>S.n*R*Tk/p,S.P,S.V);
+      ch('#c2_ig','กราฟกฎของชาร์ล',[0,800],'T (K)','V (L)',t=>S.n*R*t/S.P,Tk,S.V);
+      ch('#c3_ig','กราฟกฎของเกย์–ลูสแซก',[0,800],'T (K)','P (atm)',t=>S.n*R*t/S.V,Tk,S.P);
+      ch('#c4_ig','กราฟกฎของอาโวกาโดร',[0,5],'n (mol)','V (L)',n=>n*R*Tk/S.P,S.n,S.V);}
+  }
+  ['P','V','T','n'].forEach(k=>$('#r_'+k+'_ig').oninput=e=>{S[k]=+e.target.value;draw();});
+  $('#sv_ig').onchange=e=>{S.solve=e.target.value;draw();};$('#M_ig').oninput=draw;
+  $('#ex1_ig').onclick=()=>{S.P=29.4/14.7;S.V=12;S.T=27;S.solve='n';$('#sv_ig').value='n';$('#M_ig').value=28.02;draw();$('#obs_ig').textContent+=' · ตัวอย่างหนังสือ: n ≈ 1.0 mol ไนโตรเจนหนัก ≈ 28 g (ตัวเลขที่เห็น 0.974 mol และ 27.3 g เพราะไม่ปัดเลขกลางทาง)';};
+  $('#ex2_ig').onclick=()=>{S.P=1;S.V=22.4;S.T=0;S.n=1;S.solve='V';$('#sv_ig').value='V';draw();$('#obs_ig').textContent+=' · ที่ STP ได้ V ≈ 22.4 L และ R = PV/nT ≈ 0.0821';};
+  /* ดอลตัน */
+  function dal(){const V=parseFloat($('#dv_ig').value),T=parseFloat($('#dt_ig').value),ns=[0,1,2].map(i=>Math.max(0,parseFloat($('#dn'+i+'_ig').value)||0)),names=['H₂','Ne','He'],cols=['#6fa8e8','#e8a45a','#7fcf9a'];
+    if(!(V>0)||!Number.isFinite(T)||K(T)<=0){$('#dobs_ig').textContent='กรอกปริมาตรมากกว่า 0 และอุณหภูมิสูงกว่า −273 °C';return;}
+    const p=G.partials(ns,V,T),nt=ns.reduce((a,b)=>a+b,0);
+    $('#bar_ig').innerHTML=ns.map((n,i)=>`<i style="width:${nt>0?n/nt*100:0}%;background:${cols[i]}" title="${names[i]}"></i>`).join('');
+    $('#tbd_ig').innerHTML=ns.map((n,i)=>`<tr><td><span class="sw" style="background:${cols[i]}"></span>${names[i]}</td><td>${f(n,3)}</td><td>${nt>0?f(n/nt,3):'—'}</td><td>${f(p.ps[i],2)}</td></tr>`).join('')+`<tr><th>รวม</th><th>${f(nt,3)}</th><th>1.000</th><th>${f(p.total,2)}</th></tr>`;
+    $('#dobs_ig').textContent='P รวม = '+f(p.total,2)+' atm = ผลรวมของความดันย่อย = n รวม·RT/V · ที่ค่าเริ่มต้นหนังสือได้ ≈ 10.6 atm';}
+  ['dv','dt','dn0','dn1','dn2'].forEach(id=>$('#'+id+'_ig').oninput=dal);
+  draw();dal();wireQuiz('ig');
+}
+
+/* ======================= แบบฝึกหัดท้ายบท ======================= */
+function exField(i,p,j){
+  const id='ex_'+i+'_'+j;
+  if(p.t==='num')return `<div class="rowflex"><label>${p.l}<input type="number" step="any" inputmode="decimal" id="${id}"></label><span class="small">${p.u||''}</span><b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></div>`;
+  if(p.t==='mcq')return `<fieldset class="q exf"><legend>${p.l}</legend>${p.o.map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${k}"><span>${o}</span></label>`).join('')}<b class="mk" id="mk_${i}_${j}" aria-live="polite"></b></fieldset>`;
+  return `<label class="lbl" for="w${id}">${p.l}</label><textarea id="w${id}" placeholder="พิมพ์คำตอบของคุณ"></textarea>`;
+}
+function exHTML(list,src,title){
+  return `<h2>${title}</h2><p class="sub">${src} · ช่องตัวเลขและตัวเลือกตรวจอัตโนมัติ (ยอมให้คลาดเคลื่อนเล็กน้อยจากการปัดเลข) ช่องเขียนส่งให้ครูตรวจ</p>`+
+  list.map((q,i)=>`<div class="q"><p>${i+1}. ${q.t}</p>${q.p.map((p,j)=>exField(i,p,j)).join('')}<div class="why hide" id="exw_${i}">${q.s}</div></div>`).join('')+
+  `<div class="btns"><button class="btn" type="button" id="exChk">ตรวจคำตอบทั้งหมด</button><button class="btn alt" type="button" id="exClr">ล้างคำตอบ</button></div><div class="res" id="exRes" aria-live="polite"></div>`;
+}
+function exWire(list){
+  const auto=[];list.forEach((q,i)=>q.p.forEach((p,j)=>{if(p.t!=='text')auto.push([i,j,p]);}));
+  $('#exChk').onclick=()=>{
+    let got=0,answered=0;
+    auto.forEach(([i,j,p])=>{
+      const mk=$('#mk_'+i+'_'+j);let ok=false,has=false;
+      if(p.t==='num'){const raw=$('#ex_'+i+'_'+j).value.trim();has=raw!=='';const v=parseFloat(raw);ok=has&&G.tolOk(v,p.a,p.rel!==undefined?p.rel:0.05,p.abs);}
+      else{const sel=document.querySelector('input[name="ex_'+i+'_'+j+'"]:checked');has=!!sel;ok=has&&(+sel.value===p.a);}
+      if(has)answered++;if(ok)got++;
+      mk.className='mk '+(!has?'':ok?'okc':'badc');mk.textContent=!has?'':ok?'✓ ถูกต้อง':'✗ ยังไม่ถูก';
+    });
+    $$('[id^=exw_]').forEach(w=>w.classList.remove('hide'));
+    const r=$('#exRes');r.className='res '+(answered<auto.length?'bad':'ok');
+    r.textContent='ได้ '+got+' / '+auto.length+' คะแนน'+(answered<auto.length?' (ตอบแล้ว '+answered+' จาก '+auto.length+' ช่อง ช่องที่ว่างนับเป็นไม่ถูก)':'');
+    ls('ท้ายบท',got,auto.length);
+    if(answered===auto.length){st.done.ex=true;save();paintTabs();paintProgress();}
+  };
+  $('#exClr').onclick=()=>{
+    $$('#panel input[type=number]').forEach(i=>i.value='');$$('#panel input[type=radio]').forEach(i=>i.checked=false);
+    $$('#panel .mk').forEach(m=>{m.textContent='';m.className='mk';});$$('[id^=exw_]').forEach(w=>w.classList.add('hide'));$('#exRes').textContent='';
+  };
+}
+function glossHTML(rows){return `<div class="tw"><table><thead><tr><th class="l">ภาษาไทย</th><th class="l">English</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td></tr>`).join('')}</tbody></table></div>`;}
+
+/* ค่าที่ใช้เป็นเฉลย คำนวณจากฟังก์ชันเดียวกับห้องทดลอง (ปัดเลขกลางทางแบบเดียวกับคู่มือ) */
+function exVals(){
+  const X={};
+  X.nMg=5.83/24.30;X.nHCl=12*10.0/1000;X.nH2=X.nHCl/2;X.pH2=G.idealP(X.nH2,5.0,25);X.p3=1.0+X.pH2;
+  X.pO2=0.21*1.00;X.p4=1.00-X.pO2;
+  X.n0=G.idealN(1.50,1.0,32);X.nr=3.0/73.89;X.nleft=X.n0-X.nr;X.p5=G.idealP(X.nleft,1.0,32);
+  X.Mair=0.21*32.00+0.79*28.02;X.m6=X.Mair*1.0*4.8/(R*K(37));
+  X.nCu=1000/183.52;X.nO2=448.0/32.00;X.nO2left=X.nO2-X.nCu*2.5;X.nSO2=X.nCu*2;X.nt7=Number((X.nO2left+X.nSO2).toPrecision(3));X.p7=G.idealP(X.nt7,10.0,2000);
+  X.M8=0.505*1000*R*K(25)/293.5;X.k8=X.M8/(12.01+1.01*2);
+  X.v9=3.00+8.00;X.pa=G.boyleV2(24.5,3.00,X.v9);X.pb=G.boyleV2(24.5,8.00,X.v9);X.pt9=X.pa+X.pb;
+  X.nA=Number(G.idealN(24.5,3.00,25).toPrecision(3));X.nB=Number(G.idealN(24.5,8.00,25).toPrecision(3));X.nBleft=X.nB-X.nA*2.5;X.nco2=X.nA*2;X.nh2o=X.nA;X.nt9=X.nBleft+X.nco2+X.nh2o;
+  X.p9=G.idealP(Number(X.nt9.toPrecision(3)),X.v9,300);X.pO2b=X.nBleft/X.nt9*X.p9;X.pCO2=X.nco2/X.nt9*X.p9;X.pH2O=X.nh2o/X.nt9*X.p9;
+  X.M10=Number((4.00*Math.pow(29.7/10.0,2)).toPrecision(3));X.x10=(X.M10-28.01)/(44.01-28.01)*100;
+  return X;
+}
+const X=exVals();
+const TF=['ถูกต้อง','ไม่ถูกต้อง'];
+const GR=['เส้นตรงขนานแกนนอน (ค่าคงที่)','เส้นตรงลาดขึ้นผ่านจุดกำเนิด','เส้นโค้งลดลง (ไฮเพอร์โบลา)','เส้นตรงลาดลง'];
+const EX7=[
+ {t:'ระบุว่าข้อความต่อไปนี้ถูกต้องหรือไม่ (คู่มือ หน้า 55)',
+  p:[['1.1 ลดความดันของแก๊สลงครึ่งหนึ่ง ปริมาตรเพิ่มเป็น 2 เท่า เมื่อ T และ n คงที่',0],['1.2 ผลต่างของอุณหภูมิในหน่วยเคลวินเท่ากับผลต่างในหน่วยองศาเซลเซียสเสมอ',0],['1.3 ลูกปิงปองที่บุบ นำไปแช่ในตู้เย็นแล้วจะพองกลับเหมือนเดิม',1],['1.4 เมื่อหายใจเข้า ปริมาตรทรวงอกเพิ่มเพราะจำนวนโมเลกุลอากาศในปอดเพิ่ม (ตามเฉลยของหนังสือ)',0],['1.5 เมื่อ P เป็นความดันของแก๊สในภาชนะปิดปริมาตรคงที่ และ x คืออุณหภูมิ °C แล้ว P/(x + 273) คงที่',0]].map(([l,a])=>({t:'mcq',l,o:TF,a})).concat([{t:'text',l:'1.3 ถ้าไม่ถูกต้อง ให้เขียนข้อความที่ถูกต้อง'}]),
+  s:'1.1 ถูก: P₁V₁ = P₂V₂ (P ลดครึ่ง V เป็น 2 เท่า) · 1.2 ถูก: ขนาดของ 1 K เท่ากับ 1 °C · 1.3 ไม่ถูก: ลูกปิงปองที่บุบต้องนำไปแช่น้ำร้อน เพราะต้องให้อากาศภายในขยายตัว (อุณหภูมิเพิ่ม ปริมาตรเพิ่ม) · 1.4 ถูกตามเฉลยหนังสือ (หายใจเข้าทรวงอกขยาย อากาศเข้ามาในปอด ทำให้จำนวนโมเลกุลในปอดมากขึ้น) · 1.5 ถูก: P ∝ T(K) = x + 273 (กฎของเกย์–ลูสแซก)'},
+ {t:'เส้นกราฟของแต่ละความสัมพันธ์ต่อไปนี้ (P ความดัน, V ปริมาตร, T อุณหภูมิในหน่วยเคลวิน, n จำนวนโมล) เป็นอย่างไร (แกนของแต่ละข้อตามที่หนังสือกำหนด)',
+  p:[['2.1 PV (แกน y) กับ P (แกน x) ตามกฎของบอยล์',0],['2.2 V/T (แกน y) กับ T (แกน x) ตามกฎของชาร์ล',0],['2.3 P/T (แกน y) กับ T (แกน x) ตามกฎของเกย์–ลูสแซก',0],['2.4 V (แกน y) กับ n (แกน x) ตามกฎของอาโวกาโดร',1]].map(([l,a])=>({t:'mcq',l,o:GR,a})),
+  s:'2.1 PV = ค่าคงที่ · 2.2 V/T = ค่าคงที่ · 2.3 P/T = ค่าคงที่ (ทั้งสามเป็นเส้นตรงขนานแกนนอน) · 2.4 V = (ค่าคงที่)n เส้นตรงผ่านจุดกำเนิด'},
+ {t:`Mg(s) + 2HCl(aq) → MgCl₂(aq) + H₂(g) ใส่ Mg 5.83 g กับ HCl 12 mol/L 10.0 mL ในภาชนะปิด 5.0 L ที่ 25 °C ความดันอากาศเริ่มต้น 1.0 atm เมื่อปฏิกิริยาสมบูรณ์ความดันรวมเท่าใด (ของแข็งและของเหลวมีปริมาตรน้อยมาก)`,
+  p:[{t:'mcq',l:'3.1 สารกำหนดปริมาณ',o:['Mg','HCl','เท่ากันพอดี'],a:X.nHCl/2<X.nMg?1:0},{t:'num',l:'3.2 จำนวนโมลของ H₂ ที่เกิด',u:'mol',a:X.nH2},{t:'num',l:'3.3 ความดันรวมในภาชนะ',u:'atm',a:X.p3}],
+  s:`n(Mg) = 5.83/24.30 = ${f(X.nMg,3)} mol · n(HCl) = 12 × 10.0/1000 = ${f(X.nHCl,2)} mol (น้อยกว่าที่ต้องใช้กับ Mg ทั้งหมด จึงเป็นสารกำหนดปริมาณ) · n(H₂) = ${f(X.nH2,3)} mol · P(H₂) = nRT/V = (${f(X.nH2,3)})(0.0821)(298)/5.0 = ${f(X.pH2,2)} atm · P<sub>total</sub> = 1.0 + ${f(X.pH2,2)} = <b>${f(X.p3,1)} atm</b>`},
+ {t:'ภาชนะบรรจุอากาศ 1.0 L ที่ 1.00 atm เมื่อเติม Fe(OH)₂ กับน้ำ แก๊ส O₂ ในอากาศ (ร้อยละ 21 โดยปริมาตร) ทำปฏิกิริยาหมด (2Fe(OH)₂ + O₂ + H₂O → 2Fe(OH)₃) ความดันในภาชนะเป็นเท่าใด',
+  p:[{t:'num',l:'4.1 ความดันย่อยของ O₂ เริ่มต้น',u:'atm',a:X.pO2},{t:'num',l:'4.2 ความดันภายในภาชนะหลัง O₂ หมด',u:'atm',a:X.p4}],
+  s:`ร้อยละโดยปริมาตร = ร้อยละโดยโมล (กฎของอาโวกาโดร) P(O₂) = 0.21 × 1.00 = ${f(X.pO2,2)} atm · P หลังปฏิกิริยา = 1.00 − ${f(X.pO2,2)} = <b>${f(X.p4,2)} atm</b>`},
+ {t:'ภาชนะ 1.0 L บรรจุ CO₂ 1.50 atm ที่ 32 °C เมื่อเติมสารละลาย LiOH ปริมาตรน้อยมาก เกิด Li₂CO₃ 3.0 g (CO₂ + 2LiOH → Li₂CO₃ + H₂O) อุณหภูมิคงที่ CO₂ ที่เหลือมีความดันเท่าใด (M ของ Li₂CO₃ = 73.89 g/mol)',
+  p:[{t:'num',l:'5.1 จำนวนโมล CO₂ ที่เหลือ',u:'mol',a:X.nleft},{t:'num',l:'5.2 ความดันของ CO₂ ที่เหลือ',u:'atm',a:X.p5}],
+  s:`n เริ่มต้น = PV/RT = (1.50)(1.0)/((0.0821)(305)) = ${f(X.n0,3)} mol · CO₂ ที่ใช้ = 3.0/73.89 = ${f(X.nr,3)} mol · เหลือ ${f(X.nleft,3)} mol · P = nRT/V = <b>${f(X.p5,2)} atm</b>`},
+ {t:'ปอดมนุษย์จุประมาณ 4.8 L ที่ 37 °C และ 1.0 atm อากาศมี O₂ ร้อยละ 21 และ N₂ ที่เหลือโดยปริมาตร ปอดมีอากาศกี่กรัม (O₂ 32.00, N₂ 28.02 g/mol)',
+  p:[{t:'num',l:'6.1 มวลต่อโมลเฉลี่ยของอากาศ',u:'g/mol',a:X.Mair},{t:'num',l:'6.2 มวลอากาศในปอด',u:'g',a:X.m6}],
+  s:`M(อากาศ) = 0.21(32.00) + 0.79(28.02) = ${f(X.Mair,2)} g/mol · m = MPV/RT = (${f(X.Mair,2)})(1.0)(4.8)/((0.0821)(310)) = <b>${f(X.m6,1)} g</b>`},
+ {t:'ถลุงทองแดงจากแร่ CuFeS₂ 1.00 kg ในภาชนะ 10.0 L อัด O₂ 448.0 g แล้วให้ความร้อนที่ 2000 °C จนสมบูรณ์ (2CuFeS₂ + 5O₂ → 2Cu + 2FeO + 4SO₂ ของแข็งมีปริมาตรน้อยมาก) ภาชนะต้องทนความดันอย่างน้อยกี่ atm (M ของ CuFeS₂ = 183.52 g/mol)',
+  p:[{t:'num',l:'7.1 จำนวนโมลรวมของแก๊สหลังปฏิกิริยา (O₂ ที่เหลือ + SO₂)',u:'mol',a:X.nt7},{t:'num',l:'7.2 ความดันที่ภาชนะต้องทน',u:'atm',a:X.p7,rel:0.02}],
+  s:`n(CuFeS₂) = 1000/183.52 = ${f(X.nCu,2)} mol · n(O₂) = 448.0/32.00 = ${f(X.nO2,2)} mol · CuFeS₂ เป็นสารกำหนดปริมาณ (ต้องใช้ O₂ ${f(X.nCu*2.5,2)} mol) · O₂ เหลือ ${f(X.nO2left,2)} mol + SO₂ ${f(X.nSO2,2)} mol รวม ${f(X.nt7,1)} mol · P = nRT/V = (${f(X.nt7,1)})(0.0821)(2273)/10.0 = <b>${f(X.p7,0)} atm</b>`},
+ {t:'ไฮโดรคาร์บอนเป็นแก๊สมีสูตรอย่างง่าย CH₂ ที่ 25 °C 293.5 atm มีความหนาแน่น 0.505 g/mL จงหาสูตรโมเลกุล',
+  p:[{t:'num',l:'8.1 มวลต่อโมล (M = dRT/P)',u:'g/mol',a:X.M8},{t:'num',l:'8.2 จำนวนหน่วย CH₂ ในโมเลกุล (n)',u:'',a:X.k8,rel:0.03},{t:'mcq',l:'8.3 สูตรโมเลกุล',o:['C₂H₄','C₃H₆','C₄H₈','CH₂'],a:1}],
+  s:`d = 0.505 g/mL = 505 g/L · M = (505)(0.0821)(298)/293.5 = ${f(X.M8,1)} g/mol · มวลสูตร CH₂ = 14.03 · n = ${f(X.M8,1)}/14.03 = ${f(X.k8,2)} ≈ 3 → <b>C₃H₆</b>`},
+ {t:'ภาชนะมีผนังกั้น ด้านหนึ่งเป็น C₂H₂ 3.00 L อีกด้านเป็น O₂ 8.00 L แต่ละชนิด 24.5 atm ที่ 25 °C (9.1 เปิดผนังกั้น ไม่ทำปฏิกิริยากัน) (9.2 ทำปฏิกิริยากันที่ 300 °C: 2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O(g))',
+  p:[{t:'num',l:'9.1 ความดันย่อยของ C₂H₂ หลังเปิดผนัง',u:'atm',a:X.pa},{t:'num',l:'9.1 ความดันย่อยของ O₂ หลังเปิดผนัง',u:'atm',a:X.pb},{t:'num',l:'9.1 ความดันรวม',u:'atm',a:X.pt9},
+     {t:'mcq',l:'9.2 สารกำหนดปริมาณ',o:['O₂','C₂H₂'],a:1},{t:'num',l:'9.2 จำนวนโมลรวมหลังปฏิกิริยา',u:'mol',a:X.nt9},{t:'num',l:'9.2 ความดันรวมที่ 300 °C',u:'atm',a:X.p9},
+     {t:'num',l:'9.2 ความดันย่อยของ O₂',u:'atm',a:X.pO2b},{t:'num',l:'9.2 ความดันย่อยของ CO₂',u:'atm',a:X.pCO2},{t:'num',l:'9.2 ความดันย่อยของ H₂O',u:'atm',a:X.pH2O}],
+  s:`9.1 V รวม = 11.00 L · P(C₂H₂) = 24.5 × 3.00/11.00 = ${f(X.pa,2)} atm · P(O₂) = 24.5 × 8.00/11.00 = ${f(X.pb,1)} atm · P รวม = <b>${f(X.pt9,1)} atm</b> (เท่ากับความดันเริ่มต้น เพราะทั้งสองมีความดันเริ่มต้นเท่ากัน) · 9.2 n(C₂H₂) = ${f(X.nA,2)} mol, n(O₂) = ${f(X.nB,2)} mol ต้องใช้ O₂ ${f(X.nA*2.5,2)} mol จึง C₂H₂ หมดก่อน · หลังปฏิกิริยา O₂ ${f(X.nBleft,2)} + CO₂ ${f(X.nco2,2)} + H₂O ${f(X.nh2o,2)} = ${f(X.nt9,2)} mol · P = nRT/V = (${f(X.nt9,2)})(0.0821)(573)/11.00 = ${f(X.p9,1)} atm · P(O₂) = ${f(X.pO2b,1)}, P(CO₂) = ${f(X.pCO2,1)}, P(H₂O) = ${f(X.pH2O,1)} atm`},
+ {t:'แก๊สผสม CO กับ CO₂ 10.0 L แพร่ผ่านผนังกั้นใช้เวลา 2.00 นาที เท่ากับ He 29.7 L ที่ T, P เดียวกัน ร้อยละโดยปริมาตรของ CO₂ ในแก๊สผสมเป็นเท่าใด (CO 28.01, CO₂ 44.01 g/mol)',
+  p:[{t:'num',l:'10.1 มวลต่อโมลของแก๊สผสม',u:'g/mol',a:X.M10},{t:'num',l:'10.2 ร้อยละโดยปริมาตรของ CO₂',u:'%',a:X.x10,abs:0.6}],
+  s:`r(He)/r(ผสม) = (29.7/2.00)/(10.0/2.00) = 2.97 = √(M/4.00) → M = 4.00 × 2.97² = ${f(X.M10,1)} g/mol · M(ผสม) = (x)(44.01) + (100 − x)(28.01) หารด้วย 100 · x = (${f(X.M10,1)} − 28.01)/16.00 × 100 = <b>${f(X.x10,1)} %</b> CO₂ และ ${f(100-X.x10,1)} % CO (ใช้ M = 35.3 ตามหนังสือ ถ้าไม่ปัดกลางทางได้ 45.4 % รับได้ทั้งสองค่า)`}
+];
+function actEx(){return exHTML(EX7,'คู่มือครู เล่ม 3 หน้า 55–66','แบบฝึกหัดท้ายบท 7');}
+function wireEx(){exWire(EX7);}
+
+/* ======================= สรุปเนื้อหา ======================= */
+function actSum(){return `<h2>สรุปเนื้อหาบท 7 แก๊สและสมบัติของแก๊ส</h2><p class="sub">สรุปโดยผู้จัดทำหน้า อ้างอิงสาระสำคัญและเนื้อหาในคู่มือครู เล่ม 3 หน้า 5–66 ไม่ใช่ข้อความต้นฉบับ</p>
+ <div class="cols"><div class="box"><h3>แนวคิดหลัก</h3><ul>
+ <li>ความสัมพันธ์ของ V, P, T และ n ของแก๊สอธิบายได้ด้วยกฎของบอยล์ ชาร์ล เกย์–ลูสแซก และอาโวกาโดร</li>
+ <li>รวมกฎเหล่านี้ได้กฎรวมแก๊ส (n คงที่) และกฎแก๊สอุดมคติ PV = nRT</li>
+ <li>ในแก๊สผสมที่ไม่ทำปฏิกิริยากัน ความดันรวมเท่ากับผลรวมของความดันย่อย และความดันย่อยแปรผันตามเศษส่วนโมล (กฎของดอลตัน)</li>
+ <li>ทฤษฎีจลน์: อนุภาคแก๊สมีขนาดเล็กมากเมื่อเทียบกับภาชนะ อยู่ห่างกัน ไม่มีแรงกระทำต่อกัน เคลื่อนที่เป็นเส้นตรงแบบสุ่ม ชนกันโดยไม่สูญเสียพลังงานจลน์รวม พลังงานจลน์เฉลี่ยขึ้นกับอุณหภูมิเท่านั้น (แก๊สต่างชนิดที่ T เดียวกันมีพลังงานจลน์เฉลี่ยเท่ากัน)</li>
+ <li>แก๊สจริงมีพฤติกรรมใกล้แก๊สอุดมคติเมื่ออุณหภูมิสูงและความดันต่ำ</li>
+ <li>การแพร่: อัตราการแพร่ของแก๊สแปรผกผันกับรากที่สองของมวลต่อโมล (กฎของเกรแฮม) แก๊สเบาแพร่เร็วกว่าแก๊สหนัก</li>
+ <li>นำไปอธิบายปรากฏการณ์ เช่น หูอื้อ สเปรย์ บอลลูนตรวจอากาศ และใช้ในอุตสาหกรรม</li></ul></div>
+ <div class="box"><h3>สูตรสำคัญ (T เป็นเคลวิน, T = t + 273)</h3><ul>
+ <li>บอยล์: P₁V₁ = P₂V₂ (T, n คงที่)</li>
+ <li>ชาร์ล: V₁/T₁ = V₂/T₂ (P, n คงที่)</li>
+ <li>เกย์–ลูสแซก: P₁/T₁ = P₂/T₂ (V, n คงที่)</li>
+ <li>กฎรวมแก๊ส: P₁V₁/T₁ = P₂V₂/T₂ (n คงที่)</li>
+ <li>อาโวกาโดร: V₁/n₁ = V₂/n₂ (P, T คงที่)</li>
+ <li>แก๊สอุดมคติ: PV = nRT, R = 0.0821 L·atm·mol⁻¹·K⁻¹ · ความหนาแน่น d = PM/RT</li>
+ <li>ดอลตัน: P<sub>total</sub> = ΣP<sub>i</sub> · P<sub>i</sub> = X<sub>i</sub>P<sub>total</sub> = n<sub>i</sub>RT/V</li>
+ <li>เกรแฮม: r₁/r₂ = √(M₂/M₁) · ระยะทางเท่ากัน t₁/t₂ = √(M₁/M₂) · E<sub>k</sub> = ½mv²</li>
+ <li>หน่วยความดัน: 1 atm = 760 mmHg = 14.7 psi</li></ul></div></div>
+ <div class="box"><h3>ศัพท์ที่ควรรู้ (ผู้จัดทำหน้ารวบรวมจากคำที่ใช้ในบท)</h3>${glossHTML([['ความดัน','pressure'],['ความดันบรรยากาศ','atmospheric pressure'],['กฎของบอยล์','Boyle\'s law'],['กฎของชาร์ล','Charles\'s law'],['กฎของเกย์–ลูสแซก','Gay-Lussac\'s law'],['กฎของอาโวกาโดร','Avogadro\'s law'],['กฎรวมแก๊ส','combined gas law'],['แก๊สอุดมคติ','ideal gas'],['กฎแก๊สอุดมคติ','ideal gas law'],['ค่าคงที่ของแก๊ส','gas constant'],['อุณหภูมิศูนย์สัมบูรณ์','absolute zero'],['เคลวิน','kelvin'],['ความดันย่อย','partial pressure'],['เศษส่วนโมล','mole fraction'],['กฎความดันย่อยของดอลตัน','Dalton\'s law of partial pressures'],['ทฤษฎีจลน์ของแก๊ส','kinetic theory of gases'],['พลังงานจลน์เฉลี่ย','average kinetic energy'],['การแพร่','diffusion'],['กฎการแพร่ผ่านของเกรแฮม','Graham\'s law of effusion'],['มวลต่อโมล','molar mass']])}</div>`;}
+
+/* ======================= อ่านก่อนทดลอง (สรุปด้วยถ้อยคำของผู้จัดทำหน้า) ======================= */
+/* reading-data:start */
+const READ={
+'7.1':{lead:'อ่านเรื่องความดันของแก๊สและการทดลองของบอยล์ก่อน แล้วลองกดและดึงก้านกระบอกฉีดยา',secs:[
+{h:'7.1.1 ความสัมพันธ์ระหว่างปริมาตรและความดัน',pg:'คู่มือครู หน้า 8–10',html:`
+<p>แก๊สต่างจากของแข็งและของเหลวตรงที่อนุภาคอยู่ห่างกันมากและดึงดูดกันน้อย จึงเคลื่อนที่ได้อิสระและขยายจนเต็มภาชนะ ปริมาตรของแก๊สจึงเปลี่ยนไปตามภาชนะที่บรรจุ</p>
+<div class="box"><h3>ความดันของแก๊ส</h3>เกิดจากอนุภาคแก๊สชนผนังภาชนะ เช่น ลมในลูกโป่งดันผนังลูกโป่งออก หน่วยที่พบ ได้แก่ atm, mmHg, psi และ bar โดย 1 atm = 760 mmHg = 14.7 psi อุปกรณ์วัดความดันมีทั้งบารอมิเตอร์และมาโนมิเตอร์ปรอท</div>
+<div class="box"><h3>การทดลองของบอยล์</h3><ul>
+<li>ใช้หลอดแก้วรูปตัวเจ ปลายด้านหนึ่งปิดและขังอากาศไว้ เติมปรอทเพื่อเปลี่ยนความดันของอากาศที่ขังอยู่</li>
+<li>ความดันของแก๊สหาได้จาก P<sub>gas</sub> = P<sub>atm</sub> + ผลต่างความสูงของระดับปรอทสองข้าง</li>
+<li>ตัวแปรต้นคือความดัน ตัวแปรตามคือปริมาตร ตัวแปรควบคุมคืออุณหภูมิและจำนวนโมลของแก๊ส</li></ul></div>
+<p><b>กฎของบอยล์:</b> ที่ T และ n คงที่ ปริมาตรแปรผกผันกับความดัน หรือ <b>P₁V₁ = P₂V₂</b> กราฟ V กับ P เป็นเส้นโค้ง แต่กราฟ V กับ 1/P เป็นเส้นตรงผ่านจุดกำเนิด ตัวอย่างในคู่มือ: อากาศ 30 mL ที่ 1.0 atm เมื่อความดันเป็น 1.5 atm ปริมาตรเหลือ 20 mL</p>`,
+ q:['ในการทดลองของบอยล์ ตัวแปรต้น ตัวแปรตาม และตัวแปรควบคุมคืออะไร','ต้น: ความดันของแก๊ส ตาม: ปริมาตรของแก๊ส ควบคุม: อุณหภูมิและจำนวนโมลของแก๊ส']}
+]},
+'7.2':{lead:'ถ้าอุณหภูมิของแก๊สเปลี่ยน ปริมาตรจะเปลี่ยนหรือไม่ อ่านแนวคิดก่อนทดลองกับขวดพลาสติก',secs:[
+{h:'7.1.2 ปริมาตรกับอุณหภูมิของแก๊ส',pg:'คู่มือครู หน้า 11–13',html:`
+<p>ต่อจากกฎของบอยล์ เมื่อให้ความดันและจำนวนโมลคงที่ แล้วเปลี่ยนอุณหภูมิ ปริมาตรของอากาศจะเปลี่ยนอย่างไร กิจกรรมนี้ใช้ขวดพลาสติกใสที่ปากขวดมีฟิล์มของน้ำยาล้างจาน เมื่อวางขวดในน้ำร้อน อากาศในขวดขยายจนฟิล์มพอง เมื่อวางในน้ำเย็นฟิล์มยุบลง</p>
+<ul><li>ฟิล์มที่ปากขวดทำให้ความดันภายในเท่ากับความดันบรรยากาศ ตลอดการทดลองความดันจึงคงที่</li><li>ขวดปิดด้วยฟิล์ม อากาศไม่เข้า–ออก จำนวนโมลคงที่</li><li>ผล: อุณหภูมิสูงขึ้น ปริมาตรเพิ่ม อุณหภูมิลดลง ปริมาตรลด</li></ul>
+<p class="small">ผลในหนังสือเป็นเชิงคุณภาพ ตัวเลข V ในห้องทดลองเสมือนคำนวณจากกฎของชาร์ล</p>`,
+ q:['ถ้าไม่มีฟิล์มที่ปากขวด (ปากขวดเปิด) การทดลองนี้ยังควบคุมจำนวนโมลของอากาศในขวดได้หรือไม่','ไม่ได้ เมื่ออากาศขยายตัวบางส่วนจะออกไปนอกขวด จำนวนโมลในขวดจึงลดลง ฟิล์มจึงช่วยกักอากาศและให้ความดันเท่ากับบรรยากาศ']}
+]},
+'7.3':{lead:'อ่านเรื่องกราฟ V–T อุณหภูมิศูนย์สัมบูรณ์ เคลวิน กฎของชาร์ล เกย์–ลูสแซก และกฎรวมแก๊ส',secs:[
+{h:'7.1.2–7.1.4 กราฟ V–T กฎของชาร์ล กฎของเกย์–ลูสแซก และกฎรวมแก๊ส',pg:'คู่มือครู หน้า 13–20',html:`
+<p>เมื่อเขียนกราฟปริมาตรกับอุณหภูมิ (°C) ที่ความดันและจำนวนโมลคงที่ ได้เส้นตรง (ตัวอย่างในหนังสือ y = 0.39x + 106) ถ้าต่อเส้นไปจนตัดแกนอุณหภูมิ จะได้ที่ประมาณ −273 °C ซึ่งเป็นอุณหภูมิที่ปริมาตรคาดการณ์เป็นศูนย์ เรียกว่า <b>อุณหภูมิศูนย์สัมบูรณ์</b> (0 K)</p>
+<div class="box"><h3>องศาเซลเซียสกับเคลวิน</h3>T(K) = t(°C) + 273 อัตราส่วน V/T ในหน่วย °C ไม่คงที่ แต่ในหน่วยเคลวินคงที่ จึงได้ <b>กฎของชาร์ล: V ∝ T</b> หรือ V₁/T₁ = V₂/T₂ ผลต่างอุณหภูมิในสองหน่วยเท่ากัน แต่ค่าอุณหภูมิต่างกัน 273</div>
+<div class="box"><h3>กฎของเกย์–ลูสแซกและกฎรวมแก๊ส</h3><ul><li>ที่ V และ n คงที่ P/T คงที่ (T เป็นเคลวิน) ดังนั้น <b>P ∝ T</b> เช่น กระป๋องสเปรย์ที่โดนความร้อนความดันสูงมากจนระเบิดได้</li><li>รวมบอยล์ ชาร์ล และเกย์–ลูสแซก เมื่อ n คงที่ ได้ <b>P₁V₁/T₁ = P₂V₂/T₂</b></li></ul></div>
+<p>ตัวอย่างในคู่มือ: ฮีเลียม 10.0 L ที่ 27 °C เมื่อไปที่ 57 °C (P คงที่) มีปริมาตร 11.0 L · หลอดไฟ 0.74 atm ที่ 22 °C เมื่อร้อนถึง 418 K ความดัน ≈ 1.0 atm · ลูกโป่ง 6.0 L, 1.0 atm, 27 °C ที่ 0.50 atm, −23 °C ได้ 10 L</p>`,
+ q:['ทำไมอัตราส่วน V/T ในหน่วยองศาเซลเซียสไม่คงที่ แต่ในหน่วยเคลวินคงที่','เพราะเส้นตรงของ V กับ t ไม่ผ่านจุดกำเนิด (V ≠ 0 เมื่อ t = 0 °C) ส่วนเมื่อวัดอุณหภูมิจากศูนย์สัมบูรณ์ (เคลวิน) เส้นตรงผ่านจุดกำเนิด V ∝ T อัตราส่วนจึงคงที่']}
+]},
+'7.4':{lead:'ถ้าจำนวนโมลของแก๊สไม่คงที่ ปริมาตรจะเปลี่ยนอย่างไร อ่านเรื่องกฎของอาโวกาโดรก่อนทดลองกับลูกโป่ง',secs:[
+{h:'7.1.5 ปริมาตรและจำนวนโมลของแก๊ส',pg:'คู่มือครู หน้า 19–24',html:`
+<p>กิจกรรมใช้ปฏิกิริยา HCl(aq) + NaHCO₃(s) → NaCl(aq) + H₂O(l) + CO₂(g) กรดมีปริมาณเท่ากันทุกขวด ส่วน NaHCO₃ มีมวลต่างกัน จึงเป็นตัวกำหนดว่าเกิด CO₂ กี่โมล (สารกำหนดปริมาณ) ปริมาณ CO₂ ที่เกิดตามอัตราส่วน 1 : 1 กับ NaHCO₃</p>
+<ul><li>ผล: ลูกโป่งที่ใส่ NaHCO₃ มากกว่าพองมากกว่า</li><li><b>กฎของอาโวกาโดร:</b> ที่ P และ T คงที่ ปริมาตรของแก๊สแปรผันตรงกับจำนวนโมล <b>V₁/n₁ = V₂/n₂</b></li><li>จึงได้ว่าแก๊สต่างชนิดที่ปริมาตร อุณหภูมิ และความดันเท่ากัน มีจำนวนโมลเท่ากัน ที่ STP (0 °C, 1 atm) แก๊ส 1 mol มีปริมาตร 22.4 L</li></ul>`,
+ q:['ถ้าจำนวนโมลของแก๊สเพิ่มขึ้นโดยความดันและอุณหภูมิคงที่ ปริมาตรจะเปลี่ยนอย่างไร','ปริมาตรเพิ่มขึ้นตามจำนวนโมลของแก๊ส (V ∝ n)']}
+]},
+'7.5':{lead:'อ่านทฤษฎีจลน์ของแก๊สและกฎของเกรแฮมก่อนดูการแพร่ของ NH₃ กับ HCl',secs:[
+{h:'7.3 ทฤษฎีจลน์และการแพร่ของแก๊ส',pg:'คู่มือครู หน้า 41–46',html:`
+<div class="box"><h3>สาระสำคัญของทฤษฎีจลน์</h3><ul>
+<li>อนุภาคแก๊สเล็กมากเมื่อเทียบกับภาชนะ และอยู่ห่างกันมาก แรงระหว่างอนุภาคจึงน้อยจนถือว่าไม่มี</li>
+<li>แต่ละอนุภาคเคลื่อนที่เป็นเส้นตรงด้วยอัตราเร็วต่างกัน จึงมีพลังงานจลน์ต่างกัน เมื่อชนกันจะถ่ายเทพลังงานให้กันโดยไม่สูญเสียพลังงานจลน์รวม</li>
+<li>แก๊สต่างชนิดที่อุณหภูมิเดียวกันมีพลังงานจลน์เฉลี่ยเท่ากัน เพิ่มอุณหภูมิ พลังงานจลน์เฉลี่ยเพิ่ม</li>
+<li>แก๊สอุดมคติทำตามข้อเหล่านี้ทุกข้อ แก๊สจริงใกล้เคียงเมื่ออุณหภูมิสูงและความดันต่ำ</li></ul></div>
+<p>ทฤษฎีนี้อธิบายกฎของแก๊สทั้งสี่ได้ ส่วน <b>การแพร่</b> คือการที่แก๊สเคลื่อนจากบริเวณหนึ่งไปอีกบริเวณหนึ่งได้เพราะโมเลกุลเคลื่อนที่อิสระทุกทิศ</p>
+<div class="box"><h3>กฎการแพร่ผ่านของเกรแฮม</h3>ที่ T เท่ากัน E<sub>k</sub> = ½mv² เท่ากัน ดังนั้นโมเลกุลที่มวลน้อยกว่าเคลื่อนที่เร็วกว่า อัตราการแพร่แปรผกผันกับรากที่สองของมวลต่อโมล <b>r₁/r₂ = √(M₂/M₁)</b> และเมื่อระยะทางเท่ากัน <b>t₁/t₂ = √(M₁/M₂)</b></div>
+<p>ในกิจกรรม HCl และ NH₃ ไม่มีสี เมื่อพบกันได้ NH₄Cl สีขาว วงแหวนจึงบอกตำแหน่งที่แก๊สสองชนิดพบกัน และเกิดใกล้ปลายด้าน HCl มากกว่า เพราะ HCl มีมวลต่อโมลมากกว่า</p>`,
+ q:['H₂ กับ O₂ ที่อุณหภูมิเดียวกัน โมเลกุลชนิดใดเคลื่อนที่เร็วกว่า และเร็วกว่าประมาณกี่เท่า','H₂ เร็วกว่า เพราะ E<sub>k</sub> เท่ากันแต่มวลน้อยกว่า ประมาณ √(32.00/2.02) ≈ 4 เท่า']}
+]},
+'7.6':{lead:'อ่านตัวอย่างการนำความรู้เรื่องแก๊สไปอธิบายปรากฏการณ์ ก่อนเลือกหัวข้อสืบค้นของตัวเอง',secs:[
+{h:'7.4 การประยุกต์ใช้ความรู้เกี่ยวกับแก๊ส',pg:'คู่มือครู หน้า 50–53',html:`
+<div class="box"><h3>หูอื้อเมื่อขึ้นที่สูง</h3>ภายในหูมีรูหูต่อกับบรรยากาศ แก้วหูกั้นกลาง และท่อยูสเตเชียนต่อไปยังลำคอ ปกติความดันสองฝั่งของแก้วหูเท่ากัน เมื่อขึ้นที่สูงเร็ว (ขับรถขึ้นเขา ขึ้นลิฟต์ เครื่องบินขึ้น) ความดันบรรยากาศลดลง ความดันในรูหูจึงต่ำกว่าด้านท่อยูสเตเชียน แก้วหูโก่งและสั่นไม่ปกติ จึงเจ็บและได้ยินน้อยลง การหาว เคี้ยวหมากฝรั่ง หรือกลืนน้ำลาย ทำให้ท่อเปิดระบายอากาศ ความดันจึงเท่ากันอีกครั้ง</div>
+<div class="box"><h3>กระป๋องสเปรย์</h3>แก๊สที่ความดันสูงในกระป๋องดันสารออกทางหัวฉีด ความดันในกระป๋องลดลงจนเท่าบรรยากาศ จึงฉีดไม่ออกอีก กระป๋องที่หมดแล้วยังมีแก๊สเหลืออยู่ ถ้าโดนเผาแก๊สจะขยายตัวและระเบิดได้ จึงไม่ควรทิ้งรวมกับขยะอื่น</div>
+<div class="box"><h3>บอลลูนตรวจสภาพอากาศชั้นบน</h3>บรรจุ He หรือ H₂ เส้นผ่านศูนย์กลางประมาณ 2 m เมื่อลอยสูงขึ้นความดันบรรยากาศลดลง บอลลูนขยายใหญ่ขึ้น ที่ความสูงประมาณ 30 km แก๊สขยายจนบอลลูนแตก ร่มชูชีพกางเพื่อให้เครื่องมือตกลงมาอย่างปลอดภัย</div>`,
+ q:['ทำไมถุงขนมที่ปิดสนิทจึงพองขึ้นเมื่อนำขึ้นไปบนยอดเขา','ความดันบรรยากาศภายนอกต่ำลง ความดันของอากาศในถุงจึงดันถุงให้ขยาย ปริมาตรเพิ่ม (กฎของบอยล์)']}
+]},
+'ig':{lead:'อ่านการรวมกฎแก๊สเป็นสมการ PV = nRT และการหาความดันย่อยก่อนใช้เครื่องมือ',secs:[
+{h:'7.2 กฎแก๊สอุดมคติและความดันย่อย',pg:'คู่มือครู หน้า 28–40',html:`
+<p>รวมกฎรวมแก๊สกับกฎของอาโวกาโดรได้ <b>PV = nRT</b> แก๊สใดที่เป็นไปตามสมการนี้เรียกว่าแก๊สอุดมคติ ค่าคงที่ R หาได้จากข้อมูล STP: R = (1 atm)(22.4 L)/((1 mol)(273 K)) = <b>0.0821 L·atm·mol⁻¹·K⁻¹</b> (ตัวเลขขึ้นกับหน่วยที่ใช้) ใช้หา P, V, T, n หรือมวล (n = m/M) และความหนาแน่น d = PM/RT</p>
+<div class="box"><h3>ความดันย่อย (กฎของดอลตัน)</h3>ในแก๊สผสมที่ไม่ทำปฏิกิริยากัน ความดันรวมเท่ากับผลรวมของความดันย่อย P<sub>total</sub> = ΣP<sub>i</sub> ที่ T และ V คงที่ ความดันขึ้นกับจำนวนโมลรวม ความดันย่อยของแต่ละแก๊สหาได้จาก <b>P<sub>i</sub> = X<sub>i</sub>P<sub>total</sub></b> โดย X<sub>i</sub> คือเศษส่วนโมล และที่ T, P คงที่ ร้อยละโดยปริมาตรของแก๊สเท่ากับร้อยละโดยโมล เช่น ถัง EANx 200 atm มี O₂ 32 % ได้ P(O₂) = 64 atm</div>`,
+ q:['จากความรู้เรื่องปริมาตรของแก๊สที่ STP คำนวณค่า R ได้อย่างไร','ที่ STP (0 °C, 1 atm) แก๊ส 1 mol มีปริมาตร 22.4 L แทนค่าใน R = PV/(nT) = (1)(22.4)/((1)(273)) = 0.0821 L·atm/(mol·K)']}
+]}
+};
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่การทดลอง ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทดลอง</span></div></div>`;}
+/* reading-engine:end */
+/* ======================= โครงหน้า ======================= */
+const BUILD={'7.1':[act71,wire71],'7.2':[act72,wire72],'7.3':[act73,wire73],'7.4':[act74,wire74],'7.5':[act75,wire75],'7.6':[act76,wire76],'ig':[act_ig,wire_ig],'sum':[actSum,()=>{}],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${a.replace('.','_')}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t)t.focus({preventScroll:true});}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length;$('#progText').textContent='ความคืบหน้า '+n+' / 6 กิจกรรม';$('#progBar').style.width=(n/6*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  stopTimers();cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 7','เคมี ม.5 เล่ม 3 บทที่ 7 แก๊สและสมบัติของแก๊ส (กิจกรรม 7.1–7.5)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+a.replace('.','_')+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:RM()?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const h=(location.hash.match(/act-(7\.\d|ig|sum|ex)/)||[])[1];
+select(h&&ACTS.indexOf(h)>=0?ACTS.indexOf(h):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
