@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>วิทยาศาสตร์กายภาพ ม.5 บทที่ 3 อาหาร · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 3", "title": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 3 อาหาร (กิจกรรม 3.1–3.4)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#ecdcc6;--soft:#fdf6ec;--acc:#92400e;--acc2:#fdebd3;--ok:#157a55;--bad:#b63f43;--acc3:#d9822b;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #ecdcc6;border-radius:30px;background:linear-gradient(130deg,#fff,#fdf3e3);box-shadow:0 28px 65px #4a2a0a12;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #e3c9a6;background:#fdf6ec;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#5b2c0a;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #4a2a0a12,0 3px 10px #4a2a0a08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #e0c49d;border-radius:22px;padding:16px;background:linear-gradient(160deg,#fdf3e3,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #d6b07c;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.why{font-size:.9rem;color:#4a2a10;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#5b2c0a;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+svg text{font-family:var(--font)}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.92rem}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0}.kv b{font-weight:650}
+.warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
+.tbl-sm td,.tbl-sm th{font-size:.88rem}
+.tw table.wide{min-width:540px}
+.sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
+.ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
+.ledrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
+.ledrow label{font-weight:600;font-size:.92rem;display:block}
+.ledrow input[type=range]{width:100%;min-height:44px}
+.ledrow input[type=text],.ledrow textarea,.ledrow select{display:block;width:100%;max-width:100%}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
+.ok-bg{background:#e8f6ef}.bad-bg{background:#fdf1f1}
+.cond li{list-style:none;margin-left:-1.1rem}
+.stepno{display:inline-block;min-width:1.6em;text-align:center;background:var(--acc);color:#fff;border-radius:999px;padding:0 .5em;margin-right:6px;font-size:.85rem}
+.pbar{height:8px;border-radius:99px;background:var(--acc2);overflow:hidden;margin:6px 0}.pbar i{display:block;height:100%;background:var(--acc);width:0}
+.cite{font-family:ui-serif,Georgia,serif;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;word-break:break-word;overflow-wrap:anywhere}
+.timer{font:700 2rem ui-monospace,Menlo,monospace}.timer.over{color:var(--bad)}
+.rl{display:flex;gap:10px;flex-wrap:wrap}.rl label{display:flex;gap:4px;align-items:center;min-height:44px}
+@media(prefers-reduced-motion:reduce){.pbar i{transition:none}}
+sup{font-size:.75em;line-height:0}
+.lab svg{max-width:100%}
+.rg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.rg label{display:flex;gap:6px;align-items:center;min-height:44px;padding:4px 12px;border:1.5px solid #d6b07c;border-radius:999px;background:#fff;font-weight:600}
+.rg label:has(input:checked){background:var(--acc);color:#fff;border-color:var(--acc)}
+.num{width:7.5em;min-height:44px;border:1px solid #e0c49d;border-radius:12px;padding:6px 10px;text-align:right}
+.hl{background:#fbead0;border-radius:6px;padding:0 4px}
+.mini th,.mini td{padding:4px 7px;font-size:.88rem}
+.nw{white-space:nowrap}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9rem}.bar2 .lb{flex:0 0 9.5em}.bar2 .tr{flex:1;height:16px;border-radius:99px;background:var(--acc2);overflow:hidden}.bar2 .tr i{display:block;height:100%;background:var(--acc)}.bar2 .vv{flex:0 0 4.5em;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:480px){.bar2 .lb{flex-basis:7em}}
+input[type=range]{accent-color:var(--acc)}input[type=checkbox],input[type=radio]{accent-color:var(--acc)}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+</style>
+<style>
+.svw{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff;padding:6px;margin:8px 0}
+.svw svg{display:block;width:100%;max-width:560px;margin:0 auto;height:auto}
+select{max-width:100%;min-height:44px;border:1px solid #e0c49d;border-radius:12px;padding:6px 10px;background:#fff;color:var(--ink)}
+.lbl svg{margin:0 4px}
+.rl input{width:22px;height:22px}
+details.rd-q[open]>summary{margin-bottom:6px}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">PHYSICAL SCIENCE · MATTHAYOM 5 · CHEMISTRY PART · CHAPTER 3</div>
+<h1>บทที่ 3 อาหาร: คาร์โบไฮเดรต พอลิเมอร์ และพลาสติก</h1>
+<p>หน้านี้เป็นรายวิชาวิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) ภาคเคมี มีกิจกรรม 3.1 (เทียบกลูโคสกับแป้งมันสำปะหลัง เป็นห้องทดลองเสมือนเชิงคุณภาพ) กิจกรรม 3.2 (สืบค้นสมบัติของมอนอเมอร์และพอลิเมอร์ ด้วยแบบฟอร์มสืบค้น) กิจกรรม 3.3 (จับคู่ผลิตภัณฑ์กับพอลิเมอร์ แบบจำลองการให้ความร้อน และแบบวิเคราะห์ฉลาก) กิจกรรม 3.4 (จับคู่รหัสพลาสติกสำหรับรีไซเคิล จัดประเภทลด-ซ้ำ-รีไซเคิล และแบบสืบค้นปัญหาในชุมชน) พร้อมสรุปเนื้อหาและแบบฝึกหัดตามคู่มือครู แท็บกิจกรรม 3.1–3.4 มีส่วน &quot;อ่านก่อนทดลอง&quot; ที่ผู้จัดทำหน้าเรียบเรียงเอง และมีแบบทดสอบสั้นท้ายแท็บ</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 4 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> ผลตัวอย่างในกิจกรรม 3.1 และ 3.2 ใช้ข้อมูลจากคู่มือครู (หน้า 72 และ 74) ส่วนความเร็วของเวลา (ต้ม 1 นาที พัก 5 นาที ประกบกระดาษ 10 นาที ที่ย่อให้เร็ว) ระดับความร้อน 0–100 และจุดเปลี่ยน 25/60/80 ในกิจกรรม 3.3 อุณหภูมิห้อง 25 °C ในแผนภาพกิจกรรม 3.2 และตัวอย่างผลิตภัณฑ์ที่ใช้จับคู่ในกิจกรรม 3.3 และ 3.4 เป็นค่าหรือถ้อยคำที่ผู้จัดทำหน้าสมมติเอง ติดป้ายไว้ในแต่ละกิจกรรม<br>
+<b>กิจกรรมในหนังสือ:</b> บทนี้มีกิจกรรม 3.1–3.4 ซึ่งอยู่ในหัวข้อ 3.2 คาร์โบไฮเดรต (กิจกรรม 3.1 และ 3.2) และหัวข้อ 3.5 บรรจุภัณฑ์สำหรับอาหาร (กิจกรรม 3.3 และ 3.4) หัวข้ออื่นมีเฉพาะแบบฝึกหัดซึ่งอยู่ในแท็บแบบฝึกหัด<br>
+<b>งานเขียนของนักเรียน:</b> ข้อความที่พิมพ์ในช่องเปิดจะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดปุ่มส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> (ถ้าเขียนไว้หลายแท็บ ให้ส่งทีละแท็บ ไม่ได้อยู่ในเครื่องเท่านั้น) ข้อเขียนไม่มีคะแนนอัตโนมัติ มีคะแนนเฉพาะแบบทดสอบ ตัวจับคู่ และแบบฝึกหัดที่คู่มือมีเฉลย<br>
+<b>ข้อควรระวังเมื่อทำจริง:</b> กิจกรรม 3.1 ใช้เตาแผ่นความร้อนต้มของเหลว คู่มือครูไม่ได้ระบุข้อควรระวังไว้ ข้อแนะนำให้ระวังของร้อนเป็นของผู้จัดทำหน้า</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 3"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: คู่มือครูรายวิชาวิทยาศาสตร์กายภาพ ม.5 เล่ม 1 บทที่ 3 อาหาร (สสวท.) เลขหน้าคือเลขที่พิมพ์ในคู่มือครู: ภาพรวมบท หน้า 64–65 · 3.1 ไขมันและน้ำมัน และแบบฝึกหัด 3.1 หน้า 66–69 · 3.2 คาร์โบไฮเดรต หน้า 70–74 (กิจกรรม 3.1 หน้า 71–73 กิจกรรม 3.2 หน้า 74) · 3.3 โปรตีน และแบบฝึกหัด 3.2 หน้า 75–76 · 3.4 วิตามินและเกลือแร่ และแบบฝึกหัด 3.3–3.4 หน้า 77–80 · 3.5 บรรจุภัณฑ์สำหรับอาหาร หน้า 81–87 (กิจกรรม 3.3 หน้า 85 กิจกรรม 3.4 หน้า 86) · แบบฝึกหัดท้ายบท หน้า 88–91 และหนังสือเรียนวิทยาศาสตร์กายภาพ เล่ม 1 (เลขหน้าตามที่ระบุในแต่ละส่วน ตาราง 3.1 หน้า 63 และตาราง 3.2 หน้า 88) เนื้อหาในหน้านี้เรียบเรียงใหม่ด้วยถ้อยคำของผู้จัดทำหน้า ภาพทั้งหมดวาดเอง ไม่ได้คัดลอกจากหนังสือ</footer>
+</div>
+
+<script>
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const REDUCE=(()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=(x,d)=>{const v=Number(x);return Number.isFinite(v)?String(+v.toFixed(d==null?2:d)):'–';};
+function dget(ns,k){const v=DR[ns+'|'+k];return v==null?'':v;}
+function wireDraft(root,ns,onchg){
+  $$('[data-d]',root).forEach(el=>{
+    if(el.type==='checkbox'){const k=ns+'|'+el.dataset.d;el.checked=!!DR[k];el.addEventListener('change',()=>{DR[k]=el.checked;dsave();onchg&&onchg();});}
+    else{const k=ns+'|'+el.dataset.d;if(DR[k]!=null)el.value=DR[k];const h=()=>{DR[k]=el.value;dsave();onchg&&onchg();};el.addEventListener('input',h);el.addEventListener('change',h);}
+  });}
+function fieldsHTML(rows){return rows.map(r=>`<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2]?`<div class="small">${r[2]}</div>`:''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('');}
+function textOf(ns,rows,head){return head+'\n'+rows.map(r=>'\n## '+r[1]+'\n'+(dget(ns,r[0])||'(ยังไม่ได้กรอก)')).join('\n')+'\n';}
+function expHTML(id){return`<div class="btns"><button class="btn sm" type="button" data-ex="copy" data-for="${id}">คัดลอกเป็นข้อความ</button><button class="btn alt sm" type="button" data-ex="dl" data-for="${id}">ดาวน์โหลดเป็นไฟล์ .txt</button></div><div class="small" id="exs_${id}" aria-live="polite"></div>`;}
+function wireExp(id,getText,fname){
+  const c=$('[data-ex=copy][data-for="'+id+'"]'),d=$('[data-ex=dl][data-for="'+id+'"]'),s=$('#exs_'+id);if(!c||!d||!s)return;
+  const fb=t=>{s.innerHTML='<pre tabindex="0" style="white-space:pre-wrap;user-select:all;margin:0" aria-label="ข้อความสำหรับคัดลอก"></pre>';const ta=$('pre',s);ta.textContent=t;ta.focus();try{const rg=document.createRange();rg.selectNodeContents(ta);const sl=getSelection();sl.removeAllRanges();sl.addRange(rg);}catch(_){}};
+  c.onclick=()=>{const t=getText();let ok=false;try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{s.textContent='คัดลอกแล้ว';},()=>fb(t));ok=true;}}catch(_){}if(!ok)fb(t);};
+  d.onclick=()=>{try{const b=new Blob([getText()],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);s.textContent='สร้างไฟล์ '+fname+' แล้ว';}catch(_){fb(getText());}};
+}
+
+/* ======================= แบบทดสอบ (ไม่ไฮไลต์ตัวเลือก แสดงเฉพาะคะแนนและคำอธิบาย) ======================= */
+function quizHTML(act,title){
+  return'<div class="box" id="quiz-'+qid(act)+'"><h3>'+(title||'แบบทดสอบสั้น')+' (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<fieldset class="q exf" data-i="'+i+'"><legend>'+(q.n?q.n+' ':(i+1)+'. ')+q.q+'</legend>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+qid(act)+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></fieldset>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act,gate){
+  const root=$('#quiz-'+qid(act));if(!root)return;const qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      if(sel){answered++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: '+qs[i].o[qs[i].a]+' · ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ได้ '+got+' / '+qs.length+' คะแนน (ข้อที่ว่างนับเป็นไม่ถูก)';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(QNAME[act],got,qs.length);
+    if(answered===qs.length&&gate){st.q[act]=true;save();tryDone(act);}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+/* ช่องกรอกตัวเลข (ตรวจอัตโนมัติ) */
+function numHTML(id,title,items){
+  return'<div class="box" id="num-'+id+'"><h3>'+title+'</h3>'+items.map((it,i)=>'<div class="q"><label class="lbl" for="n_'+id+'_'+i+'">'+it.q+'</label><input class="num" id="n_'+id+'_'+i+'" type="number" step="any" inputmode="decimal"> '+(it.u||'')+'<div class="why hide"></div></div>').join('')+'<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireNum(id,items){
+  const root=$('#num-'+id);if(!root)return;
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    items.forEach((it,i)=>{const el=$('#n_'+id+'_'+i,root),why=$('.why',el.parentNode);const raw=el.value.trim(),v=parseFloat(raw);
+      if(raw!==''&&Number.isFinite(v)){answered++;if(Math.abs(v-it.a)<=(it.tol||0.001))got++;}
+      why.classList.remove('hide');why.textContent=(raw!==''&&Math.abs(v-it.a)<=(it.tol||0.001)?'ถูกต้อง · ':'เฉลย: '+it.a+' '+(it.u||'')+' · ')+it.w;});
+    const r=$('.res',root);r.className='res '+(answered<items.length?'bad':'ok');
+    r.textContent=(answered<items.length?'ยังกรอกไม่ครบ ('+answered+'/'+items.length+') ':'')+'ได้ '+got+' / '+items.length+' คะแนน';
+    ls(QNAME[id],got,items.length);
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.value='');$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่กิจกรรม ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทำ</span></div></div>`;}
+/* reading-engine:end */
+const radioGroup=(name,opts)=>`<div class="rg" role="radiogroup" aria-label="${name}">`+opts.map((o,i)=>`<label><input type="radio" name="${name}" value="${o[0]}" data-r="1"><span>${o[1]}</span></label>`).join('')+'</div>';
+function wireRadio(root,ns,name,cb){ /* radio ผูกกับร่างงาน */
+  const els=$$('input[name="'+name+'"]',root),k=ns+'|'+name;
+  els.forEach(el=>{el.checked=DR[k]===el.value;el.addEventListener('change',()=>{if(el.checked){DR[k]=el.value;dsave();cb&&cb(el.value);}});});}
+function revealHTML(items){return items.map((r,i)=>`<details class="rd-q"><summary>${r[0]}</summary><p>${r[1]}</p></details>`).join('');}
+/* ======================= ฟังก์ชันบริสุทธิ์ ======================= */
+/* วางตัวเลือกที่ถูกไว้ตำแหน่ง pos โดยตัวเลือกอื่นเรียงตามเดิม (สร้างโดย llm-orchestrator แล้วตรวจเอง) */
+function placeCorrect(options,ci,pos){const n=options.length;if(!(ci>=0&&ci<n)||!(pos>=0&&pos<n))throw new Error('bad');const c=options[ci],o=options.filter((_,i)=>i!==ci);return o.slice(0,pos).concat([c],o.slice(pos));}
+/* ตัวช่วยตัดสินจากหมู่ฟังก์ชัน: ตามกฎของหนังสือ (–COOH กรด, หมู่แอมิโนเป็นเบส, มีประจุหรือมีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำได้จึงละลายน้ำ) */
+function judgeGroups(g){if(!g||typeof g!=='object')throw new Error('bad');const c=!!g.cooh,a=!!g.amino;return{ab:c&&a?'both':c?'acid':a?'base':'neutral',water:!!(g.cooh||g.amino||g.oh||g.charge)};}
+/* ตำแหน่งเทียบกับช่วงจุดหลอมเหลว */
+function meltRel(T,lo,hi){return T<lo?'below':T>hi?'above':'in';}
+
+/* ======================= ข้อมูลจากคู่มือครู/หนังสือเรียน ======================= */
+/* คู่มือครู หน้า 74: ตัวอย่างผลสืบค้น (จุดหลอมเหลวหน่วย °C ตรวจกับภาพหน้า PDF แล้ว) */
+const PM=[
+ {n:'พอลิเอทิลีน',k:'poly',st:'ของแข็ง',lo:115,hi:135},{n:'เอทิลีน',k:'mono',st:'แก๊ส',lo:-169.15,hi:-169.15},
+ {n:'พอลิโพรพิลีน',k:'poly',st:'ของแข็ง',lo:130,hi:170},{n:'โพรพิลีน',k:'mono',st:'แก๊ส',lo:-185.24,hi:-185.24},
+ {n:'พอลิไวนิลคลอไรด์',k:'poly',st:'ของแข็ง',lo:100,hi:260},{n:'ไวนิลคลอไรด์',k:'mono',st:'แก๊ส',lo:-153.84,hi:-153.84}];
+/* หนังสือเรียน หน้า 63 ตาราง 3.1 (ร้อยละ) */
+const FAT=[['เนย',50,26],['น้ำมันหมู',39,56],['น้ำมันปาล์ม',49,46],['น้ำมันถั่วเหลือง',16,81],['น้ำมันรำข้าว',20,74],['น้ำมันมะพร้าว',80,10],['น้ำมันมะกอก',13,80]];
+/* หนังสือเรียน หน้า 88 ตาราง 3.2 */
+const RESIN=[[1,'PET','poly(ethylene terephthalate)','เสื้อผ้า พรม ขวดพลาสติก'],[2,'HDPE','high density polyethylene','ฉนวนกันความร้อน เสื้อผ้ากีฬา ภาชนะบรรจุภัณฑ์'],[3,'PVC','poly(vinyl chloride)','แผ่นยางปูพื้น'],[4,'LDPE','low density polyethylene','ถุงขยะ ภาชนะบรรจุภัณฑ์'],[5,'PP','polypropylene','เฟอร์นิเจอร์ ภาชนะบรรจุภัณฑ์'],[6,'PS','polystyrene','ถังขยะ'],[7,'OTHER','polycarbonate (PC), polylactic acid (PLA)','ส่วนประกอบในรถยนต์ และอุปกรณ์อิเล็กทรอนิกส์']];
+const PLAS=[
+ ['พอลิเอทิลีน (PE)','จุดหลอมเหลวต่ำกว่าพอลิเมอร์ชนิดอื่นในตาราง (115–135 °C) ไม่เหมาะบรรจุอาหารร้อน น้ำหนักเบา โค้งงอได้ ราคาถูก','ถุงใส่ของเย็น กล่องพลาสติก ถุงหูหิ้ว ขวดพลาสติกขุ่น ฝาขวด'],
+ ['พอลิโพรพิลีน (PP)','จุดหลอมเหลวสูงกว่าและทนความร้อนได้ดีกว่า PE (130–170 °C จากตารางหน้า 74)','บรรจุภัณฑ์สำหรับอาหารร้อน ใส่ไมโครเวฟได้'],
+ ['พอลิสไตรีน (PS)','น้ำหนักเบา แข็งและเปราะ','กล่องโฟมบรรจุอาหาร ช้อนส้อมพลาสติก กล่องพลาสติกใส'],
+ ['พอลิเอทิลีนเทเรฟทาเลต (PET)','แข็งและเหนียว','ขวดน้ำดื่ม ถุงขนมขบเคี้ยว ภาชนะสำหรับไมโครเวฟ'],
+ ['พอลิเมลามีนฟอร์มาลดีไฮด์','แข็ง ทนความร้อน (เป็นพอลิเมอร์เทอร์มอเซต)','จาน ชาม และภาชนะที่ไม่แตกหักง่าย']];
+
+/* ======================= สถานะและร่างงาน ======================= */
+const KEY='chemistry-m5-phys-ch3-v1',DK='chemistry-m5-phys-ch3-drafts-v1';
+let st={done:{},q:{},run:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=Object.assign({done:{},q:{},run:{}},s);}catch(_){}
+let DR={};try{DR=JSON.parse(localStorage.getItem(DK)||'{}')||{};}catch(_){DR={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+function dsave(){try{localStorage.setItem(DK,JSON.stringify(DR));}catch(_){}}
+const ACTS=['3.1','3.2','3.3','3.4','sum','ex'];const LABS=ACTS.slice(0,4);
+const TITLES={'3.1':'กลูโคสกับแป้งมันสำปะหลัง','3.2':'มอนอเมอร์และพอลิเมอร์','3.3':'ฉลากพลาสติกกับการใช้งาน','3.4':'ขยะพลาสติก',sum:'สรุปเนื้อหา',ex:'แบบฝึกหัด'};
+const QNAME={'3.1':'3.1 แบบทดสอบ','3.2':'3.2 แบบทดสอบ','3.3':'3.3 แบบทดสอบ','3.4':'3.4 แบบทดสอบ',m33:'3.3 จับคู่ผลิตภัณฑ์',r34:'3.4 รหัสพลาสติก',p34:'3.4 ผลิตภัณฑ์รีไซเคิล',t34:'3.4 ลด-ซ้ำ-รีไซเคิล',x31:'ฝ.3.1 ไฮโดรคาร์บอน',x32:'ฝ.3.2 กรด-เบส-กลาง',x33:'ฝ.3.3 วิตามิน',x34:'ฝ.3.4 การละลายน้ำ',xe1:'ฝ.ท้ายบท ข้อ 1-2',xe2:'ฝ.ท้ายบท ข้อ 3-5',xe3:'ฝ.ท้ายบท ข้อ 6-10'};
+let cur=0;const CLEAN=[];
+const qid=act=>act.replace('.','_');
+function markDone(a){if(!st.done[a]){st.done[a]=true;save();paintTabs();paintProgress();}}
+function tryDone(a){if(st.done[a])return;if((a==='3.1'||a==='3.3')&&st.q[a]&&st.run[a])markDone(a);}
+
+/* ======================= แบบทดสอบ: ข้อมูลตัวเลือก (ตัวเลือกแรกคือข้อที่ถูก) แล้ววางตามตำแหน่งที่กำหนดชัดเจน ======================= */
+function mkSet(items,pos){return items.map((it,i)=>({q:it.q,o:placeCorrect(it.o,0,pos[i]),a:pos[i],w:it.w}));}
+const YN=['ใช่','ไม่ใช่'],NY=['ไม่ใช่','ใช่'];
+const POS={'3.1':[1,3,0,2],'3.2':[2,0,0,3],'3.3':[3,1,2,1],'3.4':[0,2,3,1],
+ x31:[1,0,0,1,1,0,1,0,1,1,0,0],x32:[2,0,1,1,2,0,2],x33:[0,1,1,0],x34:[0,1,1,0,1,0,0,1,0],
+ xe1:[0,1,1,0,1,0,2],xe2:[1,1,0,0,2],xe3:[1,0,1,0,2,1,2]};
+const HC=(f,yes,why)=>({q:'<span class="mono">'+f+'</span> เป็นสารประกอบไฮโดรคาร์บอนหรือไม่',o:yes?YN:NY,w:why});
+const SU=(d,sat,why)=>({q:d+' เป็นสารประกอบไฮโดรคาร์บอนอิ่มตัวหรือไม่อิ่มตัว',o:sat?['อิ่มตัว','ไม่อิ่มตัว']:['ไม่อิ่มตัว','อิ่มตัว'],w:why});
+const AB=(d,c,why)=>({q:d+' มีสมบัติเป็นกรด เบส หรือกลาง',o:[c].concat(['กรด','เบส','กลาง'].filter(x=>x!==c)),w:why});
+const WS=(d,yes,why)=>({q:d+' ละลายน้ำได้หรือไม่',o:yes?['ละลายน้ำได้','ละลายน้ำไม่ได้']:['ละลายน้ำไม่ได้','ละลายน้ำได้'],w:why});
+const R3=['ลดการใช้','ใช้ซ้ำ','นำกลับมาใช้ใหม่'];
+const R3Q=(q,c,why)=>({q,o:[R3[c]].concat(R3.filter((_,i)=>i!==c)),w:why});
+const QUIZ={
+'3.1':mkSet([
+ {q:'ในกิจกรรม 3.1 เมื่อผสมกลูโคสและแป้งมันสำปะหลังกับน้ำที่อุณหภูมิห้อง คู่มือครูระบุผลข้อใด',o:['กลูโคสละลายได้สารละลายใสไม่มีสี ส่วนแป้งมันสำปะหลังไม่ละลาย เป็นสารแขวนลอยสีขาวขุ่น','ทั้งสองสารละลายได้สารละลายใสเหมือนกัน','แป้งมันสำปะหลังละลายได้ดีกว่ากลูโคส','ทั้งสองสารไม่ละลายและตกตะกอนทันที'],w:'ตารางผลตัวอย่าง คู่มือครู หน้า 72'},
+ {q:'หลังต้มแล้วทดสอบด้วยการติดกระดาษ สารใดทำให้กระดาษติดกันแน่นกว่า และบอกอะไร',o:['น้ำแป้งมันสำปะหลัง แสดงว่าหนืดกว่าสารละลายกลูโคส','สารละลายกลูโคส แสดงว่าหนืดกว่าน้ำแป้ง','ทั้งสองทำให้กระดาษติดแน่นเท่ากัน','ไม่มีสารใดทำให้กระดาษติดกันเลย'],w:'คู่มือครู หน้า 72–73: น้ำแป้งทำให้กระดาษติดกันแน่นดึงไม่ออก สารละลายกลูโคสทำให้กระดาษไม่ติดกัน'},
+ {q:'ข้อใดตรงกับที่คู่มือครูและหนังสือเรียนสรุปเรื่องมอนอเมอร์กับพอลิเมอร์',o:['กลูโคสเป็นมอนอเมอร์ ส่วนแป้งเป็นพอลิเมอร์ที่เกิดจากกลูโคสจำนวนมากต่อกัน','แป้งเป็นมอนอเมอร์ ส่วนกลูโคสเป็นพอลิเมอร์','ทั้งกลูโคสและแป้งเป็นมอนอเมอร์','ทั้งกลูโคสและแป้งเป็นพอลิเมอร์'],w:'หนังสือเรียน หน้า 66: มอนอเมอร์ของพอลิแซ็กคาไรด์ในข้าวและแป้งคือกลูโคส (คู่มือครู หน้า 70)'},
+ {q:'ทำไมคู่มือครูแนะนำให้ต้มสารทั้งสองด้วยเวลาและความร้อนเท่ากัน',o:['เพื่อให้ผลที่ต่างกันมาจากชนิดของสาร ไม่ใช่จากการให้ความร้อนต่างกัน','เพื่อให้สารทั้งสองระเหยจนหมด','เพื่อให้กลูโคสหลอมเหลวที่ 146 °C','เพื่อให้แป้งเปลี่ยนเป็นกลูโคสทั้งหมด'],w:'คู่มือครู หน้า 72 ข้อ 2 (เหตุผลเป็นหลักการควบคุมตัวแปร ซึ่งเป็นความรู้ทั่วไป ไม่ใช่ข้อความของคู่มือ) · การต้มในน้ำ 1 นาทีไม่ทำให้ถึง 146 °C และแป้งไม่ได้เปลี่ยนเป็นกลูโคสในกิจกรรมนี้'}],POS['3.1']),
+'3.2':mkSet([
+ {q:'ตามตารางตัวอย่างของคู่มือครู หน้า 74 ข้อใดถูกต้อง',o:['พอลิเอทิลีนเป็นของแข็ง จุดหลอมเหลว 115–135 °C ส่วนเอทิลีนเป็นแก๊ส จุดหลอมเหลว −169.15 °C','เอทิลีนเป็นของแข็ง ส่วนพอลิเอทิลีนเป็นแก๊ส','เอทิลีนมีจุดหลอมเหลวสูงกว่าพอลิเอทิลีน','พอลิเอทิลีนกับเอทิลีนมีสถานะเหมือนกัน'],w:'ตารางหน้า 74'},
+ {q:'ในสามคู่ของตาราง ข้อสรุปใดสอดคล้องกับข้อมูล',o:['พอลิเมอร์ทั้งสามเป็นของแข็งและมีจุดหลอมเหลวสูงกว่ามอนอเมอร์ที่เป็นแก๊ส','มอนอเมอร์ทุกชนิดมีจุดหลอมเหลวสูงกว่าพอลิเมอร์','ทั้งหกสารเป็นของแข็งที่อุณหภูมิห้อง','จุดหลอมเหลวของมอนอเมอร์กับพอลิเมอร์ไม่ต่างกัน'],w:'ตารางหน้า 74 · สถานะในตารางเป็นสถานะที่ระบุไว้ในคู่มือ'},
+ {q:'สารใดในตารางมีจุดหลอมเหลวต่ำที่สุด',o:['โพรพิลีน (−185.24 °C)','เอทิลีน (−169.15 °C)','ไวนิลคลอไรด์ (−153.84 °C)','พอลิเอทิลีน (115–135 °C)'],w:'เทียบตัวเลขในตารางหน้า 74: −185.24 ต่ำกว่า −169.15 และ −153.84'},
+ {q:'ข้อใดเป็นสมบัติที่หนังสือเรียนยกเป็นตัวอย่างว่าต่างกันระหว่างมอนอเมอร์กับพอลิเมอร์ที่เกิดจากมอนอเมอร์นั้น',o:['การละลาย จุดหลอมเหลว และความหนืดของสารละลาย','ชนิดของอะตอมเปลี่ยนไปโดยสิ้นเชิง','ความหนาแน่นของอากาศ','ปริมาณโปรตีน'],w:'หนังสือเรียน หน้า 68 และคู่มือครู หน้า 70 ระบุการละลาย ความหนืด จุดหลอมเหลว และสถานะที่อาจต่างกัน'}],POS['3.2']),
+'3.3':mkSet([
+ {q:'ตามตารางพอลิเมอร์ในคู่มือครู พอลิเมอร์ใดมีจุดหลอมเหลวต่ำกว่าชนิดอื่นและไม่เหมาะบรรจุอาหารร้อน',o:['พอลิเอทิลีน (115–135 °C)','พอลิโพรพิลีน','พอลิเมลามีนฟอร์มาลดีไฮด์','พอลิเอทิลีนเทเรฟทาเลต'],w:'คู่มือครู หน้า 82'},
+ {q:'ถุงพลาสติกกับปลั๊กไฟเมื่อได้รับความร้อนสูงต่างกันอย่างไร',o:['ถุงพลาสติก (เทอร์มอพลาสติก) หลอมเหลว ปลั๊กไฟ (เทอร์มอเซต) ไม่หลอมเหลว','ถุงพลาสติกไม่หลอมเหลว ปลั๊กไฟหลอมเหลว','ทั้งสองหลอมเหลวแล้วขึ้นรูปใหม่ได้','ทั้งสองไม่หลอมเหลวเหมือนกัน'],w:'ชวนคิด คู่มือครู หน้า 85–86'},
+ {q:'ข้อบ่งชี้บนฉลากผลิตภัณฑ์พลาสติกส่วนใหญ่เกี่ยวข้องกับสมบัติใดของพอลิเมอร์',o:['สมบัติทางความร้อน เช่น ห้ามใส่ของร้อน ห้ามเข้าไมโครเวฟ','สีของพลาสติก','กลิ่นของพลาสติก','ความโปร่งแสงเท่านั้น'],w:'สรุปกิจกรรม 3.3 คู่มือครู หน้า 85'},
+ {q:'พอลิเมอร์ชนิดใดที่หนังสือเรียนจัดเป็นโครงสร้างแบบร่างแห (เทอร์มอเซต)',o:['พอลิเมลามีนฟอร์มาลดีไฮด์','พอลิเอทิลีน','พอลิสไตรีน','พอลิไวนิลคลอไรด์'],w:'หนังสือเรียน หน้า 87: PE PET PS PVC เป็นแบบเส้นหรือแบบกิ่ง (เทอร์มอพลาสติก) ส่วนแบบร่างแหเช่นพอลิเมลามีนฟอร์มาลดีไฮด์ (เทอร์มอเซต)'}],POS['3.3']),
+'3.4':mkSet([
+ {q:'ข้อใดเป็นเหตุผลที่หนังสือเรียนให้ไว้ว่าขยะพลาสติกเป็นปัญหา',o:['ใช้ครั้งเดียวแล้วทิ้งมาก ย่อยสลายในธรรมชาติได้ยาก ตกค้างในดินและน้ำ และการเผาทำให้เกิดมลพิษทางอากาศ','พลาสติกทุกชนิดละลายน้ำจนน้ำเสีย','พลาสติกหนักเกินไปจนขนส่งไม่ได้','พลาสติกย่อยสลายเร็วเกินไป'],w:'หนังสือเรียน หน้า 87 · คู่มือครู หน้า 86'},
+ {q:'พลาสติกประเภทใดที่หนังสือเรียนระบุว่านำมาหลอมแล้วขึ้นรูปใหม่เพื่อรีไซเคิลได้',o:['เทอร์มอพลาสติก','เทอร์มอเซต','ทั้งสองประเภทได้เหมือนกัน','เฉพาะพลาสติกที่ติดไฟได้'],w:'หนังสือเรียน หน้า 87–88'},
+ {q:'รหัสรีไซเคิลหมายเลข 5 ตามตาราง 3.2 คือพลาสติกชนิดใด',o:['PP (polypropylene)','PET','PVC','PS'],w:'หนังสือเรียน หน้า 88: 1 PET · 2 HDPE · 3 PVC · 4 LDPE · 5 PP · 6 PS · 7 OTHER'},
+ {q:'ผลิตภัณฑ์ที่ได้จากการรีไซเคิล PET ตามตาราง 3.2 คือข้อใด',o:['เสื้อผ้า พรม ขวดพลาสติก','ถังขยะ','แผ่นยางปูพื้น','ถุงขยะ ภาชนะบรรจุภัณฑ์'],w:'หนังสือเรียน หน้า 88 (ถังขยะคือ PS แผ่นยางปูพื้นคือ PVC และถุงขยะคือ LDPE)'}],POS['3.4']),
+x31:mkSet([
+ HC('HCl',0,'มีคลอรีน ไม่ได้มีเฉพาะ C และ H'),HC('CH₃CH₂Cl',0,'มี Cl'),HC('C₆H₆',1,'มีเฉพาะ C และ H'),HC('CH₃OH',0,'มี O'),HC('CH₄',1,'มีเฉพาะ C และ H'),HC('C₄H₉NH₂',0,'มี N'),HC('C₅H₁₂',1,'มีเฉพาะ C และ H'),HC('CH₃OCH₃',0,'มี O'),
+ {q:'กรดไขมันในข้อ 2 (สายคาร์บอนมี –CH=CH– และปลายเป็น –COOH ตามรูปในหนังสือ) เป็นกรดไขมันอิ่มตัวหรือไม่อิ่มตัว',o:['ไม่อิ่มตัว','อิ่มตัว'],w:'มีพันธะคู่ระหว่างอะตอมคาร์บอนกับคาร์บอนในโครงสร้าง'},
+ SU('สาร x [CH₂=C(CH₃)–CH=CH₂]',0,'มีพันธะคู่'),SU('สาร y (วงหกเหลี่ยมพันธะเดี่ยวทั้งหมด มีหมู่ CH₃ และ CH(CH₃)₂)',1,'มีพันธะเดี่ยวทั้งหมด'),SU('สาร z [HC≡C–C(CH₃)₃]',0,'มีพันธะสาม')],POS.x31),
+x32:mkSet([
+ AB('CH₃–(CH₂)₆–COOH','กรด','มีหมู่ –COOH'),AB('H₂N–CH₂–CH₂–CH₂–NH₂','เบส','มีหมู่ –NH₂'),AB('(CH₃)₂CH–COOH','กรด','มีหมู่ –COOH'),AB('HO–CH₂–CH(CH₃)–NH₂','เบส','มีหมู่ –NH₂ (หมู่ –OH ไม่ได้ทำให้เป็นกรด)'),AB('HOOC–COOH','กรด','มีหมู่ –COOH'),AB('วงคาร์บอนอิ่มตัวที่มีหมู่ –NH₂ ต่ออยู่','เบส','มีหมู่ –NH₂'),AB('(CH₃)₃C–OH','กลาง','ไม่มีหมู่ –COOH และไม่มีหมู่แอมิโน')],POS.x32),
+x33:mkSet([
+ {q:'วิตามิน B6 (โครงสร้างมีหมู่ –OH) ละลายในน้ำหรือในไขมัน',o:['ละลายในน้ำ','ละลายในไขมัน'],w:'มี –OH ที่สร้างพันธะไฮโดรเจนกับน้ำได้'},
+ {q:'วิตามิน B3 ละลายในน้ำหรือในไขมัน',o:['ละลายในน้ำ','ละลายในไขมัน'],w:'เฉลยคู่มือครู หน้า 79: ละลายน้ำ (ในเฉลยระบุเหตุผลเป็นหมู่ที่สร้างพันธะไฮโดรเจนกับน้ำได้)'},
+ {q:'วิตามิน K ละลายในน้ำหรือในไขมัน',o:['ละลายในไขมัน','ละลายในน้ำ'],w:'โครงสร้างส่วนใหญ่เป็นไฮโดรคาร์บอน'},
+ {q:'วิตามิน E ละลายในน้ำหรือในไขมัน',o:['ละลายในไขมัน','ละลายในน้ำ'],w:'โครงสร้างส่วนใหญ่เป็นไฮโดรคาร์บอน'}],POS.x33),
+x34:mkSet([
+ WS('CH₃–CH(CH₃)–CH(CH₃)–CH₂–CH₃ (สาร 1)',0,'เป็นไฮโดรคาร์บอน ขั้วน้อย ไม่มีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำ'),WS('ไซโคลเฮกเซน (สาร 2)',0,'เป็นไฮโดรคาร์บอน'),
+ WS('NH₃⁺–CH(CH₃)–COO⁻ (สาร 3)',1,'มีประจุ'),WS('HO–CH₂–CH₂–CH₂–OH (สาร 4)',1,'มีหมู่ –OH เกิดพันธะไฮโดรเจนกับน้ำได้'),
+ WS('CH₃CH₂COOH (สาร 5)',1,'มีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำได้'),WS('แนฟทาลีน วงเบนซีนสองวงต่อกัน (สาร 6)',0,'เป็นไฮโดรคาร์บอน'),
+ WS('HO–CH₂–[CH(OH)]₄–CH₂–OH (สาร 7)',1,'มีหมู่ –OH หลายหมู่'),WS('CH₂=C(CH₃)–CH=CH₂ (สาร 8)',0,'เป็นไฮโดรคาร์บอน'),WS('HOOC–COOH (สาร 9)',1,'มีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำได้')],POS.x34),
+xe1:mkSet([
+ SU('สาร A [CH₃CH₂CH₂CH₃]',1,'พันธะเดี่ยวทั้งหมด'),SU('สาร B [CH₃–CH=C=CH–CH₃]',0,'มีพันธะคู่'),SU('สาร C [(CH₃)₂C=C(CH₃)₂]',0,'มีพันธะคู่'),SU('สาร D (วงหกเหลี่ยมมีพันธะคู่ 1 พันธะ)',0,'มีพันธะคู่'),SU('สาร E (วงหกเหลี่ยมสองวงต่อกัน พันธะเดี่ยวทั้งหมด)',1,'พันธะเดี่ยวทั้งหมด'),SU('สาร F [CH₃CH₂CH=CH₂]',0,'มีพันธะคู่'),
+ {q:'สาร L [CH₂=CH–C(CH₃)=CH₂] ฟอกจางสีไอโอดีนได้ สารใดต่อไปนี้ไม่ฟอกจางสีไอโอดีน',o:['สาร N [CH₃–CH(CH₃)–CH₂–CH₃]','สาร M [CH₃–C(=CH₂)–CH₂–CH₃]','สาร O [CH₃–CH(CH₃)–C≡CH]','สาร P (วงหกเหลี่ยมมีพันธะคู่ 1 พันธะ)'],w:'สาร M O P ไม่อิ่มตัว (มีพันธะคู่หรือพันธะสาม) จึงฟอกจางสีไอโอดีนเหมือนสาร L ส่วนสาร N มีพันธะเดี่ยวทั้งหมด'}],POS.xe1),
+xe2:mkSet([
+ {q:'กรดซิทริกละลายน้ำได้ดี สูตรโครงสร้างใดเป็นของกรดซิทริก',o:['สูตร I (มีหมู่ –COOH 3 หมู่ และ –OH 1 หมู่)','สูตร II (วงหกเหลี่ยมมีหมู่ –NH₂ สองหมู่ ไม่มี –COOH)','สูตร III (โครงสร้างหลายวงมี –OH จำนวนมาก ไม่มี –COOH)'],w:'เฉลย: สูตร I เพราะมีหมู่ –COOH ที่แสดงสมบัติเป็นกรด ส่วน II และ III ไม่มี –COOH'},
+ {q:'สาร S [HO–CH₂–CH₂–CH₂–NH₂] มีสมบัติเป็นเบสหรือไม่',o:['เป็นเบส','ไม่เป็นเบส'],w:'มีหมู่ –NH₂'},
+ {q:'สาร T [HOOC–COOH] มีสมบัติเป็นเบสหรือไม่',o:['ไม่เป็นเบส (เป็นกรด)','เป็นเบส'],w:'มีหมู่ –COOH ไม่มีหมู่แอมิโน'},
+ {q:'สาร U [CH₃–CH₂–NH–CH₃] มีสมบัติเป็นเบสหรือไม่',o:['เป็นเบส','ไม่เป็นเบส'],w:'มีหมู่ –NH– (หมู่แอมิโน)'},
+ {q:'สารใดมีสมบัติกรด-เบสเช่นเดียวกับกรดแอมิโน (เป็นได้ทั้งกรดและเบส)',o:['สาร Z (มี –COOH และ –N(CH₃)– ในวง)','สาร X (มี –NH₂ และ –OH ในวง)','สาร Y (มี –NH– และ C=O ในวง)'],w:'กรดแอมิโนมีทั้งหมู่ –COOH (กรด) และหมู่แอมิโน (เบส) สาร Z มีทั้งสองแบบ'}],POS.xe2),
+xe3:mkSet([
+ {q:'ข้อ 6: คราบไขมันล้างออกจากแก้วง่ายกว่าพลาสติก ตามเฉลยของคู่มือพลาสติกและแก้วเป็นสารมีขั้วหรือไม่มีขั้ว',o:['พลาสติกไม่มีขั้ว แก้วมีขั้ว','พลาสติกมีขั้ว แก้วไม่มีขั้ว'],w:'ไขมันไม่มีขั้วจึงยึดติดพลาสติกที่ไม่มีขั้วได้ดีกว่า ตามหลัก like dissolves like'},
+ {q:'ข้อ 7: กล่องโฟมใส่อาหารผัดหรือทอดแล้วเกิดรู กล่องโฟมทำจากสารใด และอธิบายอย่างไร',o:['สารไม่มีขั้ว น้ำมันซึ่งไม่มีขั้วละลายกล่องโฟม','สารมีขั้ว น้ำในอาหารละลายกล่องโฟม'],w:'เฉลยคู่มือครู หน้า 90: โฟมเป็นสารไม่มีขั้ว น้ำมันเป็นสารไม่มีขั้ว จึงละลายโฟมได้'},
+ {q:'ข้อ 9: ผ้าที่ทำจากพอลิเมอร์ใดดูดซับน้ำได้ดีกว่า',o:['พอลิเมอร์ B (มีหมู่ –OH จำนวนมาก)','พอลิเมอร์ A (มีวงเบนซีนและหมู่เอสเทอร์)'],w:'พอลิเมอร์ B มีหมู่ –OH ที่เกิดพันธะไฮโดรเจนกับน้ำได้'},
+ R3Q('ข้อ 10.1: แม่พกถุงผ้าไว้ใส่ของที่ซื้อ แทนการรับถุงจากร้านค้า',0,'ใช้ถุงพลาสติกน้อยลง = ลดการใช้'),
+ R3Q('ข้อ 10.2: น้องนำถุงพลาสติกจากร้านสะดวกซื้อมาทำเป็นถุงขยะ',1,'นำของที่ใช้แล้วมาใช้อีก = ใช้ซ้ำ'),
+ R3Q('ข้อ 10.3: พ่อนำแปรงสีฟันที่ไม่ใช้แล้วมาขัดเงาหัวเข็มขัด',1,'ใช้ซ้ำ'),
+ R3Q('ข้อ 10.4: ลุงข้างบ้านแยกขยะพลาสติกเพื่อส่งขายโรงงานผลิตถุงขยะ',2,'ส่งให้โรงงานแปรรูปเป็นผลิตภัณฑ์ใหม่ = นำกลับมาใช้ใหม่')],POS.xe3)
+};
+/* ข้อ 10 ในชุด xe3 ตั้งให้ตัวเลือกเรียงตามเลขข้อ จึงใช้ชุดที่จัดตำแหน่งแล้วเท่านั้น */
+
+/* ======================= อ่านก่อนทดลอง (สรุปด้วยถ้อยคำของผู้จัดทำหน้า) ======================= */
+const READ={
+'3.1':{lead:'อ่านเรื่องอาหารกับสารประกอบอินทรีย์ คาร์โบไฮเดรต มอนอเมอร์ และพอลิเมอร์ แล้วทดลองเปรียบเทียบกลูโคสกับแป้งมันสำปะหลังในห้องทดลองเสมือน',secs:[
+{h:'อาหารและสารประกอบอินทรีย์',pg:'คู่มือครู หน้า 64, 66–68 · หนังสือเรียน หน้า 62–63',html:`
+<p>ไขมัน คาร์โบไฮเดรต โปรตีน และวิตามินเป็นสารประกอบอินทรีย์ ส่วนเกลือแร่เป็นไอออนหรือสารประกอบไอออนิก สารประกอบอินทรีย์คือสารประกอบของคาร์บอนที่อาจมีธาตุอื่นร่วมด้วย เช่น H O N S</p>
+<p>สารประกอบไฮโดรคาร์บอนมีเฉพาะ C และ H ถ้าพันธะระหว่างคาร์บอนเป็นพันธะเดี่ยวทั้งหมดเรียกว่าอิ่มตัว ถ้ามีพันธะคู่หรือพันธะสามอย่างน้อยหนึ่งพันธะเรียกว่าไม่อิ่มตัว ไขมันและน้ำมันเป็นไตรกลีเซอไรด์ ซึ่งประกอบด้วยส่วนกลีเซอรอลกับกรดไขมัน และกรดไขมันก็มีทั้งชนิดอิ่มตัวและไม่อิ่มตัว (ตารางสัดส่วนอยู่ในแท็บสรุปเนื้อหา)</p>`,q:['CH₃OH เป็นสารประกอบไฮโดรคาร์บอนหรือไม่','ไม่ใช่ เพราะมีธาตุออกซิเจนด้วย ไฮโดรคาร์บอนต้องมีเฉพาะคาร์บอนกับไฮโดรเจน (ตรงกับเฉลยแบบฝึกหัด 3.1 คู่มือครู หน้า 69)']},
+{h:'คาร์โบไฮเดรต: แป้งและกลูโคส',pg:'คู่มือครู หน้า 70 · หนังสือเรียน หน้า 65–66',html:`
+<p>ข้าว แป้ง และน้ำตาลเป็นอาหารที่มีคาร์โบไฮเดรตเป็นองค์ประกอบหลัก คาร์โบไฮเดรตในแป้งเป็นโมเลกุลขนาดใหญ่ที่ร่างกายดูดซึมไม่ได้โดยตรง จึงต้องย่อยเป็นกลูโคสซึ่งเป็นหน่วยย่อยที่เล็กที่สุดจึงจะดูดซึมเข้ากระแสเลือดได้ แล้วนำไปทำปฏิกิริยากับออกซิเจนเพื่อให้พลังงาน</p>
+<p>ในทางเคมี คาร์โบไฮเดรตในข้าวและแป้งเป็นพอลิแซ็กคาไรด์ กลูโคสเป็นมอนอแซ็กคาไรด์ (น้ำตาลโมเลกุลเดี่ยว) ส่วนน้ำตาลทรายเป็นไดแซ็กคาไรด์ที่เกิดจากกลูโคสต่อกับฟรักโทส</p>`,q:['ทำไมหนังสือเรียนบอกว่าเครื่องดื่มเกลือแร่ที่ผสมกลูโคสช่วยให้ระดับน้ำตาลในเลือดกลับมาเร็วกว่าการกินข้าวหรือแป้ง','กลูโคสเป็นโมเลกุลเล็กที่ดูดซึมได้ทันที ส่วนแป้งต้องผ่านการย่อยก่อน (หนังสือเรียน หน้า 65)']},
+{h:'มอนอเมอร์และพอลิเมอร์',pg:'คู่มือครู หน้า 70 · หนังสือเรียน หน้า 66',html:`
+<p>สารที่โมเลกุลใหญ่และประกอบด้วยหน่วยย่อยจำนวนมากเชื่อมต่อกันเรียกว่าพอลิเมอร์ ส่วนโมเลกุลเล็กที่มารวมต่อกันเป็นพอลิเมอร์เรียกว่ามอนอเมอร์ มอนอเมอร์ของพอลิแซ็กคาไรด์ในข้าวและแป้งคือกลูโคส</p>
+<p>คำถามนำของคู่มือคือ พอลิเมอร์มีสมบัติเหมือนหรือต่างจากมอนอเมอร์อย่างไร กิจกรรม 3.1 ใช้ดูสมบัติสองอย่าง ได้แก่ การละลายน้ำ และความหนืด (ดูจากการทำให้กระดาษติดกัน)</p>`,q:['คิดว่าสารใดจะละลายน้ำได้ดีกว่า กลูโคสหรือแป้ง','ให้ทำนายก่อนแล้วไปตรวจกับห้องทดลองข้างล่าง (คู่มือครู หน้า 73 สรุปว่ากลูโคสละลายน้ำได้ดีกว่า)']},
+{h:'สิ่งที่ต้องสังเกตในกิจกรรม',pg:'คู่มือครู หน้า 71–72 · หนังสือเรียน หน้า 67',html:`
+<ul><li>ผสมสารกับน้ำที่อุณหภูมิห้อง ดูว่าละลายหรือไม่ และลักษณะเป็นอย่างไร</li><li>ต้มด้วยเวลาและความร้อนเท่ากัน แล้วดูว่าลักษณะเปลี่ยนไปหรือไม่</li><li>ทาลงกระดาษแล้วประกบ ตั้งไว้ จากนั้นลองดึงแยก ถ้าติดกันแน่นแสดงว่าของเหลวหนืดมาก</li></ul>`}]},
+'3.2':{lead:'อ่านเรื่องสมบัติทางกายภาพที่ต่างกันระหว่างมอนอเมอร์กับพอลิเมอร์ และเซลลูโลส ก่อนสืบค้นข้อมูลอย่างน้อย 3 คู่',secs:[
+{h:'สถานะและจุดหลอมเหลว',pg:'คู่มือครู หน้า 70, 74 · หนังสือเรียน หน้า 68',html:`
+<p>จากกิจกรรม 3.1 และ 3.2 หนังสือเรียนสรุปว่ามอนอเมอร์กับพอลิเมอร์ที่เกิดจากมอนอเมอร์นั้นต่างกันหลายอย่าง เช่น มอนอเมอร์ละลายในตัวทำละลายได้ดีกว่า พอลิเมอร์มีจุดหลอมเหลวสูงกว่าและให้สารละลายหนืดกว่า และสถานะอาจต่างกัน</p>
+<p>กิจกรรม 3.2 ให้สืบค้นสถานะและจุดหลอมเหลวของมอนอเมอร์กับพอลิเมอร์อย่างน้อย 3 คู่ แล้วนำมาอภิปรายแลกเปลี่ยนกัน</p>`,q:['ทำไมจึงต้องเทียบ "สถานะ" ควบคู่กับจุดหลอมเหลว','เพราะจุดหลอมเหลวอย่างเดียวไม่บอกว่าที่อุณหภูมิห้องสารเป็นของแข็งหรือแก๊ส ตัวอย่างในคู่มือ มอนอเมอร์เป็นแก๊สส่วนพอลิเมอร์เป็นของแข็ง']},
+{h:'เซลลูโลส: พอลิเมอร์ของกลูโคสอีกชนิด',pg:'คู่มือครู หน้า 74 (ข้อ 5 ให้ความรู้ตามหนังสือเรียน) · หนังสือเรียน หน้า 68–69',html:`
+<p>เซลลูโลสเป็นพอลิเมอร์ที่มีกลูโคสเป็นมอนอเมอร์เหมือนแป้ง แต่ลักษณะการเชื่อมต่อระหว่างกลูโคสต่างจากแป้ง มนุษย์ย่อยเซลลูโลสไม่ได้จึงใช้เป็นแหล่งพลังงานไม่ได้ แต่ผักและผลไม้ที่มีเซลลูโลสมีประโยชน์ต่อระบบทางเดินอาหาร เซลลูโลสยังใช้ทำกระดาษ เสื้อผ้า และไม้แปรรูป</p>
+<p>หนังสือเรียนยกตัวอย่างขนมสายไหมกับสำลี ขนมสายไหมมาจากน้ำตาลทรายโมเลกุลเล็ก จึงละลายน้ำได้และทนแรงดึงน้อย ส่วนสำลีเป็นเซลลูโลสโมเลกุลใหญ่ จึงไม่ละลายน้ำและทนแรงดึงได้ดีกว่า</p>`,q:['เซลลูโลสกับแป้งมีมอนอเมอร์ชนิดเดียวกัน แต่ทำไมสมบัติต่างกัน','เพราะการเชื่อมต่อระหว่างกลูโคสต่างกัน (หนังสือเรียน หน้า 69) ทำให้มนุษย์ย่อยเซลลูโลสไม่ได้']},
+{h:'วิธีสืบค้นข้อมูลให้เชื่อถือได้',pg:'คำแนะนำของผู้จัดทำหน้า (ไม่ได้มาจากหนังสือ)',html:`
+<ul><li>จดแหล่งข้อมูลทุกครั้ง เช่น ชื่อหนังสือหรือเว็บไซต์ และวันที่เข้าดู</li><li>ตรวจหน่วยของจุดหลอมเหลวให้ตรงกัน (ตัวอย่างของคู่มือใช้ °C)</li><li>ถ้าข้อมูลสองแหล่งไม่ตรงกัน ให้บันทึกทั้งสองค่าแล้วบอกว่าเลือกค่าใดเพราะอะไร</li></ul>`}]},
+'3.3':{lead:'อ่านเรื่องพอลิเมอร์สังเคราะห์ในบรรจุภัณฑ์อาหาร เทอร์มอพลาสติกกับเทอร์มอเซต และข้อมูลบนฉลาก ก่อนจับคู่และทดลองให้ความร้อนในห้องทดลองเสมือน',secs:[
+{h:'พอลิเมอร์สังเคราะห์ในบรรจุภัณฑ์อาหาร',pg:'คู่มือครู หน้า 81–83 · หนังสือเรียน หน้า 82–85',html:`
+<p>บรรจุภัณฑ์อาหารส่วนใหญ่ทำจากพลาสติก ซึ่งเป็นพอลิเมอร์สังเคราะห์จากอุตสาหกรรมปิโตรเคมี ต่างจากใบตองหรือใบบัวที่เป็นเซลลูโลสซึ่งเป็นพอลิเมอร์ธรรมชาติ พลาสติกเบา ไม่แตกหักง่าย และไม่เน่าเปื่อย</p>
+<p>หนังสือเรียนเปรียบเทียบพอลิเมอร์ 5 ชนิด ได้แก่ พอลิเอทิลีน พอลิโพรพิลีน พอลิสไตรีน พอลิเอทิลีนเทเรฟทาเลต และพอลิเมลามีนฟอร์มาลดีไฮด์ ซึ่งสมบัติและการใช้งานต่างกัน (ตารางอยู่ในห้องทดลองข้างล่าง) พลาสติกสำหรับอาหารต้องคำนึงถึงความปลอดภัยและใช้ให้ถูกประเภท เช่น บรรจุภัณฑ์ที่ใช้กับของเย็นไม่ควรนำมาใส่ของร้อน</p>`,q:['ถุงพลาสติกใส่น้ำแข็งควรนำมาใส่แกงร้อนหรือไม่','ไม่ควร เพราะพอลิเอทิลีนมีจุดหลอมเหลวต่ำกว่าพอลิเมอร์ชนิดอื่นและไม่เหมาะกับอาหารร้อน (คู่มือครู หน้า 82)']},
+{h:'เทอร์มอพลาสติกและเทอร์มอเซต',pg:'คู่มือครู หน้า 85–86 · หนังสือเรียน หน้า 87',html:`
+<p>พอลิเมอร์เทอร์มอพลาสติกหลอมเหลวเมื่อได้รับความร้อนและแข็งตัวเมื่อเย็นลง จึงนำมาหลอมขึ้นรูปใหม่ได้ มีโครงสร้างแบบเส้นหรือแบบกิ่ง เช่น พอลิเอทิลีน PET พอลิสไตรีน และพอลิไวนิลคลอไรด์</p>
+<p>พอลิเมอร์เทอร์มอเซตไม่หลอมเหลวเมื่อได้รับความร้อน แต่สลายตัวหรือไหม้เมื่อร้อนมาก และนำมาหลอมขึ้นรูปใหม่ไม่ได้ มีโครงสร้างแบบร่างแห เช่น พอลิเมลามีนฟอร์มาลดีไฮด์ และพอลิฟีนอลฟอร์มาลดีไฮด์</p>`,q:['ถุงพลาสติกกับปลั๊กไฟ เมื่ออยู่ใกล้เปลวไฟสูง เปลี่ยนแปลงต่างกันอย่างไร','ถุงพลาสติกหลอมเหลว ปลั๊กไฟไม่หลอมเหลว (ชวนคิด คู่มือครู หน้า 85–86)']},
+{h:'ฉลากบนผลิตภัณฑ์กับอุณหภูมิ',pg:'คู่มือครู หน้า 85 · หนังสือเรียน หน้า 86',html:`
+<p>กิจกรรม 3.3 ให้พิจารณาข้อบ่งชี้วิธีใช้และการดูแลรักษาบนผลิตภัณฑ์พลาสติก (อย่างน้อย 5 ตัวอย่าง) ข้อบ่งชี้ส่วนใหญ่เกี่ยวกับอุณหภูมิ เช่น ห้ามบรรจุอาหารหรือเครื่องดื่มร้อน ห้ามใช้กับไมโครเวฟ หรือใช้ในช่วงอุณหภูมิ −40 ถึง 120 °C สรุปว่าสมบัติทางความร้อนของพอลิเมอร์สำคัญต่อการใช้งาน</p>`}]},
+'3.4':{lead:'อ่านเรื่องปัญหาขยะพลาสติก ลดการใช้ ใช้ซ้ำ นำกลับมาใช้ใหม่ และรหัสพลาสติก ก่อนจับคู่รหัสและสืบค้นปัญหาในชุมชน',secs:[
+{h:'ปัญหาจากขยะพลาสติก',pg:'คู่มือครู หน้า 86 · หนังสือเรียน หน้า 87',html:`
+<p>พลาสติกถูกนำมาใช้มาก แต่ย่อยสลายในธรรมชาติได้ยาก ผลิตภัณฑ์พลาสติกจำนวนมาก เช่น ถุงและกล่องอาหาร ใช้ครั้งเดียวแล้วทิ้ง จึงเกิดขยะพลาสติกมาก ขยะตกค้างในดินและน้ำ และถ้ากำจัดด้วยการเผาจะเกิดมลพิษทางอากาศ</p>`,q:['ในชุมชนของเรามีปัญหาจากพลาสติกเรื่องใดบ้าง','ใช้คิดเป็นหัวข้อให้แบบฟอร์มสืบค้นข้างล่าง (กิจกรรม 3.4 ให้สืบค้นหรือสำรวจปัญหาในชุมชนหรือสังคม)']},
+{h:'ลดการใช้ ใช้ซ้ำ และนำกลับมาใช้ใหม่',pg:'คู่มือครู หน้า 86 · หนังสือเรียน หน้า 87–88',html:`
+<ul><li><b>ลดการใช้ (reduce)</b> ใช้พลาสติกเท่าที่จำเป็น เช่น ใช้ถุงผ้าแทนถุงพลาสติก เป็นการแก้ที่ต้นเหตุ</li><li><b>ใช้ซ้ำ (reuse)</b> นำผลิตภัณฑ์ที่ใช้แล้วมาใช้อีก หรือดัดแปลงไปใช้งานแบบอื่น เช่น ขวดน้ำดื่มพลาสติก ถุงพลาสติก</li><li><b>นำกลับมาใช้ใหม่หรือรีไซเคิล (recycle)</b> นำผลิตภัณฑ์เทอร์มอพลาสติกมาหลอมเพื่อขึ้นรูปใหม่ ผลิตภัณฑ์ที่ได้จากการรีไซเคิลจะไม่นำมาใช้เป็นบรรจุภัณฑ์สำหรับอาหาร</li></ul>
+<p>หนังสือเรียนยังกล่าวถึงการใช้วัสดุที่ย่อยสลายตามธรรมชาติได้ เช่น กระดาษชานอ้อยและพลาสติกย่อยสลายได้ทางชีวภาพ เพื่อช่วยลดปัญหาขยะ</p>`,q:['ถ้าอยากแก้ปัญหาที่ต้นเหตุ ควรเลือกวิธีใดก่อน','ลดการใช้ เพราะหนังสือเรียนระบุว่าเป็นการแก้ปัญหาที่ต้นเหตุ (หน้า 87)']},
+{h:'รหัสชนิดพลาสติกสำหรับรีไซเคิล',pg:'หนังสือเรียน หน้า 88 (ตาราง 3.2) · ตารางนี้อยู่ในหนังสือเรียน ไม่อยู่ในคู่มือครู',html:`
+<p>เพื่อให้คัดแยกได้ง่าย ผู้ผลิตต้องแสดงรหัสชนิดพลาสติกบนผลิตภัณฑ์ตามที่หนังสือเรียนระบุ รหัส 1–7 คือ PET, HDPE, PVC, LDPE, PP, PS และ OTHER (รวม PC กับ PLA) ตารางในแท็บนี้ให้ฝึกจับคู่รหัสกับชนิดและกับผลิตภัณฑ์ที่ได้จากการรีไซเคิล</p>`,q:['รหัสรีไซเคิลบอกอะไรกับคนคัดแยกขยะ','บอกชนิดของพลาสติก เพื่อแยกไปรีไซเคิลให้ถูกกลุ่ม (หนังสือเรียน หน้า 88)']}]}
+};
+
+/* ======================= ตัวช่วยร่วม ======================= */
+function svgBox(w,h,label,inner,id){return`<div class="svw"><div style="min-width:${w}px"><svg ${id?'id="'+id+'" ':''}viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><rect width="${w}" height="${h}" fill="#fff"/>${inner}</svg></div></div>`;}
+const FNOTE='<p class="small">ข้อความที่พิมพ์ในช่องจะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> (เขียนไว้หลายแท็บให้ส่งทีละแท็บ) ไม่มีคะแนนอัตโนมัติ</p>';
+/* ตัวจับคู่แบบเลือกจากรายการ: ตรวจแล้วแสดงคะแนนและคำอธิบายเท่านั้น ไม่ไฮไลต์ตัวเลือก */
+function matchHTML(id,title,rows,opts,note){
+  return`<div class="box" id="mt-${id}"><h3>${title}</h3>${note?`<p class="small">${note}</p>`:''}`+rows.map((r,i)=>`<div class="q"><label class="lbl" for="m_${id}_${i}">${r.l}</label><select id="m_${id}_${i}"><option value="">— เลือก —</option>${opts.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select><div class="why hide"></div></div>`).join('')+'<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireMatch(id,rows,opts,done){
+  const root=$('#mt-'+id);if(!root)return;
+  $('[data-act=check]',root).onclick=()=>{let got=0,ans=0;
+    rows.forEach((r,i)=>{const el=$('#m_'+id+'_'+i,root),why=$('.why',el.parentNode);const v=el.value;if(v!==''){ans++;if(+v===r.a)got++;}
+      why.classList.remove('hide');why.textContent=(v!==''&&+v===r.a?'ถูกต้อง · ':'เฉลย: '+opts[r.a]+' · ')+r.w;});
+    const res=$('.res',root);res.className='res '+(ans<rows.length?'bad':'ok');res.textContent=(ans<rows.length?'ยังเลือกไม่ครบ ('+ans+'/'+rows.length+') ':'')+'ได้ '+got+' / '+rows.length+' คะแนน';
+    ls(QNAME[id],got,rows.length);done&&done(got,ans);};
+  $('[data-act=retry]',root).onclick=()=>{$$('select',root).forEach(s=>s.value='');$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+const triSVG=n=>`<svg width="34" height="34" viewBox="0 0 34 34" role="img" aria-label="รหัสรีไซเคิลหมายเลข ${n} (ภาพวาดโดยผู้จัดทำหน้า)" style="vertical-align:middle"><path d="M17 3 L31 30 L3 30 Z" fill="#fdf6ec" stroke="#92400e" stroke-width="2.5" stroke-linejoin="round"/><text x="17" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">${n}</text></svg>`;
+
+/* ======================= กิจกรรม 3.1 ======================= */
+const S31=[
+ ['เติมน้ำกลั่น 12.5 mL ลงในแต่ละบีกเกอร์ คนที่อุณหภูมิห้อง แล้วสังเกต','เติมน้ำและคน'],
+ ['ต้มทั้งสองบีกเกอร์ 1 นาที ใช้แท่งแก้วคนตลอด','ต้ม 1 นาที'],
+ ['ตั้งพักประมาณ 5 นาที','พัก 5 นาที'],
+ ['ทาสารแต่ละชนิดบนกระดาษ ประกบด้วยกระดาษอีกแผ่น ตั้งทิ้งประมาณ 10 นาที','ทาและประกบกระดาษ'],
+ ['ดึงกระดาษที่ประกบออกจากกัน แล้วสังเกตผล','ดึงกระดาษแยก']];
+const OBS31={g:['ละลายน้ำ ได้สารละลายใสไม่มีสี','ไม่เปลี่ยนแปลง','กระดาษไม่ติดกัน'],s:['ไม่ละลาย เป็นสารแขวนลอยสีขาวขุ่น ตั้งทิ้งไว้จะตกตะกอน','น้ำแป้งใสขึ้น และมีลักษณะหนืด','กระดาษติดกันแน่น ดึงแยกไม่ออก']};
+function lab31SVG(n,settled,boil){
+  let s='';const heat=boil>0&&boil<1,BW=96,w=BW-4;
+  s+=`<rect x="8" y="190" width="256" height="16" rx="4" fill="${heat?'#b45309':'#64748b'}"/><text x="136" y="202" text-anchor="middle" font-size="11" fill="#fff">เตาแผ่นความร้อน${heat?' (กำลังต้ม)':''}</text>`;
+  [20,156].forEach((x,i)=>{
+    const m=x+BW/2;
+    s+=`<path d="M${x} 62 L${x} 188 L${x+BW} 188 L${x+BW} 62" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round"/>`;
+    s+=`<text x="${m}" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text>`;
+    s+=`<text x="${m}" y="226" text-anchor="middle" font-size="12" fill="#172033">${i===0?'แป้งมันสำปะหลัง':'กลูโคส'}</text>`;
+    if(n===0){s+=`<polygon points="${x+10},188 ${m},152 ${x+BW-10},188" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/><text x="${m}" y="180" text-anchor="middle" font-size="12" fill="#475569">${i===0?'แป้ง':'กลูโคส'} 5 g</text>`;return;}
+    if(i===1){s+=`<rect x="${x+2}" y="104" width="${w}" height="82" fill="#eaf4fa"/><line x1="${x+2}" y1="104" x2="${x+BW-2}" y2="104" stroke="#6aa3c2" stroke-width="2"/><text x="${m}" y="152" text-anchor="middle" font-size="12" fill="#3b5d70">ใส ไม่มีสี</text>`;}
+    else if(n===1){
+      s+=`<rect x="${x+2}" y="104" width="${w}" height="82" fill="${settled?'#fbf9f4':'#f1ebdd'}"/><line x1="${x+2}" y1="104" x2="${x+BW-2}" y2="104" stroke="#b9a77d" stroke-width="2"/>`;
+      if(settled)s+=`<rect x="${x+2}" y="170" width="${w}" height="16" fill="#e1d4b6"/><text x="${m}" y="136" text-anchor="middle" font-size="12" fill="#6b5a35">ตกตะกอน</text>`;
+      else{for(let k=0;k<26;k++)s+=`<circle cx="${x+8+(k*37)%80}" cy="${112+(k*23)%68}" r="2.2" fill="#c9b98f"/>`;s+=`<text x="${m}" y="148" text-anchor="middle" font-size="12" fill="#6b5a35">ขุ่นสีขาว</text>`;}
+    }else{
+      s+=`<rect x="${x+2}" y="104" width="${w}" height="82" fill="#f3e9d2" opacity=".85"/><line x1="${x+2}" y1="104" x2="${x+BW-2}" y2="104" stroke="#b9a77d" stroke-width="2"/>`;
+      s+=`<line x1="${m+22}" y1="64" x2="${m+22}" y2="120" stroke="#8b7b55" stroke-width="3"/><path d="M${m+22} 120 q8 14 0 30" fill="none" stroke="#d3bf8f" stroke-width="5" stroke-linecap="round"/>`;
+      if(!heat)s+=`<text x="${m-12}" y="176" text-anchor="middle" font-size="12" fill="#6b5a35">ใสขึ้น หนืด</text>`;
+    }
+    if(heat)for(let k=0;k<6;k++){const f=((boil*3+k/6)%1);s+=`<circle cx="${x+12+k*14}" cy="${184-f*70}" r="${2+k%3}" fill="#fff" stroke="#94a3b8" opacity="${1-f}"/>`;}
+  });
+  return svgBox(272,236,'บีกเกอร์สองใบบนเตาแผ่นความร้อน บีกเกอร์ 1 แป้งมันสำปะหลัง บีกเกอร์ 2 กลูโคส แสดงลักษณะของสารตามขั้นตอนของการทดลอง',s);
+}
+function paper31SVG(n){
+  let s='';
+  if(n<4)s+='<text x="136" y="78" text-anchor="middle" font-size="12" fill="#5d6b82">ยังไม่ถึงขั้นทาสารบนกระดาษ</text>';
+  else[[68,'#efe3c8','แป้งมันสำปะหลัง'],[204,'#e4f1f8','กลูโคส']].forEach((p,i)=>{
+    const cx=p[0];
+    if(n===4){s+=`<rect x="${cx-28}" y="44" width="56" height="42" fill="${p[1]}" stroke="#64748b"/><rect x="${cx-24}" y="50" width="56" height="42" fill="${p[1]}" stroke="#64748b"/><text x="${cx}" y="30" text-anchor="middle" font-size="12" fill="#475569">ประกบกัน</text><text x="${cx}" y="126" text-anchor="middle" font-size="12" fill="#172033">${p[2]}</text>`;}
+    else if(i===0){s+=`<rect x="${cx-28}" y="52" width="56" height="38" fill="${p[1]}" stroke="#64748b"/><rect x="${cx-24}" y="58" width="56" height="38" fill="${p[1]}" stroke="#64748b"/><path d="M${cx-18} 52 l-4 -14 M${cx+2} 52 l0 -16 M${cx+24} 58 l4 -14" stroke="#92400e" stroke-width="2" fill="none"/><text x="${cx}" y="26" text-anchor="middle" font-size="12" fill="#92400e">ดึงไม่ออก</text><text x="${cx}" y="126" text-anchor="middle" font-size="12" fill="#172033">${p[2]}</text>`;}
+    else{s+=`<rect x="${cx-28}" y="74" width="56" height="38" fill="${p[1]}" stroke="#64748b"/><rect x="${cx-28}" y="16" width="56" height="38" fill="${p[1]}" stroke="#64748b"/><path d="M${cx+38} 50 l0 -20 l-5 6 m5 -6 l5 6" stroke="#157a55" stroke-width="2" fill="none"/><text x="${cx}" y="126" text-anchor="middle" font-size="12" fill="#157a55">แยกออกได้</text><text x="${cx}" y="140" text-anchor="middle" font-size="12" fill="#172033">${p[2]}</text>`;}
+  });
+  return svgBox(272,146,'กระดาษสองคู่ที่ทาแป้งมันสำปะหลังและกลูโคสแล้วประกบกัน แสดงผลเมื่อดึงแยกออกจากกัน',s);
+}
+function partSVG(){
+  let s='<text x="68" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">กลูโคส (มอนอเมอร์)</text><text x="205" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">แป้ง (พอลิเมอร์)</text>';
+  [[18,46],[48,36],[82,54],[112,40],[30,78],[64,90],[100,82],[124,64],[22,112],[58,122],[92,114],[122,100]].forEach(p=>{s+=`<circle cx="${p[0]+6}" cy="${p[1]+4}" r="6" fill="#d9822b" stroke="#92400e"/>`;});
+  [[152,50],[152,86],[152,122]].forEach(o=>{let d='M'+o[0]+' '+o[1];for(let k=0;k<7;k++){const x=o[0]+k*16,y=o[1]+(k%2?-8:8);d+=' L'+x+' '+y;}s+=`<path d="${d}" fill="none" stroke="#92400e" stroke-width="2"/>`;for(let k=0;k<7;k++)s+=`<circle cx="${o[0]+k*16}" cy="${o[1]+(k%2?-8:8)}" r="5" fill="#d9822b" stroke="#92400e"/>`;});
+  s+='<text x="136" y="148" text-anchor="middle" font-size="11" fill="#5d6b82">ภาพแบบจำลองเชิงอธิบาย วาดเอง</text><text x="136" y="162" text-anchor="middle" font-size="11" fill="#5d6b82">ไม่ใช่โครงสร้างจริงของโมเลกุล</text>';
+  return svgBox(272,170,'ภาพแบบจำลอง กลูโคสเป็นหน่วยเดี่ยวกระจายอยู่ ส่วนแป้งเป็นหน่วยกลูโคสหลายหน่วยต่อกันเป็นสายยาว',s);
+}
+function act31(){
+  return`<h2>กิจกรรม 3.1 การทดลองเปรียบเทียบสมบัติบางประการของกลูโคสและแป้งมันสำปะหลัง</h2><p class="sub">คู่มือครู หน้า 71–73 · หนังสือเรียน หน้า 67 · แบบจำลองเชิงคุณภาพ ไม่มีการวัดค่า</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ศึกษาสมบัติการละลายและการติดกระดาษของสารละลายกลูโคสและน้ำแป้งมันสำปะหลัง</p></div>
+  <div class="cols"><div class="box"><h3>วัสดุ อุปกรณ์ และสารเคมี (คู่มือครู หน้า 71)</h3><ul><li>แป้งมันสำปะหลัง 5 g · กลูโคส 5 g</li><li>น้ำกลั่น 25 mL (ใช้บีกเกอร์ละ 12.5 mL ตามขั้นตอนในหนังสือเรียน)</li><li>บีกเกอร์ 50 mL · แท่งแก้วคน · เครื่องชั่ง · เตาแผ่นความร้อน</li><li>กระดาษขนาด 5 × 7 cm (หนังสือเรียนให้ประกบกระดาษอีกแผ่นขนาดเท่ากัน จึงต้องใช้หลายแผ่น)</li></ul></div>
+  <div class="box"><h3>วิธีทำ (สรุปด้วยถ้อยคำของผู้จัดทำหน้า)</h3><ol>${S31.map(x=>'<li>'+x[0]+'</li>').join('')}</ol><p class="small">ข้อมูลเสริมที่คู่มือให้ครู: กลูโคสมีจุดหลอมเหลว 146 °C ส่วนแป้งมันสำปะหลังไม่หลอมเหลว แต่สลายตัวเมื่อได้รับความร้อนมาก</p></div></div>
+  <div class="warn"><b>ข้อควรระวัง (ข้อแนะนำของผู้จัดทำหน้า):</b> คู่มือครูในส่วนกิจกรรมนี้ไม่ได้ระบุข้อควรระวังไว้ แต่เมื่อทำจริงเตาแผ่นความร้อนและบีกเกอร์ที่ต้มแล้วร้อนจัด ควรทำตามที่ครูกำหนดและใช้อุปกรณ์จับบีกเกอร์ที่เหมาะสม</div>
+  <div class="lab"><h3>ห้องทดลองเสมือน: เทียบกลูโคสกับแป้งมันสำปะหลัง</h3>
+  <div class="notice" style="margin-top:6px"><b>แบบจำลองเพื่อการศึกษา</b> ผลที่เห็นตรงกับตารางตัวอย่างของคู่มือครู (หน้า 72) เป็นภาพเชิงคุณภาพ ไม่ได้วัดความหนืดหรือความขุ่นจริง ความเร็วของการต้ม (1 นาทีของการทดลองใช้เวลาไม่กี่วินาทีในหน้านี้) และเวลาพัก 5 นาที 10 นาที เป็นค่าที่ผู้จัดทำหน้าย่อให้เร็ว</div>
+  <p class="lbl">ทำนายก่อนเริ่ม: สารใดละลายน้ำที่อุณหภูมิห้องได้ดีกว่า</p>${radioGroup('pred31',[['g','กลูโคส'],['s','แป้งมันสำปะหลัง'],['b','ละลายได้ดีเท่ากัน']])}
+  <div id="sv31"></div>
+  <div class="btns"><button class="btn" type="button" id="b31n"></button><button class="btn alt" type="button" id="b31s">ตั้งทิ้งไว้สักครู่ก่อนต้ม (ดูตะกอน)</button><button class="btn alt" type="button" id="b31r">เริ่มทดลองใหม่</button></div>
+  <div class="tip" id="m31" aria-live="polite"></div>
+  <div id="pp31"></div>
+  <div class="tw"><table class="wide"><thead><tr><th class="l">สาร</th><th>ที่อุณหภูมิห้อง</th><th>หลังต้ม</th><th>การติดกระดาษ</th></tr></thead><tbody id="ob31"></tbody></table></div>
+  <div class="res" id="fb31" aria-live="polite"></div></div>
+  <div class="box"><h3>ภาพอธิบาย: ทำไมจึงต่างกัน</h3>${partSVG()}<p class="small">คู่มือครู หน้า 73 สรุปผลว่ากลูโคสละลายน้ำได้ดีกว่า ส่วนแป้งมันสำปะหลังให้สารละลายที่หนืดกว่า</p></div>
+  <div class="lab"><h3>คำถามท้ายการทดลอง (ข้อเขียน)</h3>${FNOTE}${fieldsHTML([['q1','1) สารละลายกลูโคสและน้ำแป้งมันสำปะหลังมีลักษณะเหมือนกันหรือไม่ อย่างไร'],['q2','2) หลังต้ม สารทั้งสองชนิดมีความหนืดแตกต่างกันหรือไม่ อย่างไร']])}${revealHTML([['ดูแนวคำตอบของคู่มือ (เปิดหลังเขียนเองแล้ว) หน้า 73','ต่างกัน: กลูโคสให้สารละลายใสไม่มีสี ส่วนน้ำแป้งมีลักษณะหนืดข้นกว่า และน้ำแป้งทำให้กระดาษติดกันได้มากกว่า แสดงว่าน้ำแป้งหนืดกว่าสารละลายกลูโคส']])}${expHTML('p31')}</div>
+  ${quizHTML('3.1','แบบทดสอบสั้น กิจกรรม 3.1')}`;
+}
+function wire31(){
+  const root=$('#panel');let n=0,settled=false,boil=0,raf=null,busy=false;
+  const rowsOf=()=>['s','g'].map(k=>`<tr><td class="l">${k==='s'?'แป้งมันสำปะหลัง':'กลูโคส'}</td>`+[1,2,5].map((need,j)=>`<td>${n>=need&&!(need===2&&busy)?OBS31[k][j]:'<span class="small">—</span>'}</td>`).join('')+'</tr>').join('');
+  function paint(){
+    $('#sv31').innerHTML=lab31SVG(n,settled,boil);$('#pp31').innerHTML=paper31SVG(n);$('#ob31').innerHTML=rowsOf();
+    const nb=$('#b31n');nb.disabled=busy||n>=5;nb.textContent=n>=5?'ครบทุกขั้นตอนแล้ว':'ขั้นที่ '+(n+1)+': '+S31[n][1];
+    $('#b31s').disabled=!(n===1&&!busy);
+    $('#m31').textContent=n===0?'เริ่มต้น: ชั่งแป้งมันสำปะหลัง 5 g ใส่บีกเกอร์ 1 และกลูโคส 5 g ใส่บีกเกอร์ 2':'ขั้นที่ '+n+' เสร็จแล้ว: '+S31[n-1][0]+(busy?' (กำลังต้ม '+Math.round(boil*60)+' / 60 วินาที)':'');
+    const fb=$('#fb31');
+    if(n>=5){st.run['3.1']=true;save();const p=dget('3.1','pred31');fb.className='res ok';fb.textContent='ผลที่ได้: กลูโคสละลายน้ำได้ดีกว่า และน้ำแป้งหนืดกว่า'+(p?(p==='g'?' · คำทำนายของคุณตรงกับผล':' · คำทำนายของคุณไม่ตรงกับผล ลองอ่านตารางอีกครั้ง'):'');tryDone('3.1');}
+    else{fb.className='res';fb.textContent='';}
+  }
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=null;}}CLEAN.push(stop);
+  function doBoil(){
+    if(REDUCE){boil=0;busy=false;paint();return;}
+    busy=true;let t0=null;
+    const step=ts=>{if(!root.isConnected){stop();return;}if(t0==null)t0=ts;boil=Math.min(1,(ts-t0)/4000);if(boil>=1){boil=0;busy=false;n=2;stop();}else raf=requestAnimationFrame(step);paint();};
+    raf=requestAnimationFrame(step);
+  }
+  $('#b31n').onclick=()=>{if(busy||n>=5)return;if(n===1){settled=false;n=2;paint();doBoil();return;}n++;paint();};
+  $('#b31s').onclick=()=>{if(n===1){settled=!settled;paint();}};
+  $('#b31r').onclick=()=>{stop();n=0;settled=false;boil=0;busy=false;paint();};
+  wireDraft(root,'3.1');wireRadio(root,'3.1','pred31',()=>{if(n>=5)paint();});
+  wireExp('p31',()=>textOf('3.1',[['q1','คำถาม 1'],['q2','คำถาม 2']],'กิจกรรม 3.1 กลูโคสกับแป้งมันสำปะหลัง'),'activity-3-1.txt');
+  wireQuiz('3.1',true);paint();
+}
+
+/* ======================= กิจกรรม 3.2 ======================= */
+function meltSVG(T){
+  const X=t=>130+(t+200)*0.77;let s='';
+  [-200,-100,0,100,200].forEach(t=>{s+=`<line x1="${X(t)}" y1="30" x2="${X(t)}" y2="214" stroke="#ecdcc6"/><text x="${X(t)}" y="226" text-anchor="middle" font-size="11" fill="#5d6b82">${t}</text>`;});
+  s+='<text x="500" y="244" text-anchor="end" font-size="11" fill="#5d6b82">อุณหภูมิ (°C)</text>';
+  PM.forEach((p,i)=>{const y=44+i*29;s+=`<text x="6" y="${y+4}" font-size="12" fill="#172033">${p.n}</text>`;
+    if(p.k==='poly')s+=`<rect x="${X(p.lo)}" y="${y-8}" width="${Math.max(4,X(p.hi)-X(p.lo))}" height="16" rx="4" fill="#92400e"/>`;
+    else s+=`<circle cx="${X(p.lo)}" cy="${y}" r="6" fill="#d9822b" stroke="#92400e" stroke-width="1.5"/>`;});
+  s+=`<line x1="${X(T)}" y1="26" x2="${X(T)}" y2="216" stroke="#b63f43" stroke-width="2.5" stroke-dasharray="5 4"/><text x="${Math.min(470,Math.max(135,X(T)))}" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#b63f43">${T} °C</text>`;
+  return svgBox(520,252,'แผนภาพจุดหลอมเหลวของพอลิเมอร์ (แถบ) และมอนอเมอร์ (จุด) สามคู่ บนแกนอุณหภูมิ มีเส้นประแสดงอุณหภูมิที่เลือก',s);
+}
+function act32(){
+  const rows=[];for(let i=1;i<=3;i++){rows.push(['pr'+i,'คู่ที่ '+i+': ชื่อพอลิเมอร์ สถานะ จุดหลอมเหลว และชื่อมอนอเมอร์ สถานะ จุดหลอมเหลว','ระบุหน่วยและแหล่งข้อมูล']);rows.push(['pc'+i,'คู่ที่ '+i+': เปรียบเทียบ พอลิเมอร์ต่างจากมอนอเมอร์อย่างไร','']);}
+  return`<h2>กิจกรรม 3.2 สืบค้นข้อมูลสมบัติทางกายภาพของมอนอเมอร์และพอลิเมอร์</h2><p class="sub">คู่มือครู หน้า 74 · หนังสือเรียน หน้า 68 · งานสืบค้น ไม่มีคะแนนอัตโนมัติ (มีแบบทดสอบท้ายแท็บ)</p>
+  <div class="box"><h3>โจทย์ (ตามคู่มือ)</h3><p>สืบค้นข้อมูลเพื่อเปรียบเทียบสถานะและจุดหลอมเหลวของมอนอเมอร์กับพอลิเมอร์ที่เกิดจากมอนอเมอร์นั้น อย่างน้อย 3 คู่ แล้วนำมาอภิปรายแลกเปลี่ยนความรู้ร่วมกัน</p></div>
+  <div class="lab"><h3>แบบบันทึกผลสืบค้น</h3>${FNOTE}${fieldsHTML(rows)}<div class="res" id="st32" aria-live="polite"></div>${expHTML('p32')}</div>
+  <details class="rd-q" id="d32"><summary>ดูข้อมูลตัวอย่างของคู่มือครู (เปิดหลังสืบค้นเองแล้ว) หน้า 74 พร้อมแผนภาพ</summary>
+  <div class="tw"><table class="wide tbl-sm"><thead><tr><th class="l">พอลิเมอร์</th><th>สถานะ</th><th>จุดหลอมเหลว (°C)</th><th class="l">มอนอเมอร์</th><th>สถานะ</th><th>จุดหลอมเหลว (°C)</th></tr></thead><tbody>${[0,2,4].map(i=>`<tr><td class="l">${PM[i].n}</td><td>${PM[i].st}</td><td>${PM[i].lo}–${PM[i].hi}</td><td class="l">${PM[i+1].n}</td><td>${PM[i+1].st}</td><td>${PM[i+1].lo}</td></tr>`).join('')}</tbody></table></div>
+  <div class="lab"><h3>เลื่อนดูอุณหภูมิเทียบกับจุดหลอมเหลว</h3><p class="small">ค่าเริ่มต้น 25 °C เป็นอุณหภูมิห้องโดยประมาณที่ผู้จัดทำหน้าสมมติ ไม่ได้มาจากหนังสือ</p>
+  <label class="lbl" for="t32">อุณหภูมิที่เลือก: <b id="t32v">25</b> °C</label><input type="range" id="t32" min="-200" max="280" step="5" value="25" style="width:100%;min-height:44px">
+  <p class="small">แผนภาพนี้กว้าง บนมือถือให้เลื่อนไปทางขวาเพื่อดูแถบของพอลิเมอร์ ↔</p><div id="sv32"></div><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">สาร</th><th>เทียบกับจุดหลอมเหลวที่อุณหภูมินี้</th></tr></thead><tbody id="tb32" aria-live="polite"></tbody></table></div>
+  <p class="small">หมายเหตุ: การอยู่เหนือจุดหลอมเหลวไม่ได้บอกว่าเป็นของเหลวหรือแก๊ส ต้องดูจุดเดือดด้วย ซึ่งหนังสือเรียนไม่ได้ให้ค่าไว้ (ตัวอย่างคู่มือระบุว่ามอนอเมอร์ทั้งสามเป็นแก๊ส)</p></div></details>
+  ${quizHTML('3.2','แบบทดสอบสั้น กิจกรรม 3.2')}`;
+}
+function wire32(){
+  const root=$('#panel');
+  const state=()=>{let n=0;for(let i=1;i<=3;i++)if(dget('3.2','pr'+i).trim().length>=5&&dget('3.2','pc'+i).trim().length>=5)n++;
+    const r=$('#st32');r.className='res '+(n>=3?'ok':'');r.textContent=n>=3?'กรอกครบ '+n+' / 3 คู่ ✓ (ครบเกณฑ์ของคู่มือ)':'กรอกครบแล้ว '+n+' / 3 คู่ (แต่ละคู่ต้องมีทั้งข้อมูลและการเปรียบเทียบอย่างน้อยหัวข้อละ 5 ตัวอักษร)';if(n>=3)markDone('3.2');};
+  wireDraft(root,'3.2',state);state();
+  const sl=$('#t32'),upd=()=>{const T=+sl.value;$('#t32v').textContent=T;$('#sv32').innerHTML=meltSVG(T);
+    $('#tb32').innerHTML=PM.map(p=>{const r=meltRel(T,p.lo,p.hi);return`<tr><td class="l">${p.n} (${p.k==='poly'?'พอลิเมอร์':'มอนอเมอร์'})</td><td>${r==='below'?'ต่ำกว่าจุดหลอมเหลว':r==='above'?'สูงกว่าจุดหลอมเหลว':'อยู่ในช่วงจุดหลอมเหลว'}</td></tr>`;}).join('');};
+  sl.oninput=upd;upd();
+  wireExp('p32',()=>textOf('3.2',[].concat.apply([],[1,2,3].map(i=>[['pr'+i,'คู่ที่ '+i+' ข้อมูล'],['pc'+i,'คู่ที่ '+i+' เปรียบเทียบ']])),'ผลสืบค้นกิจกรรม 3.2'),'activity-3-2.txt');
+  wireQuiz('3.2',false);
+}
+
+/* ======================= กิจกรรม 3.3 ======================= */
+const M33=[['ถุงใส่ของเย็น ถุงหูหิ้ว และขวดพลาสติกขุ่น',0,'พอลิเอทิลีน: ตัวอย่างการใช้ในคู่มือหน้า 82 (ถุงใส่ของเย็น ถุงหูหิ้ว ขวดพลาสติกขุ่น ฝาขวด)'],['ภาชนะอาหารร้อน ซึ่งข้อมูลระบุว่าพอลิเมอร์นี้มีจุดหลอมเหลว 130–170 °C',1,'พอลิโพรพิลีน: จุดหลอมเหลว 130–170 °C (หน้า 74) ใช้เป็นบรรจุภัณฑ์อาหารร้อนและเข้าไมโครเวฟได้ (หน้า 82)'],['กล่องโฟมบรรจุอาหารและช้อนส้อมพลาสติก',2,'พอลิสไตรีน: เบา แข็งและเปราะ ใช้ทำกล่องโฟม ช้อนส้อมพลาสติก (หน้า 82)'],['ขวดน้ำดื่มพลาสติกที่แข็งและเหนียว',3,'พอลิเอทิลีนเทเรฟทาเลต (PET): แข็งและเหนียว ใช้ทำขวดน้ำดื่ม (หน้า 83)'],['จานชามที่ไม่แตกหักง่ายและทนความร้อน',4,'พอลิเมลามีนฟอร์มาลดีไฮด์: แข็ง ทนความร้อน (หน้า 83)']];
+const M33ORD=[2,0,4,3,1];
+function heatSVG(h,mx){
+  let s='';const flame=h>0?Math.round(6+h*0.34):0;
+  const fl=cx=>flame?`<path d="M${cx-24} 186 q6 -${flame} 12 0 q6 -${flame+8} 12 0 q6 -${flame} 12 0 z" fill="#f59e0b" opacity=".9"/>`:'';
+  s+=fl(68)+fl(204);
+  if(h>=60)s+=`<ellipse cx="68" cy="172" rx="${40+(h-60)*0.3}" ry="10" fill="#cfe8f5" stroke="#3b82a0" stroke-width="2"/><text x="68" y="150" text-anchor="middle" font-size="12" fill="#1d5a78">หลอมเหลว</text>`;
+  else if(h>=25)s+=`<path d="M38 70 Q34 ${110+(h-25)} 42 ${150+(h-25)*0.4} Q68 ${165+(h-25)*0.3} 94 ${150+(h-25)*0.4} Q102 ${110+(h-25)} 98 70 Z" fill="#cfe8f5" stroke="#3b82a0" stroke-width="2.5"/><text x="68" y="112" text-anchor="middle" font-size="12" fill="#1d5a78">อ่อนตัว</text>`;
+  else if(mx>=60)s+=`<path d="M30 168 Q48 148 72 156 Q100 150 106 172 Q68 182 30 168 Z" fill="#9cc3d5" stroke="#3b82a0" stroke-width="2.5"/><text x="68" y="142" text-anchor="middle" font-size="12" fill="#1d5a78">แข็งตัวใหม่</text>`;
+  else s+=`<rect x="36" y="70" width="64" height="100" rx="6" fill="#cfe8f5" stroke="#3b82a0" stroke-width="2.5"/><path d="M50 70 q0 -16 10 -16 M86 70 q0 -16 -10 -16" fill="none" stroke="#3b82a0" stroke-width="3"/><text x="68" y="124" text-anchor="middle" font-size="12" fill="#1d5a78">รูปทรงเดิม</text>`;
+  const dk=Math.max(0,Math.min(1,(h-80)/20)),c=Math.round(229-dk*170),bc=`rgb(${c},${c},${Math.round(c+(dk?0:8))})`;
+  s+=`<rect x="172" y="90" width="64" height="80" rx="8" fill="${bc}" stroke="#52525b" stroke-width="2.5"/><rect x="188" y="62" width="8" height="28" fill="#a1a1aa"/><rect x="212" y="62" width="8" height="28" fill="#a1a1aa"/><text x="204" y="136" text-anchor="middle" font-size="12" fill="${dk>0.5?'#fff':'#172033'}">${dk>0?'ไหม้ดำ':'รูปทรงเดิม'}</text>`;
+  if(dk>0)s+=`<path d="M188 84 q-8 -14 0 -26 M204 84 q-8 -14 0 -26 M220 84 q-8 -14 0 -26" stroke="#71717a" stroke-width="2" fill="none"/>`;
+  s+=`<text x="68" y="206" text-anchor="middle" font-size="12" fill="#172033">ถุงพลาสติก</text><text x="68" y="222" text-anchor="middle" font-size="11" fill="#5d6b82">(เทอร์มอพลาสติก)</text><text x="204" y="206" text-anchor="middle" font-size="12" fill="#172033">ปลั๊กไฟ</text><text x="204" y="222" text-anchor="middle" font-size="11" fill="#5d6b82">(เทอร์มอเซต)</text>`;
+  return svgBox(272,232,'ภาพถุงพลาสติกและปลั๊กไฟที่ได้รับความร้อนในระดับต่าง ๆ ถุงพลาสติกอ่อนตัวและหลอมเหลว ปลั๊กไฟไม่หลอมเหลวแต่ไหม้เมื่อร้อนมาก',s);
+}
+function chainSVG(){
+  let s='';
+  s+='<polyline points="8,40 24,24 40,40 56,24 72,40" fill="none" stroke="#92400e" stroke-width="2.5"/>';
+  s+='<polyline points="100,40 116,24 132,40 148,24 164,40" fill="none" stroke="#92400e" stroke-width="2.5"/><polyline points="116,24 120,6" fill="none" stroke="#92400e" stroke-width="2.5"/><polyline points="148,24 154,6" fill="none" stroke="#92400e" stroke-width="2.5"/><polyline points="132,40 136,60" fill="none" stroke="#92400e" stroke-width="2.5"/>';
+  for(let i=0;i<3;i++)for(let j=0;j<3;j++){const x=190+i*26,y=12+j*22;s+=`<circle cx="${x}" cy="${y}" r="3.5" fill="#92400e"/>`;if(i<2)s+=`<line x1="${x}" y1="${y}" x2="${x+26}" y2="${y}" stroke="#92400e" stroke-width="2"/>`;if(j<2)s+=`<line x1="${x}" y1="${y}" x2="${x}" y2="${y+22}" stroke="#92400e" stroke-width="2"/>`;}
+  s+='<text x="40" y="86" text-anchor="middle" font-size="12" fill="#172033">แบบเส้น</text><text x="132" y="86" text-anchor="middle" font-size="12" fill="#172033">แบบกิ่ง</text><text x="216" y="86" text-anchor="middle" font-size="12" fill="#172033">แบบร่างแห</text>';
+  return svgBox(272,96,'ภาพร่างโครงสร้างพอลิเมอร์สามแบบ แบบเส้น แบบกิ่ง และแบบร่างแห',s);
+}
+function act33(){
+  return`<h2>กิจกรรม 3.3 ฉลากผลิตภัณฑ์พลาสติกกับการใช้งาน</h2><p class="sub">คู่มือครู หน้า 81–86 · หนังสือเรียน หน้า 82–87 · จับคู่ แบบจำลองการให้ความร้อน และแบบฟอร์มวิเคราะห์ฉลาก</p>
+  <div class="box"><h3>โจทย์ (ตามคู่มือ)</h3><p>พิจารณาข้อบ่งชี้วิธีใช้และการดูแลรักษาที่ปรากฏบนผลิตภัณฑ์พลาสติก แล้ววิเคราะห์ว่าสมบัติด้านใดของพอลิเมอร์สำคัญต่อการใช้งานของผลิตภัณฑ์ (เตรียมผลิตภัณฑ์หรือรูปภาพอย่างน้อย 5 ตัวอย่างที่มีข้อบ่งใช้เกี่ยวกับอุณหภูมิ ความร้อน ไมโครเวฟ หรือเครื่องล้างจาน)</p></div>
+  <div class="box"><h3>ตารางเปรียบเทียบพอลิเมอร์ในบรรจุภัณฑ์ (คู่มือครู หน้า 82–83)</h3><div class="tw"><table class="wide tbl-sm"><thead><tr><th class="l">พอลิเมอร์</th><th class="l">สมบัติ</th><th class="l">การใช้ประโยชน์</th></tr></thead><tbody>${PLAS.map(r=>`<tr><td class="l">${r[0]}</td><td class="l">${r[1]}</td><td class="l">${r[2]}</td></tr>`).join('')}</tbody></table></div></div>
+  ${matchHTML('m33','จับคู่ผลิตภัณฑ์กับพอลิเมอร์ (ใช้ข้อมูลในตารางด้านบน)',M33ORD.map(i=>({l:M33[i][0],a:M33[i][1],w:M33[i][2]})),PLAS.map(r=>r[0]),'คำอธิบายผลิตภัณฑ์เขียนโดยผู้จัดทำหน้าจากข้อมูลในตาราง ไม่ใช่ข้อความบนฉลากจริง')}
+  <div class="lab"><h3>ห้องทดลองเสมือน: ให้ความร้อนกับถุงพลาสติกและปลั๊กไฟ</h3>
+  <div class="notice" style="margin-top:6px"><b>แบบจำลองเพื่อการศึกษา</b> เลื่อนแถบ "ระดับความร้อน" เพื่อดูแนวโน้มเชิงคุณภาพเท่านั้น ตัวเลข 0–100 เป็นหน่วยสมมติของผู้จัดทำหน้า ไม่ใช่อุณหภูมิจริง และจุดเปลี่ยนที่ 25, 60, 80 ก็เป็นค่าสมมติ หนังสือเรียนระบุเฉพาะว่าถุงพลาสติกหลอมเหลวเมื่อร้อนมาก ส่วนปลั๊กไฟไม่หลอมเหลว</div>
+  <label class="lbl" for="h33">ระดับความร้อน (หน่วยสมมติ): <b id="h33v">0</b></label><input type="range" id="h33" min="0" max="100" step="1" value="0" style="width:100%;min-height:44px">
+  <div class="btns"><button class="btn alt sm" type="button" id="b33c">ปล่อยให้เย็นลง (ความร้อน = 0)</button><button class="btn alt sm" type="button" id="b33r">เริ่มใหม่</button></div>
+  <div id="sv33"></div><div class="tip" id="m33t" aria-live="polite"></div></div>
+  <div class="box"><h3>โครงสร้างของพอลิเมอร์ (ภาพร่างวาดเอง)</h3>${chainSVG()}<p class="small">หนังสือเรียน หน้า 87: เทอร์มอพลาสติกมีโครงสร้างแบบเส้นหรือแบบกิ่ง ส่วนเทอร์มอเซตมีโครงสร้างแบบร่างแห</p></div>
+  <div class="lab"><h3>แบบวิเคราะห์ฉลากผลิตภัณฑ์ของฉัน</h3>${FNOTE}${fieldsHTML([['lb','ผลิตภัณฑ์พลาสติก 5 ตัวอย่าง และข้อความบนฉลากที่เกี่ยวกับอุณหภูมิ ไมโครเวฟ หรือเครื่องล้างจาน'],['pp','สมบัติของพอลิเมอร์ที่เกี่ยวข้องกับข้อความเหล่านั้น'],['sm','สรุป: สมบัติด้านใดสำคัญต่อการใช้งานของผลิตภัณฑ์']])}${revealHTML([['ดูแนวสรุปของคู่มือ (เปิดหลังเขียนเองแล้ว) หน้า 85','ส่วนใหญ่ข้อบ่งชี้บนผลิตภัณฑ์เกี่ยวข้องกับอุณหภูมิ แสดงว่าอุณหภูมิมีผลต่อการใช้งานของพอลิเมอร์แต่ละชนิด สมบัติด้านความร้อนของพอลิเมอร์จึงสำคัญต่อการใช้งาน']])}${expHTML('p33')}</div>
+  ${quizHTML('3.3','แบบทดสอบสั้น กิจกรรม 3.3')}`;
+}
+function wire33(){
+  const root=$('#panel');let mx=0;const sl=$('#h33');
+  const msg=h=>{const bag=h>=60?'ถุงพลาสติกหลอมเหลว':h>=25?'ถุงพลาสติกอ่อนตัวลง':(mx>=60?'ถุงพลาสติกแข็งตัวใหม่ในรูปทรงใหม่ (เทอร์มอพลาสติกหลอมแล้วขึ้นรูปใหม่ได้)':'ถุงพลาสติกยังรูปทรงเดิม');const pl=h>=80?'ปลั๊กไฟไม่หลอมเหลวแต่เริ่มไหม้ดำ':(mx>=80?'ปลั๊กไฟไม่หลอมเหลว และเมื่อเย็นแล้วก็ไม่ได้ขึ้นรูปใหม่ (เทอร์มอเซต)':'ปลั๊กไฟยังรูปทรงเดิม ไม่หลอมเหลว');return bag+' · '+pl;};
+  function upd(){const h=+sl.value;mx=Math.max(mx,h);$('#h33v').textContent=h;$('#sv33').innerHTML=heatSVG(h,mx);$('#m33t').textContent=msg(h);if(mx>=85){st.run['3.3']=true;save();tryDone('3.3');}}
+  sl.oninput=upd;$('#b33c').onclick=()=>{sl.value=0;upd();};$('#b33r').onclick=()=>{mx=0;sl.value=0;upd();};upd();
+  wireDraft(root,'3.3');wireExp('p33',()=>textOf('3.3',[['lb','ผลิตภัณฑ์และข้อความบนฉลาก'],['pp','สมบัติที่เกี่ยวข้อง'],['sm','สรุป']],'กิจกรรม 3.3 ฉลากผลิตภัณฑ์พลาสติก'),'activity-3-3.txt');
+  wireMatch('m33',M33ORD.map(i=>({a:M33[i][1],w:M33[i][2]})),PLAS.map(r=>r[0]));
+  wireQuiz('3.3',true);
+}
+
+/* ======================= กิจกรรม 3.4 ======================= */
+const T34=[['คัดแยกขวดพลาสติกใส่ถังรวบรวม เพื่อส่งโรงงานหลอมขึ้นรูปใหม่',2,'หลอมขึ้นรูปใหม่ = นำกลับมาใช้ใหม่ (รีไซเคิล)'],['ใช้กระบอกน้ำส่วนตัวแทนการซื้อน้ำขวดพลาสติกทุกวัน',0,'ใช้พลาสติกน้อยลง = ลดการใช้'],['ตัดขวดน้ำพลาสติกมาทำกระถางปลูกต้นไม้ (ตัวอย่างในคู่มือหน้า 86)',1,'ดัดแปลงของที่ใช้แล้วไปใช้งานอื่น = ใช้ซ้ำ'],['ปฏิเสธหลอดพลาสติกเมื่อสั่งเครื่องดื่ม',0,'ไม่รับพลาสติกที่ไม่จำเป็น = ลดการใช้'],['โรงงานรับซื้อเศษ PET ไปหลอมทำเป็นเส้นใยผ้า (ตารางหนังสือเรียน หน้า 88)',2,'หลอมแล้วขึ้นรูปเป็นผลิตภัณฑ์ใหม่ = นำกลับมาใช้ใหม่'],['ล้างกล่องพลาสติกใส่อาหารที่ใช้แล้วให้สะอาด แล้วนำไปใส่ของใช้เล็ก ๆ',1,'ใช้กล่องเดิมซ้ำอีกครั้ง = ใช้ซ้ำ (ข้อควรระวัง: ไม่ควรนำกลับมาใส่อาหารถ้าบรรจุภัณฑ์ชำรุดหรือไม่ได้ออกแบบให้ใช้ซ้ำ เป็นคำแนะนำของผู้จัดทำหน้า)']];
+const R34ORD=[4,1,6,0,3,5,2],P34ORD=[5,2,0,6,3,1,4];
+function act34(){
+  return`<h2>กิจกรรม 3.4 ปัญหาและแนวทางการแก้ไขปัญหาที่เกิดจากขยะพลาสติก</h2><p class="sub">คู่มือครู หน้า 86–87 · หนังสือเรียน หน้า 87–89 · ตารางรหัสพลาสติกมาจากหนังสือเรียน หน้า 88</p>
+  <div class="box"><h3>โจทย์ (ตามคู่มือ)</h3><p>สืบค้นหรือสำรวจปัญหาจากการใช้พลาสติกในชุมชนหรือสังคม อภิปรายแนวทางแก้ไขที่เหมาะสม และระบุว่าแนวทางนั้นสอดคล้องกับการลดการใช้ ใช้ซ้ำ และนำกลับมาใช้ใหม่หรือไม่ อย่างไร แล้วนำเสนอหน้าชั้นเรียน</p></div>
+  ${matchHTML('r34','จับคู่รหัสรีไซเคิลกับชนิดพลาสติก (หนังสือเรียน ตาราง 3.2)',R34ORD.map(i=>({l:'รหัส '+triSVG(RESIN[i][0])+' คือพลาสติกชนิดใด',a:i,w:'รหัส '+RESIN[i][0]+' = '+RESIN[i][1]+' ('+RESIN[i][2]+')'})),RESIN.map(r=>r[1]),'รูปสามเหลี่ยมวาดเองโดยผู้จัดทำหน้าเพื่อแสดงเลขรหัส ไม่ใช่สัญลักษณ์ที่คัดลอกมาจากหนังสือ')}
+  ${matchHTML('p34','จับคู่ชนิดพลาสติกกับผลิตภัณฑ์ที่ได้จากกระบวนการรีไซเคิล (ตาราง 3.2)',P34ORD.map(i=>({l:'พลาสติกรหัส '+RESIN[i][0]+' ('+RESIN[i][1]+') เมื่อรีไซเคิลแล้วได้ผลิตภัณฑ์ใด',a:i,w:RESIN[i][1]+' → '+RESIN[i][3]})),RESIN.map(r=>r[3]))}
+  ${matchHTML('t34','จัดประเภทการกระทำ: ลดการใช้ ใช้ซ้ำ หรือนำกลับมาใช้ใหม่',T34.map(r=>({l:r[0],a:r[1],w:r[2]})),R3,'ตัวอย่างส่วนใหญ่ผู้จัดทำหน้าเขียนเอง ข้อที่มาจากคู่มือหรือหนังสือเรียนระบุไว้ในวงเล็บ (แบบฝึกหัดท้ายบทข้อ 10 อยู่ในแท็บแบบฝึกหัด)')}
+  <div class="lab"><h3>แบบบันทึกการสืบค้นหรือสำรวจ</h3>${FNOTE}${fieldsHTML([['pb','ปัญหาจากการใช้พลาสติกที่พบในชุมชนหรือสังคม และข้อมูลที่สนับสนุน'],['wy','แนวทางแก้ไขที่เสนอ'],['rr','แนวทางนี้สอดคล้องกับ ลดการใช้ / ใช้ซ้ำ / นำกลับมาใช้ใหม่ อย่างไร'],['sr','แหล่งข้อมูลหรือวิธีสำรวจ']])}<div class="res" id="st34" aria-live="polite"></div>${revealHTML([['ดูตัวอย่างผลของคู่มือ (เปิดหลังเขียนเองแล้ว) หน้า 86–87','<b>ตัวอย่าง 1:</b> การเผาขยะพลาสติกทำให้เกิดมลพิษทางอากาศในชุมชน แนวทางคือลดการใช้ให้มีขยะที่ต้องเผาน้อยลง และคัดแยกขยะเทอร์มอพลาสติกส่งโรงงานแปรรูปเป็นผลิตภัณฑ์อื่น เช่น ถุงขยะ ซึ่งสอดคล้องกับการลดการใช้และการนำกลับมาใช้ใหม่<br><b>ตัวอย่าง 2:</b> น้ำท่วมเพราะขวดพลาสติกอุดตันท่อระบายน้ำ แนวทางคือรณรงค์ทิ้งขยะลงถัง ลดการใช้ขวดพลาสติก หรือนำขวดที่ใช้แล้วไปทำกระถางต้นไม้ ซึ่งสอดคล้องกับการลดการใช้และการใช้ซ้ำ']])}${expHTML('p34')}</div>
+  ${quizHTML('3.4','แบบทดสอบสั้น กิจกรรม 3.4')}`;
+}
+function wire34(){
+  const root=$('#panel');
+  const state=()=>{const ok=dget('3.4','pb').trim().length>=5&&dget('3.4','wy').trim().length>=5&&dget('3.4','rr').trim().length>=5;const r=$('#st34');r.className='res '+(ok?'ok':'');r.textContent=ok?'กรอกครบปัญหา แนวทาง และความสอดคล้องกับ 3R ✓':'กรอกปัญหา แนวทาง และความสอดคล้องกับลดการใช้/ใช้ซ้ำ/นำกลับมาใช้ใหม่ อย่างน้อยหัวข้อละ 5 ตัวอักษร';if(ok)markDone('3.4');};
+  wireDraft(root,'3.4',state);state();
+  wireExp('p34',()=>textOf('3.4',[['pb','ปัญหา'],['wy','แนวทางแก้ไข'],['rr','ความสอดคล้องกับ 3R'],['sr','แหล่งข้อมูล']],'กิจกรรม 3.4 ขยะพลาสติก'),'activity-3-4.txt');
+  wireMatch('r34',R34ORD.map(i=>({a:i,w:'รหัส '+RESIN[i][0]+' = '+RESIN[i][1]+' ('+RESIN[i][2]+')'})),RESIN.map(r=>r[1]));
+  wireMatch('p34',P34ORD.map(i=>({a:i,w:RESIN[i][1]+' → '+RESIN[i][3]})),RESIN.map(r=>r[3]));
+  wireMatch('t34',T34.map(r=>({a:r[1],w:r[2]})),R3);
+  wireQuiz('3.4',false);
+}
+
+/* ======================= สรุปเนื้อหา ======================= */
+const GLOSS=[['สารประกอบอินทรีย์','สารประกอบของคาร์บอน ซึ่งอาจมีธาตุอื่นร่วม เช่น H O N S'],['สารประกอบไฮโดรคาร์บอน','สารประกอบอินทรีย์ที่มีเฉพาะคาร์บอนกับไฮโดรเจน'],['อิ่มตัว / ไม่อิ่มตัว','พันธะระหว่างคาร์บอนเป็นพันธะเดี่ยวทั้งหมด / มีพันธะคู่หรือพันธะสามอย่างน้อยหนึ่งพันธะ'],['ไตรกลีเซอไรด์','สารกลุ่มที่ไขมันและน้ำมันจัดอยู่ มีส่วนกลีเซอรอลและกรดไขมัน (คู่มือครู หน้า 66)'],['มอนอเมอร์ / พอลิเมอร์','โมเลกุลเล็กที่เป็นหน่วยย่อย / โมเลกุลใหญ่ที่เกิดจากหน่วยย่อยจำนวนมากต่อกัน'],['มอนอแซ็กคาไรด์ ไดแซ็กคาไรด์ พอลิแซ็กคาไรด์','คาร์โบไฮเดรตหน่วยเดี่ยว (เช่น กลูโคส) สองหน่วย (เช่น น้ำตาลทราย) และหลายหน่วยต่อกัน (เช่น แป้ง เซลลูโลส)'],['กรดแอมิโน','มอนอเมอร์ของโปรตีน มีทั้งหมู่คาร์บอกซิล (–COOH) และหมู่แอมิโน'],['หมู่คาร์บอกซิล / หมู่แอมิโน','–COOH แสดงสมบัติกรด / –NH₂ –NH– –N– แสดงสมบัติเบส'],['like dissolves like','สารละลายได้ในตัวทำละลายที่มีขั้วใกล้เคียงกัน'],['ไมเซลล์และอิมัลชัน','สารซักล้างมีส่วนมีขั้วและไม่มีขั้ว ห่อหยดน้ำมันไว้เป็นไมเซลล์กระจายในน้ำ ได้ของผสมเรียกอิมัลชัน เช่น น้ำนม น้ำสลัด (คู่มือครู หน้า 78)'],['เทอร์มอพลาสติก / เทอร์มอเซต','พอลิเมอร์ที่หลอมเมื่อร้อนและขึ้นรูปใหม่ได้ / ไม่หลอมแต่สลายตัวหรือไหม้เมื่อร้อนมาก'],['ลดการใช้ ใช้ซ้ำ นำกลับมาใช้ใหม่','reduce reuse recycle: วิธีลดปริมาณขยะพลาสติก']];
+function fatBars(mode){
+  let rows=FAT.slice();if(mode==='sat')rows.sort((a,b)=>b[1]-a[1]);
+  return rows.map(r=>`<div class="bar2"><span class="lb">${r[0]} · อิ่มตัว</span><span class="tr"><i style="width:${r[1]}%"></i></span><span class="vv">${r[1]} %</span></div><div class="bar2"><span class="lb">${r[0]} · ไม่อิ่มตัว</span><span class="tr"><i style="width:${r[2]}%;background:#b45309"></i></span><span class="vv">${r[2]} %</span></div>`).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">');
+}
+function actSum(){
+  return`<h2>สรุปเนื้อหาบทที่ 3 อาหาร</h2><p class="sub">คู่มือครู หน้า 64–87 · หนังสือเรียน หน้า 62–90 · สรุปด้วยถ้อยคำของผู้จัดทำหน้า ข้อที่ไม่ได้มาจากหนังสือติดป้ายไว้</p>
+  <div class="box"><h3>1) สารประกอบอินทรีย์และไฮโดรคาร์บอน (คู่มือครู หน้า 64–69)</h3><ul><li>ไขมัน คาร์โบไฮเดรต โปรตีน วิตามินเป็นสารประกอบอินทรีย์ เกลือแร่เป็นไอออนหรือสารประกอบไอออนิก</li><li>ไฮโดรคาร์บอนมีเฉพาะ C กับ H อิ่มตัว = พันธะเดี่ยวทั้งหมด ไม่อิ่มตัว = มีพันธะคู่หรือพันธะสาม ใช้เกณฑ์เดียวกันกับกรดไขมัน</li><li>แบบฝึกหัดท้ายบทข้อ 2 กำหนดให้สารละลายไอโอดีนใช้ทดสอบความไม่อิ่มตัว: สารไม่อิ่มตัวฟอกจางสีไอโอดีนได้</li></ul></div>
+  <div class="lab"><h3>ตาราง 3.1 ร้อยละของกรดไขมันในไขมันและน้ำมันบางชนิด (หนังสือเรียน หน้า 63)</h3>
+  <label class="lbl" for="fs">เรียงลำดับ</label><select id="fs"><option value="order">ตามตารางในหนังสือ</option><option value="sat">กรดไขมันอิ่มตัวมากไปน้อย</option></select>
+  <div id="fatb" aria-live="polite"></div>
+  <p class="small">ร้อยละของแต่ละชนิดรวมกันไม่ถึง 100 เพราะหนังสือระบุว่ายังมีองค์ประกอบอื่น ข้อมูลจาก USDA ตามที่หนังสือระบุ หนังสือเรียนสรุปว่าเนยและไขมันสัตว์มีกรดไขมันอิ่มตัวมากกว่าน้ำมันพืชทั่วไปจึงเป็นของแข็ง ส่วนน้ำมันมะพร้าวมีกรดไขมันอิ่มตัวสูงจึงจุดหลอมเหลวสูงกว่าน้ำมันพืชชนิดอื่น <b>ข้อสังเกตของผู้จัดทำหน้า:</b> ในตาราง น้ำมันหมู (39 %) มีอิ่มตัวน้อยกว่าน้ำมันปาล์ม (49 %) ตารางไม่ได้ให้สถานะของสารแต่ละชนิด จึงอย่าสรุปสถานะจากตารางนี้ตารางเดียว</p></div>
+  <div class="box"><h3>2) คาร์โบไฮเดรตและพอลิเมอร์ (คู่มือครู หน้า 70–74)</h3><ul><li>แป้งเป็นพอลิเมอร์ของกลูโคส ร่างกายย่อยเป็นกลูโคสก่อนจึงดูดซึมได้</li><li>กลูโคสละลายน้ำได้ดีกว่า แป้งให้สารละลายหนืดกว่า (กิจกรรม 3.1) พอลิเมอร์มีจุดหลอมเหลวสูงกว่ามอนอเมอร์ที่เป็นแก๊สในตัวอย่าง (กิจกรรม 3.2)</li><li>เซลลูโลสเป็นพอลิเมอร์ของกลูโคสเช่นกัน แต่มนุษย์ย่อยไม่ได้</li></ul></div>
+  <div class="box"><h3>3) โปรตีนและกรดแอมิโน (คู่มือครู หน้า 75–76)</h3><ul><li>โปรตีนเป็นพอลิเมอร์ที่มีกรดแอมิโนเป็นมอนอเมอร์ ร่างกายย่อยเป็นกรดแอมิโนแล้วดูดซึมเข้ากระแสเลือด</li><li>กรดแอมิโนมีหมู่ –COOH (กรด) และหมู่แอมิโน (เบส) จึงแสดงสมบัติได้ทั้งกรดและเบส</li><li>คู่มือกล่าวถึงกรดแอมิโนจำเป็นและไม่จำเป็น ว่าต้องได้รับให้เพียงพอทั้งชนิดและปริมาณโดยกินอาหารให้หลากหลาย (คำนิยามว่า "จำเป็น = ร่างกายสร้างเองไม่ได้หรือไม่พอ" เป็นความรู้ทั่วไปนอกคู่มือ)</li></ul></div>
+  <div class="box"><h3>4) วิตามิน เกลือแร่ และ like dissolves like (คู่มือครู หน้า 77–80)</h3><ul><li>วิตามินที่ละลายน้ำมีประจุหรือมีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำได้ เช่น –OH –NH₂ (ตัวอย่างในแบบฝึกหัด: B6 B3) วิตามินที่ละลายในไขมันมีโครงสร้างส่วนใหญ่เป็นไฮโดรคาร์บอน (K E)</li><li>หลักการ like dissolves like: สารละลายในตัวทำละลายที่มีขั้วใกล้เคียงกัน เช่น กลูโคสละลายในน้ำ เมนทอลละลายในน้ำมัน น้ำมันไม่ละลายในน้ำ</li><li>เกลือแร่ส่วนใหญ่อยู่ในรูปไอออนหรือสารประกอบ ตัวอย่างบนฉลากอาหารในคู่มือคือโซเดียม แคลเซียม ฟอสฟอรัส</li></ul></div>
+  <div class="lab"><h3>ตัวช่วยตัดสินจากหมู่ในโครงสร้าง</h3><p class="small">ติ๊กหมู่ที่พบในโมเลกุล แล้วดูว่าตามกฎของหนังสือจะเป็นกรด/เบส และละลายน้ำหรือไม่ <b>แบบจำลองอย่างง่าย:</b> สายคาร์บอนที่ยาวมากทำให้ละลายน้ำได้น้อยลง (ข้อมูลนอกหนังสือ) ตัวช่วยนี้ไม่คิดเรื่องนั้น</p>
+  <div class="rl"><label><input type="checkbox" id="g_cooh"> หมู่ –COOH</label><label><input type="checkbox" id="g_amino"> หมู่แอมิโน (–NH₂ –NH– –N–)</label><label><input type="checkbox" id="g_oh"> หมู่ –OH</label><label><input type="checkbox" id="g_charge"> มีประจุในโมเลกุล</label></div>
+  <div class="tip" id="gres" aria-live="polite"></div></div>
+  <div class="box"><h3>5) บรรจุภัณฑ์และขยะพลาสติก (คู่มือครู หน้า 81–87)</h3><ul><li>เทอร์มอพลาสติก: หลอมเมื่อร้อน ขึ้นรูปใหม่ได้ โครงสร้างแบบเส้นหรือแบบกิ่ง · เทอร์มอเซต: ไม่หลอม สลายตัวหรือไหม้ โครงสร้างแบบร่างแห</li><li>สมบัติทางความร้อนของพอลิเมอร์กำหนดว่าผลิตภัณฑ์ใช้กับของร้อนหรือไมโครเวฟได้หรือไม่</li><li>ขยะพลาสติกแก้ได้ด้วยลดการใช้ ใช้ซ้ำ นำกลับมาใช้ใหม่ (รีไซเคิลเทอร์มอพลาสติกโดยการหลอมขึ้นรูปใหม่)</li></ul></div>
+  <div class="box"><h3>คำศัพท์</h3><div class="tw"><table class="wide tbl-sm"><tbody>${GLOSS.map(g=>`<tr><th class="l" scope="row">${g[0]}</th><td class="l">${g[1]}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function wireSum(){
+  const fs=$('#fs'),fb=()=>{$('#fatb').innerHTML=fatBars(fs.value);};fs.onchange=fb;fb();
+  const g=()=>({cooh:$('#g_cooh').checked,amino:$('#g_amino').checked,oh:$('#g_oh').checked,charge:$('#g_charge').checked});
+  const upd=()=>{const o=g(),r=judgeGroups(o);const none=!(o.cooh||o.amino||o.oh||o.charge);
+    $('#gres').innerHTML=none?'ยังไม่ได้เลือกหมู่ใด: ถ้ามีเฉพาะ C กับ H เป็นไฮโดรคาร์บอน ไม่แสดงสมบัติกรด-เบส และละลายน้ำไม่ได้':'<b>กรด-เบส:</b> '+({acid:'กรด (มีหมู่ –COOH)',base:'เบส (มีหมู่แอมิโน)',both:'ได้ทั้งกรดและเบส เหมือนกรดแอมิโน',neutral:'กลาง (ตามเกณฑ์หมู่ –COOH และหมู่แอมิโนของหนังสือ)'}[r.ab])+' · <b>การละลายน้ำ:</b> '+(r.water?'ละลายน้ำได้ (มีประจุหรือมีหมู่ที่เกิดพันธะไฮโดรเจนกับน้ำได้)':'ละลายน้ำไม่ได้');};
+  ['cooh','amino','oh','charge'].forEach(k=>$('#g_'+k).onchange=upd);upd();
+}
+
+/* ======================= แบบฝึกหัดตามคู่มือ ======================= */
+const FX=[['q6','ข้อ 6 อธิบายด้วยคำพูดของตัวเอง: ทำไมคราบไขมันล้างออกจากภาชนะพลาสติกยากกว่าภาชนะแก้ว'],['q7','ข้อ 7 อธิบายด้วยคำพูดของตัวเอง: ทำไมกล่องโฟมใส่อาหารผัดหรือทอดแล้วเกิดรู ใช้หลัก like dissolves like'],['q8','ข้อ 8 พอลิไวนิลคลอไรด์อาจมีโครงสร้างแบบใดได้บ้าง (บรรยายหรือวาดบนกระดาษแล้วเขียนอธิบาย)']];
+function pvcSVG(){
+  let s='<polyline points="10,50 34,30 58,50 82,30 106,50" fill="none" stroke="#92400e" stroke-width="2.5"/>';
+  [[34,30,-1],[82,30,-1],[58,50,1],[106,50,1],[10,50,1]].forEach(p=>{s+=`<line x1="${p[0]}" y1="${p[1]}" x2="${p[0]}" y2="${p[1]+p[2]*12}" stroke="#92400e" stroke-width="1.5"/><text x="${p[0]}" y="${p[1]+p[2]*22+4}" text-anchor="middle" font-size="11" fill="#172033">Cl</text>`;});
+  s+='<polyline points="150,60 172,40 194,60 216,40 238,60" fill="none" stroke="#92400e" stroke-width="2.5"/><polyline points="194,60 204,82 194,102" fill="none" stroke="#92400e" stroke-width="2.5"/><text x="204" y="118" text-anchor="middle" font-size="11" fill="#172033">สายกิ่ง (ไม่วาด Cl)</text>';
+  s+='<text x="58" y="96" text-anchor="middle" font-size="12" fill="#172033">แบบเส้น</text><text x="194" y="20" text-anchor="middle" font-size="12" fill="#172033">แบบกิ่ง</text>';
+  return svgBox(272,124,'ภาพร่างพอลิไวนิลคลอไรด์แบบเส้นและแบบกิ่ง วาดโดยผู้จัดทำหน้า ไม่ใช่ภาพจากหนังสือ',s);
+}
+function actEx(){
+  return`<h2>แบบฝึกหัดตามคู่มือครู</h2><p class="sub">คู่มือครู หน้า 69, 76, 79, 80 และแบบฝึกหัดท้ายบท หน้า 88–91 · ข้อที่มีเฉลยตรวจอัตโนมัติและส่งคะแนน ข้อเขียนไม่มีคะแนน</p>
+  <div class="notice">หมายเหตุ: สูตรโครงสร้างในหนังสือเป็นรูปภาพ ผู้จัดทำหน้าเขียนเป็นสูตรย่อหรือบรรยายตามรูปในคู่มือ (ตรวจเฉลยกับภาพหน้า PDF ของคู่มือแล้ว) ถ้าสูตรย่อกำกวม ให้ดูรูปในหนังสือเรียน ข้อที่เป็นตารางหรือเลือกหลายสารถูกแปลงเป็นข้อย่อยตอบทีละสาร ส่วน &quot;ตรวจสอบความรู้ก่อนเรียน&quot; ของคู่มือ (หน้า 65) ไม่ได้นำมาทำ เพราะเครื่องหมายถูก/ผิดในข้อความของคู่มือขาดหาย แบบฝึกหัดข้อ 8 ของท้ายบทเป็นข้อวาดภาพ จึงเป็นข้อเขียน</div>
+  <h3>แบบฝึกหัด 3.1 ไฮโดรคาร์บอนและความอิ่มตัว</h3>${quizHTML('x31','แบบฝึกหัด 3.1 ข้อ 1–3')}
+  <h3>แบบฝึกหัด 3.2 กรด เบส กลาง</h3>${quizHTML('x32','แบบฝึกหัด 3.2')}
+  <h3>แบบฝึกหัด 3.3 วิตามิน</h3>${quizHTML('x33','แบบฝึกหัด 3.3')}
+  <h3>แบบฝึกหัด 3.4 การละลายน้ำ</h3>${quizHTML('x34','แบบฝึกหัด 3.4')}
+  <h3>แบบฝึกหัดท้ายบทที่ 3</h3>${quizHTML('xe1','ท้ายบท ข้อ 1–2')}${quizHTML('xe2','ท้ายบท ข้อ 3–5')}${quizHTML('xe3','ท้ายบท ข้อ 6, 7, 9, 10')}
+  <div class="lab"><h3>แบบฝึกหัดท้ายบท ข้อเขียน (ข้อ 6–8)</h3>${FNOTE}${fieldsHTML(FX)}${revealHTML([['ดูแนวคำตอบ (เปิดหลังเขียนเองแล้ว) หน้า 90','ข้อ 6: พลาสติกเป็นสารไม่มีขั้ว แก้วเป็นสารมีขั้ว ไขมันซึ่งไม่มีขั้วยึดติดผิวพลาสติกได้ดีกว่า จึงล้างยากกว่า · ข้อ 7: โฟมเป็นสารไม่มีขั้ว น้ำมันซึ่งไม่มีขั้วละลายโฟม จึงเกิดรู · ข้อ 8: โครงสร้างแบบเส้นหรือแบบกิ่ง (ดูภาพร่างด้านล่าง)']])}${pvcSVG()}${expHTML('pex')}</div>
+  <div class="box"><h3>ความคืบหน้า</h3><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">กิจกรรม</th><th>สถานะ</th></tr></thead><tbody id="progT"></tbody></table></div></div>`;
+}
+function wireEx(){
+  const root=$('#panel');wireDraft(root,'ex');
+  $('#progT').innerHTML=LABS.map(a=>`<tr><td class="l">${a} ${TITLES[a]}</td><td>${st.done[a]?'<span class="ok-t">✓ เสร็จแล้ว</span>':'ยังไม่เสร็จ'}</td></tr>`).join('');
+  wireExp('pex',()=>'สรุปการเรียนบทที่ 3 อาหาร\n\n'+LABS.map(a=>(st.done[a]?'[x] ':'[ ] ')+a+' '+TITLES[a]).join('\n')+'\n'+textOf('ex',FX,'\nข้อเขียนในแบบฝึกหัด'),'exercise-3.txt');
+  ['x31','x32','x33','x34','xe1','xe2','xe3'].forEach(a=>wireQuiz(a,false));
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'3.1':[act31,wire31],'3.2':[act32,wire32],'3.3':[act33,wire33],'3.4':[act34,wire34],'sum':[actSum,wireSum],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${qid(a)}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t){t.focus({preventScroll:true});try{t.scrollIntoView({block:'nearest',inline:'nearest'});}catch(_){}}}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length,m=LABS.length;$('#progText').textContent='ความคืบหน้า '+n+' / '+m+' กิจกรรม';$('#progBar').style.width=(n/m*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('วิทยาศาสตร์กายภาพ ม.5 บทที่ 3','วิทยาศาสตร์กายภาพ ม.5 บทที่ 3 อาหาร (กิจกรรม 3.1–3.4)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+qid(a)+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่ (ล้างเครื่องหมายเสร็จและแบบทดสอบบนหน้านี้ ข้อความที่เขียนยังอยู่ และคะแนนที่แผงส่งผลท้ายหน้าบันทึกไว้แล้วจะไม่ถูกล้าง)</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];delete st.q[a];delete st.run[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const hh=(location.hash.match(/act-(3\.\d|sum|ex)/)||[])[1];
+select(hh&&ACTS.indexOf(hh)>=0?ACTS.indexOf(hh):0);
+
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
