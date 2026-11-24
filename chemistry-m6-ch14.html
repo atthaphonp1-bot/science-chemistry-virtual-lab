@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>เคมี ม.6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "เคมี ม.6 บทที่ 14", "title": "เคมี ม.6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา (กิจกรรม 14.1–14.8)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#dde4ee;--soft:#f4f7fb;--acc:#3d5a80;--acc2:#e6edf6;--ok:#157a55;--bad:#b63f43;--acc3:#6f8cb3;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #dde4ee;border-radius:30px;background:linear-gradient(130deg,#fff,#eef3fa);box-shadow:0 28px 65px #28416e12;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #cbd7e8;background:#f3f7fc;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#2f4466;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #28416e12,0 3px 10px #28416e08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #c5d2e4;border-radius:22px;padding:16px;background:linear-gradient(160deg,#eef3fa,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #9fb2cc;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.why{font-size:.9rem;color:#33415c;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#2c3f5c;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+svg text{font-family:var(--font)}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flk .35s ease-in-out infinite alternate}
+@keyframes flk{from{transform:scale(1,1)}to{transform:scale(.9,1.1)}}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.92rem}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0}.kv b{font-weight:650}
+.warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
+.tbl-sm td,.tbl-sm th{font-size:.88rem}
+.tw table.wide{min-width:540px}
+.sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
+.ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
+.ledrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
+.ledrow label{font-weight:600;font-size:.92rem;display:block}
+.ledrow input[type=range]{width:100%;min-height:44px}
+.ledrow input[type=text],.ledrow textarea,.ledrow select{display:block;width:100%;max-width:100%}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
+.ok-bg{background:#e8f6ef}.bad-bg{background:#fdf1f1}
+.cond li{list-style:none;margin-left:-1.1rem}
+.stepno{display:inline-block;min-width:1.6em;text-align:center;background:var(--acc);color:#fff;border-radius:999px;padding:0 .5em;margin-right:6px;font-size:.85rem}
+.pbar{height:8px;border-radius:99px;background:var(--acc2);overflow:hidden;margin:6px 0}.pbar i{display:block;height:100%;background:var(--acc);width:0}
+.cite{font-family:ui-serif,Georgia,serif;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;word-break:break-word;overflow-wrap:anywhere}
+.timer{font:700 2rem ui-monospace,Menlo,monospace}.timer.over{color:var(--bad)}
+.rl{display:flex;gap:10px;flex-wrap:wrap}.rl label{display:flex;gap:4px;align-items:center;min-height:44px}
+@media(prefers-reduced-motion:reduce){.pbar i{transition:none}}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">CHEMISTRY · MATTHAYOM 6 · BOOK 6 · CHAPTER 14</div>
+<h1>เคมีกับการแก้ปัญหา: พื้นที่ทำงานเสมือน</h1>
+<p>บทนี้เป็นบทโครงงาน กิจกรรมส่วนใหญ่ทำจริงในชั้นเรียนหรือนอกห้องเรียน หน้านี้จึงเป็น &quot;พื้นที่ทำงาน&quot; ที่ช่วยวางแผนและบันทึกงาน ได้แก่ ตัวช่วยวางแผนแก้ปัญหาด้วยวิธีการทางวิทยาศาสตร์ (14.1) แบบจำลองสายไฟแป้งโดว์ให้ลองปรับปริมาณสารและความยาว (14.2) ตัวช่วยเลือกวิธีแก้ปัญหา (14.3) ตัวสร้างรายการอ้างอิง (14.4) การเลือกรูปแบบนำเสนอข้อมูลในโปสเตอร์ (14.5) รายงานและการฝึกพูด (14.6) แบบฟอร์มสืบค้นและสรุปการประชุมวิชาการ (14.7–14.8) พร้อมแบบทดสอบสั้นและสรุปเนื้อหา</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 8 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองและพื้นที่ทำงานเพื่อการศึกษา</b> ผลของสายไฟแป้งโดว์ในหน้านี้อ้างอิงผลตัวอย่างของคู่มือครู (เกลือแกง 0.2 g ในน้ำ 1 mL ไม่พอ ส่วน 0.6 g ในน้ำ 3 mL ทำให้หลอดสว่าง ที่เส้นยาว 18 cm) ส่วนค่าความต้านทานและกระแสเป็นค่าของแบบจำลองที่ผู้จัดทำหน้าตั้งเอง ติดป้ายไว้ในแต่ละกิจกรรม งานเขียนของนักเรียนบันทึกในเครื่องนี้อัตโนมัติ และถ้ากดส่งคะแนน ข้อความในช่องเขียนที่เปิดอยู่ในแท็บนั้นจะถูกส่งให้ครูตรวจด้วย (ไม่มีคะแนนอัตโนมัติ) มีคะแนนเฉพาะแบบทดสอบที่มีเฉลย<br>
+<b>ข้อควรระวังเมื่อทำจริง</b> (ผู้จัดทำหน้าเพิ่มเอง ไม่ได้อยู่ในคู่มือ): ใช้ถ่านไฟฉายตามที่ครูกำหนดเท่านั้น ห้ามต่อขั้วถ่านโดยตรงเข้าด้วยกัน ห้ามชิมสารเคมีหรือแป้งโดว์ และล้างมือหลังทำกิจกรรม</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 14"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: คู่มือครูรายวิชาเพิ่มเติมวิทยาศาสตร์และเทคโนโลยี เคมี ชั้นมัธยมศึกษาปีที่ 6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา (สสวท., ฉบับปรับปรุง พ.ค. 2566) เลขหน้าในหน้านี้คือเลขหน้าที่พิมพ์ในบทที่ 14 ของคู่มือครู (หน้า PDF = เลขหน้าที่พิมพ์ + 12) ไม่ใช่หน้าหนังสือเรียน: ผลการเรียนรู้และสาระสำคัญ หน้า 1–6 · ตรวจสอบความรู้ก่อนเรียน หน้า 7–8 · กิจกรรม 14.1 หน้า 8–18 · กิจกรรม 14.2 หน้า 19–26 · กิจกรรม 14.3 หน้า 26–28 · กิจกรรม 14.4 หน้า 29–34 · กิจกรรม 14.5 หน้า 34–36 · กิจกรรม 14.6 หน้า 37–38 · กิจกรรม 14.7 หน้า 39–43 · กิจกรรม 14.8 หน้า 43–44 · แนวทางการประเมินและตัวอย่างเกณฑ์ หน้า 46–60 · คู่มือครูบทนี้ไม่มีแบบฝึกหัดท้ายบท แท็บสุดท้ายจึงเป็นแบบทบทวนที่ผู้จัดทำหน้าสร้างขึ้นเอง · ข้อความทั้งหมดในหน้านี้เรียบเรียงใหม่โดยผู้จัดทำหน้า</footer>
+</div>
+<script>
+'use strict';
+/* ======================= ฟังก์ชันคำนวณ ======================= */
+/* ค่าของแบบจำลองสายไฟแป้งโดว์ (ผู้จัดทำหน้าตั้งเอง ไม่ใช่ตัวเลขจากคู่มือ ยกเว้นผลตัวอย่าง 0.2 g/18 cm ไม่สว่าง และ 0.6 g/18 cm สว่าง ซึ่งแบบจำลองถูกปรับให้ตรงกัน):
+   มวลต่อโมล NaCl 58.5 · NaHCO3 84.0 · ซูโครส 342.0 g/mol; จำนวนไอออนต่อหน่วยสูตร 2, 2, 0; ถ่าน 2 ก้อน = 3.0 V;
+   LED แต่ละหลอดแทนด้วยความต้านทาน 50 Ω; ถือว่าสว่างเมื่อกระแสผ่านหลอดตั้งแต่ 5 mA และสว่างเต็มที่ 10 mA */
+const MOLM={nacl:58.5,nahco3:84.0,sugar:342.0},NU={nacl:2,nahco3:2,sugar:0,none:0};
+const K_DOUGH=52.65,G0=1e-6,R_LED=50,V_SRC=3.0,I_ON=5,I_FULL=10;
+function doughCircuit(kind,m,L,mode){
+  if(!(kind in NU)||(mode!=='series'&&mode!=='parallel')||!(m>=0)||!(L>0))throw new Error('bad input');
+  const G=G0+(kind==='none'?0:K_DOUGH*NU[kind]*m/(MOLM[kind]*L*L)),R=1/G;
+  const I=mode==='series'?V_SRC/(R+2*R_LED):V_SRC/(R/2+R_LED),mA=I*1000;
+  return{R:R,I_mA:mA,lit:mA>=I_ON,bright:Math.min(1,mA/I_FULL)};}
+function minMass(kind,L,mode){
+  if(!(kind in NU)||NU[kind]===0||!(L>0))return null;
+  const Rmax=mode==='series'?V_SRC/(I_ON/1000)-2*R_LED:2*(V_SRC/(I_ON/1000)-R_LED);
+  return(1/Rmax-G0)*MOLM[kind]*L*L/(K_DOUGH*NU[kind]);}
+/* SPF = MEDp / MEDu (คู่มือ หน้า 16) ; ร้อยละที่กรอง = 100(1 − 1/SPF) เป็นข้อสังเกตของผู้จัดทำหน้าที่ตรงกับตารางในคู่มือ */
+function spfOf(medp,medu){if(!(medp>0)||!(medu>0))throw new Error('bad');return medp/medu;}
+function blockPct(spf){if(!(spf>=1))throw new Error('bad');return 100*(1-1/spf);}
+/* ไอออนต่อ 1 g (mol) ใช้ในข้อ ลองคิด: จำนวนโมลไอออนต่อมวลสาร 1 g */
+function ionsPerGram(kind){return NU[kind]/MOLM[kind];}
+/* ปริมาตรแก๊สอุดมคติ (mL) ของ n mol ที่ T °C ความดัน 1 atm — ใช้เป็นเส้นประเทียบในกิจกรรม 14.5 (ผู้จัดทำหน้าคำนวณเอง) */
+function idealVmL(nmol,tC){return nmol*0.08206*(tC+273.15)*1000;}
+/* รูปแบบอ้างอิง (ตามแม่แบบและตัวอย่างในคู่มือ หน้า 30–33) */
+function fmtAuthors(style,as){
+  if(!as||!as.length)return'';
+  const ini=(s,sep)=>s.split('').map(c=>c+'.').join(sep);
+  if(style==='APA'){const a=as.map(x=>x[0]+', '+ini(x[1],''));return a.length>1?a.slice(0,-1).join(', ')+', & '+a[a.length-1]:a[0];}
+  if(style==='ACS')return as.map(x=>x[0]+', '+ini(x[1],' ')).join('; ');
+  return as.map(x=>x[0]+' '+x[1]).join(', ');}
+const endDot=s=>/\.$/.test(s)?s:s+'.';
+function fmtCite(style,kind,f){
+  if(['APA','ACS','AMA'].indexOf(style)<0||['book','journal','web'].indexOf(kind)<0)throw new Error('bad');
+  const v=k=>String(f[k]==null?'':f[k]).trim(),r=k=>v(k)||'…';
+  const A=fmtAuthors(style,f.authors),Ad=A?endDot(A)+' ':'';
+  if(style==='APA'){
+    if(kind==='book')return(A?endDot(A):'…')+' ('+r('year')+'). '+r('title')+'. '+r('place')+': '+r('publisher')+'.';
+    if(kind==='journal')return(A?endDot(A):'…')+' ('+r('year')+'). '+r('title')+'. '+r('journal')+', '+r('vol')+'('+r('issue')+'), '+r('pages')+'.';
+    return endDot(v('org')||A||'…')+' ('+r('year')+'). '+r('title')+'. Retrieved from '+r('url');}
+  const jab=v('jabbr')||r('journal');
+  if(style==='ACS'){
+    if(kind==='book')return(A?endDot(A):'…')+' '+r('title')+(v('edition')?', '+v('edition'):'')+'; '+r('publisher')+': '+r('place')+', '+r('year')+(v('pages')?'; '+v('pages'):'')+'.';
+    if(kind==='journal')return(A?endDot(A):'…')+' '+r('title')+'. '+jab+' '+r('year')+', '+r('vol')+' ('+r('issue')+'), '+r('pages')+'.';
+    return Ad+r('title')+', '+r('year')+'. '+r('site')+'. '+r('url')+'. (accessed '+r('accessed')+').';}
+  if(kind==='book')return(A?endDot(A):'…')+' '+r('title')+'. '+(v('edition')?endDot(v('edition'))+' ':'')+r('place')+': '+r('publisher')+'; '+r('year')+'.';
+  if(kind==='journal')return(A?endDot(A):'…')+' '+r('title')+'. '+endDot(jab)+' '+r('year')+';'+r('vol')+'('+r('issue')+'):'+r('pages')+'.';
+  return Ad+r('title')+'. '+String(r('site')).replace(/\s*Web site\s*$/i,'')+'. '+r('url')+'. Accessed '+r('accessed')+'.';}
+function parseAuthors(t){return String(t||'').split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{const p=l.split(',');return[p[0].trim(),(p.slice(1).join('').replace(/[.\s]/g,''))];}).filter(a=>a[0]);}
+/* การอ้างอิงแทรกในเนื้อหาแบบ APA นาม-ปี (คู่มือ หน้า 33–34) */
+function inText(name,year,page,narrative){const pg=page?', p. '+page:'';return narrative?name+' ('+year+pg+')':'('+name+', '+year+pg+')';}
+
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const REDUCE=(()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ======================= สถานะและร่างงาน ======================= */
+const KEY='chemistry-m6-ch14-v1',DK='chemistry-m6-ch14-drafts-v1';
+let st={done:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=s;}catch(_){}
+let DR={};try{DR=JSON.parse(localStorage.getItem(DK)||'{}')||{};}catch(_){DR={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+function dsave(){try{localStorage.setItem(DK,JSON.stringify(DR));}catch(_){}}
+const ACTS=['14.1','14.2','14.3','14.4','14.5','14.6','14.7','14.8','sum','ex'];const LABS=ACTS.slice(0,8);
+const TITLES={'14.1':'แก้ปัญหาด้วยวิธีการทางวิทยาศาสตร์','14.2':'สายไฟแป้งโดว์','14.3':'บูรณาการความรู้แก้ปัญหา','14.4':'รูปแบบบรรณานุกรม','14.5':'โปสเตอร์และข้อมูล','14.6':'นำเสนอผลงาน','14.7':'สืบค้นงานประชุมวิชาการ','14.8':'เข้าร่วมและสรุปการประชุม',sum:'สรุปเนื้อหา',ex:'ทบทวนตนเอง'};
+const QNAME={'14.1':'14.1 แบบทดสอบ','14.2':'14.2 แบบทดสอบ','14.3':'14.3 แบบทดสอบ','14.3s':'14.3 เลือกวิธีแก้ปัญหา','14.4':'14.4 แบบทดสอบ','14.5':'14.5 เลือกรูปแบบข้อมูล','14.6':'14.6 แบบทดสอบ','14.7':'14.7 แบบทดสอบ','14.8':'14.8 จัดประเภทคำถาม',ex:'ทบทวน ข้อสอบก่อนเรียน'};
+const TABQ={'14.3':['14.3','14.3s']};
+let cur=0;const CLEAN=[];
+const qid=act=>act.replace('.','_');
+function markDone(a){if(!st.done[a]){st.done[a]=true;save();paintTabs();paintProgress();}}
+function dget(ns,k){const v=DR[ns+'|'+k];return v==null?'':v;}
+/* ผูกช่องที่มี data-d กับ localStorage (textarea/input/select/checkbox/radio) */
+function wireDraft(root,ns,onchg){
+  $$('[data-d]',root).forEach(el=>{
+    if(el.type==='checkbox'){const k=ns+'|'+el.dataset.d;el.checked=!!DR[k];el.addEventListener('change',()=>{DR[k]=el.checked;dsave();onchg&&onchg();});}
+    else if(el.type==='radio'){const k=ns+'|'+el.name;el.checked=DR[k]===el.value;el.addEventListener('change',()=>{if(el.checked){DR[k]=el.value;dsave();onchg&&onchg();}});}
+    else{const k=ns+'|'+el.dataset.d;if(DR[k]!=null)el.value=DR[k];const h=()=>{DR[k]=el.value;dsave();onchg&&onchg();};el.addEventListener('input',h);el.addEventListener('change',h);}
+  });}
+function fieldsHTML(rows){return rows.map(r=>`<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2]?`<div class="small">${r[2]}</div>`:''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('');}
+function checksHTML(rows){return rows.map((t,i)=>`<label class="opt"><input type="checkbox" data-d="ck${i}"><span>${t}</span></label>`).join('');}
+function textOf(ns,rows,head){return head+'\n'+rows.map(r=>'\n## '+r[1]+'\n'+(dget(ns,r[0])||'(ยังไม่ได้กรอก)')).join('\n')+'\n';}
+function expHTML(id){return`<div class="btns"><button class="btn sm" type="button" data-ex="copy" data-for="${id}">คัดลอกเป็นข้อความ</button><button class="btn alt sm" type="button" data-ex="dl" data-for="${id}">ดาวน์โหลดเป็นไฟล์ .txt</button></div><div class="small" id="exs_${id}" aria-live="polite"></div>`;}
+function wireExp(id,getText,fname){
+  const c=$('[data-ex=copy][data-for="'+id+'"]'),d=$('[data-ex=dl][data-for="'+id+'"]'),s=$('#exs_'+id);if(!c||!d||!s)return;
+  const fb=t=>{s.innerHTML='<pre tabindex="0" style="white-space:pre-wrap;user-select:all;margin:0" aria-label="ข้อความสำหรับคัดลอก"></pre>';const ta=$('pre',s);ta.textContent=t;ta.focus();try{const rg=document.createRange();rg.selectNodeContents(ta);const sl=getSelection();sl.removeAllRanges();sl.addRange(rg);}catch(_){}};
+  c.onclick=()=>{const t=getText();let ok=false;try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{s.textContent='คัดลอกแล้ว';},()=>fb(t));ok=true;}}catch(_){}if(!ok)fb(t);};
+  d.onclick=()=>{try{const b=new Blob([getText()],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);s.textContent='สร้างไฟล์ '+fname+' แล้ว';}catch(_){fb(getText());}};
+}
+/* แถวเช็กลิสต์เกณฑ์ (3 ระดับ) สำหรับประเมินตนเอง */
+function rateHTML(rows){return`<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">สิ่งที่ประเมิน (ระดับ "ดี" ตามเกณฑ์ สรุปโดยผู้จัดทำหน้า)</th><th>ดี</th><th>พอใช้</th><th>ต้องปรับปรุง</th></tr></thead><tbody>${rows.map((t,i)=>`<tr><td class="l">${t}</td>${['ดี','พอใช้','ต้องปรับปรุง'].map(v=>`<td><label class="opt" style="justify-content:center"><input type="radio" name="rt${i}" value="${v}" data-d="1" aria-label="${v}: ${t.replace(/"/g,'')}"></label></td>`).join('')}</tr>`).join('')}</tbody></table></div><div class="res" id="rateRes" aria-live="polite"></div>`;}
+function wireRate(root,n){const f=()=>{let c={'ดี':0,'พอใช้':0,'ต้องปรับปรุง':0},a=0;for(let i=0;i<n;i++){const s=$('input[name=rt'+i+']:checked',root);if(s){c[s.value]++;a++;}}const r=$('#rateRes',root);if(r)r.textContent=a?'ประเมินแล้ว '+a+'/'+n+' ข้อ: ดี '+c['ดี']+' · พอใช้ '+c['พอใช้']+' · ต้องปรับปรุง '+c['ต้องปรับปรุง']+' (ประเมินตนเอง ไม่คิดคะแนน)':'';};return f;}
+
+/* ======================= แบบทดสอบ (ไม่ไฮไลต์ตัวเลือก แสดงเฉพาะคะแนนและคำอธิบาย) ======================= */
+function quizHTML(act,title){
+  return'<div class="box" id="quiz-'+qid(act)+'"><h3>'+(title||'แบบทดสอบสั้น')+' (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<fieldset class="q exf" data-i="'+i+'"><legend>'+(i+1)+'. '+q.q+'</legend>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+qid(act)+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></fieldset>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act,tab){
+  const root=$('#quiz-'+qid(act));if(!root)return;const qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      if(sel){answered++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: '+qs[i].o[qs[i].a]+' · ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ได้ '+got+' / '+qs.length+' คะแนน (ข้อที่ว่างนับเป็นไม่ถูก)';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(QNAME[act],got,qs.length);
+    if(answered===qs.length&&tab!==false){st.q=st.q||{};st.q[act]=true;save();const need=TABQ[tab||act]||[tab||act];if(need.every(a=>st.q[a]))markDone(tab||act);}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+
+const SORT=['วิธีการทางวิทยาศาสตร์ (ตั้งคำถาม สมมติฐาน ทดลอง สรุป)','กระบวนการออกแบบเชิงวิศวกรรม (ปัญหาและเงื่อนไข ออกแบบ ทดสอบ ปรับปรุง)'];
+const CLS=['คำถามชัดเจน เฉพาะเจาะจง และเหมาะสม','คำถามไม่ชัดเจนหรือกว้างเกินไป','คำถามนอกเรื่อง','คำถามไม่สุภาพหรือดูหมิ่น'];
+const QUIZ={
+'14.1':[
+ {q:'ข้อใดถูกต้องเกี่ยวกับสมมติฐานและผลการทดลอง',o:['สมมติฐานเป็นการคาดคะเน ผลการทดลองอาจสอดคล้องหรือไม่สอดคล้องกับสมมติฐานก็ได้','ผลการทดลองต้องสอดคล้องกับสมมติฐานเสมอ ไม่เช่นนั้นถือว่าทดลองผิด','สมมติฐานที่ดีไม่ต้องระบุตัวแปรต้นและตัวแปรตาม','ถ้าผลไม่ตรงสมมติฐานให้แก้สมมติฐานให้ตรงกับผลโดยไม่ต้องบอกใคร'],a:0,w:'ข้อสอบก่อนเรียนของคู่มือชี้ว่าสมมติฐานเป็นเพียงการคาดคะเนผล ผลจริงอาจตรงหรือไม่ตรงก็ได้ (คู่มือครู หน้า 7)'},
+ {q:'ผสมสารละลาย A กับ B แล้วเกิดฟองแก๊ส ทดลองซ้ำที่อุณหภูมิห้อง ที่ 70 °C และที่ 10 °C โดยใช้ความเข้มข้นและปริมาตรเท่ากันทุกครั้ง ตัวแปรต้นคือข้อใด',o:['อุณหภูมิของสารตั้งต้น','อัตราการเกิดแก๊ส','ความเข้มข้นของสารละลาย','ปริมาตรของสารละลาย'],a:0,w:'ตัวแปรต้นคือสิ่งที่ผู้ทดลองเปลี่ยน (อุณหภูมิ) ตัวแปรตามคืออัตราการเกิดแก๊ส ส่วนความเข้มข้นและปริมาตรเป็นตัวแปรที่ต้องควบคุม (ตัวอย่างคำตอบ หน้า 8)'},
+ {q:'ในการศึกษาผลของ "ระยะเวลาทอด" ที่มีต่อกลิ่นและความกรอบของปาท่องโก๋ เหตุใดต้องควบคุมอุณหภูมิน้ำมันให้คงที่',o:['เพราะอุณหภูมิน้ำมันก็ทำให้ความกรอบเปลี่ยนได้ ถ้าไม่คุมจะบอกไม่ได้ว่าผลมาจากเวลาหรืออุณหภูมิ','เพราะอุณหภูมิเป็นตัวแปรตามของการทดลองนี้','เพราะอุณหภูมิไม่เกี่ยวกับกลิ่นของปาท่องโก๋','เพราะจะได้ไม่ต้องจับเวลา'],a:0,w:'ตัวอย่างในคู่มือใช้ 2 นาทีเป็นชุดเปรียบเทียบ ทดสอบ 1 และ 3 นาที โดยคุมอุณหภูมิน้ำมัน ส่วนผสม ชนิดและปริมาณน้ำมัน และผู้ทดสอบ (หน้า 10–11)'},
+ {q:'ในตัวอย่างครีมกันแดดที่ใช้ซิงก์ออกไซด์แทนสารป้องกันรังสีเดิม ข้อใดคือตัวแปรตาม',o:['ประสิทธิภาพการป้องกันรังสี UVB (วัดจากค่า SPF)','ปริมาณซิงก์ออกไซด์ในสูตร','คุณภาพของซิงก์ออกไซด์ที่ใช้','องค์ประกอบอื่นของครีมนอกจากสารที่ถูกแทน'],a:0,w:'ตัวแปรต้นคือปริมาณซิงก์ออกไซด์ ตัวแปรตามคือประสิทธิภาพการป้องกัน UVB ซึ่งนิยามเชิงปฏิบัติการให้วัดจาก SPF (หน้า 17–18)'},
+ {q:'ตามตารางในคู่มือ ครีมกันแดด SPF 30 กรองรังสี UVB ได้ประมาณร้อยละเท่าใด',o:['97','93','98','99'],a:0,w:'ตาราง: SPF 15 → 93 · 30 → 97 · 50 → 98 · 100 → 99 (หน้า 17) ค่าเหล่านี้ตรงกับสูตร 100(1 − 1/SPF) ที่ผู้จัดทำหน้าสังเกตได้ (1 − 1/30 = 96.7)'},
+ {q:'ตามเกณฑ์ JIS A 5905 ที่คู่มือยกมา โฟมฉนวนหนา 12 mm ต้องมีค่าความต้านทานความร้อนอย่างน้อยเท่าใด',o:['0.206 m²K/W','0.163 m²K/W','0.267 m²K/W','0.327 m²K/W'],a:0,w:'ตารางหน้า 14: 9 mm → 0.163 · 12 mm → 0.206 · 15 mm → 0.267 · 18 mm → 0.327 m²K/W (ค่าต้องไม่ต่ำกว่านี้) ยิ่งหนายิ่งต้องมีค่าสูงขึ้น'}],
+'14.2':[
+ {q:'เหตุใดจึงคาดว่าเกลือแกงใช้น้อยกว่าเบกกิ้งโซดาเพื่อให้แป้งโดว์นำไฟฟ้าได้เท่ากัน',o:['มวลต่อโมลของ NaCl น้อยกว่า จึงให้ไอออนมากกว่าเมื่อชั่งมวลเท่ากัน (ทั้งสองแตกตัวเป็น 2 ไอออนต่อหน่วยสูตร)','NaCl ไม่ละลายน้ำ จึงอยู่เป็นผลึกนำไฟฟ้า','NaHCO₃ เป็นนอนอิเล็กโทรไลต์','NaCl มีสีขาวกว่า'],a:0,w:'คู่มือให้เหตุผลว่าไอออนต่อมวลของ NaCl สูงกว่า NaHCO₃ (หน้า 22) ตัวเลขตรวจเอง: 1 g NaCl = 1/58.5 × 2 ≈ 0.034 mol ไอออน ส่วน NaHCO₃ = 1/84 × 2 ≈ 0.024 mol ไอออน'},
+ {q:'น้ำตาลทรายใช้ทำให้แป้งโดว์นำไฟฟ้าได้หรือไม่',o:['ไม่ได้ เพราะละลายน้ำแล้วไม่แตกตัวเป็นไอออน (ได้สารละลายนอนอิเล็กโทรไลต์)','ได้ เพราะละลายน้ำได้ดี','ได้ เพราะมีธาตุคาร์บอน','ไม่ได้ เพราะไม่ละลายน้ำเลย'],a:0,w:'หน้า 22 ระบุว่าน้ำตาลทรายไม่แตกตัวเมื่อละลายน้ำ จึงไม่เป็นอิเล็กโทรไลต์'},
+ {q:'เมื่อต่อหลอด LED สองหลอดแบบขนานเทียบกับแบบอนุกรม (ใช้ถ่านชุดเดิม) หลอดสว่างต่างกันอย่างไร',o:['แบบขนานสว่างกว่า เพราะแต่ละหลอดได้รับความต่างศักย์เท่ากับของแหล่งกำเนิด','แบบอนุกรมสว่างกว่า เพราะกระแสผ่านหลายหลอด','สว่างเท่ากันเสมอ','ขึ้นอยู่กับสีของหลอดเท่านั้น'],a:0,w:'คู่มือ หน้า 24: แบบอนุกรมความต่างศักย์ถูกแบ่งให้แต่ละหลอด จึงสว่างน้อยกว่าแบบขนาน'},
+ {q:'ผลตัวอย่างในคู่มือ ครั้งแรกใช้เกลือแกง 0.2 g ในน้ำ 1 mL นวดกับแป้ง ปั้นยาว 18 cm เกิดอะไรขึ้นและแก้อย่างไร',o:['LED ไม่สว่างทั้งสองหลอด จึงเตรียมสารละลาย 0.2 g ในน้ำ 1 mL เพิ่มอีก 2 ครั้ง รวมเป็นเกลือ 0.6 g ในน้ำ 3 mL','LED สว่างทั้งสองหลอดตั้งแต่ครั้งแรก','LED ไม่สว่าง จึงเปลี่ยนไปใช้น้ำตาลทราย','LED สว่างหลอดเดียวจึงเปลี่ยนเป็นต่อแบบขนาน'],a:0,w:'หน้า 22–23 ตัวอย่างผลของกิจกรรม'},
+ {q:'ลำดับใดตรงกับกระบวนการออกแบบเชิงวิศวกรรมที่ใช้ในกิจกรรมสายไฟแป้งโดว์',o:['กำหนดปัญหาและเงื่อนไข → รวบรวมความรู้ → ออกแบบวิธี → ทดสอบ → ปรับปรุง → สรุปและนำเสนอ','ตั้งสมมติฐาน → ทดลองครั้งเดียว → จบ','สรุปผล → ออกแบบ → กำหนดปัญหา','เลือกสารเคมีโดยไม่ต้องมีเหตุผล → ต่อวงจร'],a:0,w:'หน้า 23–25 คู่มือเชื่อมขั้นตอนของกิจกรรมกับกระบวนการออกแบบเชิงวิศวกรรม'}],
+'14.3':[
+ {q:'วัตถุประสงค์ของวิธีการทางวิทยาศาสตร์ต่างจากกระบวนการออกแบบเชิงวิศวกรรมอย่างไร',o:['วิธีการทางวิทยาศาสตร์สร้างคำอธิบายปรากฏการณ์ ส่วนการออกแบบเชิงวิศวกรรมเน้นหาวิธีที่ใช้ได้จริงภายใต้เงื่อนไข','ทั้งสองมีวัตถุประสงค์เหมือนกันทุกประการ','การออกแบบเชิงวิศวกรรมไม่ใช้ความรู้วิทยาศาสตร์','วิธีการทางวิทยาศาสตร์ไม่ต้องใช้ข้อมูล'],a:0,w:'คำตอบของคำถามตรวจสอบความเข้าใจ หน้า 25'},
+ {q:'ขั้นตอนของกระบวนการออกแบบเชิงวิศวกรรมเป็นอย่างไรเมื่อลงมือทำ',o:['สลับไปมาหรือย้อนกลับได้ และต้องใช้ทักษะกระบวนการทางวิทยาศาสตร์ร่วมด้วย','ต้องเรียงตามลำดับ ห้ามย้อน','ไม่ต้องทดสอบหรือปรับปรุง','ใช้ได้เฉพาะวิชาเคมีอย่างเดียว'],a:0,w:'หน้า 25 ข้อ 14'},
+ {q:'ข้อใดเป็นตัวอย่างการบูรณาการความรู้ที่คู่มือยกในกิจกรรม 14.2',o:['ใช้ความรู้สารละลายอิเล็กโทรไลต์ร่วมกับความรู้การต่อวงจรไฟฟ้า ทำให้ใช้สารเคมีน้อยลง','ใช้ความรู้ชีววิทยาอย่างเดียว','ใช้เฉพาะความรู้การต่อวงจร ไม่ใช้เคมี','ไม่ต้องใช้ความรู้ใดเลย'],a:0,w:'หน้า 25 ข้อ 12'}],
+'14.3s':[
+ {q:'สถานการณ์: ต้องการรู้ว่าอุณหภูมิของน้ำส่งผลต่ออัตราการละลายของน้ำตาลอย่างไร (ตัวอย่างของผู้จัดทำหน้า) เหมาะกับวิธีใด',o:SORT,a:0,w:'เป็นคำถามเพื่ออธิบายปรากฏการณ์ ใช้การตั้งสมมติฐานและทดลองเปรียบเทียบ'},
+ {q:'สถานการณ์: ต้องทำที่กรองน้ำจากวัสดุในท้องถิ่นให้ได้น้ำใสตามเกณฑ์ที่ตั้งไว้ ภายในงบที่กำหนด (ตัวอย่างของผู้จัดทำหน้า)',o:SORT,a:1,w:'มีเงื่อนไขและต้องได้ชิ้นงานที่ใช้ได้จริง จึงเป็นงานออกแบบเชิงวิศวกรรม'},
+ {q:'สถานการณ์: สงสัยว่าชนิดของกรดมีผลต่อความเร็วที่ผงฟูเกิดฟองแก๊สหรือไม่ (ตัวอย่างของผู้จัดทำหน้า)',o:SORT,a:0,w:'เป็นคำถามเกี่ยวกับความสัมพันธ์ของตัวแปร ใช้วิธีการทางวิทยาศาสตร์'},
+ {q:'สถานการณ์: ต้องสร้างสายไฟแป้งโดว์ให้ LED สองหลอดสว่างภายใน 30 นาที โดยใช้สารเคมีน้อยที่สุด (จากกิจกรรม 14.2)',o:SORT,a:1,w:'คู่มืออธิบายกิจกรรมนี้ด้วยกระบวนการออกแบบเชิงวิศวกรรม (หน้า 23, 25)'},
+ {q:'สถานการณ์: ต้องการอธิบายว่าเหตุใดครีมที่มีซิงก์ออกไซด์มากขึ้นจึงมี SPF ต่างไป โดยเก็บข้อมูลเปรียบเทียบ (ตัวอย่างของผู้จัดทำหน้า)',o:SORT,a:0,w:'เป็นการหาคำอธิบายความสัมพันธ์ของตัวแปร จึงใช้วิธีการทางวิทยาศาสตร์'},
+ {q:'สถานการณ์: ต้องออกแบบกล่องเก็บอาหารให้เย็นได้นาน 3 ชั่วโมงด้วยวัสดุที่กำหนด (ตัวอย่างของผู้จัดทำหน้า)',o:SORT,a:1,w:'มีเงื่อนไขชัดเจนและต้องได้ชิ้นงานที่ใช้งานได้ จึงใช้การออกแบบ ทดสอบ ปรับปรุง'}],
+'14.4':[
+ {q:'รูปแบบอ้างอิงใดวางปีที่พิมพ์ไว้ในวงเล็บต่อท้ายชื่อผู้แต่ง เช่น Silberberg, M.S. (2009).',o:['APA','ACS','AMA','ทั้งสามรูปแบบเหมือนกัน'],a:0,w:'ตัวอย่างหนังสือหน้า 30–32: APA วางปีในวงเล็บหลังผู้แต่ง ส่วน ACS ท้ายรายการมีปีหลังสำนักพิมพ์ และ AMA วางปีหลังเครื่องหมายอัฒภาค'},
+ {q:'รายการ "Saptarini NM, Suryasaputra D, Nurmalia H. … 2015;7(2):275-280." เป็นรูปแบบใด',o:['AMA','APA','ACS','ไม่ตรงกับรูปแบบใด'],a:0,w:'AMA เขียนชื่อย่อโดยไม่มีจุด คั่นผู้แต่งด้วยจุลภาค และเขียนปี;ปีที่(ฉบับที่):หน้า (หน้า 32)'},
+ {q:'รูปแบบใดคั่นรายชื่อผู้แต่งด้วยเครื่องหมายอัฒภาค (;) และเขียนชื่อย่อเว้นวรรคระหว่างอักษร เช่น Saptarini, N. M.; Suryasaputra, D.',o:['ACS','APA','AMA','ไม่มีรูปแบบใด'],a:0,w:'ตัวอย่างบทความวารสารหน้า 31'},
+ {q:'ประโยค "…เซลล์มะเร็งสร้างและใช้กรดไขมันมากกว่าเซลล์ปกติ (Pizer, 1996, p. 745)" ใส่เลขหน้าเพราะเหตุใด',o:['เป็นการสรุปเนื้อหาบางส่วน ถอดความ หรือคัดลอกจากหน้านั้น','เพราะอ้างแนวคิดทั้งงาน','เพราะผู้แต่งชื่อซ้ำกัน','ไม่จำเป็นต้องใส่เลขหน้าในกรณีใดเลย'],a:0,w:'หน้า 34: ถ้าสรุปแนวคิดของทั้งงานไม่ต้องใส่เลขหน้า แต่ถ้าเป็นบางส่วน ถอดความ หรือคัดลอกให้ใส่เลขหน้า'},
+ {q:'ถ้าเขียนชื่อผู้แต่งไว้ในประโยคเองแล้ว (เช่น Nakamura, Aoyagi และ Yamamoto ได้ปรับปรุง…) วงเล็บท้ายประโยคควรมีอะไร',o:['ปีที่พิมพ์ และ/หรือเลขหน้า เช่น (1998, p. 1167-1171)','ชื่อผู้แต่งซ้ำทั้งหมด','URL ของงาน','ไม่ต้องมีอะไร'],a:0,w:'หน้า 34'}],
+'14.5':[
+ {q:'ข้อมูลเปรียบเทียบความเข้มข้นของไอออนที่เกิดจากกรด HCl กับ HF (เริ่มต้น 1.00 mol/L) เหมาะนำเสนอแบบใดมากที่สุด',o:['กราฟแท่ง เพราะเปรียบเทียบปริมาณระหว่างกลุ่ม','กราฟเส้น เพราะเห็นแนวโน้มตามเวลา','แผนภาพขั้นตอน เพราะเป็นวิธีทดลอง','ไม่ต้องนำเสนอ'],a:0,w:'คู่มือเสนอกราฟแท่งสำหรับข้อมูลเปรียบเทียบปริมาณของไอออนในกรด 2 ชนิด (หน้า 35)'},
+ {q:'ข้อมูลปริมาตรแก๊สไฮโดรเจน 0.002 mol ที่อุณหภูมิ −100 ถึง 100 °C (ความดัน 1 atm) เหมาะนำเสนอแบบใด',o:['กราฟเส้น เพราะต้องการเห็นแนวโน้มเมื่ออุณหภูมิเปลี่ยน','กราฟแท่งแยกแต่ละอุณหภูมิเป็นกลุ่มไม่เกี่ยวกัน','แผนภาพขั้นตอน','ข้อความล้วน'],a:0,w:'หน้า 35–36 กราฟเส้นแสดงความสัมพันธ์ระหว่างปริมาตรกับอุณหภูมิ'},
+ {q:'วิธีทดลองศึกษาผลของความเข้มข้นต่อภาวะสมดุลด้วยน้ำดอกอัญชัน (หลายหลอด หลายขั้นตอนต่อเนื่อง) เหมาะแบบใด',o:['แผนภาพขั้นตอน เพราะเห็นลำดับของการทดลองได้ง่าย','กราฟเส้น','กราฟแท่ง','ตารางตัวเลข'],a:0,w:'หน้า 36 คู่มือเสนอแผนภาพแสดงลำดับขั้นตอน'},
+ {q:'ตามเกณฑ์รายงานกิจกรรม 14.5 ถ้ามีข้อมูลที่จัดอยู่ในรูปแบบเหมาะสมครบ 3 ชุด ได้ระดับใด',o:['ดี','พอใช้','ต้องปรับปรุง','เกณฑ์ไม่กล่าวถึง'],a:0,w:'ครบ 3 ชุด = ดี · 2 ชุด = พอใช้ · 1 ชุดหรือไม่มี = ต้องปรับปรุง (หน้า 56 ของคู่มือ ภาคผนวก)'},
+ {q:'จากตารางข้อมูลของคู่มือ แก๊สไฮโดรเจน 0.002 mol ที่ 50 °C มีปริมาตรเท่าใด',o:['55 mL','45 mL','61 mL','36 mL'],a:0,w:'ตาราง (หน้า 35): −100 °C → 30 · −50 → 36 · 0 → 45 · 50 → 55 · 100 → 61 mL'}],
+'14.6':[
+ {q:'ลักษณะการพูดนำเสนอระดับ "ดี" ตามเกณฑ์ข้อใดถูกต้อง',o:['พูดจากความเข้าใจโดยไม่อ่านสไลด์/โปสเตอร์ สบตาผู้ฟัง และใช้ท่าทางประกอบเหมาะสม','อ่านสไลด์ทั้งหมดให้ชัดที่สุด','ก้มหน้าอ่านโปสเตอร์เพื่อไม่ให้ผิด','พูดให้เร็วที่สุดเพื่อให้ทันเวลา'],a:0,w:'เกณฑ์การพูดนำเสนอ (หน้า 58)'},
+ {q:'รายงานผลของกิจกรรม 14.3 ตามเกณฑ์มีส่วนประกอบใดบ้าง',o:['บทคัดย่อ บทนำและทฤษฎีหรืองานวิจัยที่เกี่ยวข้อง วิธีดำเนินการ ผลและการอภิปราย และการสรุปผล','เฉพาะผลการทดลองอย่างเดียว','เฉพาะรายการอ้างอิง','สไลด์ไม่น้อยกว่า 20 แผ่น'],a:0,w:'เกณฑ์รายงานกิจกรรม 14.3 (หน้า 53–55) และหน้า 29 ที่ระบุว่าจำนวนบทอาจมากหรือน้อยกว่า 5 บทได้'},
+ {q:'การออกแบบสไลด์ที่ได้ระดับ "ดี" ตามเกณฑ์ควรเป็นอย่างไร',o:['ขนาดและแบบอักษรเหมาะสม จัดวางข้อความและภาพให้เข้าใจง่าย','ใส่ข้อความเต็มทุกบรรทัดเพื่อให้ครบ','ใช้อักษรเล็กเพื่อให้ใส่ได้มาก','ใช้หลายสีให้ดูสะดุดตา'],a:0,w:'เกณฑ์การออกแบบสไลด์ (หน้า 58)'},
+ {q:'ถ้าพูดนำเสนอเกินเวลาที่กำหนด เกณฑ์หัวข้อ "ระยะเวลา" ได้ระดับใด',o:['ต้องปรับปรุง','ดี','พอใช้','ไม่นับคะแนน'],a:0,w:'หัวข้อนี้มี 2 ระดับ: พูดในเวลาที่กำหนด = ดี · เกินเวลา = ต้องปรับปรุง (หน้า 59)'}],
+'14.7':[
+ {q:'รายงานผลการสืบค้นกิจกรรม 14.7 ต้องมีข้อมูลงานประชุมวิชาการอย่างน้อยกี่งานจึงจะเข้าเกณฑ์ระดับ "ดี" (เมื่อเนื้อหาครบ)',o:['2 งาน','1 งาน','3 งาน','5 งาน'],a:0,w:'เกณฑ์รายงาน 14.7 (หน้า 59)'},
+ {q:'การประกวดโครงงานของนักวิทยาศาสตร์รุ่นเยาว์ (YSC) ในตัวอย่างของคู่มือ ผู้ชนะเลิศหรือผู้แทนประเทศได้ไปร่วมงานใด',o:['Intel ISEF ที่สหรัฐอเมริกา','การประชุมวิชาการ สวทช.','มหกรรมไอทีในกรุงเทพฯ เท่านั้น','ไม่มีรางวัลต่อยอด'],a:0,w:'หน้า 43 (ผู้ชนะเลิศหรือผู้แทนประเทศไทย)'},
+ {q:'การประชุมวิชาการประจำปี สวทช. ครั้งที่ 15 (NAC2019) จัดโดยหน่วยงานหลักใด',o:['สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.)','ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (เนคเทค)','สำนักงานคณะกรรมการอุดมศึกษา','จุฬาลงกรณ์มหาวิทยาลัยเพียงแห่งเดียว'],a:0,w:'ตัวอย่างที่ 2 หน้า 41'},
+ {q:'การประชุมวิชาการวิทยาศาสตร์และเทคโนโลยีเพื่อเยาวชน ครั้งที่ 13 (วทท. ครั้งที่ 13) จัดวันที่เท่าใด',o:['16–17 กรกฎาคม 2561','25–28 มีนาคม 2562','12–15 มีนาคม 2562','12–17 พฤษภาคม 2562'],a:0,w:'ตัวอย่างที่ 1 หน้า 40 (ส่วนวันอื่นเป็นของ NAC2019 และ YSC 2019)'}],
+'14.8':[
+ {q:'คำถามในงานประชุม: "ทำเรื่องนี้ไปทำไม" เป็นคำถามแบบใด (ตัวอย่างจากคู่มือ)',o:CLS,a:1,w:'กว้างเกินไป ควรถามให้เฉพาะ เช่น "เพราะเหตุใดจึงต้องทำการทดลองในส่วน…" (หน้า 43)'},
+ {q:'ผู้นำเสนองานวิจัยเรื่องที่กรองน้ำจากเปลือกส้ม กล้วย เงาะ มังคุด ถูกถามว่า "ถ้าใช้เปลือกทุเรียนหรือส้มโอจะดีกว่าไหม"',o:CLS,a:2,w:'เป็นเรื่องที่งานไม่ได้ทำ ถ้าอยากถามควรมีสมมติฐานหรือเหตุผลสนับสนุนประกอบ (หน้า 43)'},
+ {q:'"งานนี้ลอกใครมาหรือเปล่า"',o:CLS,a:3,w:'เป็นถ้อยคำดูหมิ่น ควรถามว่า "ผลงานนี้มีส่วนใดที่ใหม่หรือไม่ซ้ำซ้อนกับงานอื่น" หรือ "ผู้นำเสนอมีส่วนร่วมในการดำเนินการส่วนใดบ้าง" (หน้า 43)'},
+ {q:'"เพราะเหตุใดจึงต้องทำการทดลองในส่วนที่ใช้น้ำ 3 mL ต่อชุด" (ตัวอย่างของผู้จัดทำหน้า สร้างตามแนวคำถามที่คู่มือแนะนำ)',o:CLS,a:0,w:'ระบุส่วนที่สงสัยชัดเจน เกี่ยวกับสิ่งที่งานทำ และสุภาพ'},
+ {q:'"สรุปทั้งหมดให้ฟังอีกครั้งได้ไหม"',o:CLS,a:1,w:'คู่มือจัดเป็นคำถามไม่เฉพาะเจาะจง ถ้าไม่เข้าใจส่วนใดควรชี้ส่วนนั้นให้ชัด (หน้า 43)'},
+ {q:'ถ้าสงสัยว่าผลงานอาจซ้ำกับงานอื่น ควรถามผู้นำเสนอด้วยถ้อยคำใด',o:['ผลงานนี้มีส่วนใดที่ใหม่หรือไม่ซ้ำซ้อนกับงานอื่น','งานนี้ทำเองหรือเปล่า','ทำเรื่องนี้ไปทำไม','ถ้าเปลี่ยนวัสดุอื่นจะดีกว่าไหม'],a:0,w:'คู่มือแนะนำให้ถามเน้นส่วนที่ใหม่หรือบทบาทของผู้นำเสนอ แทนการกล่าวหา (หน้า 43)'}],
+'ex':[
+ {q:'ข้อสอบก่อนเรียน 1.1: "วิธีการทางวิทยาศาสตร์มีการใช้การทดลองเพื่อตรวจสอบสมมติฐาน"',o:['ถูกต้อง','ไม่ถูกต้อง'],a:0,w:'คู่มือ หน้า 7'},
+ {q:'ข้อสอบก่อนเรียน 1.2: "ผลการทดลองจะต้องสอดคล้องกับสมมติฐาน"',o:['ถูกต้อง','ไม่ถูกต้อง'],a:1,w:'ไม่ถูกต้อง สมมติฐานเป็นการคาดคะเน ผลอาจสอดคล้องหรือไม่ก็ได้ (หน้า 7)'},
+ {q:'ข้อสอบก่อนเรียน 1.3: "การเขียนสมมติฐานควรระบุตัวแปรต้นและตัวแปรตามให้ชัดเจน"',o:['ถูกต้อง','ไม่ถูกต้อง'],a:0,w:'คู่มือ หน้า 7'},
+ {q:'ข้อสอบก่อนเรียน 1.4: "นิยามเชิงปฏิบัติการช่วยกำหนดวิธีและขอบเขตของการทดลอง"',o:['ถูกต้อง','ไม่ถูกต้อง'],a:0,w:'คู่มือ หน้า 7'},
+ {q:'ข้อสอบก่อนเรียน 1.5: "การเปลี่ยนแปลงค่าของตัวแปรที่ต้องควบคุมให้คงที่ไม่มีผลต่อค่าของตัวแปรตาม"',o:['ถูกต้อง','ไม่ถูกต้อง'],a:1,w:'ไม่ถูกต้อง ตัวแปรควบคุมที่เปลี่ยนไปอาจทำให้ค่าตัวแปรตามเปลี่ยนได้ จึงต้องคุมให้คงที่ (หน้า 7)'}]
+};
+Object.keys(QUIZ).forEach((act,ai)=>QUIZ[act].forEach((q,qi)=>{const n=q.o.length,s=(qi*3+ai*2+1)%n;q.o=q.o.slice(s).concat(q.o.slice(0,s));q.a=(q.a-s+n)%n;}));
+/* ปรับตำแหน่งเฉลยเพิ่มสำหรับชุดที่ยังกระจุก (ผลตรวจ QA) */
+QUIZ['14.3s'].forEach((q,i)=>{if(i%2===1&&q.o.length===2){q.o=[q.o[1],q.o[0]];q.a=1-q.a;}});
+QUIZ['14.8'].forEach((q,i)=>{const n=q.o.length,r=[1,0,3,0,2,1][i]%n;if(r){q.o=q.o.slice(r).concat(q.o.slice(0,r));q.a=(q.a-r+n)%n;}});
+
+/* ======================= ข้อความอ่านก่อนทดลอง (เรียบเรียงใหม่) ======================= */
+/* reading-data:start */
+const READ={
+'14.1':{lead:'อ่านเรื่องการใช้ความรู้เคมีแก้ปัญหา ขั้นตอนวิธีการทางวิทยาศาสตร์ และตัวอย่างสถานการณ์ในคู่มือ แล้วใช้ตัวช่วยวางแผนของตัวเอง',secs:[
+{h:'ความรู้เคมีอยู่รอบตัว และขั้นตอนวิธีการทางวิทยาศาสตร์',pg:'คู่มือครู บทที่ 14 หน้า 8–10',html:`
+<p>อาหาร ยา ยานพาหนะ และอุปกรณ์ไฟฟ้ารอบตัวล้วนเกิดจากการคิดค้นหรือปรับปรุงที่อาศัยความรู้เคมี คู่มือยกการทำฝนหลวงเป็นตัวอย่าง โดยมีขั้นก่อกวน ขั้นเลี้ยงให้อ้วน และขั้นโจมตี ซึ่งแต่ละขั้นใช้ความรู้เคมีต่างกัน</p>
+<ul><li>การระบุปัญหาหรือกำหนดโจทย์วิจัยต้องอาศัยข้อมูลจากการสังเกต</li><li>ปัญหาหนึ่งอาจมีตัวแปรเกี่ยวข้องหลายตัว จึงต้องแตกเป็น <b>คำถามย่อย</b> และ <b>สมมติฐานย่อย</b> เพื่อกำหนดตัวแปรในการทดลองได้ชัด</li><li><b>ตัวแปรต้น</b> คือสิ่งที่ผู้ทดลองเปลี่ยน <b>ตัวแปรตาม</b> คือสิ่งที่วัดผล ส่วน <b>ตัวแปรที่ต้องควบคุม</b> ต้องคงที่เพื่อให้เปรียบเทียบได้เป็นธรรม</li><li><b>นิยามเชิงปฏิบัติการ</b> บอกว่าตัวแปรนั้นวัดอย่างไร เช่น อัตราการเกิดแก๊สเฉลี่ยจากปริมาตรแก๊สที่ได้ต่อช่วงเวลา โดยวัดด้วยการแทนที่น้ำ</li></ul>`,
+ q:['ทำไมจึงควรแตกคำถามใหญ่เป็นคำถามย่อย','เพราะคำถามย่อยชี้ไปที่ตัวแปรต้นและตัวแปรตามที่วัดได้จริง ทำให้ออกแบบการทดลองที่ตอบคำถามได้ชัดขึ้น (แนวคำตอบจากหน้า 9)']},
+{h:'ตัวอย่างปาท่องโก๋: ตัวแปรต้นสองตัว',pg:'คู่มือครู บทที่ 14 หน้า 9–11',html:`
+<p>ปัญหากลิ่นแอมโมเนียฉุนและความกรอบของปาท่องโก๋มีตัวแปรต้นสองตัว คือ อุณหภูมิน้ำมันและระยะเวลาทอด ตัวอย่างในคู่มือจึงแยกเป็นสองคำถามย่อย</p>
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">คำถามย่อย</th><th>ชุดเปรียบเทียบ</th><th>ค่าที่ทดสอบ</th><th class="l">คุมให้คงที่</th></tr></thead><tbody>
+<tr><td class="l">อุณหภูมิน้ำมันส่งผลต่อกลิ่นและความกรอบหรือไม่</td><td>190–200 °C</td><td>180–190 °C และ 200–210 °C</td><td class="l">ส่วนผสมและวิธีผสม ชนิดและปริมาณน้ำมัน เวลาทอด ผู้ทดสอบ</td></tr>
+<tr><td class="l">ระยะเวลาทอดส่งผลต่อกลิ่นและความกรอบหรือไม่</td><td>2 นาที</td><td>1 นาที และ 3 นาที</td><td class="l">ส่วนผสมและวิธีผสม ชนิดและปริมาณน้ำมัน อุณหภูมิน้ำมัน ผู้ทดสอบ</td></tr></tbody></table></div>
+<p class="small">สังเกตว่าตัวแปรต้นของข้อหนึ่งกลายเป็นตัวแปรควบคุมของอีกข้อหนึ่ง</p>`,
+ q:['ถ้าเปลี่ยนทั้งเวลาและอุณหภูมิพร้อมกันในชุดเดียว จะเกิดปัญหาอะไร','จะแยกไม่ได้ว่าความกรอบที่เปลี่ยนมาจากตัวแปรใด จึงควรเปลี่ยนทีละตัวและคุมตัวอื่นให้คงที่ (ข้อสังเกตของผู้จัดทำหน้า)']},
+{h:'สองสถานการณ์ของกิจกรรม 14.1',pg:'คู่มือครู บทที่ 14 หน้า 11–18',html:`
+<p><b>สถานการณ์ 1 โฟมฉนวนความร้อน</b> สาร CFCs ที่ใช้เป่าโฟมทำลายโอโซน เมื่อได้รับรังสี UV พันธะ C–Cl แตกให้อะตอม Cl ซึ่งทำปฏิกิริยากับ O₃ แล้วเกิดกลับมาใหม่ จึงทำลาย O₃ ต่อเนื่อง ตัวเลือกแทน CFCs ที่คู่มือยก: HCFCs (ทำปฏิกิริยากับ O₃ แต่ผลต่อบรรยากาศน้อยกว่า และกำลังรณรงค์ให้ลดใช้) · CO₂ (ไม่ทำปฏิกิริยากับ O₃ ไม่ไวไฟ แต่เป็นแก๊สเรือนกระจก) · เพนเทนและไซโคลเพนเทน (ไม่ทำปฏิกิริยากับ O₃ แต่ไวไฟและเป็นแก๊สเรือนกระจก)</p>
+<p>มาตรฐานทดสอบโฟมตาม JIS A 5905: ความหนาแน่นไม่เกิน 0.35 g/cm³ · ความชื้น 5–13 % · ความแข็งแรงดัดตั้งแต่ 2.0 N/mm² · พองตัวเมื่อแช่น้ำไม่เกิน 10 % · ความต้านทานความร้อนที่ความหนา 9 / 12 / 15 / 18 mm ต้องไม่ต่ำกว่า 0.163 / 0.206 / 0.267 / 0.327 m²K/W</p>
+<p><b>สถานการณ์ 2 ครีมกันแดด</b> สูตรตัวอย่างในคู่มือมี Padimate O ร้อยละ 7.00 และ Oxybenzone ร้อยละ 3.00 โดยมวลเป็นสารป้องกัน UVB ค่า SPF = MEDp ÷ MEDu (MED คือปริมาณรังสี UV น้อยที่สุดที่ทำให้ผิวแดง เมื่อทาครีม = MEDp ไม่ทา = MEDu) SPF 15 / 30 / 50 / 100 กรอง UVB ได้ร้อยละ 93 / 97 / 98 / 99 และ SPF ต่ำกว่า 15 ต้องมีคำเตือนตามที่ FDA สหรัฐฯ กำหนด กระทรวงสาธารณสุขอนุญาตให้มี ZnO ในเครื่องสำอางไม่เกินร้อยละ 25 โดยมวล</p>`,
+ q:['ข้อมูลที่สืบค้นของสถานการณ์ 1 ช่วยเลือก CO₂ มาทดสอบอย่างไร','CO₂ ไม่ทำปฏิกิริยากับ O₃ และไม่ไวไฟ ต่างจากเพนเทนที่ไวไฟ จึงเป็นตัวเลือกที่น่าทดสอบต่อ แม้เป็นแก๊สเรือนกระจกซึ่งควรนำไปอภิปรายเป็นข้อจำกัด (หน้า 14)']}
+]},
+'14.2':{lead:'อ่านเรื่องกระบวนการออกแบบเชิงวิศวกรรม โจทย์และเงื่อนไขของสายไฟแป้งโดว์ เหตุผลเลือกสาร และการต่อวงจรแบบอนุกรมกับขนาน',secs:[
+{h:'วิธีการทางวิทยาศาสตร์กับกระบวนการออกแบบเชิงวิศวกรรม',pg:'คู่มือครู บทที่ 14 หน้า 19, 25–26',html:`
+<p>วิธีการทางวิทยาศาสตร์ตั้งคำถามเพื่อสร้างคำอธิบายปรากฏการณ์และความรู้ ส่วนกระบวนการออกแบบเชิงวิศวกรรมเน้นแก้ปัญหาหรือพัฒนานวัตกรรมให้ใช้ได้จริงภายใต้เงื่อนไข</p>
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">วิธีการทางวิทยาศาสตร์</th><th class="l">ส่วนที่ใช้ร่วมกัน</th><th class="l">กระบวนการออกแบบเชิงวิศวกรรม</th></tr></thead><tbody>
+<tr><td class="l">ตั้งคำถามเพื่อทำความเข้าใจปรากฏการณ์</td><td class="l">—</td><td class="l">กำหนดปัญหาและเงื่อนไข</td></tr>
+<tr><td class="l">—</td><td class="l">ใช้ความรู้และรวบรวมข้อมูลที่เกี่ยวข้อง</td><td class="l">—</td></tr>
+<tr><td class="l">—</td><td class="l">ออกแบบวิธีการและลงมือโดยใช้ทักษะกระบวนการทางวิทยาศาสตร์</td><td class="l">—</td></tr>
+<tr><td class="l">วิเคราะห์ข้อมูลและสรุปผลเพื่อสร้างคำอธิบายหรือความรู้</td><td class="l">—</td><td class="l">วิเคราะห์ ทดสอบ ประเมิน ปรับปรุง จนได้วิธีที่เหมาะสม</td></tr></tbody></table></div>`,
+ q:['ในกิจกรรมสายไฟแป้งโดว์ ขั้นใดตรงกับ "ปรับปรุงวิธีการ"','ขั้นที่ครั้งแรกไม่สำเร็จ แล้วเตรียมสารละลายเกลือเพิ่มและนวดซ้ำจนหลอดสว่าง (หน้า 22–23)']},
+{h:'โจทย์ เงื่อนไข และวัสดุของสายไฟแป้งโดว์',pg:'คู่มือครู บทที่ 14 หน้า 19–21',html:`
+<p><b>โจทย์:</b> สร้างสายไฟจากแป้งโดว์ให้หลอด LED สว่าง 2 หลอด วัสดุต่อกลุ่ม: แป้งโดว์ 30 g (1 ก้อน) เกลือแกง น้ำตาลทราย เบกกิ้งโซดาอย่างละ 5 g น้ำกลั่น 3 mL หลอด LED ขนาดเล็ก 1.5 V 2 หลอด ถ่านไฟฉาย 1.5 V 2 ก้อนในรางถ่าน สายไฟต่อคลิปปากจระเข้ ภาชนะผสม และผังตำแหน่งวางหลอดกับรางถ่าน</p>
+<p><b>เงื่อนไข:</b> เลือกสารเพียง 1 ชนิดเติมลงในแป้ง · ใช้เวลาไม่เกิน 30 นาที · ใช้สารเคมีน้อยที่สุด · วางหลอดและรางถ่านตามผัง กลุ่มขอแป้งหรือสารเพิ่มไม่ได้</p>
+<p><b>เกณฑ์ว่าสว่าง:</b> มองจากด้านข้างของหลอดต้องเห็นจุดสว่างทั้งด้านบนและด้านล่าง ถ้าเห็นเฉพาะด้านล่างถือว่ายังไม่สว่าง · ระวังเติมน้ำมากเกินไปจนแป้งเหลวปั้นไม่ได้</p>`,
+ q:['ทำไมคู่มือให้นักเรียนบันทึกแผนก่อนลงมือ','เพื่อให้เห็นเหตุผลของการเลือกสารและขั้นตอน ไม่ใช้สารเกินพอโดยไม่รู้ว่าปริมาณน้อยสุดคือเท่าใด จึงนำมาอภิปรายการวางแผนได้ (หน้า 21)']},
+{h:'เลือกสารด้วยความรู้เคมี และต่อวงจร',pg:'คู่มือครู บทที่ 14 หน้า 22–25',html:`
+<p>NaCl และ NaHCO₃ เป็นสารประกอบไอออนิก ละลายน้ำแล้วแตกตัวเป็นไอออนจึงนำไฟฟ้าได้ แต่เมื่อชั่งมวลเท่ากัน NaCl ให้ไอออนมากกว่า จึงคาดว่าใช้น้อยกว่า น้ำตาลทรายละลายแล้วไม่แตกตัว ไม่ช่วยให้นำไฟฟ้า</p>
+<p>ผลตัวอย่าง: เกลือแกง 0.2 g ในน้ำ 1 mL นวดกับแป้งแล้วปั้นยาว 18 cm ไม่ทำให้ LED ทั้งสองสว่าง ปรับเป็นเกลือ 0.6 g ในน้ำ 3 mL จึงสว่าง</p>
+<p>วงจรในกิจกรรมเป็นแบบ <b>อนุกรม</b> ถ้าต่อ LED แบบ <b>ขนาน</b> แต่ละหลอดได้ความต่างศักย์เท่ากับของแหล่งกำเนิด จึงสว่างกว่า ส่วนแบบอนุกรมแบ่งความต่างศักย์ให้แต่ละหลอด</p>`,
+ q:['มวลเท่ากัน NaCl กับ NaHCO₃ ใครให้ไอออนมากกว่า และคิดอย่างไร','NaCl 1 g ≈ 0.0171 mol × 2 ไอออน ≈ 0.034 mol ส่วน NaHCO₃ 1 g ≈ 0.0119 mol × 2 ≈ 0.024 mol (คำนวณโดยผู้จัดทำหน้าจากมวลต่อโมล 58.5 และ 84)']}
+]},
+'14.3':{lead:'อ่านข้อกำหนดของกิจกรรม 14.3 ซึ่งเป็นโครงงานแก้ปัญหาด้วยการบูรณาการความรู้ แล้วฝึกเลือกวิธีและวางแผนเวลา',secs:[
+{h:'โจทย์ของกิจกรรม 14.3 และการแบ่งเวลา',pg:'คู่มือครู บทที่ 14 หน้า 26–29',html:`
+<p>นักเรียนเลือกสถานการณ์ปัญหาหรือประเด็นที่สนใจ แล้วออกแบบแนวทางแก้ปัญหาโดยบูรณาการความรู้เคมีกับศาสตร์อื่น ใช้วิธีการทางวิทยาศาสตร์ (เริ่มด้วยการตั้งคำถาม) หรือกระบวนการออกแบบเชิงวิศวกรรม (เริ่มด้วยปัญหาและเงื่อนไขที่ชัดเจน) ก็ได้ คู่มือเสนอเวลาแนะนำรวม 23 ชั่วโมง ดังตาราง</p>
+<div class="tw"><table class="tbl-sm"><thead><tr><th class="l">ขั้นงาน (สรุปใหม่)</th><th>ชั่วโมง</th></tr></thead><tbody>
+<tr><td class="l">สำรวจปัญหาในโรงเรียน ท้องถิ่น ประเทศ หรือโลก แล้วเลือกสถานการณ์</td><td>1</td></tr>
+<tr><td class="l">นำเสนอสถานการณ์พร้อมข้อมูลสนับสนุนและคำถามหรือเงื่อนไข</td><td>3</td></tr>
+<tr><td class="l">อภิปรายข้อมูลที่สืบค้นในกลุ่ม</td><td>3</td></tr>
+<tr><td class="l">กำหนดวัตถุประสงค์ ขอบเขต และออกแบบวิธีดำเนินการ</td><td>2</td></tr>
+<tr><td class="l">นำเสนอแนวทางที่ออกแบบและรับข้อเสนอแนะ</td><td>3</td></tr>
+<tr><td class="l">ลงมือแก้ปัญหาตามที่ออกแบบ</td><td>8</td></tr>
+<tr><td class="l">ปรึกษาเรื่องการสรุปผลการดำเนินการ</td><td>3</td></tr>
+<tr><th class="l">รวม</th><th>23</th></tr></tbody></table></div>`,
+ q:['คู่มือบอกให้ครูประเมินความสอดคล้องของอะไรบ้างเมื่อนักเรียนใช้วิธีการทางวิทยาศาสตร์','สมมติฐานและตัวแปรต้องสอดคล้องกับคำถาม และวิธีตรวจสอบต้องสอดคล้องกับสมมติฐานจนตอบคำถามได้ (หน้า 28)']}
+]},
+'14.4':{lead:'อ่านเรื่องรูปแบบการนำเสนอผลงานวิชาการ ส่วนประกอบรายงาน และรูปแบบการอ้างอิงแบบ APA ACS AMA',secs:[
+{h:'รายงานและการเผยแพร่ผลงาน',pg:'คู่มือครู บทที่ 14 หน้า 29',html:`
+<p>รูปแบบนำเสนอผลงานวิชาการที่นิยมมี 3 แบบ คือ <b>รายงาน โปสเตอร์ และการบรรยาย</b> รายงานมักมีส่วนนำ (มีบทคัดย่อยาวราว 1 หน้า) และส่วนเนื้อหา ซึ่งอาจมีมากหรือน้อยกว่า 5 บทก็ได้ เช่น รวมทฤษฎีและงานวิจัยที่เกี่ยวข้องไว้ในบทนำ หรือแยกบทผลการดำเนินการเมื่อมีข้อมูลหลายประเด็น</p>`,
+ q:['รายงานต้องมี 5 บทเสมอหรือไม่','ไม่ต้อง จำนวนบทปรับตามเนื้อหาได้ (หน้า 29)']},
+{h:'การเขียนรายการอ้างอิง (บรรณานุกรม) 3 รูปแบบ',pg:'คู่มือครู บทที่ 14 หน้า 30–33',html:`
+<p>กิจกรรมนี้ให้สืบค้นรูปแบบการเขียนอ้างอิงอย่างน้อยสามรูปแบบ ตัวอย่างในคู่มือใช้ APA, ACS และ AMA โดยแต่ละรูปแบบมีแม่แบบสำหรับหนังสือ บทความวารสาร และเว็บไซต์</p>
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">จุดสังเกต</th><th class="l">APA</th><th class="l">ACS</th><th class="l">AMA</th></tr></thead><tbody>
+<tr><td class="l">ผู้แต่งหลายคน</td><td class="l">Last, N.M., Last, D., &amp; Last, H.</td><td class="l">Last, N. M.; Last, D.; Last, H.</td><td class="l">Last NM, Last D, Last H</td></tr>
+<tr><td class="l">ตำแหน่งปี</td><td class="l">ในวงเล็บหลังผู้แต่ง</td><td class="l">หลังสำนักพิมพ์ (หนังสือ) หรือหลังชื่อวารสาร (บทความ)</td><td class="l">หลังอัฒภาค</td></tr>
+<tr><td class="l">วารสาร</td><td class="l">ชื่อเต็ม, ปีที่(ฉบับที่), หน้า</td><td class="l">ชื่อย่อ ปี, ปีที่ (ฉบับที่), หน้า</td><td class="l">ชื่อย่อ. ปี;ปีที่(ฉบับที่):หน้า</td></tr></tbody></table></div>
+<p>การอ้างอิง <b>แทรกในเนื้อหา</b> แบบ APA ใช้ระบบนาม–ปี ในวงเล็บ คั่นด้วยจุลภาค เช่น (Laakso, 2000) ถ้าสรุปทั้งงานไม่ต้องใส่หน้า ถ้าสรุปบางส่วน ถอดความ หรือคัดลอก ใส่เลขหน้า เช่น (Pizer, 1996, p. 745) และถ้าเขียนชื่อผู้แต่งในประโยคแล้ว ในวงเล็บใส่เพียงปีและ/หรือหน้า</p>`,
+ q:['ต้องเลือกใช้รูปแบบอ้างอิงใด','ขึ้นกับที่ครูหรือแหล่งเผยแพร่กำหนด สิ่งสำคัญคือใช้รูปแบบเดียวทั้งรายงาน (ข้อแนะนำของผู้จัดทำหน้า)']}
+]},
+'14.5':{lead:'อ่านเรื่องการเลือกรูปแบบนำเสนอข้อมูลในโปสเตอร์ให้เหมาะกับชนิดของข้อมูล แล้วลองดูข้อมูลทั้งสามชุดของคู่มือ',secs:[
+{h:'จัดข้อมูลให้อยู่ในรูปแบบที่เหมาะสม',pg:'คู่มือครู บทที่ 14 หน้า 34–36',html:`
+<p>โปสเตอร์มีทั้งส่วนจัดทำและส่วนพูดนำเสนอ กิจกรรม 14.5 ให้ฝึกจัดข้อมูลสามชุดให้อยู่ในรูปแบบที่ผู้อ่านเข้าใจง่าย</p>
+<ul><li><b>ชุดที่ 1</b> ความเข้มข้นของไอออนจากกรด HCl กับ HF เริ่มต้น 1.00 mol/L: HCl ให้ H⁺ และ Cl⁻ อย่างละ 1.00 mol/L ส่วน HF ให้ H⁺ และ F⁻ อย่างละ 0.04 mol/L (เปรียบเทียบปริมาณ → กราฟแท่ง)</li><li><b>ชุดที่ 2</b> ปริมาตรแก๊สไฮโดรเจน 0.002 mol ที่ความดัน 1 atm: −100 °C → 30 mL · −50 → 36 · 0 → 45 · 50 → 55 · 100 → 61 (เห็นแนวโน้ม → กราฟเส้น)</li><li><b>ชุดที่ 3</b> วิธีทดลองผลของความเข้มข้นต่อสมดุลด้วยน้ำดอกอัญชัน (ลำดับขั้นตอน → แผนภาพ)</li></ul>`,
+ q:['ถ้าข้อมูลคือชื่อสารกับค่าความเข้มข้น ควรเรียงแท่งต่อเนื่องเหมือนกราฟเส้นไหม','ไม่ควร เส้นเชื่อมจุดสื่อว่ามีค่าต่อเนื่องระหว่างจุด ซึ่งไม่ตรงกับข้อมูลที่เป็นหมวดหมู่ (ข้อสังเกตของผู้จัดทำหน้า)']}
+]},
+'14.6':{lead:'อ่านเรื่องการเขียนรายงาน ทำโปสเตอร์หรือสไลด์ และการพูดนำเสนอผลงานจากกิจกรรม 14.3',secs:[
+{h:'รายงาน โปสเตอร์ สไลด์ และการพูด',pg:'คู่มือครู บทที่ 14 หน้า 37–38 และเกณฑ์ หน้า 53–59',html:`
+<p>กิจกรรม 14.6 ใช้เวลา 8 ชั่วโมง (ปรึกษาเรื่องรายงาน 2 · จัดทำโปสเตอร์หรือสไลด์ 3 · นำเสนอและแลกเปลี่ยน 3) ครูแจ้งขนาด รูปแบบ และเวลาบรรยายล่วงหน้า เกณฑ์ตัวอย่างของคู่มือมองหาสิ่งต่อไปนี้</p>
+<ul><li><b>รายงาน:</b> ข้อมูลครบหัวข้อและเล่มเรียบร้อย · บทคัดย่อแสดงภาพรวมและอ่านเข้าใจง่าย · บทนำแสดงที่มาและความสำคัญ พร้อมทฤษฎีหรืองานวิจัยที่เกี่ยวข้อง · วิธีดำเนินการเป็นลำดับ บอกอุปกรณ์ครบ · มีการจัดกระทำข้อมูล วิเคราะห์ และอภิปรายสอดคล้องวัตถุประสงค์ · สรุปครอบคลุมวัตถุประสงค์ · ส่งทันเวลา</li><li><b>โปสเตอร์:</b> ขนาดตามกำหนดและหัวข้อครบ · เนื้อหาถูกต้องสมบูรณ์ · ภาษาเข้าใจง่ายสะกดถูก · ส่งทันเวลา</li><li><b>สไลด์:</b> ประเด็นสำคัญครบ เนื้อหาถูกต้อง · ภาษาดี · ขนาดและแบบอักษรเหมาะสม จัดวางเข้าใจง่าย · ส่งทันเวลา</li><li><b>การพูด:</b> พูดจากความเข้าใจไม่อ่านสไลด์ สบตาผู้ฟัง ท่าทางเหมาะสม · ออกเสียงชัด เว้นวรรคและจังหวะดี · อยู่ในเวลา · แต่งกายสุภาพ</li></ul>`,
+ q:['ทำไมไม่ควรเอาข้อความทั้งย่อหน้าใส่สไลด์แล้วอ่านตาม','ผู้ฟังอ่านเองได้เร็วกว่า และเกณฑ์ต้องการให้พูดจากความเข้าใจ สไลด์ควรเสนอประเด็นสำคัญและภาพที่ช่วยเข้าใจ (ข้อสังเกตของผู้จัดทำหน้าตามเกณฑ์หน้า 58)']}
+]},
+'14.7':{lead:'อ่านเรื่องความหมายและตัวอย่างงานประชุมวิชาการ ก่อนสืบค้นงานอย่างน้อยสองงาน',secs:[
+{h:'งานประชุมวิชาการที่คู่มือยกเป็นตัวอย่าง',pg:'คู่มือครู บทที่ 14 หน้า 39–43',html:`
+<p>การประชุมวิชาการ สัมมนา หรือนิทรรศการให้โอกาสแลกเปลี่ยนความคิด พัฒนากระบวนการคิดและทักษะสื่อสาร ครูควรให้นักเรียนสืบค้นล่วงหน้าแล้วนำมาเสนอ ตัวอย่างในคู่มือ (เป็นงานปี 2561–2562 ให้สืบค้นงานในปัจจุบันของตนเอง):</p>
+<ul><li><b>วทท. ครั้งที่ 13</b> 16–17 กรกฎาคม 2561 ไบเทค กรุงเทพฯ จัดโดย สสวท. และหน่วยงานร่วม รูปแบบ: นำเสนอวิจัยแบบบรรยายและโปสเตอร์ อบรมเชิงปฏิบัติการ แนะแนวการศึกษาต่อ</li><li><b>NAC2019</b> 25–28 มีนาคม 2562 อุทยานวิทยาศาสตร์ประเทศไทย ปทุมธานี จัดโดย สวทช. รูปแบบ: สัมมนา นิทรรศการ เยี่ยมชมห้องปฏิบัติการ กิจกรรมเยาวชน</li><li><b>YSC 2019</b> การประกวดโครงงานนักเรียน ม.2–6 แปดสาขา (รวมเคมี) จัดโดยเนคเทค มีกำหนดการหลายขั้นตั้งแต่สมัครข้อเสนอโครงงานจนถึงรอบชิงชนะเลิศ 12–15 มีนาคม 2562 ผู้ชนะหรือผู้แทนประเทศไปงาน Intel ISEF ที่สหรัฐอเมริกา</li></ul>`,
+ q:['งานแบบประกวดโครงงานต่างจากงานประชุมวิชาการทั่วไปอย่างไร','ประกวดโครงงานมีขั้นสมัคร ตรวจประเมิน และรอบชิงชนะเลิศตามกำหนดการ ส่วนการประชุมทั่วไปเน้นบรรยาย โปสเตอร์ และนิทรรศการ (ตัวอย่างหน้า 40–43)']}
+]},
+'14.8':{lead:'อ่านเรื่องบทบาทผู้ฟังและผู้นำเสนอในงานประชุม และการเขียนรายงานสรุป',secs:[
+{h:'ผู้ฟังที่ดี คำถามที่เหมาะสม และรายงานสรุป',pg:'คู่มือครู บทที่ 14 หน้า 43–44',html:`
+<p>นักเรียนเข้าร่วมประชุมวิชาการในฐานะผู้ฟังหรือผู้นำเสนอ แล้วจัดทำรายงานสรุป เวลา 2 ชั่วโมงในคู่มือเป็นเวลาอภิปรายสรุปกับครู ไม่รวมเวลาเข้าร่วมงาน ครูอาจจัดประชุมวิชาการระดับห้อง โรงเรียน หรือกลุ่มโรงเรียนเพื่อให้ทุกคนมีประสบการณ์</p>
+<p>คำถามที่ไม่เหมาะสมมี 3 แบบในคู่มือ: <b>ไม่ชัดเจนหรือกว้างเกินไป</b> · <b>นอกเรื่อง</b> (ควรมีสมมติฐานหรือเหตุผลประกอบถ้าอยากถามเรื่องที่งานไม่ได้ทำ) · <b>ดูหมิ่น</b> (ให้ถามถึงส่วนที่ใหม่หรือบทบาทของผู้นำเสนอแทน)</p>`,
+ q:['ถ้าอยากรู้ว่าใช้วัสดุอื่นจะดีกว่าไหม ควรถามอย่างไร','ถามพร้อมเหตุผลหรือสมมติฐาน เช่น เพราะวัสดุนั้นมีสมบัติที่น่าจะช่วยเรื่องใด จึงอยากทราบว่างานนี้เคยพิจารณาหรือไม่ (ตัวอย่างถ้อยคำของผู้จัดทำหน้า)']}
+]}
+};
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่กิจกรรม ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทำ</span></div></div>`;}
+/* reading-engine:end */
+
+/* ======================= กิจกรรม 14.1 ตัวช่วยวางแผนแก้ปัญหา ======================= */
+const STEPS141=[
+ ['problem','ระบุปัญหา','ปัญหาคืออะไร เกี่ยวกับความรู้เคมีเรื่องใด และมีข้อสังเกตอะไรสนับสนุน'],
+ ['question','ตั้งคำถาม','ต้องสอดคล้องกับสถานการณ์ และช่วยกำหนดขอบเขตการออกแบบวิธีแก้ปัญหา'],
+ ['search','ข้อมูลที่ต้องสืบค้นและสิ่งที่พบ','ความรู้เคมีและข้อเท็จจริงอื่นที่เกี่ยวข้อง ต้องมากพอจะนำไปแก้ปัญหา'],
+ ['subq','คำถามย่อย','แตกคำถามใหญ่ให้เหลือสิ่งที่ทดสอบได้ด้วยตัวแปรต้นหนึ่งตัว'],
+ ['hyp','สมมติฐาน','ควรกล่าวถึงตัวแปรต้นและตัวแปรตาม เช่น "ถ้า … ดังนั้น …"'],
+ ['iv','ตัวแปรต้น',''],['dv','ตัวแปรตาม',''],['cv','ตัวแปรที่ต้องควบคุมให้คงที่','เขียนได้หลายข้อ'],
+ ['opdef','นิยามเชิงปฏิบัติการของตัวแปรตาม','บอกว่าวัดหรือสังเกตอย่างไร'],
+ ['method','วิธีตรวจสอบสมมติฐาน','เป็นลำดับขั้นตอน มีชุดเปรียบเทียบ และบอกว่าจะเปรียบเทียบผลอย่างไร'],
+ ['concl','แนวทางแก้ปัญหาที่จะนำเสนอ','สรุปว่าผลที่ได้จะนำไปสู่การแก้ปัญหาตามสถานการณ์อย่างไร (เขียนหลังรู้ผลหรือคาดการณ์ก็ได้)']];
+const SC141={
+ foam:{label:'สถานการณ์ 1: โฟมฉนวนความร้อนแทน CFCs',intro:'คุณเป็นพนักงานโรงงานโฟมฉนวนความร้อน ได้รับมอบหมายให้ปรับปรุงการผลิตโดยใช้แก๊สชนิดอื่นแทน CFCs (เรียบเรียงจากคู่มือ หน้า 13)',
+  ex:{problem:'CFCs ที่ใช้เป่าโฟมทำให้เกิดช่องโหว่โอโซน',question:'แก๊สชนิดใดใช้แทน CFCs ในการทำโฟมฉนวนความร้อนได้',search:'กลไกที่ CFC-11 ทำลาย O₃ (UV ตัดพันธะให้ Cl ซึ่งวนทำลาย O₃) · ตัวเลือกแทน CFCs: HCFCs, CO₂, เพนเทน, ไซโคลเพนเทน พร้อมข้อดีข้อเสีย · รายการทดสอบโฟมตาม JIS A 5905 ผลสรุป: CO₂ ไม่ทำปฏิกิริยากับ O₃ และไม่ไวไฟ จึงอาจนำมาใช้แทนได้',subq:'ใช้ CO₂ ปริมาณเท่าใดจึงได้โฟมที่สมบัติใกล้เคียงกับโฟมที่ผลิตด้วย CFCs',hyp:'ปริมาณ CO₂ ที่ใช้ในการผลิตส่งผลต่อสมบัติของโฟมฉนวนความร้อน',iv:'ปริมาณแก๊ส CO₂ ที่ใช้ผลิตโฟม',dv:'สมบัติของโฟมฉนวนความร้อน',cv:'วัสดุที่ใช้ทำโฟม · ความหนาของโฟม · วิธีทดสอบโฟม',opdef:'(คู่มือไม่ได้ยกนิยามเชิงปฏิบัติการของสถานการณ์นี้ ลองเขียนเองว่า "สมบัติของโฟม" วัดจากค่าใดในรายการทดสอบ)',method:'1) ผลิตโฟมด้วย CFCs เป็นชุดเปรียบเทียบ 2) ผลิตโฟมหนาเท่าเดิมแต่ใช้ CO₂ ปริมาณต่าง ๆ 3) ทดสอบความหนาแน่น ความชื้น ความแข็งแรงดัด การพองตัวเมื่อแช่น้ำ และความต้านทานความร้อนของโฟมชุดแรก 4) เปรียบเทียบสมบัติของโฟมที่ใช้ CO₂ กับชุดเปรียบเทียบ',concl:'(เขียนเองหลังได้ผล)'}},
+ sun:{label:'สถานการณ์ 2: ครีมกันแดดที่ป้องกัน UVB',intro:'คุณเป็นนักเคมีในบริษัทเครื่องสำอาง ได้รับมอบหมายให้พัฒนาครีมกันแดดที่ป้องกันรังสี UVB ได้ (เรียบเรียงจากคู่มือ หน้า 15)',
+  ex:{problem:'รังสี UVB ทำให้เป็นมะเร็งผิวหนังได้',question:'ครีมกันแดดที่ป้องกัน UVB ควรมีส่วนผสมอย่างไร',search:'สูตรครีมตัวอย่างและสารที่ป้องกัน UVB (เช่น Padimate O และ Oxybenzone ในสูตรตัวอย่าง) · ค่า SPF = MEDp ÷ MEDu และตาราง SPF กับร้อยละที่กรอง · คำเตือนสำหรับ SPF ต่ำกว่า 15 · ข้อกำหนดให้ใช้ ZnO ได้ไม่เกินร้อยละ 25 โดยมวล ผลสรุป: เปลี่ยนชนิดสารป้องกัน UVB เช่นใช้ ZnO แทนได้',subq:'ควรใช้ ZnO ปริมาณเท่าใดแทน Padimate O และ Oxybenzone โดยยังป้องกัน UVB ได้',hyp:'ปริมาณ ZnO ในครีมกันแดดมีผลต่อประสิทธิภาพการป้องกัน UVB',iv:'ปริมาณ ZnO',dv:'ประสิทธิภาพการป้องกัน UVB',cv:'องค์ประกอบอื่นของครีมยกเว้นสารที่ถูกแทน · คุณภาพของ ZnO',opdef:'ใช้ ZnO แทนสัดส่วนของ Padimate O, Oxybenzone และน้ำบริสุทธิ์ โดยสัดส่วนองค์ประกอบอื่นคงที่ · ประสิทธิภาพการป้องกัน UVB วัดจากค่า SPF',method:'1) เตรียมครีมสูตรเดิมที่มี Padimate O และ Oxybenzone เป็นชุดเปรียบเทียบ 2) เตรียมสูตรเดียวกันแต่ใช้ ZnO แทนในปริมาณร้อยละ 10, 15, 20, 25 โดยมวล 3) หาค่า SPF ของแต่ละสูตร',concl:'(เขียนเองหลังได้ผล)'}},
+ own:{label:'หัวข้อของฉันเอง',intro:'เลือกสถานการณ์จากชีวิตประจำวัน อาชีพ หรืออุตสาหกรรมที่ใช้ความรู้เคมี (ข้อกำหนดของกิจกรรมในคู่มือ หน้า 11–12 ให้เลือกสถานการณ์แล้วระบุปัญหา)',ex:null}};
+const RUB141=['ระบุปัญหาชัดเจน ตั้งคำถามสอดคล้องกับสถานการณ์ และคำถามช่วยกำหนดขอบเขตการออกแบบ','ศึกษาข้อมูลเคมีและข้อเท็จจริงที่เกี่ยวข้องอย่างเพียงพอต่อการแก้ปัญหา','สมมติฐานสอดคล้องกับคำถาม และระบุตัวแปรถูกต้อง','วิธีตรวจสอบสอดคล้องกับสมมติฐาน และเป็นลำดับขั้นตอน','นำเสนอชัดเจนเป็นลำดับ และมีส่วนร่วมอภิปรายแลกเปลี่ยนความรู้'];
+let sc141='foam';
+function act141(){
+  return`<h2>กิจกรรม 14.1 การแก้ปัญหาด้วยวิธีการทางวิทยาศาสตร์โดยใช้ความรู้ทางเคมี</h2><p class="sub">คู่มือครู หน้า 11–18 · งานเขียนบันทึกในเครื่องนี้ และส่งให้ครูพร้อมคะแนนเมื่อกดส่ง ไม่มีคะแนนอัตโนมัติ (มีคะแนนเฉพาะแบบทดสอบท้ายกิจกรรม)</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>ระบุปัญหาจากสถานการณ์ที่กำหนด</li><li>ตั้งคำถาม สมมติฐาน และระบุตัวแปรโดยใช้ความรู้ทางเคมี</li><li>ออกแบบวิธีตรวจสอบสมมติฐาน</li><li>นำเสนอแนวทางการแก้ปัญหา</li></ol></div>
+  <div class="box"><h3>วิธีทำกิจกรรม (เรียบเรียงใหม่จากคู่มือ)</h3><ol><li>เลือกหนึ่งสถานการณ์ ระบุปัญหา ตั้งคำถาม และเลือกคำสำคัญสำหรับสืบค้น (เช่น CFC replacement, sunscreen ingredients, UVB protection)</li><li>อภิปรายข้อมูลในกลุ่ม</li><li>ตั้งสมมติฐาน กำหนดตัวแปร ออกแบบวิธีตรวจสอบ</li><li>นำเสนอและอภิปรายในชั้นเรียน (คู่มือเสนอเวลา 10 ชั่วโมง)</li></ol></div></div>
+  <div class="lab"><h3>ตัวช่วยวางแผนแก้ปัญหา</h3><p class="small">เลือกสถานการณ์ แล้วเขียนทีละขั้น ตัวอย่างจากคู่มือซ่อนไว้ให้เปิดดูหลังเขียนของตัวเองแล้ว (สถานการณ์ 1 และ 2 เป็นของคู่มือ หัวข้อของฉันเองเป็นของคุณ)</p>
+  <div class="btns" id="scChips" role="group" aria-label="เลือกสถานการณ์">${Object.keys(SC141).map(k=>`<button class="chip" type="button" data-sc="${k}" aria-pressed="false">${SC141[k].label}</button>`).join('')}</div><div id="scBody"></div></div>
+  <div class="lab"><h3>เครื่องคิดเลข SPF (ประกอบสถานการณ์ 2)</h3><p class="small">SPF = MEDp ÷ MEDu ตามคู่มือ หน้า 16 ค่าเริ่มต้นเป็นตัวเลขสมมติของผู้จัดทำหน้า ไม่ใช่ข้อมูลจริง ร้อยละที่กรองคำนวณจาก 100(1 − 1/SPF) ซึ่งตรงกับตารางในคู่มือ (ข้อสังเกตของผู้จัดทำหน้า)</p>
+  <div class="ledrow"><label>MEDu (ผิวไม่ทาครีม) หน่วยปริมาณรังสีสมมติ<input type="number" id="spfU" min="1" step="1" value="20"></label><label>MEDp (ผิวทาครีม) หน่วยเดียวกัน<input type="number" id="spfP" min="1" step="1" value="600"></label></div>
+  <div class="stat"><div>SPF<b id="spfV">–</b></div><div>กรอง UVB ได้โดยประมาณ<b id="spfB">–</b></div></div><div class="small" id="spfN" aria-live="polite"></div></div>
+  <div class="box"><h3>ตรวจตนเองตามเกณฑ์ระหว่างทำกิจกรรม (ติ๊กเมื่อทำได้)</h3><div id="rub141">${checksHTML(RUB141)}</div></div>
+  ${quizHTML('14.1')}`;
+}
+function renderSc(){
+  const s=SC141[sc141],ns='14.1:'+sc141,root=$('#scBody');if(!root)return;
+  root.innerHTML=`<p>${s.intro}</p><div class="pbar" aria-hidden="true"><i id="scBar"></i></div><div class="small" id="scProg" aria-live="polite"></div>`+
+   STEPS141.map((t,i)=>`<div class="q"><label class="lbl" for="p_${t[0]}"><span class="stepno">${i+1}</span>${t[1]}</label>${t[2]?`<div class="small">${t[2]}</div>`:''}<textarea id="p_${t[0]}" data-d="${t[0]}" placeholder="พิมพ์ที่นี่"></textarea>${s.ex?`<details class="rd-q"><summary>ดูตัวอย่างจากคู่มือ</summary><p>${s.ex[t[0]]}</p></details>`:''}</div>`).join('')+expHTML('p141');
+  const prog=()=>{const n=STEPS141.filter(t=>dget(ns,t[0]).trim().length>=8).length;$('#scProg').textContent='กรอกแล้ว '+n+' / '+STEPS141.length+' ขั้น';$('#scBar').style.width=(n/STEPS141.length*100)+'%';};
+  wireDraft(root,ns,prog);prog();
+  wireExp('p141',()=>textOf(ns,STEPS141.map(t=>[t[0],t[1]]),'แผนแก้ปัญหา (กิจกรรม 14.1) · '+s.label),'plan-14-1.txt');
+  $$('#scChips .chip').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sc===sc141)));
+}
+function wire141(){
+  const k=dget('14.1','sc');if(k&&SC141[k])sc141=k;
+  $$('#scChips .chip').forEach(b=>b.onclick=()=>{sc141=b.dataset.sc;DR['14.1|sc']=sc141;dsave();renderSc();});
+  renderSc();
+  wireDraft($('#rub141'),'14.1:rubric');
+  const f=()=>{const u=+$('#spfU').value,p=+$('#spfP').value;try{const v=spfOf(p,u),b=blockPct(v);$('#spfV').textContent=v.toFixed(1);$('#spfB').textContent=b.toFixed(1)+' %';$('#spfN').textContent=v<15?'SPF ต่ำกว่า 15: คู่มือระบุว่าต้องมีคำเตือนว่าป้องกันแดดเผาได้แต่ไม่ป้องกันมะเร็งผิวหนัง (หน้า 17)':'';}catch(_){$('#spfV').textContent='–';$('#spfB').textContent='–';$('#spfN').textContent='กรอกจำนวนที่มากกว่า 0 ทั้งสองช่อง (SPF ต้องไม่ต่ำกว่า 1)';}};
+  $('#spfU').oninput=f;$('#spfP').oninput=f;f();
+  wireQuiz('14.1');
+}
+
+/* ======================= กิจกรรม 14.2 สายไฟแป้งโดว์ ======================= */
+const CH={nacl:'เกลือแกง (NaCl)',nahco3:'เบกกิ้งโซดา (NaHCO₃)',sugar:'น้ำตาลทราย',none:'ไม่เติมสาร (แป้งโดว์ล้วน)'};
+const F142=[['a1','1. เปรียบเทียบความสว่างของ LED เมื่อต่อด้วยสายไฟคลิปปากจระเข้ กับต่อด้วยแป้งโดว์','เขียนก่อนลงมือทำ'],['a2','2. ปัญหาและเงื่อนไขในการแก้ปัญหา','คู่มือแนะนำให้บันทึกข้อ 1–4 ก่อนลงมือ'],['a3','3. สารที่เลือกเติมลงแป้งโดว์ พร้อมเหตุผลทางเคมี',''],['a4','4. ขั้นตอนการดำเนินการที่ออกแบบ (ระบุปริมาณสารและน้ำ ความยาวเส้น)',''],['a5','5. ผลของการลงมือครั้งแรก',''],['a6','6. วิธีปรับปรุงแก้ไขถ้า LED ยังไม่สว่างครบทั้งสองหลอด',''],['a7','7. สรุปวิธีที่ดีที่สุดและข้อเสนอแนะ พร้อมอธิบายการต่อวงจร (หรือวาดรูปลงกระดาษ)','']];
+const RUB142=['ระบุปัญหาชัดเจนและระบุเงื่อนไขได้ครบ','อธิบายเหตุผลสอดคล้องกับสารที่เลือก','วิธีดำเนินการเป็นลำดับขั้นตอนและอธิบายชัดเจน','สร้างสายไฟแป้งโดว์ตามวิธีที่ออกแบบไว้','นำเสนอขั้นตอนการสร้างเป็นลำดับชัดเจน'];
+let S2={kind:'nacl',m:0.2,water:1,L:18,A:1.6,mode:'series',on:false,log:[]};
+function act142(){
+  return`<h2>กิจกรรม 14.2 สายไฟแป้งโดว์</h2><p class="sub">คู่มือครู หน้า 19–26 · เวลาในคู่มือ 75 นาที (อภิปรายก่อน 15 · ทำกิจกรรม 30 · อภิปรายหลัง 30) · งานบันทึกไม่มีคะแนนอัตโนมัติ</p>
+  <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>สร้างสายไฟแป้งโดว์ให้หลอด LED สว่างตามเงื่อนไขที่กำหนด</li><li>นำเสนอขั้นตอนการสร้างสายไฟแป้งโดว์</li></ol></div>
+  <div class="box"><h3>เงื่อนไขของโจทย์ (ตามคู่มือ)</h3><ul><li>ทำให้ LED 2 หลอดสว่าง โดยวางหลอดและรางถ่านตามผัง (แบบอนุกรม)</li><li>เลือกสารเพียง 1 ชนิด (เกลือแกง น้ำตาลทราย หรือเบกกิ้งโซดา อย่างละไม่เกิน 5 g) น้ำกลั่นไม่เกิน 3 mL</li><li>ใช้เวลาไม่เกิน 30 นาที และใช้สารน้อยที่สุด</li></ul></div></div>
+  <div class="warn"><b>ข้อควรระวัง (ผู้จัดทำหน้าเพิ่มเอง):</b> ถ้าทำจริงใช้ถ่านและ LED ตามที่ครูทดสอบแล้ว อย่าต่อถ่านลัดวงจรด้วยสายไฟโดยตรง และอย่าให้น้ำมากเกินจนแป้งเหลวตามที่คู่มือเตือน</div>
+  <div class="lab"><h3>แป้งโดว์เสมือน (แบบจำลอง)</h3>
+  <p class="small"><b>ข้อสมมติของหน้านี้ (ไม่ใช่ค่าจากคู่มือ):</b> ความต้านทานของเส้นแป้ง R = 1 ÷ (G₀ + K·ν·m ÷ (M·L²)) เมื่อ m คือมวลสารในเส้น ν จำนวนไอออนต่อหน่วยสูตร (NaCl 2 · NaHCO₃ 2 · น้ำตาล 0) M มวลต่อโมล (58.5 · 84 · 342) L ความยาว (cm) G₀ = 10⁻⁶ S ของแป้งล้วน K ถูกปรับให้ผลตรงกับผลตัวอย่างของคู่มือ (เกลือ 0.2 g ที่ 18 cm ไม่สว่าง · 0.6 g สว่าง) ถ่าน 2 ก้อน = 3.0 V · LED แต่ละหลอดเทียบเท่า 50 Ω · ถือว่า "สว่าง" เมื่อกระแสผ่านหลอด ≥ 5 mA และสว่างเต็มที่ 10 mA · ปริมาณน้ำใช้เพียงบอกว่าปั้นได้หรือไม่ ไม่เข้าสมการ · แบบขนานตีความจากรูปในคู่มือ (ถ่านต่อกลางเส้น หลอดอยู่ปลายสองด้าน) ให้แต่ละหลอดผ่านแป้งครึ่งเส้น</p>
+  <div class="ledrow">
+   <label>สารที่เติม<select id="c_kind">${Object.keys(CH).map(k=>`<option value="${k}">${CH[k]}</option>`).join('')}</select></label>
+   <label>มวลสาร <output id="o_m"></output><input type="range" id="c_m" min="0" max="5" step="0.05" aria-label="มวลสารที่เติมในแป้ง"></label>
+   <label>น้ำกลั่น <output id="o_w"></output><input type="range" id="c_w" min="0" max="5" step="0.1" aria-label="ปริมาตรน้ำที่ใช้"></label>
+   <label>ความยาวเส้น <output id="o_L"></output><input type="range" id="c_L" min="6" max="30" step="1" aria-label="ความยาวเส้นแป้ง"></label>
+   <label>พื้นที่หน้าตัด (เพื่อภาพประกอบเท่านั้น ไม่มีผลต่อ R ในแบบจำลอง) <output id="o_A"></output><input type="range" id="c_A" min="0.5" max="3" step="0.05" aria-label="พื้นที่หน้าตัดเส้นแป้ง"></label>
+   <div><span class="lbl">วิธีต่อวงจร</span><div class="btns" role="group" aria-label="วิธีต่อวงจร"><button class="chip" type="button" data-md="series" aria-pressed="true">อนุกรม (ตามผัง)</button><button class="chip" type="button" data-md="parallel" aria-pressed="false">ขนาน (สาธิตของครู)</button></div></div></div>
+  <div class="fig" id="cfig"></div>
+  <div class="stat" aria-live="polite"><div>แป้งที่ใช้ (L × A, ความหนาแน่นสมมติ 1 g/cm³)<b id="s_d"></b></div><div>ความต้านทานเส้นแป้ง<b id="s_R"></b></div><div>กระแสผ่านหลอดแต่ละหลอด<b id="s_I"></b></div><div>สถานะ LED<b id="s_S"></b></div></div>
+  <div class="btns"><button class="btn" type="button" id="c_run">ต่อวงจร (ทดสอบ)</button><button class="btn alt" type="button" id="c_min">ดูปริมาณน้อยที่สุดตามแบบจำลอง</button><button class="btn alt" type="button" id="c_clr">ล้างบันทึก</button></div>
+  <div class="small" id="c_note" aria-live="polite"></div>
+  <ul class="cond" id="c_cond" aria-label="เช็กเงื่อนไขของโจทย์"></ul>
+  <h3>บันทึกการทดลอง</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th>ครั้งที่</th><th class="l">สาร</th><th>มวล (g)</th><th>น้ำ (mL)</th><th>ยาว (cm)</th><th>ต่อ</th><th>R (Ω)</th><th>I (mA)</th><th class="l">ผล</th></tr></thead><tbody id="c_log"><tr><td colspan="9" class="small">ยังไม่มีบันทึก กด "ต่อวงจร" เพื่อบันทึกครั้งแรก</td></tr></tbody></table></div></div>
+  <div class="lab"><h3>แบบบันทึกข้อมูลการดำเนินการ (7 ข้อตามคู่มือ)</h3><p class="small">คู่มือให้บันทึกข้อ 1–4 ก่อนลงมือ แล้วบันทึกผลและการปรับปรุงภายหลัง</p>${fieldsHTML(F142)}${expHTML('p142')}
+  <details class="rd-q"><summary>ดูตัวอย่างผลในคู่มือ (เปิดหลังเขียนของตัวเองแล้ว)</summary><ol><li>ต่อด้วยสายไฟคลิป LED สว่างทั้งสองหลอด แต่เปลี่ยนเป็นแป้งโดว์ไม่สว่าง</li><li>ปัญหา: แป้งโดว์ไม่นำไฟฟ้า เงื่อนไข: LED 2 หลอดสว่างตามผัง · สารเพียง 1 ชนิด · 30 นาที · สารน้อยที่สุด</li><li>เลือกเกลือแกง เพราะ NaCl และ NaHCO₃ แตกตัวเป็นไอออนนำไฟฟ้าได้ แต่ NaCl ให้ประจุต่อมวลสูงกว่าจึงใช้น้อยกว่า ส่วนน้ำตาลไม่แตกตัว</li><li>ละลายเกลือ 0.2 g ในน้ำ 1 mL นวดกับแป้ง ปั้นเส้นยาว 18 cm ต่อกับ LED 2 หลอดและรางถ่าน สังเกตความสว่าง</li><li>ครั้งแรกไม่สว่างทั้งสองหลอด</li><li>เตรียมสารละลายเกลือ 0.2 g ในน้ำ 1 mL เพิ่ม แล้วนวดเพิ่มอีก 2 ครั้ง</li><li>วิธีที่ได้ผล: เกลือ 0.6 g ในน้ำ 3 mL นวดให้เข้ากัน ปั้นเส้น 18 cm ต่อ LED ทั้งสองและรางถ่าน ครั้งต่อไปอาจปรับน้ำให้ขึ้นรูปง่ายและนำไฟฟ้าดี</li></ol></details></div>
+  <div class="box"><h3>ตรวจตนเองตามเกณฑ์ระหว่างทำกิจกรรม</h3><div id="rub142">${checksHTML(RUB142)}</div></div>
+  ${quizHTML('14.2')}`;
+}
+function wire142(){
+  S2.on=false;
+  const q=id=>$(id);let raf=0;CLEAN.push(()=>{if(raf)cancelAnimationFrame(raf);raf=0;});
+  const calc=()=>doughCircuit(S2.kind,S2.m,S2.L,S2.mode);
+  function figSVG(b,lit){
+    const L=S2.L,w=Math.round(120+(L-6)/24*360),th=Math.round(10+S2.A*9),ser=S2.mode==='series',g=Math.max(0,b);
+    const led=(x,y,id)=>`<g><circle id="${id}h" cx="${x}" cy="${y}" r="${18+14*g}" fill="#ffd54a" opacity="${(g*.55).toFixed(2)}"/><circle cx="${x}" cy="${y}" r="16" fill="${g>0.05?'#ffe27a':'#cfd8e3'}" stroke="#3d5a80" stroke-width="2"/><circle id="${id}u" cx="${x}" cy="${y-6}" r="4" fill="#fff" opacity="${g>0.05?(0.4+g*.6).toFixed(2):0}"/><circle id="${id}d" cx="${x}" cy="${y+7}" r="4" fill="#fff" opacity="${g>0.05?(0.4+g*.6).toFixed(2):(S2.on?0.9:0.35)}" stroke="#c9d4e2" stroke-width=".5"/></g>`;
+    let s=`<svg viewBox="0 0 570 270" role="img" aria-label="วงจรสายไฟแป้งโดว์แบบ${ser?'อนุกรม':'ขนาน'} เส้นแป้งยาว ${L} เซนติเมตร ${S2.on?(lit?'หลอด LED สว่าง':'หลอด LED ยังไม่สว่าง'):'ยังไม่ได้ต่อวงจร'}"><rect width="570" height="270" fill="#fff"/>`;
+    const dough=(x,y)=>`<rect x="${x}" y="${y-th/2}" width="${w}" height="${th}" rx="${Math.min(th/2,12)}" fill="#e9c98c" stroke="#a9833f" stroke-width="2"/><text x="${x+w/2}" y="${y+th/2+16}" text-anchor="middle" font-size="14" fill="#5b4a22">แป้งโดว์ผสม ${CH[S2.kind].split(' ')[0]} ${S2.m.toFixed(2)} g · ยาว ${L} cm</text>`;
+    const batt=(x,y)=>`<rect x="${x}" y="${y}" width="64" height="30" rx="5" fill="#dfe6ef" stroke="#3d5a80" stroke-width="2"/><text x="${x+32}" y="${y+20}" text-anchor="middle" font-size="13" fill="#1d2b44">1.5V×2</text>`;
+    if(ser){const xs=70,y=215;
+      const a1=Math.round(xs+w/3),a2=Math.round(xs+2*w/3);
+      s+=`<polyline points="${xs},${y-th/2} ${xs},60 ${xs+w},60 ${xs+w},${y-th/2}" fill="none" stroke="#3d5a80" stroke-width="2.5"/>`+dough(xs,y)+led(a1,60,'l1')+led(a2,60,'l2')+`<rect x="${xs-32}" y="110" width="64" height="30" rx="5" fill="#dfe6ef" stroke="#3d5a80" stroke-width="2"/><text x="${xs}" y="130" text-anchor="middle" font-size="13" fill="#1d2b44">1.5V×2</text><text x="${xs+40}" y="130" font-size="13" fill="#3d5a80">ถ่าน</text><text x="${a1}" y="98" text-anchor="middle" font-size="14" fill="#1d2b44">LED 1</text><text x="${a2}" y="98" text-anchor="middle" font-size="14" fill="#1d2b44">LED 2</text>`;}
+    else{const xs=70,y=210,cx=xs+w/2;
+      s+=dough(xs,y)+led(xs,120,'l1')+led(xs+w,120,'l2')+`<line x1="${xs}" y1="136" x2="${xs}" y2="${y-th/2}" stroke="#3d5a80" stroke-width="2.5"/><line x1="${xs+w}" y1="136" x2="${xs+w}" y2="${y-th/2}" stroke="#3d5a80" stroke-width="2.5"/>`+batt(cx-32,30)+`<line x1="${cx-12}" y1="60" x2="${cx-12}" y2="${y-th/2}" stroke="#c0392b" stroke-width="2.5"/><line x1="${cx+12}" y1="60" x2="${cx+12}" y2="${y-th/2}" stroke="#222" stroke-width="2.5"/><text x="${xs}" y="92" text-anchor="middle" font-size="14" fill="#1d2b44">LED 1</text><text x="${xs+w}" y="92" text-anchor="middle" font-size="14" fill="#1d2b44">LED 2</text>`;}
+    return s+`<text x="564" y="262" text-anchor="end" font-size="11" fill="#5d6b82">ภาพประกอบของผู้จัดทำหน้า ไม่ใช่มาตราส่วนจริง</text></svg>`;}
+  let lastB=0;
+  function drawFig(b){lastB=b;const r=calc();q('#cfig').innerHTML=figSVG(b,S2.on&&r.lit);}
+  function readouts(){
+    const r=calc();q('#o_m').textContent=S2.m.toFixed(2)+' g';q('#o_w').textContent=S2.water.toFixed(1)+' mL';q('#o_L').textContent=S2.L+' cm';q('#o_A').textContent=S2.A.toFixed(2)+' cm²';
+    const d=S2.L*S2.A;q('#s_d').textContent=d.toFixed(1)+' g';q('#s_R').textContent=r.R>=1e5?(r.R/1000).toFixed(0)+' kΩ':r.R.toFixed(0)+' Ω';q('#s_I').textContent=r.I_mA.toFixed(2)+' mA';
+    q('#s_S').textContent=S2.on?(r.lit?'สว่าง (ระดับ '+Math.round(r.bright*100)+' %)':'ยังไม่สว่าง'):'ยังไม่ได้ต่อวงจร';
+    const nm=minMass(S2.kind,S2.L,S2.mode),ok=[['ใช้สารเพียง 1 ชนิดเติมลงในแป้ง',S2.kind!=='none'],['LED ทั้งสองหลอดสว่าง (ตามแบบจำลอง)',S2.on&&r.lit],['ต่อตามผัง: อนุกรม ยาว 18 cm',S2.mode==='series'&&S2.L===18],['สาร ≤ 5 g และน้ำ ≤ 3 mL ตามที่แจกต่อกลุ่ม',S2.m<=5&&S2.water<=3],['แป้งที่ใช้ ≤ 30 g',d<=30],['ใกล้ปริมาณต่ำสุดของแบบจำลอง (ไม่ใช่เกณฑ์ของคู่มือ) (ไม่เกินค่าต่ำสุดของแบบจำลองเกิน 10 %)',nm!=null&&S2.on&&r.lit&&S2.m<=nm*1.1]];
+    q('#c_cond').innerHTML=ok.map(x=>`<li>${x[1]?'<span class="ok-t">✓ ผ่าน</span>':'<span class="bad-t">✗ ยังไม่ผ่าน</span>'} ${x[0]}</li>`).join('');
+    q('#c_note').textContent=S2.water>3?'น้ำเกิน 3 mL ที่แจกต่อกลุ่ม และคู่มือเตือนว่าน้ำมากเกินไปทำให้แป้งเหลวปั้นไม่ได้':'';
+  }
+  function logRows(){q('#c_log').innerHTML=S2.log.length?S2.log.map((e,i)=>`<tr><td>${i+1}</td><td class="l">${CH[e.kind].split(' ')[0]}</td><td>${e.m.toFixed(2)}</td><td>${e.w.toFixed(1)}</td><td>${e.L}</td><td>${e.mode==='series'?'อนุกรม':'ขนาน'}</td><td>${e.R>=1e5?'>10⁵':e.R.toFixed(0)}</td><td>${e.I.toFixed(2)}</td><td class="l">${e.lit?'<span class="ok-t">สว่าง</span>':'<span class="bad-t">ไม่สว่าง</span>'}</td></tr>`).join(''):'<tr><td colspan="9" class="small">ยังไม่มีบันทึก กด "ต่อวงจร" เพื่อบันทึกครั้งแรก</td></tr>';}
+  function changed(){S2.on=false;if(raf){cancelAnimationFrame(raf);raf=0;}readouts();drawFig(0);}
+  q('#c_kind').value=S2.kind;q('#c_m').value=S2.m;q('#c_w').value=S2.water;q('#c_L').value=S2.L;q('#c_A').value=S2.A;
+  q('#c_kind').onchange=e=>{S2.kind=e.target.value;changed();};
+  q('#c_m').oninput=e=>{S2.m=+e.target.value;changed();};q('#c_w').oninput=e=>{S2.water=+e.target.value;changed();};
+  q('#c_L').oninput=e=>{S2.L=+e.target.value;changed();};q('#c_A').oninput=e=>{S2.A=+e.target.value;changed();};
+  $$('[data-md]').forEach(b=>b.onclick=()=>{S2.mode=b.dataset.md;$$('[data-md]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));changed();});
+  q('#c_run').onclick=()=>{
+    const r=calc();S2.on=true;S2.log.push({kind:S2.kind,m:S2.m,w:S2.water,L:S2.L,mode:S2.mode,R:r.R,I:r.I_mA,lit:r.lit});if(S2.log.length>14)S2.log.shift();logRows();readouts();
+    if(raf)cancelAnimationFrame(raf);
+    if(REDUCE){drawFig(r.lit?r.bright:0);return;}
+    const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/700);drawFig(r.lit?r.bright*k:0);raf=k<1?requestAnimationFrame(step):0;};raf=requestAnimationFrame(step);};
+  q('#c_min').onclick=()=>{const nm=minMass(S2.kind,S2.L,S2.mode);q('#c_note').textContent=nm==null?'สารนี้ไม่แตกตัวเป็นไอออน แบบจำลองไม่มีปริมาณที่ทำให้สว่าง':'ตามแบบจำลองของหน้านี้ ('+CH[S2.kind].split(' ')[0]+', ยาว '+S2.L+' cm, ต่อแบบ'+(S2.mode==='series'?'อนุกรม':'ขนาน')+') ต้องใช้อย่างน้อยประมาณ '+nm.toFixed(2)+' g (ค่าของแบบจำลอง ไม่ใช่ค่าในคู่มือ ตัวอย่างของคู่มือใช้ 0.6 g กับเกลือแกงที่ 18 cm)';};
+  q('#c_clr').onclick=()=>{S2.log=[];logRows();};
+  readouts();drawFig(0);logRows();
+  wireDraft($('#panel'),'14.2');wireExp('p142',()=>textOf('14.2',F142,'แบบบันทึกข้อมูลการดำเนินการ (กิจกรรม 14.2 สายไฟแป้งโดว์)'),'plan-14-2.txt');
+  wireQuiz('14.2');
+}
+
+/* ======================= กิจกรรม 14.3 บูรณาการความรู้ ======================= */
+const H143=[['สำรวจปัญหาและเลือกสถานการณ์',1],['นำเสนอสถานการณ์พร้อมข้อมูลสนับสนุน',3],['อภิปรายข้อมูลที่สืบค้นในกลุ่ม',3],['กำหนดวัตถุประสงค์ ขอบเขต และออกแบบวิธี',2],['นำเสนอแนวทางที่ออกแบบ',3],['ลงมือแก้ปัญหา',8],['ปรึกษาเรื่องการสรุปผล',3]];
+const F143=[['b1','สถานการณ์ปัญหา และข้อมูลสำรวจที่แสดงว่าปัญหาสำคัญ'],['b2','วิธีที่เลือก และคำถามหรือเงื่อนไขของปัญหา','ถ้าใช้วิธีการทางวิทยาศาสตร์ให้ตั้งคำถาม ถ้าใช้กระบวนการออกแบบเชิงวิศวกรรมให้ระบุปัญหาและเงื่อนไขให้ชัด'],['b3','ความรู้เคมีที่ใช้'],['b4','ความรู้ศาสตร์อื่นที่บูรณาการ (เช่น ฟิสิกส์ ชีววิทยา คณิตศาสตร์ เทคโนโลยี)'],['b5','วัตถุประสงค์และขอบเขตของงาน'],['b6','วิธีดำเนินการ (สมมติฐาน ตัวแปร และวิธีตรวจสอบ หรือแนวทางออกแบบ)'],['b7','วิธีประเมินว่าแก้ปัญหาได้สำเร็จ']];
+const RUB143=['มีข้อมูลจากการสำรวจสนับสนุนความสำคัญของปัญหา และคำถาม/ปัญหาสอดคล้องกับสถานการณ์','ศึกษาความรู้เคมีและข้อเท็จจริงที่เกี่ยวข้องเพียงพอต่อการแก้ปัญหา','วัตถุประสงค์สอดคล้องกับคำถาม/ปัญหา และขอบเขตงานสอดคล้องกับวัตถุประสงค์','วิธีดำเนินการสอดคล้องและครอบคลุมวัตถุประสงค์และขอบเขต นำไปสู่การแก้ปัญหาได้','ดำเนินการตามที่ออกแบบและใช้อุปกรณ์/เครื่องมืออย่างถูกต้องเหมาะสม'];
+function act143(){
+  return`<h2>กิจกรรม 14.3 การแก้ปัญหาโดยการบูรณาการความรู้</h2><p class="sub">คู่มือครู หน้า 26–29 · เวลาในคู่มือ 23 ชั่วโมง · เป็นโครงงานจริงของนักเรียน หน้านี้เป็นพื้นที่วางแผน ไม่ได้จำลองการแก้ปัญหา · คะแนนอัตโนมัติมีเฉพาะการเลือกวิธีและแบบทดสอบ</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>เลือกสถานการณ์ปัญหาหรือประเด็นที่สนใจ แล้วออกแบบแนวทางแก้ปัญหาโดยบูรณาการความรู้เคมีกับศาสตร์อื่น ด้วยวิธีการทางวิทยาศาสตร์หรือกระบวนการออกแบบเชิงวิศวกรรม</p></div>
+  ${quizHTML('14.3s','เลือกวิธีให้เหมาะกับสถานการณ์')}
+  <div class="lab"><h3>วางแผนโครงงานของฉัน</h3><p class="small">ตารางเวลาแนะนำของคู่มือรวม 23 ชั่วโมง ช่องขวาให้ใส่ชั่วโมงที่กลุ่มวางแผนเอง (ไม่คิดคะแนน)</p>
+  <div class="tw"><table class="tbl-sm"><thead><tr><th class="l">ขั้นงาน</th><th>คู่มือแนะนำ (ชม.)</th><th>แผนของกลุ่ม (ชม.)</th></tr></thead><tbody>${H143.map((h,i)=>`<tr><td class="l">${h[0]}</td><td>${h[1]}</td><td><input type="number" min="0" step="0.5" style="max-width:6rem" data-d="h${i}" aria-label="ชั่วโมงที่วางแผนสำหรับ ${h[0]}"></td></tr>`).join('')}<tr><th class="l">รวม</th><th>23</th><th id="hSum">0</th></tr></tbody></table></div>
+  ${fieldsHTML(F143)}${expHTML('p143')}</div>
+  <div class="box"><h3>ตรวจตนเองตามเกณฑ์ระหว่างทำกิจกรรม</h3><div id="rub143">${checksHTML(RUB143)}</div></div>
+  ${quizHTML('14.3')}`;
+}
+function wire143(){
+  const root=$('#panel');const hs=()=>{let t=0;for(let i=0;i<H143.length;i++)t+=parseFloat(dget('14.3','h'+i))||0;const e=$('#hSum');if(e)e.textContent=String(Math.round(t*10)/10);};
+  wireDraft(root,'14.3',hs);hs();
+  wireExp('p143',()=>textOf('14.3',F143.map(f=>[f[0],f[1]]),'แผนโครงงานบูรณาการความรู้ (กิจกรรม 14.3)')+'\n## แผนเวลา (ชั่วโมง)\n'+H143.map((h,i)=>h[0]+': '+(dget('14.3','h'+i)||'-')).join('\n')+'\n','plan-14-3.txt');
+  wireQuiz('14.3s','14.3');wireQuiz('14.3');
+}
+
+/* ======================= กิจกรรม 14.4 รูปแบบบรรณานุกรม ======================= */
+const EX144={
+ book:{authors:'Silberberg, MS',year:'2009',title:'Chemistry: The Molecular Nature of Matter and Change',publisher:'McGraw-Hill',place:'New York',edition:'5th ed.',pages:'pp 64-65'},
+ journal:{authors:'Saptarini, NM\nSuryasaputra, D\nNurmalia, H',year:'2015',title:'Application of Butterfly Pea (Clitoria ternatea Linn) extract as an indicator of acid-base titration',journal:'Journal of Chemical and Pharmaceutical Research',jabbr:'J. Chem. Pharma. Res.',vol:'7',issue:'2',pages:'275-280'},
+ web:{org:'The University of North Carolina at Chapel Hill',year:'2018',title:'Kinetics: Rates of Reaction',site:'The University of North Carolina at Chapel Hill Web site',url:'http://cssac.unc.edu/programs/learning-center/Resources/Study/Guides/Chemistry%20102/Rates%20of%20Reactions',accessed:'April 23, 2018'}};
+const FLD144=[['authors','ผู้แต่ง (หนึ่งคนต่อบรรทัด: นามสกุล, อักษรย่อ เช่น Saptarini, NM)','ta',['book','journal','web']],['org','ชื่อหน่วยงาน (เว็บไซต์ที่ไม่มีผู้แต่ง)','in',['web']],['year','ปีที่พิมพ์','in',['book','journal','web']],['title','ชื่อเรื่อง','in',['book','journal','web']],['publisher','สำนักพิมพ์','in',['book']],['place','สถานที่พิมพ์','in',['book']],['edition','ครั้งที่พิมพ์ (เช่น 5th ed.)','in',['book']],['pages','เลขหน้า','in',['book','journal']],['journal','ชื่อวารสาร (เต็ม)','in',['journal']],['jabbr','ชื่อย่อวารสาร (ACS/AMA)','in',['journal']],['vol','ปีที่','in',['journal']],['issue','ฉบับที่','in',['journal']],['site','ชื่อเว็บไซต์/หน่วยงาน','in',['web']],['url','URL','in',['web']],['accessed','เข้าถึงเมื่อ (เช่น April 23, 2018)','in',['web']]];
+function act144(){
+  return`<h2>กิจกรรม 14.4 สืบค้นข้อมูลรูปแบบการเขียนบรรณานุกรม</h2><p class="sub">คู่มือครู หน้า 29–34 · เวลาในคู่มือ 50 นาที · จุดประสงค์ (ตามคู่มือ): นำเสนอรูปแบบการเขียนบรรณานุกรม · ตัวสร้างนี้ใช้แม่แบบและตัวอย่างของคู่มือ (APA, ACS, AMA) แปลงให้อัตโนมัติ ใกล้เคียงตัวอย่างของคู่มือ (ตัด URL ที่ยาวบางส่วนออก และ AMA ไม่ใส่คำว่า Web site) ถ้าครูกำหนดรูปแบบอื่นให้ยึดตามครู</p>
+  <div class="lab"><h3>ตัวสร้างรายการอ้างอิง</h3>
+  <div class="ledrow"><label>ประเภทแหล่งข้อมูล<select id="k_kind"><option value="book">หนังสือ</option><option value="journal">บทความในวารสาร</option><option value="web">เว็บไซต์</option></select></label><div><span class="lbl">ตัวอย่างจากคู่มือ</span><div class="btns"><button class="btn alt sm" type="button" id="k_ex">ใส่ตัวอย่างของคู่มือ</button><button class="btn alt sm" type="button" id="k_clr">ล้างฟอร์ม</button></div></div></div>
+  <div class="ledrow" id="k_form">${FLD144.map(f=>`<label data-for="${f[3].join(' ')}">${f[1]}${f[2]==='ta'?`<textarea id="k_${f[0]}" data-d="${f[0]}" rows="3" style="min-height:70px"></textarea>`:`<input type="text" id="k_${f[0]}" data-d="${f[0]}">`}</label>`).join('')}</div>
+  <h3>ผลลัพธ์</h3><div class="sel2"><div><b>APA</b><div class="cite" id="k_APA"></div></div><div><b>ACS</b><div class="cite" id="k_ACS"></div></div></div><div style="margin-top:8px"><b>AMA</b><div class="cite" id="k_AMA"></div></div>
+  <div class="btns"><button class="btn sm" type="button" data-add="APA">เพิ่ม APA ลงรายการของฉัน</button><button class="btn sm" type="button" data-add="ACS">เพิ่ม ACS</button><button class="btn sm" type="button" data-add="AMA">เพิ่ม AMA</button></div>
+  <h3>รายการอ้างอิงของฉัน (ใช้ต่อในรายงาน 14.6)</h3><ol id="k_list"></ol>${expHTML('p144')}</div>
+  <div class="lab"><h3>การอ้างอิงแทรกในเนื้อหา (APA นาม–ปี)</h3><p class="small">กิจกรรมเสนอแนะสำหรับครูในคู่มือ หน้า 33–34</p>
+  <div class="ledrow"><label>นามสกุลผู้แต่ง<input type="text" id="t_n" value="Pizer"></label><label>ปีที่พิมพ์<input type="text" id="t_y" value="1996"></label><label>เลขหน้า (เว้นว่างถ้าสรุปทั้งงาน)<input type="text" id="t_p" value="745"></label><label class="opt"><input type="checkbox" id="t_a"><span>เขียนชื่อผู้แต่งไว้ในประโยคแล้ว</span></label></div>
+  <div class="cite" id="t_out"></div></div>
+  ${quizHTML('14.4')}`;
+}
+function wire144(){
+  const root=$('#panel'),kind=()=>$('#k_kind').value;
+  const val=()=>{const f={authors:parseAuthors($('#k_authors').value)};FLD144.forEach(x=>{if(x[0]!=='authors')f[x[0]]=$('#k_'+x[0]).value;});return f;};
+  const vis=()=>$$('#k_form label').forEach(l=>l.classList.toggle('hide',l.dataset.for.split(' ').indexOf(kind())<0));
+  const out=()=>{['APA','ACS','AMA'].forEach(s=>{$('#k_'+s).textContent=fmtCite(s,kind(),val());});};
+  const refs=()=>Array.isArray(DR['14.4|refs'])?DR['14.4|refs']:[];
+  const list=()=>{const l=$('#k_list'),r=refs();l.innerHTML=r.length?r.map((x,i)=>`<li><span class="cite" style="display:inline-block"></span> <button class="btn alt sm" type="button" data-del="${i}" aria-label="ลบรายการที่ ${i+1}">ลบ</button></li>`).join(''):'<li class="small">ยังไม่มีรายการ</li>';$$('#k_list .cite').forEach((e,i)=>e.textContent=r[i].s+'  ['+r[i].t+']');$$('[data-del]').forEach(b=>b.onclick=()=>{const a=refs().slice();a.splice(+b.dataset.del,1);DR['14.4|refs']=a;dsave();list();});};
+  $('#k_kind').value=dget('14.4','kind')||'book';
+  wireDraft($('#k_form'),'14.4',()=>out());
+  $('#k_kind').onchange=()=>{DR['14.4|kind']=kind();dsave();vis();out();};
+  vis();out();list();
+  $('#k_ex').onclick=()=>{const e=EX144[kind()];FLD144.forEach(f=>{const el=$('#k_'+f[0]);el.value=e[f[0]]||'';DR['14.4|'+f[0]]=el.value;});dsave();out();};
+  $('#k_clr').onclick=()=>{FLD144.forEach(f=>{$('#k_'+f[0]).value='';DR['14.4|'+f[0]]='';});dsave();out();};
+  $$('[data-add]').forEach(b=>b.onclick=()=>{const a=refs().slice();a.push({t:b.dataset.add,s:fmtCite(b.dataset.add,kind(),val())});DR['14.4|refs']=a;dsave();list();});
+  const tt=()=>{$('#t_out').textContent=inText($('#t_n').value||'…',$('#t_y').value||'…',$('#t_p').value.trim(),$('#t_a').checked);};['#t_n','#t_y','#t_p'].forEach(i=>$(i).oninput=tt);$('#t_a').onchange=tt;tt();
+  wireExp('p144',()=>'รายการอ้างอิง\n\n'+refs().map((x,i)=>(i+1)+'. '+x.s+'  ['+x.t+']').join('\n')+'\n','references-14-4.txt');
+  wireQuiz('14.4');
+}
+
+/* ======================= กิจกรรม 14.5 โปสเตอร์และข้อมูล ======================= */
+const TEMPS=[-100,-50,0,50,100],VOLS=[30,36,45,55,61];
+function svgWrap(w,h,label,inner){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><rect width="${w}" height="${h}" fill="#fff"/>${inner}</svg>`;}
+function barChart(){
+  const W=560,H=280,l=60,t=20,b=64,pw=W-l-20,ph=H-t-b,y=v=>t+ph*(1-v/1.2),labs=['HCl','HF'],gs=[['H⁺',[1.0,0.04],'#3d5a80'],['ไอออนลบ (Cl⁻ / F⁻)',[1.0,0.04],'#c46a2f']];
+  let s='';for(let i=0;i<=6;i++){const v=i*0.2;s+=`<line x1="${l}" x2="${W-20}" y1="${y(v)}" y2="${y(v)}" stroke="#e8edf4"/><text x="${l-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5d6b82">${v.toFixed(1)}</text>`;}
+  const gw=pw/2,bw=gw*0.28;
+  labs.forEach((n,i)=>{gs.forEach((g,j)=>{const x=l+i*gw+gw*0.5+(j-1)*bw-(j===0?0:0)+(j===0?-bw*0.0:0)-bw*0.0,xx=l+i*gw+gw/2+(j?0:-bw)-0,v=g[1][i];s+=`<rect x="${xx}" y="${y(v)}" width="${bw}" height="${y(0)-y(v)}" fill="${g[2]}"/><text x="${xx+bw/2}" y="${y(v)-4}" text-anchor="middle" font-size="12" fill="#1d2b44">${v.toFixed(2)}</text>`;});s+=`<text x="${l+i*gw+gw/2}" y="${y(0)+18}" text-anchor="middle" font-size="13" fill="#1d2b44">กรด ${n}</text>`;});
+  s+=`<text x="14" y="${t+ph/2}" font-size="12" fill="#1d2b44" transform="rotate(-90 14 ${t+ph/2})" text-anchor="middle">ความเข้มข้น (mol/L)</text><rect x="${l+10}" y="${H-24}" width="10" height="10" fill="#3d5a80"/><text x="${l+26}" y="${H-15}" font-size="12" fill="#1d2b44">H⁺</text><rect x="${l+80}" y="${H-24}" width="10" height="10" fill="#c46a2f"/><text x="${l+96}" y="${H-15}" font-size="12" fill="#1d2b44">ไอออนลบ (Cl⁻ หรือ F⁻)</text>`;
+  return svgWrap(W,H,'กราฟแท่งความเข้มข้นของไอออนในสารละลายกรดไฮโดรคลอริกและกรดไฮโดรฟลูออริก เริ่มต้น 1.00 โมลต่อลิตร: HCl ให้ H⁺ และ Cl⁻ อย่างละ 1.00 ส่วน HF ให้ H⁺ และ F⁻ อย่างละ 0.04',s);}
+function barChart2(){
+  const W=560,H=280,l=56,t=20,b=50,pw=W-l-20,ph=H-t-b,y=v=>t+ph*(1-v/70);let s='';
+  for(let v=0;v<=70;v+=10)s+=`<line x1="${l}" x2="${W-20}" y1="${y(v)}" y2="${y(v)}" stroke="#e8edf4"/><text x="${l-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5d6b82">${v}</text>`;
+  const gw=pw/5,bw=gw*0.55;TEMPS.forEach((tc,i)=>{const x=l+i*gw+(gw-bw)/2;s+=`<rect x="${x}" y="${y(VOLS[i])}" width="${bw}" height="${y(0)-y(VOLS[i])}" fill="#3d5a80"/><text x="${x+bw/2}" y="${y(VOLS[i])-4}" text-anchor="middle" font-size="12" fill="#1d2b44">${VOLS[i]}</text><text x="${x+bw/2}" y="${y(0)+16}" text-anchor="middle" font-size="12" fill="#1d2b44">${tc}</text>`;});
+  s+=`<text x="${l+pw/2}" y="${H-8}" text-anchor="middle" font-size="12" fill="#1d2b44">อุณหภูมิ (°C)</text><text x="14" y="${t+ph/2}" font-size="12" fill="#1d2b44" transform="rotate(-90 14 ${t+ph/2})" text-anchor="middle">ปริมาตร (mL)</text>`;
+  return svgWrap(W,H,'กราฟแท่งปริมาตรแก๊สไฮโดรเจน 0.002 โมล ที่อุณหภูมิ −100 −50 0 50 และ 100 องศาเซลเซียส เท่ากับ 30 36 45 55 และ 61 มิลลิลิตร',s);}
+function lineChart(ideal){
+  const W=560,H=290,l=56,t=20,b=50,pw=W-l-24,ph=H-t-b,x=v=>l+pw*(v+150)/300,y=v=>t+ph*(1-v/70);let s='';
+  for(let v=0;v<=70;v+=10)s+=`<line x1="${l}" x2="${W-24}" y1="${y(v)}" y2="${y(v)}" stroke="#e8edf4"/><text x="${l-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5d6b82">${v}</text>`;
+  for(let v=-150;v<=150;v+=50)s+=`<line x1="${x(v)}" x2="${x(v)}" y1="${t}" y2="${y(0)}" stroke="#f0f3f8"/><text x="${x(v)}" y="${y(0)+16}" text-anchor="middle" font-size="11" fill="#5d6b82">${v}</text>`;
+  if(ideal){const p=[];for(let v=-150;v<=150;v+=10)p.push(x(v)+','+y(idealVmL(0.002,v)));s+=`<polyline points="${p.join(' ')}" fill="none" stroke="#c46a2f" stroke-width="2" stroke-dasharray="6 4"/>`;}
+  if(ideal)s+=`<line x1="${l+8}" x2="${l+34}" y1="${t+8}" y2="${t+8}" stroke="#3d5a80" stroke-width="2.5"/><text x="${l+40}" y="${t+12}" font-size="11" fill="#1d2b44">ข้อมูลของคู่มือ</text><line x1="${l+130}" x2="${l+156}" y1="${t+8}" y2="${t+8}" stroke="#c46a2f" stroke-width="2" stroke-dasharray="6 4"/><text x="${l+162}" y="${t+12}" font-size="11" fill="#1d2b44">ค่าคำนวณ V = nRT/P (ผู้จัดทำหน้า)</text>`;
+  s+=`<polyline points="${TEMPS.map((tc,i)=>x(tc)+','+y(VOLS[i])).join(' ')}" fill="none" stroke="#3d5a80" stroke-width="2.5"/>`+TEMPS.map((tc,i)=>`<circle cx="${x(tc)}" cy="${y(VOLS[i])}" r="4.5" fill="#3d5a80"/><text x="${x(tc)+6}" y="${y(VOLS[i])+16}" font-size="11" fill="#1d2b44">${VOLS[i]}</text>`).join('');
+  s+=`<text x="${l+pw/2}" y="${H-10}" text-anchor="middle" font-size="12" fill="#1d2b44">อุณหภูมิ (°C)</text><text x="14" y="${t+ph/2}" font-size="12" fill="#1d2b44" transform="rotate(-90 14 ${t+ph/2})" text-anchor="middle">ปริมาตร (mL)</text>`;
+  return svgWrap(W,H,'กราฟเส้นปริมาตรแก๊สไฮโดรเจน 0.002 โมล เพิ่มขึ้นตามอุณหภูมิ จาก 30 มิลลิลิตรที่ลบ 100 องศา เป็น 61 มิลลิลิตรที่ 100 องศาเซลเซียส'+(ideal?' มีเส้นประเทียบค่าคำนวณจากสมการแก๊สอุดมคติ':''),s);}
+function flowChart(){
+  const box=(x,y,w,h,t1,t2)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="#eef3fa" stroke="#3d5a80" stroke-width="1.5"/><text x="${x+w/2}" y="${y+(t2?h/2-3:h/2+4)}" text-anchor="middle" font-size="12" fill="#1d2b44">${t1}</text>${t2?`<text x="${x+w/2}" y="${y+h/2+13}" text-anchor="middle" font-size="12" fill="#1d2b44">${t2}</text>`:''}`;
+  const ar=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#3d5a80" stroke-width="2" marker-end="url(#ah)"/>`;
+  let s=`<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3d5a80"/></marker></defs>`+box(60,8,440,46,'น้ำดอกอัญชัน 1.0 mL ใส่หลอดทดลอง 3 หลอด','เติม HCl 0.02 mol/L หลอดละ 5 หยด')+ar(280,54,280,78);
+  [['หลอดที่ 1','เติมน้ำกลั่น 5 หยด'],['หลอดที่ 2','เติม HCl 0.02 mol/L 5 หยด'],['หลอดที่ 3','เติม NaOH 0.02 mol/L 5 หยด']].forEach((b,i)=>{s+=box(8+i*184,80,176,46,b[0],b[1])+ar(96+i*184,126,280,150);});
+  s+=box(60,152,440,40,'บันทึกสี เปรียบเทียบหลอดที่ 2 และ 3 กับหลอดที่ 1')+ar(280,192,280,214)+box(60,216,440,36,'สังเกตสีของทั้ง 3 หลอดอีกครั้งเมื่อเวลาผ่านไป 1 นาที');
+  return svgWrap(560,262,'แผนภาพขั้นตอนการทดลองผลของความเข้มข้นต่อสมดุลด้วยน้ำดอกอัญชัน: ใส่น้ำดอกอัญชันและกรดในสามหลอด แล้วเติมน้ำกลั่น กรด และเบสในหลอดที่หนึ่ง สอง สาม บันทึกสีเทียบหลอดที่หนึ่ง และสังเกตซ้ำหลังหนึ่งนาที',s);}
+const DS145=[
+ {n:'ชุดที่ 1 ความเข้มข้นไอออนจากกรด HCl กับ HF',fmt:{tab:()=>'<div class="tw"><table class="tbl-sm"><thead><tr><th>กรด</th><th>[H⁺] mol/L</th><th>[ไอออนลบ] mol/L</th></tr></thead><tbody><tr><td>HCl</td><td>1.00</td><td>1.00 (Cl⁻)</td></tr><tr><td>HF</td><td>0.04</td><td>0.04 (F⁻)</td></tr></tbody></table></div>',bar:barChart,line:()=>'<div class="tip">กราฟเส้นไม่เหมาะกับข้อมูลชุดนี้: HCl กับ HF เป็นสารคนละชนิด ไม่ใช่ค่าต่อเนื่องที่ลากเส้นเชื่อมได้ จึงไม่แสดงกราฟเส้น (ข้อสังเกตของผู้จัดทำหน้า)</div>',flow:()=>'<div class="tip">ข้อมูลนี้ไม่ใช่ลำดับขั้นตอน จึงไม่เหมาะกับแผนภาพขั้นตอน</div>'}},
+ {n:'ชุดที่ 2 ปริมาตรแก๊สไฮโดรเจน 0.002 mol ที่อุณหภูมิต่าง ๆ (1 atm)',fmt:{tab:()=>'<div class="tw"><table class="tbl-sm"><thead><tr><th>อุณหภูมิ (°C)</th>'+TEMPS.map(t=>'<td>'+t+'</td>').join('')+'</tr></thead><tbody><tr><th>ปริมาตร (mL)</th>'+VOLS.map(v=>'<td>'+v+'</td>').join('')+'</tr></tbody></table></div>',bar:barChart2,line:()=>lineChart($('#idl')&&$('#idl').checked),flow:()=>'<div class="tip">ข้อมูลนี้เป็นตัวเลขสองแกน ไม่ใช่ลำดับขั้นตอน</div>'}},
+ {n:'ชุดที่ 3 วิธีทดลองผลของความเข้มข้นต่อสมดุล (น้ำดอกอัญชัน)',fmt:{tab:()=>'<div class="tip">ข้อมูลนี้เป็นข้อความวิธีทดลอง ไม่มีตารางตัวเลข ถ้าเขียนเป็นย่อหน้ายาวจะตามลำดับยาก</div>',bar:()=>'<div class="tip">ไม่มีตัวเลขให้เทียบแท่ง จึงไม่เหมาะกับกราฟแท่ง</div>',line:()=>'<div class="tip">ไม่มีตัวเลขให้เทียบแนวโน้ม จึงไม่เหมาะกับกราฟเส้น</div>',flow:flowChart}}];
+const F145=[['d1','ข้อมูลชุดที่ 1 ของฉัน: รูปแบบที่เลือกและเหตุผล'],['d2','ข้อมูลชุดที่ 2 ของฉัน: รูปแบบที่เลือกและเหตุผล'],['d3','ข้อมูลชุดที่ 3 ของฉัน: รูปแบบที่เลือกและเหตุผล'],['p1','ร่างหัวข้อโปสเตอร์ของฉัน (ชื่อเรื่อง ที่มา วัตถุประสงค์ วิธีการ ผล สรุป อ้างอิง)','คู่มือให้ครูกำหนดขนาดและหัวข้อที่ต้องมี หัวข้อในตัวอย่างนี้เป็นข้อเสนอของผู้จัดทำหน้า']];
+const RUB145=['ข้อมูลที่จัดกระทำให้อยู่ในรูปแบบเหมาะสม ครบ 3 ชุด','ส่งรายงานทันตามกำหนดเวลา','โปสเตอร์ขนาดและหัวข้อตรงตามที่กำหนด (ถ้าทำโปสเตอร์)','เนื้อหาส่วนใหญ่ถูกต้องและสมบูรณ์','ภาษาเข้าใจง่ายและสะกดถูกต้อง'];
+function act145(){
+  return`<h2>กิจกรรม 14.5 การจัดทำและนำเสนอข้อมูลในโปสเตอร์</h2><p class="sub">คู่มือครู หน้า 34–36 · เวลาในคู่มือ 120 นาที · จุดประสงค์ (ตามคู่มือ): จัดทำและนำเสนอข้อมูลในรูปแบบที่เหมาะสม</p>
+  <div class="lab"><h3>ลองดูข้อมูลสามชุดในรูปแบบต่าง ๆ</h3><p class="small">ข้อมูลทั้งสามชุดเป็นของคู่มือ ภาพที่วาดเป็นของผู้จัดทำหน้า เลือกรูปแบบที่เห็นว่าอ่านง่ายที่สุดแล้วไปตอบแบบทดสอบด้านล่าง</p>
+  ${DS145.map((d,i)=>`<div class="box"><h3>${d.n}</h3><div class="btns" role="group" aria-label="เลือกรูปแบบแสดงข้อมูล ${d.n}">${[['tab','ตาราง'],['bar','กราฟแท่ง'],['line','กราฟเส้น'],['flow','แผนภาพขั้นตอน']].map((f,j)=>`<button class="chip" type="button" data-ds="${i}" data-f="${f[0]}" aria-pressed="${j===0}">${f[1]}</button>`).join('')}</div>${i===1?'<label class="opt"><input type="checkbox" id="idl"><span>แสดงเส้นประเทียบ V = nRT/P (R = 0.08206 L·atm/mol·K) ที่ผู้จัดทำหน้าคำนวณเอง ไม่ใช่ข้อมูลของคู่มือ (ใช้ได้กับกราฟเส้น)</span></label>':''}<div class="fig" id="dsv${i}"></div></div>`).join('')}</div>
+  <div class="lab"><h3>ข้อมูลและโปสเตอร์ของฉัน</h3>${fieldsHTML(F145)}${expHTML('p145')}</div>
+  <div class="box"><h3>ตรวจตนเองตามเกณฑ์</h3><div id="rub145">${checksHTML(RUB145)}</div></div>
+  ${quizHTML('14.5','เลือกรูปแบบนำเสนอข้อมูล')}`;
+}
+function wire145(){
+  const cur={0:'tab',1:'tab',2:'tab'};
+  const draw=i=>{const e=$('#dsv'+i);if(e)e.innerHTML=DS145[i].fmt[cur[i]]();};
+  $$('[data-ds]').forEach(b=>b.onclick=()=>{const i=+b.dataset.ds;cur[i]=b.dataset.f;$$('[data-ds="'+i+'"]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw(i);});
+  const idl=$('#idl');if(idl)idl.onchange=()=>draw(1);
+  [0,1,2].forEach(draw);
+  wireDraft($('#panel'),'14.5');wireExp('p145',()=>textOf('14.5',F145.map(f=>[f[0],f[1]]),'ข้อมูลและโปสเตอร์ (กิจกรรม 14.5)'),'poster-14-5.txt');
+  wireQuiz('14.5');
+}
+
+/* ======================= กิจกรรม 14.6 นำเสนอผลงาน ======================= */
+const F146=[['r1','บทคัดย่อ','แสดงภาพรวมของงาน เขียนเป็นลำดับให้เข้าใจง่าย (ในคู่มือบทคัดย่อส่วนใหญ่ยาวราว 1 หน้า)'],['r2','บทนำ: ที่มาและความสำคัญของปัญหา',''],['r3','ทฤษฎีหรืองานวิจัยที่เกี่ยวข้อง','ควรสอดคล้องกับงานที่ทำ (อาจรวมไว้ในบทนำได้)'],['r4','สมมติฐาน ตัวแปร และผลที่คาดไว้ (หรือปัญหาและเงื่อนไขของการออกแบบ)','ส่วน "ผลที่คาดไว้" เป็นข้อเสนอของผู้จัดทำหน้า'],['r5','วิธีดำเนินการ','เรียงลำดับขั้นตอน และบอกอุปกรณ์/เครื่องมือให้ครบ'],['r6','ผลการดำเนินการและการอภิปราย','จัดกระทำข้อมูล (ตาราง/กราฟ) แล้ววิเคราะห์ให้สอดคล้องกับวัตถุประสงค์'],['r7','สรุปผล','ครอบคลุมวัตถุประสงค์ทั้งหมด']];
+const RATE146=['รายงาน: ข้อมูลครบหัวข้อและเล่มเรียบร้อย','รายงาน: บทนำแสดงที่มาและความสำคัญ ทฤษฎีสอดคล้องกับงาน','รายงาน: วิธีดำเนินการเป็นลำดับ บอกอุปกรณ์ครบ','รายงาน: จัดกระทำข้อมูล วิเคราะห์ อภิปรายสอดคล้องวัตถุประสงค์','โปสเตอร์/สไลด์: ประเด็นสำคัญครบ เนื้อหาถูกต้อง','โปสเตอร์/สไลด์: ภาษาเข้าใจง่าย สะกดถูก','สไลด์: ขนาดและแบบอักษรเหมาะสม จัดวางเข้าใจง่าย','การพูด: พูดจากความเข้าใจ ไม่อ่านสไลด์ สบตาผู้ฟัง ท่าทางเหมาะสม','การพูด: ออกเสียงชัด เว้นวรรคและจังหวะเหมาะสม','การพูด: อยู่ในเวลา และแต่งกายสุภาพ'];
+function slidesSVG(){
+  const bad=`<rect x="10" y="10" width="250" height="150" fill="#fff" stroke="#999"/><text x="20" y="28" font-size="7" fill="#222">ผลการทดลองและการอภิปรายผลการทดลองซึ่งพบว่าเมื่อเพิ่มปริมาณสารขึ้นแล้วค่าที่วัดได้มี</text><text x="20" y="38" font-size="7" fill="#222">การเปลี่ยนแปลงอย่างต่อเนื่องและเมื่อเปรียบเทียบกับชุดควบคุมพบว่ามีความแตกต่างกัน</text><text x="20" y="48" font-size="7" fill="#222">ซึ่งอาจเกิดจากหลายสาเหตุ เช่น อุณหภูมิ ความเข้มข้น เวลา และอื่น ๆ อีกหลายประการ</text><text x="20" y="58" font-size="7" fill="#222">ที่ได้กล่าวมาแล้วข้างต้นในหัวข้อวิธีดำเนินการ ทั้งนี้ยังมีรายละเอียดอื่นอีกมากมาย</text><text x="20" y="68" font-size="7" fill="#222">ซึ่งต้องศึกษาเพิ่มเติม และสรุปได้ว่า…</text><rect x="150" y="90" width="100" height="60" fill="#c8d6c8"/>`;
+  const good=`<rect x="290" y="10" width="250" height="150" fill="#fff" stroke="#3d5a80" stroke-width="2"/><text x="305" y="38" font-size="16" font-weight="700" fill="#1d2b44">เพิ่มสาร → ค่าที่วัดสูงขึ้น</text><text x="305" y="62" font-size="12" fill="#1d2b44">• เทียบกับชุดควบคุม</text><text x="305" y="80" font-size="12" fill="#1d2b44">• แนวโน้มชัดเจน</text><polyline points="420,140 450,120 480,100 520,75" fill="none" stroke="#3d5a80" stroke-width="3"/><circle cx="420" cy="140" r="3" fill="#3d5a80"/><circle cx="450" cy="120" r="3" fill="#3d5a80"/><circle cx="480" cy="100" r="3" fill="#3d5a80"/><circle cx="520" cy="75" r="3" fill="#3d5a80"/>`;
+  return svgWrap(550,200,'เปรียบเทียบสไลด์สองแบบ ซ้ายเป็นสไลด์ที่มีข้อความยาวตัวเล็กอัดแน่นอ่านยาก ขวาเป็นสไลด์ที่มีหัวข้อใหญ่ ประเด็นสั้น และกราฟเล็ก ๆ อ่านง่าย',bad+good+`<text x="135" y="182" text-anchor="middle" font-size="12" fill="#b63f43">ไม่เหมาะ: ข้อความยาว ตัวเล็ก</text><text x="415" y="182" text-anchor="middle" font-size="12" fill="#157a55">เหมาะกว่า: ประเด็นสั้น ตัวใหญ่ มีภาพช่วย</text>`);}
+function act146(){
+  return`<h2>กิจกรรม 14.6 การนำเสนอผลงานจากกิจกรรม 14.3</h2><p class="sub">คู่มือครู หน้า 37–38 · เวลาในคู่มือ 8 ชั่วโมง · งานจริงของนักเรียน หน้านี้ช่วยร่างรายงาน ฝึกจับเวลาพูด และประเมินตนเอง · ไม่มีคะแนนอัตโนมัติ นอกจากแบบทดสอบ</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>จัดทำรายงาน</li><li>จัดทำสื่อ: โปสเตอร์หรือสไลด์ประกอบการบรรยาย</li><li>นำเสนอผลงานเป็นโปสเตอร์หรือการบรรยาย</li></ol></div>
+  <div class="lab"><h3>ตัวร่างรายงาน</h3><p class="small">หัวข้อเรียงตามเกณฑ์รายงานของคู่มือ (จำนวนบทปรับได้ตามเนื้อหา) รายการอ้างอิงดึงมาจากตัวสร้างใน 14.4 อัตโนมัติ</p>
+  ${F146.map(r=>`<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2]?`<div class="small">${r[2]}</div>`:''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea><div class="small" id="cnt_${r[0]}"></div></div>`).join('')}${expHTML('p146')}</div>
+  <div class="lab"><h3>เปรียบเทียบสไลด์</h3><p class="small">ภาพเปรียบเทียบสร้างโดยผู้จัดทำหน้าตามหลักเกณฑ์เรื่องขนาดอักษรและการจัดวางของคู่มือ ไม่ใช่รูป 14.10 ของหนังสือเรียน</p><div class="fig">${slidesSVG()}</div></div>
+  <div class="lab"><h3>นาฬิกาซ้อมพูด</h3><p class="small">คู่มือกำหนดว่าต้องพูดอยู่ในเวลาที่ครูกำหนด ค่าเริ่มต้น 5 นาทีเป็นค่าสมมติของหน้านี้ ปรับให้ตรงกับที่ครูกำหนดได้</p>
+  <div class="rowflex"><label>เวลาที่กำหนด (นาที)<input type="number" id="tLim" min="1" max="60" step="1" value="5"></label><div class="timer" id="tOut" role="timer" aria-live="off">00:00</div></div>
+  <div class="btns"><button class="btn" type="button" id="tGo">เริ่ม</button><button class="btn alt" type="button" id="tStop">หยุด</button><button class="btn alt" type="button" id="tRst">เริ่มใหม่</button></div><div class="res" id="tMsg" aria-live="polite"></div></div>
+  <div class="box"><h3>ประเมินตนเองตามเกณฑ์ของคู่มือ</h3>${rateHTML(RATE146)}</div>
+  ${quizHTML('14.6')}`;
+}
+function wire146(){
+  const root=$('#panel');
+  const cnt=()=>F146.forEach(r=>{const e=$('#cnt_'+r[0]);if(e)e.textContent=dget('14.6',r[0]).length+' ตัวอักษร';});
+  wireDraft(root,'14.6',()=>{cnt();rate();});cnt();
+  const rate=wireRate(root,RATE146.length);rate();
+  wireExp('p146',()=>{const refs=Array.isArray(DR['14.4|refs'])?DR['14.4|refs']:[];return textOf('14.6',F146.map(f=>[f[0],f[1]]),'ร่างรายงานการแก้ปัญหาโดยบูรณาการความรู้ (กิจกรรม 14.6)')+'\n## รายการอ้างอิง (จาก 14.4)\n'+(refs.length?refs.map((x,i)=>(i+1)+'. '+x.s).join('\n'):'(ยังไม่มี)')+'\n';},'report-14-6.txt');
+  /* นาฬิกา: ใช้ setInterval และยกเลิกเมื่อเปลี่ยนแท็บ */
+  let t0=0,acc=0,iv=0;const out=$('#tOut'),msg=$('#tMsg'),lim=$('#tLim');
+  const lm=()=>Math.max(1,Math.min(60,parseInt(lim.value,10)||5))*60;
+  const fm=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+  const paint=()=>{const e=acc+(t0?(Date.now()-t0)/1000:0),over=e>lm();out.textContent=fm(e);out.className='timer'+(over?' over':'');msg.className='res '+(over?'bad':'ok');msg.textContent=e===0?'':over?'เกินเวลา '+fm(e-lm())+' (เกณฑ์ข้อระยะเวลา: เกินเวลา = ต้องปรับปรุง)':'เหลือ '+fm(lm()-e);};
+  const stop=()=>{if(iv){clearInterval(iv);iv=0;}if(t0){acc+=(Date.now()-t0)/1000;t0=0;}};
+  CLEAN.push(()=>{if(iv){clearInterval(iv);iv=0;}t0=0;});
+  $('#tGo').onclick=()=>{if(iv)return;t0=Date.now();iv=setInterval(paint,250);paint();};
+  $('#tStop').onclick=()=>{stop();paint();};
+  $('#tRst').onclick=()=>{stop();acc=0;paint();};
+  lim.onchange=paint;
+  wireQuiz('14.6');
+}
+
+/* ======================= กิจกรรม 14.7 สืบค้นงานประชุมวิชาการ ======================= */
+const CF=[['name','ชื่องานประชุม'],['theme','หัวข้อหลัก (theme)'],['date','ช่วงเวลาที่จัดงาน'],['venue','สถานที่จัดงาน'],['org','หน่วยงานหลักที่จัด'],['fmt','รูปแบบของกิจกรรม']];
+const RUB147=['มีข้อมูลงานประชุมวิชาการอย่างน้อย 2 งาน','เนื้อหาครบตามหัวข้อที่กำหนด (ชื่อ theme เวลา สถานที่ หน่วยงาน รูปแบบ)','ส่งรายงานทันตามกำหนดเวลา'];
+function act147(){
+  const card=n=>`<div class="box"><h3>งานประชุมที่ ${n}</h3>${CF.map(f=>`<div class="q"><label class="lbl" for="c${n}_${f[0]}">${f[1]}</label><textarea id="c${n}_${f[0]}" data-d="c${n}_${f[0]}" style="min-height:56px" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('')}</div>`;
+  return`<h2>กิจกรรม 14.7 สืบค้นข้อมูลงานประชุมวิชาการ</h2><p class="sub">คู่มือครู หน้า 39–43 · เวลาในคู่มือ 50 นาที (ควรสืบค้นล่วงหน้า) · งานสืบค้นจริง ไม่มีคะแนนอัตโนมัติ</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>สืบค้นข้อมูลงานประชุมวิชาการทางเคมี วิทยาศาสตร์ หรือเทคโนโลยีที่เกี่ยวข้อง และนำเสนอผลในชั้นเรียน เกณฑ์ตัวอย่างต้องการข้อมูลอย่างน้อย 2 งาน</p></div>
+  <div class="lab"><h3>แบบบันทึกผลการสืบค้น (2 งาน)</h3><p class="small">หัวข้อบันทึกเรียงตามตัวอย่างผลของคู่มือ บันทึกในเครื่องนี้อัตโนมัติ และส่งให้ครูพร้อมคะแนนเมื่อกดส่ง งานตัวอย่างในคู่มือเป็นงานปี 2561–2562 ให้สืบค้นงานที่ยังจัดอยู่หรือจัดล่าสุด</p>
+  <div class="btns" id="cfChips" role="group" aria-label="ใส่ชื่องานตัวอย่างของคู่มือลงช่องที่ว่าง">${['วทท. ครั้งที่ 13','NAC2019','YSC 2019'].map(t=>`<button class="chip" type="button" data-t="${t}" aria-pressed="false">ใช้ชื่อตัวอย่าง: ${t}</button>`).join('')}</div>
+  <div class="cols">${card(1)}${card(2)}</div>
+  <div class="q"><label class="lbl" for="c_ref">แหล่งอ้างอิงที่ใช้สืบค้น (เขียนตามรูปแบบจาก 14.4)</label><textarea id="c_ref" data-d="c_ref" placeholder="พิมพ์ที่นี่"></textarea></div>
+  <div class="res" id="cfState" aria-live="polite"></div>${expHTML('p147')}</div>
+  <div class="box"><h3>รายการตรวจ (ติ๊กเพื่อทบทวนตัวเอง)</h3><div id="rub147">${checksHTML(RUB147)}</div></div>
+  <details class="rd-q"><summary>ดูตัวอย่างผลสืบค้นในคู่มือ (เปิดหลังเขียนของตัวเองแล้ว)</summary>
+  <p><b>1. วทท. ครั้งที่ 13</b> (The 13th Conference on Science and Technology for Youths) · theme: นวัตกรรมสร้างสรรค์สู่การอนุรักษ์อย่างยั่งยืน · 16–17 กรกฎาคม 2561 · ศูนย์นิทรรศการและการประชุมไบเทค กรุงเทพฯ · จัดโดย สสวท. ร่วมกับมหาวิทยาลัยวลัยลักษณ์ จุฬาลงกรณ์มหาวิทยาลัย สพฐ. สกอ. และ สวทช. · รูปแบบ: นำเสนอวิจัยแบบบรรยายและโปสเตอร์ บรรยายและอบรมเชิงปฏิบัติการจากผู้ทรงคุณวุฒิ แนะนำแนวทางการศึกษาต่อ</p>
+  <p><b>2. NAC2019</b> (15th NSTDA Annual Conference) · theme: เศรษฐกิจแห่งอนาคตไทย ก้าวไกลด้วยวิทยาศาสตร์ เทคโนโลยี และนวัตกรรม · 25–28 มีนาคม 2562 · อุทยานวิทยาศาสตร์ประเทศไทย ปทุมธานี · จัดโดย สวทช. · รูปแบบ: สัมมนาวิชาการ นิทรรศการ เยี่ยมชมห้องปฏิบัติการวิจัยและทดสอบ กิจกรรมวิทยาศาสตร์สำหรับเยาวชน</p>
+  <p><b>3. YSC 2019</b> (Young Scientist Competition) · ไม่ระบุ theme · ลงทะเบียน 25 ก.ค. 2561 รับข้อเสนอโครงงาน 1 ก.ย. 2561 ประกาศผลรอบข้อเสนอ 19 ต.ค. 2561 ค่ายโครงงาน พ.ย. 2561 พัฒนาโครงงาน พ.ย. 2561–ม.ค. 2562 ส่งผลงาน 15 ม.ค. 2562 รอบชิงชนะเลิศ 12–15 มี.ค. 2562 ไปงาน Intel ISEF 12–17 พ.ค. 2562 · รอบชิงฯ ที่ไอส์แลนด์ฮอลล์ ถนนรามอินทรา กรุงเทพฯ · จัดโดยเนคเทค · ประกวดโครงงานนักเรียน ม.2–6 แปดสาขา: คอมพิวเตอร์ คณิตศาสตร์ เคมี ชีววิทยา ฟิสิกส์ พลังงานและดาราศาสตร์ วัสดุศาสตร์ วิทยาศาสตร์สิ่งแวดล้อม วิศวกรรมศาสตร์</p></details>
+  ${quizHTML('14.7')}`;
+}
+function wire147(){
+  const root=$('#panel');
+  const state=()=>{let full=0;[1,2].forEach(n=>{if(CF.every(f=>dget('14.7','c'+n+'_'+f[0]).trim().length>=3))full++;});
+    const r=$('#cfState');r.className='res '+(full===2?'ok':'');r.textContent=full===2?'กรอกข้อมูลครบทั้ง 2 งานแล้ว ✓':'กรอกครบแล้ว '+full+' / 2 งาน (ทุกหัวข้อ อย่างน้อยหัวข้อละ 3 ตัวอักษร)';
+    if(full===2)markDone('14.7');};
+  wireDraft(root,'14.7',state);state();
+  $$('#cfChips .chip').forEach(b=>b.onclick=()=>{const t=['c1_name','c2_name'].map(id=>$('#'+id)).find(e=>!e.value.trim())||$('#c1_name');t.value=b.dataset.t;t.dispatchEvent(new Event('input',{bubbles:true}));});
+  wireExp('p147',()=>textOf('14.7',[].concat(CF.map(f=>['c1_'+f[0],'งานที่ 1: '+f[1]]),CF.map(f=>['c2_'+f[0],'งานที่ 2: '+f[1]]),[['c_ref','แหล่งอ้างอิง']]),'ผลสืบค้นงานประชุมวิชาการ (กิจกรรม 14.7)'),'conf-14-7.txt');
+  wireQuiz('14.7',false);
+}
+
+/* ======================= กิจกรรม 14.8 เข้าร่วมและสรุปการประชุม ======================= */
+const F148=[['e1','งานที่เข้าร่วม (ชื่อ วันที่ สถานที่ และบทบาท: ผู้ฟังหรือผู้นำเสนอ)'],['e2','ช่วงหรือผลงานที่ฟังหรือชม และเนื้อหาสำคัญ'],['e3','สิ่งที่ได้เรียนรู้ (อย่างน้อย 3 ข้อ)'],['e4','คำถามที่ถามหรือตอบ และตรวจดูว่าเป็นคำถามที่เหมาะสมหรือไม่'],['e5','เชื่อมโยงกับความรู้เคมีหรือการแก้ปัญหาที่เรียนในบทนี้อย่างไร'],['e6','ข้อคิดเห็นต่อคุณค่าของการเข้าร่วม และสิ่งที่จะทำต่อ'],['e7','หลักฐานการเข้าร่วม (เช่น ภาพถ่าย บัตรเข้างาน เกียรติบัตร) ระบุว่าแนบอะไร']];
+const RUB148=['รายงานข้อมูลครบตามหัวข้อที่กำหนด และทุกหัวข้อมีประเด็นสำคัญ','ส่งรายงานทันตามกำหนดเวลา','ตั้งคำถามที่ชัดเจน เฉพาะเจาะจง ตรงกับสิ่งที่งานทำ และสุภาพ'];
+function act148(){
+  return`<h2>กิจกรรม 14.8 การเข้าร่วมและการสรุปรายงานการเข้าประชุมวิชาการ</h2><p class="sub">คู่มือครู หน้า 43–44 · เวลาในคู่มือ 2 ชั่วโมงสำหรับอภิปรายสรุป (ไม่รวมเวลาเข้าร่วมงาน) · การเข้าร่วมงานเป็นกิจกรรมจริง หน้านี้ช่วยเตรียมคำถามและเขียนรายงานสรุป</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ol><li>เข้าร่วมการประชุมวิชาการ</li><li>จัดทำสรุปรายงานการเข้าร่วมประชุมวิชาการ</li></ol><p class="small">คู่มือแนะนำให้เข้าร่วมงานของหน่วยงานต่าง ๆ หรือครูจัดประชุมวิชาการระดับห้อง โรงเรียน หรือกลุ่มโรงเรียน</p></div>
+  ${quizHTML('14.8','จัดประเภทคำถามในงานประชุม')}
+  <div class="lab"><h3>ฝึกเขียนคำถามใหม่</h3><p class="small">เลือกคำถามที่ไม่เหมาะสมข้างบนหนึ่งข้อ แล้วเขียนใหม่ให้เฉพาะเจาะจงหรือสุภาพ (ฝึกเอง ไม่มีคะแนน)</p>${fieldsHTML([['w1','คำถามเดิม'],['w2','คำถามที่เขียนใหม่']])}
+  <details class="rd-q"><summary>ดูแนวทางจากคู่มือ</summary><p>ถ้าไม่เข้าใจส่วนใด ให้ถามเจาะจง เช่น "เพราะเหตุใดจึงต้องทำการทดลองในส่วน…" · ถ้าอยากรู้เรื่องที่งานไม่ได้ทำแต่เกี่ยวข้อง ให้ให้เหตุผลหรือสมมติฐานประกอบ · ถ้าสงสัยว่างานซ้ำ ให้ถามว่าส่วนใดใหม่หรือผู้นำเสนอทำส่วนใด</p></details></div>
+  <div class="lab"><h3>รายงานสรุปการเข้าร่วมประชุม</h3>${fieldsHTML(F148)}${expHTML('p148')}</div>
+  <div class="box"><h3>ตรวจตนเองตามเกณฑ์</h3><div id="rub148">${checksHTML(RUB148)}</div></div>`;
+}
+function wire148(){
+  wireDraft($('#panel'),'14.8');
+  wireExp('p148',()=>textOf('14.8',F148.map(f=>[f[0],f[1]]),'รายงานการเข้าร่วมประชุมวิชาการ (กิจกรรม 14.8)'),'conf-report-14-8.txt');
+  wireQuiz('14.8');
+}
+
+/* ======================= สรุปเนื้อหา ======================= */
+function mapSVG(){
+  const bx=(x,y,w,t,f)=>`<rect x="${x}" y="${y}" width="${w}" height="34" rx="10" fill="${f||'#eef3fa'}" stroke="#3d5a80" stroke-width="1.5"/><text x="${x+w/2}" y="${y+22}" text-anchor="middle" font-size="12.5" fill="#1d2b44">${t}</text>`;
+  const ln=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#3d5a80" stroke-width="1.8"/>`;
+  return svgWrap(560,330,'ผังมโนทัศน์บทที่ 14 ความรู้เคมีและความรู้ศาสตร์อื่น พร้อมทักษะกระบวนการทางวิทยาศาสตร์ ใช้วิธีการทางวิทยาศาสตร์หรือกระบวนการออกแบบเชิงวิศวกรรม เพื่อแก้ปัญหา ได้ผลงานหรือชิ้นงาน แล้วนำเสนอผลงาน และเข้าร่วมประชุมวิชาการ',
+   bx(60,8,170,'ความรู้เคมี')+bx(330,8,170,'ความรู้ศาสตร์อื่น')+ln(145,42,145,62)+ln(415,42,415,62)+ln(145,62,415,62)+bx(130,70,300,'ทักษะกระบวนการทางวิทยาศาสตร์')+ln(280,104,280,122)+bx(20,128,250,'วิธีการทางวิทยาศาสตร์')+bx(290,128,250,'กระบวนการออกแบบเชิงวิศวกรรม')+ln(145,162,145,184)+ln(415,162,415,184)+ln(145,184,415,184)+ln(280,184,280,198)+bx(180,200,200,'การแก้ปัญหา','#e6edf6')+ln(280,234,280,252)+bx(150,254,260,'ผลงานหรือชิ้นงาน → การนำเสนอผลงาน')+ln(280,288,280,296)+`<text x="280" y="318" text-anchor="middle" font-size="12.5" fill="#1d2b44">เข้าร่วมประชุมวิชาการ / นิทรรศการ</text>`);}
+function actSum(){
+  return`<h2>สรุปเนื้อหาบทที่ 14 เคมีกับการแก้ปัญหา</h2><p class="sub">สรุปโดยผู้จัดทำหน้า จากคู่มือครู หน้า 1–44 และ 46–60</p>
+  <div class="box"><h3>ภาพรวม</h3><div class="fig">${mapSVG()}</div></div>
+  <div class="box"><h3>ใจความหลัก</h3><ul><li>สถานการณ์ในชีวิตประจำวัน อาชีพ และอุตสาหกรรมแก้ได้ด้วยความรู้เคมี ร่วมกับวิทยาศาสตร์แขนงอื่น คณิตศาสตร์ และเทคโนโลยี (หน้า 6)</li><li>วิธีการทางวิทยาศาสตร์: ระบุปัญหา → ตั้งคำถาม/คำถามย่อย → สืบค้น → สมมติฐาน → ตัวแปร (ต้น ตาม ควบคุม) และนิยามเชิงปฏิบัติการ → ออกแบบวิธีตรวจสอบ (14.1)</li><li>กระบวนการออกแบบเชิงวิศวกรรม: กำหนดปัญหาและเงื่อนไข → รวบรวมความรู้ → ออกแบบและลงมือ → วิเคราะห์ ทดสอบ ปรับปรุง จนได้วิธีที่ใช้ได้จริง ขั้นตอนย้อนกลับได้ (14.2, 14.3)</li><li>สายไฟแป้งโดว์: อิเล็กโทรไลต์ที่ไอออนต่อมวลสูง (NaCl) ใช้น้อยกว่า การต่อขนานทำให้หลอดสว่างกว่าอนุกรม (หน้า 22–25)</li><li>นำเสนอผลงาน: รายงาน โปสเตอร์ การบรรยาย และอ้างอิงด้วย APA, ACS หรือ AMA (14.4–14.6)</li><li>การประชุมวิชาการและนิทรรศการช่วยแลกเปลี่ยนความคิดและพัฒนาทักษะสื่อสาร (14.7–14.8)</li></ul></div>
+  <div class="box"><h3>ตัวเลขที่ยกในคู่มือ</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">เรื่อง</th><th class="l">ค่า</th><th>หน้า</th></tr></thead><tbody>
+  <tr><td class="l">ปาท่องโก๋: อุณหภูมิน้ำมัน / เวลาทอด (ชุดเปรียบเทียบ → ที่ทดสอบ)</td><td class="l">190–200 °C → 180–190 และ 200–210 °C · 2 นาที → 1 และ 3 นาที</td><td>10–11</td></tr>
+  <tr><td class="l">SPF → ร้อยละที่กรอง UVB</td><td class="l">15 → 93 · 30 → 97 · 50 → 98 · 100 → 99 · ZnO ในเครื่องสำอางไม่เกินร้อยละ 25 โดยมวล</td><td>17</td></tr>
+  <tr><td class="l">โฟมฉนวน JIS A 5905</td><td class="l">ความหนาแน่น ≤ 0.35 g/cm³ · ความชื้น 5–13 % · ดัด ≥ 2.0 N/mm² · พองตัว ≤ 10 % · ต้านทานความร้อน (9/12/15/18 mm) ≥ 0.163/0.206/0.267/0.327 m²K/W</td><td>14</td></tr>
+  <tr><td class="l">สายไฟแป้งโดว์</td><td class="l">แป้ง 30 g · สารอย่างละ 5 g · น้ำ 3 mL · LED 1.5 V 2 หลอด · ถ่าน 1.5 V 2 ก้อน · 30 นาที · ผลตัวอย่าง: เกลือ 0.2 g/น้ำ 1 mL ไม่สว่าง → 0.6 g/น้ำ 3 mL สว่าง ที่เส้นยาว 18 cm</td><td>19–23</td></tr>
+  <tr><td class="l">ปริมาตร H₂ 0.002 mol (1 atm)</td><td class="l">−100 → 30 mL · −50 → 36 · 0 → 45 · 50 → 55 · 100 → 61</td><td>35</td></tr>
+  <tr><td class="l">เวลาที่คู่มือเสนอ</td><td class="l">บท 60 ชม. (14.1: 2 · 14.2: 13 · 14.3: 30 · 14.4: 12 · 14.5: 3) · กิจกรรม 14.1 = 10 ชม. · 14.3 = 23 ชม. · 14.6 = 8 ชม.</td><td>6, 12, 27, 38</td></tr></tbody></table></div></div>
+  <div class="box"><h3>สิ่งที่คู่มือใช้ประเมิน (หน้า 46)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ผลการเรียนรู้</th><th class="l">รายการที่ใช้ประเมิน</th></tr></thead><tbody>
+  <tr><td class="l">กำหนดปัญหาและนำเสนอแนวทางแก้ปัญหาด้วยความรู้เคมี</td><td class="l">แบบประเมินระหว่างทำและรายงานผลกิจกรรม 14.1</td></tr>
+  <tr><td class="l">บูรณาการความรู้เคมีกับศาสตร์อื่น ทักษะกระบวนการ หรือกระบวนการออกแบบเชิงวิศวกรรม</td><td class="l">แบบประเมินและรายงานผลกิจกรรม 14.2 และ 14.3</td></tr>
+  <tr><td class="l">นำเสนอผลงานโดยใช้เทคโนโลยีสารสนเทศ</td><td class="l">รายงานผลกิจกรรม 14.5 · โปสเตอร์หรือสไลด์ · การพูดนำเสนอผลงาน 14.3</td></tr>
+  <tr><td class="l">แสดงหลักฐานการเข้าร่วมสัมมนา ประชุมวิชาการ หรือนิทรรศการ</td><td class="l">รายงานผลการสืบค้น 14.7 · รายงานการเข้าร่วมประชุม 14.8</td></tr></tbody></table></div><p class="small">เกณฑ์ตัวอย่างส่วนใหญ่แบ่ง 3 ระดับ: ดี · พอใช้ · ต้องปรับปรุง (บางหัวข้อ เช่น การส่งงานตรงเวลา มี 2 ระดับ)</p></div>`;
+}
+
+/* ======================= ทบทวนตนเอง (ไม่ใช่แบบฝึกหัดของคู่มือ) ======================= */
+const OUT=['กำหนดปัญหาและเสนอแนวทางแก้ปัญหาโดยใช้ความรู้เคมีจากสถานการณ์ในชีวิตประจำวัน อาชีพ หรืออุตสาหกรรม','แสดงหลักฐานการบูรณาการความรู้เคมีกับศาสตร์อื่น พร้อมทักษะกระบวนการทางวิทยาศาสตร์หรือกระบวนการออกแบบเชิงวิศวกรรม','นำเสนอผลงานหรือชิ้นงานโดยใช้เทคโนโลยีสารสนเทศ','แสดงหลักฐานการเข้าร่วมสัมมนา ประชุมวิชาการ หรือนิทรรศการ'];
+const FEX=[['x1','สิ่งที่ฉันทำได้ดีที่สุดในบทนี้'],['x2','สิ่งที่ยังต้องฝึก'],['x3','ปัญหาในชีวิตจริงที่ฉันอยากใช้ความรู้เคมีแก้ต่อ']];
+function actEx(){
+  return`<h2>ทบทวนและสะท้อนตนเอง</h2><p class="sub"><b>หมายเหตุ:</b> คู่มือครูบทที่ 14 ไม่มีแบบฝึกหัดท้ายบท แท็บนี้ผู้จัดทำหน้าสร้างขึ้นเองจากข้อสอบก่อนเรียนของคู่มือ (หน้า 7) ผลการเรียนรู้ (หน้า 1) และความคืบหน้าของหน้านี้</p>
+  ${quizHTML('ex','ตรวจความรู้ก่อนเรียน (ข้อสอบก่อนเรียนของคู่มือ ถูก/ผิด)')}
+  <div class="box"><h3>ผลการเรียนรู้ของบท (ติ๊กเมื่อมั่นใจว่าทำได้)</h3><div id="outs">${checksHTML(OUT)}</div></div>
+  <div class="lab"><h3>สะท้อนตนเอง</h3>${fieldsHTML(FEX)}</div>
+  <div class="box"><h3>ความคืบหน้า</h3><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">กิจกรรม</th><th>สถานะ</th></tr></thead><tbody id="progT"></tbody></table></div>${expHTML('pex')}</div>`;
+}
+function wireEx(){
+  wireDraft($('#panel'),'ex');
+  $('#progT').innerHTML=LABS.map(a=>`<tr><td class="l">${a} ${TITLES[a]}</td><td>${st.done[a]?'<span class="ok-t">✓ เสร็จแล้ว</span>':'ยังไม่เสร็จ'}</td></tr>`).join('');
+  wireExp('pex',()=>'สรุปการเรียนบทที่ 14 เคมีกับการแก้ปัญหา\n\n'+LABS.map(a=>(st.done[a]?'[x] ':'[ ] ')+a+' '+TITLES[a]).join('\n')+'\n'+textOf('ex',FEX,'\nการสะท้อนตนเอง'),'review-14.txt');
+  wireQuiz('ex',false);
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'14.1':[act141,wire141],'14.2':[act142,wire142],'14.3':[act143,wire143],'14.4':[act144,wire144],'14.5':[act145,wire145],'14.6':[act146,wire146],'14.7':[act147,wire147],'14.8':[act148,wire148],'sum':[actSum,()=>{}],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${qid(a)}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t){t.focus({preventScroll:true});try{t.scrollIntoView({block:'nearest',inline:'nearest'});}catch(_){}}}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length,m=LABS.length;$('#progText').textContent='ความคืบหน้า '+n+' / '+m+' กิจกรรม';$('#progBar').style.width=(n/m*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('เคมี ม.6 บทที่ 14','เคมี ม.6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา (กิจกรรม 14.1–14.8)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+qid(a)+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่ (ล้างเครื่องหมายเสร็จและแบบทดสอบ ข้อความที่เขียนยังอยู่)</button></div></section>';
+  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];st.q=st.q||{};(TABQ[a]||[a]).forEach(x=>delete st.q[x]);save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const hh=(location.hash.match(/act-(14\.\d|sum|ex)/)||[])[1];
+select(hh&&ACTS.indexOf(hh)>=0?ACTS.indexOf(hh):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
