@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>วิทยาศาสตร์กายภาพ ม.5 บทที่ 1 อากาศ · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 1", "title": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 1 อากาศ (กิจกรรม 1.1–1.2)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#566680;--line:#d4e2f1;--soft:#f0f6fc;--acc:#2b6cb0;--acc2:#e6f0fa;--ok:#157a55;--bad:#b63f43;--acc3:#7fb0e0;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid var(--line);border-radius:30px;background:linear-gradient(130deg,#fff,#eaf2fb);box-shadow:0 28px 65px #0b2a4d12;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #b9d1ea;background:#eff5fc;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#1f3f66;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #0b2a4d12,0 3px 10px #0b2a4d08;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #b7d0ea;border-radius:22px;padding:16px;background:linear-gradient(160deg,#eaf2fb,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #8fb4dc;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;height:auto}
+.fig.scroll{overflow-x:auto}.fig.scroll svg{min-width:600px}.fig.scroll.w440 svg{min-width:440px}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.why{font-size:.9rem;color:#1f3a5a;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea,input.tin{width:100%;border:1px solid #c3d2e6;border-radius:14px;padding:9px 12px}
+textarea{min-height:84px;resize:vertical}
+input.tin{min-height:44px}
+.tip{font-size:.9rem;color:#1f3f66;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+sub{font-size:.75em;line-height:0}sup{font-size:.75em;line-height:0}
+fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+svg text{font-family:var(--font)}
+.warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
+.tbl-sm td,.tbl-sm th{font-size:.88rem}
+.tw table.wide{min-width:540px}
+.ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
+.rg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.num{width:7.5em;min-height:44px;border:1px solid #b7d0ea;border-radius:12px;padding:6px 10px;text-align:right}
+.num2{width:5.2em;min-height:44px;border:1px solid #b7d0ea;border-radius:12px;padding:6px 8px;text-align:right}
+.mini th,.mini td{padding:4px 7px;font-size:.88rem}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9rem}.bar2 .lb{flex:0 0 9.5em}.bar2 .tr{flex:1;height:16px;border-radius:99px;background:var(--acc2);overflow:hidden}.bar2 .tr i{display:block;height:100%;background:var(--acc)}.bar2 .vv{flex:0 0 5.5em;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:480px){.bar2 .lb{flex-basis:7em}}
+input[type=range]{accent-color:var(--acc);width:100%;min-height:44px}input[type=checkbox],input[type=radio]{accent-color:var(--acc)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0}.kv b{font-weight:650}
+.nuc{display:inline-flex;align-items:center;font-weight:650;font-size:1.15em}
+.nuc .nn{display:inline-flex;flex-direction:column;font-size:.62em;line-height:1.05;text-align:right;margin-right:2px}
+.stp{display:flex;align-items:center;gap:6px}.stp output{min-width:2.6em;text-align:center;font-weight:700;font-size:1.1rem}
+.stp button{min-width:44px}
+.ptw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;padding:8px}
+.pt{display:grid;grid-template-columns:28px repeat(18,30px);gap:2px;width:max-content}
+.pt .h,.pt .pl{font-size:.72rem;color:var(--muted);text-align:center;line-height:1.1;align-self:center}
+.pc{width:30px;height:30px;border:1px solid #c3d2e6;border-radius:5px;background:#f6f9fd;font-size:.72rem;font-weight:700;padding:0;color:var(--ink);line-height:1}
+span.pc,div.pc{display:block}
+.pc.e0{background:transparent;border-color:transparent}
+.pc.m{background:#cfe3f7}.pc.nm{background:#fde7c8;border-style:dashed}.pc.mt{background:#d9f0d5;border-style:double;border-width:3px}
+.pt[data-mode=grp] .pc.rep{background:#cfe3f7}.pt[data-mode=grp] .pc.tr{background:#e8e0f7}
+.pc.sel{outline:3px solid #0a4a8a;outline-offset:1px}
+.pc.s1{background:#2b6cb0;color:#fff}.pc.s2{background:#2f7d4f;color:#fff}
+.pc.on{background:#fff3b0}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;margin:8px 0}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{display:inline-block;width:16px;height:16px;border:1px solid #c3d2e6;border-radius:4px}
+.rowhl{background:#fff3b0}
+</style>
+<style>
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:#1f5a99;border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">PHYSICAL SCIENCE · MATTHAYOM 5 · CHEMISTRY PART · CHAPTER 1</div>
+<h1>บทที่ 1 อากาศ: องค์ประกอบ อะตอม ธาตุ และมลพิษ</h1>
+<p>หน้านี้เป็นรายวิชาวิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) ภาคเคมี บทที่ 1 มีกิจกรรม 2 กิจกรรมตามคู่มือครู คือ กิจกรรม 1.1 องค์ประกอบภายในอะตอม (มีแผนภูมิองค์ประกอบของอากาศ แบบจำลองอะตอมที่ปรับจำนวนอนุภาคได้ และงานติดป้ายอนุภาค) และกิจกรรม 1.2 สืบค้นสมบัติ ประโยชน์ และอันตรายของธาตุ (มีตารางธาตุอย่างย่อ ตารางสารมลพิษ และแบบฟอร์มบันทึกผลสืบค้น) พร้อมแท็บสรุปเนื้อหาและแบบฝึกหัดตามคู่มือครู แท็บกิจกรรมทั้งสองมีส่วน &quot;อ่านก่อนทดลอง&quot; ที่ผู้จัดทำหน้าเรียบเรียงใหม่ และมีแบบทดสอบสั้นท้ายแท็บ</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 2 กิจกรรม</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="2" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา</b> บทนี้ไม่มีการทดลองที่ใช้สารเคมีจริง ตัวเลขร้อยละของแก๊สในอากาศและจำนวนอนุภาคในตาราง 1.1 และ 1.2 มาจากหนังสือเรียน ส่วนที่ผู้จัดทำหน้าสมมติเองมี 3 อย่าง คือ (1) การนำร้อยละไปคำนวณปริมาตรแก๊สในอากาศตัวอย่าง (2) การเติมอิเล็กตรอนในแบบจำลองโบร์วงละ 2, 8, 8, 2 ตัว ซึ่งหนังสือแสดงเฉพาะฮีเลียม ออกซิเจน และธาตุสมมติ Y เท่านั้น (3) การจัดประเภทโลหะ อโลหะ กึ่งโลหะ ของธาตุในตารางธาตุอย่างย่อ ซึ่งผู้จัดทำหน้าไม่ได้ตรวจทีละช่องกับรูป 1.8 ของหนังสือ ทั้งหมดติดป้ายไว้ในแต่ละส่วน<br>
+<b>งานเขียนของนักเรียน:</b> ข้อความที่พิมพ์ในช่องเปิดจะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดปุ่มส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> (ถ้าเขียนไว้หลายแท็บ ให้ส่งทีละแท็บ ไม่ได้อยู่ในเครื่องเท่านั้น) ข้อเขียนไม่มีคะแนนอัตโนมัติ มีคะแนนเฉพาะแบบทดสอบและแบบฝึกหัดที่คู่มือมีเฉลย</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="กิจกรรมในบทที่ 1"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: คู่มือครูรายวิชาวิทยาศาสตร์กายภาพ ม.5 เล่ม 1 บทที่ 1 อากาศ (สสวท.) เลขหน้าคือเลขที่พิมพ์ในคู่มือครู: ภาพรวมบท หน้า 1–6 · ตรวจสอบความรู้ก่อนเรียน หน้า 7 (ไม่ได้นำมาทำเป็นแบบทดสอบ) · หัวข้อ 1.1 องค์ประกอบในอากาศ และ 1.2 อะตอม หน้า 8–14 · กิจกรรม 1.1 หน้า 10 · แบบฝึกหัด 1.1 หน้า 15 · แบบฝึกหัด 1.2 หน้า 16 · หัวข้อ 1.3 ธาตุ หน้า 17–19 · แบบฝึกหัด 1.3 หน้า 20 · หัวข้อ 1.4 การใช้ประโยชน์จากอากาศ หน้า 21–24 · กิจกรรม 1.2 และตัวอย่างผลสืบค้น หน้า 22–23 · หัวข้อ 1.5 มลพิษทางอากาศ หน้า 24–25 · แบบฝึกหัดท้ายบท หน้า 25–30 · ใช้หนังสือเรียนยืนยันโครงสร้างหัวข้อ ข้อความกิจกรรม และตัวเลข (หนังสือเรียนสแกนเป็นภาพคู่เปิดหน้า เลขหน้าที่ตรวจกับภาพแล้ว: หัวข้อ 1.1 หน้า 4–5, แบบจำลองโบร์ หน้า 8, ตาราง 1.1 หน้า 9, ตาราง 1.2 และรูป 1.7 หน้า 10–11, กิจกรรม 1.2 หน้า 18, ตาราง 1.3 หน้า 19–20, แบบฝึกหัดท้ายบทเริ่มหน้า 21 ส่วนหัวข้อ 1.3 และ 1.4 ประมาณหน้า 13–18 ตามเลขหน้าที่ OCR อ่านได้) · ข้อความทั้งหมดในหน้านี้เรียบเรียงใหม่โดยผู้จัดทำหน้า</footer>
+</div>
+<script>
+'use strict';
+/* ======================= ฟังก์ชันคำนวณ (ฟังก์ชันบริสุทธิ์) ======================= */
+/* เติมอิเล็กตรอนลงวงโบร์ ความจุวงละ 2,8,8,2 (ค่าสมมติของผู้จัดทำหน้า ใช้กับ e ไม่เกิน 20) — ร่างโดย llm-orchestrator ผ่านการตรวจแล้ว */
+function shellFill(e){
+  if(!Number.isInteger(e)||e<0||e>20)throw new Error('bad e');
+  const cap=[2,8,8,2],out=[];let rem=e;
+  for(const c of cap){if(rem<=0)break;const t=Math.min(c,rem);out.push(t);rem-=t;}
+  return out;
+}
+/* อนุภาคของอะตอมหรือไอออนเดี่ยว: เลขมวล = โปรตอน + นิวตรอน ; ประจุ = โปรตอน − อิเล็กตรอน (คู่มือครู หน้า 12–13) */
+function describe(z,n,e){
+  if(![z,n,e].every(Number.isInteger)||z<1||n<0||e<0)throw new Error('bad input');
+  const c=z-e;return{A:z+n,charge:c,kind:c===0?'atom':(c>0?'cation':'anion')};
+}
+/* จัดกลุ่มไอโซโทป: เลขอะตอมเท่ากันแต่มีเลขมวลต่างกันอย่างน้อย 2 ค่า (คู่มือครู หน้า 16 ข้อ 5) */
+function isotopeGroups(list){
+  const L={},M={};
+  list.forEach(x=>{(L[x[1]]=L[x[1]]||[]).push(x[0]);(M[x[1]]=M[x[1]]||new Set()).add(x[2]);});
+  return Object.keys(L).map(Number).sort((a,b)=>a-b).filter(z=>M[z].size>=2).map(z=>L[z].slice().sort());
+}
+/* จำแนกสูตร: ไอออนเดี่ยว / อะตอม / โมเลกุล และธาตุ / สารประกอบ (เฉพาะสารโคเวเลนต์ แก๊สมีสกุล และไอออนเดี่ยว) */
+function classify(f){
+  const s=String(f).trim();
+  if(/^([A-Z][a-z]?)(\d*)([+-])$/.test(s))return{form:'ion',kind:null,atoms:1,elems:[s.match(/^[A-Z][a-z]?/)[0]]};
+  if(!/^([A-Z][a-z]?\d*)+$/.test(s))throw new Error('bad formula');
+  const re=/([A-Z][a-z]?)(\d*)/g;let m,tot=0;const set=[];
+  while((m=re.exec(s))){if(set.indexOf(m[1])<0)set.push(m[1]);tot+=m[2]?+m[2]:1;}
+  if(tot===1)return{form:'atom',kind:'element',atoms:1,elems:set};
+  return{form:'molecule',kind:set.length===1?'element':'compound',atoms:tot,elems:set};
+}
+const volOf=(L,pct)=>L*pct/100;   /* ปริมาตรแก๊ส = ปริมาตรอากาศ × ร้อยละ ÷ 100 (ผู้จัดทำหน้าคำนวณจากร้อยละในรูป 1.1) */
+
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const REDUCE=(()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}})();
+const fmt=(x,d)=>{const v=Number(x);return Number.isFinite(v)?String(+v.toFixed(d==null?2:d)):'–';};
+const plain=h=>String(h).replace(/<[^>]+>/g,'');
+function rf(f){const im=f.match(/^([A-Z][a-z]?)(\d*)([+-])$/);if(im)return im[1]+'<sup>'+(im[2]||'')+(im[3]==='-'?'−':'+')+'</sup>';return f.replace(/([A-Za-z])(\d+)/g,'$1<sub>$2</sub>');}
+const chTxt=c=>c===0?'':(Math.abs(c)===1?'':String(Math.abs(c)))+(c>0?'+':'−');
+function nuc(sym,z,a,c){return'<span class="nuc"><span class="nn"><span>'+a+'</span><span>'+z+'</span></span>'+sym+(c?'<sup>'+chTxt(c)+'</sup>':'')+'</span>';}
+
+/* ======================= ข้อมูลจากหนังสือ ======================= */
+/* ตาราง 1.1 (หนังสือเรียน หน้า 9): สัญลักษณ์, ชื่อ, โปรตอน, อิเล็กตรอน, นิวตรอน */
+const T11=[['H','ไฮโดรเจน',1,1,0],['He','ฮีเลียม',2,2,2],['C','คาร์บอน',6,6,6],['N','ไนโตรเจน',7,7,7],['O','ออกซิเจน',8,8,8],['F','ฟลูออรีน',9,9,10],['Ne','นีออน',10,10,10],['Mg','แมกนีเซียม',12,12,12],['Cl','คลอรีน',17,17,18],['Ar','อาร์กอน',18,18,22]];
+/* ตาราง 1.2 (หนังสือเรียน หน้า 10): ไอออน, ธาตุ, โปรตอน, อิเล็กตรอน, นิวตรอน */
+const T12=[['F-','F',9,10,10],['O2-','O',8,10,8],['Na+','Na',11,10,12],['Ca2+','Ca',20,18,20]];
+/* ธาตุที่ใช้ในบท: สัญลักษณ์, ชื่อ, เลขอะตอม, คาบ, คอลัมน์ (1–18), ประเภท m โลหะ / n อโลหะ / s กึ่งโลหะ
+   เลขอะตอม คาบ และหมู่ ตรงกับเฉลยของคู่มือสำหรับ Cu Ag Si Al O S Cl Hg Cs I Ti ; ประเภทของธาตุที่เหลือเป็นความรู้ทั่วไปของผู้จัดทำหน้า */
+const ELS=[['H','ไฮโดรเจน',1,1,1,'n'],['He','ฮีเลียม',2,1,18,'n'],['C','คาร์บอน',6,2,14,'n'],['N','ไนโตรเจน',7,2,15,'n'],['O','ออกซิเจน',8,2,16,'n'],['F','ฟลูออรีน',9,2,17,'n'],['Ne','นีออน',10,2,18,'n'],['Na','โซเดียม',11,3,1,'m'],['Mg','แมกนีเซียม',12,3,2,'m'],['Al','อะลูมิเนียม',13,3,13,'m'],['Si','ซิลิคอน',14,3,14,'s'],['S','ซัลเฟอร์',16,3,16,'n'],['Cl','คลอรีน',17,3,17,'n'],['Ar','อาร์กอน',18,3,18,'n'],['K','โพแทสเซียม',19,4,1,'m'],['Ca','แคลเซียม',20,4,2,'m'],['Ti','ไทเทเนียม',22,4,4,'m'],['Cr','โครเมียม',24,4,6,'m'],['Mn','แมงกานีส',25,4,7,'m'],['Fe','เหล็ก',26,4,8,'m'],['Ni','นิกเกิล',28,4,10,'m'],['Cu','ทองแดง',29,4,11,'m'],['Kr','คริปทอน',36,4,18,'n'],['Ag','เงิน',47,5,11,'m'],['I','ไอโอดีน',53,5,17,'n'],['Cs','ซีเซียม',55,6,1,'m'],['Hg','ปรอท',80,6,12,'m'],['Pb','ตะกั่ว',82,6,14,'m']];
+const EL={};ELS.forEach(e=>EL[e[0]]={sym:e[0],name:e[1],z:e[2],per:e[3],col:e[4],cat:e[5]});
+const GROUP_CAS={1:'IA',2:'IIA',3:'IIIB',4:'IVB',5:'VB',6:'VIB',7:'VIIB',8:'VIIIB',9:'VIIIB',10:'VIIIB',11:'IB',12:'IIB',13:'IIIA',14:'IVA',15:'VA',16:'VIA',17:'VIIA',18:'VIIIA'};
+const CATN={m:'โลหะ',n:'อโลหะ',s:'กึ่งโลหะ'};
+const METALS=['Li','Be','Na','Mg','Al','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn','Ag','Cd','Sn','Ba','Au','Hg','Pb','Cs'];
+/* เลขมวลของไอโซโทปที่ปรากฏในหนังสือเรียนหรือคู่มือ ใช้เป็นค่าเริ่มต้นของนิวตรอนในแบบจำลอง */
+const MASS={H:1,He:4,C:12,N:14,O:16,F:19,Ne:20,Na:23,Mg:24,Al:27,S:32,Cl:35,Ar:40,Ca:40,Ti:48,I:127,Cs:133,Hg:202};
+const BE=['H','He','C','N','O','F','Ne','Na','Mg','Al','S','Cl','Ar','Ca','Ti','I','Cs','Hg'];
+const GAS=[
+ {k:'n2',f:'N2',name:'ไนโตรเจน',pct:78,form:'โมเลกุล',kind:'ธาตุ',role:'มีมากที่สุด ไม่มีสี ไม่มีกลิ่น ผ่านเข้าออกปอดโดยไม่ทำปฏิกิริยากับสารในร่างกาย'},
+ {k:'o2',f:'O2',name:'ออกซิเจน',pct:21,form:'โมเลกุล',kind:'ธาตุ',role:'น้อยกว่าไนโตรเจนเกือบ 4 เท่า แต่จำเป็นต่อสิ่งมีชีวิต ทำปฏิกิริยากับสารอาหารให้พลังงาน และเกี่ยวข้องกับการเผาไหม้และการเกิดสนิม'},
+ {k:'ar',f:'Ar',name:'อาร์กอน',pct:0.9,form:'อะตอม',kind:'ธาตุ',role:'เฉื่อยต่อปฏิกิริยาเคมี ชื่อในภาษากรีกแปลว่า "ขี้เกียจ" หายใจเข้าไปแล้วไม่ทำปฏิกิริยากับสารในร่างกาย'},
+ {k:'co2',f:'CO2',name:'คาร์บอนไดออกไซด์',pct:0.04,form:'โมเลกุล',kind:'สารประกอบ',role:'มีน้อยมาก เกิดจากการหายใจและการเผาไหม้เชื้อเพลิง เป็นสารตั้งต้นของการสังเคราะห์ด้วยแสง'},
+ {k:'he',f:'He',name:'ฮีเลียม',pct:0.0005,form:'อะตอม',kind:'ธาตุ',role:'เฉื่อยต่อปฏิกิริยาเคมี เป็นอีกแก๊สหนึ่งที่เฉื่อย'},
+ {k:'h2o',f:'H2O',name:'ไอน้ำ',pct:null,form:'โมเลกุล',kind:'สารประกอบ',role:'ไม่นับในอากาศแห้ง ปริมาณเปลี่ยนตามอุณหภูมิ ควบแน่นเป็นละอองน้ำเล็ก ๆ จนเป็นเมฆและหมอก'}];
+
+/* ======================= สถานะและร่างงาน ======================= */
+const KEY='chemistry-m5-phys-ch1-v1',DK='chemistry-m5-phys-ch1-drafts-v1';
+let st={done:{},q:{},run:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=Object.assign({done:{},q:{},run:{}},s);}catch(_){}
+let DR={};try{DR=JSON.parse(localStorage.getItem(DK)||'{}')||{};}catch(_){DR={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+function dsave(){try{localStorage.setItem(DK,JSON.stringify(DR));}catch(_){}}
+const ACTS=['1.1','1.2','sum','ex'];const LABS=['1.1','1.2'];
+const TITLES={'1.1':'องค์ประกอบภายในอะตอม','1.2':'สืบค้นธาตุ ประโยชน์ และอันตราย',sum:'สรุปเนื้อหา',ex:'แบบฝึกหัด'};
+const QNAME={'1.1':'1.1 แบบทดสอบ',lab11:'1.1 ติดป้ายอนุภาคในอะตอม','1.2':'1.2 แบบทดสอบ',x11:'ฝ.1.1 อะตอม/โมเลกุล ธาตุ/สารประกอบ',x12a:'ฝ.1.2 ข้อ1,3 จำนวนอนุภาค',x12b:'ฝ.1.2 ข้อ4 ตารางสัญลักษณ์',x12m:'ฝ.1.2 ข้อ2,5 เลือกตอบ',x13t:'ฝ.1.3 ข้อ1 ตารางธาตุ',x13m:'ฝ.1.3 ข้อ2-4 เลือกตอบ',xeA:'ฝ.ท้ายบท ข้อ1 ธาตุ/สารประกอบ',xeB:'ฝ.ท้ายบท ข้อ2 อะตอม/โมเลกุล/ไอออน',xeC:'ฝ.ท้ายบท ข้อ3 ให้/รับอิเล็กตรอน',xeY:'ฝ.ท้ายบท ข้อ4 ธาตุ Y',xe5:'ฝ.ท้ายบท ข้อ5 โบร์/กลุ่มหมอก',xe6:'ฝ.ท้ายบท ข้อ6 ตารางอนุภาค',xe7:'ฝ.ท้ายบท ข้อ7 ไอโซโทป D',xe8:'ฝ.ท้ายบท ข้อ8 หมู่และคาบ',xe9:'ฝ.ท้ายบท ข้อ9 ตารางธาตุ'};
+let cur=0;const CLEAN=[];
+const qid=a=>a.replace('.','_');
+function markDone(a){if(!st.done[a]){st.done[a]=true;save();paintTabs();paintProgress();}}
+function tryDone(a){if(st.done[a])return;if(st.q[a]&&st.run[a])markDone(a);}
+function dget(ns,k){const v=DR[ns+'|'+k];return v==null?'':v;}
+function wireDraft(root,ns,onchg){
+  $$('[data-d]',root).forEach(el=>{const k=ns+'|'+el.dataset.d;if(DR[k]!=null)el.value=DR[k];const h=()=>{DR[k]=el.value;dsave();onchg&&onchg();};el.addEventListener('input',h);el.addEventListener('change',h);});}
+function fieldsHTML(rows){return rows.map(r=>`<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2]?`<div class="small">${r[2]}</div>`:''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('');}
+function textOf(ns,rows,head){return head+'\n'+rows.map(r=>'\n## '+r[1]+'\n'+(dget(ns,r[0])||'(ยังไม่ได้กรอก)')).join('\n')+'\n';}
+function expHTML(id){return`<div class="btns"><button class="btn sm" type="button" data-ex="copy" data-for="${id}">คัดลอกเป็นข้อความ</button><button class="btn alt sm" type="button" data-ex="dl" data-for="${id}">ดาวน์โหลดเป็นไฟล์ .txt</button></div><div class="small" id="exs_${id}" aria-live="polite"></div>`;}
+function wireExp(id,getText,fname){
+  const c=$('[data-ex=copy][data-for="'+id+'"]'),d=$('[data-ex=dl][data-for="'+id+'"]'),s=$('#exs_'+id);if(!c||!d||!s)return;
+  const fb=t=>{s.innerHTML='<pre tabindex="0" style="white-space:pre-wrap;user-select:all;margin:0" aria-label="ข้อความสำหรับคัดลอก"></pre>';const ta=$('pre',s);ta.textContent=t;ta.focus();try{const rg=document.createRange();rg.selectNodeContents(ta);const sl=getSelection();sl.removeAllRanges();sl.addRange(rg);}catch(_){}};
+  c.onclick=()=>{const t=getText();let ok=false;try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{s.textContent='คัดลอกแล้ว';},()=>fb(t));ok=true;}}catch(_){}if(!ok)fb(t);};
+  d.onclick=()=>{try{const b=new Blob([getText()],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);s.textContent='สร้างไฟล์ '+fname+' แล้ว';}catch(_){fb(getText());}};
+}
+
+/* ======================= แบบทดสอบ (ไม่ไฮไลต์ตัวเลือก แสดงเฉพาะคะแนนและคำอธิบาย) ======================= */
+function quizHTML(act,title){
+  return'<div class="box" id="quiz-'+qid(act)+'"><h3>'+(title||'แบบทดสอบสั้น')+' (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<fieldset class="q exf" data-i="'+i+'"><legend>'+(q.n?q.n+' ':(i+1)+'. ')+q.q+'</legend>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+qid(act)+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></fieldset>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act,gate){
+  const root=$('#quiz-'+qid(act));if(!root)return;const qs=QUIZ[act];
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      if(sel){answered++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: '+qs[i].o[qs[i].a]+' · ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ได้ '+got+' / '+qs.length+' คะแนน (ข้อที่ว่างนับเป็นไม่ถูก)';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(QNAME[act],got,qs.length);
+    if(answered===qs.length&&gate){st.q[act]=true;save();tryDone(act);}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+/* ช่องกรอกตัวเลขเป็นรายข้อ (ตรวจอัตโนมัติ) */
+function numHTML(id,title,items){
+  return'<div class="box" id="num-'+id+'"><h3>'+title+'</h3>'+items.map((it,i)=>'<div class="q"><label class="lbl" for="n_'+id+'_'+i+'">'+it.q+'</label><input class="num" id="n_'+id+'_'+i+'" type="number" step="any" inputmode="decimal"> '+(it.u||'')+'<div class="why hide"></div></div>').join('')+'<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireNum(id,items){
+  const root=$('#num-'+id);if(!root)return;
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    items.forEach((it,i)=>{const el=$('#n_'+id+'_'+i,root),why=$('.why',el.parentNode);const raw=el.value.trim(),v=parseFloat(raw),ok=raw!==''&&Number.isFinite(v)&&Math.abs(v-it.a)<=(it.tol||0.001);
+      if(raw!=='')answered++;if(ok)got++;
+      why.classList.remove('hide');why.textContent=(ok?'ถูกต้อง · ':'เฉลย: '+it.a+' '+(it.u||'')+' · ')+it.w;});
+    const r=$('.res',root);r.className='res '+(answered<items.length?'bad':'ok');
+    r.textContent=(answered<items.length?'ยังกรอกไม่ครบ ('+answered+'/'+items.length+') ':'')+'ได้ '+got+' / '+items.length+' คะแนน';
+    ls(QNAME[id],got,items.length);
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.value='');$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+/* ตารางกรอกตัวเลข (หลายแถว หลายช่อง) */
+function numTHTML(id,title,heads,rows,note){
+  return'<div class="box" id="nt-'+id+'"><h3>'+title+'</h3>'+(note?'<p class="small">'+note+'</p>':'')+'<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">'+heads[0]+'</th>'+heads.slice(1).map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr><td class="l">'+r.l+'</td>'+r.a.map((a,j)=>'<td><input class="num2" type="number" step="any" inputmode="decimal" data-i="'+i+'" data-j="'+j+'" aria-label="'+plain(r.l)+' '+heads[j+1]+'"></td>').join('')+'</tr>').join('')+'</tbody></table></div><div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="why hide"></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireNumT(id,heads,rows){
+  const root=$('#nt-'+id);if(!root)return;const max=rows.reduce((s,r)=>s+r.a.length,0);
+  $('[data-act=check]',root).onclick=()=>{let got=0,ans=0;const bad=[];
+    rows.forEach((r,i)=>{let rowOk=true;r.a.forEach((a,j)=>{const el=$('input[data-i="'+i+'"][data-j="'+j+'"]',root),raw=el.value.trim();if(raw!=='')ans++;const ok=raw!==''&&Math.abs(parseFloat(raw)-a)<0.001;if(ok)got++;else rowOk=false;});if(!rowOk)bad.push(plain(r.l)+' → '+r.a.join(' · ')+' ('+heads.slice(1).join(' · ')+')');});
+    const w=$('.why',root);w.classList.remove('hide');w.innerHTML=bad.length?'<b>แถวที่ยังไม่ถูกทุกช่อง (เฉลย):</b><ul>'+bad.map(b=>'<li>'+b+'</li>').join('')+'</ul>':'ถูกทุกช่อง';
+    const r=$('.res',root);r.className='res '+(ans<max?'bad':'ok');r.textContent=(ans<max?'ยังกรอกไม่ครบ ('+ans+'/'+max+' ช่อง) ':'')+'ได้ '+got+' / '+max+' คะแนน';ls(QNAME[id],got,max);};
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.value='');$('.why',root).classList.add('hide');$('.res',root).textContent='';};
+}
+/* ตารางเลือกคำตอบ (แถวละ 1 คะแนน ถูกเมื่อทุกช่องของแถวถูก) */
+function selHTML(id,title,heads,rows,note){
+  return'<div class="box" id="sel-'+id+'"><h3>'+title+'</h3>'+(note?'<p class="small">'+note+'</p>':'')+'<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">'+heads[0]+'</th>'+heads.slice(1).map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr><td class="l">'+r.l+'</td>'+r.s.map((s,j)=>'<td><select data-i="'+i+'" data-j="'+j+'" aria-label="'+plain(r.l)+' '+heads[j+1]+'"><option value="">เลือก</option>'+s.o.map((o,k)=>'<option value="'+k+'">'+o+'</option>').join('')+'</select></td>').join('')+'</tr>').join('')+'</tbody></table></div><div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="why hide"></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireSel(id,rows){
+  const root=$('#sel-'+id);if(!root)return;
+  $('[data-act=check]',root).onclick=()=>{let got=0,ans=0;const bad=[];
+    rows.forEach((r,i)=>{let all=true,rowOk=true;r.s.forEach((s,j)=>{const v=$('select[data-i="'+i+'"][data-j="'+j+'"]',root).value;if(v==='')all=false;if(v===''||+v!==s.a)rowOk=false;});if(all)ans++;if(rowOk)got++;else bad.push(plain(r.l)+' → '+r.s.map(s=>plain(s.o[s.a])).join(' · '));});
+    const w=$('.why',root);w.classList.remove('hide');w.innerHTML=bad.length?'<b>แถวที่ยังไม่ถูก (เฉลย):</b><ul>'+bad.map(b=>'<li>'+b+'</li>').join('')+'</ul>':'ถูกทุกแถว';
+    const r=$('.res',root);r.className='res '+(ans<rows.length?'bad':'ok');r.textContent=(ans<rows.length?'ยังเลือกไม่ครบ ('+ans+'/'+rows.length+' แถว) ':'')+'ได้ '+got+' / '+rows.length+' คะแนน';ls(QNAME[id],got,rows.length);};
+  $('[data-act=retry]',root).onclick=()=>{$$('select',root).forEach(s=>s.value='');$('.why',root).classList.add('hide');$('.res',root).textContent='';};
+}
+const TF=['ถูกต้อง','ไม่ถูกต้อง'];
+/* ตำแหน่งเฉลยของชุดเลือกตอบถูกกำหนดตายตัวในข้อมูล (ไม่มีโค้ดสลับ): 1.1 = [2,0,3,1,0,3] · 1.2 = [1,3,0,2,3] · ฝ.1.2 = [2,1] · ฝ.1.3 = [0,3,2] · ฝ.ท้ายบทข้อ5 = [1,0,2,1] */
+const QUIZ={
+'1.1':[
+ {q:'ตามรูป 1.1 ในหนังสือเรียน แก๊สชนิดใดมีมากที่สุดในอากาศ และมีประมาณร้อยละเท่าใดโดยปริมาตร',o:['ออกซิเจน ประมาณร้อยละ 21','คาร์บอนไดออกไซด์ ประมาณร้อยละ 0.04','ไนโตรเจน ประมาณร้อยละ 78','อาร์กอน ประมาณร้อยละ 0.9'],a:2,w:'หนังสือเรียนหัวข้อ 1.1 ระบุไนโตรเจนประมาณร้อยละ 78 ออกซิเจนประมาณร้อยละ 21 ส่วนที่เหลือประมาณร้อยละ 1 เป็นแก๊สอื่น (คู่มือครู หน้า 9)'},
+ {q:'สารในข้อใดอยู่ในรูปอะตอม',o:['ฮีเลียม (He)','ออกซิเจน (O<sub>2</sub>)','ไอน้ำ (H<sub>2</sub>O)','คาร์บอนไดออกไซด์ (CO<sub>2</sub>)'],a:0,w:'คู่มือครู หน้า 9 สรุปว่าอาร์กอนและฮีเลียมอยู่ในรูปอะตอม ส่วนออกซิเจน ไนโตรเจน ไอน้ำ และคาร์บอนไดออกไซด์อยู่ในรูปโมเลกุลเพราะมี 2 อะตอมขึ้นไป'},
+ {q:'ข้อใดเป็นสารประกอบ',o:['แก๊สไนโตรเจน (N<sub>2</sub>)','แก๊สอาร์กอน (Ar)','แก๊สออกซิเจน (O<sub>2</sub>)','แก๊สคาร์บอนไดออกไซด์ (CO<sub>2</sub>)'],a:3,w:'สารที่มีธาตุมากกว่าหนึ่งชนิดเป็นองค์ประกอบจัดเป็นสารประกอบ CO<sub>2</sub> มี C และ O ส่วนอีกสามข้อมีธาตุชนิดเดียว'},
+ {q:'อะตอมของธาตุชนิดหนึ่งมี 13 โปรตอน ข้อใดบอกได้แน่นอนจากข้อมูลนี้เพียงอย่างเดียว',o:['มี 13 นิวตรอน','มี 13 อิเล็กตรอน','มี 26 อิเล็กตรอน','มี 14 นิวตรอน'],a:1,w:'อะตอมเป็นกลางทางไฟฟ้า อิเล็กตรอนจึงเท่ากับโปรตอน แต่จำนวนนิวตรอนไม่มีความสัมพันธ์ตายตัวกับโปรตอน ต้องรู้เลขมวล (ชวนคิด คู่มือครู หน้า 13)'},
+ {q:'จากแบบจำลองอะตอมของโบร์ในรูป 1.5 ฮีเลียมและออกซิเจนมีเวเลนซ์อิเล็กตรอนกี่ตัวตามลำดับ',o:['2 และ 6','2 และ 8','8 และ 6','1 และ 6'],a:0,w:'เฉลยตรวจสอบความเข้าใจ (คู่มือครู หน้า 11) ฮีเลียมมี 2 ตัว ออกซิเจนมี 6 ตัว'},
+ {q:'แบบจำลองอะตอมแบบกลุ่มหมอกแสดงสิ่งใด',o:['จำนวนโปรตอนในนิวเคลียส','ตำแหน่งที่แน่นอนของอิเล็กตรอนทุกตัว','จำนวนเวเลนซ์อิเล็กตรอน','บริเวณที่มีโอกาสพบอิเล็กตรอนมากหรือน้อย'],a:3,w:'คู่มือครู หน้า 11: ไม่ได้แสดงจำนวนอิเล็กตรอนหรือเวเลนซ์อิเล็กตรอน แต่แสดงบริเวณที่มีโอกาสพบอิเล็กตรอน บริเวณหมอกทึบมีโอกาสพบมากกว่า'}],
+'1.2':[
+ {q:'หนังสือเรียนกล่าวถึงแก๊สชนิดใดว่าบรรจุในถุงขนมเพื่อป้องกันความชื้นและออกซิเจน',o:['ออกซิเจน','ไนโตรเจน','คาร์บอนไดออกไซด์','ฮีเลียม'],a:1,w:'ไนโตรเจนใช้บรรจุถุงขนมเพื่อคงความกรุบกรอบและคุณภาพอาหาร (หนังสือเรียนหัวข้อ 1.4)'},
+ {q:'กิจกรรม 1.2 ให้เลือกธาตุมาสืบค้นอย่างไร',o:['เรพรีเซนเททีฟ 4 ธาตุ','แทรนซิชัน 4 ธาตุ','แก๊สมีสกุลเท่านั้น 2 ธาตุ','เรพรีเซนเททีฟ 2 ธาตุ และแทรนซิชัน 2 ธาตุ'],a:3,w:'ตามข้อความกิจกรรม (คู่มือครู หน้า 22) เลือกธาตุเรพรีเซนเททีฟและธาตุแทรนซิชันอย่างละ 2 ธาตุ'},
+ {q:'ธาตุหมู่ VIIA เช่นคลอรีน มีเวเลนซ์อิเล็กตรอนกี่ตัว',o:['7','1','5','8'],a:0,w:'จำนวนเวเลนซ์อิเล็กตรอนของธาตุเรพรีเซนเททีฟเท่ากับเลขหมู่ ยกตัวอย่างคลอรีนมี 7 (คู่มือครู หน้า 18)'},
+ {q:'ตามตาราง 1.3 สารมลพิษใดมีผลต่อพัฒนาการทางสมองของทารก',o:['คาร์บอนมอนอกไซด์','ซัลเฟอร์ไดออกไซด์','ตะกั่ว','โอโซน'],a:2,w:'ตารางระบุว่าตะกั่วทำลายระบบประสาทและมีผลต่อพัฒนาการทางสมองของทารก (หนังสือเรียนตาราง 1.3 และแบบฝึกหัดท้ายบทข้อ 1)'},
+ {q:'ธาตุโลหะมีแนวโน้มเป็นอย่างไรเมื่อเกิดปฏิกิริยาเคมี',o:['รับอิเล็กตรอนและไม่นำไฟฟ้า','เสียโปรตอน','รับโปรตอน','ให้อิเล็กตรอนและนำไฟฟ้าได้ดี'],a:3,w:'โลหะนำไฟฟ้าและมีแนวโน้มให้อิเล็กตรอน อโลหะส่วนใหญ่ไม่นำไฟฟ้าและมีแนวโน้มรับอิเล็กตรอน (คู่มือครู หน้า 18)'}],
+x12m:[
+ {n:'ข้อ 2',q:'อะตอมของธาตุเมื่อเปลี่ยนเป็นไอออนบวก จำนวนโปรตอน นิวตรอน และอิเล็กตรอนเปลี่ยนอย่างไร',o:['โปรตอนและนิวตรอนเปลี่ยน อิเล็กตรอนคงเดิม','โปรตอนมากขึ้น อิเล็กตรอนคงเดิม','โปรตอนและนิวตรอนไม่เปลี่ยน อิเล็กตรอนน้อยลง','โปรตอนและนิวตรอนไม่เปลี่ยน อิเล็กตรอนมากขึ้น'],a:2,w:'เฉลยคู่มือครู หน้า 16: จำนวนโปรตอนและนิวตรอนของไอออนบวกไม่เปลี่ยน แต่อิเล็กตรอนน้อยกว่าเดิม'},
+ {n:'ข้อ 5',q:'ธาตุสมมติ <span class="nuc"><span class="nn"><span>8</span><span>4</span></span>A</span> <span class="nuc"><span class="nn"><span>10</span><span>5</span></span>E</span> <span class="nuc"><span class="nn"><span>10</span><span>5</span></span>G</span> <span class="nuc"><span class="nn"><span>7</span><span>4</span></span>J</span> <span class="nuc"><span class="nn"><span>10</span><span>4</span></span>L</span> ธาตุใดเป็นไอโซโทปกัน',o:['E และ G','A, J และ L','A และ E','G และ L'],a:1,w:'ไอโซโทปคือเลขอะตอมเท่ากันแต่เลขมวลต่างกัน A, J, L มีเลขอะตอม 4 เท่ากัน ส่วน E กับ G มีทั้งเลขอะตอมและเลขมวลเท่ากันจึงเป็นไอโซโทปตัวเดียวกัน (เฉลยคู่มือครู หน้า 16 ตรวจกับภาพหน้าแล้ว)'}],
+x13m:[
+ {n:'ข้อ 2',q:'ปรอท (Hg) อยู่หมู่ใดและคาบใด และจัดเป็นธาตุประเภทใด',o:['หมู่ IIB คาบ 6 ธาตุแทรนซิชัน','หมู่ IIA คาบ 6 ธาตุเรพรีเซนเททีฟ','หมู่ IIB คาบ 5 ธาตุแทรนซิชัน','หมู่ IB คาบ 6 ธาตุแทรนซิชัน'],a:0,w:'เฉลยคู่มือครู หน้า 20: ปรอทอยู่หมู่ IIB หรือหมู่ 12 คาบ 6 เป็นธาตุแทรนซิชัน'},
+ {n:'ข้อ 3',q:'ธาตุที่อยู่หมู่ VIIA คาบ 3 คือธาตุใด',o:['ฟลูออรีน (F)','ไอโอดีน (I)','ซัลเฟอร์ (S)','คลอรีน (Cl) ซึ่งมีแนวโน้มรับอิเล็กตรอน'],a:3,w:'เฉลยคู่มือครู หน้า 20: คลอรีน สัญลักษณ์ Cl มีแนวโน้มรับอิเล็กตรอน'},
+ {n:'ข้อ 4',q:'สารประกอบเกิดจากโซเดียม (Na) กับฟลูออรีน (F) ธาตุใดให้และธาตุใดรับอิเล็กตรอน',o:['ทั้งสองธาตุให้อิเล็กตรอน','Na รับอิเล็กตรอน F ให้อิเล็กตรอน','Na ให้อิเล็กตรอน F รับอิเล็กตรอน','ทั้งสองธาตุรับอิเล็กตรอน'],a:2,w:'Na เป็นโลหะจึงให้อิเล็กตรอน F เป็นอโลหะจึงรับอิเล็กตรอน (เฉลยคู่มือครู หน้า 20)'}],
+xe5:[
+ {n:'5.1 (ก)',q:'ในแบบจำลองอะตอมของโบร์ (วงกลมซ้ายของรูป) ตำแหน่งใดเป็นนิวเคลียส',o:['B','A','C'],a:1,w:'เฉลยคู่มือครู หน้า 27: A เป็นนิวเคลียส (B ชี้ที่วงโคจร)'},
+ {n:'5.1 (ข)',q:'ในแบบจำลองอะตอมของโบร์ ตำแหน่งใดเป็นอิเล็กตรอน',o:['C','A','B'],a:0,w:'C เป็นตำแหน่งอิเล็กตรอนในแบบจำลองโบร์ (คู่มือครู หน้า 27)'},
+ {n:'5.1 (ค)',q:'ในแบบจำลองกลุ่มหมอก (ภาพขวา) ตำแหน่งใดเป็นนิวเคลียส',o:['E','F','D'],a:2,w:'D เป็นนิวเคลียส ส่วน E และ F เป็นตำแหน่งที่พบอิเล็กตรอน (คู่มือครู หน้า 27)'},
+ {n:'5.2',q:'จากแบบจำลองกลุ่มหมอก ตำแหน่งใดมีโอกาสพบอิเล็กตรอนมากกว่า',o:['F มากกว่า E','E มากกว่า F'],a:1,w:'บริเวณที่หมอกทึบกว่ามีโอกาสพบมากกว่า เฉลยคู่มือครู หน้า 27: E มากกว่า F'}]
+};
+const NUM={
+x12a:[
+ {q:'ข้อ 1 ธาตุซัลเฟอร์ (S) มีกี่โปรตอน',a:16,w:'เฉลยคู่มือครู หน้า 16'},{q:'ข้อ 1 ธาตุซัลเฟอร์ (S) มีกี่นิวตรอน',a:16,w:'เฉลยคู่มือครู หน้า 16'},{q:'ข้อ 1 ธาตุซัลเฟอร์ (S) มีกี่อิเล็กตรอน',a:16,w:'เท่ากับโปรตอนเพราะอะตอมเป็นกลาง'},
+ {q:'ข้อ 1 ธาตุออกซิเจน (O) มีกี่โปรตอน',a:8,w:'เฉลยคู่มือครู หน้า 16'},{q:'ข้อ 1 ธาตุออกซิเจน (O) มีกี่นิวตรอน',a:8,w:'เฉลยคู่มือครู หน้า 16'},{q:'ข้อ 1 ธาตุออกซิเจน (O) มีกี่อิเล็กตรอน',a:8,w:'เท่ากับโปรตอน'},
+ {q:'ข้อ 3 ไอออนลบ N<sup>3−</sup> มีกี่โปรตอน',a:7,w:'ไอออนเกิดจากการรับอิเล็กตรอน โปรตอนไม่เปลี่ยน (เฉลยคู่มือครู หน้า 16)'},{q:'ข้อ 3 ไอออนลบ N<sup>3−</sup> มีกี่อิเล็กตรอน',a:10,w:'7 + 3 = 10'}],
+xe7:[
+ {q:'ธาตุสมมติ D ไอโซโทปแรกคือ <span class="nuc"><span class="nn"><span>2</span><span>1</span></span>D</span> มีกี่นิวตรอน',a:1,w:'เลขมวล 2 − เลขอะตอม 1 = 1'},
+ {q:'ไอโซโทปที่สองมีนิวตรอนเป็น 2 เท่าของไอโซโทปแรก จึงมีกี่นิวตรอน',a:2,w:'1 × 2 = 2'},
+ {q:'เลขมวลของไอโซโทปที่สองเป็นเท่าใด (ข้อ 7 เฉลยคือ <span class="nuc"><span class="nn"><span>3</span><span>1</span></span>D</span>)',a:3,w:'โปรตอน 1 + นิวตรอน 2 = 3 เฉลยคู่มือครู หน้า 28'}],
+xeY:[
+ {q:'ข้อ 4 ธาตุสมมติ Y (รูปด้านบน) มีกี่โปรตอน',a:3,w:'เฉลยคู่มือครู หน้า 26: 3 โปรตอน'},
+ {q:'ข้อ 4 ธาตุสมมติ Y มีกี่อิเล็กตรอน',a:3,w:'อะตอมเป็นกลาง จึงเท่ากับโปรตอน และในรูปมีอิเล็กตรอนรวม 3 ตัว (วงในสุด 2 ตัว วงนอก 1 ตัว)'},
+ {q:'ข้อ 4 ธาตุสมมติ Y มีกี่เวเลนซ์อิเล็กตรอน',a:1,w:'เวเลนซ์อิเล็กตรอนคืออิเล็กตรอนวงนอกสุด ในรูปมี 1 ตัว'}]
+};
+const NT={
+x12b:{heads:['สัญลักษณ์นิวเคลียร์','โปรตอน','อิเล็กตรอน','นิวตรอน'],rows:[{l:nuc('H',1,1),a:[1,1,0]},{l:nuc('O',8,16),a:[8,8,8]},{l:nuc('C',6,12),a:[6,6,6]},{l:nuc('Cl',17,35),a:[17,17,18]},{l:nuc('Ne',10,20),a:[10,10,10]}]},
+xe6:{heads:['สัญลักษณ์นิวเคลียร์','โปรตอน','อิเล็กตรอน','นิวตรอน'],rows:[{l:nuc('C',6,12),a:[6,6,6]},{l:nuc('O',8,16),a:[8,8,8]},{l:nuc('S',16,32),a:[16,16,16]},{l:nuc('N',7,14),a:[7,7,7]},{l:nuc('Hg',80,202),a:[80,80,122]},{l:nuc('Hg',80,200),a:[80,80,120]}]}
+};
+const SEL={
+x11:{heads:['สูตรเคมี (ชื่อสาร)','รูปของสาร','ชนิดของสาร'],o:[['อะตอม','โมเลกุล'],['ธาตุ','สารประกอบ']],rows:[['H2','แก๊สไฮโดรเจน',1,0],['Cl2','แก๊สคลอรีน',1,0],['HCl','ไฮโดรเจนคลอไรด์',1,1],['O3','โอโซน',1,0],['NO','ไนโตรเจนมอนอกไซด์',1,1],['CO','คาร์บอนมอนอกไซด์',1,1],['Ne','นีออน',0,0],['CH4','มีเทน',1,1]]},
+xeA:{heads:['สูตรเคมี','ธาตุหรือสารประกอบ'],rows:[['CO',1],['NO',1],['SO2',1],['C6H6',1],['C4H6',1],['Cr',0],['Ni',0],['Pb',0],['Mn',0]]},
+xeB:{heads:['สูตรเคมี','ประเภท'],rows:[['NO2',1],['Mg2+',2],['C12H22O11',1],['SO2',1],['CO',1],['SO3',1],['Cl-',2],['He',0],['Na+',2],['Kr',0],['I2',1],['O3',1],['F2',1],['F-',2],['P4',1]]},
+xeC:{heads:['ไอออน','เกิดจากธาตุ'],rows:[['Na+','Na',0],['Mg2+','Mg',0],['Cl-','Cl',1],['K+','K',0],['F-','F',1],['Cu2+','Cu',0],['Ca2+','Ca',0],['O2-','O',1]]}
+};
+function sel11HTML(){const c=SEL.x11;return selHTML('x11','แบบฝึกหัด 1.1: แก๊สที่อาจพบในอากาศ (ข้อความตามคู่มือครู หน้า 15)',c.heads,c.rows.map(r=>({l:rf(r[0])+' <span class="small">'+r[1]+'</span>',s:[{o:c.o[0],a:r[2]},{o:c.o[1],a:r[3]}]})));}
+/* ======================= แบบฝึกหัด 1.3 ======================= */
+const X13=[['Cu',29,'โลหะ','นำ','แทรนซิชัน',0],['O',8,'อโลหะ','ไม่นำ','เรพรีเซนเททีฟ'],['S',16,'อโลหะ','ไม่นำ','เรพรีเซนเททีฟ'],['Si',14,'กึ่งโลหะ','นำ','เรพรีเซนเททีฟ'],['Al',13,'โลหะ','นำ','เรพรีเซนเททีฟ'],['Ag',47,'โลหะ','นำ','แทรนซิชัน']];
+function sel13HTML(){const T=['โลหะ','อโลหะ','กึ่งโลหะ'],C=['นำ','ไม่นำ'],G=['เรพรีเซนเททีฟ','แทรนซิชัน'];
+  return selHTML('x13t','แบบฝึกหัด 1.3 ข้อ 1: จัดประเภทธาตุจากตารางธาตุ (ข้อมูลตามคู่มือครู หน้า 20)',['ธาตุ (เลขอะตอม)','โลหะ/อโลหะ/กึ่งโลหะ','การนำไฟฟ้า','เรพรีเซนเททีฟ/แทรนซิชัน'],X13.slice(1).map(r=>({l:r[0]+' ('+r[1]+')',s:[{o:T,a:T.indexOf(r[2])},{o:C,a:C.indexOf(r[3])},{o:G,a:G.indexOf(r[4])}]})),'แถว Cu (29) ในหนังสือเป็นตัวอย่างที่เติมไว้แล้ว: โลหะ นำไฟฟ้า ธาตุแทรนซิชัน ใช้ตารางธาตุอย่างย่อในแท็บ 1.2 ช่วยดูได้ แถวละ 1 คะแนน');}
+const X8=[['Cs',133,55,'IA',6],['I',127,53,'VIIA',5],['Ti',48,22,'IVB',4]];
+function sel8HTML(){const G=['IA','IIA','IVA','IVB','VIIA','VIIB','VIIIA'],P=['3','4','5','6'];
+  return selHTML('xe8','แบบฝึกหัดท้ายบท ข้อ 8: หมู่และคาบตามระบบ CAS (ตารางธาตุอย่างย่อในแท็บ 1.2 ช่วยดูได้)',['ธาตุ','หมู่','คาบ'],X8.map(r=>({l:nuc(r[0],r[2],r[1]),s:[{o:G,a:G.indexOf(r[3])},{o:P,a:P.indexOf(String(r[4]))}]})));}
+function selX(id){const c=SEL[id];if(id==='xeA')return selHTML(id,'แบบฝึกหัดท้ายบท ข้อ 1: จัดสูตรเคมีในข้อความเป็นธาตุหรือสารประกอบ (ข้อความโจทย์: ธูปและกระดาษเงินกระดาษทองเมื่อเผาปล่อยแก๊สพิษและมีโลหะปนเปื้อน)',c.heads,c.rows.map(r=>({l:rf(r[0]),s:[{o:['ธาตุ','สารประกอบ'],a:r[1]}]})),'หนังสือให้เขียนสูตรลงกรอบธาตุหรือกรอบสารประกอบ ผู้จัดทำหน้าเปลี่ยนเป็นเลือกประเภทของแต่ละสูตร: CO, NO, SO<sub>2</sub>, C<sub>6</sub>H<sub>6</sub> (เบนซีน), C<sub>4</sub>H<sub>6</sub> (บิวทาไดอีน), Cr, Ni, Pb, Mn');
+  if(id==='xeB')return selHTML(id,'แบบฝึกหัดท้ายบท ข้อ 2: อะตอม โมเลกุล หรือไอออน',c.heads,c.rows.map(r=>({l:rf(r[0]),s:[{o:['อะตอม','โมเลกุล','ไอออน'],a:r[1]}]})),'หนังสือให้เขียนสูตรลงตารางสามช่อง ผู้จัดทำหน้าเปลี่ยนเป็นเลือกประเภทของแต่ละสูตร');
+  return selHTML(id,'แบบฝึกหัดท้ายบท ข้อ 3: ไอออนเกิดจากธาตุใด ให้หรือรับอิเล็กตรอน',['ไอออน (ธาตุที่เกิด)','ให้หรือรับอิเล็กตรอน'],c.rows.map(r=>({l:rf(r[0])+' <span class="small">(เกิดจากธาตุ '+r[1]+')</span>',s:[{o:['ให้อิเล็กตรอน','รับอิเล็กตรอน'],a:r[2]}]})),'ผู้จัดทำหน้าบอกธาตุไว้ให้แล้ว (ในหนังสือเป็นช่องให้เติม) เหลือให้เลือกว่าให้หรือรับ');}
+function rowsOf(id){const c=SEL[id];if(id==='x11')return c.rows.map(r=>({l:rf(r[0])+' <span class="small">'+r[1]+'</span>',s:[{o:c.o[0],a:r[2]},{o:c.o[1],a:r[3]}]}));
+  if(id==='xeA')return c.rows.map(r=>({l:rf(r[0]),s:[{o:['ธาตุ','สารประกอบ'],a:r[1]}]}));
+  if(id==='xeB')return c.rows.map(r=>({l:rf(r[0]),s:[{o:['อะตอม','โมเลกุล','ไอออน'],a:r[1]}]}));
+  return c.rows.map(r=>({l:rf(r[0])+' <span class="small">(เกิดจากธาตุ '+r[1]+')</span>',s:[{o:['ให้อิเล็กตรอน','รับอิเล็กตรอน'],a:r[2]}]}));}
+function rows13(){const T=['โลหะ','อโลหะ','กึ่งโลหะ'],C=['นำ','ไม่นำ'],G=['เรพรีเซนเททีฟ','แทรนซิชัน'];return X13.slice(1).map(r=>({l:r[0]+' ('+r[1]+')',s:[{o:T,a:T.indexOf(r[2])},{o:C,a:C.indexOf(r[3])},{o:G,a:G.indexOf(r[4])}]}));}
+function rows8(){const G=['IA','IIA','IVA','IVB','VIIA','VIIB','VIIIA'],P=['3','4','5','6'];return X8.map(r=>({l:nuc(r[0],r[2],r[1]),s:[{o:G,a:G.indexOf(r[3])},{o:P,a:P.indexOf(String(r[4]))}]}));}
+
+/* ======================= ข้อความอ่านก่อนทดลอง (เรียบเรียงใหม่) ======================= */
+/* reading-data:start */
+const READ={
+'1.1':{lead:'อ่านเรื่ององค์ประกอบของอากาศ ความต่างของอะตอมกับโมเลกุล ธาตุกับสารประกอบ แล้วเข้าไปดูภายในอะตอมและเรียนรู้สัญลักษณ์นิวเคลียร์ จากนั้นลองในห้องทดลองเสมือน',secs:[
+{h:'อากาศมีแก๊สอะไรบ้างและมีเท่าไร',pg:'คู่มือครู หน้า 9 · หนังสือเรียนหัวข้อ 1.1 หน้า 4–5 (ตรวจกับภาพหน้าแล้ว)',html:`
+<p>อากาศแห้งส่วนใหญ่เป็นแก๊สไนโตรเจน (N<sub>2</sub>) ประมาณร้อยละ 78 โดยปริมาตร และแก๊สออกซิเจน (O<sub>2</sub>) ประมาณร้อยละ 21 ส่วนที่เหลือประมาณร้อยละ 1 เป็นแก๊สอื่น เช่น อาร์กอน (Ar) ประมาณร้อยละ 0.9 คาร์บอนไดออกไซด์ (CO<sub>2</sub>) ประมาณร้อยละ 0.04 และฮีเลียม (He) ประมาณร้อยละ 0.0005 (ค่าตามรูป 1.1 ของหนังสือเรียน)</p>
+<ul><li><b>ไนโตรเจน</b> มีมากที่สุด ไม่มีสี ไม่มีกลิ่น และเมื่อหายใจเข้าไปจะผ่านออกมาโดยไม่ทำปฏิกิริยากับสารในร่างกาย</li><li><b>ออกซิเจน</b> น้อยกว่าไนโตรเจนเกือบ 4 เท่า แต่ทำปฏิกิริยากับสารอาหารเพื่อให้พลังงาน และเกี่ยวข้องกับการเผาไหม้และการเกิดสนิม</li><li><b>คาร์บอนไดออกไซด์</b> เกิดจากการหายใจและการเผาไหม้เชื้อเพลิง และเป็นสารตั้งต้นของการสังเคราะห์ด้วยแสง</li><li><b>อาร์กอนและฮีเลียม</b> เฉื่อยต่อปฏิกิริยาเคมี</li><li><b>ไอน้ำ</b> ไม่นับรวมในอากาศแห้ง ปริมาณเปลี่ยนตามอุณหภูมิ ควบแน่นเป็นละอองน้ำเล็ก ๆ เกิดเป็นเมฆและหมอก</li></ul>`,
+ q:['ออกซิเจนมีปริมาณน้อยกว่าไนโตรเจนประมาณกี่เท่า','หนังสือเรียนบอกว่าเกือบ 4 เท่า (78 ÷ 21 ≈ 3.7 ผู้จัดทำหน้าคำนวณให้ดู)']},
+{h:'อะตอม โมเลกุล ธาตุ และสารประกอบ ดูได้จากสูตรเคมี',pg:'คู่มือครู หน้า 8–9 · หนังสือเรียนหัวข้อ 1.1 รูป 1.4',html:`
+<p>แก๊สในอากาศอยู่ได้สองรูป คือ <b>อะตอม</b> (เช่น Ar, He) และ <b>โมเลกุล</b> ซึ่งมี 2 อะตอมขึ้นไป (เช่น N<sub>2</sub>, O<sub>2</sub>, CO<sub>2</sub>, H<sub>2</sub>O) ส่วนการแบ่งเป็น <b>ธาตุ</b> หรือ <b>สารประกอบ</b> ดูว่าในสูตรมีธาตุกี่ชนิด: ชนิดเดียวคือธาตุ มากกว่าหนึ่งชนิดคือสารประกอบ</p>
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ตัวอย่าง</th><th>รูปของสาร</th><th>ธาตุ/สารประกอบ</th></tr></thead><tbody><tr><td class="l">Ar, He</td><td>อะตอม</td><td>ธาตุ</td></tr><tr><td class="l">N<sub>2</sub>, O<sub>2</sub></td><td>โมเลกุล</td><td>ธาตุ</td></tr><tr><td class="l">CO<sub>2</sub>, H<sub>2</sub>O</td><td>โมเลกุล</td><td>สารประกอบ</td></tr></tbody></table></div>
+<p>ข้อสรุปของหนังสือ: สารที่อยู่ในรูปอะตอมเป็นธาตุเสมอ แต่สารที่อยู่ในรูปโมเลกุลเป็นได้ทั้งธาตุและสารประกอบ คู่มือเตือนว่าธาตุส่วนใหญ่ในธรรมชาติอยู่ในรูปโมเลกุล ยกเว้นแก๊สมีสกุลที่อยู่ในรูปอะตอม และแนะนำให้ยกตัวอย่างเฉพาะสารโคเวเลนต์ ไม่ใช้สารประกอบไอออนิกและโลหะกับเรื่องนี้</p>`,
+ q:['O<sub>3</sub> (โอโซน) เป็นธาตุหรือสารประกอบ','ธาตุ เพราะมีออกซิเจนอย่างเดียว แม้อยู่ในรูปโมเลกุล (เฉลยแบบฝึกหัด 1.1 คู่มือครู หน้า 15)']},
+{h:'ภายในอะตอมและแบบจำลองอะตอม',pg:'คู่มือครู หน้า 10–12 · หนังสือเรียนหัวข้อ 1.2 หน้า 6–8 และรูป 1.5, 1.6 (หน้า 8 ตรวจกับภาพแล้ว)',html:`
+<p>อะตอมมีขนาดเล็กเกินกว่าจะเห็นด้วยตาเปล่า นักวิทยาศาสตร์จึงใช้ <b>แบบจำลองอะตอม</b> แทน และปรับแบบจำลองไปตามผลการทดลองที่เพิ่มขึ้น ภายในอะตอมมี <b>โปรตอน</b> (ประจุบวก) <b>นิวตรอน</b> (ไม่มีประจุ) และ <b>อิเล็กตรอน</b> (ประจุลบ) โปรตอนกับนิวตรอนอยู่รวมกันในนิวเคลียส</p>
+<ul><li><b>แบบจำลองของโบร์:</b> อิเล็กตรอนเคลื่อนที่รอบนิวเคลียสเป็นวง แต่ละวงอยู่ห่างนิวเคลียสต่างกันและมีพลังงานต่างกัน วงนอกสุดคือวงของ <b>เวเลนซ์อิเล็กตรอน</b> ตัวอย่างในรูป 1.5: ฮีเลียมมี 2 เวเลนซ์อิเล็กตรอน ออกซิเจนมี 6</li><li><b>แบบจำลองกลุ่มหมอก:</b> อิเล็กตรอนเล็กและเคลื่อนที่เร็วมากจนระบุตำแหน่งแน่นอนไม่ได้ จึงแสดงเป็นกลุ่มหมอก บริเวณทึบคือบริเวณที่มีโอกาสพบมากกว่า แบบจำลองนี้ไม่แสดงจำนวนอิเล็กตรอนหรือเวเลนซ์อิเล็กตรอน</li><li><b>เหมือนกัน:</b> มีนิวเคลียสขนาดเล็กอยู่ตรงกลาง · <b>ต่างกัน:</b> โบร์แสดงวงโคจร กลุ่มหมอกแสดงโอกาสพบ</li></ul>
+<p>คู่มือชวนให้นึกถึงปลายปากกาที่แกว่งเร็ว หรือใบพัดลมที่หมุน ซึ่งเห็นเป็นภาพเลือนไม่ใช่จุดเดียว เพื่อเข้าใจว่าทำไมจึงใช้กลุ่มหมอก</p>`,
+ q:['แบบจำลองกลุ่มหมอกบอกจำนวนเวเลนซ์อิเล็กตรอนได้หรือไม่','ไม่ได้ แสดงเพียงโอกาสที่จะพบอิเล็กตรอนรอบนิวเคลียส (เฉลยตรวจสอบความเข้าใจ คู่มือครู หน้า 11)']},
+{h:'จำนวนโปรตอน นิวตรอน อิเล็กตรอน และไอออน',pg:'คู่มือครู หน้า 12–13 · หนังสือเรียนตาราง 1.1 (หน้า 9) และตาราง 1.2 (หน้า 10) ตรวจกับภาพหน้าแล้ว',html:`
+<ul><li>อะตอมของธาตุชนิดเดียวกันมีโปรตอนเท่ากัน ต่างชนิดมีโปรตอนไม่เท่ากัน จึงใช้จำนวนโปรตอนบอกชนิดของธาตุ</li><li>อะตอมเป็นกลางทางไฟฟ้า จำนวนอิเล็กตรอน = จำนวนโปรตอน ส่วนนิวตรอนอาจเท่าหรือไม่เท่าโปรตอนก็ได้ (ดูตาราง 1.1 ในแท็บสรุป)</li><li>เมื่อให้หรือรับอิเล็กตรอน อะตอมกลายเป็น <b>ไอออน</b> ไอออนบวกมีอิเล็กตรอนน้อยกว่าโปรตอน ไอออนลบมีอิเล็กตรอนมากกว่าโปรตอน โปรตอนและนิวตรอนไม่เปลี่ยน (ตาราง 1.2)</li></ul>
+<p>ตัวอย่างเฉลยของคู่มือ (หน้า 12): H<sup>+</sup> มี 1 โปรตอน ไม่มีนิวตรอนและอิเล็กตรอน · Mg<sup>2+</sup> มี 12 โปรตอน 12 นิวตรอน 10 อิเล็กตรอน · Cl<sup>−</sup> มี 17 โปรตอน 18 นิวตรอน 18 อิเล็กตรอน ลองสร้างซ้ำได้ในแบบจำลองด้านล่าง</p>`,
+ q:['อะตอมมี 13 โปรตอน บอกจำนวนนิวตรอนได้หรือไม่','ไม่ได้ เพราะนิวตรอนไม่มีความสัมพันธ์ตายตัวกับโปรตอน ต้องรู้เลขมวล บอกอิเล็กตรอนได้ว่า 13 (ชวนคิด คู่มือครู หน้า 13)']},
+{h:'สัญลักษณ์นิวเคลียร์และไอโซโทป',pg:'คู่มือครู หน้า 13 · หนังสือเรียนรูป 1.7 (หน้า 11 ตรวจกับภาพแล้ว) และเรื่องไอโซโทปกัมมันตรังสี (ประมาณหน้า 12)',html:`
+<p>สัญลักษณ์ธาตุบอกจำนวนโปรตอนได้ แต่ยังไม่บอกนิวตรอน จึงใช้ <b>สัญลักษณ์นิวเคลียร์</b> ซึ่งเขียน <b>เลขมวล</b> (โปรตอน + นิวตรอน) ไว้มุมบนซ้าย และ <b>เลขอะตอม</b> (จำนวนโปรตอน) ไว้มุมล่างซ้ายของสัญลักษณ์ธาตุ จึงหาจำนวนนิวตรอนได้จาก เลขมวล − เลขอะตอม ตัวอย่างในรูป 1.7: He เลขมวล 4 เลขอะตอม 2 (2 นิวตรอน) · N เลขมวล 14 เลขอะตอม 7 (7 นิวตรอน) · Ar เลขมวล 40 เลขอะตอม 18 (22 นิวตรอน)</p>
+<p>ธาตุชนิดเดียวกันที่มีเลขมวลต่างกันคือ <b>ไอโซโทป</b> เช่น ไฮโดรเจนมีเลขอะตอม 1 และมี 3 ไอโซโทปที่เลขมวล 1, 2, 3 เขียนย่อได้เป็น H-1, H-2, H-3 ไอโซโทปบางชนิดไม่เสถียรและแผ่รังสีได้ เรียกว่าไอโซโทปกัมมันตรังสี หนังสือยกตัวอย่าง U-235 เป็นแหล่งพลังงานในโรงไฟฟ้านิวเคลียร์ C-14 หาอายุซากโบราณ และ I-131 ติดตามและรักษาความผิดปกติของต่อมไทรอยด์</p>`,
+ q:['ไอโซโทปของธาตุเดียวกันต่างกันที่อนุภาคใด','จำนวนนิวตรอน ส่วนโปรตอนและอิเล็กตรอนเท่ากัน (ชวนคิด คู่มือครู หน้า 13)']}
+]},
+'1.2':{lead:'อ่านเรื่องตารางธาตุ โลหะกับอโลหะ การใช้ประโยชน์จากอากาศ และมลพิษ เพื่อเตรียมเลือกธาตุมาสืบค้นในกิจกรรม 1.2',secs:[
+{h:'ตารางธาตุ หมู่ และคาบ',pg:'คู่มือครู หน้า 17–19 · หนังสือเรียนหัวข้อ 1.3 รูป 1.8 (ประมาณหน้า 13–15)',html:`
+<p>ปัจจุบันพบธาตุแล้วไม่น้อยกว่า 118 ธาตุ จึงจัดเป็นตารางธาตุตามเลขอะตอมจากน้อยไปมาก โดยให้ธาตุที่สมบัติคล้ายกันอยู่หมู่ใกล้กัน แถวแนวตั้งคือ <b>หมู่</b> (18 แถว) แถวแนวนอนคือ <b>คาบ</b> (7 แถว) แต่ละช่องมีสัญลักษณ์ ชื่อ และเลขอะตอม ธาตุสองแถวล่างคือกลุ่มแลนทานอยด์และแอกทินอยด์</p>
+<ul><li>ระบบ <b>CAS</b> (ที่หนังสือเล่มนี้ใช้ระบุหมู่) แบ่งเป็นกลุ่ม A คือธาตุ<b>เรพรีเซนเททีฟ</b> (ธาตุหมู่หลัก) 8 หมู่ IA–VIIIA อยู่ด้านซ้ายและขวา กับกลุ่ม B คือธาตุ<b>แทรนซิชัน</b> 8 หมู่ (ตามคู่มือครู) อยู่ตรงกลาง</li><li>ธาตุเรพรีเซนเททีฟมีเวเลนซ์อิเล็กตรอนเท่ากับเลขหมู่ เช่น คลอรีนหมู่ VIIA มี 7 แก๊สมีสกุล (หมู่ VIIIA) เช่น Ne, Ar มี 8 ยกเว้น He มี 2 (ค่านี้ผู้จัดทำหน้าเติมเอง หนังสือยกตัวอย่างเฉพาะ He, O และ Cl)</li><li>ธาตุหมู่เดียวกันมีสมบัติทางเคมีส่วนใหญ่คล้ายกัน</li></ul>
+<p>ผู้จัดทำหน้าไม่ได้ตรวจยืนยันจากข้อความหนังสือเรียนว่าพิมพ์ช่วงหมู่ของกลุ่ม B ไว้อย่างไร (ข้อความ OCR ของหนังสืออ่านได้ไม่ชัด) จึงใช้ช่วง IB–VIIIB ตามคู่มือครูและตามเฉลยข้อ 8 และ 9.3 ของแบบฝึกหัดท้ายบท</p>`,
+ q:['หมู่ VIIA คาบ 3 คือธาตุอะไร','คลอรีน (Cl) มีเวเลนซ์อิเล็กตรอน 7 และมีแนวโน้มรับอิเล็กตรอน (เฉลยแบบฝึกหัด 1.3 ข้อ 3 คู่มือครู หน้า 20)']},
+{h:'โลหะ อโลหะ และกึ่งโลหะ',pg:'คู่มือครู หน้า 18 · หนังสือเรียนหัวข้อ 1.3 (ประมาณหน้า 14–15)',html:`
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ประเภท</th><th class="l">ตัวอย่างในหนังสือ</th><th class="l">ลักษณะที่หนังสือกล่าวถึง</th></tr></thead><tbody>
+<tr><td class="l">โลหะ</td><td class="l">Al, Fe, Pb, Cu, Au</td><td class="l">ส่วนใหญ่เป็นของแข็ง จุดหลอมเหลวและจุดเดือดสูง นำความร้อนและไฟฟ้าได้ดี มีแนวโน้มให้อิเล็กตรอน</td></tr>
+<tr><td class="l">อโลหะ</td><td class="l">N, O, Br, I</td><td class="l">พบได้ทั้งสามสถานะ ส่วนใหญ่ไม่นำไฟฟ้า จุดหลอมเหลวและจุดเดือดต่ำ มีแนวโน้มรับอิเล็กตรอน</td></tr>
+<tr><td class="l">กึ่งโลหะ</td><td class="l">Si, Ge, As</td><td class="l">เป็นของแข็ง นำไฟฟ้าได้ดีกว่าอโลหะแต่ไม่ดีเท่าโลหะ</td></tr></tbody></table></div>
+<p>ธาตุแทรนซิชันเป็นโลหะทั้งหมด ส่วนธาตุเรพรีเซนเททีฟมีทั้งโลหะ กึ่งโลหะ และอโลหะ</p>`,
+ q:['ในสารประกอบ NaF ธาตุใดให้และธาตุใดรับอิเล็กตรอน','Na เป็นโลหะจึงให้ F เป็นอโลหะจึงรับ (เฉลยแบบฝึกหัด 1.3 ข้อ 4 คู่มือครู หน้า 20)']},
+{h:'การใช้ประโยชน์จากอากาศและธาตุอื่น ๆ',pg:'คู่มือครู หน้า 21 · หนังสือเรียนหัวข้อ 1.4 (ประมาณหน้า 16–18)',html:`
+<p>อากาศถูกใช้ในชีวิตประจำวันหลายอย่าง เช่น การเผาไหม้เชื้อเพลิง การหายใจ การสังเคราะห์ด้วยแสง ขับลูกสูบในเครื่องจักร เติมลมยาง และเป็นฉนวนกันความร้อน เมื่อแยกอากาศด้วยวิธีเช่นการกลั่นลำดับส่วนหรือการผ่านเยื่อเลือกผ่าน จะได้แก๊สแต่ละชนิดมาใช้</p>
+<ul><li><b>ออกซิเจน:</b> บรรจุถังช่วยหายใจของผู้ป่วย นักประดาน้ำ นักบินอวกาศ · ช่วยรักษาบางโรค · ทำปฏิกิริยากับแก๊สอะเซทิลีนให้เปลวไฟร้อนสูงเพื่อตัดและเชื่อมเหล็ก · เพิ่มประสิทธิภาพการเผาไหม้ในจรวดและเครื่องบินไอพ่น</li><li><b>ไนโตรเจน:</b> บรรจุถุงขนมกันความชื้นและออกซิเจน · ป้องกันอุปกรณ์อิเล็กทรอนิกส์ทำปฏิกิริยากับออกซิเจน · วัตถุดิบผลิตปุ๋ยไนโตรเจน · ไนโตรเจนเหลวใช้แช่แข็งอาหารและเก็บน้ำเชื้อหรือตัวอ่อน</li><li><b>แก๊สมีสกุล:</b> ฮีเลียมในลูกโป่งสวรรค์ · นีออนและซีนอนในหลอดไฟสีต่าง ๆ · อาร์กอนในหลอดไฟมีไส้ เพื่อกันไส้หลอดทำปฏิกิริยากับออกซิเจนจนลุกไหม้</li><li><b>ธาตุอื่น:</b> เหล็ก (Fe) แข็งแรง ใช้เป็นโครงสร้างอาคารและยานพาหนะ · สังกะสี (Zn) เคลือบเหล็กกันสนิม · ไอโอดีน (I) ผสมในน้ำยาฆ่าเชื้อใส่แผล</li></ul>`,
+ q:['ทำไมหลอดไฟมีไส้จึงบรรจุอาร์กอน','เพราะอาร์กอนเฉื่อย ไม่ทำปฏิกิริยากับไส้หลอด ถ้ามีออกซิเจนอยู่ ไส้หลอดที่ร้อนจะลุกไหม้ (หนังสือเรียนรูป 1.12)']},
+{h:'มลพิษทางอากาศ',pg:'คู่มือครู หน้า 24–25 · หนังสือเรียนหัวข้อ 1.5 ตาราง 1.3 (หน้า 19–20 ตรวจกับภาพหน้าแล้ว)',html:`
+<p>อากาศที่มีฝุ่น แก๊สพิษ ควัน หรือเขม่ามากเกินไปจนเป็นอันตรายต่อสุขภาพ เรียกว่าเกิดมลพิษทางอากาศ เกิดได้ตามธรรมชาติ เช่น ภูเขาไฟระเบิด ไฟป่า หรือจากการกระทำของมนุษย์ เช่น เผาเชื้อเพลิงในรถยนต์ ปล่อยแก๊สจากโรงงาน เผาขยะ และก่อสร้าง ตัวอย่างสารมลพิษ แหล่งกำเนิด และผลกระทบอยู่ในตารางในส่วนห้องทดลองด้านล่าง (ผู้จัดทำหน้าเรียบเรียงจากตาราง 1.3 ใหม่ทั้งหมด)</p>`,
+ q:['แก๊สชนิดใดในตาราง 1.3 ที่ถูกระบุว่าเป็นสาเหตุของฝนกรด','ซัลเฟอร์ไดออกไซด์และออกไซด์ของไนโตรเจน (หนังสือเรียนตาราง 1.3)']}
+]}
+};
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่กิจกรรม ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทำ</span></div></div>`;}
+/* reading-engine:end */
+function svgWrap(w,h,label,inner){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><rect width="${w}" height="${h}" fill="#fff"/>${inner}</svg>`;}
+function revealHTML(items){return items.map(r=>`<details class="rd-q"><summary>${r[0]}</summary><p>${r[1]}</p></details>`).join('');}
+
+/* ======================= กิจกรรม 1.1 ======================= */
+function waffleSVG(sel){
+  let o='';for(let i=0;i<100;i++){const x=10+(i%10)*24,y=10+Math.floor(i/10)*24;const g=i<78?'n2':(i<99?'o2':'ot');
+    const col=g==='n2'?'#2b6cb0':(g==='o2'?'#d97742':'#2f7d4f');const on=!sel||sel===g||(sel==='minor'&&g==='ot');
+    o+=`<rect x="${x}" y="${y}" width="21" height="21" rx="4" fill="${col}" opacity="${on?1:.18}"/>`;}
+  return svgWrap(260,260,'แผนภูมิกริด 100 ช่อง แทนอากาศแห้ง 100 ส่วนโดยปริมาตร สีน้ำเงิน 78 ช่องคือไนโตรเจน สีส้ม 21 ช่องคือออกซิเจน สีเขียว 1 ช่องคือแก๊สอื่นรวมกัน',o);}
+function actAir(){
+  return`<div class="lab"><h3>แผนภูมิองค์ประกอบของอากาศแห้ง</h3><p class="small">กริด 100 ช่อง = อากาศแห้ง 100 ส่วนโดยปริมาตร (ร้อยละจากรูป 1.1 ของหนังสือเรียน ส่วนแก๊สอื่นรวมกันประมาณร้อยละ 1 จึงเป็น 1 ช่อง) กดชื่อแก๊สเพื่อดูรายละเอียด</p>
+  <div class="cols"><div class="fig" id="waf"></div><div>
+  <div class="btns" id="gasChips" role="group" aria-label="เลือกแก๊ส">${GAS.map(g=>`<button class="chip" type="button" data-g="${g.k}" aria-pressed="false">${rf(g.f)}</button>`).join('')}</div>
+  <div class="box" id="gasInfo" aria-live="polite"><p class="small">เลือกแก๊สจากปุ่มด้านบน</p></div></div></div>
+  <div class="box"><h3>คำนวณปริมาตรแก๊สในอากาศตัวอย่าง (ผู้จัดทำหน้าคำนวณจากร้อยละในหนังสือ)</h3>
+  <label class="lbl" for="airL">ปริมาตรอากาศแห้ง: <b id="airLv">1000</b> ลิตร</label><input type="range" id="airL" min="100" max="2000" step="100" value="1000" aria-label="ปริมาตรอากาศแห้ง ลิตร">
+  <div class="tw"><table class="tbl-sm mini"><thead><tr><th class="l">แก๊ส</th><th>ร้อยละ (รูป 1.1)</th><th>ปริมาตรโดยประมาณ</th></tr></thead><tbody id="airTb"></tbody></table></div>
+  <p class="small">ร้อยละในรูป 1.1 รวมกันได้ประมาณ 99.94 ซึ่งเป็นค่าประมาณของหนังสือ ผลคำนวณจึงเป็นค่าประมาณเท่านั้น</p></div></div>`;}
+function wireAir(){
+  $('#waf').innerHTML=waffleSVG(null);
+  const info=$('#gasInfo');
+  $$('#gasChips .chip').forEach(b=>b.onclick=()=>{const g=GAS.find(x=>x.k===b.dataset.g);const on=b.getAttribute('aria-pressed')==='true';
+    $$('#gasChips .chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+    if(on){$('#waf').innerHTML=waffleSVG(null);info.innerHTML='<p class="small">เลือกแก๊สจากปุ่มด้านบน</p>';return;}
+    b.setAttribute('aria-pressed','true');
+    $('#waf').innerHTML=waffleSVG(g.k==='n2'?'n2':g.k==='o2'?'o2':g.pct===null?null:'minor');
+    const c=classify(g.f);
+    info.innerHTML=`<p><b>${g.name} (${rf(g.f)})</b></p><div class="kv"><b>ปริมาณ</b><span>${g.pct===null?'เปลี่ยนตามอุณหภูมิ (ไม่นับในอากาศแห้ง)':'ประมาณร้อยละ '+g.pct+' โดยปริมาตร'}</span><b>รูปของสาร</b><span>${g.form} (${c.atoms} อะตอมต่อหนึ่งหน่วย)</span><b>ชนิดของสาร</b><span>${g.kind}</span></div><p class="small">${g.role} (หนังสือเรียน หัวข้อ 1.1)</p>`;});
+  const calc=()=>{const L=+$('#airL').value;$('#airLv').textContent=L;
+    $('#airTb').innerHTML=GAS.filter(g=>g.pct!==null).map(g=>{const v=volOf(L,g.pct);return`<tr><td class="l">${g.name} (${rf(g.f)})</td><td>${g.pct}</td><td>${v<1?fmt(v*1000,1)+' มิลลิลิตร':fmt(v,1)+' ลิตร'}</td></tr>`;}).join('');};
+  $('#airL').oninput=calc;calc();
+}
+function labelSVG(){
+  const orb='<circle cx="150" cy="105" r="75" fill="none" stroke="#7fb0e0" stroke-width="1.6"/>';
+  const nu=`<circle cx="141" cy="99" r="10" fill="#d97742"/><text x="141" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+</text><circle cx="160" cy="99" r="10" fill="#d97742"/><text x="160" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+</text><circle cx="150" cy="116" r="10" fill="#8a96a8"/><text x="150" y="121" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">0</text>`;
+  const el=`<circle cx="225" cy="105" r="8" fill="#172033"/><text x="225" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">−</text><circle cx="75" cy="105" r="8" fill="#172033"/><text x="75" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">−</text>`;
+  const mk=(x,y,t)=>`<circle cx="${x}" cy="${y}" r="13" fill="#fff" stroke="#2b6cb0" stroke-width="2"/><text x="${x}" y="${y+5}" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">${t}</text>`;
+  const ln=(a,b,c,d)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#2b6cb0" stroke-width="1.6"/>`;
+  return svgWrap(300,210,'แบบจำลองอะตอมสำหรับติดป้าย มีนิวเคลียสตรงกลางประกอบด้วยอนุภาคสีส้มสองตัวที่มีเครื่องหมายบวก และอนุภาคสีเทาหนึ่งตัวที่มีเลขศูนย์ มีอิเล็กตรอนสีเข้มสองตัวบนวงโคจร ป้าย ก ชี้อิเล็กตรอน ป้าย ข ชี้อนุภาคสีเทา ป้าย ค ชี้อนุภาคสีส้ม',
+   orb+nu+el+ln(225,97,262,50)+mk(270,38,'ก')+ln(150,126,150,172)+mk(150,186,'ข')+ln(141,89,60,40)+mk(48,32,'ค'));}
+const LAB11=[['ก','อนุภาคที่มีประจุลบ',2],['ข','อนุภาคที่ไม่มีประจุ',1],['ค','อนุภาคที่มีประจุบวก',0]];
+function actLabel(){
+  return`<div class="lab"><h3>งานของกิจกรรม 1.1: เติมชื่อองค์ประกอบภายในอะตอม</h3><p class="small">ข้อความกิจกรรมในหนังสือ: จากแบบจำลองอะตอมที่กำหนดให้ จงเติมชื่อองค์ประกอบภายในอะตอมให้สมบูรณ์ (คู่มือครู หน้า 10) ภาพด้านล่างผู้จัดทำหน้าวาดเองตามแนวคิดของโจทย์ ไม่ได้ใช้ภาพต้นฉบับ</p>
+  <div class="cols"><div class="fig">${labelSVG()}</div><div>${LAB11.map((r,i)=>`<div class="q"><label class="lbl" for="lb${i}">ป้าย ${r[0]}: ${r[1]}</label><select id="lb${i}" data-i="${i}"><option value="">เลือกชื่ออนุภาค</option><option value="0">โปรตอน</option><option value="1">นิวตรอน</option><option value="2">อิเล็กตรอน</option></select></div>`).join('')}
+  <div class="btns"><button class="btn" type="button" id="lbCheck">ตรวจคำตอบ</button><button class="btn alt" type="button" id="lbReset">ทำใหม่</button></div><div class="why hide" id="lbWhy"></div><div class="res" id="lbRes" aria-live="polite"></div></div></div>
+  <p class="small">แนวคิดตามคู่มือ (หน้า 10): โปรตอนมีประจุบวกและนิวตรอนไม่มีประจุ อยู่รวมกันในนิวเคลียส ส่วนอิเล็กตรอนมีประจุลบอยู่รอบนิวเคลียส</p></div>`;}
+function wireLabel(){
+  const NM=['โปรตอน','นิวตรอน','อิเล็กตรอน'];
+  $('#lbCheck').onclick=()=>{let got=0,ans=0;const bad=[];
+    LAB11.forEach((r,i)=>{const v=$('#lb'+i).value;if(v!=='')ans++;if(v!==''&&+v===r[2])got++;else bad.push('ป้าย '+r[0]+' ('+r[1]+') คือ'+NM[r[2]]);});
+    const w=$('#lbWhy');w.classList.remove('hide');w.innerHTML=bad.length?'<b>เฉลยข้อที่ยังไม่ถูก:</b> '+bad.join(' · '):'ถูกทุกป้าย';
+    const r=$('#lbRes');r.className='res '+(ans<3?'bad':'ok');r.textContent=(ans<3?'ยังเลือกไม่ครบ ('+ans+'/3) ':'')+'ได้ '+got+' / 3 คะแนน';ls(QNAME.lab11,got,3);
+    if(ans===3){st.run['1.1']=true;save();tryDone('1.1');}};
+  $('#lbReset').onclick=()=>{$$('select[id^=lb]').forEach(s=>s.value='');$('#lbWhy').classList.add('hide');$('#lbRes').textContent='';};
+}
+/* ----- ตัวสร้างอะตอม ----- */
+const AB={sym:'O',n:8,e:8,model:'bohr',anim:false};
+function bohrSVG(el,n,e,c){
+  const cx=130,cy=130,sh=e<=20?shellFill(e):null;let o='';
+  if(sh){const R=[44,70,96,120];
+    sh.forEach((cnt,i)=>{o+=`<circle cx="${cx}" cy="${cy}" r="${R[i]}" fill="none" stroke="#9fc0e4" stroke-width="1.5"/><g class="shg" data-i="${i}" data-cx="${cx}" data-cy="${cy}">`;
+      for(let k=0;k<cnt;k++){const a=2*Math.PI*k/cnt+i*0.6;o+=`<circle cx="${(cx+R[i]*Math.cos(a)).toFixed(1)}" cy="${(cy+R[i]*Math.sin(a)).toFixed(1)}" r="6" fill="#172033"/>`;}o+='</g>';});}
+  o+=`<circle cx="${cx}" cy="${cy}" r="24" fill="#d97742"/><text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">${el.z}+</text>`;
+  const lab=sh?`แบบจำลองอะตอมของโบร์ ธาตุ ${el.name} นิวเคลียสมี ${el.z} โปรตอน ${n} นิวตรอน อิเล็กตรอน ${e} ตัวเรียงเป็นวง ${sh.join(' ตัว วงถัดไป ')} ตัว`:`นิวเคลียสของ ${el.name} มี ${el.z} โปรตอน ${n} นิวตรอน แบบจำลองนี้ไม่วาดวงอิเล็กตรอนเมื่อมีอิเล็กตรอนเกิน 20 ตัว`;
+  if(!sh)o+='<text x="130" y="215" text-anchor="middle" font-size="13" fill="#566680">ไม่วาดวงเมื่ออิเล็กตรอนเกิน 20 ตัว</text>';
+  return svgWrap(260,260,lab,o);}
+function cloudSVG(el,n){let s=11,o='';const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
+  for(let i=0;i<260;i++){const rad=Math.pow(r(),1.7)*115,a=r()*6.2832;o+=`<circle cx="${(130+rad*Math.cos(a)).toFixed(1)}" cy="${(130+rad*Math.sin(a)).toFixed(1)}" r="1.8" fill="#2b6cb0" opacity="${(0.85-rad/170).toFixed(2)}"/>`;}
+  o+=`<circle cx="130" cy="130" r="9" fill="#172033"/>`;
+  return svgWrap(260,260,'แบบจำลองอะตอมแบบกลุ่มหมอกของ '+el.name+' จุดสีน้ำเงินหนาแน่นใกล้นิวเคลียสและจางลงด้านนอก แสดงโอกาสพบอิเล็กตรอนและไม่แสดงจำนวนอิเล็กตรอน',o);}
+function actBuilder(){
+  return`<div class="lab"><h3>แบบจำลองอะตอมและไอออน: ปรับจำนวนอนุภาค</h3><p class="small">เลือกธาตุ แล้วเพิ่มลดนิวตรอนและอิเล็กตรอน ดูเลขมวล ประจุ ไอโซโทป และสัญลักษณ์นิวเคลียร์ ปุ่มสำเร็จรูปคือค่าจากตาราง 1.1, 1.2 และเฉลยตัวอย่างของคู่มือ <b>การเติมอิเล็กตรอนวงละ 2, 8, 8, 2 ตัวเป็นค่าสมมติของผู้จัดทำหน้า</b> (หนังสือแสดงเฉพาะ He, O และธาตุสมมติ Y)</p>
+  <div class="btns" id="presets" role="group" aria-label="ค่าสำเร็จรูปจากหนังสือ"></div>
+  <div class="cols"><div><div class="fig" id="abFig"></div>
+  <div class="btns" role="group" aria-label="เลือกแบบจำลอง"><button class="chip" type="button" data-m="bohr" aria-pressed="true">แบบจำลองโบร์</button><button class="chip" type="button" data-m="cloud" aria-pressed="false">แบบจำลองกลุ่มหมอก</button><button class="chip" type="button" id="abAnim" aria-pressed="false">อิเล็กตรอนเคลื่อนที่</button></div></div>
+  <div><label class="lbl" for="abEl">ธาตุ</label><select id="abEl">${BE.map(s=>`<option value="${s}">${EL[s].name} (${s}) · เลขอะตอม ${EL[s].z}</option>`).join('')}</select>
+  <div class="stat"><div><span class="small">โปรตอน</span><b id="abP"></b></div></div>
+  <div class="lbl">นิวตรอน</div><div class="stp"><button class="btn alt sm" type="button" id="nM" aria-label="ลดนิวตรอน">−</button><output id="nV" aria-live="polite"></output><button class="btn alt sm" type="button" id="nP" aria-label="เพิ่มนิวตรอน">+</button></div>
+  <div class="lbl">อิเล็กตรอน</div><div class="stp"><button class="btn alt sm" type="button" id="eM" aria-label="ลดอิเล็กตรอน">−</button><output id="eV" aria-live="polite"></output><button class="btn alt sm" type="button" id="eP" aria-label="เพิ่มอิเล็กตรอน">+</button></div>
+  <div class="kv" id="abOut" aria-live="polite"></div><p class="tip" id="abNote"></p></div></div></div>`;}
+let abTimer=null;
+function wireBuilder(){
+  const NMAX=190;
+  const pre=$('#presets');
+  const mk=(label,sym,n,e,t)=>`<button class="chip" type="button" data-s="${sym}" data-n="${n}" data-e="${e}">${label}</button>`;
+  pre.innerHTML='<span class="small" style="align-self:center">ตาราง 1.1:</span>'+T11.map(r=>mk(r[0],r[0],r[4],r[3])).join('')+'<span class="small" style="align-self:center">ตาราง 1.2:</span>'+T12.map(r=>mk(rf(r[0]),r[1],r[4],r[3])).join('')+'<span class="small" style="align-self:center">เฉลยคู่มือ:</span>'+mk(rf('H+'),'H',0,0)+mk(rf('Mg2+'),'Mg',12,10)+mk(rf('Cl-'),'Cl',18,18)+mk(rf('N3-'),'N',7,10)+'<span class="small" style="align-self:center">ไอโซโทป H:</span>'+mk('H-1','H',0,1)+mk('H-2','H',1,1)+mk('H-3','H',2,1);
+  const setEl=(s,n,e)=>{AB.sym=s;AB.n=n;AB.e=e;$('#abEl').value=s;render();};
+  $$('#presets .chip').forEach(b=>b.onclick=()=>setEl(b.dataset.s,+b.dataset.n,+b.dataset.e));
+  $('#abEl').onchange=()=>{const s=$('#abEl').value;AB.sym=s;AB.n=MASS[s]-EL[s].z;AB.e=EL[s].z;render();};
+  $('#nM').onclick=()=>{AB.n=Math.max(0,AB.n-1);render();};$('#nP').onclick=()=>{AB.n=Math.min(NMAX,AB.n+1);render();};
+  $('#eM').onclick=()=>{AB.e=Math.max(0,AB.e-1);render();};$('#eP').onclick=()=>{AB.e=Math.min(EL[AB.sym].z+4,AB.e+1);render();};
+  $$('[data-m]').forEach(b=>b.onclick=()=>{AB.model=b.dataset.m;$$('[data-m]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
+  const an=$('#abAnim');
+  if(REDUCE){an.disabled=true;an.title='ปิดไว้เพราะเครื่องตั้งค่าลดการเคลื่อนไหว';}
+  an.onclick=()=>{AB.anim=!AB.anim;an.setAttribute('aria-pressed',String(AB.anim));startAnim();};
+  function stopAnim(){if(abTimer){cancelAnimationFrame(abTimer);abTimer=null;}}
+  function startAnim(){stopAnim();if(!AB.anim||REDUCE)return;let t0=null;
+    const step=ts=>{const gs=$$('.shg');if(!gs.length||!$('#abFig')||!$('#abFig').isConnected){abTimer=null;return;}if(t0===null)t0=ts;const t=(ts-t0)/1000;
+      gs.forEach(g=>{const i=+g.dataset.i;g.setAttribute('transform','rotate('+((t*40/(i+1))%360).toFixed(1)+' '+g.dataset.cx+' '+g.dataset.cy+')');});abTimer=requestAnimationFrame(step);};
+    abTimer=requestAnimationFrame(step);}
+  CLEAN.push(()=>{stopAnim();AB.anim=false;});
+  function render(){
+    const el=EL[AB.sym],d=describe(el.z,AB.n,AB.e);
+    $('#abP').textContent=el.z;$('#nV').textContent=AB.n;$('#eV').textContent=AB.e;
+    $('#abFig').innerHTML=AB.model==='bohr'?bohrSVG(el,AB.n,AB.e,d.charge):cloudSVG(el,AB.n);
+    const sh=AB.e<=20?shellFill(AB.e):null;
+    const kindT=d.kind==='atom'?'อะตอมเป็นกลาง':(d.kind==='cation'?'ไอออนบวก':'ไอออนลบ');
+    $('#abOut').innerHTML=`<b>เลขอะตอม</b><span>${el.z} (= จำนวนโปรตอน)</span><b>เลขมวล</b><span>${d.A} (โปรตอน + นิวตรอน = ${el.z} + ${AB.n})</span><b>ประจุสุทธิ</b><span>${d.charge>0?'+'+d.charge:d.charge} (โปรตอน − อิเล็กตรอน)</span><b>ชนิด</b><span>${kindT}</span><b>สัญลักษณ์นิวเคลียร์</b><span>${nuc(el.sym,el.z,d.A,d.charge)}</span><b>ชื่อไอโซโทป</b><span>${el.sym}-${d.A}</span><b>เวเลนซ์อิเล็กตรอน</b><span>${AB.model==='cloud'?'แบบจำลองกลุ่มหมอกไม่แสดง':(sh&&sh.length?sh[sh.length-1]+' (ตามการเติมวงสมมติของหน้านี้)':'ไม่มีอิเล็กตรอนให้นับ')}</span>`;
+    let note='ค่าที่สร้างเองไม่ได้อยู่ในตารางของหนังสือ ลองกดปุ่มสำเร็จรูปเพื่อเทียบ';
+    const t1=T11.find(r=>r[0]===AB.sym&&r[2]===el.z&&r[4]===AB.n&&r[3]===AB.e),t2=T12.find(r=>r[1]===AB.sym&&r[4]===AB.n&&r[3]===AB.e);
+    if(t1)note='ตรงกับตาราง 1.1 ของหนังสือ: '+t1[1]+' มี '+t1[2]+' โปรตอน '+t1[3]+' อิเล็กตรอน '+t1[4]+' นิวตรอน';
+    else if(t2)note='ตรงกับตาราง 1.2 ของหนังสือ: ไอออน '+rf(t2[0])+' มี '+t2[2]+' โปรตอน '+t2[3]+' อิเล็กตรอน '+t2[4]+' นิวตรอน';
+    else if(el.z===1&&AB.e===0&&AB.n===0)note='ตรงกับเฉลยของคู่มือ (หน้า 12): H⁺ มี 1 โปรตอน ไม่มีนิวตรอนและอิเล็กตรอน';
+    else if(AB.sym==='Mg'&&AB.n===12&&AB.e===10)note='ตรงกับเฉลยของคู่มือ (หน้า 12): Mg²⁺ มี 12 โปรตอน 12 นิวตรอน 10 อิเล็กตรอน';
+    else if(AB.sym==='Cl'&&AB.n===18&&AB.e===18)note='ตรงกับเฉลยของคู่มือ (หน้า 12): Cl⁻ มี 17 โปรตอน 18 นิวตรอน 18 อิเล็กตรอน';
+    else if(AB.sym==='N'&&AB.e===10)note='ไอออนลบของไนโตรเจน N³⁻ มี 7 โปรตอน 10 อิเล็กตรอน ตรงกับเฉลยแบบฝึกหัด 1.2 ข้อ 3 (นิวตรอนขึ้นกับไอโซโทป)';
+    else if(el.z===1&&AB.e===1&&AB.n<=2)note='ไฮโดรเจนมี 3 ไอโซโทปที่เลขมวล 1, 2, 3 ตามหนังสือ (ไอโซโทปต่างกันที่นิวตรอน)';
+    if(d.charge!==0&&!/ตรงกับ/.test(note))note+=' · เมื่อเป็นไอออน โปรตอนและนิวตรอนไม่เปลี่ยน มีเพียงอิเล็กตรอนที่เปลี่ยน';
+    $('#abNote').innerHTML=note;
+    startAnim();
+  }
+  $('#abEl').value=AB.sym;render();
+}
+/* ----- ตัวจำแนกสูตร ----- */
+function actClassify(){
+  return`<div class="lab"><h3>ตัวจำแนกสูตรเคมี</h3><p class="small">พิมพ์สูตร เช่น H2O, CO2, Ne, O3, Mg2+, Cl- (ตัวพิมพ์ใหญ่เล็กสำคัญ) เพื่อดูว่าเป็นอะตอม โมเลกุล หรือไอออน และเป็นธาตุหรือสารประกอบ ใช้ได้กับสารโคเวเลนต์ แก๊สมีสกุล และไอออนเดี่ยวเท่านั้น ตามคำแนะนำของคู่มือ (หน้า 9) ที่ไม่ให้ยกตัวอย่างสารประกอบไอออนิกและโลหะในเรื่องนี้</p>
+  <div class="rowflex"><label for="cfIn">สูตรเคมี<input id="cfIn" class="tin" type="text" autocomplete="off" spellcheck="false" value="CO2"></label><button class="btn" type="button" id="cfGo">จำแนก</button></div>
+  <div class="btns" id="cfEx">${['H2','Cl2','HCl','O3','NO','CO','Ne','CH4','CO2','He'].map(f=>`<button class="chip" type="button" data-f="${f}">${rf(f)}</button>`).join('')}</div>
+  <div class="box" id="cfOut" aria-live="polite"></div></div>`;}
+function wireClassify(){
+  const go=()=>{const v=$('#cfIn').value.trim(),out=$('#cfOut');
+    try{const c=classify(v);
+      if(c.elems.some(x=>METALS.indexOf(x)>=0)&&c.form!=='ion'){out.innerHTML='<p>'+rf(v)+' เกี่ยวข้องกับโลหะ จึงอยู่นอกขอบเขตของตัวจำแนกนี้ (โลหะและสารประกอบไอออนิกไม่ได้อยู่เป็นโมเลกุลเดี่ยว ๆ) ส่วนการดูว่าเป็นธาตุหรือสารประกอบยังใช้นับชนิดของธาตุในสูตรได้ สูตรนี้มีธาตุ '+c.elems.join(', ')+' รวม '+c.elems.length+' ชนิด</p>';return;}
+      if(c.form==='ion'){out.innerHTML='<p><b>'+rf(v)+'</b> เป็นไอออนที่เกิดจากอะตอมเดียว มีจำนวนอิเล็กตรอนไม่เท่ากับโปรตอน ('+(/\+$/.test(v)?'ไอออนบวก: อิเล็กตรอนน้อยกว่าโปรตอน':'ไอออนลบ: อิเล็กตรอนมากกว่าโปรตอน')+')</p>';return;}
+      out.innerHTML='<p><b>'+rf(v)+'</b></p><div class="kv"><b>จำนวนอะตอมต่อหนึ่งหน่วย</b><span>'+c.atoms+'</span><b>ชนิดของธาตุในสูตร</b><span>'+c.elems.join(', ')+' ('+c.elems.length+' ชนิด)</span><b>รูปของสาร</b><span>'+(c.form==='atom'?'อะตอม':'โมเลกุล (2 อะตอมขึ้นไป)')+'</span><b>ชนิดของสาร</b><span>'+(c.kind==='element'?'ธาตุ (มีธาตุชนิดเดียว)':'สารประกอบ (มีธาตุมากกว่าหนึ่งชนิด)')+'</span></div>';
+    }catch(_){out.innerHTML='<p class="bad-t">อ่านสูตรไม่ได้ ลองพิมพ์แบบ H2O, CO2, Ne, Mg2+ (ขึ้นต้นสัญลักษณ์ธาตุด้วยตัวพิมพ์ใหญ่)</p>';}};
+  $('#cfGo').onclick=go;$('#cfIn').onkeydown=e=>{if(e.key==='Enter')go();};
+  $$('#cfEx .chip').forEach(b=>b.onclick=()=>{$('#cfIn').value=b.dataset.f;go();});go();
+}
+function act11(){
+  return`<h2>กิจกรรม 1.1 องค์ประกอบภายในอะตอม</h2><p class="sub">คู่มือครู หน้า 10 · หนังสือเรียนหัวข้อ 1.2 · ในหนังสือกิจกรรมนี้อยู่ในหัวข้อ 1.2 อะตอม แท็บนี้จึงรวมเนื้อหาหัวข้อ 1.1 และ 1.2 ไว้ด้วย</p>
+  <div class="box"><h3>จุดประสงค์ของหัวข้อ 1.1–1.2 (ตามคู่มือครู หน้า 8)</h3><ol><li>บอกชื่อและปริมาณของแก๊สต่าง ๆ ในอากาศ</li><li>ระบุว่าสารเป็นธาตุหรือสารประกอบ และอยู่ในรูปอะตอม โมเลกุล หรือไอออนจากสูตรเคมี</li><li>ระบุจำนวนเวเลนซ์อิเล็กตรอนจากแบบจำลองอะตอมของโบร์</li><li>เปรียบเทียบแบบจำลองอะตอมของโบร์กับแบบกลุ่มหมอก</li><li>ระบุจำนวนโปรตอน นิวตรอน อิเล็กตรอนของอะตอมและไอออนที่เกิดจากอะตอมเดียว</li><li>เขียนสัญลักษณ์นิวเคลียร์และระบุไอโซโทป</li></ol></div>
+  ${actAir()}${actClassify()}${actLabel()}${actBuilder()}${quizHTML('1.1','แบบทดสอบกิจกรรม 1.1')}`;}
+function wire11(){
+  const root=$('#panel');wireAir();wireClassify();wireLabel();wireBuilder();wireQuiz('1.1',true);
+}
+
+/* ======================= กิจกรรม 1.2 ======================= */
+/* ตารางธาตุอย่างย่อ: 7 คาบ × 18 คอลัมน์ ช่องที่มีธาตุจริงคือคาบ 1 (คอลัมน์ 1, 18) คาบ 2–3 (1–2, 13–18) คาบ 4–7 (1–18) */
+const hasCell=(p,c)=>p===1?(c===1||c===18):(p<=3?(c<=2||c>=13):true);
+function ptHTML(mode,opts){
+  opts=opts||{};let h='<div class="pt" data-mode="'+mode+'"><span class="h"></span>';
+  for(let c=1;c<=18;c++)h+='<span class="h">'+GROUP_CAS[c]+'</span>';
+  for(let p=1;p<=7;p++){h+='<span class="pl">'+p+'</span>';
+    for(let c=1;c<=18;c++){
+      if(!hasCell(p,c)){h+='<span class="pc e0"></span>';continue;}
+      const el=ELS.find(e=>e[3]===p&&e[4]===c);
+      if(opts.pick){h+='<button type="button" class="pc" data-p="'+p+'" data-c="'+c+'" aria-pressed="false" aria-label="คาบ '+p+' หมู่ '+GROUP_CAS[c]+(c>=3&&c<=12?' (คอลัมน์ '+c+')':'')+'"></button>';continue;}
+      if(el){const cls=(el[5]==='m'?'m':el[5]==='n'?'nm':'mt')+((c>=3&&c<=12)?' tr':' rep');h+='<button type="button" class="pc '+cls+'" data-s="'+el[0]+'" aria-label="'+el[1]+' ('+el[0]+') เลขอะตอม '+el[2]+' คาบ '+p+' หมู่ '+GROUP_CAS[c]+' '+CATN[el[5]]+'">'+el[0]+'</button>';}
+      else h+='<span class="pc '+((c>=3&&c<=12)?'tr':'rep')+'" aria-hidden="true"></span>';
+    }}
+  return h+'</div>';}
+function actPT(){
+  return`<div class="lab"><h3>ตารางธาตุอย่างย่อ (ช่วยเลือกธาตุสำหรับสืบค้น)</h3><p class="small">ตารางนี้ผู้จัดทำหน้าวาดเองจากโครงตารางธาตุ 7 คาบ 18 หมู่ และใส่เฉพาะธาตุที่บทนี้กล่าวถึง (ช่องว่างคือธาตุอื่นที่ไม่ได้ใส่ไว้) หมู่ระบุตามระบบ CAS <b>ประเภทโลหะ อโลหะ กึ่งโลหะ เป็นของผู้จัดทำหน้า ไม่ได้ตรวจทีละช่องกับรูป 1.8 ของหนังสือ</b> ยกเว้นธาตุที่หนังสือหรือคู่มือระบุเอง (Al, Fe, Pb, Cu, Ag, N, O, I, Si, S) เลื่อนตารางไปทางขวาได้บนจอเล็ก กดที่ธาตุเพื่อดูรายละเอียด</p>
+  <div class="btns" role="group" aria-label="เลือกการแสดงสี"><button class="chip" type="button" data-pm="cat" aria-pressed="true">สีตามโลหะ/อโลหะ/กึ่งโลหะ</button><button class="chip" type="button" data-pm="grp" aria-pressed="false">สีตามเรพรีเซนเททีฟ/แทรนซิชัน</button></div>
+  <div class="ptw" id="ptw">${ptHTML('cat')}</div>
+  <div class="legend" id="ptLeg"></div>
+  <div class="box" id="ptInfo" aria-live="polite"><p class="small">กดที่ช่องธาตุเพื่อดูข้อมูล</p></div></div>`;}
+function wirePT(){
+  const info=$('#ptInfo'),leg=$('#ptLeg');
+  const setLeg=m=>{leg.innerHTML=m==='cat'?'<span><i style="background:#cfe3f7"></i>โลหะ (เส้นทึบ)</span><span><i style="background:#fde7c8;border-style:dashed"></i>อโลหะ (เส้นประ)</span><span><i style="background:#d9f0d5;border-style:double;border-width:3px"></i>กึ่งโลหะ (เส้นคู่)</span>':'<span><i style="background:#cfe3f7"></i>เรพรีเซนเททีฟ (หมู่ A)</span><span><i style="background:#e8e0f7"></i>แทรนซิชัน (หมู่ B)</span>';};
+  setLeg('cat');
+  const bind=()=>$$('#ptw .pc[data-s]').forEach(b=>b.onclick=()=>{
+    $$('#ptw .pc').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+    const e=EL[b.dataset.s],tr=e.col>=3&&e.col<=12;
+    let val='';if(!tr){val=e.col<=2?e.col:(e.col===18?(e.sym==='He'?2:8):e.col-10);}
+    info.innerHTML=`<p><b>${e.name} (${e.sym})</b></p><div class="kv"><b>เลขอะตอม</b><span>${e.z}</span><b>คาบ</b><span>${e.per}</span><b>หมู่ (CAS)</b><span>${GROUP_CAS[e.col]} (คอลัมน์ที่ ${e.col} จาก 18)</span><b>กลุ่ม</b><span>${tr?'ธาตุแทรนซิชัน':'ธาตุเรพรีเซนเททีฟ'}</span><b>ประเภท</b><span>${CATN[e.cat]}</span>${tr?'':`<b>เวเลนซ์อิเล็กตรอน</b><span>${val} (เท่ากับเลขหมู่ ตามหนังสือ${e.sym==='He'?' ฮีเลียมเป็นข้อยกเว้น มี 2':''})</span>`}</div><p class="small">${e.cat==='m'?'โลหะ: นำไฟฟ้า มีแนวโน้มให้อิเล็กตรอน':e.cat==='n'?'อโลหะ: ส่วนใหญ่ไม่นำไฟฟ้า มีแนวโน้มรับอิเล็กตรอน':'กึ่งโลหะ: นำไฟฟ้าได้ดีกว่าอโลหะแต่ไม่ดีเท่าโลหะ'} (ตามหนังสือเรียนหัวข้อ 1.3)</p>`;});
+  bind();
+  $$('[data-pm]').forEach(b=>b.onclick=()=>{$$('[data-pm]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#ptw .pt').dataset.mode=b.dataset.pm;setLeg(b.dataset.pm);});
+}
+const POL=[
+ {f:'CO',n:'คาร์บอนมอนอกไซด์',tags:['engine','waste','nature'],src:'เผาเชื้อเพลิงในเครื่องยนต์ เผาขยะ ไฟป่า',eff:'มึนงง วิงเวียน ปวดศีรษะ และอาจเสียชีวิตถ้าได้รับมาก'},
+ {f:'SO2',n:'ซัลเฟอร์ไดออกไซด์',tags:['coal','nature'],src:'เผาถ่านหิน ภูเขาไฟระเบิด',eff:'ระคายเคืองตาและผิวหนัง ระบบหายใจผิดปกติถ้าสูดมาก และเป็นสาเหตุของฝนกรด'},
+ {f:'NOx',n:'ออกไซด์ของไนโตรเจน',tags:['engine','waste','nature'],src:'เผาเชื้อเพลิงในเครื่องยนต์ เผาสารอินทรีย์ในเตาเผา ไฟป่า',eff:'ระคายเคืองทางเดินหายใจ และเป็นสาเหตุของฝนกรด'},
+ {f:'O3',n:'โอโซน',tags:['chem'],src:'เกิดจากปฏิกิริยาเคมีระหว่างสารอินทรีย์ระเหยง่ายกับออกไซด์ของไนโตรเจนในอากาศ',eff:'ไอ จาม หายใจผิดปกติ เป็นอันตรายต่อผู้ที่เป็นโรคหอบหืดและโรคระบบทางเดินหายใจ'},
+ {f:'Hg',n:'ปรอท',tags:['coal','waste','industry'],src:'เผาถ่านหิน เผาขยะ โรงงานผลิตแบตเตอรี่ ถลุงโลหะ',eff:'ถ้าสะสมมาก ระบบประสาทถูกทำลาย อ่อนเพลีย ซึมเศร้า มือเท้าไม่มีแรง ตาพร่ามัว สูญเสียการได้ยิน และรุนแรงถึงเสียชีวิต'},
+ {f:'Pb',n:'ตะกั่ว',tags:['engine','industry'],src:'เผาน้ำมันที่มีสารตะกั่ว ถลุงแร่โลหะ โรงงานผลิตแบตเตอรี่',eff:'ทำลายระบบประสาท กระทบพัฒนาการทางสมองของทารก เป็นสาเหตุของโลหิตจางและโรคไต'},
+ {f:'PM',n:'ฝุ่นละออง',tags:['coal','waste','build'],src:'เผาถ่านหินและชีวมวล เผาขยะ การก่อสร้าง',eff:'ระคายเคืองตา ถ้าสะสมในโพรงจมูกนานอาจอักเสบเรื้อรัง'}];
+const POLT=[['engine','เครื่องยนต์'],['coal','ถ่านหิน/ชีวมวล'],['waste','เผาขยะ/เตาเผา'],['nature','ไฟป่า/ภูเขาไฟ'],['industry','โรงงาน/ถลุงโลหะ'],['build','ก่อสร้าง'],['chem','ปฏิกิริยาในอากาศ']];
+function actPol(){
+  return`<div class="lab"><h3>ตารางสารมลพิษทางอากาศ (ตัวอย่างจากตาราง 1.3)</h3><p class="small">เรียบเรียงใหม่จากตาราง 1.3 ของหนังสือเรียน (หน้า 19–20) เลือกแหล่งกำเนิดเพื่อไฮไลต์สารที่เกี่ยวข้อง คำอธิบายผลกระทบสั้นลงโดยผู้จัดทำหน้า ฝุ่นละอองในตารางใช้ตัวย่อ PM ของผู้จัดทำหน้า</p>
+  <div class="btns" id="polChips" role="group" aria-label="เลือกแหล่งกำเนิด">${POLT.map(t=>`<button class="chip" type="button" data-t="${t[0]}" aria-pressed="false">${t[1]}</button>`).join('')}</div>
+  <div class="tw"><table class="tbl-sm wide" id="polTb"><thead><tr><th class="l">สารมลพิษ</th><th class="l">แหล่งกำเนิด</th><th class="l">ผลกระทบ</th></tr></thead><tbody>${POL.map(p=>`<tr data-tags="${p.tags.join(' ')}"><td class="l">${p.n} (${p.f==='NOx'?'NO<sub>x</sub>':p.f==='PM'?'PM':rf(p.f)})</td><td class="l">${p.src}</td><td class="l">${p.eff}</td></tr>`).join('')}</tbody></table></div></div>`;}
+function wirePol(){
+  $$('#polChips .chip').forEach(b=>b.onclick=()=>{const on=b.getAttribute('aria-pressed')==='true';$$('#polChips .chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+    $$('#polTb tbody tr').forEach(r=>r.classList.remove('rowhl'));
+    if(on)return;b.setAttribute('aria-pressed','true');$$('#polTb tbody tr').forEach(r=>{if((' '+r.dataset.tags+' ').indexOf(' '+b.dataset.t+' ')>=0)r.classList.add('rowhl');});});
+}
+const RES_EL=[['r1','ธาตุเรพรีเซนเททีฟ ตัวที่ 1'],['r2','ธาตุเรพรีเซนเททีฟ ตัวที่ 2'],['t1','ธาตุแทรนซิชัน ตัวที่ 1'],['t2','ธาตุแทรนซิชัน ตัวที่ 2']];
+const RES_F=[['nm','ชื่อธาตุ','t'],['sy','สัญลักษณ์ธาตุ','t'],['zz','เลขอะตอม','t'],['ph','สมบัติทางกายภาพ'],['ch','สมบัติทางเคมี'],['us','ประโยชน์'],['hz','อันตราย'],['sr','แหล่งข้อมูล','t']];
+function actResearch(){
+  return`<div class="lab"><h3>แบบบันทึกผลสืบค้น (ธาตุเรพรีเซนเททีฟ 2 ธาตุ และแทรนซิชัน 2 ธาตุ)</h3><p class="small">ข้อความที่พิมพ์จะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> ไม่มีคะแนนอัตโนมัติ ถือว่ากิจกรรมนี้เสร็จเมื่อมีธาตุอย่างน้อย 2 ธาตุที่กรอกชื่อ ประโยชน์ และอันตรายอย่างน้อยช่องละ 5 ตัวอักษร (เกณฑ์ของผู้จัดทำหน้า) และทำแบบทดสอบครบ</p>
+  ${RES_EL.map(e=>`<div class="box"><h3>${e[1]}</h3><div class="cols">${RES_F.filter(f=>f[2]==='t').map(f=>`<div><label class="lbl" for="f_${e[0]}${f[0]}">${f[1]}</label><input class="tin" type="text" id="f_${e[0]}${f[0]}" data-d="${e[0]}${f[0]}" autocomplete="off"></div>`).join('')}</div>${fieldsHTML(RES_F.filter(f=>!f[2]).map(f=>[e[0]+f[0],f[1]]))}</div>`).join('')}
+  <div class="res" id="st12" aria-live="polite"></div>${expHTML('p12')}
+  ${revealHTML([['ดูตัวอย่างผลสืบค้นของคู่มือ (เปิดหลังเขียนของตัวเองแล้ว) หน้า 22–23',`<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ธาตุ</th><th class="l">ประโยชน์ (ย่อ)</th><th class="l">อันตราย (ย่อ)</th></tr></thead><tbody><tr><td class="l">อะลูมิเนียม Al (เลขอะตอม 13) เรพรีเซนเททีฟ</td><td class="l">อุปกรณ์ไฟฟ้า เครื่องครัว ห่ออาหาร โลหะเจือสำหรับเครื่องบิน เรือ รถไฟ รถยนต์</td><td class="l">สะสมในร่างกายได้ สารประกอบบางชนิดเป็นพิษต่อสัตว์เลี้ยงลูกด้วยนม</td></tr><tr><td class="l">ซิลิคอน Si (14) เรพรีเซนเททีฟ</td><td class="l">ทำแก้ว เส้นใยแก้วและเส้นใยนำแสง สารกึ่งตัวนำในวงจรไฟฟ้าขนาดเล็ก อุปกรณ์อิเล็กทรอนิกส์</td><td class="l">สูดผงซิลิเกตในแร่ใยหินเป็นอันตรายต่อปอด</td></tr><tr><td class="l">โครเมียม Cr (24) แทรนซิชัน</td><td class="l">ชุบเคลือบกันกัดกร่อนและให้เงางาม ผสมในเหล็กกล้าไร้สนิมและเหล็กกล้าผสมสำหรับตู้นิรภัย เครื่องยนต์ เกราะกันกระสุน</td><td class="l">ร่างกายต้องการน้อยมาก ถ้าได้รับมากเกินเป็นพิษ</td></tr><tr><td class="l">ทองแดง Cu (29) แทรนซิชัน</td><td class="l">ลวดนำไฟฟ้า อุปกรณ์ไฟฟ้า ผสมเป็นทองเหลืองและทองบรอนซ์ จำเป็นต่อเอนไซม์ในร่างกายเล็กน้อย</td><td class="l">ได้รับมากเกินไปอาจทำให้เกิดโรคทางพันธุกรรม</td></tr></tbody></table></div><p class="small">คู่มือเสนอเป็นตัวอย่างผลสืบค้น (ตัวอย่างเดียว ไม่ใช่คำตอบเดียวที่ถูก) สรุปย่อโดยผู้จัดทำหน้า ข้อมูลสมบัติกายภาพและเคมีเต็มดูได้ในคู่มือครู หน้า 22–23</p>`]])}</div>`;}
+const RES_LABELS=[].concat.apply([],RES_EL.map(e=>RES_F.map(f=>[e[0]+f[0],e[1]+': '+f[1]])));
+function wireResearch(){
+  const root=$('#panel');
+  const state=()=>{let n=0;RES_EL.forEach(e=>{if(dget('1.2',e[0]+'nm').trim().length>=2&&dget('1.2',e[0]+'us').trim().length>=5&&dget('1.2',e[0]+'hz').trim().length>=5)n++;});
+    const r=$('#st12');r.className='res '+(n>=2?'ok':'');r.textContent=n>=2?'กรอกครบ '+n+' / 4 ธาตุ ✓ (ครบเกณฑ์อย่างน้อย 2 ธาตุ)':'กรอกครบแล้ว '+n+' / 4 ธาตุ (ต้องมีชื่อ ประโยชน์ และอันตรายอย่างน้อยช่องละ 5 ตัวอักษร)';
+    if(n>=2){st.run['1.2']=true;save();tryDone('1.2');}};
+  wireDraft(root,'1.2',state);state();
+  wireExp('p12',()=>textOf('1.2',RES_LABELS,'ผลสืบค้นกิจกรรม 1.2'),'activity-1-2.txt');
+}
+function act12(){
+  return`<h2>กิจกรรม 1.2 สืบค้นข้อมูลสมบัติ ประโยชน์ และอันตรายของธาตุ</h2><p class="sub">คู่มือครู หน้า 21–24 (กิจกรรมอยู่หน้า 22) · หนังสือเรียนหัวข้อ 1.4 หน้า 18 · งานสืบค้นจริง ไม่มีคะแนนอัตโนมัติ (มีแบบทดสอบท้ายแท็บ)</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือครู หน้า 21)</h3><ol><li>บอกประโยชน์ของแก๊สในอากาศ</li><li>สืบค้นข้อมูลและนำเสนอประโยชน์และอันตรายของธาตุเรพรีเซนเททีฟและธาตุแทรนซิชัน</li></ol></div>
+  <div class="box"><h3>ข้อความกิจกรรม (ตามหนังสือ)</h3><p>เลือกธาตุเรพรีเซนเททีฟและธาตุแทรนซิชันที่สนใจมาชนิดละ 2 ธาตุ ระบุชื่อ สัญลักษณ์ธาตุ เลขอะตอม และสืบค้นข้อมูลเกี่ยวกับสมบัติทางกายภาพ สมบัติทางเคมี ประโยชน์ และอันตรายของธาตุนั้น จากนั้นนำเสนอหน้าชั้นเรียนและอภิปรายร่วมกัน</p><p class="small">แหล่งสืบค้นต้องเป็นข้อมูลจากแหล่งที่เชื่อถือได้ และควรจดแหล่งไว้ (ข้อแนะนำของผู้จัดทำหน้า)</p></div>
+  ${actPT()}${actPol()}${actResearch()}${quizHTML('1.2','แบบทดสอบกิจกรรม 1.2')}`;}
+function wire12(){wirePT();wirePol();wireResearch();wireQuiz('1.2',true);}
+
+/* ======================= สรุปเนื้อหา ======================= */
+function mapSVG(){
+  const bx=(x,y,w,t,f)=>`<rect x="${x}" y="${y}" width="${w}" height="34" rx="10" fill="${f||'#eaf2fb'}" stroke="#2b6cb0" stroke-width="1.5"/><text x="${x+w/2}" y="${y+22}" text-anchor="middle" font-size="12.5" fill="#172033">${t}</text>`;
+  const ln=(a,b,c,d)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#2b6cb0" stroke-width="1.8"/>`;
+  return svgWrap(600,250,'ผังมโนทัศน์บทที่ 1 อากาศ แตกเป็น องค์ประกอบในอากาศ อะตอม ธาตุและตารางธาตุ การใช้ประโยชน์ และมลพิษ อะตอมมีโปรตอน นิวตรอน อิเล็กตรอน ไอออน สัญลักษณ์นิวเคลียร์และไอโซโทป ธาตุแบ่งเป็นเรพรีเซนเททีฟกับแทรนซิชัน และโลหะ อโลหะ กึ่งโลหะ',
+   bx(240,6,120,'อากาศ','#d4e6f8')+ln(300,40,300,56)+ln(75,56,525,56)+ln(75,56,75,70)+ln(225,56,225,70)+ln(375,56,375,70)+ln(525,56,525,70)+
+   bx(10,70,130,'องค์ประกอบในอากาศ')+bx(160,70,130,'อะตอม')+bx(310,70,130,'ธาตุ / ตารางธาตุ')+bx(460,70,130,'ใช้ประโยชน์ · มลพิษ')+
+   ln(75,104,75,124)+`<text x="75" y="142" text-anchor="middle" font-size="12" fill="#172033">N₂ 78% · O₂ 21%</text><text x="75" y="160" text-anchor="middle" font-size="12" fill="#172033">Ar · CO₂ · He · ไอน้ำ</text>`+
+   ln(225,104,225,124)+bx(150,124,150,'โปรตอน นิวตรอน อิเล็กตรอน')+ln(225,158,225,174)+bx(150,174,150,'ไอออน · ไอโซโทป')+
+   ln(375,104,375,124)+bx(310,124,130,'เรพรีเซนเททีฟ · แทรนซิชัน')+ln(375,158,375,174)+bx(310,174,130,'โลหะ · อโลหะ · กึ่งโลหะ')+
+   ln(525,104,525,124)+`<text x="525" y="142" text-anchor="middle" font-size="12" fill="#172033">ประโยชน์ของแก๊สและธาตุ</text><text x="525" y="160" text-anchor="middle" font-size="12" fill="#172033">สารมลพิษ แหล่งกำเนิด ผลกระทบ</text>`);}
+function actSum(){
+  return`<h2>สรุปเนื้อหาบทที่ 1 อากาศ</h2><p class="sub">สรุปโดยผู้จัดทำหน้า จากคู่มือครู หน้า 1–30 และหนังสือเรียนบทที่ 1</p>
+  <div class="box"><h3>ภาพรวม</h3><div class="fig scroll">${mapSVG()}</div></div>
+  <div class="box"><h3>ใจความหลัก</h3><ul>
+  <li>อากาศเป็นสารผสมของแก๊สหลายชนิด ส่วนใหญ่เป็นไนโตรเจนและออกซิเจน อยู่ในรูปอะตอมหรือโมเลกุล</li>
+  <li>สารที่มีธาตุชนิดเดียวเป็นองค์ประกอบคือธาตุ มีธาตุมากกว่าหนึ่งชนิดคือสารประกอบ สารในรูปอะตอมเป็นธาตุเสมอ</li>
+  <li>อะตอมประกอบด้วยโปรตอน นิวตรอน อิเล็กตรอน โปรตอนเท่ากับอิเล็กตรอนในอะตอม ไอออนมีสองจำนวนนี้ไม่เท่ากัน</li>
+  <li>แบบจำลองอะตอมของโบร์แสดงอิเล็กตรอนเป็นวงรอบนิวเคลียส แบบกลุ่มหมอกแสดงโอกาสพบอิเล็กตรอน</li>
+  <li>เลขอะตอมคือจำนวนโปรตอน เลขมวลคือโปรตอนรวมนิวตรอน ไอโซโทปคือธาตุเดียวกันที่เลขมวลต่างกัน</li>
+  <li>ตารางธาตุจัดตามเลขอะตอม แบ่งเป็นเรพรีเซนเททีฟกับแทรนซิชัน หรือเป็นโลหะ อโลหะ กึ่งโลหะ</li>
+  <li>ธาตุและแก๊สในอากาศใช้ประโยชน์ได้มาก แต่บางชนิดเป็นพิษต่อสุขภาพและสิ่งแวดล้อม</li></ul></div>
+  <div class="box"><h3>ตาราง 1.1 จำนวนอนุภาคของธาตุบางชนิด (หนังสือเรียน หน้า 9)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th>สัญลักษณ์</th><th class="l">ชื่อธาตุ</th><th>โปรตอน</th><th>อิเล็กตรอน</th><th>นิวตรอน</th><th>เลขมวล (คำนวณ)</th></tr></thead><tbody>${T11.map(r=>`<tr><td>${r[0]}</td><td class="l">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[2]+r[4]}</td></tr>`).join('')}</tbody></table></div></div>
+  <div class="box"><h3>ตาราง 1.2 จำนวนอนุภาคของไอออนบางชนิด (หนังสือเรียน หน้า 10)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th>ไอออน</th><th>โปรตอน</th><th>อิเล็กตรอน</th><th>นิวตรอน</th><th>ประจุ (คำนวณ)</th></tr></thead><tbody>${T12.map(r=>`<tr><td>${rf(r[0])}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${chTxt(r[2]-r[3])}</td></tr>`).join('')}</tbody></table></div><p class="small">สังเกตว่าอะตอมกลายเป็นไอออนโดยโปรตอนและนิวตรอนไม่เปลี่ยน</p></div>
+  <div class="box"><h3>เปรียบเทียบแบบจำลองอะตอม</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">หัวข้อ</th><th class="l">โบร์</th><th class="l">กลุ่มหมอก</th></tr></thead><tbody><tr><td class="l">นิวเคลียส</td><td class="l">ขนาดเล็กอยู่ตรงกลาง</td><td class="l">ขนาดเล็กอยู่ตรงกลาง (เหมือนกัน)</td></tr><tr><td class="l">อิเล็กตรอน</td><td class="l">เคลื่อนที่เป็นวง แต่ละวงห่างและมีพลังงานต่างกัน</td><td class="l">แสดงโอกาสพบ หมอกทึบ = พบได้มากกว่า</td></tr><tr><td class="l">แสดงจำนวนอิเล็กตรอน/เวเลนซ์อิเล็กตรอน</td><td class="l">แสดง</td><td class="l">ไม่แสดง</td></tr></tbody></table></div></div>
+  <div class="box"><h3>ตัวเลขจากคู่มือและหนังสือเรียน</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">เรื่อง</th><th class="l">ค่า</th><th>หน้า</th></tr></thead><tbody>
+  <tr><td class="l">อากาศแห้ง</td><td class="l">N<sub>2</sub> ≈ 78% · O<sub>2</sub> ≈ 21% · แก๊สอื่น ≈ 1% (Ar 0.9 · CO<sub>2</sub> 0.04 · He 0.0005)</td><td>หนังสือเรียน 4–5</td></tr>
+  <tr><td class="l">เวเลนซ์อิเล็กตรอน (โบร์)</td><td class="l">He 2 · O 6 · Cl 7 (ตามหนังสือ) · Ne, Ar 8 (ผู้จัดทำหน้าเติมเอง)</td><td>11, 18</td></tr>
+  <tr><td class="l">ตารางธาตุ</td><td class="l">≥ 118 ธาตุ · 18 หมู่ · 7 คาบ · เรพรีเซนเททีฟ 8 หมู่ · แทรนซิชัน 8 หมู่</td><td>17–18</td></tr>
+  <tr><td class="l">ไอโซโทปของไฮโดรเจน</td><td class="l">H-1 · H-2 · H-3 (เลขอะตอม 1)</td><td>หนังสือเรียน 11</td></tr>
+  <tr><td class="l">ไอโซโทปกัมมันตรังสีที่หนังสือยกตัวอย่าง</td><td class="l">U-235 · C-14 · I-131</td><td>หนังสือเรียน (ประมาณ 12)</td></tr>
+  <tr><td class="l">เวลาที่คู่มือเสนอ</td><td class="l">1.1 = 1 ชม. · 1.2 = 3 ชม. · 1.3 = 2 ชม. · 1.4 = 0.5 ชม. · 1.5 = 0.5 ชม.</td><td>6</td></tr></tbody></table></div></div>
+  <div class="box"><h3>คำศัพท์สำคัญ (เรียบเรียงใหม่)</h3><ul><li><b>ธาตุ</b> สารที่มีธาตุชนิดเดียวเป็นองค์ประกอบ · <b>สารประกอบ</b> มีธาตุมากกว่าหนึ่งชนิด</li><li><b>เวเลนซ์อิเล็กตรอน</b> อิเล็กตรอนวงนอกสุด</li><li><b>เลขอะตอม</b> จำนวนโปรตอน · <b>เลขมวล</b> โปรตอนรวมนิวตรอน</li><li><b>ไอโซโทป</b> ธาตุเดียวกันที่เลขมวลต่างกัน · <b>ไอโซโทปกัมมันตรังสี</b> ไอโซโทปที่ไม่เสถียรและแผ่รังสีได้</li><li><b>แก๊สมีสกุล</b> ธาตุหมู่ VIIIA อยู่ในรูปอะตอม ไม่ว่องไวต่อปฏิกิริยา</li></ul></div>`;}
+function wireSum(){}
+
+/* ======================= แบบฝึกหัด (ตามคู่มือครู) ======================= */
+function g9HTML(){return`<div class="box" id="g9"><h3>แบบฝึกหัดท้ายบท ข้อ 9: ตารางธาตุ (คู่มือครู หน้า 29–30)</h3><p class="small">เลือกโหมดแล้วกดช่องในตาราง ตารางนี้ผู้จัดทำหน้าวาดเอง (ไม่มีลำดับแลนทานอยด์และแอกทินอยด์) <b>เลื่อนไปทางขวาได้บนจอเล็ก</b></p>
+ <div class="btns" id="g9m" role="group" aria-label="เลือกข้อย่อย"><button class="chip" type="button" data-m="1" aria-pressed="true">9.1 แรเงาเรพรีเซนเททีฟ คาบ 4</button><button class="chip" type="button" data-m="2" aria-pressed="false">9.2 แรเงาแทรนซิชัน หมู่ IIIB คาบ 5</button><button class="chip" type="button" data-m="3" aria-pressed="false">9.3 วางสัญลักษณ์ C Cr Fe</button></div>
+ <div class="rowflex hide" id="g9s"><label for="g9sym">สัญลักษณ์ที่จะวาง (กดช่องซ้ำเพื่อเอาออก)<select id="g9sym"><option value="C">C คาร์บอน</option><option value="Cr">Cr โครเมียม</option><option value="Fe">Fe เหล็ก</option></select></label></div>
+ <p class="small" id="g9hint"></p><div class="ptw" id="g9t">${ptHTML('grp',{pick:true})}</div>
+ <p class="small">ข้อ 9.3 โจทย์: เหล็กกล้าไร้สนิมคือเหล็ก (Fe) ผสมคาร์บอน (C) และโครเมียม (Cr) ให้เขียนสัญลักษณ์ธาตุตามตำแหน่งในตารางธาตุ</p>
+ <div class="btns"><button class="btn" type="button" id="g9c">ตรวจคำตอบ</button><button class="btn alt" type="button" id="g9r">ทำใหม่</button></div><div class="why hide" id="g9w"></div><div class="res" id="g9res" aria-live="polite"></div></div>`;}
+function wireG9(){
+  const G={1:new Set(),2:new Set(),sym:{}};let mode=1;
+  const key=(p,c)=>p+'-'+c;const cells=$$('#g9t .pc[data-p]');
+  const hint={1:'โหมด 9.1: กดช่องของธาตุเรพรีเซนเททีฟทั้งหมดในแถวคาบ 4',2:'โหมด 9.2: กดช่องของธาตุแทรนซิชันหมู่ IIIB ในคาบ 5',3:'โหมด 9.3: เลือกสัญลักษณ์ แล้วกดช่องที่ตำแหน่งของธาตุนั้น'};
+  const paint=()=>{cells.forEach(b=>{const k=key(b.dataset.p,b.dataset.c);b.classList.remove('s1','s2','on');b.textContent='';let pr=false;
+    if(G[1].has(k)){b.classList.add('s1');pr=true;}if(G[2].has(k)){b.classList.add('s2');pr=true;}
+    for(const s in G.sym)if(G.sym[s]===k){b.textContent=s;b.classList.add('on');pr=true;}b.setAttribute('aria-pressed',String(pr));});
+    $('#g9hint').textContent=hint[mode];$('#g9s').classList.toggle('hide',mode!==3);};
+  cells.forEach(b=>b.onclick=()=>{const k=key(b.dataset.p,b.dataset.c);
+    if(mode===3){const s=$('#g9sym').value;if(G.sym[s]===k)delete G.sym[s];else{for(const o in G.sym)if(G.sym[o]===k)delete G.sym[o];G.sym[s]=k;}}
+    else{if(G[mode].has(k))G[mode].delete(k);else G[mode].add(k);}paint();});
+  $$('#g9m .chip').forEach(b=>b.onclick=()=>{mode=+b.dataset.m;$$('#g9m .chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));paint();});
+  $('#g9c').onclick=()=>{
+    const a1=new Set(['4-1','4-2','4-13','4-14','4-15','4-16','4-17','4-18']),a2=new Set(['5-3']);
+    const same=(A,B)=>A.size===B.size&&[...A].every(x=>B.has(x));
+    const ok1=same(G[1],a1),ok2=same(G[2],a2),want={C:'2-14',Cr:'4-6',Fe:'4-8'};let ok3=0;for(const s in want)if(G.sym[s]===want[s])ok3++;
+    const got=(ok1?1:0)+(ok2?1:0)+ok3,ans=(G[1].size?1:0)+(G[2].size?1:0)+Object.keys(G.sym).length;
+    $('#g9w').classList.remove('hide');$('#g9w').innerHTML='<b>เฉลย:</b> 9.1 ช่องที่ 1, 2 และ 13–18 ของคาบ 4 (หมู่ IA, IIA, IIIA–VIIIA) · 9.2 ช่องที่ 3 ของคาบ 5 (หมู่ IIIB) · 9.3 C คาบ 2 หมู่ IVA, Cr คาบ 4 หมู่ VIB, Fe คาบ 4 หมู่ VIIIB';
+    const r=$('#g9res');r.className='res '+(ans<5?'bad':'ok');r.textContent=(ans<5?'ยังทำไม่ครบ ':'')+'ได้ '+got+' / 5 คะแนน (9.1 = 1, 9.2 = 1, 9.3 = 3 ตำแหน่ง)';ls(QNAME.xe9,got,5);};
+  $('#g9r').onclick=()=>{G[1].clear();G[2].clear();G.sym={};paint();$('#g9w').classList.add('hide');$('#g9res').textContent='';};
+  paint();
+}
+const FX=[['e8','แบบฝึกหัดท้ายบท ข้อ 5.1 หรือข้อ 9: เขียนอธิบายด้วยคำของตนเองว่าทำไมแบบจำลองกลุ่มหมอกจึงไม่บอกตำแหน่งแน่นอนของอิเล็กตรอน (ข้อความอธิบายของผู้จัดทำหน้า ไม่ใช่ข้อของหนังสือ)']];
+function actEx(){
+  return`<h2>แบบฝึกหัดตามคู่มือครู</h2><p class="sub">คู่มือครู หน้า 15–30 · ข้อที่มีเฉลยตรวจอัตโนมัติและส่งคะแนน ไม่มีข้อเขียนแบบเปิดที่มีคะแนน</p>
+  <div class="notice">หมายเหตุ: ในไฟล์ข้อความของคู่มือ เครื่องหมายถูกในตารางเฉลยและตัวอักษรของสูตรเคมีหายไปหลายแห่ง ผู้จัดทำหน้าตรวจเฉลยกับภาพหน้า PDF ของคู่มือแล้ว (หน้า 15, 16, 20, 25–30) หลายข้อที่เป็นตารางเติมคำถูกแปลงเป็นข้อเลือกตอบหรือช่องกรอกตัวเลข ซึ่งแจ้งไว้ในแต่ละข้อ ส่วน &quot;ตรวจสอบความรู้ก่อนเรียน&quot; ของคู่มือ (หน้า 7) ไม่ได้นำมาทำเป็นแบบทดสอบ</div>
+  <h3>แบบฝึกหัด 1.1</h3>${sel11HTML()}
+  <h3>แบบฝึกหัด 1.2</h3>${numHTML('x12a','แบบฝึกหัด 1.2 ข้อ 1 และข้อ 3 (กรอกจำนวนอนุภาค)',NUM.x12a)}
+  <div class="small">ข้อ 2 และข้อ 5 เป็นข้อเลือกตอบ ผู้จัดทำหน้าแปลงจากคำตอบอธิบายของหนังสือ</div>${quizHTML('x12m','แบบฝึกหัด 1.2 ข้อ 2 และข้อ 5')}
+  ${numTHTML('x12b','แบบฝึกหัด 1.2 ข้อ 4: จำนวนอนุภาคจากสัญลักษณ์นิวเคลียร์',NT.x12b.heads,NT.x12b.rows,'หนังสือให้เติมทั้งสัญลักษณ์ธาตุ เลขอะตอม เลขมวล และจำนวนอนุภาค ผู้จัดทำหน้าให้สัญลักษณ์นิวเคลียร์ไว้ (ซึ่งบอกเลขอะตอมและเลขมวลอยู่แล้ว) แล้วให้กรอกจำนวนอนุภาค')}
+  <h3>แบบฝึกหัด 1.3</h3>${sel13HTML()}${quizHTML('x13m','แบบฝึกหัด 1.3 ข้อ 2–4')}
+  <h3>แบบฝึกหัดท้ายบทที่ 1</h3>${selX('xeA')}${selX('xeB')}${selX('xeC')}
+  <div class="box"><h3>ข้อ 4 แบบจำลองอะตอมของโบร์ของธาตุสมมติ Y</h3><div class="fig" style="max-width:300px">${ySVG()}</div></div>${numHTML('xeY','ข้อ 4: จำนวนอนุภาคของธาตุสมมติ Y',NUM.xeY)}
+  <div class="box"><h3>ข้อ 5 แบบจำลองอะตอมของไฮโดรเจน (โบร์และกลุ่มหมอก)</h3><div class="fig">${hSVG()}</div><p class="small">ผู้จัดทำหน้าวาดภาพเองให้ตำแหน่ง A–F สอดคล้องกับเฉลยของคู่มือ (หน้า 27) ไม่ใช่ภาพต้นฉบับ</p></div>${quizHTML('xe5','ข้อ 5')}
+  ${numTHTML('xe6','แบบฝึกหัดท้ายบท ข้อ 6: ธาตุในสารมลพิษ CO, SO<sub>2</sub>, NO<sub>2</sub>, O<sub>3</sub> และไอปรอท',NT.xe6.heads,NT.xe6.rows,'หนังสือให้เติมช่องว่างในตาราง ผู้จัดทำหน้าให้สัญลักษณ์นิวเคลียร์ไว้แล้วให้กรอกจำนวนอนุภาค ส่วนสัญลักษณ์ธาตุ เลขอะตอม และเลขมวลอ่านได้จากสัญลักษณ์นั้นโดยตรง')}
+  ${numHTML('xe7','แบบฝึกหัดท้ายบท ข้อ 7: ไอโซโทปของธาตุสมมติ D',NUM.xe7)}
+  ${sel8HTML()}${g9HTML()}
+  <div class="lab"><h3>เขียนอธิบายเพิ่ม (ไม่มีคะแนน)</h3><p class="small">ข้อความที่พิมพ์ในช่องจะถูกส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง ข้อนี้ผู้จัดทำหน้าเพิ่มเอง ไม่มีเฉลยของคู่มือ</p>${fieldsHTML(FX)}${expHTML('pex')}</div>
+  <div class="box"><h3>ความคืบหน้า</h3><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">กิจกรรม</th><th>สถานะ</th></tr></thead><tbody id="progT"></tbody></table></div></div>`;}
+function ySVG(){const cx=100,cy=100;let o=`<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="#7fb0e0" stroke-width="1.6"/><circle cx="${cx}" cy="${cy}" r="80" fill="none" stroke="#7fb0e0" stroke-width="1.6"/><circle cx="${cx}" cy="${cy}" r="9" fill="#d97742"/>`;
+  [[0.5,42],[3.6,42],[1.2,80]].forEach(a=>o+=`<circle cx="${(cx+a[1]*Math.cos(a[0])).toFixed(1)}" cy="${(cy+a[1]*Math.sin(a[0])).toFixed(1)}" r="6" fill="#172033"/>`);
+  return svgWrap(200,200,'แบบจำลองอะตอมของโบร์ของธาตุสมมติ Y นิวเคลียสตรงกลาง วงใน 2 อิเล็กตรอน วงนอก 1 อิเล็กตรอน',o);}
+function hSVG(){let o='<circle cx="100" cy="105" r="62" fill="none" stroke="#172033" stroke-width="1.6"/><circle cx="100" cy="105" r="5" fill="#172033"/><circle cx="146" cy="147" r="5" fill="#172033"/>';
+  const tx=(x,y,t)=>`<text x="${x}" y="${y}" font-size="19" font-weight="700" fill="#172033">${t}</text>`;
+  const ln=(a,b,c,d)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#2b6cb0" stroke-width="1.4"/>`;
+  o+=ln(100,105,176,40)+tx(178,38,'A')+ln(162,105,186,105)+tx(188,110,'B')+ln(146,147,180,170)+tx(182,176,'C');
+  let s=5;const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
+  for(let i=0;i<200;i++){const rad=Math.pow(r(),1.8)*70,a=r()*6.2832;o+=`<circle cx="${(300+rad*Math.cos(a)).toFixed(1)}" cy="${(105+rad*Math.sin(a)).toFixed(1)}" r="1.6" fill="#2b6cb0" opacity="${(0.9-rad/110).toFixed(2)}"/>`;}
+  o+='<circle cx="300" cy="105" r="4" fill="#172033"/>'+ln(300,105,372,40)+tx(374,38,'D')+ln(318,112,376,108)+tx(378,113,'E')+ln(352,128,372,172)+tx(374,178,'F');
+  return svgWrap(420,200,'ภาพคู่ ด้านซ้ายคือแบบจำลองโบร์ของไฮโดรเจน มีวงกลมหนึ่งวง นิวเคลียสที่กึ่งกลางชี้ด้วย A เส้นวงโคจรชี้ด้วย B และอิเล็กตรอนบนวงชี้ด้วย C ด้านขวาคือแบบจำลองกลุ่มหมอก นิวเคลียสที่กึ่งกลางชี้ด้วย D บริเวณหมอกทึบใกล้นิวเคลียสชี้ด้วย E และบริเวณหมอกจางด้านนอกชี้ด้วย F',o);}
+function wireEx(){
+  const root=$('#panel');wireDraft(root,'ex');
+  $('#progT').innerHTML=LABS.map(a=>`<tr><td class="l">${a} ${TITLES[a]}</td><td>${st.done[a]?'<span class="ok-t">✓ เสร็จแล้ว</span>':'ยังไม่เสร็จ'}</td></tr>`).join('');
+  wireExp('pex',()=>'สรุปการเรียนบทที่ 1 อากาศ\n\n'+LABS.map(a=>(st.done[a]?'[x] ':'[ ] ')+a+' '+TITLES[a]).join('\n')+'\n'+textOf('ex',FX,'\nข้อเขียนในแบบฝึกหัด'),'exercise-1.txt');
+  wireSel('x11',rowsOf('x11'));wireNum('x12a',NUM.x12a);wireQuiz('x12m',false);wireNumT('x12b',NT.x12b.heads,NT.x12b.rows);
+  wireSel('x13t',rows13());wireQuiz('x13m',false);
+  wireSel('xeA',rowsOf('xeA'));wireSel('xeB',rowsOf('xeB'));wireSel('xeC',rowsOf('xeC'));
+  wireNum('xeY',NUM.xeY);wireQuiz('xe5',false);wireNumT('xe6',NT.xe6.heads,NT.xe6.rows);wireNum('xe7',NUM.xe7);wireSel('xe8',rows8());wireG9();
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'1.1':[act11,wire11],'1.2':[act12,wire12],'sum':[actSum,wireSum],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${qid(a)}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t){t.focus({preventScroll:true});try{t.scrollIntoView({block:'nearest',inline:'nearest'});}catch(_){}}}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length,m=LABS.length;$('#progText').textContent='ความคืบหน้า '+n+' / '+m+' กิจกรรม';$('#progBar').style.width=(n/m*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('วิทยาศาสตร์กายภาพ ม.5 บทที่ 1','วิทยาศาสตร์กายภาพ ม.5 บทที่ 1 อากาศ (กิจกรรม 1.1–1.2)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+qid(a)+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่ (ล้างเครื่องหมายเสร็จและแบบทดสอบ ข้อความที่เขียนยังอยู่)</button></div></section>';
+  BUILD[a][1]();try{window.LabScore&&window.LabScore.use('วิทยาศาสตร์กายภาพ ม.5 บทที่ 1','วิทยาศาสตร์กายภาพ ม.5 บทที่ 1 อากาศ (กิจกรรม 1.1–1.2)');}catch(_){}{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];delete st.q[a];delete st.run[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const hh=(location.hash.match(/act-(1\.\d|sum|ex)/)||[])[1];
+select(hh&&ACTS.indexOf(hh)>=0?ACTS.indexOf(hh):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>

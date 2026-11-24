@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>วิทยาศาสตร์กายภาพ ม.5 บทที่ 2 น้ำ · การทดลองเสมือน</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 2", "title": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 2 น้ำ (หัวข้อ 2.1–2.3)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#d3e6ec;--soft:#f0f8fa;--acc:#0e7490;--acc2:#e0f3f7;--ok:#157a55;--bad:#b63f43;--acc3:#5eb3c6;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--acc);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid #d3e6ec;border-radius:30px;background:linear-gradient(130deg,#fff,#ebf6f9);box-shadow:0 28px 65px #0b3b4512;margin-bottom:6px}@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}.eyebrow{color:var(--acc);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid #b6d6df;background:#f0f8fa;border-radius:16px;padding:12px 16px;font-size:.92rem;color:#164e5c;margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #0b3b4512,0 3px 10px #0b3b4508;margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid #b2d4dd;border-radius:22px;padding:16px;background:linear-gradient(160deg,#ebf6f9,#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--acc);color:#fff;font-weight:650}
+.btn.alt{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;min-height:44px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid #8dbfcc;background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+.fig svg{display:block;width:100%;max-width:560px;margin:0 auto;height:auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.why{font-size:.9rem;color:#1d4350;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:#164e5c;background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}
+.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}
+.footer a{color:var(--acc)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}
+sub{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+svg text{font-family:var(--font)}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.92rem}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0}.kv b{font-weight:650}
+.warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
+.tbl-sm td,.tbl-sm th{font-size:.88rem}
+.tw table.wide{min-width:540px}@media(max-width:560px){.tw table.wide{min-width:0}}
+.sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
+.ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
+.ledrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
+.ledrow label{font-weight:600;font-size:.92rem;display:block}
+.ledrow input[type=range]{width:100%;min-height:44px}
+.ledrow input[type=text],.ledrow textarea,.ledrow select{display:block;width:100%;max-width:100%}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
+.ok-bg{background:#e8f6ef}.bad-bg{background:#fdf1f1}
+.cond li{list-style:none;margin-left:-1.1rem}
+.stepno{display:inline-block;min-width:1.6em;text-align:center;background:var(--acc);color:#fff;border-radius:999px;padding:0 .5em;margin-right:6px;font-size:.85rem}
+.pbar{height:8px;border-radius:99px;background:var(--acc2);overflow:hidden;margin:6px 0}.pbar i{display:block;height:100%;background:var(--acc);width:0}
+.cite{font-family:ui-serif,Georgia,serif;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;word-break:break-word;overflow-wrap:anywhere}
+.timer{font:700 2rem ui-monospace,Menlo,monospace}.timer.over{color:var(--bad)}
+.rl{display:flex;gap:10px;flex-wrap:wrap}.rl label{display:flex;gap:4px;align-items:center;min-height:44px}
+@media(prefers-reduced-motion:reduce){.pbar i{transition:none}}
+sup{font-size:.75em;line-height:0}
+.lab svg{max-width:100%}
+.rg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.rg label{display:flex;gap:6px;align-items:center;min-height:44px;padding:4px 12px;border:1.5px solid #8dbfcc;border-radius:999px;background:#fff;font-weight:600}
+.rg label:has(input:checked){background:var(--acc);color:#fff;border-color:var(--acc)}
+.num{width:7.5em;min-height:44px;border:1px solid #b2d4dd;border-radius:12px;padding:6px 10px;text-align:right}
+.hl{background:#e2f2f6;border-radius:6px;padding:0 4px}
+.mini th,.mini td{padding:4px 7px;font-size:.88rem}
+.nw{white-space:nowrap}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9rem}.bar2 .lb{flex:0 0 9.5em}.bar2 .tr{flex:1;height:16px;border-radius:99px;background:var(--acc2);overflow:hidden}.bar2 .tr i{display:block;height:100%;background:var(--acc)}.bar2 .vv{flex:0 0 4.5em;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:480px){.bar2 .lb{flex-basis:7em}}
+input[type=range]{accent-color:var(--acc)}input[type=checkbox],input[type=radio]{accent-color:var(--acc)}
+</style>
+<style>
+/* reading:start */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--acc);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--acc)}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--acc);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+/* reading:end */
+</style>
+<style>
+/* ส่วนเสริมเฉพาะหน้านี้ */
+.scr{overflow-x:auto}
+.scr svg{max-width:none}
+.molbox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:760px){.molbox{grid-template-columns:minmax(0,1fr)}}
+.gridc{display:grid;gap:4px;margin:8px 0;max-width:420px}
+.cell{min-height:44px;min-width:44px;border:1.5px solid #8dbfcc;border-radius:10px;background:#fff;font-weight:700;font-size:1.15rem;padding:0;color:var(--ink)}
+.cell.pos{background:#c2410c;color:#fff;border-color:#c2410c}
+.cell.neg{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.cell.bad{outline:3px solid #b63f43;outline-offset:1px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.88rem;color:var(--muted);margin:4px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%}
+.stchip{display:inline-block;border-radius:999px;padding:2px 10px;font-weight:650;font-size:.86rem;border:1px solid var(--line);background:#fff}
+.st-solid{background:#e0e7ff;color:#27308f}.st-liquid{background:#dbeafe;color:#1e4a8a}.st-gas{background:#fef3c7;color:#7a4a05}
+.sbar{display:grid;grid-template-columns:7.5em minmax(0,1fr) 5.5em;gap:6px;align-items:center;margin:3px 0;font-size:.88rem}
+.sbar .tr{height:14px;border-radius:99px;background:var(--acc2);overflow:hidden}.sbar .tr i{display:block;height:100%;background:var(--acc)}
+.sbar .tr.i2 i{background:#c2410c}
+@media(max-width:480px){.sbar{grid-template-columns:6em minmax(0,1fr) 4.6em}}
+.lamp{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle;margin-right:6px;border:1.5px solid #64748b;background:#e5e7eb}
+.lamp.on{background:#facc15;box-shadow:0 0 10px 3px #fde047}
+.fm{font-family:ui-serif,Georgia,serif;font-size:1.25rem}
+.ansrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ansrow select{width:auto;min-width:7.5em;min-height:44px;border:1px solid #b2d4dd;border-radius:12px;padding:4px 8px}
+input.txt{min-height:44px;border:1px solid #b2d4dd;border-radius:12px;padding:6px 10px;width:12em;max-width:100%}
+</style>
+<!-- ap:start -->
+<style>
+/* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
+ * ไม่เปลี่ยนสีหลักของแต่ละหน้า (ส้ม=หน่วย 5, ม่วง=หน่วย 6, น้ำเงิน=เคมี) ปรับเฉพาะรูปทรง ขนาด น้ำหนัก และการตอบสนอง
+ * ไม่โหลดฟอนต์จากเครือข่าย ใช้ฟอนต์ระบบ (SF Pro บน Apple, Thonburi/Sarabun สำหรับไทย) */
+:root{
+  --ap-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Thonburi,"Sarabun","Noto Sans Thai",system-ui,sans-serif;
+  --ap-ease:cubic-bezier(.2,.8,.2,1);
+  --ap-focus:#0a84ff;
+}
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:var(--ap-font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;font-synthesis-weight:none}
+button,input,select,textarea{font-family:var(--ap-font)}
+
+/* ลำดับตัวอักษร: large title > title > headline > body > caption (ไทยไม่บีบตัวอักษร) */
+h1{font-weight:700;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+h2{font-weight:650;line-height:1.28;letter-spacing:-.01em;text-wrap:balance}
+h3,h4{font-weight:650;line-height:1.35;letter-spacing:-.005em}
+.kicker,.eyebrow{font-weight:700;letter-spacing:.06em}
+small,.pc,.cd,.n,figcaption,.caption{font-size:.86rem;line-height:1.55}
+p,li{text-wrap:pretty}
+
+/* ปุ่ม: ทรงแคปซูล แตะง่าย ≥44px มีเงาบางและการยุบเมื่อกด */
+.btn,.action,.ls-btn,.filter,button.primary{
+  min-height:44px;padding:.55rem 1.3rem;border-radius:999px;font-weight:600;line-height:1.25;letter-spacing:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4em;
+  box-shadow:0 1px 2px rgba(20,28,50,.1),0 8px 18px -10px rgba(20,28,50,.35);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .18s var(--ap-ease),box-shadow .18s var(--ap-ease),filter .18s var(--ap-ease),background-color .18s var(--ap-ease);
+}
+.btn.alt{box-shadow:none}
+.btn:hover,.action:hover,.ls-btn:hover,.filter:hover{filter:brightness(1.05)}
+.btn:active,.action:active,.ls-btn:active,.filter:active,button:active{transform:scale(.97);filter:brightness(.96)}
+button:disabled,.btn:disabled,.ls-btn:disabled{opacity:.42;box-shadow:none;transform:none;filter:none;cursor:not-allowed}
+button{touch-action:manipulation}
+
+/* โฟกัสด้วยคีย์บอร์ดชัดเจน */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+  outline:3px solid var(--ap-focus);outline-offset:3px}
+/* ปุ่มไม่กำหนด border-radius ตอนโฟกัส เพื่อไม่ทับทรงแคปซูลของปุ่มเอง */
+a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{border-radius:12px}
+
+/* ช่องกรอกและตัวเลือก: ขอบนุ่ม ขนาดแตะสบาย */
+input[type=text],input[type=number],input[type=search],select,textarea{min-height:44px;border-radius:14px}
+textarea{min-height:90px}
+label.opt{min-height:44px;border-radius:14px;transition:background-color .15s var(--ap-ease),border-color .15s var(--ap-ease)}
+
+/* พื้นผิวการ์ด: มุมโค้งต่อเนื่อง เงานุ่ม */
+section.card{border-radius:28px}
+.lesson-card,.c{border-radius:22px}
+
+/* ปุ่มลิงก์เด่น (CTA) แบบ Apple */
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.3rem;border-radius:999px;background:#0071e3;color:#fff!important;font-weight:600;text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,60,140,.2),0 10px 22px -12px rgba(0,60,140,.55);transition:transform .18s var(--ap-ease),filter .18s var(--ap-ease)}
+.cta:hover{filter:brightness(.92)}.cta:active{transform:scale(.97)}
+.hero-cta{margin:1.1rem 0 0!important}
+a{text-underline-offset:.18em}
+@media(max-width:640px){body{font-size:16.5px}h1{letter-spacing:-.01em}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active{transform:none}}
+</style>
+<!-- ap:end -->
+</head>
+<body><div class="wrap">
+<nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero">
+<div class="eyebrow">PHYSICAL SCIENCE · MATTHAYOM 5 · CHEMISTRY PART · CHAPTER 2</div>
+<h1>บทที่ 2 น้ำ: โมเลกุลของน้ำ สารประกอบไอออนิก และการละลายในน้ำ</h1>
+<p>หน้านี้เป็นรายวิชาวิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) ภาคเคมี มี 3 แท็บตามหัวข้อของบท คือ 2.1 โมเลกุลของน้ำ · 2.2 สารในแหล่งน้ำธรรมชาติ · 2.3 การละลายของสารในน้ำ พร้อมแท็บสรุปเนื้อหาและแบบฝึกหัดตามคู่มือครู ทั้ง 3 แท็บหัวข้อมีส่วน &quot;อ่านก่อนทดลอง&quot; ที่ผู้จัดทำหน้าเรียบเรียงใหม่ พื้นที่ฝึกแบบโต้ตอบ และแบบทดสอบสั้น ส่วนแบบฟอร์มสืบค้นมีในแท็บ 2.2 และ 2.3 (แท็บ 2.1 มีช่องเขียนอธิบายแบบจำลองของกลุ่ม)</p>
+<div class="progress"><span id="progText">ความคืบหน้า 0 / 3 หัวข้อ</span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice"><b>แบบจำลองเพื่อการศึกษา และข้อสังเกตเรื่องชื่อกิจกรรม:</b> บทที่ 2 ในหนังสือเรียนและคู่มือครูไม่มีกิจกรรมที่ตั้งเลขเป็น &quot;กิจกรรม 2.x&quot; (ใช้เป็นหัวข้อ 2.1–2.3 พร้อมแบบฝึกหัด) สิ่งที่ใกล้เคียงกิจกรรมที่สุดคือ (1) กิจกรรมแสดงบทบาทสมมติจัดเรียงไอออนในห้องเรียน (คู่มือครู หน้า 47) (2) กิจกรรมเสนอแนะสืบค้นการใช้ประโยชน์และอันตรายของสารโคเวเลนต์และสารประกอบไอออนิก (หน้า 48–49) (3) กิจกรรมเสนอแนะสืบค้นสารละลายอิเล็กโทรไลต์ที่ใช้ประโยชน์ (หน้า 54) หน้านี้จึงทำเป็นพื้นที่ฝึกแนวคิด ไม่ใช่การทดลองที่หนังสือกำหนดผลตัวอย่างไว้<br>
+<b>ค่าที่ผู้จัดทำหน้าสมมติเอง:</b> ภาพโมเลกุลและไอออนเป็นภาพเชิงคุณภาพที่วาดใหม่ ไม่ตรงสัดส่วนจริง · ระดับความร้อนในสไลเดอร์แบบจำลองน้ำเป็นหน่วยสมมติ · หลอดไฟในชุดทดสอบการนำไฟฟ้าแสดงเพียงสว่างหรือไม่สว่าง · ตำแหน่งอะตอมในรูปสูตรโครงสร้างเป็นการวาดมาตรฐานของผู้จัดทำหน้า (ตัวเลขจุดหลอมเหลวและจุดเดือดใช้ตามหนังสือเรียน ตาราง 2.2 และ 2.5)<br>
+<b>งานเขียนของนักเรียน:</b> ข้อความที่พิมพ์ในช่องเปิดจะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดปุ่มส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> (ถ้าเขียนไว้หลายแท็บ ให้ส่งทีละแท็บ ข้อความที่เขียนในแท็บอื่นจะไม่ถูกส่งจนกว่าจะเปิดแท็บนั้นแล้วกดส่ง) ข้อเขียนไม่มีคะแนนอัตโนมัติ มีคะแนนเฉพาะแบบทดสอบและแบบฝึกหัดที่คู่มือมีเฉลย<br>
+<b>ความปลอดภัย:</b> หน้านี้ไม่มีการทดลองเคมีจริง การสืบค้นอันตรายของสารให้ใช้ข้อมูลที่เชื่อถือได้ ตัวอย่างอันตรายที่คู่มือยกไว้อยู่ในแท็บ 2.2 (คู่มือครู หน้า 48–49) ถ้าครูพาตรวจการนำไฟฟ้าของสารละลายจริง ให้ทำตามที่ครูกำหนด (ข้อแนะนำของผู้จัดทำหน้า ไม่ได้อยู่ในคู่มือ)</div>
+</header>
+<div class="tabs" role="tablist" id="tabs" aria-label="หัวข้อในบทที่ 2"></div>
+<main id="main"></main>
+<footer class="footer">แหล่งข้อมูล: คู่มือครูรายวิชาวิทยาศาสตร์กายภาพ ม.5 เล่ม 1 บทที่ 2 น้ำ (สสวท.) เลขหน้าคือเลขที่พิมพ์ในคู่มือครู: ภาพรวมบท หน้า 31–36 (เวลาที่ใช้ 2.1, 2.2, 2.3 หัวข้อละ 5 ชั่วโมง) · ตรวจสอบความรู้ก่อนเรียน หน้า 37 · หัวข้อ 2.1 หน้า 38–39 และ 42–44 · แบบฝึกหัด 2.1 หน้า 40–41 · แบบฝึกหัด 2.2 หน้า 45 · หัวข้อ 2.2 หน้า 46–50 (กิจกรรมจัดเรียงไอออน หน้า 47 · กิจกรรมเสนอแนะ หน้า 48–49) · แบบฝึกหัด 2.3 หน้า 51 · หัวข้อ 2.3 หน้า 52–54 (กิจกรรมเสนอแนะ หน้า 54) · แบบฝึกหัด 2.4 หน้า 55 · แบบฝึกหัดท้ายบท หน้า 56–59 · เฉลยที่เป็นเครื่องหมายถูก/ผิดและโครงสร้างตรวจกับภาพหน้า PDF ของคู่มือแล้ว · หนังสือเรียนสแกนเป็นภาพคู่เปิดหน้า ช่วงหน้าที่ระบุจึงเป็นช่วงโดยประมาณ (ตาราง 2.2 หน้า 36 และตาราง 2.5 กับแบบฝึกหัด 2.3 หน้า 44–45 ตรวจกับภาพแล้ว) · รายการไอออนในตาราง 2.3 และตาราง 2.6 ตรวจกับภาพหน้าหนังสือเรียนแล้ว · ข้อความทั้งหมดในหน้านี้เรียบเรียงใหม่โดยผู้จัดทำหน้า</footer>
+</div>
+<script>
+'use strict';
+/* ======================= ฟังก์ชันคำนวณ (ฟังก์ชันบริสุทธิ์) =======================
+   empiricalFormula, stateOf, structStats พอร์ตจาก Python ที่ส่งผ่าน llm-orchestrator (ผ่าน checks และ hidden checks แล้ว) */
+function gcd(a,b){return b?gcd(b,a%b):a;}
+/* สูตรเอมพิริคัลของสารประกอบไอออนิก: อัตราส่วนอย่างต่ำที่ผลรวมประจุเป็นศูนย์ (หนังสือเรียน ตาราง 2.4) */
+function empiricalFormula(cat,ca,cpoly,an,aa,apoly){
+  if(!Number.isInteger(ca)||!Number.isInteger(aa)||ca<=0||aa<=0)throw new Error('bad charge');
+  const g=gcd(ca,aa),nc=aa/g,na=ca/g;
+  const part=(s,n,p)=>n===1?s:(p?'('+s+')'+n:s+n);
+  return part(cat,nc,cpoly)+part(an,na,apoly);}
+/* สถานะที่ 1 บรรยากาศ: ต่ำกว่าจุดหลอมเหลว = ของแข็ง · ตั้งแต่จุดหลอมเหลวถึงต่ำกว่าจุดเดือด = ของเหลว · ตั้งแต่จุดเดือด = แก๊ส (การตัดสินที่ค่าขอบเป็นข้อตกลงของผู้จัดทำหน้า) */
+function stateOf(t,mp,bp){if(![t,mp,bp].every(Number.isFinite)||mp>=bp)throw new Error('bad input');return t<mp?'solid':(t<bp?'liquid':'gas');}
+/* นับอะตอมและพันธะจากสูตรโครงสร้าง (บันทึกอะตอมเป็นสัญลักษณ์ธาตุ พันธะเป็น [i,j,อันดับ 1-3]) */
+function structStats(atoms,bonds){
+  const n=atoms.length;let single=0,dbl=0,tri=0,pairs=0;
+  bonds.forEach(b=>{const i=b[0],j=b[1],o=b[2];if(!(i>=0&&i<n&&j>=0&&j<n)||i===j||(o!==1&&o!==2&&o!==3))throw new Error('bad bond');if(o===1)single++;else if(o===2)dbl++;else tri++;pairs+=o;});
+  const c={};atoms.forEach(e=>{c[e]=(c[e]||0)+1;});
+  return{atoms:c,single:single,double:dbl,triple:tri,pairs:pairs,electrons:2*pairs};}
+/* ตรวจการจัดเรียงไอออน 2 มิติ: ช่องที่ติดกัน (บน-ล่าง ซ้าย-ขวา) ต้องเป็นไอออนต่างชนิด (กิจกรรมจัดเรียงไอออน คู่มือครู หน้า 47) */
+function latticeCheck(g){let filled=0,total=0,conf=0;const bad=new Set();
+  for(let r=0;r<g.length;r++)for(let c=0;c<g[r].length;c++){total++;if(g[r][c]!==0)filled++;
+    if(c+1<g[r].length&&g[r][c]!==0&&g[r][c]===g[r][c+1]){conf++;bad.add(r+','+c);bad.add(r+','+(c+1));}
+    if(r+1<g.length&&g[r][c]!==0&&g[r][c]===g[r+1][c]){conf++;bad.add(r+','+c);bad.add((r+1)+','+c);}}
+  return{filled:filled,total:total,conflicts:conf,bad:Array.from(bad),ok:filled===total&&conf===0};}
+/* พันธะไฮโดรเจนระหว่างโมเลกุล: สารมีขั้วที่มีพันธะ O–H, N–H หรือ F–H ในโมเลกุล (หนังสือเรียน หัวข้อ 2.1.2) */
+function hasHBond(pairs){return pairs.some(p=>p.length===2&&p.indexOf('H')>=0&&p.some(e=>e==='O'||e==='N'||e==='F'));}
+function polarity2(a,b){return a===b?'nonpolar':'polar';}
+/* ทำให้พิมพ์สูตรได้หลายแบบ: เลขห้อยยูนิโค้ด -> เลขธรรมดา ตัดช่องว่าง */
+function normF(s){return String(s).replace(/[₀-₉]/g,c=>String(c.charCodeAt(0)-8320)).replace(/\s+/g,'');}
+const SUB='₀₁₂₃₄₅₆₇₈₉';
+const usub=s=>String(s).replace(/\d/g,d=>SUB[+d]);
+/* สูตรเป็น HTML: เลขตัวหลังเป็นตัวห้อย เช่น Al2(SO4)3 */
+const fh=f=>String(f).replace(/(\d+)/g,'<sub>$1</sub>');
+const ionH=(sym,ch,sign)=>fh(sym)+'<sup>'+(ch>1?ch:'')+sign+'</sup>';
+const SUPD='⁰¹²³⁴⁵⁶⁷⁸⁹';
+/* ไอออนเป็นข้อความล้วน (ใช้ใน <option> และ SVG ที่ใส่แท็ก HTML ไม่ได้) */
+const ionU=(sym,ch,sign)=>usub(sym)+(ch>1?String(ch).replace(/\d/g,d=>SUPD[+d]):'')+(sign==='+'?'⁺':'⁻');
+
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+function ls(name,got,max){try{window.LabScore&&window.LabScore.set(name,got,max);}catch(_){}}
+const REDUCE=(()=>{try{return window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(_){return false;}})();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=(x,d)=>{const v=Number(x);return Number.isFinite(v)?String(+v.toFixed(d==null?2:d)):'–';};
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+/* ======================= สถานะและร่างงาน ======================= */
+const KEY='chemistry-m5-phys-ch2-v1',DK='chemistry-m5-phys-ch2-drafts-v1';
+let st={done:{},q:{},run:{}};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(s&&s.done)st=Object.assign({done:{},q:{},run:{}},s);}catch(_){}
+let DR={};try{DR=JSON.parse(localStorage.getItem(DK)||'{}')||{};}catch(_){DR={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(_){}}
+function dsave(){try{localStorage.setItem(DK,JSON.stringify(DR));}catch(_){}}
+const ACTS=['2.1','2.2','2.3','sum','ex'];const LABS=ACTS.slice(0,3);
+const TITLES={'2.1':'โมเลกุลของน้ำ','2.2':'สารในแหล่งน้ำธรรมชาติ','2.3':'การละลายของสารในน้ำ',sum:'สรุปเนื้อหา',ex:'แบบฝึกหัด'};
+let cur=0;const CLEAN=[];
+const qid=act=>String(act).replace('.','_');
+function markDone(a){if(!st.done[a]){st.done[a]=true;save();paintTabs();paintProgress();}}
+function tryDone(a){if(st.done[a])return;if(LABS.indexOf(a)>=0&&st.q[a]&&st.run[a])markDone(a);}
+function setRun(a){if(!st.run[a]){st.run[a]=true;save();tryDone(a);}}
+function dget(ns,k){const v=DR[ns+'|'+k];return v==null?'':v;}
+function wireDraft(root,ns,onchg){
+  $$('[data-d]',root).forEach(el=>{
+    const k=ns+'|'+el.dataset.d;
+    if(el.type==='checkbox'){el.checked=!!DR[k];el.addEventListener('change',()=>{DR[k]=el.checked;dsave();onchg&&onchg();});}
+    else{if(DR[k]!=null)el.value=DR[k];const h=()=>{DR[k]=el.value;dsave();onchg&&onchg();};el.addEventListener('input',h);el.addEventListener('change',h);}
+  });}
+function fieldsHTML(rows){return rows.map(r=>`<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2]?`<div class="small">${r[2]}</div>`:''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('');}
+function textOf(ns,rows,head){return head+'\n'+rows.map(r=>'\n## '+r[1]+'\n'+(dget(ns,r[0])||'(ยังไม่ได้กรอก)')).join('\n')+'\n';}
+function expHTML(id){return`<div class="btns"><button class="btn sm" type="button" data-ex="copy" data-for="${id}">คัดลอกเป็นข้อความ</button><button class="btn alt sm" type="button" data-ex="dl" data-for="${id}">ดาวน์โหลดเป็นไฟล์ .txt</button></div><div class="small" id="exs_${id}" aria-live="polite"></div>`;}
+function wireExp(id,getText,fname){
+  const c=$('[data-ex=copy][data-for="'+id+'"]'),d=$('[data-ex=dl][data-for="'+id+'"]'),s=$('#exs_'+id);if(!c||!d||!s)return;
+  const fb=t=>{s.innerHTML='<pre tabindex="0" style="white-space:pre-wrap;user-select:all;margin:0" aria-label="ข้อความสำหรับคัดลอก"></pre>';const ta=$('pre',s);ta.textContent=t;ta.focus();try{const rg=document.createRange();rg.selectNodeContents(ta);const sl=getSelection();sl.removeAllRanges();sl.addRange(rg);}catch(_){}};
+  c.onclick=()=>{const t=getText();let ok=false;try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{s.textContent='คัดลอกแล้ว';},()=>fb(t));ok=true;}}catch(_){}if(!ok)fb(t);};
+  d.onclick=()=>{try{const b=new Blob([getText()],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fname;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);s.textContent='สร้างไฟล์ '+fname+' แล้ว';}catch(_){fb(getText());}};
+}
+
+/* ======================= แบบทดสอบ =======================
+   ตัวเลือกที่ถูกถูกวางตามตำแหน่งที่กำหนดตายตัวในอาร์เรย์ pos ของแต่ละชุด (ไม่ใช่การหมุนวน)
+   ตรวจคำตอบแล้วแสดงเฉพาะคะแนนและคำอธิบาย ไม่ไฮไลต์ตัวเลือก */
+const QNAME={'2.1':'2.1 แบบทดสอบ','2.2':'2.2 แบบทดสอบ','2.3':'2.3 แบบทดสอบ',xp:'ฝ.ก่อนเรียน ถูก/ผิด',x21n:'ฝ.2.1 นับอะตอม ข้อ1-3',x21b:'ฝ.2.1 ชนิดพันธะ ข้อ4',x22a:'ฝ.2.2 ขั้ว/ไม่มีขั้ว ข้อ1',x22b:'ฝ.2.2 พันธะไฮโดรเจน ข้อ2',x22c:'ฝ.2.2 จุดเดือด ข้อ3',x23a:'ฝ.2.3 สูตรเอมพิริคัล ข้อ1',x23b:'ฝ.2.3 ไอออน ข้อ2',x24:'ฝ.2.4 ตารางการละลาย',xe:'ฝ.ท้ายบท ปรนัย',xen:'ฝ.ท้ายบท ตัวเลขและสูตร'};
+function buildOpts(it,pos){const d=it.d.slice(),n=d.length+1,p=clamp(pos,0,n-1);const o=[];let k=0;for(let i=0;i<n;i++){o.push(i===p?it.c:d[k++]);}return{o:o,a:p};}
+const QCACHE={};
+function qset(id){if(QCACHE[id])return QCACHE[id];const S=QUIZ[id];if(S.pos.length!==S.items.length)throw new Error('pos length '+id);
+  return QCACHE[id]=S.items.map((it,i)=>{const b=buildOpts(it,S.pos[i]);return{n:it.n,q:it.q,o:b.o,a:b.a,w:it.w};});}
+function quizHTML(act,title){
+  const qs=qset(act);
+  return'<div class="box" id="quiz-'+qid(act)+'"><h3>'+(title||'แบบทดสอบสั้น')+' (ข้อละ 1 คะแนน)</h3>'+qs.map((q,i)=>'<fieldset class="q exf" data-i="'+i+'"><legend>'+(q.n?q.n+' ':(i+1)+'. ')+q.q+'</legend>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+qid(act)+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></fieldset>').join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireQuiz(act,gate){
+  const root=$('#quiz-'+qid(act));if(!root)return;const qs=qset(act);
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    $$('.q',root).forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=$('.why',el);
+      if(sel){answered++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.innerHTML=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: '+qs[i].o[qs[i].a]+' · ')+qs[i].w;
+    });
+    const r=$('.res',root);
+    if(answered<qs.length){r.className='res bad';r.textContent='ยังตอบไม่ครบ ('+answered+'/'+qs.length+') ได้ '+got+' / '+qs.length+' คะแนน (ข้อที่ว่างนับเป็นไม่ถูก)';}
+    else{r.className='res ok';r.textContent='ได้ '+got+' / '+qs.length+' คะแนน';}
+    ls(QNAME[act],got,qs.length);
+    if(answered===qs.length&&gate){st.q[act]=true;save();tryDone(act);}
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input',root).forEach(i=>i.checked=false);$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+/* ช่องตอบแบบพิมพ์ตัวเลข ข้อความสูตร หรือเลือกไอออน 2 ช่อง (ตรวจอัตโนมัติ) */
+const CATS=[['Li',1,false],['Na',1,false],['K',1,false],['Mg',2,false],['Ca',2,false],['Al',3,false],['NH4',1,true]];
+const ANIS=[['Cl',1,false],['O',2,false],['OH',1,true],['NO3',1,true],['CO3',2,true],['SO4',2,true],['PO4',3,true],['C2H3O2',1,true]];
+const stripTags=h=>h.replace(/<[^>]+>/g,'');
+function ansHTML(id,title,items){
+  return'<div class="box" id="ans-'+id+'"><h3>'+title+'</h3>'+items.map((it,k)=>{
+    let inp='';
+    if(it.k==='num')inp='<input class="num" id="a_'+id+'_'+k+'" type="number" step="any" inputmode="decimal"> '+(it.u||'');
+    else if(it.k==='txt')inp='<input class="txt" id="a_'+id+'_'+k+'" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="พิมพ์สูตร เช่น NaCl">';
+    else inp='<span class="ansrow"><select id="a_'+id+'_'+k+'_c" aria-label="ไอออนบวก"><option value="">ไอออนบวก</option>'+CATS.map(i=>'<option value="'+i[0]+'">'+ionU(i[0],i[1],'+')+'</option>').join('')+'</select><select id="a_'+id+'_'+k+'_a" aria-label="ไอออนลบ"><option value="">ไอออนลบ</option>'+ANIS.map(i=>'<option value="'+i[0]+'">'+ionU(i[0],i[1],'−')+'</option>').join('')+'</select></span>';
+    return'<div class="q"><label class="lbl" for="a_'+id+'_'+k+(it.k==='ion'?'_c':'')+'">'+it.q+'</label>'+inp+'<div class="why hide"></div></div>';}).join('')+
+  '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+}
+function wireAns(id,items){
+  const root=$('#ans-'+id);if(!root)return;
+  $('[data-act=check]',root).onclick=()=>{
+    let got=0,answered=0;
+    items.forEach((it,k)=>{const why=$$('.why',root)[k];let ok=false,has=false,shown='';
+      if(it.k==='num'){const raw=$('#a_'+id+'_'+k,root).value.trim(),v=parseFloat(raw);has=raw!==''&&Number.isFinite(v);ok=has&&Math.abs(v-it.a)<=(it.tol||0.001);shown=it.a+' '+(it.u||'');}
+      else if(it.k==='txt'){const raw=normF($('#a_'+id+'_'+k,root).value);has=raw!=='';ok=has&&[].concat(it.a).some(x=>normF(x)===raw);shown=[].concat(it.a)[0];}
+      else{const c=$('#a_'+id+'_'+k+'_c',root).value,a=$('#a_'+id+'_'+k+'_a',root).value;has=c!==''&&a!=='';ok=has&&c===it.a[0]&&a===it.a[1];const C=CATS.find(x=>x[0]===it.a[0]),A=ANIS.find(x=>x[0]===it.a[1]);shown=ionH(C[0],C[1],'+')+' และ '+ionH(A[0],A[1],'−');}
+      if(has)answered++;if(ok)got++;
+      why.classList.remove('hide');why.innerHTML=(ok?'ถูกต้อง · ':'เฉลย: '+(it.k==='txt'||it.k==='num'?esc(shown):shown)+' · ')+it.w;});
+    const r=$('.res',root);r.className='res '+(answered<items.length?'bad':'ok');
+    r.textContent=(answered<items.length?'ยังตอบไม่ครบ ('+answered+'/'+items.length+') ':'')+'ได้ '+got+' / '+items.length+' คะแนน';
+    ls(QNAME[id],got,items.length);
+  };
+  $('[data-act=retry]',root).onclick=()=>{$$('input,select',root).forEach(i=>{if(i.tagName==='SELECT')i.value='';else i.value='';});$$('.why',root).forEach(w=>w.classList.add('hide'));$('.res',root).textContent='';};
+}
+
+
+/* ======================= โครงสร้างโมเลกุลและตัววาด SVG =======================
+   สูตรโครงสร้างทั้งหมดเป็นการวาดใหม่ของผู้จัดทำหน้าตามแบบมาตรฐาน (ไม่ได้คัดลอกภาพจากหนังสือ)
+   อะตอม = [ธาตุ, x, y, ป้ายกำกับ(ถ้ามี), จำนวน H ที่ซ่อนอยู่ในป้าย(ถ้ามี)] · พันธะ = [i, j, อันดับ] */
+const ECOL={H:'#334155',C:'#111827',N:'#1d4ed8',O:'#b91c1c',Cl:'#15803d',F:'#4d7c0f',S:'#8a5a00'};
+function expandH(m){const el=m.atoms.map(a=>a[0]),bd=m.bonds.map(b=>b.slice());
+  m.atoms.forEach((a,i)=>{const h=a[4]||0;for(let k=0;k<h;k++){el.push('H');bd.push([i,el.length-1,1]);}});return{atoms:el,bonds:bd};}
+function statsOf(m){const e=expandH(m);return structStats(e.atoms,e.bonds);}
+function molSVG(m,o){
+  o=o||{};const A=m.atoms,B=m.bonds;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;A.forEach(a=>{x0=Math.min(x0,a[1]);x1=Math.max(x1,a[1]);y0=Math.min(y0,a[2]);y1=Math.max(y1,a[2]);});
+  const M=26,vx=x0-M,vy=y0-M,vw=x1-x0+2*M,vh=y1-y0+2*M;
+  const lab=a=>usub(a[3]||a[0]);const hwf=a=>3.9*String(a[3]||a[0]).length+4,HH=10;
+  const edge=(a,ux,uy)=>{const w=hwf(a),ax=Math.abs(ux),ay=Math.abs(uy);return Math.min(ax>1e-6?w/ax:1e9,ay>1e-6?HH/ay:1e9)+1.5;};
+  let s='';
+  B.forEach((b,k)=>{
+    const p=A[b[0]],q=A[b[1]];const dx=q[1]-p[1],dy=q[2]-p[2],L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,vxn=-uy,vyn=ux;
+    let r1=edge(p,ux,uy),r2=edge(q,ux,uy);if(L<r1+r2+6){r1=Math.min(r1,L*0.3);r2=Math.min(r2,L*0.3);}
+    const sx=p[1]+ux*r1,sy=p[2]+uy*r1,ex=q[1]-ux*r2,ey=q[2]-uy*r2;
+    const hl=o.hl&&o.hl[k];const col=hl?'#c2410c':'#0f2a33',w=hl?3.6:2;
+    if(o.mode==='dot')return;
+    const offs=b[2]===1?[0]:(b[2]===2?[-3.4,3.4]:[-5,0,5]);
+    offs.forEach(f=>{s+=`<line x1="${(sx+vxn*f).toFixed(1)}" y1="${(sy+vyn*f).toFixed(1)}" x2="${(ex+vxn*f).toFixed(1)}" y2="${(ey+vyn*f).toFixed(1)}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;});
+    if(hl){const mx=(p[1]+q[1])/2+vxn*19,my=(p[2]+q[2])/2+vyn*19;s+=`<text x="${mx.toFixed(1)}" y="${my.toFixed(1)}" text-anchor="middle" dy=".35em" font-size="16" font-weight="800" fill="#c2410c" stroke="#fff" stroke-width="3" paint-order="stroke">${hl}</text>`;}
+    if(o.click){s+=`<g class="bhit" data-b="${k}" role="button" tabindex="0" aria-label="พันธะที่ ${k+1}"><line x1="${p[1]}" y1="${p[2]}" x2="${q[1]}" y2="${q[2]}" stroke="transparent" stroke-width="20" style="cursor:pointer"/></g>`;}
+  });
+  if(o.mode==='dot'){
+    B.forEach(b=>{const p=A[b[0]],q=A[b[1]];const dx=q[1]-p[1],dy=q[2]-p[2],L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L,vxn=-uy,vyn=ux;const mx=(p[1]+q[1])/2,my=(p[2]+q[2])/2;
+      for(let k=0;k<b[2];k++){const f=(k-(b[2]-1)/2)*11,cx=mx+ux*f,cy=my+uy*f;
+        [-4,4].forEach(g=>{s+=`<circle cx="${(cx+vxn*g).toFixed(1)}" cy="${(cy+vyn*g).toFixed(1)}" r="2.8" fill="#0e7490"/>`;});}});
+    const LP=m.lp||{};Object.keys(LP).forEach(i=>{const a=A[i];LP[i].forEach(deg=>{const r=deg*Math.PI/180,cx=a[1]+Math.cos(r)*21,cy=a[2]+Math.sin(r)*21,px=-Math.sin(r),py=Math.cos(r);
+      [-4,4].forEach(g=>{s+=`<circle cx="${(cx+px*g).toFixed(1)}" cy="${(cy+py*g).toFixed(1)}" r="2.8" fill="#b45309"/>`;});});});
+  }
+  A.forEach(a=>{const w=hwf(a);s+=`<rect x="${(a[1]-w).toFixed(1)}" y="${a[2]-HH}" width="${(2*w).toFixed(1)}" height="${2*HH}" rx="5" fill="#fff"/><text x="${a[1]}" y="${a[2]}" text-anchor="middle" dy=".35em" font-size="15" font-weight="650" fill="${ECOL[a[0]]||'#111'}">${lab(a)}</text>`;});
+  return`<svg viewBox="${vx.toFixed(0)} ${vy.toFixed(0)} ${vw.toFixed(0)} ${vh.toFixed(0)}" role="img" aria-label="${esc(o.label||m.name||'สูตรโครงสร้าง')}" style="width:100%;min-width:${Math.round(vw)}px;max-width:${Math.round(vw*1.5)}px;margin:auto">${s}</svg>`;
+}
+function poly(n,cx,cy,r,a0){const o=[];for(let i=0;i<n;i++){const t=(a0+360/n*i)*Math.PI/180;o.push([+(cx+r*Math.cos(t)).toFixed(1),+(cy+r*Math.sin(t)).toFixed(1)]);}return o;}
+const HEXF=(cx,cy,L)=>[[cx+L,cy],[cx+L/2,cy+L*.866],[cx-L/2,cy+L*.866],[cx-L,cy],[cx-L/2,cy-L*.866],[cx+L/2,cy-L*.866]].map(p=>[+p[0].toFixed(1),+p[1].toFixed(1)]); /* R,BR,BL,Lf,UL,UR */
+
+/* โมเลกุลในแท็บ 2.1 (อะตอม H ทุกตัววาดแยกเพื่อให้นับได้) */
+const MOLS={
+ h2o:{name:'น้ำ',f:'H₂O',atoms:[['O',100,40],['H',60,88],['H',140,88]],bonds:[[0,1,1],[0,2,1]],lp:{0:[-130,-50]},dot:true,src:'หนังสือเรียน รูป 2.1–2.2'},
+ o2:{name:'แก๊สออกซิเจน',f:'O₂',atoms:[['O',70,50],['O',130,50]],bonds:[[0,1,2]],lp:{0:[150,210],1:[30,-30]},dot:true,src:'หนังสือเรียน รูป 2.2 · ตาราง 2.1'},
+ n2:{name:'แก๊สไนโตรเจน',f:'N₂',atoms:[['N',70,50],['N',130,50]],bonds:[[0,1,3]],lp:{0:[180],1:[0]},dot:true,src:'หนังสือเรียน รูป 2.2 · ตาราง 2.1'},
+ nh3:{name:'แอมโมเนีย',f:'NH₃',atoms:[['N',100,40],['H',55,88],['H',100,98],['H',145,88]],bonds:[[0,1,1],[0,2,1],[0,3,1]],src:'หนังสือเรียน รูป 2.3 · ตาราง 2.1'},
+ co2:{name:'คาร์บอนไดออกไซด์',f:'CO₂',atoms:[['O',40,50],['C',100,50],['O',160,50]],bonds:[[0,1,2],[1,2,2]],src:'หนังสือเรียน รูป 2.3 · ตาราง 2.1'},
+ c2h2:{name:'อะเซทิลีน',f:'C₂H₂',atoms:[['H',30,50],['C',85,50],['C',145,50],['H',200,50]],bonds:[[0,1,1],[1,2,3],[2,3,1]],src:'หนังสือเรียน รูป 2.3 · ตาราง 2.1'},
+ urea:{name:'ยูเรีย',f:'CH₄N₂O',atoms:[['C',110,50],['O',110,12],['N',65,85],['H',30,72],['H',55,122],['N',155,85],['H',190,72],['H',165,122]],bonds:[[0,1,2],[0,2,1],[0,5,1],[2,3,1],[2,4,1],[5,6,1],[5,7,1]],src:'หนังสือเรียน รูป 2.3 · ตาราง 2.1'},
+ acid:{name:'กรดแอซีติก (กรดน้ำส้ม)',f:'C₂H₄O₂',atoms:[['C',60,60],['H',25,35],['H',25,85],['H',60,100],['C',110,60],['O',110,20],['O',155,85],['H',195,85]],bonds:[[0,1,1],[0,2,1],[0,3,1],[0,4,1],[4,5,2],[4,6,1],[6,7,1]],src:'หนังสือเรียน รูป 2.3 · ตาราง 2.1'}
+};
+const MKEYS=['h2o','o2','n2','nh3','co2','c2h2','urea','acid'];
+
+/* โมเลกุลสำหรับแบบฝึกหัด */
+function mNaph(){const L=40,c1=[110,100],c2=[110+L*1.732,100];const A=[],B=[];
+  const ring=(c,ids)=>poly(6,c[0],c[1],L,-90);
+  const r1=poly(6,c1[0],c1[1],L,-90),r2=poly(6,c2[0],c2[1],L,-90); /* 0 บน,1 ขวาบน,2 ขวาล่าง,3 ล่าง,4 ซ้ายล่าง,5 ซ้ายบน */
+  r1.forEach(p=>A.push(['C',p[0],p[1]]));  /* 0-5 */
+  /* ring2: 0,3,... ใช้ 1,2 ร่วมกับ ring1 ข้อ 2,1 ... ใช้จุดใหม่ 4 จุด: บน ขวาบน ขวาล่าง ล่าง */
+  const b0=A.length;[r2[0],r2[1],r2[2],r2[3]].forEach(p=>A.push(['C',p[0],p[1]])); /* b0..b0+3 = B0,B1,B2,B3 */
+  B.push([0,1,2],[1,2,1],[2,3,2],[3,4,1],[4,5,2],[5,0,1]);
+  B.push([1,b0,1],[b0,b0+1,2],[b0+1,b0+2,1],[b0+2,b0+3,2],[b0+3,2,1]);
+  const addH=(i,c)=>{const p=A[i],dx=p[1]-c[0],dy=p[2]-c[1],d=Math.hypot(dx,dy);A.push(['H',+(p[1]+dx/d*34).toFixed(1),+(p[2]+dy/d*34).toFixed(1)]);B.push([i,A.length-1,1]);};
+  [0,3,4,5].forEach(i=>addH(i,c1));[b0,b0+1,b0+2,b0+3].forEach(i=>addH(i,c2));
+  return{name:'โครงสร้างของแนฟทาลีน (วาดใหม่)',atoms:A,bonds:B};}
+function mParacetamol(){const L=36,cx=125,cy=105,h=HEXF(cx,cy,L);const A=[],B=[];
+  /* 0 R,1 BR,2 BL,3 Lf,4 UL,5 UR */
+  A.push(['C',h[0][0],h[0][1]],['C',h[1][0],h[1][1],'CH',1],['C',h[2][0],h[2][1],'CH',1],['C',h[3][0],h[3][1]],['C',h[4][0],h[4][1],'CH',1],['C',h[5][0],h[5][1],'CH',1]);
+  B.push([0,1,2],[1,2,1],[2,3,2],[3,4,1],[4,5,2],[5,0,1]);
+  A.push(['O',h[3][0]-L,cy,'HO',1]);B.push([3,6,1]);                       /* 6 */
+  A.push(['N',h[0][0]+L,cy]);B.push([0,7,1]);                              /* 7 */
+  A.push(['H',h[0][0]+L,cy+L*0.95]);B.push([7,8,1]);                        /* 8 */
+  A.push(['C',h[0][0]+L+L*.866,cy-L/2]);B.push([7,9,1]);                    /* 9 */
+  A.push(['O',h[0][0]+L+L*.866,cy-L*1.5]);B.push([9,10,2]);                 /* 10 */
+  A.push(['C',h[0][0]+L+L*1.732,cy,'CH₃',3]);B.push([9,11,1]);              /* 11 */
+  return{name:'โครงสร้างของพาราเซตามอล (วาดใหม่)',atoms:A,bonds:B};}
+function mMandel(){const L=40,cx=100,cy=105,h=HEXF(cx,cy,L);const A=[],B=[];
+  A.push(['C',h[0][0],h[0][1]],['C',h[1][0],h[1][1],'CH',1],['C',h[2][0],h[2][1]],['C',h[3][0],h[3][1],'CH',1],['C',h[4][0],h[4][1],'CH',1],['C',h[5][0],h[5][1],'CH',1]);
+  B.push([0,1,2],[1,2,1],[2,3,2],[3,4,1],[4,5,2],[5,0,1]);                 /* ข้อ a = พันธะ 2-3 (index 2) */
+  A.push(['H',h[2][0]-20,h[2][1]+35]);B.push([2,6,1]);                      /* 6 ข้อ b = index 6 */
+  A.push(['C',h[0][0]+L,cy,'CH',1]);B.push([0,7,1]);                        /* 7 */
+  A.push(['O',h[0][0]+L,cy-L,'OH',1]);B.push([7,8,1]);                      /* 8 ข้อ d = index 8 */
+  A.push(['C',h[0][0]+2*L,cy]);B.push([7,9,1]);                             /* 9 */
+  A.push(['N',h[0][0]+3*L,cy]);B.push([9,10,3]);                            /* 10 ข้อ c = index 10 */
+  return{name:'โครงสร้างสำหรับข้อ 4 (วาดใหม่)',atoms:A,bonds:B};}
+function mPropio(){return{name:'โครงสร้างสำหรับข้อ 3 (วาดใหม่)',atoms:[['C',90,90],['H',90,46],['H',90,134],['H',46,90],['C',146,90],['H',146,46],['H',146,134],['C',202,90],['N',258,90]],bonds:[[0,1,1],[0,2,1],[0,3,1],[0,4,1],[4,5,1],[4,6,1],[4,7,1],[7,8,3]]};}
+function ringMol(name,n,cx,cy,r,a0,labs,subst){const p=poly(n,cx,cy,r,a0),A=[],B=[];p.forEach((q,i)=>{const l=labs[i];A.push([l[0],q[0],q[1],l[1],l[2]]);});for(let i=0;i<n;i++)B.push([i,(i+1)%n,1]);
+  (subst||[]).forEach(s=>{const q=A[s[0]],dx=q[1]-cx,dy=q[2]-cy,d=Math.hypot(dx,dy);A.push([s[1],+(q[1]+dx/d*46).toFixed(1),+(q[2]+dy/d*46).toFixed(1),s[2],s[3]]);B.push([s[0],A.length-1,1]);});return{name:name,atoms:A,bonds:B};}
+const C2=['C','CH₂',2];
+const EXS={
+ A:{name:'สาร A (วาดใหม่)',atoms:[['C',40,40,'CH₃',3],['N',100,40],['C',160,40,'CH₂',2],['O',220,40],['C',280,40,'CH₃',3],['C',100,95,'CH₃',3]],bonds:[[0,1,1],[1,2,1],[2,3,1],[3,4,1],[1,5,1]]},
+ B:{name:'สาร B (วาดใหม่)',atoms:[['C',40,40,'CH₃',3],['C',100,40,'CH₂',2],['O',160,40],['C',220,40,'CH₃',3]],bonds:[[0,1,1],[1,2,1],[2,3,1]]},
+ C:ringMol('สาร C (วาดใหม่)',6,80,80,46,-90,[C2,['C','CH',1],C2,C2,C2,C2],[[1,'O','OH',1]]),
+ D:{name:'สาร D (วาดใหม่)',atoms:[['F',40,40],['C',100,40,'CH₃',3]],bonds:[[0,1,1]]},
+ E:ringMol('สาร E (วาดใหม่)',6,80,80,46,-90,[['O'],C2,C2,['N','NH',1],C2,C2],[])
+};
+const EXQ5={
+ A:ringMol('สาร A ข้อ 5 (วาดใหม่)',5,80,80,44,-90,[C2,['C','CH',1],C2,C2,C2],[[1,'O','OH',1]]),
+ B:ringMol('สาร B ข้อ 5 (วาดใหม่)',5,80,80,44,-90,[['O'],['C','CH',1],C2,C2,C2],[[1,'C','CH₃',3]])
+};
+function figs(list){return'<div class="molbox">'+list.map(x=>`<div><div class="small"><b>${x[0]}</b></div><div class="fig scr">${molSVG(x[1],{label:x[2]||x[1].name})}</div></div>`).join('')+'</div>';}
+
+
+/* ======================= ข้อมูลตารางจากหนังสือเรียน ======================= */
+/* ตาราง 2.2 (หนังสือเรียน หน้า 36 ตรวจกับภาพแล้ว): [สูตร, ชื่อ, จุดหลอมเหลว, จุดเดือด, สภาพขั้ว, คู่ธาตุที่เป็นพันธะ, ธาตุ] */
+const T22=[
+ ['H₂','แก๊สไฮโดรเจน',-259,-252,'nonpolar',[['H','H']]],
+ ['N₂','แก๊สไนโตรเจน',-210,-196,'nonpolar',[['N','N']]],
+ ['O₂','แก๊สออกซิเจน',-219,-183,'nonpolar',[['O','O']]],
+ ['NO','ไนโตรเจนมอนอกไซด์',-164,-152,'polar',[['N','O']]],
+ ['HCl','ไฮโดรเจนคลอไรด์',-114,-85,'polar',[['H','Cl']]],
+ ['H₂S','ไฮโดรเจนซัลไฟด์',-86,-60,'polar',[['H','S'],['H','S']]],
+ ['NH₃','แอมโมเนีย',-78,-33,'polar',[['N','H'],['N','H'],['N','H']]],
+ ['H₂O','น้ำ',0,100,'polar',[['O','H'],['O','H']]]
+];
+/* ตาราง 2.5 (หนังสือเรียน หน้า 45 ตรวจกับภาพแล้ว) */
+const T25=[['NaCl','เกลือแกง (โซเดียมคลอไรด์)',801,1465,['Na',1,false,'Cl',1,false]],['MgCl₂','แมกนีเซียมคลอไรด์',714,1412,['Mg',2,false,'Cl',1,false]],['CaCl₂','แคลเซียมคลอไรด์',775,1936,['Ca',2,false,'Cl',1,false]],['MgO','แมกนีเซียมออกไซด์',2825,3600,['Mg',2,false,'O',2,false]]];
+
+/* สารสำหรับชุดทดสอบการนำไฟฟ้า (แท็บ 2.3): ชนิด ion = สารประกอบไอออนิก, cov = สารโคเวเลนต์ · diss = ละลายแบบแตกตัว */
+const SOL=[
+ {id:'nacl',n:'เกลือแกง',f:'NaCl',t:'ion',diss:true,src:'หนังสือเรียน 2.3.1',ions:['Na⁺','Cl⁻']},
+ {id:'na2so4',n:'โซเดียมซัลเฟต',f:'Na₂SO₄',t:'ion',diss:true,src:'แบบฝึกหัด 2.4',ions:['Na⁺','SO₄²⁻']},
+ {id:'mgcl2',n:'แมกนีเซียมคลอไรด์',f:'MgCl₂',t:'ion',diss:true,src:'แบบฝึกหัด 2.4',ions:['Mg²⁺','Cl⁻']},
+ {id:'mgso4',n:'ดีเกลือ (แมกนีเซียมซัลเฟต)',f:'MgSO₄',t:'ion',diss:true,src:'แบบฝึกหัดท้ายบท ข้อ 10',ions:['Mg²⁺','SO₄²⁻']},
+ {id:'naoh',n:'โซเดียมไฮดรอกไซด์ (โซดาไฟ)',f:'NaOH',t:'ion',diss:true,src:'ตาราง 2.6',ions:['Na⁺','OH⁻']},
+ {id:'hcl',n:'ไฮโดรเจนคลอไรด์ (กรดไฮโดรคลอริก)',f:'HCl',t:'cov',diss:true,src:'หนังสือเรียน 2.3.1 · ตาราง 2.6',ions:['H⁺','Cl⁻']},
+ {id:'h2so4',n:'กรดซัลฟิวริก',f:'H₂SO₄',t:'cov',diss:true,src:'ตาราง 2.6',ions:['ไอออนบวก','ไอออนลบ']},
+ {id:'nh3',n:'แอมโมเนีย',f:'NH₃',t:'cov',diss:true,src:'ตาราง 2.6 (จัดเป็นสารโคเวเลนต์ที่มีสมบัติเป็นเบส)',ions:['ไอออนบวก','ไอออนลบ']},
+ {id:'glu',n:'กลูโคส',f:'C₆H₁₂O₆',t:'cov',diss:false,src:'หนังสือเรียน 2.3.2'},
+ {id:'suc',n:'น้ำตาลซูโครส',f:'C₁₂H₂₂O₁₁',t:'cov',diss:false,src:'แบบฝึกหัด 2.4'},
+ {id:'etoh',n:'เอทานอล',f:'C₂H₅OH',t:'cov',diss:false,src:'หนังสือเรียน 2.3.2 (รูป 2.11)'},
+ {id:'o2',n:'แก๊สออกซิเจน',f:'O₂',t:'cov',diss:false,src:'หนังสือเรียน 2.3.2 (รูป 2.11)'},
+ {id:'cl2',n:'แก๊สคลอรีน',f:'Cl₂',t:'cov',diss:false,src:'แบบฝึกหัด 2.4'},
+ {id:'ch3cl',n:'เมทิลคลอไรด์',f:'CH₃Cl',t:'cov',diss:false,src:'แบบฝึกหัด 2.4'},
+ {id:'prop',n:'โพรพานอล',f:'C₃H₇OH',t:'cov',diss:false,src:'แบบฝึกหัด 2.4'},
+ {id:'urea',n:'ยูเรีย',f:'CH₄N₂O',t:'cov',diss:false,src:'แบบฝึกหัดท้ายบท ข้อ 10'}
+];
+
+/* ======================= อ่านก่อนทดลอง (เรียบเรียงใหม่โดยผู้จัดทำหน้า) ======================= */
+const READ={
+'2.1':{lead:'อ่านสรุปเรื่องโมเลกุลของน้ำ พันธะโคเวเลนต์ และจุดเดือด ก่อนลงมือกับโมเลกุลในพื้นที่ฝึก',secs:[
+{h:'น้ำเป็นสารโคเวเลนต์',pg:'คู่มือครู หน้า 38–39 · หนังสือเรียน หัวข้อ 2.1 (ประมาณหน้า 30–31)',html:`
+<p>โมเลกุลของน้ำมีอะตอมไฮโดรเจน 2 อะตอมยึดกับอะตอมออกซิเจน 1 อะตอมด้วยพันธะเคมีชนิด<b>พันธะโคเวเลนต์</b> น้ำจึงเป็น<b>สารโคเวเลนต์</b> สารโคเวเลนต์อาจเป็นธาตุหรือสารประกอบ ส่วนใหญ่เกิดจากอะตอมของธาตุอโลหะ อะตอมคู่ที่ใช้เวเลนซ์อิเล็กตรอนร่วมกันเรียกว่าอะตอมคู่ร่วมพันธะ</p>
+<p>หนังสือเรียนยกสารโคเวเลนต์ในตาราง 2.1 เช่น แก๊สออกซิเจน แก๊สไนโตรเจน แอมโมเนีย คาร์บอนไดออกไซด์ คาร์บอนมอนอกไซด์ อะเซทิลีน ยูเรีย กรดแอซีติก กลูโคส และวิตามินซี (ตรวจสูตรโมเลกุลตามชื่อสารทางเคมี ไม่ได้ตรวจกับภาพหน้าหนังสือ)</p>`,
+ q:['สูตรโมเลกุลบอกอะไร และบอกได้ไหมว่าอะตอมคู่ใดยึดกัน','บอกชนิดและจำนวนอะตอมของธาตุใน 1 โมเลกุล แต่ไม่ได้บอกว่าอะตอมคู่ใดยึดกัน (คู่มือครู หน้า 39)']},
+{h:'สูตรโครงสร้าง พันธะเดี่ยว พันธะคู่ พันธะสาม',pg:'คู่มือครู หน้า 39 · หนังสือเรียน รูป 2.2–2.3',html:`
+<p>สูตรโครงสร้างแสดงการยึดกันของอะตอมในโมเลกุล จุดรอบอะตอมแทนเวเลนซ์อิเล็กตรอน และเวเลนซ์อิเล็กตรอน 1 คู่ที่ใช้ร่วมกันเขียนเป็นเส้นพันธะ 1 เส้น ถ้าใช้ร่วมกัน 1 คู่เป็น<b>พันธะเดี่ยว</b> 2 คู่เป็น<b>พันธะคู่</b> และ 3 คู่เป็น<b>พันธะสาม</b> สูตรโครงสร้างไม่จำเป็นต้องเขียนอิเล็กตรอนที่ไม่ได้ใช้สร้างพันธะ และชนิดกับจำนวนอะตอมในสูตรโครงสร้างต้องเท่ากับในสูตรโมเลกุล</p>
+<p>โมเลกุลหนึ่งอาจมีหลายพันธะ และอาจมีพันธะมากกว่า 1 ชนิด เช่น ยูเรียมีทั้งพันธะคู่ C=O และพันธะเดี่ยว</p>`,
+ q:['เส้นพันธะ 3 เส้นระหว่างอะตอมคู่หนึ่งแทนอะไร','พันธะสาม คือใช้เวเลนซ์อิเล็กตรอนร่วมกัน 3 คู่ (6 อิเล็กตรอน) เช่น N≡N']},
+{h:'น้ำเดือดแล้วพันธะ H–O ขาดหรือไม่',pg:'คู่มือครู หน้า 42–43 · หนังสือเรียน หัวข้อ 2.1.2 และตาราง 2.2 (ประมาณหน้า 34–37 ตาราง 2.2 อยู่หน้า 36 ตรวจกับภาพแล้ว)',html:`
+<p>ที่อุณหภูมิห้องและความดัน 1 บรรยากาศน้ำเป็นของเหลว เมื่อให้ความร้อนมากพอ โมเลกุลของน้ำจะอยู่ห่างกันมากขึ้นแล้วกลายเป็นแก๊ส ความร้อนที่ใช้ไปเอาชนะ<b>แรงยึดเหนี่ยวระหว่างโมเลกุล</b> ไม่ได้ทำลายพันธะโคเวเลนต์ในโมเลกุล ไอน้ำจึงยังเป็น H₂O เหมือนเดิม</p>
+<p>สารโคเวเลนต์แต่ละชนิดใช้พลังงานเปลี่ยนสถานะไม่เท่ากัน จึงมีจุดหลอมเหลวและจุดเดือดต่างกัน แสดงว่าแรงยึดเหนี่ยวระหว่างโมเลกุลไม่เท่ากัน (ตัวเลขอยู่ในตาราง 2.2 ซึ่งเปิดดูได้ในห้องทดลองด้านล่าง)</p>`,
+ q:['น้ำเดือดเป็นไอน้ำ มีการทำลายพันธะ H–O หรือไม่','ไม่มี ไอน้ำยังมีสูตรโมเลกุล H₂O เหมือนเดิม สิ่งที่ถูกเอาชนะคือแรงยึดเหนี่ยวระหว่างโมเลกุล (คู่มือครู หน้า 43)']},
+{h:'สภาพขั้วและพันธะไฮโดรเจน',pg:'คู่มือครู หน้า 43–44 · หนังสือเรียน หัวข้อ 2.1.2 (ประมาณหน้า 34–39)',html:`
+<ul><li>โมเลกุลที่มี 2 อะตอม: อะตอมชนิดเดียวกันเป็น<b>สารไม่มีขั้ว</b> (H₂ N₂ O₂) อะตอมต่างชนิดเป็น<b>สารมีขั้ว</b> (NO HCl)</li>
+<li>โมเลกุลที่มีมากกว่า 2 อะตอมอาจมีขั้วหรือไม่มีขั้วก็ได้ ขึ้นกับรูปร่างโมเลกุล หนังสือยก H₂O H₂S NH₃ เป็นสารมีขั้ว และ CO₂ CH₄ เป็นสารไม่มีขั้ว คู่มือบอกว่าเรื่องนี้เน้นเฉพาะสารที่มี 2 อะตอม จึงไม่ลงรายละเอียดรูปร่างโมเลกุล</li>
+<li>ถ้ามวลและรูปร่างโมเลกุลใกล้เคียงกัน จุดเดือดขึ้นกับสภาพขั้ว สารมีขั้วเดือดสูงกว่าสารไม่มีขั้ว</li>
+<li><b>พันธะไฮโดรเจน</b> เป็นแรงยึดเหนี่ยวระหว่างโมเลกุลของสารมีขั้วที่มีพันธะ O–H, N–H หรือ F–H ในโมเลกุล ทำให้จุดหลอมเหลวและจุดเดือดสูงกว่าสารมีขั้วทั่วไปที่ขนาดโมเลกุลใกล้เคียงกัน (เช่น H₂O เดือดที่ 100 °C ส่วน H₂S ที่ −60 °C)</li>
+<li>ข้อมูลจากหนังสือเรียน: พันธะไฮโดรเจนในน้ำแข็งทำให้โมเลกุลเรียงเป็นระเบียบและมีช่องว่างมากกว่าน้ำ น้ำแข็งจึงหนาแน่นน้อยกว่าน้ำและลอยน้ำ</li></ul>
+<p><b>ความเข้าใจคลาดเคลื่อนที่คู่มือเตือน (หน้า 42):</b> &quot;จุดเดือดขึ้นกับสภาพขั้วอย่างเดียว&quot; ที่ถูกคือขึ้นกับแรงยึดเหนี่ยวระหว่างโมเลกุล ซึ่งสภาพขั้วเป็นเพียงปัจจัยหนึ่ง · &quot;พันธะไฮโดรเจนคือพันธะระหว่าง O กับ H ในโมเลกุลเดียวกัน&quot; ที่ถูกคือเป็นแรงยึดเหนี่ยวระหว่างโมเลกุล</p>`,
+ q:['H₂S กับ H₂O เป็นสารมีขั้วที่ต่างกันเพียงอะตอมกลาง ทำไม H₂O จึงเดือดสูงกว่ามาก','เพราะ H₂O มีพันธะ O–H จึงเกิดพันธะไฮโดรเจนระหว่างโมเลกุล แรงยึดเหนี่ยวระหว่างโมเลกุลจึงมากกว่า H₂S (คู่มือครู หน้า 44)']}
+]},
+'2.2':{lead:'อ่านเรื่องสารที่ละลายในน้ำธรรมชาติ ไอออน พันธะไอออนิก และสูตรเอมพิริคัล ก่อนทำกิจกรรมจัดเรียงไอออนและตัวผสมไอออน',secs:[
+{h:'น้ำธรรมชาติเป็นสารผสม',pg:'คู่มือครู หน้า 46–47 · หนังสือเรียน หัวข้อ 2.2 (ประมาณหน้า 38–41)',html:`
+<p>น้ำกลั่นเป็นสารบริสุทธิ์ ส่วนน้ำในแหล่งน้ำธรรมชาติเป็นสารผสมที่มีสารอื่นละลายอยู่ บางชนิดเป็นสารโคเวเลนต์ เช่น แก๊สออกซิเจน แก๊สคาร์บอนไดออกไซด์ บางชนิดอยู่ในรูปไอออน เช่น โซเดียมไอออน (Na⁺) กับคลอไรด์ไอออน (Cl⁻) ซึ่งมีมากในน้ำทะเล เมื่อระเหยน้ำออกจะได้เกลือแกง NaCl</p>
+<p>NaCl ไม่ใช่สารโคเวเลนต์ เพราะ Na ไม่ใช่ธาตุอโลหะ NaCl เป็น<b>สารประกอบไอออนิก</b> ที่ไอออนบวกกับไอออนลบยึดกันด้วย<b>พันธะไอออนิก</b></p>`,
+ q:['ทำไม NaCl จึงไม่จัดเป็นสารโคเวเลนต์','เพราะสารโคเวเลนต์เกิดจากอะตอมของธาตุอโลหะ แต่ Na เป็นธาตุโลหะ NaCl ประกอบด้วยไอออน Na⁺ และ Cl⁻ (คู่มือครู หน้า 47)']},
+{h:'ไอออนจัดเรียงอย่างไร และเขียนสูตรอย่างไร',pg:'คู่มือครู หน้า 46–48 · หนังสือเรียน 2.2.1 ตาราง 2.3–2.4 (ตาราง 2.3 อยู่ประมาณหน้า 42–43)',html:`
+<p>ไอออนต่างประจุดึงดูดกัน ไอออนประจุเหมือนกันผลักกัน ในของแข็ง ไอออนบวกกับไอออนลบจึงเรียงสลับกันต่อเนื่องไปใน 3 มิติเป็นผลึก ไม่สามารถหาขอบเขตของ &quot;โมเลกุล&quot; ได้ สารประกอบไอออนิกจึงไม่มีสูตรโมเลกุล แต่ใช้<b>สูตรเอมพิริคัล</b> ซึ่งบอกอัตราส่วนอย่างต่ำของไอออนที่ทำให้สารเป็นกลางทางไฟฟ้า</p>
+<p>วิธีเขียน: เขียนไอออนบวกก่อนไอออนลบ ใส่เลขห้อยบอกอัตราส่วนอย่างต่ำ ไม่ต้องเขียนเลข 1 กลุ่มอะตอมที่มีจำนวนมากกว่า 1 ใส่วงเล็บก่อนเขียนเลขห้อย เช่น Mg²⁺ กับ Cl⁻ อัตราส่วน 1:2 ได้ MgCl₂ (ผลรวมประจุ (+2)+2(−1)=0) นอกจากนั้นทำได้โดยไขว้เลขประจุแล้วทำให้เป็นอัตราส่วนอย่างต่ำ</p>`,
+ q:['ทำไมสารประกอบไอออนิกจึงเขียนสูตรโมเลกุลไม่ได้','เพราะไอออนเรียงต่อเนื่องใน 3 มิติโดยไม่มีขอบเขตแน่นอน จึงไม่เป็นโมเลกุล ใช้สูตรเอมพิริคัลแทน (คู่มือครู หน้า 47)']},
+{h:'การเปลี่ยนสถานะของสารประกอบไอออนิก',pg:'คู่มือครู หน้า 50 · หนังสือเรียน 2.2.2 และตาราง 2.5 (หน้า 45 ตรวจกับภาพแล้ว)',html:`
+<p>ในของแข็ง ไอออนแต่ละตัวถูกพันธะไอออนิก (แรงทางไฟฟ้า) ตรึงไว้จนเคลื่อนที่ไม่ได้ เมื่อได้รับความร้อนพันธะไอออนิกบางส่วนถูกทำลาย ไอออนเคลื่อนที่ได้มากขึ้น ถึงจุดหลอมเหลวกลายเป็นของเหลว และถึงจุดเดือดกลายเป็นแก๊ส พันธะไอออนิกแข็งแรงกว่าแรงยึดเหนี่ยวระหว่างโมเลกุลของสารโคเวเลนต์มาก จุดหลอมเหลวและจุดเดือดของสารประกอบไอออนิกจึงสูงกว่า (เปรียบเทียบตาราง 2.2 กับ 2.5 ในห้องทดลอง)</p>
+<p><b>ความเข้าใจคลาดเคลื่อนที่คู่มือเตือน (หน้า 46):</b> ไม่ใช่ว่าการเปลี่ยนสถานะของสารทุกชนิดทำลายพันธะเคมี สารโคเวเลนต์ทำลายแรงยึดเหนี่ยวระหว่างโมเลกุล ส่วนสารประกอบไอออนิกทำลายพันธะไอออนิก</p>`,
+ q:['การหลอมเหลวของ NaCl กับของน้ำแข็ง ต่างกันตรงที่ทำลายอะไร','NaCl ทำลายพันธะไอออนิก ส่วนน้ำแข็งทำลายแรงยึดเหนี่ยวระหว่างโมเลกุลน้ำ โดยไม่ทำลายพันธะ H–O (คู่มือครู หน้า 46, 50)']},
+{h:'ประโยชน์และอันตรายของสารที่พบในชีวิตประจำวัน',pg:'คู่มือครู หน้า 48–49 (กิจกรรมเสนอแนะ)',html:`
+<p>กิจกรรมเสนอแนะให้สืบค้นการใช้ประโยชน์และอันตรายของสารโคเวเลนต์กับสารประกอบไอออนิกบางชนิด คู่มือยกตัวอย่างผลสืบค้นไว้ ให้ลองสืบค้นของตัวเองก่อนแล้วเปิดดูตัวอย่างในฟอร์มสืบค้นด้านล่าง</p>`}
+]},
+'2.3':{lead:'อ่านเรื่องการละลายแบบแตกตัวกับไม่แตกตัว สารละลายอิเล็กโทรไลต์ และนอนอิเล็กโทรไลต์ ก่อนใช้ชุดทดสอบการนำไฟฟ้าเสมือน',secs:[
+{h:'การละลายของสารในน้ำ',pg:'คู่มือครู หน้า 52–53 · หนังสือเรียน หัวข้อ 2.3 (ประมาณหน้า 46–47)',html:`
+<p>สารละลายคือสารผสมเนื้อเดียวที่มีตัวละลายกระจายอยู่ในตัวทำละลาย การละลายในน้ำเกิดเมื่อโมเลกุลน้ำแทรกเข้าไประหว่างโมเลกุลหรือไอออนของตัวละลาย มี 2 ลักษณะคือ<b>การละลายแบบแตกตัว</b> และ<b>แบบไม่แตกตัว</b></p>
+<p><b>ความเข้าใจคลาดเคลื่อนที่คู่มือเตือน (หน้า 52):</b> สับสนคำว่า &quot;ละลาย&quot; กับ &quot;หลอมเหลว&quot; (น้ำแข็งหลอมเหลว ไม่ใช่ละลาย) · เข้าใจว่าสารประกอบไอออนิกละลายแล้วอยู่เป็นอะตอมหรือสูตรเอมพิริคัล ที่ถูกคืออยู่ในรูปไอออน เช่น NaCl ละลายได้ Na⁺ และ Cl⁻</p>`,
+ q:['น้ำแข็งกลายเป็นน้ำ เรียกว่า "ละลาย" หรือ "หลอมเหลว"','หลอมเหลว (เปลี่ยนสถานะ) ส่วน "ละลาย" ใช้เมื่อสารกระจายในตัวทำละลายเป็นสารละลาย (คู่มือครู หน้า 52)']},
+{h:'การละลายแบบแตกตัว และสารละลายอิเล็กโทรไลต์',pg:'คู่มือครู หน้า 53–54 · หนังสือเรียน 2.3.1 รูป 2.10 และตาราง 2.6 (ประมาณหน้า 46–49)',html:`
+<p>เมื่อ NaCl ละลายน้ำ โมเลกุลน้ำเข้าล้อมรอบแล้วแยก Na⁺ กับ Cl⁻ ออกจากกัน ไอออนแต่ละตัวถูกโมเลกุลน้ำล้อมรอบ เขียนแทนด้วย Na⁺(aq) และ Cl⁻(aq) ไอออนเคลื่อนที่ได้ เมื่อต่อเข้าวงจรไฟฟ้า ไอออนบวกเคลื่อนไปหาขั้วลบ ไอออนลบเคลื่อนไปหาขั้วบวก กระแสไฟฟ้าจึงผ่านได้ สารละลายประเภทนี้คือ<b>สารละลายอิเล็กโทรไลต์</b> ส่วนผลึก NaCl แห้งไม่นำไฟฟ้า เพราะไอออนยึดกันแน่นจนเคลื่อนที่ไม่ได้</p>
+<p>สารโคเวเลนต์บางชนิดที่มีสมบัติกรด–เบสก็ละลายน้ำแบบแตกตัวได้ เช่น HCl(g) → H⁺(aq) + Cl⁻(aq) ได้กรดไฮโดรคลอริก ตาราง 2.6 ยกตัวอย่าง: HCl (น้ำยาล้างห้องน้ำ) · H₂SO₄ (สารอิเล็กโทรไลต์ในแบตเตอรี่แบบตะกั่ว) · CH₃COOH (น้ำส้มสายชู) · NH₃ (น้ำยาทำความสะอาดกระจกและกระเบื้อง) · NaOH (ผลิตสบู่ กำจัดไขมัน) · Ca(OH)₂ (ปรับ pH ของน้ำในการผลิตน้ำประปา)</p>`,
+ q:['ผลึก NaCl แห้งกับสารละลาย NaCl ต่างกันอย่างไรในแง่การนำไฟฟ้า','ผลึกแห้งไม่นำไฟฟ้า เพราะไอออนเคลื่อนที่ไม่ได้ แต่สารละลายนำไฟฟ้าเพราะไอออนเคลื่อนที่ได้ (คู่มือครู หน้า 53)']},
+{h:'การละลายแบบไม่แตกตัว และสารละลายนอนอิเล็กโทรไลต์',pg:'คู่มือครู หน้า 54 · หนังสือเรียน 2.3.2 รูป 2.11',html:`
+<p>สารโคเวเลนต์ที่ละลายน้ำได้ส่วนใหญ่เป็นโมเลกุลขนาดเล็ก เช่น แก๊สออกซิเจน แก๊สคลอรีน หรือเป็นสารที่เกิดพันธะไฮโดรเจนกับน้ำได้ เช่น กลูโคส น้ำตาลทราย เอทานอล แอซิโตน สารเหล่านี้ละลายแบบไม่แตกตัว คือยังเป็นโมเลกุลอยู่ในน้ำ สารละลายที่ได้ไม่นำไฟฟ้า เรียกว่า<b>สารละลายนอนอิเล็กโทรไลต์</b></p>
+<p>ความรู้เพิ่มเติมของคู่มือ (หน้า 53): สารโคเวเลนต์บางชนิด เช่น กรดแอมิโนบางชนิด ละลายน้ำแบบแตกตัวได้ แต่ไม่แสดงความเป็นกรด–เบสเมื่อทดสอบด้วยกระดาษลิตมัส</p>`,
+ q:['ทำไมกลูโคสละลายน้ำแล้วสารละลายไม่นำไฟฟ้า','เพราะกลูโคสละลายแบบไม่แตกตัว ยังเป็นโมเลกุลที่เป็นกลาง ไม่มีไอออนอิสระในสารละลาย (หนังสือเรียน 2.3.2)']}
+]}
+};
+function readHTML(a){const r=READ[a];if(!r)return'';
+  return`<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่พื้นที่ฝึก ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทำ</span></div></div>`;}
+
+/* ======================= แบบทดสอบ: ตัวเลือกที่ถูกวางตามตำแหน่งใน pos (ตายตัว) ======================= */
+const TFD=['ถูกต้อง','ไม่ถูกต้อง'];
+const tf=(q,truth,w)=>({q:q,c:truth?TFD[0]:TFD[1],d:[truth?TFD[1]:TFD[0]],w:w});
+const QUIZ={
+'2.1':{pos:[1,3,0,2,1],items:[
+ {q:'พันธะโคเวเลนต์เกิดจากการยึดเหนี่ยวแบบใด',c:'อะตอมคู่ร่วมพันธะใช้เวเลนซ์อิเล็กตรอนร่วมกัน',d:['ไอออนบวกดึงดูดไอออนลบ','อะตอมหนึ่งรับอิเล็กตรอนทั้งหมดจากอีกอะตอม','โมเลกุลหนึ่งดึงดูดโมเลกุลข้างเคียง'],w:'คู่มือครู หน้า 38–39: พันธะโคเวเลนต์เกิดจากการใช้เวเลนซ์อิเล็กตรอนร่วมกัน ส่วนใหญ่ระหว่างอะตอมของธาตุอโลหะ'},
+ {q:'ในโมเลกุล N₂ มีพันธะสาม อะตอม N สองอะตอมใช้อิเล็กตรอนร่วมกันกี่คู่',c:'3 คู่ (6 อิเล็กตรอน)',d:['1 คู่','2 คู่','6 คู่'],w:'พันธะสามคือใช้ร่วมกัน 3 คู่ (คู่มือครู หน้า 39 ตามรูป 2.2)'},
+ {q:'เมื่อน้ำเดือดกลายเป็นไอน้ำ สิ่งที่ถูกเอาชนะคือข้อใด',c:'แรงยึดเหนี่ยวระหว่างโมเลกุลของน้ำ',d:['พันธะโคเวเลนต์ H–O ในโมเลกุล','พันธะไอออนิกระหว่างไอออนของน้ำ','นิวเคลียสของอะตอมออกซิเจน'],w:'คู่มือครู หน้า 43: ไอน้ำยังเป็น H₂O จึงไม่ได้ทำลายพันธะ H–O'},
+ {q:'N₂ กับ NO มวลและรูปร่างโมเลกุลใกล้เคียงกัน แต่ NO จุดเดือด −152 °C สูงกว่า N₂ (−196 °C) เพราะเหตุใด',c:'NO เป็นสารมีขั้ว จึงมีแรงยึดเหนี่ยวระหว่างโมเลกุลมากกว่า',d:['NO เป็นสารไม่มีขั้ว','N₂ มีพันธะไฮโดรเจน','NO มีโมเลกุลเล็กกว่ามาก'],w:'ตาราง 2.2 และคู่มือครู หน้า 43–44: NO ประกอบด้วยอะตอมต่างชนิด (มีขั้ว) ส่วน N₂ ประกอบด้วยอะตอมชนิดเดียวกัน (ไม่มีขั้ว)'},
+ {q:'ข้อใดเกิดพันธะไฮโดรเจนระหว่างโมเลกุลได้ตามเกณฑ์ของหนังสือเรียน',c:'H₂O',d:['HCl','H₂S','H₂'],w:'พันธะไฮโดรเจนเกิดกับสารมีขั้วที่มีพันธะ O–H, N–H หรือ F–H น้ำมี O–H ส่วน HCl กับ H₂S ไม่มี และ H₂ ไม่มีขั้ว'}]},
+'2.2':{pos:[2,0,3,1,0],items:[
+ {q:'NaCl ไม่จัดเป็นสารโคเวเลนต์ เพราะเหตุใด',c:'Na เป็นธาตุโลหะ และ NaCl ประกอบด้วยไอออน Na⁺ กับ Cl⁻',d:['NaCl ละลายน้ำไม่ได้','NaCl เป็นแก๊สที่อุณหภูมิห้อง','NaCl เป็นธาตุ ไม่ใช่สารประกอบ'],w:'คู่มือครู หน้า 47: สารโคเวเลนต์เกิดจากธาตุอโลหะ แต่ Na ไม่ใช่ธาตุอโลหะ NaCl เป็นสารประกอบไอออนิก'},
+ {q:'ไอออน Mg²⁺ รวมกับ Cl⁻ ได้สูตรเอมพิริคัลใด',c:'MgCl<sub>2</sub>',d:['MgCl','Mg<sub>2</sub>Cl','Mg<sub>2</sub>Cl<sub>2</sub>'],w:'ตาราง 2.4: อัตราส่วน 1:2 ผลรวมประจุ (+2)+2(−1)=0 (Mg₂Cl₂ ไม่ใช่อัตราส่วนอย่างต่ำ)'},
+ {q:'ไอออน Al³⁺ รวมกับ SO₄²⁻ ได้สูตรเอมพิริคัลใด',c:'Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>',d:['AlSO<sub>4</sub>','Al<sub>3</sub>(SO<sub>4</sub>)<sub>2</sub>','Al<sub>2</sub>SO<sub>4</sub>'],w:'ไขว้เลขประจุได้ Al 2 ตัว SO₄ 3 ตัว: 2(+3)+3(−2)=0 กลุ่มอะตอม SO₄ ใส่วงเล็บก่อนเลขห้อย (ตรงกับเฉลยแบบฝึกหัด 2.3 ข้อ 2)'},
+ {q:'ข้อใดอธิบายการเปลี่ยนสถานะของสารประกอบไอออนิกได้ถูกต้อง',c:'ต้องทำลายพันธะไอออนิก ซึ่งแข็งแรงกว่าแรงยึดเหนี่ยวระหว่างโมเลกุลของสารโคเวเลนต์ จึงต้องใช้ความร้อนสูงกว่า',d:['ต้องทำลายพันธะโคเวเลนต์ในโมเลกุล','เปลี่ยนสถานะที่อุณหภูมิต่ำกว่าสารโคเวเลนต์ทุกชนิด','ไม่ต้องใช้ความร้อน เพราะไอออนเคลื่อนที่ได้อยู่แล้วในของแข็ง'],w:'คู่มือครู หน้า 50 และหนังสือเรียน 2.2.2: จุดหลอมเหลวและจุดเดือดของสารประกอบไอออนิกสูงกว่าสารโคเวเลนต์'},
+ {q:'จากตาราง 2.5 ของหนังสือเรียน สารใดมีจุดหลอมเหลวสูงที่สุด',c:'MgO (2825 °C)',d:['NaCl (801 °C)','MgCl<sub>2</sub> (714 °C)','CaCl<sub>2</sub> (775 °C)'],w:'ตาราง 2.5 หนังสือเรียน (ตรวจกับภาพหน้าแล้ว): MgO จุดหลอมเหลว 2825 °C จุดเดือด 3600 °C'}]},
+'2.3':{pos:[3,1,2,0,2],items:[
+ {q:'เกลือแกง NaCl ละลายน้ำแล้วเกิดอะไรขึ้น',c:'แตกตัวเป็น Na⁺ และ Cl⁻ กระจายในน้ำ โดยมีโมเลกุลน้ำล้อมรอบ',d:['กระจายเป็นโมเลกุล NaCl ครบทั้งโมเลกุล','กลายเป็นอะตอม Na และ Cl','หลอมเหลวเป็นของเหลวโดยไม่แยกไอออน'],w:'คู่มือครู หน้า 52–53 (รูป 2.10 ก และความเข้าใจคลาดเคลื่อนข้อสอง): ไอออนไม่ใช่อะตอมและไม่ใช่โมเลกุล'},
+ {q:'สารละลายอิเล็กโทรไลต์นำไฟฟ้าได้เพราะเหตุใด',c:'มีไอออนที่เคลื่อนที่ได้ในสารละลาย',d:['มีอิเล็กตรอนอิสระมาจากโมเลกุลน้ำ','มีโมเลกุลตัวละลายที่เป็นกลางจำนวนมาก','มีน้ำเป็นตัวทำละลาย'],w:'คู่มือครู หน้า 53 (รูป 2.10 ข): ไอออนบวกไปขั้วลบ ไอออนลบไปขั้วบวก กระแสไฟฟ้าจึงผ่านได้'},
+ {q:'น้ำตาลซูโครส (C₁₂H₂₂O₁₁) ละลายน้ำแล้วได้สารละลายแบบใด',c:'นอนอิเล็กโทรไลต์ ไม่นำไฟฟ้า (ละลายแบบไม่แตกตัว)',d:['อิเล็กโทรไลต์ นำไฟฟ้า','อิเล็กโทรไลต์ แต่ไม่นำไฟฟ้า','นอนอิเล็กโทรไลต์ แต่นำไฟฟ้า'],w:'เฉลยแบบฝึกหัด 2.4 (คู่มือครู หน้า 55): น้ำตาลซูโครสละลายแบบไม่แตกตัว ไม่นำไฟฟ้า'},
+ {q:'ผลึกเกลือแกงแห้ง (ของแข็ง) ไม่นำไฟฟ้า เพราะเหตุใด',c:'ไอออนยึดเหนี่ยวกันแน่นจึงเคลื่อนที่ไม่ได้',d:['ไม่มีไอออนอยู่เลย','ไอออนเคลื่อนที่ได้แต่เป็นกลางทางไฟฟ้า','เกลือแกงเป็นสารโคเวเลนต์'],w:'คู่มือครู หน้า 53 ข้อ 5: ของแข็งสารประกอบไอออนิกไม่นำไฟฟ้า เพราะไอออนเคลื่อนที่ไม่ได้'},
+ {q:'สารใดเป็นสารโคเวเลนต์ แต่เมื่อละลายน้ำแตกตัวเป็นไอออน',c:'HCl',d:['เอทานอล','แก๊สออกซิเจน','กลูโคส'],w:'หนังสือเรียน 2.3.1: HCl(g) → H⁺(aq) + Cl⁻(aq) ส่วนเอทานอล แก๊สออกซิเจน กลูโคส ละลายแบบไม่แตกตัว (2.3.2)'}]},
+/* ---- แบบฝึกหัดตามคู่มือครู ---- */
+xp:{pos:[1,0,0,1,1,0,1,0,0,1,0,1],items:[
+ tf('1. O₂ และ Pb เป็นธาตุ',true,'O₂ และ Pb เป็นสารบริสุทธิ์ที่ประกอบด้วยอะตอมชนิดเดียว (คู่มือครู หน้า 37)'),
+ tf('2. H₂O และ NaCl เป็นสารประกอบ',true,'ประกอบด้วยธาตุมากกว่า 1 ชนิดรวมกันในอัตราส่วนคงที่'),
+ tf('3. สารประกอบและสารละลายเป็นสารผสม',false,'สารประกอบเป็นสารบริสุทธิ์ ส่วนสารละลายเป็นสารผสม'),
+ tf('4. สารละลายประกอบด้วยตัวละลายและตัวทำละลาย',true,'ตรงตามความหมายของสารละลาย'),
+ tf('5. ไอออนลบมีจำนวนโปรตอนมากกว่าอิเล็กตรอน',false,'ไอออนลบรับอิเล็กตรอนเพิ่ม จึงมีอิเล็กตรอนมากกว่าโปรตอน'),
+ tf('6. โมเลกุลมีสมบัติเป็นกลางทางไฟฟ้า',true,'จำนวนโปรตอนเท่ากับอิเล็กตรอน'),
+ tf('7. โซเดียม (Na) เป็นธาตุโลหะและคลอรีน (Cl) เป็นธาตุอโลหะ',true,'ตรงตามตารางธาตุ'),
+ tf('8. ที่อุณหภูมิต่ำกว่าจุดหลอมเหลว สารมีสถานะเป็นของเหลว',false,'ต่ำกว่าจุดหลอมเหลวสารเป็นของแข็ง'),
+ tf('9. จุดหลอมเหลวและจุดเยือกแข็งของสารหนึ่ง ๆ คืออุณหภูมิเดียวกัน',true,'เป็นอุณหภูมิที่สารเปลี่ยนสถานะระหว่างของแข็งกับของเหลวเหมือนกัน'),
+ tf('10. ที่อุณหภูมิสูงกว่าจุดเดือด สารมีสถานะเป็นแก๊ส',true,'ตรงตามความหมายของจุดเดือด'),
+ tf('11. น้ำแข็งและไอน้ำมีองค์ประกอบทางเคมีเหมือนกัน',true,'ทั้งสองเป็น H₂O ต่างกันที่สถานะ'),
+ tf('12. สารละลายเป็นสารผสมที่เป็นเนื้อเดียว',true,'ตรงตามความหมายของสารละลาย')]},
+x21b:{pos:[2,0,1,2],items:[
+ {n:'พันธะ a',q:'(ดูภาพ) พันธะที่ตำแหน่ง a เป็นพันธะชนิดใด',c:'พันธะคู่',d:['พันธะเดี่ยว','พันธะสาม'],w:'คู่มือครู หน้า 41: a เป็นพันธะคู่'},
+ {n:'พันธะ b',q:'พันธะที่ตำแหน่ง b เป็นพันธะชนิดใด',c:'พันธะเดี่ยว',d:['พันธะคู่','พันธะสาม'],w:'คู่มือครู หน้า 41: b เป็นพันธะเดี่ยว'},
+ {n:'พันธะ c',q:'พันธะที่ตำแหน่ง c เป็นพันธะชนิดใด',c:'พันธะสาม',d:['พันธะเดี่ยว','พันธะคู่'],w:'คู่มือครู หน้า 41: c เป็นพันธะสาม'},
+ {n:'พันธะ d',q:'พันธะที่ตำแหน่ง d เป็นพันธะชนิดใด',c:'พันธะเดี่ยว',d:['พันธะคู่','พันธะสาม'],w:'คู่มือครู หน้า 41: d เป็นพันธะเดี่ยว'}]},
+x22a:{pos:[0,1,1,0,1,0,0],items:[
+ {q:'Cl₂ เป็นสารมีขั้วหรือไม่มีขั้ว',c:'ไม่มีขั้ว',d:['มีขั้ว'],w:'อะตอมชนิดเดียวกัน (คู่มือครู หน้า 45)'},
+ {q:'F₂ เป็นสารมีขั้วหรือไม่มีขั้ว',c:'ไม่มีขั้ว',d:['มีขั้ว'],w:'อะตอมชนิดเดียวกัน'},
+ {q:'Br₂ เป็นสารมีขั้วหรือไม่มีขั้ว',c:'ไม่มีขั้ว',d:['มีขั้ว'],w:'อะตอมชนิดเดียวกัน'},
+ {q:'I₂ เป็นสารมีขั้วหรือไม่มีขั้ว',c:'ไม่มีขั้ว',d:['มีขั้ว'],w:'อะตอมชนิดเดียวกัน'},
+ {q:'HF เป็นสารมีขั้วหรือไม่มีขั้ว',c:'มีขั้ว',d:['ไม่มีขั้ว'],w:'อะตอมต่างชนิดกัน'},
+ {q:'HBr เป็นสารมีขั้วหรือไม่มีขั้ว',c:'มีขั้ว',d:['ไม่มีขั้ว'],w:'อะตอมต่างชนิดกัน'},
+ {q:'CO เป็นสารมีขั้วหรือไม่มีขั้ว',c:'มีขั้ว',d:['ไม่มีขั้ว'],w:'อะตอมต่างชนิดกัน (คู่มือครู หน้า 45: มีขั้วคือ HF HBr CO)'}]},
+x22b:{pos:[1,0,1,1,0],items:[
+ {n:'สาร A',q:'สาร A มีพันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลหรือไม่',c:'ไม่มี',d:['มี'],w:'สาร A ไม่มีพันธะ O–H, N–H หรือ F–H (N มีหมู่ CH₃ ครบ) · เฉลยคู่มือครู หน้า 45: มีเฉพาะสาร C และ E'},
+ {n:'สาร B',q:'สาร B มีพันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลหรือไม่',c:'ไม่มี',d:['มี'],w:'สาร B มี O ต่ออยู่กับคาร์บอนทั้งสองข้าง ไม่มี O–H'},
+ {n:'สาร C',q:'สาร C มีพันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลหรือไม่',c:'มี',d:['ไม่มี'],w:'สาร C มีพันธะ O–H (หมู่ OH)'},
+ {n:'สาร D',q:'สาร D (F–CH₃) มีพันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลหรือไม่',c:'ไม่มี',d:['มี'],w:'F ต่อกับ C ไม่ใช่ F–H จึงไม่มี'},
+ {n:'สาร E',q:'สาร E มีพันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลหรือไม่',c:'มี',d:['ไม่มี'],w:'สาร E มีพันธะ N–H (หมู่ NH ในวง)'}]},
+x22c:{pos:[2],items:[
+ {q:'สาร A และ B มวลและรูปร่างโมเลกุลใกล้เคียงกัน สารหนึ่งมีขั้วอีกสารไม่มีขั้ว สาร A จุดเดือด 30 °C สาร B จุดเดือด 80 °C ข้อใดถูกต้อง',c:'A ไม่มีขั้ว และ B มีขั้ว',d:['A มีขั้ว และ B ไม่มีขั้ว','ทั้งสองมีขั้ว','ทั้งสองไม่มีขั้ว'],w:'คู่มือครู หน้า 45: จุดเดือดต่างกันเพราะสภาพขั้ว B เดือดสูงกว่าจึงมีแรงยึดเหนี่ยวระหว่างโมเลกุลมากกว่า B เป็นสารมีขั้ว'}]},
+x24:{pos:[1,0,0,1,1,0,0,1,1,0,1,0],items:[
+ {q:'แก๊สคลอรีน (Cl₂) เมื่อละลายน้ำเป็นแบบใด',c:'ไม่แตกตัว',d:['แตกตัว'],w:'คู่มือครู หน้า 55'},
+ {q:'สารละลายจากแก๊สคลอรีนนำไฟฟ้าหรือไม่',c:'ไม่นำไฟฟ้า',d:['นำไฟฟ้า'],w:'ละลายแบบไม่แตกตัว'},
+ {q:'โซเดียมซัลเฟต (Na₂SO₄) เมื่อละลายน้ำเป็นแบบใด',c:'แตกตัว',d:['ไม่แตกตัว'],w:'เป็นสารประกอบไอออนิก'},
+ {q:'สารละลายโซเดียมซัลเฟตนำไฟฟ้าหรือไม่',c:'นำไฟฟ้า',d:['ไม่นำไฟฟ้า'],w:'มีไอออนเคลื่อนที่ได้'},
+ {q:'น้ำตาลซูโครส (C₁₂H₂₂O₁₁) เมื่อละลายน้ำเป็นแบบใด',c:'ไม่แตกตัว',d:['แตกตัว'],w:'สารโคเวเลนต์ที่เกิดพันธะไฮโดรเจนกับน้ำได้'},
+ {q:'สารละลายน้ำตาลซูโครสนำไฟฟ้าหรือไม่',c:'ไม่นำไฟฟ้า',d:['นำไฟฟ้า'],w:'ละลายแบบไม่แตกตัว'},
+ {q:'แมกนีเซียมคลอไรด์ (MgCl₂) เมื่อละลายน้ำเป็นแบบใด',c:'แตกตัว',d:['ไม่แตกตัว'],w:'เป็นสารประกอบไอออนิก'},
+ {q:'สารละลายแมกนีเซียมคลอไรด์นำไฟฟ้าหรือไม่',c:'นำไฟฟ้า',d:['ไม่นำไฟฟ้า'],w:'มีไอออนเคลื่อนที่ได้'},
+ {q:'เมทิลคลอไรด์ (CH₃Cl) เมื่อละลายน้ำเป็นแบบใด',c:'ไม่แตกตัว',d:['แตกตัว'],w:'คู่มือครู หน้า 55'},
+ {q:'สารละลายเมทิลคลอไรด์นำไฟฟ้าหรือไม่',c:'ไม่นำไฟฟ้า',d:['นำไฟฟ้า'],w:'ละลายแบบไม่แตกตัว'},
+ {q:'โพรพานอล (C₃H₇OH) เมื่อละลายน้ำเป็นแบบใด',c:'ไม่แตกตัว',d:['แตกตัว'],w:'คู่มือครู หน้า 55'},
+ {q:'สารละลายโพรพานอลนำไฟฟ้าหรือไม่',c:'ไม่นำไฟฟ้า',d:['นำไฟฟ้า'],w:'ละลายแบบไม่แตกตัว'}]},
+xe:{pos:[2,0,3,1,3,1],items:[
+ {n:'ข้อ 4',q:'ถังแก๊สสองถังบรรจุ NO และ N₂ (มวลและรูปร่างโมเลกุลใกล้เคียงกัน) ฉลากเหลือเพียงจุดเดือด −152 °C และ −196 °C ข้อใดถูกต้อง',c:'ถัง −152 °C คือ NO (มีขั้ว) และถัง −196 °C คือ N₂ (ไม่มีขั้ว)',d:['ถัง −152 °C คือ N₂ เพราะมีพันธะสามแข็งแรง','ถัง −196 °C คือ NO เพราะมีขั้ว','บอกไม่ได้ เพราะมวลใกล้เคียงกัน'],w:'คู่มือครู หน้า 57: NO ต่างอะตอมจึงมีขั้ว จุดเดือดสูงกว่า N₂ ซึ่งเป็นสารไม่มีขั้ว'},
+ {n:'ข้อ 5',q:'สาร A และ B มวลเท่ากัน (ดูภาพ) แต่ A จุดเดือดสูงกว่า B เพราะเหตุใด',c:'A มีพันธะ O–H จึงเกิดพันธะไฮโดรเจนระหว่างโมเลกุล แต่ B ไม่มีพันธะ O–H',d:['A มีมวลมากกว่า B','B เป็นสารประกอบไอออนิก','A ไม่มีขั้วแต่ B มีขั้ว'],w:'เฉลยคู่มือครู หน้า 57–58: สาร A มีพันธะ O–H ทำให้เกิดพันธะไฮโดรเจน'},
+ {n:'ข้อ 7',q:'ผงน้ำตาลเกลือแร่มี NaCl, KCl และกลูโคส (C₆H₁₂O₆) เมื่อละลายน้ำ สารที่อยู่ในรูปโมเลกุลและรูปไอออนคือข้อใด',c:'โมเลกุล: C₆H₁₂O₆ · ไอออน: Na⁺ K⁺ Cl⁻',d:['โมเลกุล: NaCl และ KCl · ไอออน: ไม่มี','โมเลกุล: ไม่มี · ไอออน: Na⁺ K⁺ Cl⁻ และ C₆H₁₂O₆','โมเลกุล: C₆H₁₂O₆ และ KCl · ไอออน: Na⁺ และ Cl⁻'],w:'คู่มือครู หน้า 58: กลูโคสละลายแบบไม่แตกตัว ส่วน NaCl และ KCl แตกตัวเป็น Na⁺ K⁺ Cl⁻'},
+ {n:'ข้อ 8',q:'ต้องการสารละลายที่มีไอออน Na⁺ Mg²⁺ I⁻ และ SO₄²⁻ ข้อใดเตรียมได้โดยละลายสารประกอบไอออนิก 2 ชนิดในน้ำ',c:'NaI กับ MgSO₄',d:['NaCl กับ MgI₂','Na₂SO₄ กับ MgCl₂','NaI กับ Mg(NO₃)₂'],w:'ตัวเลือกที่ถูกคือ NaI กับ MgSO₄ (คู่มือครู หน้า 58 เฉลยอีกวิธีคือ Na₂SO₄ กับ MgI₂ ซึ่งไม่ได้อยู่ในตัวเลือกชุดนี้)'},
+ {n:'ข้อ 9',q:'สาร A และ B เป็นสารโคเวเลนต์ที่ละลายน้ำ A ทำให้กระดาษลิตมัสน้ำเงินเป็นแดงและสารละลายนำไฟฟ้า B ไม่เปลี่ยนสีและไม่นำไฟฟ้า ข้อใดถูกต้อง',c:'A ละลายแบบแตกตัว · B ละลายแบบไม่แตกตัว',d:['A ละลายแบบไม่แตกตัว · B ละลายแบบแตกตัว','ทั้ง A และ B ละลายแบบแตกตัว','ทั้ง A และ B ละลายแบบไม่แตกตัว'],w:'คู่มือครู หน้า 59: A นำไฟฟ้าและเป็นกรด จึงแตกตัวเป็นไอออน B ไม่นำไฟฟ้าจึงไม่แตกตัว'},
+ {n:'ข้อ 10',q:'น้ำทะเลมี O₂, NaCl, MgSO₄, C₆H₁₂O₆, CH₄N₂O (ยูเรีย) และ CH₄ สารใดทำให้เป็นสารละลายอิเล็กโทรไลต์',c:'NaCl และ MgSO₄',d:['O₂ และ CH₄','C₆H₁₂O₆ และ CH₄N₂O','O₂ และ NaCl'],w:'คู่มือครู หน้า 59: เกลือแกงและดีเกลือเป็นสารประกอบไอออนิกที่ละลายแล้วแตกตัวเป็นไอออน'}]}
+};
+
+
+/* ======================= ตัวช่วยร่วม ======================= */
+const svgWrap=(w,h,label,inner)=>`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}"><rect width="${w}" height="${h}" fill="#fff"/>${inner}</svg>`;
+const AM={H:1,C:12,N:14,O:16,F:19,S:32,Cl:35.5};
+function parseFormula(f){const s=normF(f),o={};let m,re=/([A-Z][a-z]?)(\d*)/g;while((m=re.exec(s))){o[m[1]]=(o[m[1]]||0)+(m[2]?+m[2]:1);}return o;}
+function massOf(f){const a=parseFormula(f);let t=0;for(const k in a)t+=(AM[k]||0)*a[k];return t;}
+function revealHTML(items){return items.map(r=>`<details class="rd-q"><summary>${r[0]}</summary><p>${r[1]}</p></details>`).join('');}
+const STX={solid:'ของแข็ง',liquid:'ของเหลว',gas:'แก๊ส'};
+const stChip=s=>`<span class="stchip st-${s}">${STX[s]}</span>`;
+
+/* ======================= แท็บ 2.1 ======================= */
+function act21(){
+  return`<h2>2.1 โมเลกุลของน้ำ</h2><p class="sub">คู่มือครู หน้า 38–44 · ไม่มีการทดลองที่ตั้งเลขกิจกรรมในหัวข้อนี้ พื้นที่ฝึกต่อไปนี้ผู้จัดทำหน้าออกแบบตามแนวการจัดการเรียนรู้ของคู่มือ (ตารางตัวเลขใช้ของหนังสือเรียน)</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ul><li>ระบุจำนวนอะตอมของธาตุองค์ประกอบในโมเลกุลของสารโคเวเลนต์จากสูตรโมเลกุลหรือสูตรโครงสร้าง</li><li>ระบุว่าพันธะโคเวเลนต์เป็นพันธะเดี่ยว พันธะคู่ หรือพันธะสาม และระบุจำนวนคู่อิเล็กตรอนระหว่างอะตอมคู่ร่วมพันธะ จากสูตรโครงสร้าง</li><li>ระบุสภาพขั้วของสารที่โมเลกุลประกอบด้วย 2 อะตอม และระบุสารที่เกิดพันธะไฮโดรเจนได้จากสูตรโครงสร้าง</li><li>อธิบายความสัมพันธ์ระหว่างจุดเดือดของสารโคเวเลนต์กับแรงยึดเหนี่ยวระหว่างโมเลกุล</li></ul></div>
+  <div class="lab"><h3>พื้นที่ฝึก A: ดูโครงสร้างโมเลกุล นับอะตอม และชนิดพันธะ</h3>
+  <p class="small">เลือกสารจากตัวอย่างในหนังสือเรียน (ตาราง 2.1 · รูป 2.2–2.3) ภาพสูตรโครงสร้างวาดใหม่โดยผู้จัดทำหน้า ตัวนับอะตอมและพันธะคำนวณจากภาพที่วาดไว้ (ไม่ใช่ค่าจากหนังสือ แต่ตรวจเทียบกับสูตรโมเลกุลให้)</p>
+  <div class="btns" id="molchips" role="group" aria-label="เลือกโมเลกุล">${MKEYS.map(k=>`<button type="button" class="chip" data-m="${k}" aria-pressed="${k==='h2o'}">${MOLS[k].name} (${MOLS[k].f})</button>`).join('')}</div>
+  <div class="btns" id="modechips" role="group" aria-label="รูปแบบสูตร"><button type="button" class="chip" data-mode="line" aria-pressed="true">สูตรเส้น</button><button type="button" class="chip" data-mode="dot" aria-pressed="false" id="dotbtn">สูตรจุด (เฉพาะน้ำ O₂ N₂)</button><button type="button" class="btn alt sm" id="practice">ฝึกคลิกพันธะ</button></div>
+  <div class="molbox"><div><div class="fig scr" id="molfig"></div><div class="small" id="molsrc"></div></div><div id="molinfo" aria-live="polite"></div></div>
+  <div class="tip" id="pmsg" aria-live="polite">กดปุ่ม &quot;ฝึกคลิกพันธะ&quot; แล้วคลิกพันธะตามที่โจทย์บอก (ใช้ได้เมื่อเลือกสูตรเส้น)</div></div>
+  <div class="lab"><h3>พื้นที่ฝึก B: จุดหลอมเหลว จุดเดือด สภาพขั้ว และพันธะไฮโดรเจน (ตาราง 2.2)</h3>
+  <p class="small">จุดหลอมเหลวและจุดเดือดตามตาราง 2.2 ที่ความดัน 1 บรรยากาศ สภาพขั้วตามที่หนังสือเรียนจัด พันธะไฮโดรเจนตัดสินจากเกณฑ์ของหนังสือ (O–H, N–H หรือ F–H) มวลโมเลกุลผู้จัดทำหน้าคำนวณเอง</p>
+  <label class="lbl" for="tsl">อุณหภูมิ: <b id="tval"></b> °C</label><input type="range" id="tsl" min="-270" max="110" step="1" value="25" aria-describedby="tnote">
+  <div class="small" id="tnote">เลื่อนเพื่อดูสถานะของแต่ละสารที่อุณหภูมินั้น (ตัดสินด้วย: ต่ำกว่าจุดหลอมเหลว = ของแข็ง · ตั้งแต่จุดหลอมเหลวถึงต่ำกว่าจุดเดือด = ของเหลว · ตั้งแต่จุดเดือดขึ้นไป = แก๊ส)</div>
+  <div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">สาร</th><th>จุดหลอมเหลว (°C)</th><th>จุดเดือด (°C)</th><th>สภาพขั้ว</th><th>พันธะไฮโดรเจน</th><th>มวลโมเลกุล (ประมาณ)</th><th>สถานะ</th></tr></thead><tbody id="t22b"></tbody></table></div>
+  <div class="rowflex" style="margin-top:10px"><label>เปรียบเทียบสาร X<select id="cmpx">${T22.map((r,i)=>`<option value="${i}">${r[0]} · ${r[1]}</option>`).join('')}</select></label><label>กับสาร Y<select id="cmpy">${T22.map((r,i)=>`<option value="${i}">${r[0]} · ${r[1]}</option>`).join('')}</select></label></div>
+  <div class="tip" id="cmpout" aria-live="polite"></div></div>
+  <div class="lab"><h3>พื้นที่ฝึก C: แบบจำลองอนุภาค น้ำเหลวกลายเป็นไอน้ำ (รูป 2.4)</h3>
+  <p class="small">แบบจำลองเชิงคุณภาพที่ผู้จัดทำหน้าวาดใหม่ ไม่ตรงสัดส่วนจริง ค่าความร้อนในสไลเดอร์เป็นหน่วยสมมติ (ไม่ใช่ °C หรือ kJ) ส่วนที่ต้องสังเกตคือ ระยะห่างระหว่างโมเลกุลเปลี่ยน แต่พันธะ O–H ในแต่ละโมเลกุลยังอยู่ครบ</p>
+  <div class="fig" id="wfig"></div>
+  <label class="lbl" for="hsl">ความร้อนที่ให้ (หน่วยสมมติ): <b id="hval">0</b></label><input type="range" id="hsl" min="0" max="100" step="1" value="0">
+  <div class="legend"><span><i class="dot" style="background:#dc2626"></i>อะตอม O</span><span><i class="dot" style="background:#e2e8f0;border:1px solid #475569"></i>อะตอม H</span><span>เส้นทึบสั้น = พันธะ H–O</span><span>เส้นประ = แรงยึดเหนี่ยวระหว่างโมเลกุล (ภาพประกอบ)</span></div>
+  <div class="res" id="wtxt" aria-live="polite"></div></div>
+  <div class="lab"><h3>บันทึกของกลุ่ม (ตามแนวการจัดการเรียนรู้ ข้อ 2 ของคู่มือ หน้า 42)</h3><p class="small">คู่มือให้กลุ่มนำเสนอแบบจำลองการจัดเรียงโมเลกุลของน้ำในสถานะของเหลวกับแก๊ส (วาดภาพหรือแสดงบทบาทสมมติ) ที่นี่ให้เขียนอธิบายแทน ข้อความถูกบันทึกในเครื่องและส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า (เฉพาะแท็บที่เปิดอยู่) ไม่มีคะแนนอัตโนมัติ</p>
+  ${fieldsHTML([['lg','อธิบายการจัดเรียงโมเลกุลของน้ำในสถานะของเหลวและสถานะแก๊ส และบอกว่าทำไมน้ำเดือดแล้วยังเป็น H₂O','เขียนจากสิ่งที่สังเกตในพื้นที่ฝึก C']])}${expHTML('p21')}</div>
+  ${quizHTML('2.1','แบบทดสอบสั้น 2.1')}`;
+}
+function wire21(){
+  const root=$('#panel');let mk='h2o',mode='line',prac=false,tgt=1;
+  const fig=$('#molfig');
+  function renderMol(){
+    const m=MOLS[mk];if(!m.dot)mode='line';
+    $('#dotbtn').disabled=!m.dot;$$('#modechips [data-mode]',root).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+    const clickOn=prac&&mode==='line';
+    fig.innerHTML=molSVG(m,{mode:mode,click:clickOn,label:'สูตรโครงสร้าง'+m.name+(mode==='dot'?' แบบจุดแสดงเวเลนซ์อิเล็กตรอน':'')});
+    $('#molsrc').textContent='ที่มา: '+m.src+' (วาดใหม่)';
+    const s=statsOf(m),want=parseFormula(m.f),ok=Object.keys(s.atoms).length===Object.keys(want).length&&Object.keys(want).every(k=>want[k]===s.atoms[k]);
+    const tot=Object.values(s.atoms).reduce((a,b)=>a+b,0);
+    $('#molinfo').innerHTML=`<div class="box" style="margin-top:0"><h3>${m.name} · <span class="fm">${fh(m.f.replace(/[₀-₉]/g,c=>String(c.charCodeAt(0)-8320)))}</span></h3>
+    <div class="kv"><b>อะตอมที่นับได้</b><span>${Object.keys(s.atoms).map(k=>k+' '+s.atoms[k]).join(' · ')} (รวม ${tot} อะตอม)</span><b>พันธะเดี่ยว</b><span>${s.single}</span><b>พันธะคู่</b><span>${s.double}</span><b>พันธะสาม</b><span>${s.triple}</span><b>คู่อิเล็กตรอนที่ใช้ร่วมกัน</b><span>${s.pairs} คู่ (${s.electrons} อิเล็กตรอน)</span></div>
+    <p class="small">${ok?'<span class="ok-t">จำนวนอะตอมที่นับจากภาพตรงกับสูตรโมเลกุล</span>':'<span class="bad-t">ไม่ตรงกับสูตรโมเลกุล</span>'}${mode==='dot'?' · ในสูตรจุด จุดสีฟ้าคือคู่อิเล็กตรอนที่ใช้ร่วมกัน (เท่ากับ 1 เส้นพันธะ) จุดสีน้ำตาลคือคู่อิเล็กตรอนที่ไม่ได้ใช้สร้างพันธะ ซึ่งสูตรโครงสร้างแบบเส้นไม่จำเป็นต้องเขียน':''}</p></div>`;
+    if(clickOn)askTarget();
+  }
+  const TN={1:'พันธะเดี่ยว',2:'พันธะคู่',3:'พันธะสาม'};
+  function askTarget(){const m=MOLS[mk],types=Array.from(new Set(m.bonds.map(b=>b[2]))).sort();if(types.indexOf(tgt)<0)tgt=types[0];$('#pmsg').innerHTML='โจทย์: คลิกที่<b>'+TN[tgt]+'</b> (ใช้อิเล็กตรอนร่วมกัน '+tgt+' คู่) ในภาพ';}
+  fig.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('.bhit');if(!g)return;pick(+g.dataset.b);});
+  fig.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const g=e.target.closest&&e.target.closest('.bhit');if(!g)return;e.preventDefault();pick(+g.dataset.b);});
+  function pick(k){const m=MOLS[mk],o=m.bonds[k][2],types=Array.from(new Set(m.bonds.map(b=>b[2]))).sort();
+    if(o===tgt){const i=types.indexOf(tgt);const nx=types[(i+1)%types.length];$('#pmsg').innerHTML='ถูกต้อง: พันธะนี้ใช้อิเล็กตรอนร่วมกัน '+o+' คู่ เป็น'+TN[o]+(types.length>1?' · โจทย์ถัดไป: คลิก<b>'+TN[nx]+'</b>':' · โมเลกุลนี้มีพันธะชนิดเดียว ลองเลือกสารอื่น');tgt=nx;}
+    else $('#pmsg').innerHTML='ยังไม่ใช่: พันธะที่คลิกใช้อิเล็กตรอนร่วมกัน '+o+' คู่ เป็น'+TN[o]+' ลองหาพันธะที่เป็น<b>'+TN[tgt]+'</b>';}
+  $$('#molchips .chip',root).forEach(b=>b.onclick=()=>{mk=b.dataset.m;$$('#molchips .chip',root).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderMol();setRun('2.1');});
+  $$('#modechips [data-mode]',root).forEach(b=>b.onclick=()=>{if(b.disabled)return;mode=b.dataset.mode;renderMol();setRun('2.1');});
+  $('#practice').onclick=()=>{prac=!prac;$('#practice').textContent=prac?'หยุดฝึกคลิกพันธะ':'ฝึกคลิกพันธะ';if(prac&&mode==='dot')mode='line';if(!prac)$('#pmsg').textContent='กดปุ่ม "ฝึกคลิกพันธะ" แล้วคลิกพันธะตามที่โจทย์บอก (ใช้ได้เมื่อเลือกสูตรเส้น)';renderMol();setRun('2.1');};
+  renderMol();
+  /* พื้นที่ฝึก B */
+  const tsl=$('#tsl');
+  function rowsB(){const T=+tsl.value;$('#tval').textContent=T;
+    $('#t22b').innerHTML=T22.map(r=>{const s=stateOf(T,r[2],r[3]);return`<tr><td class="l"><b>${fh(r[0].replace(/[₀-₉]/g,c=>String(c.charCodeAt(0)-8320)))}</b> ${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]==='polar'?'มีขั้ว':'ไม่มีขั้ว'}</td><td>${hasHBond(r[5])&&r[4]==='polar'?'มี':'ไม่มี'}</td><td>${fmt(massOf(r[0]),1)}</td><td>${stChip(s)}</td></tr>`;}).join('');}
+  tsl.oninput=()=>{rowsB();setRun('2.1');};rowsB();
+  const cx=$('#cmpx'),cy=$('#cmpy');cx.value='1';cy.value='3';
+  function cmp(){const a=T22[+cx.value],b=T22[+cy.value];const hb=r=>hasHBond(r[5])&&r[4]==='polar';
+    if(a===b){$('#cmpout').textContent='เลือกสารสองชนิดที่ต่างกันเพื่อเปรียบเทียบ';return;}
+    const H=a[3]>=b[3]?a:b,L=H===a?b:a;const nm=r=>r[0]+' ('+r[1]+')';
+    let why;
+    if(hb(H)&&!hb(L))why=nm(H)+' มีพันธะไฮโดรเจน (มีพันธะ O–H หรือ N–H) แต่ '+nm(L)+' ไม่มี พันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลที่แรง จึงต้องใช้ความร้อนมากกว่าในการทำให้เดือด';
+    else if(H[4]==='polar'&&L[4]==='nonpolar')why=nm(H)+' เป็นสารมีขั้ว ส่วน '+nm(L)+' ไม่มีขั้ว สารมีขั้วมีแรงยึดเหนี่ยวระหว่างโมเลกุลมากกว่า (ถ้ามวลและรูปร่างโมเลกุลใกล้เคียงกัน)';
+    else why='สองสารนี้มีสภาพขั้วและพันธะไฮโดรเจนในลักษณะเดียวกัน ความต่างของจุดเดือดต้องอธิบายด้วยปัจจัยอื่น เช่น มวลและรูปร่างโมเลกุล ซึ่งหนังสือกล่าวว่ามีผลต่อแรงยึดเหนี่ยวระหว่างโมเลกุลด้วย';
+    const mr=Math.max(massOf(a[0]),massOf(b[0]))/Math.min(massOf(a[0]),massOf(b[0]));
+    $('#cmpout').innerHTML=nm(H)+' จุดเดือด '+H[3]+' °C สูงกว่า '+nm(L)+' ('+L[3]+' °C) อยู่ '+(H[3]-L[3])+' °C ซึ่งแสดงว่าแรงยึดเหนี่ยวระหว่างโมเลกุลของ '+H[0]+' มากกว่า<br>'+why+(mr>1.3?'<br><span class="small">ข้อควรระวัง: มวลโมเลกุลสองสารนี้ต่างกันมาก (ประมาณ '+fmt(massOf(a[0]),1)+' กับ '+fmt(massOf(b[0]),1)+') หนังสือเรียนใช้ขั้วอธิบายจุดเดือดเมื่อมวลและรูปร่างใกล้เคียงกันเท่านั้น</span>':'');}
+  cx.onchange=cy.onchange=()=>{cmp();setRun('2.1');};cmp();
+  /* พื้นที่ฝึก C: แบบจำลองอนุภาค */
+  wireWater();
+  wireDraft(root,'2.1');
+  wireExp('p21',()=>textOf('2.1',[['lg','บันทึกของกลุ่ม: การจัดเรียงโมเลกุลน้ำของเหลวและแก๊ส']],'บันทึกแท็บ 2.1 โมเลกุลของน้ำ'),'activity-2-1.txt');
+  wireQuiz('2.1',true);
+}
+/* ---- แบบจำลองอนุภาคของน้ำ ---- */
+function wireWater(){
+  const host=$('#wfig'),sl=$('#hsl');const W=320,H=210,cols=6,rows=4,R=rng(11);
+  const GP=[];for(let r=0;r<4;r++)for(let c=0;c<6;c++)GP.push([40+c*48+(R()-.5)*14,42+r*44+(R()-.5)*14]);for(let i=GP.length-1;i>0;i--){const j=Math.floor(R()*(i+1));const x=GP[i];GP[i]=GP[j];GP[j]=x;}
+  const P=[];for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const k=P.length;P.push({lx:48+c*40+(r%2?20:0),ly:62+r*36,gx:GP[k][0],gy:GP[k][1],ph:R()*6.28,p2:R()*6.28,p3:R()*6.28,dir:R()<.5?-1:1});}
+  const NB=[];P.forEach((p,i)=>{const c=i%cols,r=Math.floor(i/cols);if(c+1<cols)NB.push([i,i+1]);if(r+1<rows){NB.push([i,i+cols]);if(r%2===0){if(c+1<cols)NB.push([i,i+cols+1]);}else if(c>0)NB.push([i,i+cols-1]);}});
+  let raf=null,t0=null,last=0;
+  const g_=v=>clamp((v-45)/25,0,1);
+  function frame(ts){const v=+sl.value,g=g_(v),t=ts/1000;$('#hval').textContent=v;
+    const pos=P.map(p=>{const a=1.5+4.5*g;const x=p.lx+(p.gx-p.lx)*g+a*Math.sin(t*2.3+p.ph)+g*16*Math.sin(t*.6+p.p2),y=p.ly+(p.gy-p.ly)*g+a*Math.cos(t*1.9+p.p2)+g*12*Math.cos(t*.5+p.p3);return{x:x,y:y,ang:(p.ph*57+t*(15+110*g)*p.dir)%360};});
+    let s='<rect x="8" y="14" width="304" height="188" rx="14" fill="#f4fbfd" stroke="#8dbfcc"/>';
+    if(g<0.98)NB.forEach(n=>{const a=pos[n[0]],b=pos[n[1]];s+=`<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#0e7490" stroke-width="1.4" stroke-dasharray="3 4" opacity="${(0.75*(1-g)).toFixed(2)}"/>`;});
+    pos.forEach(q=>{s+=`<g transform="translate(${q.x.toFixed(1)} ${q.y.toFixed(1)}) rotate(${q.ang.toFixed(0)})"><line x1="0" y1="0" x2="-8" y2="7" stroke="#334155" stroke-width="2"/><line x1="0" y1="0" x2="8" y2="7" stroke="#334155" stroke-width="2"/><circle r="7" fill="#dc2626"/><circle cx="-8" cy="7" r="4.4" fill="#e2e8f0" stroke="#475569"/><circle cx="8" cy="7" r="4.4" fill="#e2e8f0" stroke="#475569"/></g>`;});
+    host.innerHTML=svgWrap(W,H,'แบบจำลองโมเลกุลน้ำ 24 โมเลกุล ความร้อนน้อยอยู่ชิดกันเป็นของเหลว ความร้อนมากแยกห่างกันเป็นแก๊ส แต่ละโมเลกุลยังเป็น H₂O',s);
+    $('#wtxt').className='res';$('#wtxt').textContent=g<=0?'ของเหลว: โมเลกุลอยู่ชิดกัน ยังมีแรงยึดเหนี่ยวระหว่างโมเลกุล แต่เคลื่อนที่ไปมาได้':(g<1?'กำลังเปลี่ยนเป็นแก๊ส: ความร้อนเริ่มเอาชนะแรงยึดเหนี่ยวระหว่างโมเลกุล โมเลกุลแยกห่างกัน':'แก๊ส (ไอน้ำ): โมเลกุลอยู่ห่างกันมาก แต่ทุกโมเลกุลยังเป็น H₂O คือไม่มีพันธะ H–O ถูกทำลาย');}
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+  function loop(ts){if(!host.isConnected){stop();return;}if(ts-last>33){last=ts;frame(ts);}raf=requestAnimationFrame(loop);}
+  CLEAN.push(stop);
+  sl.oninput=()=>{if(REDUCE)frame(0);setRun('2.1');};
+  if(REDUCE)frame(0);else raf=requestAnimationFrame(loop);
+}
+
+
+/* ======================= แท็บ 2.2 ======================= */
+const NAMES_C={Li:'ลิเทียมไอออน',Na:'โซเดียมไอออน',K:'โพแทสเซียมไอออน',Mg:'แมกนีเซียมไอออน',Ca:'แคลเซียมไอออน',Al:'อะลูมิเนียมไอออน',NH4:'แอมโมเนียมไอออน'};
+const NAMES_A={Cl:'คลอไรด์ไอออน',O:'ออกไซด์ไอออน',OH:'ไฮดรอกไซด์ไอออน',NO3:'ไนเทรตไอออน',CO3:'คาร์บอเนตไอออน',SO4:'ซัลเฟตไอออน',PO4:'ฟอสเฟตไอออน',C2H3O2:'(ไอออนจากแบบฝึกหัด 2.3 ไม่มีชื่อในตาราง)'};
+const GR=4,GC=5;
+function act22(){
+  return`<h2>2.2 สารในแหล่งน้ำธรรมชาติ: สารประกอบไอออนิก</h2><p class="sub">คู่มือครู หน้า 46–51 · กิจกรรมจัดเรียงไอออน (หน้า 47) และกิจกรรมเสนอแนะสืบค้น (หน้า 48–49) · ตัวเลขในตารางใช้ของหนังสือเรียน</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><ul><li>อธิบายการเกิดพันธะไอออนิก</li><li>เขียนสูตรเคมีของไอออนที่พบในชีวิตประจำวัน</li><li>เขียนสูตรเอมพิริคัลของสารประกอบไอออนิกจากไอออนที่กำหนดให้</li><li>เปรียบเทียบจุดหลอมเหลวและจุดเดือดของสารโคเวเลนต์กับสารประกอบไอออนิก</li></ul></div>
+  <div class="lab"><h3>กิจกรรม A: จัดเรียงไอออน (จำลองกิจกรรมบทบาทสมมติของคู่มือ หน้า 47)</h3>
+  <p class="small">ในห้องเรียน คู่มือให้แบ่งนักเรียนเป็น 2 กลุ่มแทนไอออนบวกกับไอออนลบ ยืนเป็นรูปสี่เหลี่ยมอย่างน้อย 3 แถว โดยคนต่างกลุ่มยืนชิดกันได้ แต่คนกลุ่มเดียวกันห้ามชิดกัน แล้วให้คนหัวแถววาดรูปจำลองบนกระดาน ที่นี่ใช้ตาราง ${GR} แถว × ${GC} คอลัมน์ (ผู้จัดทำหน้ากำหนดขนาดเอง) แตะช่องเพื่อวนเปลี่ยน ว่าง → ไอออนบวก (+) → ไอออนลบ (−) → ว่าง &quot;ชิดกัน&quot; ในที่นี้คือช่องที่อยู่ติดกันทางซ้าย-ขวาหรือบน-ล่าง</p>
+  <div class="gridc" id="grid" style="grid-template-columns:repeat(${GC},minmax(44px,1fr))" role="group" aria-label="ตารางจัดเรียงไอออน"></div>
+  <div class="legend"><span><i class="dot" style="background:#c2410c"></i>ไอออนบวก (+)</span><span><i class="dot" style="background:#1d4ed8"></i>ไอออนลบ (−)</span><span>กรอบแดง = ช่องที่ชนิดเดียวกันอยู่ติดกัน (หลังกดตรวจ)</span></div>
+  <div class="btns"><button class="btn" type="button" id="gchk">ตรวจการจัดเรียง</button><button class="btn alt" type="button" id="gclr">ล้างตาราง</button><button class="btn alt" type="button" id="gshow">แสดงตัวอย่างการจัดเรียง</button></div>
+  <div class="res" id="gres" aria-live="polite"></div></div>
+  <div class="lab"><h3>กิจกรรม B: ตัวผสมไอออน หาสูตรเอมพิริคัล (ตาราง 2.3 และ 2.4)</h3>
+  <p class="small">เลือกไอออนบวกและไอออนลบจากตาราง 2.3 (ไอออนอะซีเตตมาจากแบบฝึกหัด 2.3) ตัวผสมหาอัตราส่วนอย่างต่ำที่ผลรวมประจุเป็นศูนย์ ตามวิธีในตาราง 2.4 และวิธีไขว้เลขประจุ</p>
+  <div class="rowflex"><label>ไอออนบวก<select id="ioc">${CATS.map(i=>`<option value="${i[0]}">${ionU(i[0],i[1],'+')} · ${NAMES_C[i[0]]}</option>`).join('')}</select></label><label>ไอออนลบ<select id="ioa">${ANIS.map(i=>`<option value="${i[0]}">${ionU(i[0],i[1],'−')} · ${NAMES_A[i[0]]}</option>`).join('')}</select></label></div>
+  <div class="fig" id="ioshow" style="margin-top:8px"></div>
+  <div class="stat"><div>สูตรเอมพิริคัล<b class="fm" id="iof"></b></div><div>อัตราส่วน (บวก : ลบ)<b id="ior"></b></div><div>ผลรวมประจุ<b id="iosum"></b></div></div>
+  <div class="tip" id="iocross" aria-live="polite"></div><div class="small" id="iocnt"></div></div>
+  <div class="lab"><h3>กิจกรรม C: ให้ความร้อนแก่สารประกอบไอออนิก และเปรียบเทียบจุดเดือด (ตาราง 2.2 และ 2.5)</h3>
+  <p class="small">ตัวเลขจุดหลอมเหลวและจุดเดือดตามตาราง 2.5 ที่ 1 บรรยากาศ ภาพไอออนเป็นแบบจำลองเชิงคุณภาพของผู้จัดทำหน้า (ไม่ตรงสัดส่วนจริง และตำแหน่งในสถานะของเหลวกับแก๊สเป็นภาพประกอบ)</p>
+  <div class="rowflex"><label>เลือกสารประกอบไอออนิก<select id="hsel">${T25.map((r,i)=>`<option value="${i}">${r[0]} · ${r[1]}</option>`).join('')}</select></label></div>
+  <label class="lbl" for="hT">อุณหภูมิ: <b id="hTv">25</b> °C</label><input type="range" id="hT" min="0" max="4000" step="5" value="25" style="width:100%">
+  <div class="fig" id="ifig"></div>
+  <div class="res" id="itxt" aria-live="polite"></div>
+  <h3 style="margin-top:14px">จุดเดือด: สารโคเวเลนต์ (ตาราง 2.2) เทียบกับสารประกอบไอออนิก (ตาราง 2.5)</h3>
+  <div id="bars" role="img" aria-label="แผนภาพแท่งเทียบจุดเดือด สารโคเวเลนต์ต่ำกว่า 100 องศาเซลเซียสทั้งหมด สารประกอบไอออนิกอยู่ระหว่าง 1412 ถึง 3600 องศาเซลเซียส"></div>
+  <p class="small">สีเขียวน้ำเงินคือสารโคเวเลนต์ สีส้มคือสารประกอบไอออนิก แกนเริ่มที่ −260 °C ตัวเลขท้ายแถวคือจุดเดือด (°C) ตามหนังสือเรียน</p></div>
+  <div class="lab"><h3>แบบฟอร์มสืบค้น (กิจกรรมเสนอแนะ คู่มือครู หน้า 48)</h3>
+  <p class="small">สืบค้นการใช้ประโยชน์ในชีวิตประจำวัน และอันตรายที่อาจเกิดจากการใช้สารโคเวเลนต์กับสารประกอบไอออนิกบางชนิด ข้อความที่พิมพ์ถูกบันทึกในเครื่องและส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า (เฉพาะแท็บที่เปิดอยู่) ไม่มีคะแนนอัตโนมัติ ไม่นับเป็นเงื่อนไขของเครื่องหมายเสร็จ</p>
+  ${[['cv','สารโคเวเลนต์'],['io','สารประกอบไอออนิก']].map(f=>`<div class="box"><h3>ตัวอย่างที่ 1: ${f[1]}</h3>${fieldsHTML([[f[0]+'_n','ชื่อสารและสูตรเคมี'],[f[0]+'_u','ใช้ประโยชน์ในชีวิตประจำวันอย่างไร'],[f[0]+'_h','อันตรายหรือข้อควรระวังเมื่อใช้'],[f[0]+'_s','แหล่งข้อมูล']])}</div>`).join('')}
+  <div class="res" id="st22" aria-live="polite"></div>${expHTML('p22')}
+  ${revealHTML([['ดูตัวอย่างผลสืบค้นของคู่มือ หน้า 48–49 (เปิดหลังเขียนของตัวเองแล้ว)','<b>สารโคเวเลนต์:</b> แก๊สแอมโมเนีย — วัตถุดิบผลิตปุ๋ย สารทำความเย็น น้ำยาทำความสะอาด ละลายน้ำใช้เป็นยาดม แต่สูดมาก ๆ ระคายจมูก ตา และแน่นหน้าอก · กรดแอซีติก (น้ำส้ม) — ปรุงรส อาหารหมักดอง ส่วนผสมยาฆ่าแมลง พลาสติก สีย้อมผ้า สูดมากระคายทางเดินหายใจ สัมผัสเข้มข้นนานอาจบวมแดงพุพอง · วิตามินซี (กรดแอสคอร์บิก) — เสริมภูมิคุ้มกัน ต้านอนุมูลอิสระ ช่วยสร้างคอลลาเจน ป้องกันโรคเลือดออกตามไรฟัน ความเป็นพิษต่ำ แต่กินเกิน 2000 มิลลิกรัมต่อวันอาจท้องเสีย<br><b>สารประกอบไอออนิก:</b> โซเดียมคลอไรด์ — ปรุงรส ถนอมอาหาร วัตถุดิบอุตสาหกรรมเคมี (เช่น ผลิต NaOH และ Cl₂) กินมากไปอาจทำให้ความดันโลหิตสูง · แคลเซียมคาร์บอเนต (หินปูน) — งานก่อสร้าง ปรับความเป็นกรด–เบสของดินและน้ำ ยาลดกรดและยาบำรุงกระดูก (เมื่อบริสุทธิ์สูง) พิษต่ำ แต่ฝุ่นเข้าตาหรือสูดดมอาจอันตราย · โพแทสเซียมไนเทรต (ดินประสิว) — สารกันบูด ปุ๋ยเคมี ส่วนผสมพลุ ตะไล ดอกไม้ไฟ ที่ต้องระวังเพราะอาจระเบิดได้ ถ้าดูดซึมเข้าร่างกายอาจทำให้ปลายมือ เท้า ปากคล้ำจากการขาดออกซิเจน']])}</div>
+  ${quizHTML('2.2','แบบทดสอบสั้น 2.2')}`;
+}
+function wire22(){
+  const root=$('#panel');
+  /* กิจกรรม A */
+  const g=[];for(let r=0;r<GR;r++)g.push(new Array(GC).fill(0));let bad=[];
+  const gh=$('#grid');
+  function drawG(){gh.innerHTML='';for(let r=0;r<GR;r++)for(let c=0;c<GC;c++){const v=g[r][c],b=document.createElement('button');b.type='button';b.className='cell'+(v>0?' pos':'')+(v<0?' neg':'')+(bad.indexOf(r+','+c)>=0?' bad':'');b.textContent=v>0?'+':(v<0?'−':'');b.setAttribute('aria-label','แถว '+(r+1)+' คอลัมน์ '+(c+1)+': '+(v>0?'ไอออนบวก':(v<0?'ไอออนลบ':'ว่าง')));
+    b.onclick=()=>{g[r][c]=v===0?1:(v>0?-1:0);bad=[];$('#gres').textContent='';drawG();};gh.appendChild(b);}}
+  drawG();
+  $('#gchk').onclick=()=>{const k=latticeCheck(g);bad=k.bad;drawG();const r=$('#gres');
+    if(k.filled<k.total){r.className='res bad';r.textContent='ยังเติมไม่ครบ ('+k.filled+'/'+k.total+' ช่อง)'+(k.conflicts?' และมีคู่ที่ชนิดเดียวกันอยู่ติดกัน '+k.conflicts+' คู่':'');}
+    else if(k.conflicts){r.className='res bad';r.textContent='มีคู่ที่ไอออนชนิดเดียวกันอยู่ติดกัน '+k.conflicts+' คู่ (กรอบแดง) ไอออนประจุเหมือนกันผลักกัน ลองสลับชนิด';}
+    else{r.className='res ok';r.textContent='ถูกต้อง: ไอออนต่างชนิดอยู่ติดกันทุกคู่ เรียงสลับ + − ต่อเนื่องกันไป ตรงกับข้อสรุปของคู่มือ (หน้า 47) ในกิจกรรมนี้เป็นการเรียง 2 มิติ ส่วนผลึกจริงเรียงต่อเนื่องใน 3 มิติ (หนังสือเรียน รูป 2.9)';setRun('2.2');}};
+  $('#gclr').onclick=()=>{for(let r=0;r<GR;r++)g[r].fill(0);bad=[];$('#gres').textContent='';drawG();};
+  $('#gshow').onclick=()=>{for(let r=0;r<GR;r++)for(let c=0;c<GC;c++)g[r][c]=((r+c)%2===0)?1:-1;bad=[];$('#gres').className='res';$('#gres').textContent='ตัวอย่าง: เรียงสลับแบบกระดานหมากรุก (มีอีกแบบหนึ่งคือสลับสีกัน) กดตรวจเพื่อดูผล';drawG();};
+  /* กิจกรรม B */
+  const sc=$('#ioc'),sa=$('#ioa');const tried=new Set();sc.value='Mg';sa.value='Cl';
+  function combine(){const C=CATS.find(x=>x[0]===sc.value),A=ANIS.find(x=>x[0]===sa.value);
+    const f=empiricalFormula(C[0],C[1],C[2],A[0],A[1],A[2]),G=gcd(C[1],A[1]),nc=A[1]/G,na=C[1]/G;
+    $('#iof').innerHTML=fh(f);$('#ior').textContent=nc+' : '+na;
+    $('#iosum').textContent=nc+'×(+'+C[1]+') + '+na+'×(−'+A[1]+') = '+(nc*C[1]-na*A[1]);
+    $('#iocross').innerHTML='ไขว้เลขประจุ: ประจุของไอออนบวก ('+C[1]+') กลายเป็นจำนวนไอออนลบ และประจุของไอออนลบ ('+A[1]+') กลายเป็นจำนวนไอออนบวก ได้ '+A[1]+' : '+C[1]+(G>1?' แล้วทำเป็นอัตราส่วนอย่างต่ำโดยหารด้วย '+G+' ได้ '+nc+' : '+na:' (เป็นอัตราส่วนอย่างต่ำอยู่แล้ว)')+(((C[2]&&nc>1)||(A[2]&&na>1))?' · กลุ่มอะตอมที่มีจำนวนมากกว่า 1 ใส่วงเล็บก่อนเลขห้อย':'');
+    let s='',n=nc+na,w=Math.min(300,n*52),x0=(300-w)/2+26;const step=n>1?(w-52)/(n-1):0;
+    for(let i=0;i<n;i++){const cat=i<nc,cx=n>1?x0+i*step:150,c=cat?'#c2410c':'#1d4ed8';s+=`<circle cx="${cx.toFixed(1)}" cy="40" r="24" fill="${c}"/><text x="${cx.toFixed(1)}" y="40" text-anchor="middle" dy=".35em" font-size="13" font-weight="700" fill="#fff">${cat?ionU(C[0],C[1],'+'):ionU(A[0],A[1],'−')}</text>`;}
+    $('#ioshow').innerHTML=svgWrap(300,80,'แสดงไอออนบวก '+nc+' ตัวและไอออนลบ '+na+' ตัวที่รวมกันเป็น '+f+' ผลรวมประจุเป็นศูนย์',s);
+    tried.add(C[0]+'|'+A[0]);$('#iocnt').textContent='ลองมาแล้ว '+tried.size+' คู่ (ครบ 3 คู่นับเป็นการทำกิจกรรมนี้)';if(tried.size>=3)setRun('2.2');}
+  sc.onchange=sa.onchange=combine;combine();
+  /* กิจกรรม C */
+  const hs=$('#hsel'),hT=$('#hT'),host=$('#ifig');
+  const IC=6,IR=4,Rr=rng(23),IP=[];for(let r=0;r<IR;r++)for(let c=0;c<IC;c++)IP.push({lx:44+c*46,ly:40+r*40,gx:20+Rr()*260,gy:20+Rr()*(160-0),ph:Rr()*6.28,p2:Rr()*6.28,cat:(r+c)%2===0});
+  let gcur=0,raf=null,last=0,tprev=null;
+  function infoI(){const r=T25[+hs.value],T=+hT.value,s=stateOf(T,r[2],r[3]);$('#hTv').textContent=T;
+    $('#itxt').className='res';$('#itxt').innerHTML=r[0]+' ที่ '+T+' °C เป็น'+stChip(s)+' (จุดหลอมเหลว '+r[2]+' °C · จุดเดือด '+r[3]+' °C) '+(s==='solid'?'ไอออนอยู่ในผลึก ไอออนแต่ละตัวถูกพันธะไอออนิกตรึงไว้ จึงสั่นอยู่กับที่':(s==='liquid'?'พันธะไอออนิกบางส่วนถูกทำลาย ไอออนเคลื่อนที่ได้มากขึ้น':'ความร้อนมากพอจะทำลายพันธะไอออนิก ไอออนแยกห่างกันเป็นแก๊ส'));return s;}
+  function frameI(ts){const s=infoI(),t=ts/1000,tg=s==='gas'?1:0;gcur+=(tg-gcur)*(REDUCE?1:0.07);
+    const amp=s==='solid'?1.6:(s==='liquid'?6.5:3);let sv='<rect x="6" y="6" width="288" height="188" rx="12" fill="#fffaf5" stroke="#d8b9a4"/>';
+    IP.forEach(p=>{const jx=amp*Math.sin(t*2.6+p.ph),jy=amp*Math.cos(t*2.2+p.p2),lx=p.lx+(s==='liquid'?4*Math.sin(t*.7+p.p2):0),ly=p.ly+(s==='liquid'?4*Math.cos(t*.6+p.ph):0);
+      const x=lx+(p.gx-lx)*gcur+jx+gcur*10*Math.sin(t*.5+p.ph),y=ly+(p.gy-ly)*gcur+jy;
+      sv+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="12" fill="${p.cat?'#c2410c':'#1d4ed8'}"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dy=".35em" font-size="14" font-weight="700" fill="#fff">${p.cat?'+':'−'}</text>`;});
+    host.innerHTML=svgWrap(300,200,'แบบจำลองไอออนบวกและไอออนลบ 24 ตัว สถานะ'+STX[s]+' ไอออนบวกสีส้มและไอออนลบสีน้ำเงินสลับกันในผลึกเมื่อเป็นของแข็ง',sv);}
+  function stopI(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+  function loopI(ts){if(!host.isConnected){stopI();return;}if(ts-last>33){last=ts;frameI(ts);}raf=requestAnimationFrame(loopI);}
+  CLEAN.push(stopI);
+  const upd=()=>{if(REDUCE)frameI(0);};hs.onchange=upd;hT.oninput=upd;
+  if(REDUCE)frameI(0);else raf=requestAnimationFrame(loopI);
+  /* แผนภาพแท่งจุดเดือด */
+  const rowsBar=[].concat(T22.map(r=>[r[0],r[3],1]),T25.map(r=>[r[0],r[3],2]));const lo=-260,hi=3600;
+  $('#bars').innerHTML=rowsBar.map(r=>`<div class="sbar"><span>${fh(r[0].replace(/[₀-₉]/g,c=>String(c.charCodeAt(0)-8320)))}</span><span class="tr${r[2]===2?' i2':''}"><i style="width:${Math.max(1.5,(r[1]-lo)/(hi-lo)*100).toFixed(1)}%"></i></span><span>${r[1]}</span></div>`).join('');
+  /* ฟอร์มสืบค้น */
+  const st=()=>{let n=0;['cv','io'].forEach(k=>{if(dget('2.2',k+'_n').trim().length>=2&&dget('2.2',k+'_u').trim().length>=5)n++;});const r=$('#st22');r.className='res '+(n>=2?'ok':'');r.textContent='กรอกครบ '+n+' / 2 ตัวอย่าง (ชื่อสารและวิธีใช้ประโยชน์) ฟอร์มนี้ไม่เป็นเงื่อนไขของเครื่องหมายเสร็จ';};
+  wireDraft(root,'2.2',st);st();
+  const RS=[].concat.apply([],[['cv','สารโคเวเลนต์'],['io','สารประกอบไอออนิก']].map(f=>[[f[0]+'_n',f[1]+': ชื่อสารและสูตร'],[f[0]+'_u',f[1]+': ประโยชน์'],[f[0]+'_h',f[1]+': อันตราย'],[f[0]+'_s',f[1]+': แหล่งข้อมูล']]));
+  wireExp('p22',()=>textOf('2.2',RS,'ผลสืบค้นแท็บ 2.2'),'activity-2-2.txt');
+  wireQuiz('2.2',true);
+}
+
+/* ======================= แท็บ 2.3 ======================= */
+const SOLG=[['สารประกอบไอออนิก (ละลายแบบแตกตัว)',s=>s.t==='ion'],['สารโคเวเลนต์ที่ละลายแล้วแตกตัว (สมบัติกรด–เบส)',s=>s.t==='cov'&&s.diss],['สารโคเวเลนต์ที่ละลายแบบไม่แตกตัว',s=>s.t==='cov'&&!s.diss]];
+const RATIO={nacl:[1,1],na2so4:[2,1],mgcl2:[1,2],mgso4:[1,1],naoh:[1,1],hcl:[1,1],h2so4:[1,1],nh3:[1,1]};
+function act23(){
+  return`<h2>2.3 การละลายของสารในน้ำ</h2><p class="sub">คู่มือครู หน้า 52–55 · หัวข้อนี้ในหนังสือไม่มีการทดลอง มีรูป 2.10–2.11 ตาราง 2.6 และกิจกรรมเสนอแนะ (หน้า 54) ชุดทดสอบด้านล่างเป็นแบบจำลองแนวคิดที่ผู้จัดทำหน้าสร้าง</p>
+  <div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ระบุว่าสารเกิดการละลายน้ำแบบแตกตัวหรือไม่แตกตัวจากสูตรเคมีของสาร และสารละลายที่ได้เป็นสารละลายอิเล็กโทรไลต์หรือนอนอิเล็กโทรไลต์</p></div>
+  <div class="lab"><h3>ชุดทดสอบการนำไฟฟ้าเสมือน</h3>
+  <p class="small">เลือกสาร (สารทั้งหมดเป็นตัวอย่างที่ยกไว้ในหนังสือเรียน ตาราง 2.6 แบบฝึกหัด 2.4 หรือแบบฝึกหัดท้ายบท) แล้วเปิดไฟ ดูว่าหลอดสว่างหรือไม่ และดูอนุภาคในน้ำ หลอดไฟแสดงเพียงสว่างหรือไม่สว่าง (ภาพเชิงคุณภาพ) ความสว่างจริงขึ้นกับความเข้มข้น ซึ่งไม่ได้จำลอง · วงประรอบไอออน = โมเลกุลน้ำล้อมรอบ (รูป 2.10 ก)</p>
+  <div class="rowflex"><label>เลือกสาร<select id="sol">${SOLG.map(g=>`<optgroup label="${g[0]}">${SOL.filter(g[1]).map(s=>`<option value="${s.id}">${s.n} (${s.f})</option>`).join('')}</optgroup>`).join('')}</select></label></div>
+  <div class="btns" id="dryw" role="group" aria-label="สภาพของสาร"><button type="button" class="chip" data-w="water" aria-pressed="true">ละลายในน้ำ</button><button type="button" class="chip" data-w="dry" aria-pressed="false" id="drybtn">ผลึกแห้ง (ของแข็ง ไม่มีน้ำ)</button><button type="button" class="btn" id="sw" aria-pressed="false">เปิดไฟ</button></div>
+  <div class="fig" id="tfig"></div>
+  <div class="legend"><span><i class="dot" style="background:#c2410c"></i>ไอออนบวก</span><span><i class="dot" style="background:#1d4ed8"></i>ไอออนลบ</span><span><i class="dot" style="background:#e5e7eb;border:1px solid #64748b;border-radius:3px"></i>โมเลกุลที่เป็นกลาง</span></div>
+  <div class="stat"><div>ชนิดสาร<b id="s_t"></b></div><div>การละลายน้ำ<b id="s_d"></b></div><div>สารละลาย<b id="s_e"></b></div><div>หลอดไฟ<b id="s_l"></b></div></div>
+  <div class="tip" id="s_note" aria-live="polite"></div><div class="small" id="s_src"></div></div>
+  <div class="lab"><h3>ตารางบันทึกผลของฉัน</h3><p class="small">สารที่เปิดไฟทดสอบในสถานะละลายน้ำจะถูกบันทึกในตาราง (ทดสอบอย่างน้อย 4 สาร ให้มีทั้งสารที่หลอดสว่างและไม่สว่าง จึงนับเป็นการทำกิจกรรมนี้)</p>
+  <div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">สาร</th><th>ชนิด</th><th>การละลาย</th><th>หลอดไฟ</th><th>สารละลาย</th></tr></thead><tbody id="rec"></tbody></table></div><div class="res" id="rn" aria-live="polite"></div></div>
+  <div class="lab"><h3>แบบฟอร์มสืบค้น (กิจกรรมเสนอแนะ คู่มือครู หน้า 54)</h3>
+  <p class="small">สืบค้นและยกตัวอย่างสารละลายอิเล็กโทรไลต์ที่นำมาใช้ประโยชน์ในชีวิตประจำวัน ข้อความที่พิมพ์ถูกบันทึกในเครื่องและส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า (เฉพาะแท็บที่เปิดอยู่) ไม่มีคะแนนอัตโนมัติ</p>
+  ${fieldsHTML([['e_n','ชื่อสารละลายอิเล็กโทรไลต์และสูตรเคมีของตัวละลาย'],['e_u','ใช้ประโยชน์ในชีวิตประจำวันอย่างไร'],['e_i','เป็นอิเล็กโทรไลต์เพราะอะไร (มีไอออนอะไรอยู่ในสารละลาย)'],['e_s','แหล่งข้อมูล']])}${expHTML('p23')}
+  ${revealHTML([['ดูตัวอย่างผลสืบค้นของคู่มือ หน้า 54 (เปิดหลังเขียนของตัวเองแล้ว)','<b>แอมโมเนียมคลอไรด์:</b> มีสมบัติเป็นกรด ใช้ทำปุ๋ยเคมีเพราะเป็นแหล่งของธาตุไนโตรเจน และใช้เป็นสารละลายอิเล็กโทรไลต์ช่วยนำไฟฟ้าระหว่างขั้วไฟฟ้าในถ่านไฟฉาย · <b>กรดซัลฟิวริก (H₂SO₄):</b> ใช้เป็นสารละลายอิเล็กโทรไลต์ในแบตเตอรี่รถยนต์ และใช้ในการชุบโลหะด้วยไฟฟ้า']])}</div>
+  ${quizHTML('2.3','แบบทดสอบสั้น 2.3')}`;
+}
+function wire23(){
+  const root=$('#panel');let cur=SOL[0],dry=false,on=false;const rec={};
+  const host=$('#tfig'),sel=$('#sol');
+  let parts=[],raf=null,last=0,tprev=null;
+  const XMIN=96,XMAX=232;
+  function build(){const R=rng(31);parts=[];
+    if(dry){for(let r=0;r<3;r++)for(let c=0;c<6;c++)parts.push({x:112+c*20,y:0,fx:112+c*20,fy:150+r*17,k:(r+c)%2===0?'c':'a',ph:R()*6.28,vx:0});return;}
+    if(cur.diss){const rt=RATIO[cur.id]||[1,1],tot=12,nc=Math.max(2,Math.round(tot*rt[0]/(rt[0]+rt[1]))),na=tot-nc;
+      for(let i=0;i<tot;i++)parts.push({x:XMIN+R()*(XMAX-XMIN),y:122+R()*70,k:i<nc?'c':'a',ph:R()*6.28,vx:i<nc?-24:24});}
+    else for(let i=0;i<10;i++)parts.push({x:XMIN+R()*(XMAX-XMIN),y:122+R()*70,k:'m',ph:R()*6.28,vx:0});}
+  function lit(){return on&&!dry&&cur.diss;}
+  function info(){$('#s_t').textContent=cur.t==='ion'?'สารประกอบไอออนิก':'สารโคเวเลนต์';
+    $('#s_d').textContent=dry?'(ยังไม่ละลาย)':(cur.diss?'ละลายแบบแตกตัว':'ละลายแบบไม่แตกตัว');
+    $('#s_e').textContent=dry?'ไม่มีสารละลาย':(cur.diss?'อิเล็กโทรไลต์':'นอนอิเล็กโทรไลต์');
+    $('#s_l').innerHTML='<span class="lamp'+(lit()?' on':'')+'"></span>'+(on?(lit()?'สว่าง':'ไม่สว่าง'):'ปิดไฟอยู่');
+    let n;if(dry)n=on?'ผลึกแห้ง: ไอออนยึดกันแน่นจึงเคลื่อนที่ไม่ได้ หลอดไม่สว่าง (คู่มือครู หน้า 53) ลองเลือก &quot;ละลายในน้ำ&quot; เทียบ':'เลือก &quot;เปิดไฟ&quot; เพื่อทดสอบผลึกแห้ง';
+    else if(cur.diss)n=(cur.t==='ion'?'สารประกอบไอออนิกที่ละลายน้ำแตกตัวเป็นไอออน':'สารโคเวเลนต์นี้มีสมบัติกรด–เบส ละลายน้ำแล้วแตกตัวเป็นไอออน')+(cur.ions?' ('+cur.ions.join(' และ ')+')':'')+(on?' เมื่อต่อไฟ ไอออนบวกเคลื่อนไปหาขั้วลบ (ซ้าย) ไอออนลบเคลื่อนไปหาขั้วบวก (ขวา) กระแสไฟฟ้าผ่านได้ หลอดสว่าง':' เปิดไฟเพื่อดูไอออนเคลื่อนที่');
+    else n='ละลายแบบไม่แตกตัว: ยังเป็นโมเลกุลที่เป็นกลางกระจายอยู่ในน้ำ ไม่มีไอออนอิสระ จึงนำไฟฟ้าไม่ได้ หลอดไม่สว่างแม้เปิดไฟ';
+    $('#s_note').innerHTML=n;$('#s_src').textContent='ที่มาของตัวอย่าง: '+cur.src;
+    $('#drybtn').disabled=cur.t!=='ion';$('#sw').textContent=on?'ปิดไฟ':'เปิดไฟ';$('#sw').setAttribute('aria-pressed',String(on));}
+  function frame(ts){const t=ts/1000,dt=tprev==null?0:Math.min(.1,t-tprev);tprev=t;let s='';
+    /* ตัวภาชนะ */
+    if(dry)s+='<rect x="76" y="200" width="188" height="12" rx="5" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>';
+    else s+='<path d="M80 100 V204 Q80 212 88 212 H240 Q248 212 248 204 V100" fill="none" stroke="#64748b" stroke-width="3"/><rect x="83" y="112" width="162" height="98" fill="#dbeafe" opacity=".75"/>';
+    /* ขั้วไฟฟ้า */
+    const ey=dry?136:84,eh=dry?66:122;
+    s+=`<rect x="88" y="${ey}" width="7" height="${eh}" fill="#475569"/><rect x="226" y="${ey}" width="7" height="${eh}" fill="#475569"/><text x="91" y="${ey-8}" text-anchor="middle" font-size="16" font-weight="800" fill="#1d4ed8">−</text><text x="229" y="${ey-8}" text-anchor="middle" font-size="16" font-weight="800" fill="#c2410c">+</text>`;
+    /* วงจร */
+    const lc=lit()?'#ca8a04':'#64748b';
+    s+=`<path d="M91 ${ey} V34 H112 M142 34 H168 M222 34 H229 V${ey}" fill="none" stroke="#475569" stroke-width="2.5"/><rect x="168" y="22" width="54" height="24" rx="4" fill="#fff" stroke="#475569" stroke-width="2"/><text x="195" y="34" text-anchor="middle" dy=".35em" font-size="14" fill="#334155">แหล่งไฟ</text>`;
+    s+=`<circle cx="127" cy="34" r="15" fill="${lit()?'#facc15':'#e5e7eb'}" stroke="${lc}" stroke-width="2.5"/>`+(lit()?'<g stroke="#ca8a04" stroke-width="2.5" stroke-linecap="round"><line x1="127" y1="8" x2="127" y2="13"/><line x1="105" y1="14" x2="109" y2="18"/><line x1="149" y1="14" x2="145" y2="18"/><line x1="100" y1="34" x2="105" y2="34"/><line x1="149" y1="34" x2="154" y2="34"/></g>':'');
+    /* อนุภาค */
+    parts.forEach(p=>{let x=p.x,y=p.y;
+      if(dry){x=p.fx+1.3*Math.sin(t*3+p.ph);y=p.fy+1.3*Math.cos(t*2.6+p.ph);}
+      else{if(on&&p.vx&&!REDUCE){p.x+=p.vx*dt;if(p.x<XMIN)p.x=XMAX;if(p.x>XMAX)p.x=XMIN;}x=p.x+2.6*Math.sin(t*3+p.ph);y=p.y+2.6*Math.cos(t*2.4+p.ph);}
+      if(p.k==='m')s+=`<rect x="${(x-6).toFixed(1)}" y="${(y-6).toFixed(1)}" width="12" height="12" rx="3" fill="#e5e7eb" stroke="#64748b"/>`;
+      else{const c=p.k==='c'?'#c2410c':'#1d4ed8',r=dry?9:10;if(!dry)s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="14" fill="none" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="2 3"/>`;
+        s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${c}"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dy=".35em" font-size="16" font-weight="700" fill="#fff">${p.k==='c'?'+':'−'}</text>`;}});
+    host.innerHTML=svgWrap(320,230,'ชุดทดสอบการนำไฟฟ้าของ'+cur.n+(dry?' แบบผลึกแห้ง':' ที่ละลายในน้ำ')+' '+(lit()?'หลอดไฟสว่าง ไอออนเคลื่อนที่ไปหาขั้วไฟฟ้า':'หลอดไฟไม่สว่าง'),s);}
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+  function loop(ts){if(!host.isConnected){stop();return;}if(ts-last>33){last=ts;frame(ts);}raf=requestAnimationFrame(loop);}
+  CLEAN.push(stop);
+  function redraw(){build();info();if(REDUCE)frame(0);}
+  function record(){if(dry||!on)return;rec[cur.id]=1;const ks=Object.keys(rec);
+    $('#rec').innerHTML=ks.map(k=>{const s=SOL.find(x=>x.id===k);return`<tr><td class="l">${s.n} (${s.f})</td><td>${s.t==='ion'?'ไอออนิก':'โคเวเลนต์'}</td><td>${s.diss?'แตกตัว':'ไม่แตกตัว'}</td><td>${s.diss?'สว่าง':'ไม่สว่าง'}</td><td>${s.diss?'อิเล็กโทรไลต์':'นอนอิเล็กโทรไลต์'}</td></tr>`;}).join('');
+    const hasE=ks.some(k=>SOL.find(x=>x.id===k).diss),hasN=ks.some(k=>!SOL.find(x=>x.id===k).diss);
+    $('#rn').className='res '+(ks.length>=4&&hasE&&hasN?'ok':'');$('#rn').textContent='ทดสอบแล้ว '+ks.length+' / '+SOL.length+' สาร'+(ks.length>=4&&hasE&&hasN?' ✓ ครบเกณฑ์':' (ต้องอย่างน้อย 4 สาร และมีทั้งสองแบบ)');
+    if(ks.length>=4&&hasE&&hasN)setRun('2.3');}
+  sel.onchange=()=>{cur=SOL.find(s=>s.id===sel.value);if(cur.t!=='ion')dry=false;$$('#dryw [data-w]',root).forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.w==='dry')===dry)));redraw();record();};
+  $$('#dryw [data-w]',root).forEach(b=>b.onclick=()=>{if(b.disabled)return;dry=b.dataset.w==='dry';$$('#dryw [data-w]',root).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));redraw();record();});
+  $('#sw').onclick=()=>{on=!on;info();if(REDUCE)frame(0);record();};
+  build();info();if(REDUCE)frame(0);else raf=requestAnimationFrame(loop);
+  wireDraft(root,'2.3');
+  wireExp('p23',()=>textOf('2.3',[['e_n','สารละลายอิเล็กโทรไลต์ที่สืบค้น'],['e_u','ประโยชน์'],['e_i','ทำไมเป็นอิเล็กโทรไลต์'],['e_s','แหล่งข้อมูล']],'ผลสืบค้นแท็บ 2.3'),'activity-2-3.txt');
+  wireQuiz('2.3',true);
+}
+
+
+/* ======================= สรุปเนื้อหา ======================= */
+function mapSVG(){
+  const B=(x,y,w,h,t,c)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" fill="${c||'#e0f3f7'}" stroke="#0e7490"/><text x="${x+w/2}" y="${y+h/2}" text-anchor="middle" font-size="13" font-weight="650" fill="#0b3b45">${t.split('|').map((l,i,a)=>`<tspan x="${x+w/2}" dy="${i===0?(a.length>1?'-0.2em':'.35em'):'1.25em'}">${l}</tspan>`).join('')}</text>`;
+  const L=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#0e7490" stroke-width="2"/>`;
+  return svgWrap(560,330,'แผนผังแนวคิดบทที่ 2 น้ำ: น้ำเป็นสารโคเวเลนต์ มีพันธะโคเวเลนต์ สภาพขั้วและพันธะไฮโดรเจนกำหนดจุดเดือด สารประกอบไอออนิกมีพันธะไอออนิกและเขียนด้วยสูตรเอมพิริคัล การละลายในน้ำมีแบบแตกตัวได้อิเล็กโทรไลต์ และแบบไม่แตกตัวได้นอนอิเล็กโทรไลต์',
+   L(280,44,130,92)+L(280,44,430,92)+L(130,138,70,190)+L(130,138,200,190)+L(430,138,430,190)+L(280,44,280,252)+L(280,252,150,282)+L(280,252,410,282)+
+   B(220,10,120,34,'น้ำและสารละลาย','#c8e9f1')+B(50,92,160,46,'สารโคเวเลนต์|พันธะโคเวเลนต์ (เดี่ยว คู่ สาม)')+B(350,92,170,46,'สารประกอบไอออนิก|พันธะไอออนิก')+B(10,190,120,52,'สภาพขั้ว|(มีขั้ว ไม่มีขั้ว)')+B(140,190,130,52,'พันธะไฮโดรเจน|(O–H, N–H, F–H)')+B(350,190,160,52,'สูตรเอมพิริคัล|จุดหลอมเหลว-จุดเดือดสูง')+B(190,252,180,34,'การละลายของสารในน้ำ','#c8e9f1')+B(60,282,180,40,'แตกตัว → อิเล็กโทรไลต์')+B(320,282,200,40,'ไม่แตกตัว → นอนอิเล็กโทรไลต์'));
+}
+function barRows(rows,cls){return rows.map(r=>`<tr><td class="l">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');}
+function actSum(){
+  return`<h2>สรุปเนื้อหาบทที่ 2 น้ำ</h2><p class="sub">สรุปโดยผู้จัดทำหน้า จากคู่มือครู หน้า 31–59 และหนังสือเรียนบทที่ 2 (เวลาที่คู่มือเสนอ: หัวข้อ 2.1, 2.2 และ 2.3 หัวข้อละ 5 ชั่วโมง รวม 15 ชั่วโมง คู่มือครู หน้า 36)</p>
+  <div class="box"><h3>ภาพรวม</h3><div class="fig scr"><div style="min-width:560px">${mapSVG()}</div></div></div>
+  <div class="box"><h3>ใจความหลัก</h3><ul>
+  <li>พันธะโคเวเลนต์เกิดจากการใช้เวเลนซ์อิเล็กตรอนร่วมกันของอะตอมคู่หนึ่ง ส่วนใหญ่ระหว่างอะตอมของธาตุอโลหะ มี 3 ชนิดคือพันธะเดี่ยว พันธะคู่ และพันธะสาม (ใช้ร่วมกัน 1, 2 และ 3 คู่)</li>
+  <li>การเปลี่ยนสถานะของสารโคเวเลนต์ทำลายแรงยึดเหนี่ยวระหว่างโมเลกุล ไม่ได้ทำลายพันธะโคเวเลนต์ในโมเลกุล จุดหลอมเหลวและจุดเดือดจึงสัมพันธ์กับแรงยึดเหนี่ยวระหว่างโมเลกุล ซึ่งเป็นผลจากสภาพขั้ว</li>
+  <li>ถ้ามวลและรูปร่างโมเลกุลใกล้เคียงกัน สารมีขั้วมีจุดหลอมเหลวและจุดเดือดสูงกว่าสารไม่มีขั้ว</li>
+  <li>พันธะไฮโดรเจนเป็นแรงยึดเหนี่ยวระหว่างโมเลกุลของสารมีขั้วที่มีพันธะ O–H, N–H หรือ F–H ทำให้จุดหลอมเหลวและจุดเดือดสูงกว่าสารมีขั้วทั่วไปที่โมเลกุลขนาดใกล้เคียงกัน</li>
+  <li>สารประกอบไอออนิกประกอบด้วยไอออนบวกกับไอออนลบที่ยึดกันด้วยพันธะไอออนิก เรียงสลับกันต่อเนื่องใน 3 มิติ ไม่เป็นโมเลกุล เขียนด้วยสูตรเอมพิริคัลซึ่งเป็นอัตราส่วนอย่างต่ำที่ผลรวมประจุเป็นศูนย์</li>
+  <li>จุดหลอมเหลวของสารประกอบไอออนิกสูงกว่าสารโคเวเลนต์มาก เพราะต้องทำลายพันธะไอออนิกซึ่งแข็งแรงกว่าแรงยึดเหนี่ยวระหว่างโมเลกุล</li>
+  <li>การละลายน้ำมี 2 แบบ แบบแตกตัว (สารประกอบไอออนิกที่ละลายน้ำได้ หรือสารโคเวเลนต์ที่มีสมบัติกรด–เบสที่แตกตัว) ได้สารละลายอิเล็กโทรไลต์ที่นำไฟฟ้า และแบบไม่แตกตัว (สารโคเวเลนต์โมเลกุลเล็กหรือเกิดพันธะไฮโดรเจนกับน้ำได้) ได้สารละลายนอนอิเล็กโทรไลต์ที่ไม่นำไฟฟ้า</li></ul></div>
+  <div class="box"><h3>ตาราง 2.2 และ 2.5 จากหนังสือเรียน (ที่ 1 บรรยากาศ)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">สารโคเวเลนต์ (ตาราง 2.2)</th><th>จุดหลอมเหลว (°C)</th><th>จุดเดือด (°C)</th></tr></thead><tbody>${barRows(T22.map(r=>[r[0]+' '+r[1],r[2],r[3]]))}</tbody></table></div>
+  <div class="tw" style="margin-top:8px"><table class="tbl-sm wide"><thead><tr><th class="l">สารประกอบไอออนิก (ตาราง 2.5)</th><th>จุดหลอมเหลว (°C)</th><th>จุดเดือด (°C)</th></tr></thead><tbody>${barRows(T25.map(r=>[r[0]+' '+r[1],r[2],r[3]]))}</tbody></table></div><p class="small">ตรวจกับภาพหน้าหนังสือเรียนแล้ว (ตาราง 2.2 หน้า 36 · ตาราง 2.5 หน้า 45)</p></div>
+  <div class="box"><h3>ไอออนที่พบในชีวิตประจำวัน (ตาราง 2.3)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ไอออนบวก</th><th class="l">ไอออนลบ</th></tr></thead><tbody><tr><td class="l">${CATS.map(i=>ionH(i[0],i[1],'+')+' '+NAMES_C[i[0]]).join('<br>')}</td><td class="l">${ANIS.slice(0,7).map(i=>ionH(i[0],i[1],'−')+' '+NAMES_A[i[0]]).join('<br>')}</td></tr></tbody></table></div><p class="small">ไอออนอะซีเตต C₂H₃O₂⁻ พบในแบบฝึกหัด 2.3 ไม่ได้อยู่ในตาราง 2.3 · รายการในตาราง 2.3 ตรวจกับภาพหน้าหนังสือเรียนแล้ว</p></div>
+  <div class="box"><h3>ความเข้าใจคลาดเคลื่อนที่คู่มือเตือน (เรียบเรียงใหม่)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ที่มักเข้าใจผิด</th><th class="l">ที่ถูกต้อง</th><th>หน้าคู่มือ</th></tr></thead><tbody>
+  <tr><td class="l">จุดเดือดและจุดหลอมเหลวขึ้นกับสภาพขั้วอย่างเดียว</td><td class="l">ขึ้นกับแรงยึดเหนี่ยวระหว่างโมเลกุล สภาพขั้วเป็นปัจจัยหนึ่ง</td><td>42</td></tr>
+  <tr><td class="l">พันธะไฮโดรเจนคือพันธะระหว่าง O กับ H ในโมเลกุลเดียวกัน</td><td class="l">เป็นแรงยึดเหนี่ยวระหว่างโมเลกุล</td><td>42</td></tr>
+  <tr><td class="l">สารประกอบไอออนิกเป็นโมเลกุล</td><td class="l">ไอออนเรียงต่อเนื่องใน 3 มิติ ไม่อยู่เป็นโมเลกุล</td><td>46</td></tr>
+  <tr><td class="l">การเปลี่ยนสถานะของสารทุกชนิดทำลายพันธะเคมี</td><td class="l">สารประกอบไอออนิกทำลายพันธะไอออนิก ส่วนสารโคเวเลนต์ทำลายแรงยึดเหนี่ยวระหว่างโมเลกุล ไม่ทำลายพันธะโคเวเลนต์</td><td>46</td></tr>
+  <tr><td class="l">ใช้คำ &quot;ละลาย&quot; สลับกับ &quot;หลอมเหลว&quot;</td><td class="l">เกลือผสมน้ำเกิดการละลาย น้ำแข็งเกิดการหลอมเหลว</td><td>52</td></tr>
+  <tr><td class="l">สารประกอบไอออนิกละลายแล้วอยู่เป็นอะตอมหรือสูตรเอมพิริคัล</td><td class="l">อยู่ในรูปไอออน เช่น NaCl ได้ Na⁺ และ Cl⁻</td><td>52</td></tr></tbody></table></div></div>
+  <div class="box"><h3>หน่วยความเข้มข้นของสารละลายที่หนังสือเรียนแนะนำ (ศัพท์น่ารู้)</h3><ul><li><b>ร้อยละโดยมวล (%w/w)</b> มวลตัวละลายต่อสารละลาย 100 ส่วน หน่วยมวลเดียวกัน</li><li><b>ร้อยละโดยปริมาตร (%v/v)</b> ปริมาตรตัวละลายต่อปริมาตรสารละลาย 100 ส่วน</li><li><b>ร้อยละโดยมวลต่อปริมาตร (%w/v)</b> มวลตัวละลาย (กรัม) ต่อสารละลาย 100 มิลลิลิตร</li><li><b>ส่วนในล้านส่วน (ppm)</b> ปริมาณตัวละลายต่อสารละลายหนึ่งล้านส่วนในหน่วยเดียวกัน</li></ul></div>
+  <div class="box"><h3>คำศัพท์สำคัญ (เรียบเรียงใหม่)</h3><ul><li><b>พันธะเคมี</b> แรงยึดเหนี่ยวระหว่างอะตอมในสาร · <b>พันธะโคเวเลนต์</b> เกิดจากการใช้เวเลนซ์อิเล็กตรอนร่วมกัน</li><li><b>สูตรโมเลกุล</b> ชนิดและจำนวนอะตอมใน 1 โมเลกุล · <b>สูตรโครงสร้าง</b> แสดงพันธะระหว่างอะตอม · <b>สูตรเอมพิริคัล</b> ชนิดและอัตราส่วนอย่างต่ำของธาตุ นิยมใช้กับสารประกอบไอออนิก</li><li><b>สารมีขั้ว / ไม่มีขั้ว</b> ดูจากสภาพขั้วของโมเลกุล · <b>พันธะไฮโดรเจน</b> แรงยึดเหนี่ยวระหว่างโมเลกุลของสารมีขั้วที่มี O–H, N–H หรือ F–H</li><li><b>พันธะไอออนิก</b> พันธะระหว่างไอออนบวกกับไอออนลบ · <b>สารประกอบไอออนิก</b> สารที่ประกอบด้วยไอออนบวกและลบ</li><li><b>การละลายแบบแตกตัว / ไม่แตกตัว</b> ตัวละลายแยกเป็นไอออน / คงเป็นโมเลกุลในน้ำ · <b>อิเล็กโทรไลต์ / นอนอิเล็กโทรไลต์</b> สารละลายที่นำไฟฟ้า / ไม่นำไฟฟ้า</li></ul></div>`;
+}
+function wireSum(){}
+
+/* ======================= แบบฝึกหัด (ตามคู่มือครู) ======================= */
+function exItems(){
+  const P=statsOf(mPropio()),N=statsOf(mNaph()),Pa=statsOf(mParacetamol());
+  const n=(q,a,w)=>({k:'num',q:q,a:a,w:w});
+  return{
+   x21n:[
+    n('ข้อ 1 · C₆H₁₄ มี C กี่อะตอม',6,'เลขห้อยท้าย C คือ 6'),n('ข้อ 1 · C₆H₁₄ มี H กี่อะตอม',14,'เลขห้อยท้าย H คือ 14'),
+    n('ข้อ 1 · N₂O₅ มี N กี่อะตอม',2,'เลขห้อยท้าย N คือ 2'),n('ข้อ 1 · N₂O₅ มี O กี่อะตอม',5,'เลขห้อยท้าย O คือ 5'),
+    n('ข้อ 1 · SO₃ มี S กี่อะตอม',1,'S ไม่มีเลขห้อย แปลว่า 1 อะตอม'),n('ข้อ 1 · SO₃ มี O กี่อะตอม',3,'เลขห้อยท้าย O คือ 3'),
+    n('ข้อ 1 · C₁₂H₂₂O₁₁ มี C กี่อะตอม',12,'เลขห้อยท้าย C คือ 12'),n('ข้อ 1 · C₁₂H₂₂O₁₁ มี H กี่อะตอม',22,'เลขห้อยท้าย H คือ 22'),n('ข้อ 1 · C₁₂H₂₂O₁₁ มี O กี่อะตอม',11,'เลขห้อยท้าย O คือ 11'),
+    n('ข้อ 2 · แนฟทาลีน 1 โมเลกุลมีคาร์บอน (C) กี่อะตอม',N.atoms.C,'นับจากสูตรโครงสร้าง (คู่มือครู หน้า 40: C 10 อะตอม)'),n('ข้อ 2 · แนฟทาลีน 1 โมเลกุลมีไฮโดรเจน (H) กี่อะตอม',N.atoms.H,'นับ H ในสูตรโครงสร้าง (คู่มือครู หน้า 40: H 8 อะตอม)'),
+    n('ข้อ 3 · พาราเซตามอล C<sub>w</sub>H<sub>x</sub>O<sub>y</sub>N<sub>z</sub> ค่า w (จำนวน C)',Pa.atoms.C,'คู่มือครู หน้า 41: w = 8 (ในภาพ ป้าย CH และ CH₃ นับ H ซ่อนอยู่)'),n('ข้อ 3 · ค่า x (จำนวน H)',Pa.atoms.H,'x = 9'),n('ข้อ 3 · ค่า y (จำนวน O)',Pa.atoms.O,'y = 2'),n('ข้อ 3 · ค่า z (จำนวน N)',Pa.atoms.N,'z = 1')],
+   x23a:[['Na','CO3','Na2CO3'],['K','PO4','K3PO4'],['Mg','SO4','MgSO4'],['Ca','Cl','CaCl2'],['Al','O','Al2O3'],['NH4','NO3','NH4NO3'],['Li','C2H3O2','LiC2H3O2']].map(r=>{const C=CATS.find(x=>x[0]===r[0]),A=ANIS.find(x=>x[0]===r[1]);return{k:'txt',q:ionH(C[0],C[1],'+')+' กับ '+ionH(A[0],A[1],'−')+' ได้สูตรเอมพิริคัลใด',a:r[2],w:'อัตราส่วนอย่างต่ำที่ผลรวมประจุเป็นศูนย์ (คู่มือครู หน้า 51)'};}),
+   x23b:[['Al2(SO4)3','Al','SO4'],['CaO','Ca','O'],['KCl','K','Cl'],['(NH4)2CO3','NH4','CO3'],['Na3PO4','Na','PO4'],['Li2SO4','Li','SO4'],['Mg(C2H3O2)2','Mg','C2H3O2']].map(r=>({k:'ion',q:'ไอออนที่เป็นองค์ประกอบของ '+fh(r[0]),a:[r[1],r[2]],w:'แยกไอออนบวกกับไอออนลบ (คู่มือครู หน้า 51) เลขห้อยบอกจำนวนไอออน ไม่ใช่ประจุ'})),
+   xen:[n('ข้อ 3.1 · พันธะระหว่าง C กับ N เป็นพันธะสาม ใช้อิเล็กตรอนร่วมกันกี่คู่',3,'พันธะสามใช้ร่วมกัน 3 คู่ (คู่มือครู หน้า 57)'),
+    n('ข้อ 3.2 · อิเล็กตรอนทั้งหมดที่ทุกอะตอมใช้ร่วมกันเพื่อสร้างพันธะโคเวเลนต์ มีกี่อิเล็กตรอน',P.electrons,'ในภาพมีพันธะเดี่ยว '+P.single+' พันธะ และพันธะสาม '+P.triple+' พันธะ รวม '+P.pairs+' คู่ เท่ากับ '+P.electrons+' อิเล็กตรอน (คู่มือครู หน้า 57: 20)'),
+    n('ข้อ 3.3 · เส้นพันธะที่ล้อมรอบอะตอม C (ทุกอะตอม C ในโมเลกุลนี้เท่ากัน) กี่เส้น',4,'คาร์บอนแต่ละอะตอมมีเส้นพันธะรวม 4 เส้น (คู่มือครู หน้า 57)'),
+    n('ข้อ 3.3 · เส้นพันธะที่ล้อมรอบอะตอม H กี่เส้น',1,'H มี 1 เส้น'),n('ข้อ 3.3 · เส้นพันธะที่ล้อมรอบอะตอม N กี่เส้น',3,'N มีพันธะสาม จึงมี 3 เส้น'),
+    {k:'txt',q:'ข้อ 6 · สูตรเอมพิริคัลของดินประสิว (โพแทสเซียมไนเทรต)',a:'KNO3',w:'K⁺ กับ NO₃⁻ อัตราส่วน 1:1 (คู่มือครู หน้า 58)'},
+    {k:'txt',q:'ข้อ 6 · สูตรเอมพิริคัลของสารประกอบไนเทรตที่มีโซเดียมไอออน',a:'NaNO3',w:'Na⁺ กับ NO₃⁻ อัตราส่วน 1:1 (คู่มือครู หน้า 58)'}]};
+}
+let EXI=null;
+function actEx(){
+  EXI=exItems();
+  return`<h2>แบบฝึกหัดตามคู่มือครู</h2><p class="sub">คู่มือครู หน้า 37–59 · ข้อที่มีเฉลยตรวจอัตโนมัติและส่งคะแนน (ไม่มีข้อเขียนอิสระในแท็บนี้)</p>
+  <div class="notice"><b>หมายเหตุ:</b> (1) เครื่องหมายถูก/ผิดของ &quot;ตรวจสอบความรู้ก่อนเรียน&quot; ในไฟล์ข้อความของคู่มือหายไป แต่ตรวจกับภาพหน้า PDF ของคู่มือ (หน้า 37) แล้ว ข้อ 3, 5 และ 8 เป็นข้อที่ผิด (2) รูปสูตรโครงสร้างในแบบฝึกหัดผู้จัดทำหน้าวาดใหม่ทั้งหมด ตำแหน่งอะตอมต่างจากในหนังสือ (3) <b>ข้อที่ไม่ได้นำมาทำเป็นข้อตรวจอัตโนมัติ:</b> แบบฝึกหัด 2.1 ข้อ 5 (วงกลมพันธะคู่ในโครงสร้างที่ซับซ้อน) และแบบฝึกหัดท้ายบทข้อ 1–2 (เขียนสูตรเส้นจากสูตรจุด และเติมเส้นพันธะ) เพราะต้องวาดหรือเติมเส้นลงในโครงสร้าง ซึ่งหน้านี้ยังไม่มีเครื่องมือวาดให้ (4) ข้อ 1 ของแบบฝึกหัด 2.2 ข้อ 8 ของแบบฝึกหัดท้ายบท และข้อที่คู่มือให้เติมตารางหรือเสนอวิธี ผู้จัดทำหน้าแปลงเป็นข้อเลือกตอบหรือช่องพิมพ์ตามเฉลยของคู่มือ (ข้อ 8 คู่มือมี 2 วิธี แต่ข้อเลือกตอบมีตัวเลือกถูกเพียงข้อเดียว) (5) ช่องพิมพ์สูตรรับเลขห้อยแบบ Unicode หรือเลขธรรมดา เช่น NaNO3 หรือ NaNO₃</div>
+  <h3>ตรวจสอบความรู้ก่อนเรียน (คู่มือครู หน้า 37)</h3>${quizHTML('xp','ตรวจสอบความรู้ก่อนเรียน: ข้อความต่อไปนี้ถูกต้องหรือไม่')}
+  <h3>แบบฝึกหัด 2.1 (หน้า 40–41)</h3>
+  <div class="box"><h3>ภาพประกอบข้อ 2–3</h3>${figs([['ข้อ 2 แนฟทาลีน',mNaph()],['ข้อ 3 พาราเซตามอล (ป้าย CH CH₃ HO ซ่อน H ไว้ 1, 3 และ 1 อะตอมตามลำดับ)',mParacetamol()]])}</div>
+  ${ansHTML('x21n','แบบฝึกหัด 2.1 ข้อ 1–3 นับอะตอม (ใส่ตัวเลข)',EXI.x21n)}
+  <div class="box"><h3>ภาพประกอบข้อ 4</h3><div class="fig scr">${molSVG(mMandel(),{hl:{2:'a',6:'b',8:'d',10:'c'},label:'สูตรโครงสร้างสำหรับข้อ 4 พันธะ a เป็นพันธะระหว่างคาร์บอนในวงหกเหลี่ยม พันธะ b ระหว่างคาร์บอนกับไฮโดรเจน พันธะ c ระหว่างคาร์บอนกับไนโตรเจน พันธะ d ระหว่างคาร์บอนกับออกซิเจน'})}</div><p class="small">โครงสร้างวาดใหม่ตามตำแหน่งพันธะ a–d ของโจทย์ในหนังสือเรียน (รูปไม่ตรงกับหนังสือทุกจุด)</p></div>
+  ${quizHTML('x21b','แบบฝึกหัด 2.1 ข้อ 4 ชนิดของพันธะ')}
+  <h3>แบบฝึกหัด 2.2 (หน้า 45)</h3>${quizHTML('x22a','แบบฝึกหัด 2.2 ข้อ 1 สารมีขั้วหรือไม่มีขั้ว')}
+  <div class="box"><h3>ภาพประกอบข้อ 2 (สาร A–E)</h3>${figs([['สาร A',EXS.A],['สาร B',EXS.B],['สาร C',EXS.C],['สาร D',EXS.D],['สาร E',EXS.E]])}<p class="small">ป้าย CH₂ CH₃ CH NH ซ่อนอะตอม H ไว้ตามจำนวนในสูตร วงหกเหลี่ยมของสาร C และ E แต่ละมุมเป็นอะตอมที่มีป้ายกำกับ</p></div>
+  ${quizHTML('x22b','แบบฝึกหัด 2.2 ข้อ 2 พันธะไฮโดรเจน')}${quizHTML('x22c','แบบฝึกหัด 2.2 ข้อ 3')}
+  <h3>แบบฝึกหัด 2.3 (หน้า 51)</h3>${ansHTML('x23a','แบบฝึกหัด 2.3 ข้อ 1 เขียนสูตรเอมพิริคัล',EXI.x23a)}${ansHTML('x23b','แบบฝึกหัด 2.3 ข้อ 2 เขียนไอออนที่เป็นองค์ประกอบ (เลือกไอออนบวกและไอออนลบ)',EXI.x23b)}
+  <h3>แบบฝึกหัด 2.4 (หน้า 55)</h3>${quizHTML('x24','แบบฝึกหัด 2.4 ละลายน้ำแบบแตกตัวหรือไม่ และนำไฟฟ้าหรือไม่')}
+  <h3>แบบฝึกหัดท้ายบทที่ 2 (หน้า 56–59)</h3>
+  <div class="box"><h3>ภาพประกอบข้อ 3</h3><div class="fig scr">${molSVG(mPropio(),{label:'สูตรโครงสร้างของสารตั้งต้นในข้อ 3 โซ่คาร์บอนสามอะตอมต่อกับไนโตรเจนด้วยพันธะสาม'})}</div></div>
+  ${ansHTML('xen','แบบฝึกหัดท้ายบท ข้อ 3 และข้อ 6 (ตัวเลขและสูตร)',EXI.xen)}
+  <div class="box"><h3>ภาพประกอบข้อ 5</h3>${figs([['สาร A',EXQ5.A],['สาร B',EXQ5.B]])}</div>
+  ${quizHTML('xe','แบบฝึกหัดท้ายบท ข้อ 4, 5, 7, 8, 9, 10')}
+  <div class="box"><h3>ความคืบหน้า</h3><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">หัวข้อ</th><th>สถานะ</th></tr></thead><tbody id="progT"></tbody></table></div></div>`;
+}
+function wireEx(){
+  $('#progT').innerHTML=LABS.map(a=>`<tr><td class="l">${a} ${TITLES[a]}</td><td>${st.done[a]?'<span class="ok-t">✓ เสร็จแล้ว</span>':'ยังไม่เสร็จ'}</td></tr>`).join('');
+  ['xp','x21b','x22a','x22b','x22c','x24','xe'].forEach(a=>wireQuiz(a,false));
+  ['x21n','x23a','x23b','xen'].forEach(a=>wireAns(a,EXI[a]));
+}
+
+/* ======================= โครงหน้า ======================= */
+const BUILD={'2.1':[act21,wire21],'2.2':[act22,wire22],'2.3':[act23,wire23],'sum':[actSum,wireSum],'ex':[actEx,wireEx]};
+function paintTabs(refocus){
+  $('#tabs').innerHTML=ACTS.map((a,i)=>`<button class="tab" type="button" role="tab" id="tab-${qid(a)}" aria-controls="panel" tabindex="${i===cur?0:-1}" aria-selected="${i===cur}" data-i="${i}">${/^\d/.test(a)?a+' ':''}${TITLES[a]}${st.done[a]?'<span class="ck" aria-label="เสร็จแล้ว">✓</span>':''}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>{b.onclick=()=>select(+b.dataset.i,true);b.onkeydown=e=>{const n={ArrowRight:(cur+1)%ACTS.length,ArrowLeft:(cur+ACTS.length-1)%ACTS.length,Home:0,End:ACTS.length-1}[e.key];if(n!==undefined){e.preventDefault();select(n,true);}};});
+  if(refocus){const t=$('#tabs .tab[aria-selected=true]');if(t){t.focus({preventScroll:true});try{t.scrollIntoView({block:'nearest',inline:'nearest'});}catch(_){}}}
+}
+function paintProgress(){const n=LABS.filter(a=>st.done[a]).length,m=LABS.length;$('#progText').textContent='ความคืบหน้า '+n+' / '+m+' หัวข้อ';$('#progBar').style.width=(n/m*100)+'%';$('#progTrack').setAttribute('aria-valuenow',n);}
+function select(i,refocus){
+  CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
+  cur=i;const a=ACTS[i];
+  try{window.LabScore&&window.LabScore.use('วิทยาศาสตร์กายภาพ ม.5 บทที่ 2','วิทยาศาสตร์กายภาพ ม.5 บทที่ 2 น้ำ (หัวข้อ 2.1–2.3)');}catch(_){}
+  $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+qid(a)+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มแท็บนี้ใหม่ (ล้างเครื่องหมายเสร็จและแบบทดสอบบนหน้านี้ ข้อความที่เขียนยังอยู่ และคะแนนที่แผงส่งผลท้ายหน้าบันทึกไว้แล้วจะไม่ถูกล้าง)</button></div></section>';
+  BUILD[a][1]();try{window.LabScore&&window.LabScore.use('วิทยาศาสตร์กายภาพ ม.5 บทที่ 2','วิทยาศาสตร์กายภาพ ม.5 บทที่ 2 น้ำ (หัวข้อ 2.1–2.3)');}catch(_){}{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});d.focus({preventScroll:true});};}
+  $('#reset').onclick=()=>{delete st.done[a];delete st.q[a];delete st.run[a];save();paintTabs();paintProgress();select(cur);};
+  paintTabs(refocus);
+  try{history.replaceState(null,'','#act-'+a);}catch(_){}
+}
+paintProgress();
+const hh=(location.hash.match(/act-(2\.\d|sum|ex)/)||[])[1];
+select(hh&&ACTS.indexOf(hh)>=0?ACTS.indexOf(hh):0);
+</script>
+<!-- wm:foot:start -->
+<footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
+<!-- wm:foot:end -->
+</body>
+</html>
+
