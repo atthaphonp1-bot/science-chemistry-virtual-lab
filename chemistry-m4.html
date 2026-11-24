@@ -163,6 +163,33 @@
 </script>
 <!-- ls:end -->
 <style>
+/* reading:start */
+.rd{margin:0 0 26px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px}
+.rd-tag{display:inline-block;background:#edf4ff;color:#1769e0;border:1px solid #cfe0fb;border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650;white-space:nowrap}
+.rd-lead{flex:1 1 260px;min-width:0;margin:0;color:#69758a}
+.rd-sec{border:1px solid #e6ebf3;border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0;overflow-wrap:anywhere}
+.rd-sec h3{margin:.1rem 0 .15rem;font-size:1.12rem;line-height:1.4}
+.rd-pg{font-size:.82rem;color:#69758a;margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.25rem 0}
+.rd-tbl{overflow-x:auto;margin:.7rem 0;-webkit-overflow-scrolling:touch}
+.rd-tbl table{border-collapse:collapse;width:100%;min-width:420px;font-size:.9rem}
+.rd-tbl th,.rd-tbl td{border:1px solid #e6ebf3;padding:6px 9px;text-align:left;vertical-align:top}
+.rd-tbl th{background:#f5f8fd;font-weight:650}
+.rd-eq{margin:.6rem 0;padding:10px 14px;border-left:3px solid #4a91f3;border-radius:0 12px 12px 0;background:#f3f7ff;color:#41546f;overflow-x:auto;line-height:1.9}
+.rd-note{font-size:.88rem;color:#69758a}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed #cfe0fb;border-radius:14px;padding:8px 14px;background:#f5f8fd}
+.rd-q summary{cursor:pointer;font-weight:600;color:#1769e0}
+.rd-q p{margin:.4rem 0 .2rem}
+.rd-nuc{display:inline-flex;align-items:center;white-space:nowrap}
+.rd-nuc i{display:inline-flex;flex-direction:column;font-style:normal;font-size:.68em;line-height:1.05;margin-right:1px}
+.rd-nuc b{font-weight:600}
+.rd-skip{margin:6px 0 0}
+.rd-div{display:flex;align-items:center;gap:12px;margin:20px 0 6px;color:#1769e0;font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:#cfe0fb}
+/* reading:end */
+</style>
+<style>
 :root{color-scheme:light;--ink:#172033;--muted:#69758a;--blue:#1769e0;--line:#e6ebf3;--soft:#f5f8fd;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;--shadow:0 18px 48px #28416e12,0 3px 10px #28416e08}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}.top{height:78px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:720;letter-spacing:-.025em;display:flex;gap:10px;align-items:center}.mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#4b96ff,#1558d5);color:white;display:grid;place-items:center;box-shadow:0 7px 17px #286bd733}.top a{color:var(--blue);text-decoration:none;font-weight:650}.hero{position:relative;overflow:hidden;padding:38px clamp(23px,5vw,58px);border:1px solid #edf1f8;border-radius:30px;background:linear-gradient(130deg,#fff,#f8faff);box-shadow:0 28px 65px #31508012}.eyebrow{font-size:.75rem;color:var(--blue);font-weight:760;letter-spacing:.14em}.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.13;letter-spacing:-.045em;margin:9px 0}.hero p{margin:0;color:var(--muted);max-width:720px}.progress{margin-top:22px;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.85rem}.track{height:7px;width:180px;border-radius:99px;background:#e8eef8;overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#62a3ff,#1769e0);border-radius:inherit;transition:width .25s}.chapter-area{margin:30px 0 20px}.chapter-list{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.chapter{min-height:95px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 9px 24px #28416e09,inset 0 1px #fff;color:var(--ink);transition:.2s}.chapter:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.chapter[aria-current=true]{border-color:#a9c9fb;background:linear-gradient(145deg,#f4f8ff,#fff);box-shadow:0 9px 24px #286bd71a,inset 0 1px #fff}.chapter small{display:block;color:#748199;font-size:.72rem;font-weight:700}.chapter strong{font-size:.88rem;line-height:1.35;display:block;margin-top:5px}.panel{border:1px solid #e8edf5;border-radius:25px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:clamp(22px,4vw,36px);background:linear-gradient(120deg,#fff,#fbfcff);border-bottom:1px solid #edf0f5}.panel-head h2{font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.2;letter-spacing:-.035em;margin:5px 0}.panel-head p{margin:0;color:var(--muted)}.tabs{display:flex;gap:8px;padding:13px clamp(16px,3vw,32px);border-bottom:1px solid var(--line);background:#fcfdff;overflow:auto}.tab{border:0;border-radius:11px;padding:9px 15px;background:transparent;color:var(--muted);font-size:.9rem;font-weight:680;white-space:nowrap}.tab[aria-selected=true]{background:#edf4ff;color:var(--blue);box-shadow:inset 0 0 0 1px #dfebff}.content{padding:clamp(20px,4vw,36px)}.section-title{font-size:1.15rem;letter-spacing:-.02em;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.learn-card{padding:19px;border:1px solid #e8edf4;border-radius:18px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 8px 24px #28416e09,inset 0 1px #fff}.learn-card h3{font-size:1rem;margin:0 0 7px}.learn-card p{margin:0;color:#58657b;font-size:.94rem}.callout{margin-top:16px;padding:15px 17px;border-left:3px solid #4a91f3;border-radius:0 12px 12px 0;background:#f3f7ff;color:#41546f}.lab-intro,.quiz-intro{color:var(--muted);margin:0 0 18px}.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:16px}.box{border:1px solid var(--line);border-radius:18px;padding:19px;background:linear-gradient(145deg,#fff,#fbfcff);box-shadow:0 8px 24px #28416e08}.box h3{font-size:1rem;margin:0 0 12px}.controls{display:grid;gap:13px}.field{display:grid;gap:5px}.field label{font-size:.85rem;color:#4f5e75;font-weight:650}.field input[type=range]{width:100%;accent-color:var(--blue)}.field select,.field input[type=number]{width:100%;padding:10px 11px;border:1px solid #dce4f0;border-radius:10px;background:white;color:var(--ink)}.value{color:var(--blue);font-weight:720}.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.btn{border:1px solid #dce5f2;border-radius:11px;padding:9px 14px;background:white;color:#34445c;font-size:.88rem;font-weight:670}.btn.primary{background:linear-gradient(145deg,#3284f1,#1760d0);border-color:#1760d0;color:white;box-shadow:0 6px 14px #1769e033}.btn:disabled{opacity:.48;cursor:not-allowed}.readout{min-height:120px;display:grid;align-content:center;justify-items:center;text-align:center;border:1px dashed #d7e2f1;border-radius:15px;background:radial-gradient(ellipse at 50% 0,#f1f6ff,#fff 76%);padding:15px}.readout b{font-size:1.15rem}.readout span{color:var(--muted);font-size:.88rem}.readout .big{font-size:2rem;color:var(--blue);font-weight:760;line-height:1.3}.table-wrap{overflow:auto;margin-top:16px}table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:400px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #edf0f5}th{color:#66758b;background:#f8faff;font-weight:700}.notice{font-size:.83rem;color:#6a768b;margin:13px 0 0}.quiz-item{border:1px solid var(--line);border-radius:16px;padding:17px;margin:12px 0;background:#fff}.quiz-item legend{font-weight:680;padding:0 4px}.option{display:flex;gap:9px;align-items:flex-start;margin:8px 0;color:#4c5a70;cursor:pointer}.option input{margin-top:6px;accent-color:var(--blue)}.feedback{margin-top:9px;font-size:.88rem;font-weight:650}.feedback.good{color:#19704b}.feedback.bad{color:#b54c3c}.result{padding:14px;border-radius:13px;background:#f3f7ff;color:#3c5271;margin-top:13px}.footer{color:var(--muted);font-size:.82rem;padding:22px 0 40px}.footer a{color:#4775b9}.empty{color:var(--muted)}[hidden]{display:none!important}
 .theory{margin-top:20px;padding:21px;border:1px solid #e5ecf7;border-radius:18px;background:linear-gradient(140deg,#f7faff,#fff)}.theory h3{margin:0 0 8px}.theory p{margin:8px 0;color:#4f5e75}.theory .example{padding:12px 14px;margin-top:12px;border-radius:12px;background:#fff;border:1px solid #e8edf5}.simulation{margin:0 0 18px;padding:13px;border:1px solid #e5ecf6;border-radius:18px;background:radial-gradient(ellipse at 50% 0,#edf4ff,#fff 73%);overflow:hidden}.simulation svg{display:block;width:100%;height:auto;max-height:245px}.simulation figcaption{text-align:center;color:#66758b;font-size:.82rem}.sim-label{font:600 13px var(--font);fill:#59677d}.sim-line{stroke:#71819b;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.sim-glass{fill:#f7fbff;stroke:#7b91ae;stroke-width:3}.sim-liquid{fill:#8fc2ff;opacity:.74}@media(max-width:850px){.chapter-list{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-grid{grid-template-columns:1fr}}@media(max-width:570px){.wrap{width:calc(100% - 24px)}.top{height:65px}.hero{border-radius:23px;padding:26px 22px}.chapter-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chapter{min-height:84px;padding:11px}.chapter strong{font-size:.82rem}.cards{grid-template-columns:1fr}.panel{border-radius:20px}.tabs{padding:10px 12px}.content{padding:18px}.box{padding:15px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -273,7 +300,329 @@ function labHydrate(){let mass=5.00,stage=0,loss=0;$('#labBody').innerHTML=`<div
 function labSolution(){let prepared=false;$('#labBody').innerHTML=`<div class="lab-grid"><div class="box"><h3>วางแผนเตรียม NaCl</h3><div class="controls"><div class="field"><label for="stock">ความเข้มข้น stock (M)</label><input id="stock" type="number" min="0.1" max="5" step="0.1" value="1.0"></div><div class="field"><label for="finalC">ความเข้มข้นเป้าหมาย (M)</label><input id="finalC" type="number" min="0.01" max="1" step="0.01" value="0.2"></div><div class="field"><label for="finalV">ปริมาตรสุดท้าย (mL)</label><input id="finalV" type="number" min="10" max="1000" step="10" value="100"></div></div><div class="btnrow"><button id="calcSolution" class="btn primary">คำนวณ V₁</button><button id="transfer" class="btn" disabled>ตวงและถ่าย stock</button><button id="fill" class="btn" disabled>เติมน้ำถึงขีดและผสม</button></div></div><div class="box"><h3>สถานีเตรียมสารละลาย</h3><div id="solutionOut" class="readout"><b>เริ่มจากการคำนวณ</b><span>ใช้ C₁V₁ = C₂V₂</span></div></div></div><p class="notice">สถานการณ์จำลองใช้สารละลาย NaCl ในน้ำ ตัวเลขจริงปัดเป็นค่าที่เหมาะสมต่อการตวง ห้ามใช้สารละลายใดเพื่อการบริโภค</p>`;$('#calcSolution').onclick=()=>{const c1=Number($('#stock').value),c2=Number($('#finalC').value),v2=Number($('#finalV').value);if(c1<=0||c2<=0||v2<=0||c2>c1){$('#solutionOut').innerHTML='<b>ตรวจค่าใหม่</b><span>ต้องมี C₁ ≥ C₂ และค่าทุกตัวมากกว่าศูนย์</span>';return}const v1=c2*v2/c1;$('#solutionOut').innerHTML=`<b>คำนวณปริมาตร stock</b><span class="big">${v1.toFixed(2)} mL</span><span>${c1}×V₁ = ${c2}×${v2}</span>`;$('#transfer').disabled=false;$('#transfer').onclick=()=>{paintScene('solution',{step:1,fill:25});$('#solutionOut').innerHTML=`<b>ถ่าย stock ${v1.toFixed(2)} mL ลงขวดวัดปริมาตร</b><span>ใช้ปิเปตจำลองและถ่ายของเหลวให้ครบ</span>`;$('#fill').disabled=false};$('#fill').onclick=()=>{prepared=true;paintScene('solution',{step:2,fill:100});$('#solutionOut').innerHTML=`<b>เตรียมสารละลายแล้ว</b><span class="big">${(c1*v1/v2).toFixed(3)} M</span><span>เติมน้ำถึง ${v2} mL แล้วกลับขวดผสมให้ทั่ว</span>`;doneLab()}}}
 function labStoich(){const mw=84.0066,mc=192.124;$('#labBody').innerHTML=`<div class="lab-grid"><div class="box"><h3>กำหนดสารตั้งต้น</h3><div class="controls"><div class="field"><label for="bicarb">NaHCO₃ <span id="bicarbVal" class="value">0.030 mol</span></label><input type="range" min="0.005" max="0.080" step="0.001" value="0.030" id="bicarb"></div><div class="field"><label for="citric">กรดซิตริก C₆H₈O₇ <span id="citricVal" class="value">0.015 mol</span></label><input type="range" min="0.005" max="0.040" step="0.001" value="0.015" id="citric"></div><div class="field"><label for="yield">ผลได้จริงของ CO₂ (%) <span id="yieldVal" class="value">85%</span></label><input type="range" min="50" max="100" step="1" value="85" id="yield"></div></div><div class="btnrow"><button id="mix" class="btn primary">ผสมสารและจำลองปฏิกิริยา</button></div></div><div class="box"><h3>ผลปฏิกิริยา</h3><div id="stoichOut" class="readout"><b>พร้อมผสม</b><span>อัตราส่วนตามสมการ: NaHCO₃ : กรดซิตริก = 3 : 1</span></div></div></div><div class="callout">สมการดุล: 3NaHCO₃ + C₆H₈O₇ → Na₃C₆H₅O₇ + 3CO₂ + 3H₂O</div><p class="notice">การสร้างแก๊สเป็นค่าทฤษฎีเชิงโมล ไม่ได้จำลองความดันหรือภาชนะปิด ห้ามปิดผนึกภาชนะที่เกิดแก๊สในการทดลองจริง</p>`;['bicarb','citric','yield'].forEach(id=>{$('#'+id).oninput=()=>{$('#'+id+'Val').textContent=id==='yield'?`${$('#'+id).value}%`:`${Number($('#'+id).value).toFixed(3)} mol`}});$('#mix').onclick=()=>{const nB=Number($('#bicarb').value),nC=Number($('#citric').value),yieldPct=Number($('#yield').value),extent=Math.min(nB/3,nC),lim=nB/3<nC?'NaHCO₃':'กรดซิตริก',excess=lim==='NaHCO₃'?`กรดซิตริกเหลือ ${(nC-extent).toFixed(3)} mol`:`NaHCO₃ เหลือ ${(nB-3*extent).toFixed(3)} mol`,co2=3*extent,actual=co2*yieldPct/100;paintScene('stoich',{bubbles:Math.round(actual*1000),lim});$('#stoichOut').innerHTML=`<b>สารกำหนดปริมาณ: ${lim}</b><span>ปริมาณ CO₂ ตามทฤษฎี <b>${co2.toFixed(3)} mol</b></span><span>${excess}</span><span>ผลได้จริงจำลอง ${actual.toFixed(3)} mol · ผลได้ร้อยละ ${yieldPct}%</span><span class="big">ฟองแก๊ส ${Math.round(actual*1000)} mmol</span>`;doneLab()}}
 function setTab(name){tab=name;document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===tab)));['learn','quiz','lab'].forEach(id=>$('#'+id).hidden=id!==tab)}document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));window.addEventListener('hashchange',()=>{const m=location.hash.match(/chapter-(\d+)/);if(m){const n=Math.max(1,Math.min(6,Number(m[1])))-1;if(n!==current)selectChapter(n)}});const match=location.hash.match(/chapter-(\d+)/);current=match?Math.max(0,Math.min(5,Number(match[1])-1)):0;selectChapter(current);progress();
-</script><!-- wm:foot:start -->
+</script><script>
+/* reading-data:start */
+const NU=(a,z,s)=>`<span class="rd-nuc"><i><b>${a}</b><b>${z}</b></i>${s}</span>`;
+const READ_M4=[
+/* ===== บทที่ 1 ===== */
+{lead:'อ่านเรื่องฉลากสารเคมี การปฏิบัติตัวในห้องปฏิบัติการ เครื่องมือวัด ความเที่ยงกับความแม่น และเลขนัยสำคัญ ก่อนลองตวงปริมาตรด้วยเครื่องมือต่างชนิดในแล็บเสมือน',secs:[
+{h:'1.1 ฉลากและสัญลักษณ์ความเป็นอันตราย',pg:'คู่มือครู เล่ม 1 หน้า 9–13',html:`
+<p>ฉลากสารเคมีส่วนใหญ่ระบุชื่อผลิตภัณฑ์ รูปสัญลักษณ์อันตราย คำเตือน ข้อมูลความเป็นอันตราย ข้อควรระวัง และข้อมูลผู้ผลิต ตำแหน่งของข้อมูลอาจต่างกันตามผู้ผลิต แต่องค์ประกอบหลักคล้ายกัน สัญลักษณ์อันตรายที่พบบ่อยมี 2 ระบบ</p>
+<ul><li><b>GHS</b> เป็นระบบสากล ใช้รูปสัญลักษณ์บอกชนิดอันตราย เช่น กัดกร่อน ไวไฟ อันตรายต่อสุขภาพ ตัวอย่างในคู่มือ กรดไฮโดรคลอริกเข้มข้นเป็นสารกัดกร่อนและเป็นอันตรายต่อสุขภาพ ส่วนแอมโมเนียเป็นสารกัดกร่อน ไวไฟ และอาจอันตรายถึงชีวิต</li>
+<li><b>NFPA</b> เป็นระบบของสหรัฐอเมริกา ใช้สี่ช่องสี ช่องละหนึ่งด้านของอันตราย</li></ul>
+<div class="rd-tbl"><table><thead><tr><th>สีของช่อง</th><th>บอกเรื่องใด</th><th>ตัวเลข</th></tr></thead><tbody>
+<tr><td>แดง</td><td>ความไวไฟ</td><td>0–4 (ยิ่งมากยิ่งไวไฟ)</td></tr>
+<tr><td>น้ำเงิน</td><td>อันตรายต่อสุขภาพ</td><td>0–4</td></tr>
+<tr><td>เหลือง</td><td>ความว่องไวในการเกิดปฏิกิริยา</td><td>0–4</td></tr>
+<tr><td>ขาว</td><td>อันตรายด้านอื่น</td><td>อักษรย่อ เช่น ox (ออกซิไดซ์) W (ทำปฏิกิริยากับน้ำ) cor (กัดกร่อน) ACID ALK</td></tr></tbody></table></div>
+<p>ระดับความอันตรายยังขึ้นกับปริมาณ ความเข้มข้น และเวลาที่สัมผัส หากต้องการข้อมูลเพิ่ม ให้ค้นเอกสารความปลอดภัย (SDS) ของสารนั้น เช่น ค้นคำว่า “SDS HCl” จากแหล่งที่เชื่อถือได้ นักเรียนมักสับสนสัญลักษณ์สารไวไฟกับสารออกซิไดซ์ ให้ดูรูปให้ชัดก่อนใช้</p>`,
+ q:['เลข 3 ในช่องสีแดงของสัญลักษณ์ NFPA บอกอะไร','บอกว่าสารไวไฟมาก ระดับ 3 หมายถึงจุดวาบไฟต่ำกว่า 100 °F (37.8 °C) ส่วนอันตรายต่อสุขภาพดูที่ช่องสีน้ำเงิน (คู่มือครู หน้า 11–12)']},
+{h:'1.2 ปฏิบัติตัวอย่างปลอดภัย กำจัดของเสีย และปฐมพยาบาล',pg:'คู่มือครู เล่ม 1 หน้า 13–14, 17–18',html:`
+<p><b>ก่อนทำ</b> ศึกษาขั้นตอนและข้อมูลสารเคมี <b>ขณะทำ</b> แต่งกายให้เหมาะสม สวมแว่นตานิรภัย เสื้อคลุมปฏิบัติการ (ติดกระดุมให้เรียบร้อย) และถุงมือเมื่อจำเป็น รวบผม ใส่รองเท้าหุ้มปลายเท้าและส้นเท้า ห้ามชิมสาร</p>
+<p><b>การกำจัดของเสีย</b> สารละลายของโลหะที่เป็นพิษ เช่น ตะกั่ว แคดเมียม ห้ามเทลงอ่าง ให้เก็บรวมในภาชนะที่ห้องปฏิบัติการจัดไว้ แล้วส่งให้ผู้รับกำจัด นอกจากนี้ยังลดของเสียได้ตั้งแต่การออกแบบ เช่น เลือกสารที่ปลอดภัย ใช้ปริมาณน้อยแบบย่อส่วน</p>
+<p><b>เมื่อเกิดอุบัติเหตุ</b> ต้องรู้ชนิดและปริมาณสารก่อน แล้วจึงปฐมพยาบาล</p>
+<ul><li>กรดหรือเบสถูกผิวหนัง ถอดเสื้อผ้าส่วนที่เปื้อน ซับสารออกให้มากที่สุด แล้วล้างด้วยน้ำไหลผ่านปริมาณมาก ไม่ต้องใช้เบสอ่อนหรือกรดอ่อนมาสะเทิน</li>
+<li>ถูกน้ำร้อนลวก แช่น้ำเย็นหรือปิดด้วยผ้าชุบน้ำจนหายแสบ แล้วทายาสำหรับไฟไหม้น้ำร้อนลวก</li>
+<li>เศษแก้วบาด ล้างด้วยน้ำเกลือล้างแผล ใส่ยา ปิดพลาสเตอร์</li></ul>`,
+ q:['กรดกระเด็นถูกแขน ควรล้างด้วยเบสอ่อนเพื่อสะเทินหรือไม่','ไม่ควร ให้ซับกรดออกให้มาก แล้วล้างด้วยน้ำไหลปริมาณมาก ๆ (คู่มือครู หน้า 9 และ 18)']},
+{h:'1.3 เครื่องมือวัดปริมาตรและการอ่านค่า',pg:'คู่มือครู เล่ม 1 หน้า 22–24, 28–29, 31–32',html:`
+<p>บีกเกอร์และขวดรูปกรวยใช้บรรจุหรือผสมสาร ส่วนการวัดปริมาตรใช้กระบอกตวง ปิเปตต์ บิวเรตต์ และขวดกำหนดปริมาตร ส่วนมวลวัดด้วยเครื่องชั่ง</p>
+<ul><li><b>การอ่านค่า</b> ให้สายตาอยู่ระดับเดียวกับก้นส่วนโค้ง (เมนิสคัส) ของของเหลว และประมาณตัวเลขอีกหนึ่งตำแหน่งต่อจากขีดที่ละเอียดที่สุด เช่น บิวเรตต์ประมาณได้ตั้งแต่ 0 ถึง 9 ในคู่มือยกตัวอย่างการอ่านบิวเรตต์ว่าถ้าตาอยู่สูงกว่าระดับเมนิสคัสจะอ่านได้น้อยกว่าจริง และถ้าตาอยู่ต่ำกว่าจะอ่านได้มากกว่าจริง</li>
+<li><b>ปิเปตต์ปริมาตร</b> สอบเทียบจากปริมาตรของเหลวที่ถ่ายเทออกมา ส่วนกระบอกตวงและขวดกำหนดปริมาตรสอบเทียบจากปริมาตรของเหลวที่บรรจุอยู่ในภาชนะ เมื่อเทออกจะมีของเหลวติดค้างบ้าง ปริมาตรที่ได้จึงน้อยกว่าขีดที่อ่านได้ การตวง 250.00 mL ด้วยกระบอกตวง 100 mL หลายครั้งจึงไม่แม่น</li>
+<li><b>ความละเอียดต่างกัน</b> ค่าความคลาดเคลื่อนที่พิมพ์บนอุปกรณ์ขนาด 25 mL คือ ±0.40 mL สำหรับกระบอกตวง และ ±0.10 mL สำหรับปิเปตต์</li></ul>
+<p>ที่เป็นเช่นนี้เพราะปิเปตต์มีพื้นที่หน้าตัดตรงผิวของเหลวน้อยกว่า ลองคิดว่าตวง 1 mL ในท่อหน้าตัด 1 cm² ระดับสูง 1 cm ถ้าอ่านผิด 0.1 cm จะผิดไป 10% แต่ท่อหน้าตัด 0.1 cm² ระดับสูง 10 cm อ่านผิด 0.1 cm เท่ากัน ผิดเพียง 1%</p>`,
+ q:['เพราะเหตุใดปิเปตต์ขนาด 25 mL คลาดเคลื่อนน้อยกว่ากระบอกตวงขนาดเดียวกัน','ปิเปตต์แคบกว่า ระดับของเหลวจึงสูงมากสำหรับปริมาตรเท่ากัน อ่านระดับคลาดไปเล็กน้อยจึงกระทบปริมาตรน้อยกว่า (คู่มือครู หน้า 29)']},
+{h:'1.3 ความเที่ยง ความแม่น และผลวัดน้ำของกิจกรรม 1.1',pg:'คู่มือครู เล่ม 1 หน้า 22, 25–28',html:`
+<p><b>ความเที่ยง</b> คือความใกล้เคียงกันของค่าที่วัดซ้ำ <b>ความแม่น</b> คือความใกล้เคียงของค่าเฉลี่ยกับค่าจริง ข้อมูลที่น่าเชื่อถือต้องมีทั้งสองอย่าง และขึ้นกับทั้งทักษะผู้วัดและอุปกรณ์ที่ใช้</p>
+<p>ผลตัวอย่างในคู่มือ (กิจกรรม 1.1) ตวงน้ำ 25 mL อย่างละ 3 ครั้งแล้วชั่งมวล ปริมาตรจริงคำนวณจากมวลเฉลี่ยหารความหนาแน่นของน้ำที่อุณหภูมินั้น</p>
+<div class="rd-tbl"><table><thead><tr><th>เครื่องมือ</th><th>มวลน้ำ 3 ครั้ง (g)</th><th>เฉลี่ย (g)</th><th>ความหนาแน่น (g/mL)</th><th>ปริมาตร (mL)</th><th>ต่างจาก 25 mL</th></tr></thead><tbody>
+<tr><td>ปิเปตต์ 25 mL (20.0 °C)</td><td>24.61, 24.84, 25.04</td><td>24.83</td><td>0.998203</td><td>24.87</td><td>0.13</td></tr>
+<tr><td>กระบอกตวง 25 mL (20.2 °C)</td><td>24.20, 24.12, 24.58</td><td>24.30</td><td>0.998162</td><td>24.34</td><td>0.66</td></tr></tbody></table></div>
+<p>สรุปตามคู่มือ ปิเปตต์ให้ค่าใกล้ค่าจริงกว่า จึงแม่นกว่ากระบอกตวง ส่วนแล็บเสมือนของหน้านี้ใช้ค่าคลาดเคลื่อนสมมติของแบบจำลอง (บีกเกอร์ ±0.9, กระบอกตวง ±0.28, ปิเปตต์ ±0.08 mL สุ่มสม่ำเสมอ) ไม่ได้เป็นตัวเลขจากคู่มือ</p>`,
+ q:['ถ้าวัดซ้ำสามครั้งได้ค่ากระจุกกันมาก แต่ค่าเฉลี่ยห่างจากค่าจริง ถือว่าเที่ยงหรือแม่น','เที่ยงแต่ไม่แม่น เพราะค่าใกล้กันเอง แต่ค่าเฉลี่ยไม่ใกล้ค่าจริง (อาจมีความคลาดเคลื่อนที่เกิดซ้ำทุกครั้ง เช่น อ่านผิดมุมเสมอ)']},
+{h:'1.3–1.4 เลขนัยสำคัญ หน่วยวัด และแฟกเตอร์เปลี่ยนหน่วย',pg:'คู่มือครู เล่ม 1 หน้า 29–30, 33–36',html:`
+<p>เลขนัยสำคัญบอกความละเอียดของการวัด หลักการที่คู่มือสอนมี 2 ข้อ</p>
+<ul><li><b>บวก ลบ</b> ผลลัพธ์มีทศนิยมเท่ากับค่าที่มีทศนิยมน้อยที่สุด เช่น 76.98 g + 34.9 g = 111.9 g</li>
+<li><b>คูณ หาร</b> ผลลัพธ์มีเลขนัยสำคัญเท่ากับค่าที่มีเลขนัยสำคัญน้อยที่สุด เช่น ปรอทความหนาแน่น 1.36 g/mL ปริมาตร 20.00 mL มีมวล 27.2 g</li></ul>
+<p>หน่วย SI ช่วยให้ทุกคนสื่อสารปริมาณได้ตรงกัน ข้อควรระวังคือหน่วยมวลใน SI คือกิโลกรัม (ไม่ใช่กรัม) ส่วนลิตรเป็นหน่วยนอกระบบ SI ที่ใช้กันแพร่หลาย การเปลี่ยนหน่วยทำได้โดยคูณแฟกเตอร์เปลี่ยนหน่วย ซึ่งเป็นอัตราส่วนที่ค่าเท่ากับ 1</p>
+<div class="rd-eq">59.2 cm × (1 m ÷ 100 cm) × (10 dm ÷ 1 m) = 5.92 dm<br>1.8 kg × (1000 g ÷ 1 kg) × (1000 mg ÷ 1 g) = 1.8 × 10<sup>6</sup> mg<br>2,800 mL × (1 L ÷ 1000 mL) × (1 dm<sup>3</sup> ÷ 1 L) = 2.8 dm<sup>3</sup></div>
+<p>ตัวอย่างสัญกรณ์วิทยาศาสตร์ในหน่วย SI: ลวดหนา 0.1 mm = 1 × 10<sup>−4</sup> m และปิเปตต์ 10.00 cm<sup>3</sup> = 1.000 × 10<sup>−5</sup> m<sup>3</sup></p>`,
+ q:['3.2 g/mL เท่ากับกี่ kg/dm³','3.2 g/mL × (1 kg ÷ 1000 g) × (1000 mL ÷ 1 L) × (1 L ÷ 1 dm³) = 3.2 kg/dm³ (ตรงกับเฉลยแบบฝึกหัด 1.4)']},
+{h:'1.5 วิธีการทางวิทยาศาสตร์และการเขียนรายงาน',pg:'คู่มือครู เล่ม 1 หน้า 37–42',html:`
+<p>การสังเกตคือการใช้ประสาทสัมผัสเก็บข้อมูลโดยไม่เติมความเห็นลงไป ในห้องปฏิบัติการเรามักไม่ดมและไม่ชิมเพราะเหตุผลด้านความปลอดภัย ขั้นตอนโดยทั่วไป คือสังเกตและตั้งคำถาม ตั้งสมมติฐาน ออกแบบการทดลอง (กำหนดตัวแปรต้น ตัวแปรตาม ตัวแปรควบคุม) ทดลอง จัดกระทำและตีความข้อมูล แล้วสรุปผล</p>
+<p>บทสรุปต้องไม่เกินกว่าข้อเท็จจริงที่ตรวจสอบได้ ตัวอย่างในคู่มือ วัด pH น้ำอัดลมแช่เย็นกับไม่แช่เย็น ผลบอกได้เรื่องความเข้มข้นของกรดคาร์บอนิก แต่สรุปว่า “ซ่ามากกว่า” เกินหลักฐานที่มี</p>
+<p>รายงานการทดลองมีหัวข้อ จุดประสงค์ สมมติฐาน ตัวแปร วัสดุอุปกรณ์ วิธีการทดลอง ผล อภิปราย และสรุป ตัวอย่างกิจกรรม 1.2: ตวงน้ำ 25.00 mL ด้วยกระบอกตวงขนาด 25 mL และ 50 mL แล้วเทียบความแม่น ตัวแปรต้นคือขนาดกระบอกตวง ตัวแปรตามคือความแม่นในการตวง ตัวแปรควบคุมคือเครื่องชั่งและผู้ทดลอง ผลของกระบอกตวง 25 mL ได้ปริมาตรเฉลี่ย 24.34 mL</p>`,
+ q:['ในแล็บเสมือนของบทนี้ อะไรคือตัวแปรต้นและตัวแปรตาม','ตัวแปรต้นคือชนิดเครื่องมือวัด (บีกเกอร์ กระบอกตวง ปิเปตต์) ตัวแปรตามคือความใกล้เคียงของค่าที่อ่านได้กับปริมาตรเป้าหมาย (วิเคราะห์โดยผู้จัดทำหน้าตามแนวคิดของคู่มือ หน้า 39)']}
+]},
+/* ===== บทที่ 2 ===== */
+{lead:'อ่านวิวัฒนาการของแบบจำลองอะตอม สเปกตรัมเส้น อนุภาคในอะตอม การจัดเรียงอิเล็กตรอน และแนวโน้มสมบัติของธาตุ ก่อนไปอ่านสเปกตรัมในแล็บเสมือน',secs:[
+{h:'2.1 แบบจำลองอะตอม: ดอลตัน ทอมสัน รัทเทอร์ฟอร์ด',pg:'คู่มือครู เล่ม 1 หน้า 63–73',html:`
+<p>แบบจำลองเป็นเครื่องมือช่วยอธิบายสิ่งที่มองไม่เห็น และเปลี่ยนแปลงได้เมื่อมีข้อมูลใหม่ที่อธิบายได้ดีกว่า (ตามกิจกรรม 2.1 กระป๋องปริศนา) แบบจำลองอะตอมจึงพัฒนาต่อเนื่อง</p>
+<ul><li><b>ดอลตัน</b> มองว่าอะตอมเป็นหน่วยที่แบ่งไม่ได้ และอะตอมของธาตุเดียวกันมีมวลเท่ากัน ต่อมาพบว่าอะตอมมีอนุภาคย่อยและธาตุเดียวกันมีมวลต่างกันได้ จึงต้องปรับแนวคิด</li>
+<li><b>ทอมสัน</b> ใช้หลอดรังสีแคโทด (หลอดแก้วความดันต่ำต่อไฟฟ้าศักย์สูง) พบว่ารังสีเบนเข้าหาขั้วบวก จึงเป็นอนุภาคประจุลบ และค่าประจุต่อมวลคงที่ไม่ว่าใช้แก๊สหรือโลหะขั้วไฟฟ้าชนิดใด แสดงว่าอนุภาคนี้ (อิเล็กตรอน) เป็นส่วนประกอบของสารทุกชนิด แบบจำลองของทอมสันเป็นทรงกลมประจุบวกที่มีอิเล็กตรอนกระจายอยู่</li>
+<li><b>รัทเทอร์ฟอร์ด</b> ยิงอนุภาคแอลฟา (ประจุบวก) ไปที่แผ่นทองคำบาง (เพื่อให้อะตอมเรียงชั้นเดียว) และตรวจด้วยฉากเรืองแสง ถ้าทอมสันถูกควรเห็นแสงด้านหลังแผ่นเท่านั้น แต่ผลจริงเห็นด้านหลังเป็นส่วนใหญ่ ด้านข้างบ้าง และด้านหน้าน้อยครั้ง จึงสรุปว่ามีนิวเคลียสขนาดเล็กมากแต่มวลสูงและประจุบวก ส่วนใหญ่ของอะตอมเป็นที่ว่าง มีอิเล็กตรอนล้อมรอบ</li></ul>`,
+ q:['ผลทดลองใดของรัทเทอร์ฟอร์ดที่แบบจำลองของทอมสันอธิบายไม่ได้','การพบแสงวาบด้านข้างและด้านหน้าแผ่นทอง แม้น้อยครั้ง แสดงว่ามีก้อนประจุบวกมวลมากขนาดเล็กทำให้อนุภาคแอลฟาสะท้อนกลับ (คู่มือครู หน้า 72–73)']},
+{h:'2.1 สเปกตรัมเส้น แบบจำลองของโบร์ และกลุ่มหมอก',pg:'คู่มือครู เล่ม 1 หน้า 73–80',html:`
+<p>แสงขาวจากดวงอาทิตย์แยกด้วยแผ่นเกรตติงได้แถบสีต่อเนื่องคล้ายรุ้ง แต่หลอดบรรจุแก๊สของธาตุให้เฉพาะ <b>เส้นสี</b> จำนวนและตำแหน่งต่างกันตามธาตุ ผลตัวอย่างในคู่มือ ไฮโดรเจนเห็นเส้นม่วง น้ำเงิน แดง ฮีเลียมเห็นม่วง ส้ม แดง และนีออนเห็นเหลือง ส้ม แดง เขียว ม่วง</p>
+<p>พลังงานของโฟตอนคำนวณได้จาก E = hf = hc/λ ความยาวคลื่นสั้นพลังงานสูง เส้นในช่วงที่ตามองเห็นของไฮโดรเจนมี λ = 410, 434, 486 และ 656 nm ผู้จัดทำหน้าคำนวณพลังงานด้วย h = 6.626×10<sup>−34</sup> J·s, c = 3.00×10<sup>8</sup> m/s</p>
+<div class="rd-tbl"><table><thead><tr><th>λ (nm)</th><th>E ต่อโฟตอน (J)</th><th>E ต่อโมลโฟตอน (kJ/mol)</th></tr></thead><tbody>
+<tr><td>656</td><td>3.03 × 10<sup>−19</sup></td><td>182.4</td></tr><tr><td>486</td><td>4.09 × 10<sup>−19</sup></td><td>246.1</td></tr><tr><td>434</td><td>4.58 × 10<sup>−19</sup></td><td>275.6</td></tr><tr><td>410</td><td>4.85 × 10<sup>−19</sup></td><td>291.8</td></tr></tbody></table></div>
+<p>เส้นสเปกตรัมเกิดเมื่ออิเล็กตรอนที่ถูกกระตุ้นให้อยู่ระดับพลังงานสูงตกลงมาระดับที่ต่ำกว่าแล้วคายพลังงานออกมา (ไม่ได้หลุดออกจากอะตอม) ไฮโดรเจนมีอิเล็กตรอนเดียวแต่มีหลายเส้น เพราะมีระดับพลังงานหลายระดับ เส้นที่ตามองเห็นเกิดจากการตกลงมาที่ n = 2 ส่วนตกลงมาที่ n = 1 ให้พลังงานมากกว่า อยู่ในช่วงอัลตราไวโอเลต</p>
+<p><b>โบร์</b> เสนอว่าอิเล็กตรอนวนรอบนิวเคลียสเป็นวง แต่ละวงมีพลังงานเฉพาะ สถานะพื้นคือระดับต่ำสุด (n = 1) ส่วนแบบ <b>กลุ่มหมอก</b> บอกไม่ได้ว่าอิเล็กตรอนอยู่ตำแหน่งใดแน่ แต่บริเวณที่ทึบหมายถึงโอกาสพบอิเล็กตรอนมากกว่าบริเวณที่จาง</p>`,
+ q:['ปรอทมีเส้นสเปกตรัมมากกว่าไฮโดรเจน สื่อความหมายอะไร','อะตอมปรอทมีระดับพลังงานและอิเล็กตรอนมากกว่าไฮโดรเจน จึงมีการเปลี่ยนระดับได้หลายแบบ (ชวนคิดในคู่มือครู หน้า 80)']},
+{h:'2.2 อนุภาคในอะตอม สัญลักษณ์นิวเคลียร์ และไอโซโทป',pg:'คู่มือครู เล่ม 1 หน้า 84–88',html:`
+<div class="rd-tbl"><table><thead><tr><th>อนุภาค</th><th>ประจุ</th><th>มวล (g)</th><th>ที่อยู่</th></tr></thead><tbody>
+<tr><td>อิเล็กตรอน (e)</td><td>ลบ 1.6 × 10<sup>−19</sup> C</td><td>9.11 × 10<sup>−28</sup></td><td>รอบนิวเคลียส</td></tr>
+<tr><td>โปรตอน (p)</td><td>บวก 1.6 × 10<sup>−19</sup> C</td><td>1.673 × 10<sup>−24</sup></td><td>นิวเคลียส</td></tr>
+<tr><td>นิวตรอน (n)</td><td>เป็นกลาง</td><td>1.675 × 10<sup>−24</sup></td><td>นิวเคลียส</td></tr></tbody></table></div>
+<p>โปรตอนหนักกว่าอิเล็กตรอนราว 1,840 เท่า มวลอะตอมจึงมาจากโปรตอนและนิวตรอนเป็นหลัก จำนวนโปรตอนเฉพาะตัวของแต่ละธาตุคือ <b>เลขอะตอม (Z)</b> ส่วน <b>เลขมวล (A)</b> = โปรตอน + นิวตรอน อะตอมเป็นกลางมีอิเล็กตรอนเท่าโปรตอน</p>
+<p>สัญลักษณ์นิวเคลียร์เขียนเลขมวลไว้บนซ้ายและเลขอะตอมไว้ล่างซ้ายของสัญลักษณ์ธาตุ เช่น ${NU(23,11,'Na')} มี 11 โปรตอน 12 นิวตรอน (11 + 12 = 23) <b>ไอโซโทป</b> คืออะตอมของธาตุเดียวกัน (โปรตอนเท่ากัน) แต่นิวตรอนต่างกัน เช่น ไฮโดรเจนมีเลขมวล 1, 2, 3 ธาตุต่างกันอาจมีเลขมวลเท่ากันได้ เช่น ${NU(14,6,'C')} กับ ${NU(14,7,'N')} ในชื่อย่อ “C-14” เลข 14 คือเลขมวล</p>
+<p>ตัวอย่างจากการทดลองของมิลลิแกน หยดน้ำมันนิ่งมีประจุ 6.4 × 10<sup>−19</sup> C ต่ออิเล็กตรอนละ 1.6 × 10<sup>−19</sup> C จึงมี 4 อิเล็กตรอน</p>`,
+ q:['ธาตุสมมติ '+NU(40,18,'A')+', '+NU(42,18,'B')+' และ '+NU(40,19,'C')+' ตัวใดเป็นไอโซโทปกัน','A กับ B เพราะมีโปรตอน 18 เท่ากัน (นิวตรอน 22 กับ 24) ส่วน C มีโปรตอน 19 จึงเป็นธาตุอื่น (ตรงกับแบบฝึกหัด 2.2)']},
+{h:'2.3 การจัดเรียงอิเล็กตรอนในอะตอม',pg:'คู่มือครู เล่ม 1 หน้า 89–92',html:`
+<p>ระดับพลังงานหลัก n รับอิเล็กตรอนได้สูงสุด 2n² คือ 2, 8, 18, 32 แต่ละระดับแบ่งเป็นระดับพลังงานย่อย s p d f ซึ่งมี 1, 3, 5, 7 ออร์บิทัล และออร์บิทัลละไม่เกิน 2 อิเล็กตรอน จึงจุได้ 2, 6, 10, 14 ตามลำดับ</p>
+<p>ให้บรรจุอิเล็กตรอนในระดับที่พลังงานต่ำและว่างก่อน ลำดับคือ <b>1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s</b> สังเกตว่า 4s ต่ำกว่า 3d จึงเต็มก่อน ทำให้ K เป็น 2 8 8 1 และ Ca เป็น 2 8 8 2 (ระดับที่ 3 มี 8 ไม่ใช่ 18)</p>
+<div class="rd-eq">Na (Z = 11): 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>1</sup> หรือ [Ne]3s<sup>1</sup><br>Cl (Z = 17): 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>5</sup> เวเลนซ์อิเล็กตรอน 7<br>V (Z = 23): [Ar]4s<sup>2</sup>3d<sup>3</sup> แยกตามระดับหลักได้ 2 8 11 2</div>
+<p><b>เวเลนซ์อิเล็กตรอน</b> คืออิเล็กตรอนในระดับพลังงานนอกสุด สำหรับไอออน ถ้าอะตอมรับอิเล็กตรอน ให้บรรจุเพิ่มตามลำดับเดิม เช่น N<sup>3−</sup> เป็น 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup> ถ้าเสียอิเล็กตรอน ให้เขียนอะตอมปกติก่อน แล้วเอาอิเล็กตรอนชั้นนอกสุดออก เช่น Al<sup>3+</sup> เป็น 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup></p>`,
+ q:['เขียนการจัดเรียงอิเล็กตรอนของ Fe²⁺ (Fe เลขอะตอม 26)','Fe เป็น [Ar]4s²3d⁶ เมื่อเสีย 2 อิเล็กตรอนจากชั้นนอกสุด (4s) ได้ Fe²⁺ เป็น [Ar]3d⁶ ไม่ใช่ 4s²3d⁴ (คู่มือครู หน้า 89 และ 92)']},
+{h:'2.4 ตารางธาตุ: วิวัฒนาการ หมู่ คาบ และกลุ่มธาตุ',pg:'คู่มือครู เล่ม 1 หน้า 95–97, 102',html:`
+<p>การจัดธาตุเป็นหมวดหมู่ช่วยให้ศึกษาและจดจำง่าย แนวคิดในอดีตมี 4 กลุ่ม</p>
+<ul><li>เดอเบอไรเนอร์ จัดเป็นกลุ่มละ 3 ธาตุที่สมบัติคล้ายกัน มวลอะตอมของธาตุกลางใกล้ค่าเฉลี่ยของอีกสองธาตุ</li>
+<li>นิวแลนด์ เรียงตามมวลอะตอม พบว่าธาตุที่ 8 คล้ายธาตุที่ 1 (ไม่รวม H และแก๊สมีสกุล)</li>
+<li>ไมเออร์และเมนเดเลเอฟ เรียงตามมวลอะตอมและสมบัติที่ซ้ำเป็นช่วง ๆ เว้นช่องไว้สำหรับธาตุที่ยังไม่พบ</li>
+<li>โมสลีย์ เรียงตามเลขอะตอม ซึ่งเป็นหลักของตารางธาตุปัจจุบัน</li></ul>
+<p>ตารางปัจจุบันมี <b>18 หมู่</b> (แนวตั้ง) และ <b>7 คาบ</b> (แนวนอน) หมู่ IA ยกเว้น H คือโลหะแอลคาไล หมู่ VIIIA คือแก๊สมีสกุล ส่วน H เป็นอโลหะ ไม่ใช่โลหะแอลคาไล</p>
+<p>หาตำแหน่งจากการจัดเรียงอิเล็กตรอน: คาบ = ระดับพลังงานหลักสูงสุด หมู่ A = จำนวนอิเล็กตรอนทั้งหมดในระดับนอกสุด (Ga: 4s²4p¹ มี 3 จึงอยู่ IIIA ไม่ใช่ IA)</p>
+<div class="rd-tbl"><table><thead><tr><th>ธาตุ</th><th>การจัดเรียง (ระดับหลัก)</th><th>ตำแหน่ง</th><th>ประเภท</th></tr></thead><tbody>
+<tr><td>Z = 11</td><td>2 8 1</td><td>หมู่ IA คาบ 3</td><td>โลหะ</td></tr>
+<tr><td>Z = 20</td><td>2 8 8 2</td><td>หมู่ IIA คาบ 4</td><td>โลหะ</td></tr>
+<tr><td>35 อิเล็กตรอน</td><td>2 8 18 7</td><td>หมู่ VIIA คาบ 4</td><td>อโลหะ</td></tr>
+<tr><td>Z = 32</td><td>2 8 18 4</td><td>หมู่ IVA คาบ 4</td><td>กึ่งโลหะ</td></tr></tbody></table></div>
+<p>โลหะอยู่ด้านซ้าย อโลหะด้านขวา กึ่งโลหะอยู่แถบขั้นบันได และยังแบ่งเป็นกลุ่ม s, p, d, f ตามระดับพลังงานย่อยของอิเล็กตรอนตัวสุดท้าย</p>`,
+ q:['ธาตุที่มี 15 โปรตอน (เลขมวล 31) อยู่หมู่และคาบใด','Z = 15 จัดเรียง 2 8 5 จึงอยู่หมู่ VA คาบ 3 เป็นอโลหะ (ดัดแปลงจากแบบฝึกหัด 2.4 ซึ่งให้เลขมวล 31 นิวตรอน 16)']},
+{h:'2.4 แนวโน้มสมบัติของธาตุหมู่หลัก',pg:'คู่มือครู เล่ม 1 หน้า 97–102',html:`
+<div class="rd-tbl"><table><thead><tr><th>สมบัติ</th><th>ตามคาบ (ซ้าย → ขวา)</th><th>ตามหมู่ (บน → ล่าง)</th></tr></thead><tbody>
+<tr><td>ขนาดอะตอม</td><td>เล็กลง</td><td>ใหญ่ขึ้น</td></tr>
+<tr><td>พลังงานไอออไนเซชันที่ 1 (IE₁)</td><td>มากขึ้นโดยรวม</td><td>น้อยลง</td></tr>
+<tr><td>อิเล็กโทรเนกาติวิตี (EN)</td><td>มากขึ้น</td><td>น้อยลงโดยส่วนใหญ่</td></tr>
+<tr><td>ขนาดไอออน</td><td>—</td><td>ใหญ่ขึ้นเช่นเดียวกับอะตอม</td></tr></tbody></table></div>
+<p><b>เหตุผล</b> ในระดับพลังงานเดียวกัน โปรตอนที่เพิ่มดึงเวเลนซ์อิเล็กตรอนแรงขึ้น อะตอมเล็กลง ส่วนลงล่างในหมู่มีระดับพลังงานหลักเพิ่มขึ้น เปรียบเหมือนมีฉากกำบังมากขึ้น ไอออนบวกเล็กกว่าอะตอมเดิม ไอออนลบใหญ่กว่าอะตอมเดิม IE₁ คือพลังงานน้อยที่สุดที่ทำให้อิเล็กตรอนหลุดจากอะตอมในสถานะแก๊ส ค่ามากหมายถึงเสียอิเล็กตรอนยาก และเพิ่มขึ้นเมื่ออะตอมเล็กลง ข้อยกเว้นในคาบเดียวกัน IE₁ ของหมู่ IIIA น้อยกว่า IIA และของ VIA น้อยกว่า VA</p>
+<p>สัมพรรคภาพอิเล็กตรอนของอโลหะ (ยกเว้นหมู่ VIIIA) มากกว่าโลหะ และหมู่ VIIA สูงสุด เพราะรับ 1 อิเล็กตรอนแล้วมีการจัดเรียงเหมือนแก๊สมีสกุล ส่วน EN คือความสามารถในการดึงอิเล็กตรอนที่ใช้ร่วมกัน ใน HCl อิเล็กตรอนอยู่ใกล้ Cl มากกว่า H</p>
+<p>ค่า IE ต่อเนื่องบอกจำนวนชั้นอิเล็กตรอนได้ ตัวอย่าง คาร์บอน IE₅ สูงกว่า IE₄ มาก เพราะมีเวเลนซ์อิเล็กตรอน 4 ตัว ตัวที่ 5 อยู่ชั้นในใกล้นิวเคลียสกว่า</p>`,
+ q:['K กับ Ca อะตอมใดใหญ่กว่า และ F⁻ กับ Na⁺ ไอออนใดใหญ่กว่า','K ใหญ่กว่า Ca (โปรตอนน้อยกว่า ดึงเวเลนซ์อิเล็กตรอนน้อยกว่า) F⁻ ใหญ่กว่า Na⁺ เพราะทั้งสองมี 10 อิเล็กตรอน แต่ Na⁺ มีโปรตอน 11 ตัว ส่วน F⁻ มี 9 (เฉลยแบบฝึกหัด 2.4)']},
+{h:'2.5 ธาตุแทรนซิชัน',pg:'คู่มือครู เล่ม 1 หน้า 104–113',html:`
+<p>ธาตุแทรนซิชันอยู่ระหว่างหมู่ IIA กับ IIIA (หมู่ 3–12) อิเล็กตรอนตัวสุดท้ายเข้าระดับ d เช่น 3d ในคาบ 4 ขณะที่ K และ Ca ลงที่ 4s เมื่อเทียบโลหะคาบ 4 ด้วยกัน</p>
+<ul><li>ขนาดอะตอมของธาตุแทรนซิชันใกล้เคียงกันตลอดคาบ เพราะอิเล็กตรอนที่เพิ่มเข้า 3d ช่วยกำบัง ขณะที่ K, Ca ใหญ่กว่า</li>
+<li>จุดหลอมเหลว จุดเดือด และความหนาแน่นสูงกว่า K, Ca</li>
+<li>IE₁ และ EN ต่ำเหมือนโลหะหมู่หลัก</li>
+<li>ส่วนใหญ่มีเวเลนซ์อิเล็กตรอน 2 ยกเว้น Cr และ Cu ที่มี 1</li></ul>
+<p><b>สีของสารประกอบ (กิจกรรม 2.4)</b> สารประกอบของโลหะหมู่หลักส่วนใหญ่เป็นสีขาว เช่น NaCl, Na₂CO₃, KNO₃, CaCO₃ ส่วนสารประกอบของโลหะแทรนซิชันมักมีสี เช่น CuSO₄·5H₂O สีฟ้า MnO₂ สีเทา–ดำ และสารที่มีโลหะแทรนซิชันแม้มีโลหะหมู่หลักด้วยก็มีสี เช่น KMnO₄ ม่วง K₂CrO₄ เหลือง Na₂CoCl₄ น้ำเงิน</p>
+<p><b>ปฏิกิริยากับน้ำ (กิจกรรม 2.5)</b> โซเดียมทำปฏิกิริยารวดเร็วที่อุณหภูมิห้อง ได้สารละลายเบส (ฟีนอล์ฟทาลีนเป็นสีชมพู) แมกนีเซียมช้าที่อุณหภูมิห้องแต่เร็วขึ้นในน้ำอุ่น ส่วนทองแดงและสังกะสีไม่เห็นการเปลี่ยนแปลง จึงสรุปว่าโลหะหมู่หลักไวกว่าและให้สารละลายเบส แก๊สที่เกิดคือไฮโดรเจน ทดสอบด้วยก้านธูปมีไฟแล้วมีเสียงดัง ข้อควรระวัง ใช้ปากคีบจับโซเดียม ซับน้ำมันก่อน และไม่ยื่นหน้าเข้าใกล้</p>`,
+ q:['สารละลาย KMnO₄ มีสีม่วง แม้มีโลหะหมู่หลักอย่าง K ด้วย เพราะเหตุใด','เพราะมีธาตุแทรนซิชัน (Mn) เป็นองค์ประกอบ สารประกอบที่มีโลหะแทรนซิชันมักมีสี (ชวนคิดในคู่มือครู หน้า 109)']}
+]},
+/* ===== บทที่ 3 ===== */
+{lead:'อ่านเรื่องกฎออกเตต พันธะไอออนิก โคเวเลนต์ และโลหะ รูปร่างกับขั้วของโมเลกุล แล้วนำไปใช้สร้างแบบจำลองโมเลกุลในแล็บเสมือน',secs:[
+{h:'3.1 สัญลักษณ์แบบจุดของลิวอิสและกฎออกเตต',pg:'คู่มือครู เล่ม 1 หน้า 150–152',html:`
+<p>พันธะเคมีคือการยึดเหนี่ยวกันของอะตอมหรือไอออนในสาร แก๊สมีสกุลอย่าง He (เวเลนซ์อิเล็กตรอน 2) และ Ne (8) มีออร์บิทัลระดับนอกสุดเต็ม จึงเสถียรและอยู่เป็นอะตอมเดี่ยวได้</p>
+<p>สัญลักษณ์แบบจุดของลิวอิสใช้จุดแทน <b>เฉพาะเวเลนซ์อิเล็กตรอน</b> ไม่ใช่อิเล็กตรอนทั้งหมด เช่น Na มี 1 จุด วิธีเขียนคือวางจุดเดี่ยวรอบสัญลักษณ์ธาตุทั้ง 4 ด้านก่อน แล้วค่อยจับเป็นคู่</p>
+<p>อะตอมส่วนใหญ่มีแนวโน้มทำให้เวเลนซ์อิเล็กตรอนครบ 8 เรียกว่า <b>กฎออกเตต</b> เช่น Na ให้ 1 อิเล็กตรอนเป็น Na<sup>+</sup> ซึ่งมีเวเลนซ์อิเล็กตรอนเท่า Ne ส่วน Cl รับ 1 อิเล็กตรอนเป็น Cl<sup>−</sup> เท่ากับ Ar ไอออน Ca<sup>2+</sup> เขียนในวงเล็บเหลี่ยมโดยไม่มีจุด [Ca]<sup>2+</sup> และเป็นไปตามกฎออกเตตเพราะชั้นถัดเข้าไปมี 8 อิเล็กตรอน แต่อะตอมกลางที่มีเวเลนซ์อิเล็กตรอน 6 (หมู่ VIA) ไม่เป็นไปตามกฎออกเตตเมื่อยังเป็นอะตอมเดี่ยว</p>
+<p>การให้ การรับ หรือการใช้อิเล็กตรอนร่วมกัน ทำให้เกิดพันธะ 3 ประเภท คือ ไอออนิก โคเวเลนต์ และโลหะ ซึ่งอ่านต่อในหัวข้อถัดไป</p>`,
+ q:['จุดหนึ่งจุดในสัญลักษณ์ลิวอิสของ Na แทนอะไร','แทนเวเลนซ์อิเล็กตรอน 1 ตัว Na มีเวเลนซ์อิเล็กตรอน 1 ตัวจึงมี 1 จุด ไม่ได้แทนอิเล็กตรอนทั้ง 11 ตัว (คู่มือครู หน้า 150)']},
+{h:'3.2 พันธะไอออนิก สูตรและชื่อสารประกอบไอออนิก',pg:'คู่มือครู เล่ม 1 หน้า 153–162',html:`
+<p>โลหะมีพลังงานไอออไนเซชันต่ำ จึงเสียอิเล็กตรอนเป็นไอออนบวกง่าย ส่วนอโลหะมีสัมพรรคภาพอิเล็กตรอนสูง จึงรับอิเล็กตรอนเป็นไอออนลบ ไอออนประจุตรงข้ามดึงดูดกันด้วยแรงไฟฟ้าสถิตเรียกว่า <b>พันธะไอออนิก</b> (ตัวอย่าง Mg + 2F → [Mg]<sup>2+</sup> 2[F]<sup>−</sup> = MgF₂) ในของแข็ง ไอออนบวกและลบจัดเรียงต่อเนื่องสามมิติเป็นโครงผลึก ไม่ได้เป็นโมเลกุล สูตรเคมีจึงเป็น <b>สูตรเอมพิริคัล</b> ที่แสดงอัตราส่วนต่ำสุดของไอออนซึ่งทำให้ประจุรวมเป็นศูนย์</p>
+<p>ประจุของไอออนสัมพันธ์กับหมู่ IA, IIA, IIIA เป็น +1, +2, +3 ส่วน VA, VIA, VIIA เป็นลบ (เลขหมู่ − 8) คือ −3, −2, −1 เขียนสูตรโดยไขว้ตัวเลขประจุเป็นตัวห้อย แล้วทอนเป็นอัตราส่วนต่ำสุด</p>
+<ul><li>Al<sup>3+</sup> กับ O<sup>2−</sup> ไขว้ได้ Al₂O₃</li><li>Ca<sup>2+</sup> กับ O<sup>2−</sup> ไขว้ได้ Ca₂O₂ ทอนเป็น CaO</li><li>NH₄<sup>+</sup> กับ SO₄<sup>2−</sup> ได้ (NH₄)₂SO₄</li></ul>
+<p>การเรียกชื่อ เรียกไอออนบวกก่อนไอออนลบ ไอออนลบของธาตุเดียวลงท้าย “-ide” (ไ-ด์) เช่น chloride, oxide ส่วนกลุ่มอะตอมมีชื่อเฉพาะ เช่น ammonium, hydroxide, nitrate, sulfate, carbonate, phosphate โลหะที่เกิดไอออนบวกได้หลายค่าต้องระบุประจุเป็นเลขโรมัน</p>
+<div class="rd-tbl"><table><thead><tr><th>ไอออนบวก</th><th>ไอออนลบ</th><th>สูตร</th><th>ชื่อ</th></tr></thead><tbody>
+<tr><td>Li⁺</td><td>Cl⁻</td><td>LiCl</td><td>ลิเทียมคลอไรด์</td></tr><tr><td>Ca²⁺</td><td>PO₄³⁻</td><td>Ca₃(PO₄)₂</td><td>แคลเซียมฟอสเฟต</td></tr><tr><td>Al³⁺</td><td>OH⁻</td><td>Al(OH)₃</td><td>อะลูมิเนียมไฮดรอกไซด์</td></tr><tr><td>NH₄⁺</td><td>NO₃⁻</td><td>NH₄NO₃</td><td>แอมโมเนียมไนเทรต</td></tr></tbody></table></div>`,
+ q:['ธาตุ X หมู่ IIA กับ Y หมู่ VA ประกอบเป็นสารประกอบไอออนิกสูตรอะไร','X เป็น X²⁺ และ Y เป็น Y³⁻ ไขว้ประจุได้ X₃Y₂ ผลรวมประจุ 3(+2) + 2(−3) = 0 (คู่มือครู หน้า 158)']},
+{h:'3.2 สมบัติของสารประกอบไอออนิกและปฏิกิริยาตกตะกอน',pg:'คู่มือครู เล่ม 1 หน้า 174–178',html:`
+<ul><li><b>เปราะ</b> เมื่อมีแรงกระทำ ไอออนอาจเลื่อนไปจนไอออนประจุเหมือนกันอยู่ชิดกัน เกิดแรงผลักจนผลึกแตก</li>
+<li><b>การนำไฟฟ้า</b> ของแข็งไม่นำไฟฟ้า เพราะไอออนอยู่กับที่ แต่เมื่อหลอมเหลวหรือละลายน้ำจะนำไฟฟ้าได้ เพราะไอออนเคลื่อนที่ได้</li>
+<li><b>จุดหลอมเหลวและจุดเดือดสูง</b> ส่วนใหญ่ละลายน้ำได้</li>
+<li><b>การละลายน้ำ</b> ต้องใช้พลังงานแยกไอออนออกจากผลึก (พลังงานแลตทิซ) และน้ำล้อมไอออนแล้วคายพลังงานไฮเดรชัน ถ้าแลตทิซน้อยกว่าไฮเดรชัน การละลายคายพลังงาน อุณหภูมิสารละลายสูงขึ้น ถ้ามากกว่าก็ดูดพลังงาน</li></ul>
+<p><b>กิจกรรม 3.1</b> ผสมสารละลายของสารประกอบไอออนิกเป็นคู่ ถ้าเกิดตะกอนแสดงว่าไอออนบางคู่รวมกันเป็นสารที่ไม่ละลายน้ำ ผลตัวอย่างในคู่มือ CaCl₂ กับ Na₂CO₃ ได้ตะกอนขาว CaCl₂ กับ Na₂SO₄ ได้ตะกอนขาว MgCl₂ กับ Na₂CO₃ ได้ตะกอนขาว ส่วน NH₄Cl ไม่เกิดตะกอนกับสารที่ทดสอบ ตะกอนที่ได้คือ CaCO₃, CaSO₄ และ MgCO₃ ตามลำดับ</p>
+<p>การเขียน <b>สมการไอออนิกสุทธิ</b> ตัดไอออนที่ไม่เปลี่ยนแปลง (ไอออนผู้ชม) ออก เช่น CaCl₂ + Na₂CO₃ มี Ca<sup>2+</sup>, 2Cl<sup>−</sup>, 2Na<sup>+</sup>, CO₃<sup>2−</sup> ในสารละลาย</p>
+<div class="rd-eq">Ca<sup>2+</sup>(aq) + CO<sub>3</sub><sup>2−</sup>(aq) → CaCO<sub>3</sub>(s)</div>`,
+ q:['ผลึก NaCl แห้งนำไฟฟ้าหรือไม่ และเมื่อละลายน้ำเป็นอย่างไร','ผลึกแห้งไม่นำไฟฟ้าเพราะไอออนเคลื่อนที่ไม่ได้ แต่สารละลายนำไฟฟ้าเพราะ Na⁺ และ Cl⁻ เคลื่อนที่ได้ (คู่มือครู หน้า 174)']},
+{h:'3.3 พันธะโคเวเลนต์ โครงสร้างลิวอิส และการเรียกชื่อ',pg:'คู่มือครู เล่ม 1 หน้า 187–199',html:`
+<p>อโลหะมีอิเล็กโทรเนกาติวิตีสูง ไม่มีอะตอมใดยอมเสียอิเล็กตรอน จึงใช้เวเลนซ์อิเล็กตรอน <b>ร่วมกัน</b> เป็นพันธะโคเวเลนต์ คู่ที่ใช้ร่วมเรียกคู่ร่วมพันธะ คู่ที่ไม่ได้ร่วมเรียกคู่โดดเดี่ยว Cl₂ มีพันธะเดี่ยว O₂ พันธะคู่ N₂ พันธะสาม</p>
+<p>การเขียนโครงสร้างลิวอิสของโมเลกุลที่มีหลายอะตอม ให้อะตอมกลางเป็นธาตุที่ต้องการอิเล็กตรอนเพิ่มมากที่สุดเพื่อครบออกเตต ถ้าเท่ากันให้เลือกธาตุที่ EN ต่ำสุด มีข้อยกเว้นของกฎออกเตต เช่น BF₃ (อะตอมกลางมีน้อยกว่า 8) และ PCl₅ (มากกว่า 8) NH₃ มีคู่โดดเดี่ยวที่รับ H<sup>+</sup> ได้ เกิด NH₄<sup>+</sup></p>
+<p><b>สูตรและชื่อ</b> สูตรโมเลกุลเรียงธาตุตาม EN จากน้อยไปมาก ชื่อเรียกตามลำดับ และใช้คำบอกจำนวนแบบกรีก เช่น mono, di, tri, tetra, penta, hexa, deca ตัวอย่าง N₂O₄ = dinitrogen tetraoxide, PCl₅ = phosphorus pentachloride, CCl₄ = carbon tetrachloride, P₄O₁₀ = tetraphosphorus decaoxide</p>
+<p><b>ความยาวและพลังงานพันธะ</b> ความยาวพันธะคือระยะระหว่างนิวเคลียสที่ทำให้พลังงานศักย์รวมต่ำสุด พลังงานพันธะ H–H เท่ากับ 436 kJ/mol เป็นพลังงานต่ำสุดที่ใช้สลายพันธะให้เป็นอะตอมเดี่ยวในสถานะแก๊ส สำหรับอะตอมคู่เดียวกัน พลังงานพันธะยิ่งมาก ความยาวพันธะยิ่งสั้น เช่น Cl₂ &gt; Br₂ &gt; I₂ ในพลังงานพันธะ แต่ F–F พลังงานน้อยกว่า Cl–Cl เพราะอะตอม F เล็กมากและอิเล็กตรอนรอบ ๆ ผลักกัน</p>`,
+ q:['เขียนชื่อสาร N₂O₄ และ PCl₅','N₂O₄ คือ ไดไนโตรเจนเตตระออกไซด์ และ PCl₅ คือ ฟอสฟอรัสเพนตะคลอไรด์ (ตัวอย่างกิจกรรมเสนอแนะ 3 ในคู่มือครู)']},
+{h:'3.3 รูปร่างโมเลกุลตามทฤษฎี VSEPR',pg:'คู่มือครู เล่ม 1 หน้า 204–209',html:`
+<p>กิจกรรม 3.2 ใช้ลูกโป่งแทนกลุ่มหมอกอิเล็กตรอน ผูกก้นติดกันรอบอะตอมกลาง ลูกโป่งผลักกันจนห่างกันที่สุด 2, 3, 4, 5 และ 6 ลูก ได้รูปเส้นตรง สามเหลี่ยมแบนราบ ทรงสี่หน้า พีระมิดคู่ฐานสามเหลี่ยม และทรงแปดหน้า ตามลำดับ นี่คือหลักของทฤษฎี <b>VSEPR</b> คือ คู่อิเล็กตรอนในวงเวเลนซ์ผลักกันให้อยู่ไกลกันที่สุด</p>
+<p>คู่โดดเดี่ยวอยู่ใกล้นิวเคลียสกว่าคู่ร่วมพันธะ แรงผลักจึงเรียงเป็น คู่โดดเดี่ยว–คู่โดดเดี่ยว &gt; คู่โดดเดี่ยว–คู่ร่วมพันธะ &gt; คู่ร่วมพันธะ–คู่ร่วมพันธะ ส่วนชื่อรูปร่างพิจารณาจากตำแหน่งอะตอมเท่านั้น ไม่นับคู่โดดเดี่ยว ตัวอย่างอะตอมล้อมรอบ 3 อะตอมกับคู่โดดเดี่ยว 1 คู่ เป็นพีระมิดฐานสามเหลี่ยม (NH₃, PH₃) และอะตอมล้อมรอบ 2 อะตอมกับคู่โดดเดี่ยว 2 คู่ เป็นรูปงอ มุมน้อยกว่า 180°</p>
+<div class="rd-tbl"><table><thead><tr><th>โมเลกุล</th><th>คู่ร่วมพันธะ</th><th>คู่โดดเดี่ยว</th><th>รูปร่าง</th><th>มุมโดยประมาณ*</th></tr></thead><tbody>
+<tr><td>CO₂</td><td>2 พันธะ (C=O)</td><td>0</td><td>เส้นตรง</td><td>180°</td></tr>
+<tr><td>CH₄</td><td>4</td><td>0</td><td>ทรงสี่หน้า</td><td>109.5°</td></tr>
+<tr><td>NH₃</td><td>3</td><td>1</td><td>พีระมิดฐานสามเหลี่ยม</td><td>107°</td></tr>
+<tr><td>H₂O</td><td>2</td><td>2</td><td>งอ</td><td>104.5°</td></tr></tbody></table></div>
+<p class="rd-note">*ตัวเลขมุมเป็นค่าที่ใช้กันทั่วไป ตรงกับที่แล็บเสมือนของหน้านี้ใช้ ส่วนข้อความในคู่มือครูของหัวข้อนี้ไม่ได้ระบุตัวเลขมุม ให้ตรวจกับตาราง 3.13 ในหนังสือเรียน</p>`,
+ q:['H₂O ล้อมรอบด้วย 2 อะตอมเหมือน CO₂ แต่ทำไมงอ','O ใน H₂O มีคู่โดดเดี่ยว 2 คู่ซึ่งผลักพันธะให้งอ ส่วน C ใน CO₂ ไม่มีคู่โดดเดี่ยว พันธะจึงอยู่ตรงข้ามกันเป็นเส้นตรง (กิจกรรม 3.2 ในคู่มือครู หน้า 205)']},
+{h:'3.3 ขั้วของโมเลกุลและแรงระหว่างโมเลกุล',pg:'คู่มือครู เล่ม 1 หน้า 208–215',html:`
+<p><b>ขั้วของพันธะ</b> พันธะระหว่างอะตอมชนิดเดียวกัน (H₂, O₂, Cl₂) แบ่งกลุ่มหมอกเท่ากัน จึงไม่มีขั้ว พันธะระหว่างอะตอมที่ EN ต่างกัน (HCl) มีขั้ว อะตอมที่ EN สูงกว่าค่อนไปทางลบ ส่วนอีกอะตอมค่อนไปทางบวก</p>
+<p><b>ขั้วของโมเลกุล</b> เป็นการรวมเวกเตอร์ขั้วของทุกพันธะ ถ้าหักล้างกันหมดโมเลกุลไม่มีขั้ว ถ้าหักล้างไม่หมดโมเลกุลมีขั้ว โมเลกุลที่อะตอมกลางไม่มีคู่โดดเดี่ยวและอะตอมล้อมรอบเหมือนกันหมด (เช่น CO₂, CH₄) ไม่มีขั้ว แม้ทุกพันธะมีขั้ว ส่วน H₂O และ NH₃ มีขั้ว สารที่ขั้วใกล้เคียงกันละลายเข้ากันได้ดี</p>
+<p><b>แรงระหว่างโมเลกุล</b> มี 3 แบบ ได้แก่ แรงแผ่กระจายลอนดอน (มีในทุกโมเลกุล อ่อน และมากขึ้นตามขนาดโมเลกุล) แรงระหว่างขั้ว และพันธะไฮโดรเจน (H ที่ต่อกับ N, O หรือ F ดึงดูดคู่โดดเดี่ยวของโมเลกุลข้างเคียง) แรงยิ่งมาก จุดเดือดและจุดหลอมเหลวยิ่งสูง NH₃, HF และ H₂O จึงมีจุดเดือดสูงกว่าแนวโน้มของไฮไดรด์ในหมู่เดียวกัน เพราะมีพันธะไฮโดรเจน</p>
+<p>สารโคเวเลนต์โครงร่างตาข่าย (กิจกรรม 3.3 ให้สืบค้น) ต่างจากสารโมเลกุลเล็ก เพราะอะตอมต่อกันเป็นโครงสร้างใหญ่ต่อเนื่อง และธาตุเดียวกันที่เป็นอัญรูปต่างกันมีสมบัติต่างกัน</p>`,
+ q:['CO₂ มีพันธะ C=O ที่มีขั้ว ทำไมโมเลกุลจึงไม่มีขั้ว','โมเลกุลเป็นเส้นตรงสมมาตร พันธะ C=O สองพันธะชี้คนละทิศ ขนาดเท่ากัน เวกเตอร์ขั้วหักล้างกันหมด (คู่มือครู หน้า 208–209)']},
+{h:'3.4–3.5 พันธะโลหะและการเปรียบเทียบสาร',pg:'คู่มือครู เล่ม 1 หน้า 218–219',html:`
+<p>พันธะโลหะเกิดจากการยึดเหนี่ยวระหว่างโปรตอนในนิวเคลียสของอะตอมโลหะกับเวเลนซ์อิเล็กตรอนที่เคลื่อนที่ได้ทั่วชิ้นโลหะ เรียกว่า <b>แบบจำลองทะเลอิเล็กตรอน</b> ซึ่งอธิบายสมบัติของโลหะ ได้แก่ จุดเดือดและจุดหลอมเหลวสูง ผิวมันวาวสะท้อนแสง นำไฟฟ้าและความร้อนได้ดี และตีเป็นแผ่นหรือดึงเป็นเส้นได้ เพราะอะตอมเลื่อนไถลกันโดยไม่แตกหัก</p>
+<div class="rd-tbl"><table><thead><tr><th></th><th>สารประกอบไอออนิก</th><th>สารโคเวเลนต์ (โมเลกุล)</th><th>โลหะ</th></tr></thead><tbody>
+<tr><td>อนุภาคที่ยึดกัน</td><td>ไอออนบวก–ลบ</td><td>อะตอมที่ใช้อิเล็กตรอนร่วม</td><td>แกนอะตอมกับอิเล็กตรอนอิสระ</td></tr>
+<tr><td>นำไฟฟ้า</td><td>เมื่อหลอมเหลวหรือละลายน้ำ</td><td>ส่วนใหญ่ไม่นำ</td><td>นำได้ดีแม้เป็นของแข็ง</td></tr>
+<tr><td>เมื่อถูกทุบ</td><td>เปราะ แตก</td><td>—</td><td>ตีแผ่ได้</td></tr>
+<tr><td>ตัวอย่าง</td><td>NaCl</td><td>CO₂, H₂O</td><td>Cu</td></tr></tbody></table></div>
+<p>ตารางนี้ผู้จัดทำหน้าสรุปจากข้อมูลในคู่มือครูข้างต้น (หัวข้อ 3.2–3.4) ส่วนตัวอย่างการใช้ประโยชน์ เช่น เหล็กทำโครงสร้างเพราะแข็ง ทองแดงทำสายไฟเพราะนำไฟฟ้า อยู่ในแนวการสอนหน้า 218</p>`,
+ q:['ทำไมโลหะตีเป็นแผ่นได้ แต่ผลึก NaCl แตกเมื่อทุบ','ในโลหะ อะตอมเลื่อนไถลได้โดยยังมีทะเลอิเล็กตรอนยึดไว้ ส่วนผลึกไอออนิก เมื่อชั้นไอออนเลื่อน ไอออนประจุเหมือนกันอยู่ชิดกันจึงผลักกันจนแตก (คู่มือครู หน้า 174 และ 218)']}
+]},
+/* ===== บทที่ 4 ===== */
+{lead:'อ่านเรื่องมวลอะตอมเฉลี่ย โมล มวลโมลาร์ และการหาสูตรเคมีจากข้อมูลมวล ก่อนไปหาสูตรผลึกไฮเดรตในแล็บเสมือน',secs:[
+{h:'4.1 มวลอะตอม',pg:'คู่มือครู เล่ม 2 หน้า 6–11',html:`
+<p>มวลของอะตอมเล็กมากในหน่วยกรัมและชั่งทีละอะตอมไม่ได้ จึงเทียบกับธาตุมาตรฐาน คือคาร์บอน-12 ได้เป็น <b>มวลอะตอมสัมพัทธ์</b> (ไม่มีหน่วย) โดย 1/12 ของมวลอะตอม <sup>12</sup>C เท่ากับ 1.66 × 10<sup>−24</sup> g ตัวอย่าง ไฮโดรเจนมีมวลอะตอมสัมพัทธ์ 1.01 หนึ่งอะตอมจึงมีมวล 1.01 × 1.66 × 10<sup>−24</sup> = 1.68 × 10<sup>−24</sup> g</p>
+<p>ธาตุมีไอโซโทปหลายชนิดในธรรมชาติ ค่าที่ปรากฏในตารางธาตุจึงเป็น <b>มวลอะตอมเฉลี่ย</b> (เรียกสั้น ๆ ว่ามวลอะตอม)</p>
+<div class="rd-eq">มวลอะตอมเฉลี่ย = Σ [ (ร้อยละไอโซโทป × มวลอะตอมของไอโซโทป) ] ÷ 100</div>
+<p>ตัวอย่าง คาร์บอน <sup>12</sup>C มวล 12.0000 มีร้อยละ 98.930 และ <sup>13</sup>C มวล 13.0034 มีร้อยละ 1.070 (ส่วน <sup>14</sup>C กัมมันตรังสีมีน้อยมาก) ได้ (98.930 × 12.0000 + 1.070 × 13.0034) ÷ 100 = 12.011 ซึ่งในตารางธาตุเขียน 12.01 ไม่ใช่ 12.0000 และอิริเดียม <sup>191</sup>Ir (190.961, ร้อยละ 37.300) กับ <sup>193</sup>Ir (192.963, ร้อยละ 62.700) ได้ 192.22</p>`,
+ q:['เงินมี <sup>107</sup>Ag มวล 106.91 (ร้อยละ 51.84) และ <sup>109</sup>Ag (ร้อยละ 48.16) มวลอะตอมเฉลี่ย 107.87 มวลอะตอมของ <sup>109</sup>Ag เป็นเท่าใด','(51.84 × 106.91 + 48.16 × Z) ÷ 100 = 107.87 ได้ Z = 108.9 (ตรงกับเฉลยแบบฝึกหัด 4.1)']},
+{h:'4.2 โมลและเลขอาโวกาโดร',pg:'คู่มือครู เล่ม 2 หน้า 12–14, 18–19',html:`
+<p><b>โมล</b> เป็นหน่วยนับอนุภาค 1 mol มี 6.02 × 10<sup>23</sup> อนุภาค (เลขอาโวกาโดร) ซึ่งเป็นส่วนกลับของ 1.66 × 10<sup>−24</sup> นั่นเอง หน่วยโมลใช้ได้กับอะตอม โมเลกุล ไอออน หรือหน่วยสูตร ไม่ใช่เฉพาะอะตอม</p>
+<p>จำนวนอะตอมหรือไอออนที่เป็นองค์ประกอบหาได้จากสูตรเคมี</p>
+<div class="rd-tbl"><table><thead><tr><th>ตัวอย่าง</th><th>คำนวณ</th><th>ผล</th></tr></thead><tbody>
+<tr><td>H₂O 0.500 mol</td><td>H = 0.500 × 2, O = 0.500 × 1</td><td>H 1.00 mol (6.02 × 10<sup>23</sup> อะตอม) และ O 0.500 mol (3.01 × 10<sup>23</sup>)</td></tr>
+<tr><td>Ca₃(PO₄)₂ 2.00 mol</td><td>Ca²⁺ = 2.00 × 3, PO₄³⁻ = 2.00 × 2</td><td>Ca²⁺ 3.61 × 10<sup>24</sup> ไอออน และ PO₄³⁻ 2.41 × 10<sup>24</sup> ไอออน</td></tr>
+<tr><td>NH₃ 3.01 × 10<sup>25</sup> โมเลกุล</td><td>3.01 × 10<sup>25</sup> ÷ 6.02 × 10<sup>23</sup></td><td>50.0 mol</td></tr></tbody></table></div>
+<p>NaCl 1 mol มี Na⁺ 6.02 × 10<sup>23</sup> ไอออน และ Cl⁻ อีกเท่ากัน รวม 2 × 6.02 × 10<sup>23</sup> ไอออน สารต่างชนิดที่มีโมลเท่ากันจึงมีจำนวนอนุภาคเท่ากันเมื่ออยู่ในรูปอะตอมหรือโมเลกุล แต่ถ้าเป็นไอออนจำนวนไอออนรวมอาจต่างกัน</p>`,
+ q:['K₂SO₄ 0.1 mol มี K⁺ และ SO₄²⁻ อย่างละกี่โมล','K⁺ 0.2 mol และ SO₄²⁻ 0.1 mol เพราะหนึ่งหน่วยสูตรมี K⁺ 2 ตัว และ SO₄²⁻ 1 ตัว (ตรงกับเฉลยแบบฝึกหัด 4.2)']},
+{h:'4.2 มวลโมลาร์ มวลโมเลกุล และปริมาตรแก๊ส',pg:'คู่มือครู เล่ม 2 หน้า 14–17, 22–29',html:`
+<p>มวลต่อโมล (มวลโมลาร์, g/mol) มีค่าตัวเลขเท่ากับมวลอะตอม มวลโมเลกุล หรือมวลสูตร ซึ่งหาได้จากผลรวมมวลอะตอมตามสูตร ตัวอย่างแอสไพริน C₉H₈O₄ = 9(12.01) + 8(1.01) + 4(16.00) = 180.17 g/mol กรดแอซีติก C₂H₄O₂ = 60.06, NO₂ = 46.01, H₂S = 34.08</p>
+<p>ความสัมพันธ์สำคัญ <b>n = m/M</b> และจำนวนอนุภาค N = n × 6.02 × 10<sup>23</sup> แก๊สใด ๆ 1 mol ที่ STP มีปริมาตร 22.4 L ดังนั้นความหนาแน่นแก๊สที่ STP = M ÷ 22.4 เช่น ฮีเลียม 4.00 ÷ 22.4 ≈ 0.179 g/L</p>
+<div class="rd-eq">มวล (g) ⇄ โมล ⇄ จำนวนอนุภาค<br>โมล ⇄ ปริมาตรแก๊ส ที่ STP (× 22.4 L/mol)</div>
+<p><b>ตัวอย่าง</b> Pb(NO₃)₂ 82.75 g (M = 331.22 g/mol) มี 82.75 ÷ 331.22 = 0.2498 mol และมี NO₃⁻ 2 × 0.2498 × 6.02 × 10<sup>23</sup> = 3.01 × 10<sup>23</sup> ไอออน อีกตัวอย่าง เฮกเซน C₆H₁₄ 43.0 g (M = 86.20) = 0.499 mol = 3.00 × 10<sup>23</sup> โมเลกุล สารต่างชนิดมีโมลเท่ากันแต่มวลมักไม่เท่ากัน และมวลเท่ากันมักมีโมลไม่เท่ากัน</p>`,
+ q:['คาร์บอน 4.0 g มีกี่อะตอม (M = 12.01 g/mol)','4.0 ÷ 12.01 = 0.33 mol × 6.02 × 10²³ ≈ 2.0 × 10²³ อะตอม (ตรงกับเฉลยแบบฝึกหัด 4.3 ข้อ 6.2)']},
+{h:'4.3 กฎสัดส่วนคงที่และร้อยละโดยมวลของธาตุ',pg:'คู่มือครู เล่ม 2 หน้า 32–34',html:`
+<p>กฎสัดส่วนคงที่: สารประกอบหนึ่ง ๆ ประกอบด้วยธาตุในอัตราส่วนโดยมวลคงที่เสมอ ไม่ว่าเตรียมด้วยวิธีใด ตัวอย่างในคู่มือ ทองแดงทำปฏิกิริยากับกำมะถันได้คอปเปอร์(II)ซัลไฟด์ในอัตราส่วนมวล Cu : S เฉลี่ย 2.0 : 1.0 เมื่อหารด้วยมวลอะตอม (Cu 63.55, S 32.06) จะได้อัตราส่วนโมลประมาณ 1 : 1 จึงตรงกับสูตร CuS</p>
+<p>จำนวนโมลของธาตุในอัตราส่วนโดยโมลเท่ากับจำนวนอะตอมของธาตุในสูตรเคมี จึงใช้หาสูตรได้</p>
+<p><b>ร้อยละโดยมวล</b> = (มวลของธาตุ ÷ มวลของสารประกอบ) × 100 ตัวอย่างฟอร์มาลดีไฮด์ CH₂O มีมวลสูตร 12.01 + 2(1.01) + 16.00 = 30.03 ได้ C 40.0%, H 6.7%, O 53.3% รวม 100</p>`,
+ q:['ในฟอร์มาลดีไฮด์ CH₂O ร้อยละโดยมวลของคาร์บอนเป็นเท่าใด','12.01 ÷ 30.03 × 100 = 40.0% (ตัวอย่างในคู่มือครู หน้า 33)']},
+{h:'4.3 สูตรอย่างง่ายและสูตรโมเลกุล',pg:'คู่มือครู เล่ม 2 หน้า 34–37',html:`
+<p><b>สูตรอย่างง่าย (เอมพิริคัล)</b> แสดงอัตราส่วนจำนวนเต็มต่ำสุดของอะตอม ส่วน <b>สูตรโมเลกุล</b> แสดงจำนวนอะตอมจริง = n × สูตรอย่างง่าย สารประกอบไอออนิกมีแต่สูตรเอมพิริคัล ส่วนสารโคเวเลนต์อาจมีทั้งสองสูตรซึ่งเหมือนหรือต่างกันได้</p>
+<p><b>ขั้นตอน</b> (1) แปลงมวลหรือร้อยละโดยมวลเป็นโมลของแต่ละธาตุ (2) หารด้วยโมลที่น้อยที่สุด (3) ถ้าไม่ลงตัวให้คูณด้วยจำนวนเต็มเล็ก ๆ จนเป็นจำนวนเต็ม (4) ถ้ามีมวลโมเลกุลให้หา n = มวลโมเลกุล ÷ มวลสูตรอย่างง่าย</p>
+<p><b>ตัวอย่าง 1</b> เผาฟอสฟอรัส 9.29 g ได้ออกไซด์ 21.29 g ดังนั้นออกซิเจน 12.00 g โมล P = 9.29 ÷ 30.97 = 0.300 โมล O = 12.00 ÷ 16.00 = 0.750 อัตราส่วน 1.00 : 2.50 คูณ 2 ได้ 2 : 5 สูตรอย่างง่ายคือ P₂O₅</p>
+<p><b>ตัวอย่าง 2</b> สารมี S 69.60% และ N 30.40% มวลโมเลกุล 184 โมล S = 69.60 ÷ 32.06 = 2.171 โมล N = 30.40 ÷ 14.01 = 2.170 จึงเป็น 1 : 1 สูตรอย่างง่าย SN มวลสูตร 46.07 n = 184 ÷ 46.07 ≈ 4 สูตรโมเลกุล S₄N₄</p>`,
+ q:['กรดซอร์บิก มวลโมเลกุล 112.13 มี C 64.3% H 7.2% O 28.5% สูตรโมเลกุลคืออะไร','โมล C : H : O = 5.35 : 7.13 : 1.78 หารด้วย 1.78 ได้ 3 : 4 : 1 สูตรอย่างง่าย C₃H₄O มวลสูตร 56.06 n = 112.13 ÷ 56.06 = 2 จึงเป็น C₆H₈O₂ (ตรงกับเฉลยแบบฝึกหัด 4.7)']},
+{h:'เชื่อมสู่แล็บ: หาสูตรผลึกไฮเดรตด้วยวิธีเดียวกัน',pg:'ผู้จัดทำหน้าเชื่อมแนวคิดจากคู่มือครู เล่ม 2 หน้า 34–37',html:`
+<p>ผลึกไฮเดรตเขียนเป็น เกลือ·xH₂O เมื่อให้ความร้อนจนน้ำออกหมด มวลที่ลดลงคือมวลน้ำ ใช้ขั้นตอนเดียวกับสูตรอย่างง่าย โดยเทียบ <b>โมลน้ำ : โมลเกลือไร้น้ำ</b> เพื่อหา x</p>
+<p class="rd-note">คู่มือครูบทนี้ไม่มีกิจกรรมไฮเดรต ตัวอย่างต่อไปนี้ผู้จัดทำหน้าสร้างเอง โดยใช้มวลอะตอมจากตารางธาตุของคู่มือ (Cu 63.55, S 32.06, O 16.00, H 1.01) และตัวเลข 5.00 g กับ 3.20 g เป็นค่าสมมติ</p>
+<div class="rd-eq">CuSO<sub>4</sub> = 63.55 + 32.06 + 4(16.00) = 159.61 g/mol<br>H<sub>2</sub>O = 2(1.01) + 16.00 = 18.02 g/mol<br>ผลึก 5.00 g → เหลือเกลือไร้น้ำ 3.20 g ดังนั้นน้ำ 1.80 g<br>โมลน้ำ = 1.80 ÷ 18.02 = 0.0999 โมลเกลือ = 3.20 ÷ 159.61 = 0.0200<br>อัตราส่วน 0.0999 : 0.0200 ≈ 5 : 1 ดังนั้น x = 5 → CuSO<sub>4</sub>·5H<sub>2</sub>O</div>
+<p>ถ้าสูตรจริงเป็น CuSO₄·5H₂O มวลน้ำคิดเป็น 5 × 18.02 = 90.10 g ต่อ 249.71 g ของผลึก หรือ 36.1% แล็บเสมือนใช้ 36.7% ของมวลเริ่มต้นเป็นค่าของแบบจำลอง จึงได้ x ใกล้ 5 โดยผลที่อ่านได้ปัดเป็นจำนวนเต็ม</p>`,
+ q:['ผลึก 5.00 g เหลือ 3.20 g หลังไล่น้ำ (เกลือไร้น้ำ M = 159.61) ค่า x เป็นเท่าใด','น้ำ 1.80 g = 0.0999 mol เกลือ 3.20 g = 0.0200 mol อัตราส่วน ≈ 5 : 1 ดังนั้น x = 5 (ตัวอย่างสมมติของผู้จัดทำหน้า)']}
+]},
+/* ===== บทที่ 5 ===== */
+{lead:'อ่านหน่วยความเข้มข้นต่าง ๆ วิธีเตรียมสารละลายจากของแข็งและการเจือจางด้วย M₁V₁ = M₂V₂ รวมถึงสมบัติคอลลิเกทีฟ ก่อนเตรียมสารละลายในแล็บเสมือน',secs:[
+{h:'5.1 ความเข้มข้นเป็นร้อยละ',pg:'คู่มือครู เล่ม 2 หน้า 64–68',html:`
+<p>สารละลายคือสารเนื้อเดียวที่ประกอบด้วยตัวทำละลายและตัวละลาย การบอกปริมาณสารละลายจึงบอกทั้ง <b>ความเข้มข้น</b> และปริมาตร เช่น น้ำแดงเต็มแก้วกับครึ่งแก้วเข้มข้นเท่ากันแต่ปริมาตรต่างกัน ความเข้มข้นโดยทั่วไปคืออัตราส่วนของปริมาณตัวละลายต่อปริมาณสารละลาย</p>
+<p>หน่วยร้อยละมี 3 แบบ คือ ร้อยละโดยมวล ร้อยละโดยปริมาตร และร้อยละโดยมวลต่อปริมาตร แอลกอฮอล์ร้อยละ 70 โดยปริมาตร หมายถึงในสารละลาย 100 mL มีแอลกอฮอล์ 70 mL</p>
+<p><b>ตัวอย่าง 1</b> NaCl 50.0 g ในน้ำ 200.0 g มวลสารละลาย 250.0 g ร้อยละโดยมวล = 50.0 ÷ 250.0 × 100 = 20.0</p>
+<p><b>ตัวอย่าง 2</b> น้ำตาลทรายร้อยละ 22.0 โดยมวล ความหนาแน่น 1.09 g/mL สารละลาย 1.0 mL มีสารละลาย 1.09 g ดังนั้นมีน้ำตาล 1.09 × 22.0 ÷ 100 = 0.24 g</p>
+<p>ใช้ความหนาแน่นเชื่อมมวลกับปริมาตรเสมอ เช่น H₂SO₄ ร้อยละ 35 โดยมวล ความหนาแน่น 1.26 g/mL ปริมาตร 100 L มี H₂SO₄ 4.4 × 10<sup>4</sup> g</p>`,
+ q:['H₂SO₄ ร้อยละ 35 โดยมวล ความหนาแน่น 1.26 g/mL ปริมาตร 100 L มีกรดกี่กรัม','100 L = 1.00 × 10⁵ mL × 1.26 g/mL = 1.26 × 10⁵ g × 0.35 = 4.4 × 10⁴ g (ตรงกับตัวอย่างตรวจสอบความเข้าใจ ข้อ 3.1)']},
+{h:'5.1 ส่วนในล้านส่วน (ppm) และส่วนในพันล้านส่วน (ppb)',pg:'คู่มือครู เล่ม 2 หน้า 68–70',html:`
+<p>สำหรับสารที่ปนอยู่น้อยมาก ใช้ ppm และ ppb</p>
+<div class="rd-eq">ppm = (มวลตัวละลาย ÷ มวลสารละลาย) × 10<sup>6</sup> &nbsp;&nbsp; ppb = (มวลตัวละลาย ÷ มวลสารละลาย) × 10<sup>9</sup><br>1 ppm = 1,000 ppb</div>
+<p><b>ตัวอย่าง 1</b> สินแร่ 0.456 g มี Cr₂O₃ 0.560 mg = 5.60 × 10<sup>−4</sup> g ได้ (5.60 × 10<sup>−4</sup> ÷ 0.456) × 10<sup>6</sup> = 1.23 × 10<sup>3</sup> ppm</p>
+<p><b>ตัวอย่าง 2</b> แหล่งน้ำกว้าง 3.00 m ยาว 10.00 m ลึก 1.50 m มีปริมาตร 45.0 m<sup>3</sup> = 45,000 L เมื่อสารละลายเจือจางมาก ถือว่าปริมาตรสารละลายเท่าปริมาตรน้ำ และ 1 ppm ≈ 1 mg ต่อ L ถ้ามี Pb<sup>2+</sup> 0.20 ppm และ Zn<sup>2+</sup> 3.00 ppm จะมี Pb<sup>2+</sup> 0.20 × 45,000 = 9,000 mg = 9.0 g และ Zn<sup>2+</sup> 3.00 × 45,000 = 135 g</p>`,
+ q:['0.0500 g ของตัวละลายในสารละลาย 1.00 kg กี่ ppm (ตัวอย่างสมมติ)','(0.0500 ÷ 1000) × 10⁶ = 50 ppm (ตัวอย่างของผู้จัดทำหน้า ใช้สูตรเดียวกับตัวอย่าง 1)']},
+{h:'5.1 โมลาริตี โมแลลิตี และเศษส่วนโมล',pg:'คู่มือครู เล่ม 2 หน้า 68–75',html:`
+<ul><li><b>โมลาริตี (M)</b> = โมลตัวละลาย ÷ ปริมาตรสารละลาย (L) หน่วย mol/L</li>
+<li><b>โมแลลิตี (m)</b> = โมลตัวละลาย ÷ มวลตัวทำละลาย (kg) หน่วย mol/kg ข้อผิดพลาดที่พบบ่อยคือคิดว่าเทียบกับสารละลาย แต่ความจริงเทียบกับตัวทำละลาย</li>
+<li><b>เศษส่วนโมล (χ)</b> = โมลของสารนั้น ÷ โมลรวมของทุกสาร ไม่มีหน่วย ผลรวมของทุกองค์ประกอบเท่ากับ 1</li></ul>
+<p><b>ตัวอย่างโมลาริตี</b> Na₂CO₃ 53 g (M = 105.99) ในสารละลาย 1 L = 0.50 mol/L และ HCl 0.015 mol ในสารละลาย 10 mL = 0.015 ÷ 0.010 = 1.5 mol/L (ต้องแปลง mL เป็น L)</p>
+<p><b>ตัวอย่างโมแลลิตีและเศษส่วนโมล</b> NaCl ร้อยละ 10.0 โดยมวล หมายถึง NaCl 10.0 g ต่อน้ำ 90.0 g NaCl 10.0 ÷ 58.44 = 0.171 mol น้ำ 90.0 ÷ 18.02 = 4.99 mol ดังนั้นโมแลลิตี = 0.171 ÷ 0.0900 = 1.90 mol/kg χ<sub>NaCl</sub> = 0.171 ÷ (0.171 + 4.99) = 0.0331 และ χ<sub>น้ำ</sub> = 0.967</p>
+<p>การเปลี่ยนหน่วยทำได้ผ่านมวลและความหนาแน่น เช่น HClO₄ 9.20 mol/L ความหนาแน่น 1.54 g/mL เท่ากับร้อยละ 60.0 โดยมวล</p>`,
+ q:['กลูโคส 400 g (M = 180.18) ในสารละลาย 800 mL เข้มข้นกี่ mol/L','400 ÷ 180.18 = 2.22 mol ÷ 0.800 L = 2.78 mol/L (ตรงกับเฉลยแบบฝึกหัด 5.1 ข้อ 3.3)']},
+{h:'5.2 เตรียมสารละลายจากของแข็ง',pg:'คู่มือครู เล่ม 2 หน้า 76–78',html:`
+<p>ลำดับการเตรียมสารละลายความเข้มข้นและปริมาตรที่กำหนด: คำนวณมวลตัวละลาย ชั่ง ละลายในบีกเกอร์ด้วยน้ำบางส่วน ถ่ายลงขวดกำหนดปริมาตร ชะบีกเกอร์และแท่งแก้วลงขวด หมุนขวดให้ผสม แล้วเติมน้ำจนถึงขีด</p>
+<p>ข้อแนะนำของคู่มือ ต้องชั่งและวัดให้ละเอียด ไม่ควรเติมน้ำถึงขีดในครั้งเดียวเพราะจะเหลือที่เขย่าน้อย และห้ามเกินขีด เพราะความเข้มข้นจริงจะต่ำกว่าที่คำนวณ</p>
+<p><b>กิจกรรม 5.1 ตอนที่ 1</b> เตรียม NaCl 0.40 mol/L ปริมาตร 100 mL (M = 58.44 g/mol)</p>
+<div class="rd-eq">มวล NaCl = 0.40 mol/L × 0.100 L × 58.44 g/mol = 2.338 g<br>ชั่งได้จริง 2.338 g → ความเข้มข้นจริง = 2.338 ÷ 58.44 ÷ 0.100 L = 0.4001 mol/L</div>
+<p>ค่าความเข้มข้นจริงคำนวณจากมวลที่ชั่งได้ จึงอาจต่างจากค่าเป้าหมายเล็กน้อย ควรบันทึกค่าจริงไว้ใช้ต่อ</p>`,
+ q:['ถ้าเติมน้ำเกินขีดของขวดกำหนดปริมาตร ความเข้มข้นที่ได้เปลี่ยนไปอย่างไร','น้อยกว่าที่ต้องการ เพราะจำนวนโมลตัวละลายเท่าเดิมแต่ปริมาตรสารละลายมากขึ้น (ชวนคิดในกิจกรรม 5.1)']},
+{h:'5.2 การเจือจาง M₁V₁ = M₂V₂',pg:'คู่มือครู เล่ม 2 หน้า 78–81',html:`
+<p>การเจือจางคือเติมตัวทำละลาย ความเข้มข้นลดลง แต่จำนวนโมลตัวละลายคงเดิม จึงได้ความสัมพันธ์</p>
+<div class="rd-eq">M<sub>1</sub>V<sub>1</sub> = M<sub>2</sub>V<sub>2</sub> (หน่วยปริมาตรของสองข้างต้องเหมือนกัน)</div>
+<p><b>กิจกรรม 5.1 ตอนที่ 2</b> เตรียม NaCl 0.040 mol/L ปริมาตร 100 mL จากสารละลายตอนที่ 1 (0.4001 mol/L) ต้องมีโมล 0.040 × 0.100 = 0.0040 mol จึงใช้สารละลายเข้มข้น 0.0040 ÷ 0.4001 = 0.0100 L = 10 mL ปิเปตต์ใส่ขวดกำหนดปริมาตร 100 mL แล้วเติมน้ำถึงขีด</p>
+<p><b>ตัวอย่างตรวจสอบความเข้าใจ</b> ต้องการ KMnO₄ 0.003 mol/L 75 mL จาก 0.050 mol/L แต่ไม่มีขวด 75 mL จึงเตรียม 100 mL ก่อน โมล = 0.003 × 0.100 = 3 × 10<sup>−4</sup> mol ใช้สารเข้มข้น 3 × 10<sup>−4</sup> ÷ 0.050 = 6.0 mL แล้วแบ่งใช้ 75 mL (คู่มือหมายเหตุว่าเป็นโจทย์ฝึกคำนวณ เพราะ KMnO₄ ไม่บริสุทธิ์พอจะเตรียมให้ตรงเป๊ะ)</p>
+<p>ตัวอย่างของแล็บเสมือนหน้านี้: จะเตรียม NaCl 0.20 mol/L 100 mL จาก stock 1.00 mol/L ต้องใช้ V₁ = 0.20 × 100 ÷ 1.00 = 20.0 mL ซึ่งเป็นค่าของแบบจำลองในหน้านี้ ไม่ใช่ตัวเลขจากคู่มือ</p>`,
+ q:['เจือจาง HCl 1.0 mol/L ปริมาตร 50 mL ให้เป็น 250 mL จะเข้มข้นเท่าใด','M₂ = 1.0 × 50 ÷ 250 = 0.20 mol/L (โจทย์จากแบบฝึกหัดท้ายบทข้อ 1 ผู้จัดทำหน้าคำนวณเอง)']},
+{h:'5.3 สมบัติคอลลิเกทีฟ: จุดเดือดและจุดเยือกแข็งของสารละลาย',pg:'คู่มือครู เล่ม 2 หน้า 90–95',html:`
+<p>สารละลายมีแรงยึดเหนี่ยวระหว่างตัวละลายกับตัวทำละลายด้วย จึงต่างจากตัวทำละลายบริสุทธิ์ ผลการทดลองในคู่มือแสดงว่า</p>
+<ul><li><b>จุดเดือด</b> ของสารละลายสูงกว่าตัวทำละลายบริสุทธิ์ ตัวอย่าง เอทานอลเดือด 78.0 °C ส่วนสารละลายกลีเซอรอล 2.0 mol/kg ในเอทานอลเดือด 80.0 °C</li>
+<li><b>จุดหลอมเหลว (จุดเยือกแข็ง)</b> ของสารละลายต่ำกว่าตัวทำละลายบริสุทธิ์ ตัวอย่าง แนฟทาลีน 80.5 °C ส่วนสารละลายกรดเบนโซอิกในแนฟทาลีน 77.0 °C</li>
+<li>ตัวทำละลายเดียวกัน ถ้าโมแลลเท่ากันจะมีจุดเดือดและจุดเยือกแข็งเท่ากัน <b>ไม่ขึ้นกับชนิดตัวละลาย</b> สมบัติแบบนี้เรียกว่าสมบัติคอลลิเกทีฟ</li></ul>
+<p>การเปลี่ยนแปลงแปรผันตรงกับโมแลล: ΔT<sub>b</sub> = K<sub>b</sub> × m และ ΔT<sub>f</sub> = K<sub>f</sub> × m เมื่อ K<sub>b</sub>, K<sub>f</sub> ขึ้นกับชนิดตัวทำละลาย (K<sub>f</sub> ของน้ำ = 1.86 °C/m ตามแบบฝึกหัดในคู่มือ)</p>
+<p><b>ตัวอย่าง</b> ยูเรียในน้ำ 1.50 mol/kg ทำให้จุดเยือกแข็งลดลง 1.86 × 1.50 = 2.79 °C จึงเยือกแข็งที่ −2.79 °C อีกตัวอย่าง CS₂ (K<sub>b</sub> = 2.42 °C/m) เดือด 46.00 °C สารละลายซัลเฟอร์เดือด 46.72 °C เพิ่มขึ้น 0.72 °C จึงเข้มข้น 0.72 ÷ 2.42 = 0.298 mol/kg</p>`,
+ q:['เพราะเหตุใดจึงเรียกสมบัติคอลลิเกทีฟ','เพราะการเปลี่ยนจุดเดือดและจุดเยือกแข็งขึ้นกับจำนวนโมลของตัวละลายต่อมวลตัวทำละลาย ไม่ขึ้นกับว่าตัวละลายเป็นสารอะไร (คู่มือครู หน้า 94–95)']}
+]},
+/* ===== บทที่ 6 ===== */
+{lead:'อ่านเรื่องการเขียนและดุลสมการเคมี การคำนวณปริมาณสารจากอัตราส่วนโมล สารกำหนดปริมาณ และร้อยละผลได้ ก่อนจำลองปฏิกิริยาในแล็บเสมือน',secs:[
+{h:'6.1 ปฏิกิริยาเคมีและสัญลักษณ์ในสมการเคมี',pg:'คู่มือครู เล่ม 2 หน้า 116–119, 124',html:`
+<p>ปฏิกิริยาเคมีคือการเปลี่ยนแปลงที่เกิด <b>สารใหม่</b> โดยชนิดและจำนวนอะตอมของแต่ละธาตุไม่เปลี่ยน เพียงจัดเรียงตัวใหม่ เช่น กรดซิตริกกับโซเดียมไฮโดรเจนคาร์บอเนตในยาลดกรด และการเผาแก๊สโพรเพน</p>
+<p>เครื่องบ่งชี้ที่พบบ่อย คือ ฟองแก๊ส ตะกอน กลิ่น การเปลี่ยนสี การเปลี่ยนอุณหภูมิ แต่แต่ละอย่างอาจไม่พอสรุป ตัวอย่างในคู่มือ ผสมสารแล้วอุณหภูมิสูงขึ้นอย่างเดียวสรุปไม่ได้ เพราะ NaOH ละลายน้ำแล้วร้อนก็เป็นการเปลี่ยนแปลงทางกายภาพ กรดผสมเบสอาจไม่เห็นอะไรแต่ตรวจด้วยกระดาษ pH พบว่าเกิดสารใหม่ การต้มน้ำจนเดือดเป็นการเปลี่ยนสถานะทางกายภาพเพราะยังเป็นน้ำชนิดเดิม</p>
+<p><b>สมการเคมี</b> เขียนสูตรสารตั้งต้นทางซ้ายและผลิตภัณฑ์ทางขวา คั่นด้วยลูกศร บอกสถานะ (s) (l) (g) (aq) หลังสูตร และเขียนปัจจัยเช่นความร้อน ความดัน ไว้ที่ลูกศร ข้อดีกว่าสมการข้อความคือบอกสูตร สถานะ ใช้พื้นที่น้อย และเป็นสากล ตัวอย่างที่ยังไม่ดุล</p>
+<div class="rd-eq">HCl(aq) + CaCO<sub>3</sub>(s) → CaCl<sub>2</sub>(aq) + CO<sub>2</sub>(g) + H<sub>2</sub>O(l)</div>`,
+ q:['ผสมสาร 2 ชนิดแล้วอุณหภูมิสูงขึ้น สรุปได้ไหมว่าเกิดปฏิกิริยาเคมี','สรุปไม่ได้ เพราะบางการเปลี่ยนแปลงทางกายภาพก็เปลี่ยนอุณหภูมิ เช่น NaOH ละลายน้ำ ต้องมีหลักฐานว่ามีสารใหม่ (คู่มือครู หน้า 116–118)']},
+{h:'6.2 ดุลสมการและอัตราส่วนโมล',pg:'คู่มือครู เล่ม 2 หน้า 119–125',html:`
+<p><b>กิจกรรม 6.1</b> ผสม Na₃PO₄ กับ BaCl₂ (เข้ม 0.20 mol/L ทั้งคู่) ในปริมาตรต่างกัน 5 หลอด ได้ตะกอนขาว ความสูงตะกอนเพิ่มจนคงที่ตั้งแต่หลอดที่ 3 แสดงว่า Na₃PO₄ 1.00 mL ทำปฏิกิริยาพอดีกับ BaCl₂ 1.50 mL คิดเป็นโมลได้ 2.0 × 10<sup>−4</sup> : 3.0 × 10<sup>−4</sup> = <b>2 : 3</b></p>
+<div class="rd-eq">2Na<sub>3</sub>PO<sub>4</sub>(aq) + 3BaCl<sub>2</sub>(aq) → Ba<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub>(s) + 6NaCl(aq)</div>
+<p>เลขสัมประสิทธิ์ (หน้าสูตร) บอกจำนวนโมลหรืออนุภาค ส่วนเลขห้อยในสูตรบอกจำนวนอะตอมหรือไอออน เวลาดุลสมการให้เติมสัมประสิทธิ์ ห้ามเปลี่ยนเลขห้อย อัตราส่วนโมลของสมการข้างบนคือ 2 : 3 : 1 : 6 ซึ่งตรงกับผลทดลอง</p>
+<p>ตัวอย่างการดุลของผู้จัดทำหน้า เอเทน C₂H₆ + O₂ → CO₂ + H₂O ดุลได้ 2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O ตรวจ C = 4, H = 12, O = 14 ทั้งสองข้าง</p>
+<p>เมื่อดุลแล้วมวลรวมก่อนและหลังเท่ากัน ตามกฎทรงมวล เช่น 2Na + Cl₂ → 2NaCl มวลสารตั้งต้น 2(22.99) + 2(35.45) = 116.88 g เท่ากับ 2(58.44) = 116.88 g</p>`,
+ q:['ดุลสมการ C₂H₆ + O₂ → CO₂ + H₂O','2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O ตรวจ C 4, H 12, O 14 เท่ากันทั้งสองข้าง (โจทย์แบบฝึกหัด 6.1 ข้อ 1.1)']},
+{h:'6.3 คำนวณปริมาณสารจากสมการเคมี',pg:'คู่มือครู เล่ม 2 หน้า 132–139',html:`
+<p>เลขสัมประสิทธิ์แสดง <b>อัตราส่วนโมล</b> ไม่ใช่อัตราส่วนมวล จึงต้องแปลงปริมาณที่ทราบเป็นโมลก่อนเสมอ แล้วจึงเทียบกับสัมประสิทธิ์ของสารที่ต้องการ</p>
+<div class="rd-eq">ปริมาณที่ทราบ → โมล (m ÷ M, M × V, V ÷ 22.4) → × (สัมประสิทธิ์สารที่ต้องการ ÷ สัมประสิทธิ์สารที่ทราบ) → ปริมาณที่ต้องการ</div>
+<p><b>ตัวอย่างในคู่มือ</b> 2Al + 3Br₂ → 2AlBr₃ ถ้ามี Al 3.0 mol ใช้ Br₂ = 3.0 × 3 ÷ 2 = 4.5 mol</p>
+<p><b>ตัวอย่างของผู้จัดทำหน้า</b> (วิธีเดียวกับคู่มือ) CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂ ใช้ CaCO₃ 10.0 g (M = 100.09) = 0.0999 mol จะได้ CO₂ 0.0999 mol = 0.0999 × 22.4 = 2.24 L ที่ STP และต้องใช้ HCl 2 × 0.0999 = 0.200 mol ถ้าใช้ HCl 1.0 mol/L ต้องใช้ 0.200 L (200 mL)</p>
+<p>ข้อควรระวัง ปริมาตรรวมของแก๊สสารตั้งต้นอาจไม่เท่าปริมาตรรวมของแก๊สผลิตภัณฑ์ และถ้าสารเป็นสารละลายให้ใช้ n = M × V (V หน่วย L)</p>`,
+ q:['ถ้าใช้ CaCO₃ 20.0 g (สมการข้างบน) จะได้ CO₂ กี่ลิตรที่ STP','20.0 ÷ 100.09 = 0.1998 mol CO₂ × 22.4 = 4.48 L (ตัวอย่างของผู้จัดทำหน้า)']},
+{h:'6.4 สารกำหนดปริมาณ',pg:'คู่มือครู เล่ม 2 หน้า 155–156',html:`
+<p>เปรียบเหมือนเกมเก้าอี้ดนตรี ถ้ามีเก้าอี้ 10 ตัวและผู้เล่นมากกว่านั้น เก้าอี้เป็นตัวกำหนดว่านั่งได้กี่คน ในปฏิกิริยา <b>สารกำหนดปริมาณ</b> คือสารตั้งต้นที่หมดก่อน และกำหนดปริมาณผลิตภัณฑ์ สารตัวอื่นที่เหลือคือสารเกิน ข้อควรระวังคือสารกำหนดปริมาณไม่ใช่สารที่มีปริมาณน้อยกว่าเสมอไป</p>
+<p><b>วิธีหา</b> เทียบ (โมลของสาร ÷ สัมประสิทธิ์) ของสารตั้งต้นทุกตัว ค่าน้อยที่สุดคือสารกำหนดปริมาณ แล้วใช้สารนั้นคำนวณผลิตภัณฑ์และสารที่เหลือ</p>
+<p><b>ตัวอย่างในคู่มือ</b> 2H₂ + O₂ → 2H₂O ใช้ H₂ 6 mol กับ O₂ 2 mol ได้ H₂ 6 ÷ 2 = 3 และ O₂ 2 ÷ 1 = 2 ดังนั้น O₂ เป็นสารกำหนดปริมาณ ใช้ H₂ ไป 4 mol ได้น้ำ 4 mol = 72.08 g เหลือ H₂ 2 mol ในกิจกรรม 6.1 หลอดที่ 1–2 BaCl₂ เป็นสารกำหนดปริมาณ (Na₃PO₄ เหลือ) หลอดที่ 3 พอดี และหลอดที่ 4–5 Na₃PO₄ เป็นสารกำหนดปริมาณ (BaCl₂ เหลือ)</p>
+<p><b>ตัวอย่างจากแล็บของหน้านี้</b> 3NaHCO₃ + C₆H₈O₇ → Na₃C₆H₅O₇ + 3CO₂ + 3H₂O ใช้ NaHCO₃ 0.030 mol กับกรดซิตริก 0.015 mol ได้ 0.030 ÷ 3 = 0.010 และ 0.015 ÷ 1 = 0.015 ดังนั้น NaHCO₃ เป็นสารกำหนดปริมาณ ได้ CO₂ 3 × 0.010 = 0.030 mol และกรดซิตริกเหลือ 0.015 − 0.010 = 0.005 mol (สมการและตัวเลขชุดนี้มาจากแล็บเสมือนของหน้านี้ ไม่ใช่ตัวอย่างในคู่มือ)</p>`,
+ q:['NaHCO₃ 0.030 mol มากกว่ากรดซิตริก 0.015 mol ทำไม NaHCO₃ จึงเป็นสารกำหนดปริมาณ','สมการใช้ NaHCO₃ 3 mol ต่อกรด 1 mol จึงเทียบ n ÷ สัมประสิทธิ์ ได้ 0.010 กับ 0.015 ค่าน้อยกว่าคือ NaHCO₃ จึงหมดก่อน (คำนวณโดยผู้จัดทำหน้า)']},
+{h:'6.5 ผลได้ร้อยละ',pg:'คู่มือครู เล่ม 2 หน้า 157–161',html:`
+<p><b>ผลได้ตามทฤษฎี</b> คือปริมาณผลิตภัณฑ์ที่คำนวณจากสารกำหนดปริมาณ ส่วน <b>ผลได้จริง</b> คือที่เกิดขึ้นจริง ซึ่งมักน้อยกว่า เช่น ปฏิกิริยาไม่สมบูรณ์ สูญเสียระหว่างทำ แก๊สละลายน้ำ หรือการชั่งคลาดเคลื่อน</p>
+<div class="rd-eq">ผลได้ร้อยละ = (ผลได้จริง ÷ ผลได้ตามทฤษฎี) × 100</div>
+<p><b>กิจกรรม 6.3</b> Na₂CO₃ 2.00 g ทำปฏิกิริยากับ HCl 1.0 mol/L 40.0 mL</p>
+<div class="rd-eq">Na<sub>2</sub>CO<sub>3</sub>(s) + 2HCl(aq) → CO<sub>2</sub>(g) + 2NaCl(aq) + H<sub>2</sub>O(l)</div>
+<ul><li><b>สารกำหนดปริมาณ</b> HCl 0.0400 mol ทำปฏิกิริยาพอดีกับ Na₂CO₃ 0.0200 mol = 2.12 g ซึ่งมากกว่า 2.00 g จึง Na₂CO₃ หมดก่อน (คู่มือเขียนประมาณ 2.1 g)</li>
+<li><b>ผลได้ตามทฤษฎี</b> CO₂ = 2.00 ÷ 105.99 × 44.01 = 0.830 g</li>
+<li><b>ผลได้จริง</b> จากกฎทรงมวล มวลที่หายไปคือ CO₂ ที่ระเหยออก ผลตัวอย่าง (154.38 + 2.00) − 155.60 = 0.78 g</li>
+<li><b>ผลได้ร้อยละ</b> 0.78 ÷ 0.830 × 100 ≈ 94</li></ul>
+<p>ตัวเลขในกิจกรรมนี้เป็นผลตัวอย่างของคู่มือ ส่วนแล็บเสมือนของหน้านี้ใช้สมการ 3NaHCO₃ + C₆H₈O₇ และให้ปรับผลได้จริงเป็นร้อยละเองเพื่อฝึกคำนวณ</p>`,
+ q:['ถ้าได้ CO₂ จริง 0.78 g แต่ตามทฤษฎี 0.830 g ผลได้ร้อยละเท่าใด','0.78 ÷ 0.830 × 100 ≈ 94% (ตรงกับผลตัวอย่างของกิจกรรม 6.3 ในคู่มือครู)']}
+]}
+];
+/* reading-data:end */
+/* reading-engine:start */
+function readHTML_M4(i){const r=READ_M4[i];if(!r)return'';
+  return`<div class="rd" id="rdBlock"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>`+
+  r.secs.map(x=>`<article class="rd-sec"><h3>${x.h}</h3><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q?`<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>`:''}</article>`).join('')+
+  `<div class="rd-skip"><button class="btn alt" type="button" id="skipRead">ไปที่การทดลอง ↓</button></div><div class="rd-div"><span>สรุปแนวคิดและแบบฝึกของบทนี้</span></div></div>`;}
+(function(){
+  const orig=selectChapter,REDUCE=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function inject(i){const host=document.querySelector('#learn');if(!host||host.querySelector('#rdBlock'))return;
+    host.insertAdjacentHTML('afterbegin',readHTML_M4(i));
+    const b=document.querySelector('#skipRead');
+    if(b)b.onclick=()=>{setTab('lab');const t=document.querySelector('#lab');t.setAttribute('tabindex','-1');t.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'});t.focus({preventScroll:true});};}
+  selectChapter=function(i){orig(i);inject(i);};
+  inject(current);
+})();
+/* reading-engine:end */
+</script>
+<!-- wm:foot:start -->
 <footer class="site-credit">จัดทำโดย ครูเก๋ วิจิตรา จิตสุภา</footer>
 <!-- wm:foot:end -->
 </body></html>
