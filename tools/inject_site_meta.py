@@ -42,6 +42,7 @@ M5_TITLES = {
     "11": "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)",
     "m6-12": "เคมี ม.6 เล่ม 5 บทที่ 12 เคมีอินทรีย์ (กิจกรรม 12.1–12.10)",
     "m6-13": "เคมี ม.6 เล่ม 5 บทที่ 13 พอลิเมอร์ (กิจกรรม 13.1–13.3)",
+    "p5-4": "วิทยาศาสตร์กายภาพ ม.5 บทที่ 4 พลังงาน (กิจกรรม 4.1–4.4)",
     "m6-14": "เคมี ม.6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา (กิจกรรม 14.1–14.8)",
 }
 CHEM_LAB_ID = "เคมี ม.4 ปฏิบัติการเบื้องต้น"
@@ -60,6 +61,10 @@ def submit_block(f, title):
         gr, ch = mm.groups()
         key = ch if gr == "5" else "m6-" + ch
         cfg = json.dumps({"id": f"เคมี ม.{gr} บทที่ " + ch, "title": M5_TITLES[key], "url": CFG.get("url", "")}, ensure_ascii=False)
+        return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+    mp = re.match(r"chemistry-m5-phys-ch(\d+)\.html$", base)
+    if mp and "p5-" + mp.group(1) in M5_TITLES:    # วิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) หนึ่งบทต่อหนึ่งหน้า
+        cfg = json.dumps({"id": "วิทยาศาสตร์กายภาพ ม.5 บทที่ " + mp.group(1), "title": M5_TITLES["p5-" + mp.group(1)], "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     if base == "chemistry-m4-lab.html":
         cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)
