@@ -229,6 +229,13 @@ svg text{font-family:var(--font)}
 .warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
 .tbl-sm td,.tbl-sm th{font-size:.88rem}
 .tw table.wide{min-width:540px}
+@media(max-width:640px){
+.tw table.wide{min-width:0}
+.tw table.wide th,.tw table.wide td{font-size:.76rem;padding:4px 4px;overflow-wrap:break-word}
+}
+.fig.scroll{background:linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) left center/24px 100% no-repeat local,linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) right center/24px 100% no-repeat local,linear-gradient(to right,rgba(43,108,176,.28),rgba(43,108,176,0)) left center/10px 100% no-repeat scroll,linear-gradient(to left,rgba(43,108,176,.28),rgba(43,108,176,0)) right center/10px 100% no-repeat scroll,#fff}
+.scroll-hint{display:none;font-size:.8rem;color:var(--muted);margin:4px 2px 0}
+@media(max-width:640px){.scroll-hint{display:block}}
 .ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
 .stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
 .stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
@@ -899,7 +906,7 @@ function mapSVG(){
    ln(525,104,525,124)+`<text x="525" y="142" text-anchor="middle" font-size="12" fill="#172033">ประโยชน์ของแก๊สและธาตุ</text><text x="525" y="160" text-anchor="middle" font-size="12" fill="#172033">สารมลพิษ แหล่งกำเนิด ผลกระทบ</text>`);}
 function actSum(){
   return`<h2>สรุปเนื้อหาบทที่ 1 อากาศ</h2><p class="sub">สรุปโดยผู้จัดทำหน้า จากคู่มือครู หน้า 1–30 และหนังสือเรียนบทที่ 1</p>
-  <div class="box"><h3>ภาพรวม</h3><div class="fig scroll">${mapSVG()}</div></div>
+  <div class="box"><h3>ภาพรวม</h3><div class="fig scroll">${mapSVG()}</div><p class="scroll-hint">เลื่อนไปทางขวาได้ เพื่อดูผังทั้งหมด</p></div>
   <div class="box"><h3>ใจความหลัก</h3><ul>
   <li>อากาศเป็นสารผสมของแก๊สหลายชนิด ส่วนใหญ่เป็นไนโตรเจนและออกซิเจน อยู่ในรูปอะตอมหรือโมเลกุล</li>
   <li>สารที่มีธาตุชนิดเดียวเป็นองค์ประกอบคือธาตุ มีธาตุมากกว่าหนึ่งชนิดคือสารประกอบ สารในรูปอะตอมเป็นธาตุเสมอ</li>
@@ -961,7 +968,7 @@ function actEx(){
   <h3>แบบฝึกหัด 1.3</h3>${sel13HTML()}${quizHTML('x13m','แบบฝึกหัด 1.3 ข้อ 2–4')}
   <h3>แบบฝึกหัดท้ายบทที่ 1</h3>${selX('xeA')}${selX('xeB')}${selX('xeC')}
   <div class="box"><h3>ข้อ 4 แบบจำลองอะตอมของโบร์ของธาตุสมมติ Y</h3><div class="fig" style="max-width:300px">${ySVG()}</div></div>${numHTML('xeY','ข้อ 4: จำนวนอนุภาคของธาตุสมมติ Y',NUM.xeY)}
-  <div class="box"><h3>ข้อ 5 แบบจำลองอะตอมของไฮโดรเจน (โบร์และกลุ่มหมอก)</h3><div class="fig">${hSVG()}</div><p class="small">ผู้จัดทำหน้าวาดภาพเองให้ตำแหน่ง A–F สอดคล้องกับเฉลยของคู่มือ (หน้า 27) ไม่ใช่ภาพต้นฉบับ</p></div>${quizHTML('xe5','ข้อ 5')}
+  <div class="box"><h3>ข้อ 5 แบบจำลองอะตอมของไฮโดรเจน (โบร์และกลุ่มหมอก)</h3><div class="fig" style="max-width:560px;margin-left:auto;margin-right:auto">${hSVG()}</div><p class="small">ผู้จัดทำหน้าวาดภาพเองให้ตำแหน่ง A–F สอดคล้องกับเฉลยของคู่มือ (หน้า 27) ไม่ใช่ภาพต้นฉบับ</p></div>${quizHTML('xe5','ข้อ 5')}
   ${x6HTML()}
   ${numHTML('xe7','แบบฝึกหัดท้ายบท ข้อ 7: ไอโซโทปของธาตุสมมติ D',NUM.xe7)}
   ${sel8HTML()}${g9HTML()}
