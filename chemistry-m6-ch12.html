@@ -197,6 +197,7 @@ h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;l
 .rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
 .rd-skip{margin:6px 0 0}
 /* reading:end */
+.rd-photo{margin:12px auto;max-width:560px}.rd-photo img{display:block;width:100%;height:auto;border-radius:10px}.rd-photo figcaption{font-size:.82rem;color:var(--muted,#5d6b82);margin-top:6px;overflow-wrap:break-word}
 .panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px #6e283412,0 3px 10px #6e283408;margin-bottom:24px}
 .panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
 .sub{color:var(--muted);margin:.2rem 0 1rem}
@@ -1168,7 +1169,8 @@ const READ={
 <p>สารที่มีธาตุไนโตรเจน (เอมีน เอไมด์) ใช้หลักการเดียวกัน แต่ N–H มีขั้วน้อยกว่า O–H พันธะไฮโดรเจนของเอมีนจึงอ่อนกว่าแอลกอฮอล์ที่มีขนาดใกล้กัน</p>`,q:['ทำไมต้องทำให้ปลายหลอดคะปิลลารีมีที่ว่างเพียงเล็กน้อย','เพื่อให้ไอของสารไล่อากาศออกได้หมดอย่างรวดเร็ว ถ้ามีอากาศมากจะต้องรอนาน ทำให้จุดเดือดที่วัดคลาดเคลื่อน (คู่มือ หน้า 53)']}]},
 '12.6':{lead:'อ่านเรื่องการเผาไหม้และการฟอกจางสี ซึ่งใช้แยกประเภทไฮโดรคาร์บอนได้',secs:[
 {h:'การเผาไหม้และเขม่า',pg:'คู่มือครู หน้า 59–60',html:`
-<p>ไฮโดรคาร์บอนเผาไหม้กับ O₂ ได้ CO₂ และ H₂O (<b>สมบูรณ์</b>) ถ้า O₂ ไม่พอ จะได้ CO และ/หรือ C (<b>เขม่า</b>) ด้วย ความสมบูรณ์ขึ้นกับสัดส่วน C:H ของสาร และปริมาณ O₂ เช่น เตาถ่านมีเขม่ามากเพราะถ่านเป็นคาร์บอนเกือบทั้งหมด ส่วนแก๊สหุงต้ม (โพรเพน บิวเทน) มี C:H ต่ำ เผาไหม้สมบูรณ์ได้ง่าย</p>`},
+<p>ไฮโดรคาร์บอนเผาไหม้กับ O₂ ได้ CO₂ และ H₂O (<b>สมบูรณ์</b>) ถ้า O₂ ไม่พอ จะได้ CO และ/หรือ C (<b>เขม่า</b>) ด้วย ความสมบูรณ์ขึ้นกับสัดส่วน C:H ของสาร และปริมาณ O₂ เช่น เตาถ่านมีเขม่ามากเพราะถ่านเป็นคาร์บอนเกือบทั้งหมด ส่วนแก๊สหุงต้ม (โพรเพน บิวเทน) มี C:H ต่ำ เผาไหม้สมบูรณ์ได้ง่าย</p>
+<figure class="rd-photo"><img src="assets/img/chem/bunsen-flames.webp" alt="เปลวไฟเตาบุนเซนสี่แบบ ตั้งแต่สีเหลืองไปจนถึงสีฟ้า" width="800" height="719" loading="lazy" decoding="async"><figcaption>เปลวไฟเตาบุนเซนสี่เปลว ตั้งแต่เปลวสีเหลืองส้ม (1) ไปจนถึงเปลวสีฟ้า (4) · ภาพถ่าย: Arthur Jan Fijałkowski / Wikimedia Commons / <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></figcaption></figure>`},
 {h:'ฟอกจางสีโบรมีนและ KMnO₄',pg:'คู่มือครู หน้า 61–66',html:`
 <table><thead><tr><th class="l">ประเภท</th><th>Br₂ ที่มืด</th><th>Br₂ ที่สว่าง</th><th>KMnO₄</th></tr></thead><tbody>
 <tr><td class="l">แอลเคน</td><td>ไม่เปลี่ยน</td><td>จางสี (แทนที่ ได้ HBr)</td><td>ไม่เปลี่ยน</td></tr>

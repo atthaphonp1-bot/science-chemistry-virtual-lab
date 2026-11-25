@@ -327,6 +327,12 @@ input[type=range]{accent-color:var(--acc)}input[type=checkbox],input[type=radio]
 .ansrow select{width:auto;min-width:7.5em;min-height:44px;border:1px solid #b2d4dd;border-radius:12px;padding:4px 8px}
 input.txt{min-height:44px;border:1px solid #b2d4dd;border-radius:12px;padding:6px 10px;width:12em;max-width:100%}
 </style>
+<style>
+/* photos:start */
+.rd-photo{margin:12px auto;max-width:560px}.rd-photo img{display:block;width:100%;height:auto;border-radius:10px}.rd-photo figcaption{font-size:.82rem;color:var(--muted,#5d6b82);margin-top:6px;overflow-wrap:break-word}
+.rd-photo.rd-portrait{max-width:320px}
+/* photos:end */
+</style>
 <!-- ap:start -->
 <style>
 /* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
@@ -727,7 +733,9 @@ const READ={
 '2.2':{lead:'อ่านเรื่องสารที่ละลายในน้ำธรรมชาติ ไอออน พันธะไอออนิก และสูตรเอมพิริคัล ก่อนทำกิจกรรมจัดเรียงไอออนและตัวผสมไอออน',secs:[
 {h:'น้ำธรรมชาติเป็นสารผสม',pg:'คู่มือครู หน้า 46–47 · หนังสือเรียน หัวข้อ 2.2 (ประมาณหน้า 38–41)',html:`
 <p>น้ำกลั่นเป็นสารบริสุทธิ์ ส่วนน้ำในแหล่งน้ำธรรมชาติเป็นสารผสมที่มีสารอื่นละลายอยู่ บางชนิดเป็นสารโคเวเลนต์ เช่น แก๊สออกซิเจน แก๊สคาร์บอนไดออกไซด์ บางชนิดอยู่ในรูปไอออน เช่น โซเดียมไอออน (Na⁺) กับคลอไรด์ไอออน (Cl⁻) ซึ่งมีมากในน้ำทะเล เมื่อระเหยน้ำออกจะได้เกลือแกง NaCl</p>
-<p>NaCl ไม่ใช่สารโคเวเลนต์ เพราะ Na ไม่ใช่ธาตุอโลหะ NaCl เป็น<b>สารประกอบไอออนิก</b> ที่ไอออนบวกกับไอออนลบยึดกันด้วย<b>พันธะไอออนิก</b></p>`,
+<p>NaCl ไม่ใช่สารโคเวเลนต์ เพราะ Na ไม่ใช่ธาตุอโลหะ NaCl เป็น<b>สารประกอบไอออนิก</b> ที่ไอออนบวกกับไอออนลบยึดกันด้วย<b>พันธะไอออนิก</b></p>
+<figure class="rd-photo"><img src="assets/img/chem/river-water.webp" alt="แม่น้ำเจ้าพระยาและตึกสูงริมฝั่ง" width="800" height="533" loading="lazy" decoding="async"><figcaption>น้ำในแม่น้ำเจ้าพระยา กรุงเทพมหานคร เป็นตัวอย่างน้ำในแหล่งน้ำธรรมชาติ ซึ่งตามเนื้อหาข้างต้นเป็นสารผสมที่มีสารอื่นละลายอยู่ (ภาพถ่ายนี้ไม่ได้แสดงชนิดหรือปริมาณของสารที่ละลาย) · ภาพถ่าย: Don Ramey Logan / Wikimedia Commons / <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></figcaption></figure>
+`,
  q:['ทำไม NaCl จึงไม่จัดเป็นสารโคเวเลนต์','เพราะสารโคเวเลนต์เกิดจากอะตอมของธาตุอโลหะ แต่ Na เป็นธาตุโลหะ NaCl ประกอบด้วยไอออน Na⁺ และ Cl⁻ (คู่มือครู หน้า 47)']},
 {h:'ไอออนจัดเรียงอย่างไร และเขียนสูตรอย่างไร',pg:'คู่มือครู หน้า 46–48 · หนังสือเรียน 2.2.1 ตาราง 2.3–2.4 (ตาราง 2.3 อยู่ประมาณหน้า 42–43)',html:`
 <p>ไอออนต่างประจุดึงดูดกัน ไอออนประจุเหมือนกันผลักกัน ในของแข็ง ไอออนบวกกับไอออนลบจึงเรียงสลับกันต่อเนื่องไปใน 3 มิติเป็นผลึก ไม่สามารถหาขอบเขตของ &quot;โมเลกุล&quot; ได้ สารประกอบไอออนิกจึงไม่มีสูตรโมเลกุล แต่ใช้<b>สูตรเอมพิริคัล</b> ซึ่งบอกอัตราส่วนอย่างต่ำของไอออนที่ทำให้สารเป็นกลางทางไฟฟ้า</p>
