@@ -713,14 +713,14 @@ function wire31(){
 
 /* ======================= กิจกรรม 3.2 ======================= */
 function meltSVG(T){
-  const X=t=>130+(t+200)*0.77;let s='';
-  [-200,-100,0,100,200].forEach(t=>{s+=`<line x1="${X(t)}" y1="30" x2="${X(t)}" y2="214" stroke="#ecdcc6"/><text x="${X(t)}" y="226" text-anchor="middle" font-size="11" fill="#5d6b82">${t}</text>`;});
-  s+='<text x="500" y="244" text-anchor="end" font-size="11" fill="#5d6b82">อุณหภูมิ (°C)</text>';
-  PM.forEach((p,i)=>{const y=44+i*29;s+=`<text x="6" y="${y+4}" font-size="12" fill="#172033">${p.n}</text>`;
+  const W=240,X=t=>18+(t+200)*0.45;let s='';
+  [-200,-100,0,100,200].forEach(t=>{s+=`<line x1="${X(t)}" y1="34" x2="${X(t)}" y2="268" stroke="#ecdcc6"/><text x="${X(t)}" y="284" text-anchor="middle" font-size="13" fill="#5d6b82">${t}</text>`;});
+  s+=`<line x1="${X(T)}" y1="30" x2="${X(T)}" y2="270" stroke="#b63f43" stroke-width="2.5" stroke-dasharray="5 4"/><text x="${Math.min(210,Math.max(28,X(T)))}" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#b63f43">${T} °C</text>`;
+  s+='<text x="234" y="304" text-anchor="end" font-size="13" fill="#5d6b82">อุณหภูมิ (°C)</text>';
+  PM.forEach((p,i)=>{const y=62+i*38;s+=`<text x="6" y="${y-14}" font-size="13" fill="#172033" stroke="#fff" stroke-width="3" paint-order="stroke">${p.n} (${p.k==='poly'?'พอลิเมอร์':'มอนอเมอร์'})</text>`;
     if(p.k==='poly')s+=`<rect x="${X(p.lo)}" y="${y-8}" width="${Math.max(4,X(p.hi)-X(p.lo))}" height="16" rx="4" fill="#92400e"/>`;
     else s+=`<circle cx="${X(p.lo)}" cy="${y}" r="6" fill="#d9822b" stroke="#92400e" stroke-width="1.5"/>`;});
-  s+=`<line x1="${X(T)}" y1="26" x2="${X(T)}" y2="216" stroke="#b63f43" stroke-width="2.5" stroke-dasharray="5 4"/><text x="${Math.min(470,Math.max(135,X(T)))}" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#b63f43">${T} °C</text>`;
-  return svgBox(520,252,'แผนภาพจุดหลอมเหลวของพอลิเมอร์ (แถบ) และมอนอเมอร์ (จุด) สามคู่ บนแกนอุณหภูมิ มีเส้นประแสดงอุณหภูมิที่เลือก',s);
+  return `<div class="svw"><svg viewBox="0 0 ${W} 312" style="max-width:520px" role="img" aria-label="แผนภาพจุดหลอมเหลวของพอลิเมอร์ (แถบ) และมอนอเมอร์ (จุด) สามคู่ บนแกนอุณหภูมิ มีเส้นประแสดงอุณหภูมิที่เลือก"><rect width="${W}" height="312" fill="#fff"/>${s}</svg></div>`;
 }
 function act32(){
   const rows=[];for(let i=1;i<=3;i++){rows.push(['pr'+i,'คู่ที่ '+i+': ชื่อพอลิเมอร์ สถานะ จุดหลอมเหลว และชื่อมอนอเมอร์ สถานะ จุดหลอมเหลว','ระบุหน่วยและแหล่งข้อมูล']);rows.push(['pc'+i,'คู่ที่ '+i+': เปรียบเทียบ พอลิเมอร์ต่างจากมอนอเมอร์อย่างไร','']);}
@@ -731,7 +731,7 @@ function act32(){
   <div class="tw"><table class="wide tbl-sm"><thead><tr><th class="l">พอลิเมอร์</th><th>สถานะ</th><th>จุดหลอมเหลว (°C)</th><th class="l">มอนอเมอร์</th><th>สถานะ</th><th>จุดหลอมเหลว (°C)</th></tr></thead><tbody>${[0,2,4].map(i=>`<tr><td class="l">${PM[i].n}</td><td>${PM[i].st}</td><td>${PM[i].lo}–${PM[i].hi}</td><td class="l">${PM[i+1].n}</td><td>${PM[i+1].st}</td><td>${PM[i+1].lo}</td></tr>`).join('')}</tbody></table></div>
   <div class="lab"><h3>เลื่อนดูอุณหภูมิเทียบกับจุดหลอมเหลว</h3><p class="small">ค่าเริ่มต้น 25 °C เป็นอุณหภูมิห้องโดยประมาณที่ผู้จัดทำหน้าสมมติ ไม่ได้มาจากหนังสือ</p>
   <label class="lbl" for="t32">อุณหภูมิที่เลือก: <b id="t32v">25</b> °C</label><input type="range" id="t32" min="-200" max="280" step="5" value="25" style="width:100%;min-height:44px">
-  <p class="small">แผนภาพนี้กว้าง บนมือถือให้เลื่อนไปทางขวาเพื่อดูแถบของพอลิเมอร์ ↔</p><div id="sv32"></div><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">สาร</th><th>เทียบกับจุดหลอมเหลวที่อุณหภูมินี้</th></tr></thead><tbody id="tb32" aria-live="polite"></tbody></table></div>
+  <p class="small">แถบสีน้ำตาลคือช่วงจุดหลอมเหลวของพอลิเมอร์ จุดสีส้มคือจุดหลอมเหลวของมอนอเมอร์</p><div id="sv32"></div><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">สาร</th><th>เทียบกับจุดหลอมเหลวที่อุณหภูมินี้</th></tr></thead><tbody id="tb32" aria-live="polite"></tbody></table></div>
   <p class="small">หมายเหตุ: การอยู่เหนือจุดหลอมเหลวไม่ได้บอกว่าเป็นของเหลวหรือแก๊ส ต้องดูจุดเดือดด้วย ซึ่งหนังสือเรียนไม่ได้ให้ค่าไว้ (ตัวอย่างคู่มือระบุว่ามอนอเมอร์ทั้งสามเป็นแก๊ส)</p></div></details>
   ${quizHTML('3.2','แบบทดสอบสั้น กิจกรรม 3.2')}`;
 }
