@@ -1,6 +1,6 @@
 # ภาพถ่ายในโฟลเดอร์นี้ (Photo credits)
 
-ภาพทั้งหมดมาจาก Wikimedia Commons ใช้ตามไลเซนส์ที่ระบุ ปรับขนาดและบีบอัดเป็น WebP (ไม่ได้ตัดต่อเนื้อหา) ภาพ CC BY / CC BY-SA ต้องแสดงชื่อผู้ถ่ายและไลเซนส์ (แสดงไว้ใต้ภาพในหน้าเว็บแล้ว) ภาพ CC BY-SA ถ้านำไปดัดแปลงต่อ ต้องเผยแพร่ภายใต้ไลเซนส์เดียวกัน
+ภาพมาจาก Wikimedia Commons และ Flickr (ไลเซนส์เปิดตามที่ Openverse รายงาน) ใช้ตามไลเซนส์ที่ระบุ ปรับขนาดและบีบอัดเป็น WebP (ไม่ได้ตัดต่อเนื้อหา) ภาพ CC BY / CC BY-SA ต้องแสดงชื่อผู้ถ่ายและไลเซนส์ (แสดงไว้ใต้ภาพในหน้าเว็บแล้ว) ภาพ CC BY-SA ถ้านำไปดัดแปลงต่อ ต้องเผยแพร่ภายใต้ไลเซนส์เดียวกัน
 
 | ไฟล์ | ผู้ถ่าย | ไลเซนส์ | ต้นฉบับ |
 |---|---|---|---|
@@ -19,3 +19,5 @@
 | acid-rain-forest.webp | Lovecz | สาธารณสมบัติ (Public domain) | [Commons](https://commons.wikimedia.org/wiki/File:Acid_rain_woods1.JPG) |
 | river-water.webp | Don Ramey Logan | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Chao_Phraya_River_photo_Don_Ramey_Logan.jpg) |
 | road-salt.webp | Gogerr | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Road_Salt_on_a_Sidewalk_in_Canada.jpg) |
+| rust-iron-wheel.webp | Audire Silentium (Flickr) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Flickr](https://www.flickr.com/photos/155589534@N03/52068784632) |
+| lab-balance-weighing-paper.webp | U5780438 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Weighing_paper_on_balance.jpg) |
