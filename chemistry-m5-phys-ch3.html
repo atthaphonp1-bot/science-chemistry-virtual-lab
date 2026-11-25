@@ -239,6 +239,9 @@ svg text{font-family:var(--font)}
 .warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
 .tbl-sm td,.tbl-sm th{font-size:.88rem}
 .tw table.wide{min-width:540px}
+@media(max-width:600px){.tw table.wide{min-width:0}.tw table.wide th,.tw table.wide td{font-size:.78rem;padding:4px 4px;overflow-wrap:anywhere}}
+.tw,.svw{background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0)) left center/40px 100% no-repeat local,linear-gradient(270deg,#fff 30%,rgba(255,255,255,0)) right center/40px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,rgba(0,0,0,.22),rgba(0,0,0,0)) left center/12px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.22),rgba(0,0,0,0)) right center/12px 100% no-repeat scroll}
+.svw{background-color:#fff}
 .sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
 .ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
 .ledrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
@@ -285,7 +288,7 @@ input[type=range]{accent-color:var(--acc)}input[type=checkbox],input[type=radio]
 /* reading:end */
 </style>
 <style>
-.svw{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff;padding:6px;margin:8px 0}
+.svw{overflow-x:auto;border:1px solid var(--line);border-radius:16px;padding:6px;margin:8px 0}
 .svw svg{display:block;width:100%;max-width:560px;margin:0 auto;height:auto}
 select{max-width:100%;min-height:44px;border:1px solid #e0c49d;border-radius:12px;padding:6px 10px;background:#fff;color:var(--ink)}
 .lbl svg{margin:0 4px}
@@ -486,11 +489,12 @@ function tryDone(a){if(st.done[a])return;if((a==='3.1'||a==='3.3')&&st.q[a]&&st.
 /* ======================= แบบทดสอบ: ข้อมูลตัวเลือก (ตัวเลือกแรกคือข้อที่ถูก) แล้ววางตามตำแหน่งที่กำหนดชัดเจน ======================= */
 function mkSet(items,pos){return items.map((it,i)=>({q:it.q,o:placeCorrect(it.o,0,pos[i]),a:pos[i],w:it.w}));}
 const YN=['ใช่','ไม่ใช่'],NY=['ไม่ใช่','ใช่'];
+const HY='ใช่',HN='ไม่ใช่',SA='อิ่มตัว',UN='ไม่อิ่มตัว';
 const POS={'3.1':[1,3,0,2],'3.2':[2,0,0,3],'3.3':[3,1,2,1],'3.4':[0,2,3,1],
  x31:[1,0,0,1,1,0,1,0,1,1,0,0],x32:[2,0,1,1,2,0,2],x33:[0,1,1,0],x34:[0,1,1,0,1,0,0,1,0],
  xe1:[0,1,1,0,1,0,2],xe2:[1,1,0,0,2],xe3:[1,0,1,0,2,1,2]};
-const HC=(f,yes,why)=>({q:'<span class="mono">'+f+'</span> เป็นสารประกอบไฮโดรคาร์บอนหรือไม่',o:yes?YN:NY,w:why});
-const SU=(d,sat,why)=>({q:d+' เป็นสารประกอบไฮโดรคาร์บอนอิ่มตัวหรือไม่อิ่มตัว',o:sat?['อิ่มตัว','ไม่อิ่มตัว']:['ไม่อิ่มตัว','อิ่มตัว'],w:why});
+const HC=(f,yes,why)=>({q:'<span class="mono">'+f+'</span> เป็นสารประกอบไฮโดรคาร์บอนหรือไม่',o:yes?[HY,HN]:[HN,HY],w:why});
+const SU=(d,sat,why)=>({q:d+' เป็นสารประกอบไฮโดรคาร์บอนอิ่มตัวหรือไม่อิ่มตัว',o:sat?[SA,UN]:[UN,SA],w:why});
 const AB=(d,c,why)=>({q:d+' มีสมบัติเป็นกรด เบส หรือกลาง',o:[c].concat(['กรด','เบส','กลาง'].filter(x=>x!==c)),w:why});
 const WS=(d,yes,why)=>({q:d+' ละลายน้ำได้หรือไม่',o:yes?['ละลายน้ำได้','ละลายน้ำไม่ได้']:['ละลายน้ำไม่ได้','ละลายน้ำได้'],w:why});
 const R3=['ลดการใช้','ใช้ซ้ำ','นำกลับมาใช้ใหม่'];
@@ -518,7 +522,7 @@ const QUIZ={
  {q:'ผลิตภัณฑ์ที่ได้จากการรีไซเคิล PET ตามตาราง 3.2 คือข้อใด',o:['เสื้อผ้า พรม ขวดพลาสติก','ถังขยะ','แผ่นยางปูพื้น','ถุงขยะ ภาชนะบรรจุภัณฑ์'],w:'หนังสือเรียน หน้า 88 (ถังขยะคือ PS แผ่นยางปูพื้นคือ PVC และถุงขยะคือ LDPE)'}],POS['3.4']),
 x31:mkSet([
  HC('HCl',0,'มีคลอรีน ไม่ได้มีเฉพาะ C และ H'),HC('CH₃CH₂Cl',0,'มี Cl'),HC('C₆H₆',1,'มีเฉพาะ C และ H'),HC('CH₃OH',0,'มี O'),HC('CH₄',1,'มีเฉพาะ C และ H'),HC('C₄H₉NH₂',0,'มี N'),HC('C₅H₁₂',1,'มีเฉพาะ C และ H'),HC('CH₃OCH₃',0,'มี O'),
- {q:'กรดไขมันในข้อ 2 (สายคาร์บอนมี –CH=CH– และปลายเป็น –COOH ตามรูปในหนังสือ) เป็นกรดไขมันอิ่มตัวหรือไม่อิ่มตัว',o:['ไม่อิ่มตัว','อิ่มตัว'],w:'มีพันธะคู่ระหว่างอะตอมคาร์บอนกับคาร์บอนในโครงสร้าง'},
+ {q:'กรดไขมันในข้อ 2 (สายคาร์บอนมี –CH=CH– และปลายเป็น –COOH ตามรูปในหนังสือ) เป็นกรดไขมันอิ่มตัวหรือไม่อิ่มตัว',o:[UN,SA],w:'มีพันธะคู่ระหว่างอะตอมคาร์บอนกับคาร์บอนในโครงสร้าง'},
  SU('สาร x [CH₂=C(CH₃)–CH=CH₂]',0,'มีพันธะคู่'),SU('สาร y (วงหกเหลี่ยมพันธะเดี่ยวทั้งหมด มีหมู่ CH₃ และ CH(CH₃)₂)',1,'มีพันธะเดี่ยวทั้งหมด'),SU('สาร z [HC≡C–C(CH₃)₃]',0,'มีพันธะสาม')],POS.x31),
 x32:mkSet([
  AB('CH₃–(CH₂)₆–COOH','กรด','มีหมู่ –COOH'),AB('H₂N–CH₂–CH₂–CH₂–NH₂','เบส','มีหมู่ –NH₂'),AB('(CH₃)₂CH–COOH','กรด','มีหมู่ –COOH'),AB('HO–CH₂–CH(CH₃)–NH₂','เบส','มีหมู่ –NH₂ (หมู่ –OH ไม่ได้ทำให้เป็นกรด)'),AB('HOOC–COOH','กรด','มีหมู่ –COOH'),AB('วงคาร์บอนอิ่มตัวที่มีหมู่ –NH₂ ต่ออยู่','เบส','มีหมู่ –NH₂'),AB('(CH₃)₃C–OH','กลาง','ไม่มีหมู่ –COOH และไม่มีหมู่แอมิโน')],POS.x32),
