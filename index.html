@@ -21,6 +21,21 @@
 @media(max-width:600px){.wrap{padding:0 16px}.topbar{padding:15px 0}.top-tag{font-size:.72rem}.hero{display:block;min-height:0;padding:28px 24px;border-radius:25px}.hero-art{position:absolute;right:-54px;top:18px;width:150px;opacity:.42}.hero h1{max-width:430px;font-size:clamp(2.55rem,12vw,3.8rem)}.hero p{max-width:400px;font-size:.98rem}.intro-row{align-items:start;flex-direction:column;margin:34px 0 17px}.toolbar{gap:10px}.filters{margin:0 -2px}.cards{grid-template-columns:1fr;gap:12px}.lesson-card{min-height:190px;border-radius:18px}.grade{margin:24px 0 34px}.grade-badge{min-width:51px;height:51px;border-radius:16px}.grade-head h3{font-size:1.16rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
+<style id="chlog-css">
+/* changelog:start */
+.top-right{display:flex;align-items:center;gap:10px;position:relative}
+#chlogBtn{position:relative;width:38px;height:38px;border-radius:50%;border:1px solid #e6ebf3;background:#fff;color:#182238;display:grid;place-items:center;cursor:pointer;padding:0}
+#chlogBtn:hover{background:#f3f7fd}#chlogBtn:focus-visible{outline:3px solid #0a84ff;outline-offset:2px}
+#chlogBtn svg{width:19px;height:19px}
+#chlogBtn .dot{position:absolute;top:6px;right:7px;width:9px;height:9px;border-radius:50%;background:#d33a3a;border:2px solid #fff}
+#chlogPanel{position:absolute;top:46px;right:0;z-index:30;width:min(92vw,370px);max-height:min(72vh,520px);overflow:auto;background:#fff;border:1px solid #e6ebf3;border-radius:18px;box-shadow:0 18px 48px rgba(40,65,110,.18);padding:14px 16px 10px}
+#chlogPanel[hidden]{display:none}
+#chlogPanel h2{margin:.1rem 0 .5rem;font-size:1rem}
+#chlogPanel .grp{margin:.7rem 0 .15rem;font-size:.8rem;font-weight:700;color:#5a6a82}
+#chlogPanel ul{margin:.2rem 0 .4rem;padding-left:1.1rem}#chlogPanel li{margin:.25rem 0;font-size:.9rem;line-height:1.5}
+#chlogPanel .new{display:inline-block;margin-right:6px;padding:0 7px;border-radius:999px;background:#e8f1ff;color:#0f4fb5;font-size:.7rem;font-weight:700}
+/* changelog:end */
+</style>
 <!-- ap:start -->
 <style>
 /* ธีมกลางสไตล์ Apple (ปุ่ม + ตัวหนังสือ) ฝังท้าย <head> ทุกหน้าโดย tools/inject_site_meta.py
@@ -85,7 +100,49 @@ a{text-underline-offset:.18em}
 </head>
 <body>
 <div class="wrap">
-<nav class="topbar" aria-label="เมนูหลัก"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M12 4h8M14 4v8l-7 12a2 2 0 0 0 1.7 3h14.6a2 2 0 0 0 1.7-3l-7-12V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 21h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>ห้องทดลองเสมือน</span></div><span class="top-tag">เคมี · ม.1–ม.6</span></nav>
+<nav class="topbar" aria-label="เมนูหลัก"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M12 4h8M14 4v8l-7 12a2 2 0 0 0 1.7 3h14.6a2 2 0 0 0 1.7-3l-7-12V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 21h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>ห้องทดลองเสมือน</span></div><div class="top-right"><span class="top-tag">เคมี · ม.1–ม.6</span><button id="chlogBtn" type="button" aria-label="มีอะไรอัปเดตบ้าง" aria-haspopup="dialog" aria-expanded="false" aria-controls="chlogPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></svg></button><div id="chlogPanel" role="dialog" aria-label="รายการอัปเดต" hidden></div></div></nav>
+<script>
+/* changelog-data:start */
+(function(){
+  var LOG=[
+   {d:'25 พ.ย. 2569',t:[
+     'วิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) หน้าใหม่ครบ 4 บท: อากาศ น้ำ อาหาร พลังงาน',
+     'แล็บสเปกตรัม ม.4 บทที่ 2: เลือกฮีเลียมหรือนีออนแล้วได้เส้นของธาตุนั้น']},
+   {d:'24 พ.ย. 2569',t:[
+     'ม.4 บทที่ 1–6: เพิ่มส่วน "อ่านก่อนทดลอง" ก่อนการทดลองเสมือน',
+     'ม.6 บทที่ 14 เคมีกับการแก้ปัญหา (ตัวช่วยวางแผน วงจรแป้งโดว์ ตัวสร้างรายการอ้างอิง)']},
+   {d:'23 พ.ย. 2569',t:[
+     'ม.6 บทที่ 12 เคมีอินทรีย์ และบทที่ 13 พอลิเมอร์',
+     'ม.5 บทที่ 7 แก๊ส บทที่ 8 อัตราการเกิดปฏิกิริยา บทที่ 9 สมดุลเคมี',
+     'ม.1 เล่ม 2: ทุกแล็บมีส่วน "อ่านก่อนทดลอง"',
+     'แบบทดสอบ: กด "ตรวจคำตอบ" แล้วไม่ไฮไลต์ตัวเลือก']},
+   {d:'22 พ.ย. 2569',t:[
+     'ม.5 บทที่ 10–11: เพิ่มเนื้อหาออนไลน์ แบบฝึกหัดท้ายบท สรุป และแบบฟอร์มสืบค้น',
+     'แก้ตัวห้อย Kb Ka E°cell ให้ถูกต้อง']},
+   {d:'15 พ.ย. 2569',t:[
+     'ม.5 เล่ม 4 บทที่ 10 กรด–เบส และบทที่ 11 เคมีไฟฟ้า การทดลองเสมือนชุดแรก',
+     'หน้าแรก: ป้ายบอกบทที่ยังอยู่ระหว่างจัดทำ']},
+   {d:'13 พ.ย. 2569',t:[
+     'ส่งคะแนนเข้า Google Sheet และส่งข้อเขียนแยกชีตให้ครู']},
+   {d:'12 พ.ย. 2569',t:[
+     'ม.1 เล่ม 2 การทดลองเสมือน 18 กิจกรรม + กิจกรรมท้ายบท',
+     'ม.4 บทเรียนเคมีและการทดลองเสมือนครบ 6 บท']}
+  ];
+  var KEY='chlogSeen_v1',btn=document.getElementById('chlogBtn'),panel=document.getElementById('chlogPanel');
+  if(!btn||!panel)return;
+  var latest=LOG[0].d,seen=null;try{seen=localStorage.getItem(KEY);}catch(_){}
+  if(seen!==latest){var dot=document.createElement('span');dot.className='dot';dot.setAttribute('aria-hidden','true');btn.appendChild(dot);}
+  panel.innerHTML='<h2>มีอะไรอัปเดตบ้าง</h2>'+LOG.map(function(g,i){return '<div class="grp">'+g.d+'</div><ul>'+g.t.map(function(x){return '<li>'+(i===0?'<span class="new">ใหม่</span>':'')+x+'</li>';}).join('')+'</ul>';}).join('');
+  function close(){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
+  function open(){panel.hidden=false;btn.setAttribute('aria-expanded','true');var d=btn.querySelector('.dot');if(d)d.remove();try{localStorage.setItem(KEY,latest);}catch(_){}}
+  btn.addEventListener('click',function(e){e.stopPropagation();panel.hidden?open():close();});
+  panel.addEventListener('click',function(e){e.stopPropagation();});
+  document.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){close();btn.focus();}});
+})();
+/* changelog-data:end */
+</script>
+
 <header class="hero"><div class="hero-copy"><div class="eyebrow">SCIENCE · CHEMISTRY</div><h1>เคมีที่เข้าใจได้<br>ผ่านการทดลอง</h1><p>เลือกชั้นเรียนเพื่อสำรวจบทเรียน แนวคิดสำคัญ และการทดลองเสมือนที่กำลังพัฒนาเป็นชุดการเรียนรู้แบบ offline</p></div><div class="hero-art" aria-hidden="true"><span></span></div></header>
 <section class="intro-row"><div><h2>สารบัญบทเรียน</h2><p>เรียงเนื้อหาตามระดับชั้น จากพื้นฐานสู่เคมีเพิ่มเติม</p></div><span class="total" id="totalCount">6 ระดับ · 32 บท</span></section>
 <div class="toolbar"><label class="search"><input id="searchInput" type="search" placeholder="ค้นหาบทเรียน เช่น กรด–เบส หรือโมล" aria-label="ค้นหาบทเรียน"></label><div class="filters" role="group" aria-label="กรองตามระดับชั้น"><button class="filter" type="button" data-grade="all" aria-pressed="true">ทั้งหมด</button><button class="filter" type="button" data-grade="ม.1" aria-pressed="false">ม.1</button><button class="filter" type="button" data-grade="ม.2" aria-pressed="false">ม.2</button><button class="filter" type="button" data-grade="ม.3" aria-pressed="false">ม.3</button><button class="filter" type="button" data-grade="ม.4" aria-pressed="false">ม.4</button><button class="filter" type="button" data-grade="ม.5" aria-pressed="false">ม.5</button><button class="filter" type="button" data-grade="ม.6" aria-pressed="false">ม.6</button></div></div>
