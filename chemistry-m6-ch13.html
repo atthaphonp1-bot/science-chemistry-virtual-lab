@@ -256,6 +256,7 @@ svg text{font-family:var(--font)}
 .warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
 .tbl-sm td,.tbl-sm th{font-size:.88rem}
 .tw table.wide{min-width:540px}
+@media(max-width:600px){.tw table.wide{min-width:0}.tw table.wide th,.tw table.wide td{font-size:.76rem;padding:5px 4px}.tw table.fc th:first-child,.tw table.fc td:first-child{min-width:7em}}
 .sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
 .ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
 </style>
@@ -429,29 +430,31 @@ POLY.forEach(p=>{p.mm=p.mon.map(m=>formulaMass(m[1]));p.lm=p.type==='cond'?formu
 
 const SUBD='₀₁₂₃₄₅₆₇₈₉';const subs=f=>f.replace(/\d/g,d=>SUBD[+d]);
 function chainSVG(p,n){
-  const W=460,H=170,k=p.mon.length;let s='';
+  const W=300,k=p.mon.length;let s='',H=170;
   if(p.type==='add'){
-    const show=Math.min(n,5),step=34,x0=40,pts=[];
+    const show=Math.min(n,3),step=36,x0=44,pts=[];
     for(let i=0;i<show*2;i++)pts.push([x0+i*step,i%2?96:66]);
     const L=[x0-step*0.9,96],R=[x0+show*2*step-step*0.1,66];
     s+=`<polyline points="${L.join(',')} ${pts.map(q=>q.join(',')).join(' ')} ${R.join(',')}" fill="none" stroke="#3a2f12" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
-    s+=`<line x1="${L[0]}" y1="${L[1]}" x2="${L[0]-14}" y2="${L[1]-8}" stroke="#3a2f12" stroke-dasharray="3 3"/><line x1="${R[0]}" y1="${R[1]}" x2="${R[0]+14}" y2="${R[1]+8}" stroke="#3a2f12" stroke-dasharray="3 3"/>`;
+    s+=`<line x1="${L[0]}" y1="${L[1]}" x2="${L[0]-10}" y2="${L[1]-6}" stroke="#3a2f12" stroke-dasharray="3 3"/><line x1="${R[0]}" y1="${R[1]}" x2="${R[0]+10}" y2="${R[1]+6}" stroke="#3a2f12" stroke-dasharray="3 3"/>`;
     for(let i=0;i<show;i++){const x=x0+(2*i+1)*step;
       p.sub.forEach((t,j)=>{const dx=p.sub.length===2?(j?16:-16):0;s+=`<line x1="${x}" y1="96" x2="${x+dx*0.8}" y2="124" stroke="#3a2f12" stroke-width="2"/><text x="${x+dx}" y="142" text-anchor="middle" font-size="13" fill="#5a4100">${t}</text>`;});}
-    s+=`<rect x="${x0-14}" y="40" width="${step+28}" height="${p.sub.length?112:70}" rx="8" fill="#b8860b" fill-opacity=".08" stroke="#8a6400" stroke-dasharray="5 4"/><text x="${x0-10}" y="32" font-size="12" fill="#8a6400">หน่วยซ้ำ 1 หน่วย</text>`;
-    if(n>show)s+=`<text x="${R[0]+24}" y="${R[1]+4}" font-size="16" fill="#3a2f12">···</text>`;
+    s+=`<rect x="${x0-14}" y="40" width="${step+28}" height="${p.sub.length?112:70}" rx="8" fill="#b8860b" fill-opacity=".08" stroke="#8a6400" stroke-dasharray="5 4"/><text x="${x0-10}" y="32" font-size="13" fill="#8a6400">หน่วยซ้ำ 1 หน่วย</text>`;
+    if(n>show)s+=`<text x="${R[0]+16}" y="${R[1]+4}" font-size="16" fill="#3a2f12">···</text>`;
   }else{
-    const nb=Math.max(1,Math.min(n,Math.floor(4/k)))*k,bw=88,gap=26;
-    const tw=nb*bw+(nb-1)*gap,x0=Math.max(18,(W-tw)/2),y=70,bh=44;
+    /* วางมอนอเมอร์เรียงลงในแนวตั้ง (ผังแนวนอนต้องใช้ความกว้าง 460 ทำให้ตัวอักษรเล็กเกินไปบนมือถือ) */
+    const nb=Math.max(1,Math.min(n,Math.floor(4/k)))*k,bw=170,bh=40,gap=46,x0=(W-bw)/2,y0=28,cx=W/2;
     const cols=['#f3dfa8','#d7e9c4'];
-    s+=`<line x1="${x0-16}" y1="${y+bh/2}" x2="${x0}" y2="${y+bh/2}" stroke="#3a2f12" stroke-dasharray="3 3"/><line x1="${x0+tw}" y1="${y+bh/2}" x2="${x0+tw+16}" y2="${y+bh/2}" stroke="#3a2f12" stroke-dasharray="3 3"/>`;
-    for(let b=0;b<nb;b++){const m=p.mon[b%k],x=x0+b*(bw+gap);
-      s+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="10" fill="${cols[(b%k)%2]}" stroke="#8a6400"/><text x="${x+bw/2}" y="${y+19}" text-anchor="middle" font-size="13" fill="#2b2208">${m[2]}</text><text x="${x+bw/2}" y="${y+35}" text-anchor="middle" font-size="12" fill="#5a4100">${subs(m[1])}</text>`;
-      if(b<nb-1){const cx=x+bw+gap/2;
-        s+=`<line x1="${x+bw}" y1="${y+bh/2}" x2="${x+bw+gap}" y2="${y+bh/2}" stroke="#3a2f12" stroke-width="3"/><text x="${cx}" y="${y+bh+18}" text-anchor="middle" font-size="11" fill="#5a4100">${p.link}</text><text x="${cx}" y="${y-8}" text-anchor="middle" font-size="12" fill="#b63f43">↑ ${p.loss[2]}</text>`;}}
-    if(n*k>nb)s+=`<text x="${x0+tw+22}" y="${y+bh/2+6}" font-size="16" fill="#3a2f12">···</text>`;
+    const yEnd=y0+nb*bh+(nb-1)*gap;
+    s+=`<line x1="${cx}" y1="${y0-14}" x2="${cx}" y2="${y0}" stroke="#3a2f12" stroke-dasharray="3 3"/><line x1="${cx}" y1="${yEnd}" x2="${cx}" y2="${yEnd+14}" stroke="#3a2f12" stroke-dasharray="3 3"/>`;
+    for(let b=0;b<nb;b++){const m=p.mon[b%k],y=y0+b*(bh+gap);
+      s+=`<rect x="${x0}" y="${y}" width="${bw}" height="${bh}" rx="10" fill="${cols[(b%k)%2]}" stroke="#8a6400"/><text x="${cx}" y="${y+17}" text-anchor="middle" font-size="13" fill="#2b2208">${m[2]}</text><text x="${cx}" y="${y+33}" text-anchor="middle" font-size="13" fill="#5a4100">${subs(m[1])}</text>`;
+      if(b<nb-1){const cy=y+bh+gap/2+4;
+        s+=`<line x1="${cx}" y1="${y+bh}" x2="${cx}" y2="${y+bh+gap}" stroke="#3a2f12" stroke-width="3"/><text x="${cx+10}" y="${cy}" font-size="13" fill="#5a4100">${p.link}</text><text x="${cx-10}" y="${cy}" text-anchor="end" font-size="13" fill="#b63f43">↑ ${p.loss[2]}</text>`;}}
+    if(n*k>nb)s+=`<text x="${cx}" y="${yEnd+34}" text-anchor="middle" font-size="16" fill="#3a2f12">···</text>`;
+    H=yEnd+(n*k>nb?44:24);
   }
-  return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="แผนภาพสายพอลิเมอร์ ${p.name} แสดง ${p.type==='add'?'พันธะเดี่ยวระหว่างคาร์บอนที่ต่อกันเป็นสาย':'มอนอเมอร์ที่ต่อกันด้วยพันธะ'+p.link+' และ '+p.loss[0]+'ที่หลุดออก'}">${s}</svg>`;
+  return`<svg viewBox="0 0 ${W} ${H}" style="max-width:340px;margin:0 auto" role="img" aria-label="แผนภาพสายพอลิเมอร์ ${p.name} แสดง ${p.type==='add'?'พันธะเดี่ยวระหว่างคาร์บอนที่ต่อกันเป็นสาย':'มอนอเมอร์ที่ต่อกันด้วยพันธะ'+p.link+' และ '+p.loss[0]+'ที่หลุดออก'}">${s}</svg>`;
 }
 
 /* ทายประเภทปฏิกิริยา: โจทย์จากแบบฝึกหัด 13.1 */
@@ -588,16 +591,16 @@ function sampleG(s,cx,cy,p){
 }
 function heatSVG(S){
   const s=S.sel!==null?SAMP[S.sel]:null;
-  let g=`<rect x="8" y="214" width="96" height="10" rx="3" fill="#cdbf9b" stroke="#8c7f5a"/><text x="56" y="240" text-anchor="middle" font-size="11" fill="#5d6b82">แผ่นกระเบื้อง</text>`;
-  g+=`<rect x="128" y="190" width="56" height="34" rx="8" fill="#e6efe8" stroke="#6b7b6f" stroke-width="2"/><rect x="152" y="176" width="8" height="16" fill="#6b6250"/><text x="156" y="240" text-anchor="middle" font-size="11" fill="#5d6b82">ตะเกียงแอลกอฮอล์</text>`;
+  let g=`<rect x="8" y="214" width="96" height="10" rx="3" fill="#cdbf9b" stroke="#8c7f5a"/><text x="56" y="240" text-anchor="middle" font-size="13" fill="#5d6b82">แผ่นกระเบื้อง</text>`;
+  g+=`<rect x="128" y="190" width="56" height="34" rx="8" fill="#e6efe8" stroke="#6b7b6f" stroke-width="2"/><rect x="152" y="176" width="8" height="16" fill="#6b6250"/><text x="156" y="240" text-anchor="middle" font-size="13" fill="#5d6b82">ตะเกียงแอลกอฮอล์</text>`;
   g+=`<rect x="118" y="146" width="76" height="50" rx="6" fill="none" stroke="#9aa3b5" stroke-dasharray="4 4"/>`;
   if(S.lit)g+=`<g class="flame"><path d="M156 178 C140 164 146 148 156 138 C166 148 172 164 156 178Z" fill="#f5a623" stroke="#e07b00"/><path d="M156 176 C149 168 152 158 156 152 C160 158 163 168 156 176Z" fill="#ffe08a"/></g>`;
   if(s){
-    if(S.placed)g+=sampleG(s,56,196,S.p)+`<text x="56" y="168" text-anchor="middle" font-size="11" fill="#5a4100">วางบนกระเบื้องให้เย็น</text>`;
+    if(S.placed)g+=sampleG(s,56,196,S.p)+`<text x="56" y="134" text-anchor="middle" font-size="13" fill="#5a4100">วางบนกระเบื้อง</text><text x="56" y="150" text-anchor="middle" font-size="13" fill="#5a4100">ให้เย็น</text>`;
     else{const cy=124;g+=`<line x1="250" y1="20" x2="190" y2="${cy-8}" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/><line x1="262" y1="30" x2="190" y2="${cy+6}" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>`+sampleG(s,160,cy,S.p);}
   }
   const lab=s?(S.placed?'ชิ้นตัวอย่างวางบนแผ่นกระเบื้อง':'คีมคีบชิ้นตัวอย่างเหนือเปลวไฟ'):'ยังไม่ได้เลือกชิ้นตัวอย่าง';
-  return`<svg viewBox="0 0 300 250" role="img" aria-label="ภาพประกอบชุดทดลองให้ความร้อนชิ้นพอลิเมอร์: ตะเกียงแอลกอฮอล์พร้อมที่กั้นลม คีมคีบ และแผ่นกระเบื้อง ${lab}${s?' ('+s.n+')':''}">${g}</svg>`;
+  return`<svg viewBox="0 0 300 250" style="max-width:440px;margin:0 auto" role="img" aria-label="ภาพประกอบชุดทดลองให้ความร้อนชิ้นพอลิเมอร์: ตะเกียงแอลกอฮอล์พร้อมที่กั้นลม คีมคีบ และแผ่นกระเบื้อง ${lab}${s?' ('+s.n+')':''}">${g}</svg>`;
 }
 function act131(){
   return`<h2>กิจกรรม 13.1 การทดสอบการเปลี่ยนแปลงของพอลิเมอร์เมื่อได้รับความร้อน</h2><p class="sub">คู่มือครู หน้า 120–122</p>
@@ -610,7 +613,7 @@ function act131(){
    <div class="btns"><button class="btn sm" type="button" id="hLamp">2. จุดตะเกียง</button><button class="btn sm" type="button" id="hHeat" disabled>3. ให้ความร้อน</button><button class="btn alt sm" type="button" id="hOut" disabled>4. นำออกวางบนกระเบื้อง</button></div>
    <div class="cols"><div class="fig" id="hFig"></div><div><p>ความร้อนที่ชิ้นตัวอย่างได้รับ: <b id="hT">0</b> วินาที (เวลาในแบบจำลองเป็นค่าสมมติ ไม่ใช่ค่าจากหนังสือ)</p><div class="tip" id="hMsg" aria-live="polite">เริ่มจากเลือกชิ้นตัวอย่าง</div>
    <p class="small">รูปร่างที่เปลี่ยนไปและสีในภาพเป็นภาพประกอบ ตัวอธิบายผลสังเกต (ก่อน/ระหว่าง/หลัง) ในตารางเป็นผลตัวอย่างของคู่มือครู หน้า 121 ผลจริงขึ้นกับผลิตภัณฑ์ที่ใช้</p></div></div>
-   <div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ผลิตภัณฑ์</th><th class="l">ก่อนได้รับความร้อน</th><th class="l">ระหว่างได้รับความร้อน</th><th class="l">หลังได้รับความร้อน</th></tr></thead><tbody>${SAMP.map((s,i)=>`<tr id="hr${i}"><td class="l">${s.n}</td><td class="l">—</td><td class="l">—</td><td class="l">—</td></tr>`).join('')}</tbody></table></div></div>
+   <div class="tw"><table class="tbl-sm wide fc"><thead><tr><th class="l">ผลิตภัณฑ์</th><th class="l">ก่อนได้รับความร้อน</th><th class="l">ระหว่างได้รับความร้อน</th><th class="l">หลังได้รับความร้อน</th></tr></thead><tbody>${SAMP.map((s,i)=>`<tr id="hr${i}"><td class="l">${s.n}</td><td class="l">—</td><td class="l">—</td><td class="l">—</td></tr>`).join('')}</tbody></table></div></div>
   <div class="box"><h3>จัดกลุ่มพอลิเมอร์จากผลสังเกต</h3><p class="small">ทดสอบให้ครบทั้ง 4 ชิ้นก่อน แล้วเลือกกลุ่มของแต่ละชิ้น</p><div class="sel2">${SAMP.map((s,i)=>`<label>${s.n}<select id="hg${i}" disabled><option value="">เลือก…</option><option value="1">อ่อนตัวหรือหลอมเหลวได้ (เทอร์มอพลาสติก)</option><option value="0">ไม่อ่อนตัวและไม่หลอมเหลว (เทอร์มอเซต)</option></select></label>`).join('')}</div>
    <div class="btns"><button class="btn sm" type="button" id="hgChk" disabled>ตรวจการจัดกลุ่ม</button></div><div class="res" id="hgRes" aria-live="polite"></div></div>
   <div class="box"><h3>คำถามเพื่อสรุปผล (ผู้จัดทำหน้าเขียนตามบทสรุปและคำถามตรวจสอบความเข้าใจของคู่มือ)</h3>${written('w131_1','1. ถ้าใช้การเปลี่ยนแปลงเมื่อได้รับความร้อนเป็นเกณฑ์ จัดกลุ่มพอลิเมอร์ได้กี่กลุ่ม อะไรบ้าง','2 กลุ่ม: พอลิเมอร์ที่อ่อนตัวหรือหลอมเหลวและเปลี่ยนรูปร่างได้เมื่อได้รับความร้อน กับพอลิเมอร์ที่ไม่อ่อนตัวและไม่หลอมเหลว (คู่มือครู หน้า 122)')}${written('w131_2','2. จากกิจกรรม ผลิตภัณฑ์ใดทำจากเทอร์มอพลาสติก และผลิตภัณฑ์ใดทำจากเทอร์มอเซต','ขวดน้ำดื่มและหลอดพลาสติกเป็นเทอร์มอพลาสติก ส่วนยางลบและเมลามีนเป็นเทอร์มอเซต (คู่มือครู หน้า 122)')}${written('w131_3','3. เพราะเหตุใดจึงต้องวางชิ้นที่ผ่านความร้อนแล้วบนแผ่นกระเบื้องจนเย็นก่อนทิ้ง','คู่มือครูให้ทำเช่นนี้ (หน้า 121) เหตุผลที่สมเหตุสมผลคือชิ้นยังร้อนและอาจอ่อนตัวหรือติดไฟ ทิ้งทันทีอาจลวกมือหรือเกิดไฟไหม้ได้ (คำอธิบายเพิ่มของผู้จัดทำหน้า)')}</div>

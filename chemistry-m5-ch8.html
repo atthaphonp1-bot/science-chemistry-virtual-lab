@@ -163,7 +163,7 @@
 </script>
 <!-- ls:end -->
 <style>
-:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#dfece4;--soft:#f0f9f4;--acc:#2e7d4f;--acc2:#e3f3ea;--ok:#157a55;--bad:#b63f43;--acc3:#7cc79c;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--line:#dfece4;--soft:#f0f9f4;--acc:#2c7a4c;--acc2:#e3f3ea;--ok:#157a55;--bad:#b63f43;--acc3:#7cc79c;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit}button{cursor:pointer}
@@ -221,7 +221,7 @@ td.l,th.l{text-align:left}
 .read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
 .small{font-size:.86rem;color:var(--muted)}
 .fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
-.fig svg{display:block;width:100%;height:auto}
+.fig svg{display:block;width:100%;max-width:560px;margin-left:auto;margin-right:auto;height:auto}
 .q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
 .q p{margin:0 0 .4rem;font-weight:600}
 .opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
@@ -377,12 +377,12 @@ function sci(x,d){d=d===undefined?2:d;if(x===0)return'0';let e=Math.floor(Math.l
 function svgEl(w,h,inner,label){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}">${inner}</svg>`;}
 /* กราฟเส้น/จุดแบบ SVG: o={w,h,xmax,ymax,xstep,ystep,xl,yl,series:[{xs,ys,color,line,dots,dash,name}],segs:[{x1,y1,x2,y2,color,dash}],fy,fx} */
 function chart(o){
-  const W=o.w||420,H=o.h||280,L=58,R=14,T=12,B=44,pw=W-L-R,ph=H-T-B,X=x=>L+x/o.xmax*pw,Y=y=>T+ph-y/o.ymax*ph;
+  const W=o.w||320,H=o.h||260,L=70,R=20,T=12,B=48,pw=W-L-R,ph=H-T-B,X=x=>L+x/o.xmax*pw,Y=y=>T+ph-y/o.ymax*ph;
   const fy=o.fy||(v=>String(+v.toPrecision(4))),fx=o.fx||(v=>String(+v.toPrecision(4)));
   let s=`<rect x="${L}" y="${T}" width="${pw}" height="${ph}" fill="#fff" stroke="#c9d4cd"/>`;
-  for(let v=0;v<=o.xmax+1e-12;v+=o.xstep){const x=X(v);s+=`<line x1="${x}" y1="${T}" x2="${x}" y2="${T+ph}" stroke="#eef3f0"/><text x="${x}" y="${T+ph+15}" text-anchor="middle" font-size="11" fill="#5d6b82">${fx(v)}</text>`;}
-  for(let v=0;v<=o.ymax+1e-12;v+=o.ystep){const y=Y(v);s+=`<line x1="${L}" y1="${y}" x2="${L+pw}" y2="${y}" stroke="#eef3f0"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="#5d6b82">${fy(v)}</text>`;}
-  s+=`<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="#172033">${o.xl}</text><text transform="translate(13 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#172033">${o.yl}</text>`;
+  for(let v=0;v<=o.xmax+1e-12;v+=o.xstep){const x=X(v);s+=`<line x1="${x}" y1="${T}" x2="${x}" y2="${T+ph}" stroke="#eef3f0"/><text x="${x}" y="${T+ph+17}" text-anchor="middle" font-size="14" fill="#5d6b82">${fx(v)}</text>`;}
+  for(let v=0;v<=o.ymax+1e-12;v+=o.ystep){const y=Y(v);s+=`<line x1="${L}" y1="${y}" x2="${L+pw}" y2="${y}" stroke="#eef3f0"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="14" fill="#5d6b82">${fy(v)}</text>`;}
+  s+=`<text x="${L+pw/2}" y="${H-5}" text-anchor="middle" font-size="14" fill="#172033">${o.xl}</text><text transform="translate(15 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="14" fill="#172033">${o.yl}</text>`;
   (o.segs||[]).forEach(g=>{s+=`<line x1="${X(g.x1)}" y1="${Y(g.y1)}" x2="${X(g.x2)}" y2="${Y(g.y2)}" stroke="${g.color||'#b63f43'}" stroke-width="2"${g.dash?' stroke-dasharray="6 4"':''}/>`;});
   (o.series||[]).forEach(r=>{
     if(r.line&&r.xs.length>1)s+=`<polyline fill="none" stroke="${r.color}" stroke-width="2"${r.dash?' stroke-dasharray="4 4"':''} points="${r.xs.map((x,i)=>X(x).toFixed(1)+','+Y(r.ys[i]).toFixed(1)).join(' ')}"/>`;
@@ -500,10 +500,10 @@ function wire81(){
     s+='<line x1="42" y1="132" x2="70" y2="110" stroke="#9aa3a0" stroke-width="5" stroke-linecap="round"/><rect x="26" y="38" width="58" height="10" rx="3" fill="#c0894f"/>';
     s+='<path d="M55 38V16H110" fill="none" stroke="#6b7a72" stroke-width="3"/><rect x="110" y="4" width="162" height="26" fill="#eaf6ef" stroke="#6b7a72" stroke-width="2"/>';
     s+=`<rect x="111" y="5" width="${Math.max(0,hx-111)}" height="24" fill="#cfe9d8"/>`;
-    for(let i=0;i<=10;i++){const x=110+i*16;s+=`<line x1="${x}" y1="${i%5===0?30:25}" x2="${x}" y2="${i%5===0?39:30}" stroke="#5d6b82"/>${i%5===0?`<text x="${x}" y="51" text-anchor="middle" font-size="10" fill="#5d6b82">${i}</text>`:''}`;}
+    for(let i=0;i<=10;i++){const x=110+i*16;s+=`<line x1="${x}" y1="${i%5===0?30:25}" x2="${x}" y2="${i%5===0?39:30}" stroke="#5d6b82"/>${i%5===0?`<text x="${x}" y="51" text-anchor="middle" font-size="14" fill="#5d6b82">${i}</text>`:''}`;}
     s+=`<rect x="${hx-3}" y="2" width="6" height="30" rx="2" fill="#7a8a82"/><line x1="${hx}" y1="17" x2="312" y2="17" stroke="#7a8a82" stroke-width="4"/><rect x="306" y="8" width="8" height="18" rx="2" fill="#7a8a82"/>`;
     if(run)for(let i=0;i<5;i++)s+=`<circle class="bub" cx="${40+i*8}" cy="${120-i*6}" r="2.6" fill="#fff" stroke="#8fb5c6" style="animation-delay:${i*.2}s"/>`;
-    s+='<text x="160" y="70" font-size="11" fill="#5d6b82">แก๊ส H₂ ดันลูกสูบ (อ่านที่ mL)</text><text x="55" y="165" text-anchor="middle" font-size="11" fill="#5d6b82">Mg + HCl 0.15 M</text>';
+    s+='<text x="104" y="72" font-size="14" fill="#5d6b82">แก๊ส H₂ ดันลูกสูบ (อ่านที่ mL)</text><text x="55" y="166" text-anchor="middle" font-size="14" fill="#5d6b82">Mg + HCl 0.15 M</text>';
     $('#sy81').innerHTML=s;
   }
   function draw(){
@@ -691,27 +691,27 @@ function energySVG(o){ /* o:{R,TS,P,cat(ลด Ea เท่าไร kJ),max,lab
   const W=420,H=260,L=56,Y=v=>230-v/(o.max||140)*205,tsC=o.TS-(o.cat||0);
   const path=ts=>`M${L},${Y(o.R)} H110 C160,${Y(o.R)} 165,${Y(ts)} 215,${Y(ts)} C265,${Y(ts)} 270,${Y(o.P)} 320,${Y(o.P)} H400`;
   let s=`<line x1="${L}" y1="14" x2="${L}" y2="230" stroke="#5d6b82"/><line x1="${L}" y1="230" x2="410" y2="230" stroke="#5d6b82"/>`;
-  s+=`<text transform="translate(14 125) rotate(-90)" text-anchor="middle" font-size="12" fill="#172033">พลังงาน (kJ)</text><text x="233" y="252" text-anchor="middle" font-size="12" fill="#172033">การดำเนินไปของปฏิกิริยา</text>`;
-  [o.R,o.P,o.TS].forEach(v=>{s+=`<line x1="${L-4}" y1="${Y(v)}" x2="${L}" y2="${Y(v)}" stroke="#5d6b82"/><text x="${L-7}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#5d6b82">${v}</text>`;});
+  s+=`<text transform="translate(19 125) rotate(-90)" text-anchor="middle" font-size="17.5" fill="#172033">พลังงาน (kJ)</text><text x="233" y="252" text-anchor="middle" font-size="17.5" fill="#172033">การดำเนินไปของปฏิกิริยา</text>`;
+  [o.R,o.P,o.TS].forEach(v=>{s+=`<line x1="${L-4}" y1="${Y(v)}" x2="${L}" y2="${Y(v)}" stroke="#5d6b82"/><text x="${L-7}" y="${Y(v)+4}" text-anchor="end" font-size="17.5" fill="#5d6b82">${v}</text>`;});
   s+=`<line x1="${L}" y1="${Y(o.TS)}" x2="215" y2="${Y(o.TS)}" stroke="#c9d4cd" stroke-dasharray="3 3"/>`;
   s+=`<path d="${path(o.TS)}" fill="none" stroke="#1d6fb8" stroke-width="3"/>`;
   if(o.cat>0)s+=`<path d="${path(tsC)}" fill="none" stroke="#2e7d4f" stroke-width="3" stroke-dasharray="7 5"/>`;
   const ea=tsC-o.R;
-  s+=`<line x1="150" y1="${Y(o.R)}" x2="150" y2="${Y(tsC)}" stroke="#b63f43" stroke-width="2"/><text x="146" y="${(Y(o.R)+Y(tsC))/2+4}" text-anchor="end" font-size="12" fill="#b63f43">Eₐ = ${+ea.toFixed(1)}</text>`;
-  s+=`<line x1="340" y1="${Y(o.R)}" x2="340" y2="${Y(o.P)}" stroke="#7a3fb0" stroke-width="2"/><text x="346" y="${(Y(o.R)+Y(o.P))/2+4}" font-size="12" fill="#7a3fb0">ΔH = ${o.P-o.R}</text>`;
-  s+=`<text x="${L+6}" y="${Y(o.R)-6}" font-size="12" fill="#172033">A + B</text><text x="350" y="${Y(o.P)+16}" font-size="12" fill="#172033">C + D</text><text x="215" y="${Y(tsC)-8}" text-anchor="middle" font-size="12" fill="#172033">สถานะแทรนซิชัน</text>`;
+  s+=`<line x1="150" y1="${Y(o.R)}" x2="150" y2="${Y(tsC)}" stroke="#b63f43" stroke-width="2"/><text x="146" y="${(Y(o.R)+Y(tsC))/2+4}" text-anchor="end" font-size="17.5" fill="#b63f43" stroke="#fff" stroke-width="4" style="paint-order:stroke">Eₐ = ${+ea.toFixed(1)}</text>`;
+  s+=`<line x1="340" y1="${Y(o.R)}" x2="340" y2="${Y(o.P)}" stroke="#7a3fb0" stroke-width="2"/><text x="344" y="${(Y(o.R)+Y(o.P))/2+4}" font-size="17.5" fill="#7a3fb0" stroke="#fff" stroke-width="4" style="paint-order:stroke">ΔH = ${o.P-o.R}</text>`;
+  s+=`<text x="${L+6}" y="${Y(o.R)+20}" font-size="17.5" fill="#172033" stroke="#fff" stroke-width="4" style="paint-order:stroke">A + B</text><text x="350" y="${Y(o.P)+16}" font-size="17.5" fill="#172033" stroke="#fff" stroke-width="4" style="paint-order:stroke">C + D</text><text x="215" y="${Y(o.TS)-8}" text-anchor="middle" font-size="17.5" fill="#172033" stroke="#fff" stroke-width="4" style="paint-order:stroke">สถานะแทรนซิชัน</text>`;
   return svgEl(W,H,s,o.label||'แผนภาพพลังงานของปฏิกิริยา');
 }
 /* ======================= 8.4 ======================= */
 function beakerSVG(i,form,hcl,warm,inten,tEnd,tNow){
-  const x=14+i*118;let s=`<path d="M${x} 20 V150 a8 8 0 0 0 8 8 H${x+76} a8 8 0 0 0 8 -8 V20" fill="none" stroke="#6b7a72" stroke-width="2.5"/><rect x="${x+2}" y="70" width="80" height="86" fill="${hcl>0.3?'#f3e3a0':'#e3f0f7'}" opacity=".85"/>`;
+  const x=33+(i%2)*150;let s=`<path d="M${x} 20 V150 a8 8 0 0 0 8 8 H${x+76} a8 8 0 0 0 8 -8 V20" fill="none" stroke="#6b7a72" stroke-width="2.5"/><rect x="${x+2}" y="70" width="80" height="86" fill="${hcl>0.3?'#f3e3a0':'#e3f0f7'}" opacity=".85"/>`;
   if(form==='powder')for(let k=0;k<14;k++)s+=`<circle cx="${x+14+(k*37)%58}" cy="${150-(k*5)%6}" r="2" fill="#f4f4f0" stroke="#aaa" stroke-width=".5"/>`;
   else s+=`<rect x="${x+30}" y="140" width="22" height="14" rx="3" fill="#f4f4f0" stroke="#999"/>`;
   const n=Math.round(inten*9);for(let k=0;k<n;k++)s+=`<circle class="bub" cx="${x+14+(k*23)%56}" cy="${135-(k*13)%50}" r="${2+(k%3)}" fill="#fff" stroke="#8fb5c6" style="animation-delay:${(k%5)*.18}s"/>`;
   if(warm)s+=`<path d="M${x+30} 190 q4 -10 8 0 q4 -12 8 0 z" fill="#e8872b"/><path d="M${x+22} 176 h40" stroke="#7a8a82" stroke-width="3"/>`;
-  s+=`<text x="${x+42}" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text>`;
+  s+=`<text x="${x+42}" y="15" text-anchor="middle" font-size="13" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text>`;
   const done=tEnd!==null&&tNow>=tEnd;
-  s+=`<text x="${x+42}" y="${warm?205:186}" text-anchor="middle" font-size="11" fill="#5d6b82">${form==='powder'?'ผง':'เม็ด'} + HCl ${hcl} M${warm?' (อุ่น)':''}</text>`;
+  s+=`<text x="${x+42}" y="${warm?205:186}" text-anchor="middle" font-size="13" fill="#5d6b82">${form==='powder'?'ผง':'เม็ด'} + HCl ${hcl} M${warm?' (อุ่น)':''}</text>`;
   return s;
 }
 function modelT84(form,hcl,warm){ /* ข้อสมมติของแบบจำลอง: ตัวคูณจากบีกเกอร์ 1,2,4 ของหนังสือ */
@@ -727,7 +727,7 @@ function act84(){
   <div class="lab"><h3>ห้องทดลองเสมือน ตอนที่ 1: ทั้ง 4 บีกเกอร์ตามหนังสือ</h3><p class="small" style="margin:0 0 6px">เวลาสิ้นสุดของแต่ละบีกเกอร์คือ <b>ตัวอย่างผลการทดลองของหนังสือ</b> (48, 36, มากกว่า 300 และ 25 s) ส่วนจำนวนฟองและความถี่ของฟองตามเวลาเป็นภาพประกอบเชิงคุณภาพ ไม่ใช่การวัด</p>
    <div class="btns"><button class="btn" type="button" id="play84">▶ เริ่มจับเวลา</button><button class="btn alt" type="button" id="end84">ข้ามไปสิ้นสุด</button><button class="btn alt" type="button" id="rst84">เริ่มใหม่</button></div>
    <div class="rowflex"><label>เวลา: <b id="tm84v">0</b> s<input type="range" id="tm84" min="0" max="300" step="1" value="0" aria-label="เวลาที่ผ่านไป วินาที"></label></div>
-   <div class="fig"><svg viewBox="0 0 480 215" id="bk84" role="img" aria-label="บีกเกอร์ 4 ใบที่ใส่ CaCO₃ กับ HCl ในสภาวะต่างกัน"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 440" id="bk84" style="max-width:420px;margin:0 auto" role="img" aria-label="บีกเกอร์ 4 ใบที่ใส่ CaCO₃ กับ HCl ในสภาวะต่างกัน"></svg></div>
    <div class="tw"><table class="tight"><thead><tr><th>บีกเกอร์</th><th class="l">สภาวะ</th><th>เวลาที่ฟองหยุด (s)</th></tr></thead><tbody id="tb84"></tbody></table></div><div class="tip" id="cmp84" aria-live="polite"></div></div>
   <div class="lab"><h3>ตอนที่ 2: ลองจัดสภาวะเอง (ใช้ตัวคูณของแบบจำลอง)</h3><p class="small" style="margin:0 0 6px"><b>ข้อสมมติ:</b> หนังสือรายงานเพียง 4 สภาวะ หน้านี้สมมติว่าผลของแต่ละปัจจัยคูณกันได้ โดยใช้ตัวคูณจากบีกเกอร์ 2 (เวลา × 36/48) และบีกเกอร์ 4 (× 25/48) เทียบกับบีกเกอร์ 1 ตัวเลขที่ไม่ตรงกับ 4 สภาวะของหนังสือจึงเป็นค่าประมาณของแบบจำลอง ไม่ใช่ผลการทดลอง</p>
    <div class="rowflex"><label>สถานะ CaCO₃<select id="f84"><option value="powder">ผง (พื้นที่ผิวมาก)</option><option value="tablet">เม็ด (พื้นที่ผิวน้อย)</option></select></label><label>ความเข้มข้น HCl<select id="h84"><option value="0.2">0.2 M</option><option value="0.5">0.5 M</option></select></label><label>อุณหภูมิ<select id="w84"><option value="0">อุณหภูมิห้อง</option><option value="1">อุ่นด้วยตะเกียงแอลกอฮอล์</option></select></label></div>
@@ -741,8 +741,8 @@ function wire84(){
   let timer=null,last=0;
   function draw(){
     const t=+$('#tm84').value;$('#tm84v').textContent=t;let s='';
-    B84.forEach((b,i)=>{const inten=b.t===null?(t>=300?0.3:0.3):Math.max(0,1-t/b.t)*(t<b.t?1:0);s+=beakerSVG(i,b.form,b.hcl,b.warm,t===0?0:inten,b.t,t);
-      const done=b.t!==null&&t>=b.t;if(done)s+=`<text x="${14+i*118+42}" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#157a55">ฟองหยุดที่ ${b.t} s</text>`;});
+    B84.forEach((b,i)=>{const inten=b.t===null?(t>=300?0.3:0.3):Math.max(0,1-t/b.t)*(t<b.t?1:0);s+=`<g transform="translate(0 ${(i>>1)*225})">`+beakerSVG(i,b.form,b.hcl,b.warm,t===0?0:inten,b.t,t);
+      const done=b.t!==null&&t>=b.t;if(done)s+=`<text x="${33+(i%2)*150+42}" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="#157a55">ฟองหยุดที่ ${b.t} s</text>`;s+='</g>';});
     $('#bk84').innerHTML=s;
     $('#tb84').innerHTML=B84.map(b=>`<tr><td>${b.id}</td><td class="l">${b.form==='powder'?'ผง':'เม็ด'} CaCO₃ + HCl ${b.hcl} M${b.warm?' (อุ่น)':''}</td><td>${b.t===null?(t>=300?'&gt; 300 (หยุดจับเวลา)':'—'):(t>=b.t?b.t:'—')}</td></tr>`).join('');
     $('#cmp84').innerHTML=t>=300?'<b>เปรียบเทียบ:</b> บีกเกอร์ 2 (HCl เข้มข้นกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 1 · บีกเกอร์ 1 (ผง พื้นที่ผิวมากกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 3 (เม็ด) มาก · บีกเกอร์ 4 (อุณหภูมิสูงกว่า) ใช้เวลาน้อยกว่าบีกเกอร์ 1 ดังนั้นความเข้มข้น พื้นที่ผิว และอุณหภูมิที่เพิ่มขึ้นทำให้อัตราเพิ่มขึ้น':'เลื่อนเวลาไปที่ 300 s เพื่อเทียบผลทั้งสี่บีกเกอร์';
@@ -769,7 +769,7 @@ function act85(){
    <div class="btns"><button class="btn" type="button" id="ki85">เติม KI 0.5 mL ลงบีกเกอร์ 1</button><button class="btn" type="button" id="wa85">เติมน้ำกลั่น 0.5 mL ลงบีกเกอร์ 2</button><button class="btn alt" type="button" id="rs85">เริ่มใหม่</button></div>
    <div class="btns"><button class="btn" type="button" id="play85" disabled>▶ เริ่มสังเกต</button><span class="small" id="stp85"></span></div>
    <div class="rowflex"><label>เวลาในแบบจำลอง: <b id="tm85v">0</b> หน่วย<input type="range" id="tm85" min="0" max="100" step="1" value="0" disabled aria-label="เวลาในแบบจำลอง"></label></div>
-   <div class="fig"><svg viewBox="0 0 420 215" id="bk85" role="img" aria-label="บีกเกอร์ 2 ใบ ใส่ H₂O₂ ใบแรกเติม KI ใบที่สองเติมน้ำกลั่น"></svg></div>
+   <div class="fig"><svg viewBox="24 0 336 215" id="bk85" role="img" aria-label="บีกเกอร์ 2 ใบ ใส่ H₂O₂ ใบแรกเติม KI ใบที่สองเติมน้ำกลั่น"></svg></div>
    <div class="tip" id="obs85" aria-live="polite"></div></div>
   <div class="lab"><h3>ตอนที่ 2: แผนภาพพลังงานเมื่อเติมตัวเร่งปฏิกิริยา</h3><p class="small" style="margin:0 0 6px">ระดับพลังงานเริ่มต้น 52 สถานะแทรนซิชัน 120 และผลิตภัณฑ์ 20 kJ เป็นตัวเลขจากแบบฝึกหัด 8.2 ข้อ 2 (ปฏิกิริยา A + B → C + D) ส่วนขนาดที่ตัวเร่งลด Eₐ ปรับได้เองเพื่อดูแนวโน้ม หนังสือไม่ได้ระบุค่านี้</p>
    <div class="rowflex"><label>ตัวเร่งลดพลังงานก่อกัมมันต์ลง: <b id="cat85v">0</b> kJ<input type="range" id="cat85" min="0" max="40" step="1" value="0"></label></div>
@@ -787,7 +787,7 @@ function wire85(){
       s+=`<path d="M${x} 28 V150 a8 8 0 0 0 8 8 H${x+104} a8 8 0 0 0 8 -8 V28" fill="none" stroke="#6b7a72" stroke-width="2.5"/><rect x="${x+2}" y="78" width="108" height="78" fill="${a1||i===1?fill:'rgba(220,235,245,.7)'}"/>`;
       const n=Math.round((i===0?f1:f2)/100*14)+(i===1&&f2>0?0:0);
       for(let k=0;k<n;k++)s+=`<circle class="bub" cx="${x+12+(k*29)%86}" cy="${130-(k*17)%55}" r="${2+(k%3)}" fill="#fff" stroke="#8fb5c6" style="animation-delay:${(k%6)*.17}s"/>`;
-      s+=`<text x="${x+56}" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text><text x="${x+56}" y="178" text-anchor="middle" font-size="11" fill="#5d6b82">H₂O₂ 10 mL ${i===0?(a1?'+ KI 0.5 mL':'(ยังไม่เติม KI)'):(a2?'+ น้ำกลั่น 0.5 mL':'(ยังไม่เติมน้ำ)')}</text>`;});
+      s+=`<text x="${x+56}" y="20" text-anchor="middle" font-size="14.5" font-weight="700" fill="#172033">บีกเกอร์ ${i+1}</text><text x="${x+56}" y="178" text-anchor="middle" font-size="14.5" fill="#5d6b82">H₂O₂ 10 mL</text><text x="${x+56}" y="196" text-anchor="middle" font-size="14.5" fill="#5d6b82">${i===0?(a1?'+ KI 0.5 mL':'(ยังไม่เติม KI)'):(a2?'+ น้ำกลั่น 0.5 mL':'(ยังไม่เติมน้ำ)')}</text>`;});
     $('#bk85').innerHTML=s;
     const both=a1&&a2;$('#obs85').innerHTML=!both?'ทำตามการออกแบบ: เติมสารลงบีกเกอร์ทั้งสองก่อน':(t===0?'เริ่มสังเกตได้':`บีกเกอร์ 1: ฟองแก๊ส O₂ ระดับสัมพัทธ์ ≈ ${f1.toFixed(0)} / 100 สีเหลือง ${(y*100).toFixed(0)}% · บีกเกอร์ 2: ฟองแก๊สเล็กน้อย (ระดับ ≈ ${f2}) ใสไม่มีสี ${t>=80?'· บีกเกอร์ 1 กลับเป็นสารละลายใสแล้ว (KI ได้กลับคืน)':''}`);
     $('#stp85').textContent=`ขั้นตอน: ${a1?'✓':'○'} เติม KI ในบีกเกอร์ 1 · ${a2?'✓':'○'} เติมน้ำในบีกเกอร์ 2`;
