@@ -1035,7 +1035,7 @@ function select(i,refocus){
   cur=i;const a=ACTS[i];CLEAN.forEach(f=>{try{f();}catch(_){}});CLEAN.length=0;
   try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 8','เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (กิจกรรม 8.1–8.5)');}catch(_){}
   $('#main').innerHTML='<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-'+a.replace('.','_')+'">'+readHTML(a)+BUILD[a][0]()+'<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่</button></div></section>';
-  BUILD[a][1]();{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:'smooth',block:'start'});d.focus({preventScroll:true});};}
+  BUILD[a][1]();try{window.LabScore&&window.LabScore.use('เคมี ม.5 บทที่ 8','เคมี ม.5 เล่ม 3 บทที่ 8 อัตราการเกิดปฏิกิริยาเคมี (กิจกรรม 8.1–8.5)');}catch(_){}{const k=$('#skipRead');if(k)k.onclick=()=>{const d=$('#labstart');d.scrollIntoView({behavior:'smooth',block:'start'});d.focus({preventScroll:true});};}
   $('#reset').onclick=()=>{delete st.done[a];save();paintTabs();paintProgress();select(cur);};
   paintTabs(refocus);
   try{history.replaceState(null,'','#act-'+a);}catch(_){}

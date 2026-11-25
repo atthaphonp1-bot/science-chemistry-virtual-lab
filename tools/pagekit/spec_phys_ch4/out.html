@@ -1,0 +1,2069 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
+<title>วิทยาศาสตร์กายภาพ ม.5 บทที่ 4 พลังงาน · การทดลองเสมือน</title>
+<style>
+/* pagekit kit.css */
+:root{--acc:#0f766e;--accd:#0b5a54;--acc2:#e2efee;--acc3:#61a59f;--soft:#f1f7f6;--line:#d4e6e5;--line2:#bcd9d6;--line3:#b2d3d1;}
+/* pagekit kit.css : ธีมกลางของหน้าแล็บ (ก่อน inject) สีมาจาก :root ที่ build_page.py สร้างจาก PAGE.accent
+ * ไม่ซ้ำกับ tools/apple_theme.css: ที่นี่ไม่กำหนดรูปทรงปุ่ม (padding/radius/shadow), น้ำหนักหัวข้อ, ring โฟกัส, ขนาด body
+ * (apple_theme.css ถูกฝังท้าย <head> ภายหลังและทับให้) ที่นี่กำหนดเฉพาะสี เลย์เอาต์ และคอมโพเนนต์ของหน้า
+ * ตัวแปรที่ build_page.py ใส่ให้: --acc --accd --acc2 --acc3 --soft --line --line2 --line3 */
+:root{color-scheme:light;--ink:#172033;--muted:#5d6b82;--ok:#157a55;--bad:#b63f43;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+label{min-width:0}select,input[type=number]{width:100%;max-width:100%}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}@media(max-width:570px){.wrap{width:calc(100% - 24px)}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.top{display:flex;justify-content:space-between;align-items:center;height:78px;gap:12px}@media(max-width:570px){.top{height:65px}}
+.top a.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
+.mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,var(--acc3),var(--acc));color:#fff;font-size:1.05rem}
+.top a{color:var(--accd);text-decoration:none;font-weight:600}
+.hero{padding:clamp(22px,4vw,38px) clamp(23px,5vw,58px);border:1px solid var(--line);border-radius:30px;background:linear-gradient(130deg,#fff,var(--acc2));box-shadow:0 28px 65px rgba(11,40,50,.07);margin-bottom:6px}
+@media(max-width:570px){.hero{border-radius:23px;padding:26px 22px}}
+.eyebrow{color:var(--accd);font-size:.75rem;font-weight:760}
+h1{margin:.2rem 0 .5rem;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.15}
+.hero p{color:var(--muted);max-width:760px;margin:.3rem 0}
+.progress{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.track{flex:none;width:180px;height:7px;border-radius:99px;background:var(--acc2);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc3),var(--acc));transition:width .4s}
+.notice{border:1px solid var(--line2);background:var(--soft);border-radius:16px;padding:12px 16px;font-size:.92rem;color:var(--ink);margin:12px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 6px 10px;margin:0 -6px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink);min-height:44px}
+.tab[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.tab .ck{margin-left:6px;color:var(--ok)}.tab[aria-selected=true] .ck{color:#fff}
+.panel{border:1px solid var(--line);border-radius:25px;padding:clamp(16px,3vw,30px);background:#fff;box-shadow:0 18px 48px rgba(11,40,50,.07),0 3px 10px rgba(11,40,50,.03);margin-bottom:24px}
+.panel h2{margin:0 0 .3rem;font-size:1.5rem;line-height:1.3}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.box{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(145deg,#fff,var(--soft));margin:14px 0}
+.box h3{margin:.1rem 0 .5rem;font-size:1.05rem}
+.box ol,.box ul{margin:.3rem 0;padding-left:1.3rem}.box li{margin:.15rem 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.lab{border:1px solid var(--line3);border-radius:22px;padding:16px;background:linear-gradient(160deg,var(--acc2),#fff);margin:16px 0}
+.lab>h3{margin:0 0 .2rem}
+.btn{border:0;padding:10px 18px;background:var(--acc);color:#fff}
+.btn.alt{background:#fff;color:var(--accd);border:1.5px solid var(--acc)}
+.btn.sm{padding:6px 14px;font-size:.92rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;align-items:center}
+.chip{border:1.5px solid var(--line3);background:#fff;border-radius:999px;padding:7px 14px;min-height:44px;font-weight:600}
+.chip[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.93rem;background:#fff;border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:center}th{background:var(--acc2);font-weight:650}
+td.l,th.l{text-align:left}
+/* ตาราง: .tw คือกรอบเลื่อนแนวนอน ไม่บังคับความกว้างขั้นต่ำ (ตาราง 2 คอลัมน์จึงไม่โดนตัดครึ่ง) ใส่ class wide เฉพาะตาราง >= 3 คอลัมน์ที่ต้องการกันไม่ให้ถูกบีบ
+   kit.js ถอด wide ออกจากตาราง <= 2 คอลัมน์ ตั้ง min-width = คอลัมน์ x 92px และใส่คำใบ้ "เลื่อนดูต่อ" เมื่อกรอบแคบกว่าตาราง */
+.tw{overflow-x:auto;max-width:100%}
+.tw table.wide{min-width:0}   /* ความกว้างขั้นต่ำของ wide ตั้งโดย kit.js ตามจำนวนคอลัมน์ (tidyTables) */
+.tw-hint{font-size:.8rem;color:var(--muted);margin:2px 0 4px}
+.read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
+.small{font-size:.86rem;color:var(--muted)}
+/* รูป/SVG: ไม่กว้างเกิน 560 px และอยู่กึ่งกลาง ฟอนต์ใน SVG ต้องไม่เล็กกว่า 11 px ที่หน้าจอ 375 px (ดู K.svg) */
+.fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
+svg{max-width:100%}
+.fig svg{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
+.q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.q p{margin:0 0 .4rem;font-weight:600}
+fieldset.exf{margin:8px 0;min-width:0}fieldset.exf legend{font-weight:600;padding:0 6px}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
+.opt:hover{background:var(--soft)}.opt input{margin-top:.45rem}
+.why{font-size:.9rem;color:var(--ink);margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--soft)}
+.res{font-weight:700;margin-top:8px}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+textarea{width:100%;min-height:84px;border:1px solid #c9cfe0;border-radius:14px;padding:9px 12px;resize:vertical}
+.tip{font-size:.9rem;color:var(--ink);background:var(--acc2);border-radius:12px;padding:8px 12px;margin:8px 0}
+.warn{border:1px solid #e3b4b4;background:#fdf1f1;border-radius:14px;padding:10px 14px;color:#7a2a2d;font-size:.92rem;margin:10px 0}
+.hide{display:none!important}
+.lbl{display:block;font-weight:600;margin:.6rem 0 .2rem}
+.eq{font-family:ui-serif,Georgia,serif;font-size:1.02rem}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.92rem}
+.rowflex{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.rowflex>label{flex:1 1 180px;font-weight:600;font-size:.92rem}
+.footer{color:var(--muted);font-size:.86rem;padding:10px 0 30px}.footer a{color:var(--accd)}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible{border-radius:999px}
+sub{font-size:.75em;line-height:0}sup{font-size:.75em;line-height:0}
+.mk{margin-left:8px}.mk.okc{color:var(--ok)}.mk.badc{color:var(--bad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0}.kv b{font-weight:650}
+.tbl-sm td,.tbl-sm th{font-size:.88rem}.mini th,.mini td{padding:4px 7px;font-size:.88rem}
+.sel2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.sel2{grid-template-columns:1fr}}
+.ok-t{color:var(--ok);font-weight:650}.bad-t{color:var(--bad);font-weight:650}
+.ledrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
+.ledrow label{font-weight:600;font-size:.92rem;display:block}
+.ledrow input[type=range]{width:100%;min-height:44px}
+.ledrow input[type=text],.ledrow textarea,.ledrow select{display:block;width:100%;max-width:100%}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.stat div{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff}.stat b{display:block;font-size:1.15rem}
+.ok-bg{background:#e8f6ef}.bad-bg{background:#fdf1f1}
+.stepno{display:inline-block;min-width:1.6em;text-align:center;background:var(--acc);color:#fff;border-radius:999px;padding:0 .5em;margin-right:6px;font-size:.85rem}
+.pbar{height:8px;border-radius:99px;background:var(--acc2);overflow:hidden;margin:6px 0}.pbar i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.cite{font-family:ui-serif,Georgia,serif;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;word-break:break-word;overflow-wrap:anywhere}
+.timer{font:700 2rem ui-monospace,Menlo,monospace}.timer.over{color:var(--bad)}
+.rg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.rg label{display:flex;gap:6px;align-items:center;min-height:44px;padding:4px 12px;border:1.5px solid var(--line3);border-radius:999px;background:#fff;font-weight:600}
+.rg label:has(input:checked){background:var(--acc);color:#fff;border-color:var(--acc)}
+.rl{display:flex;gap:10px;flex-wrap:wrap}.rl label{display:flex;gap:4px;align-items:center;min-height:44px}
+.num{width:7.5em;min-height:44px;border:1px solid var(--line3);border-radius:12px;padding:6px 10px;text-align:right}
+.hl{background:var(--acc2);border-radius:6px;padding:0 4px}
+.nw{white-space:nowrap}
+.bar2{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9rem}.bar2 .lb{flex:0 0 9.5em}
+.bar2 .tr{flex:1;height:16px;border-radius:99px;background:var(--acc2);overflow:hidden}.bar2 .tr i{display:block;height:100%;background:var(--acc)}
+.bar2 .vv{flex:0 0 4.5em;text-align:right;font-variant-numeric:tabular-nums}@media(max-width:480px){.bar2 .lb{flex-basis:7em}}
+input[type=range],input[type=checkbox],input[type=radio]{accent-color:var(--acc)}
+svg text{font-family:var(--font)}
+/* แอนิเมชันสำเร็จรูปสำหรับห้องทดลอง (ปิดอัตโนมัติเมื่อผู้ใช้ตั้ง reduced-motion) */
+.tube{transition:fill .5s,height .5s,y .5s,opacity .5s}
+.flow{stroke-dasharray:6 6;animation:fl 1s linear infinite}.flow.rev{animation-direction:reverse}
+@keyframes fl{to{stroke-dashoffset:-12}}
+.bub{animation:bub 1.2s ease-in infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(-22px);opacity:0}}
+/* อ่านก่อนทดลอง */
+.rd{margin:0 0 6px}
+.rd-head{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.rd-tag{display:inline-block;background:var(--acc2);color:var(--accd);border:1px solid var(--acc3);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:650}
+.rd-lead{flex:1 1 280px;margin:0;color:var(--muted)}
+.rd-sec{border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,22px);background:#fff;margin:14px 0}
+.rd-sec h2{margin:.1rem 0 .15rem;font-size:1.2rem}
+.rd-pg{font-size:.82rem;color:var(--muted);margin:0 0 .7rem}
+.rd-sec p{margin:.5rem 0}.rd-sec ul,.rd-sec ol{padding-left:1.35rem;margin:.4rem 0}.rd-sec li{margin:.22rem 0}
+.rd-q{margin:.8rem 0 .1rem;border:1px dashed var(--acc3);border-radius:14px;padding:8px 14px;background:var(--soft)}
+.rd-q summary{cursor:pointer;font-weight:600;color:var(--accd)}.rd-q p{margin:.4rem 0 .2rem}
+.rd-div{display:flex;align-items:center;gap:12px;margin:22px 0 10px;color:var(--accd);font-weight:700}
+.rd-div::before,.rd-div::after{content:"";flex:1;height:1px;background:var(--acc3)}
+.rd-skip{margin:6px 0 0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="kit-root"></div>
+<noscript><p style="padding:16px">หน้านี้ต้องเปิด JavaScript เพื่อแสดงกิจกรรม</p></noscript>
+<script>
+/* pagekit kit.js */
+/* pagekit kit.js : เครื่องยนต์กลางของหน้าแล็บ (plain browser JS ไม่มี module/ไลบรารีภายนอก)
+ * ใช้คู่กับ kit.css ประกอบเป็นไฟล์เดียวด้วย tools/pagekit/build_page.py
+ *
+ * ผู้เขียนหน้าเขียนเฉพาะ content.js (กำหนด PAGE) และ labs.js (K.lab(id, build, wire)) ดู AGENT_BRIEF.md
+ *
+ * พฤติกรรมที่ผ่าน QA มาแล้วและต้องคงไว้ (ห้ามแก้เพื่อความสะดวก):
+ *  Q1  แบบทดสอบไม่ไฮไลต์ตัวเลือก (ไม่ใส่ class ถูก/ผิดที่ตัวเลือก) แสดงเฉพาะคะแนน + เฉลย + คำอธิบายใต้ข้อ
+ *  Q2  ตำแหน่งเฉลยกำหนดชัดเจน: รับ perm ต่อชุด ไม่งั้นสุ่มแบบกำหนดผลได้ (seed = id หน้า+id ชุด) ไม่เวียนเป็นวงจร
+ *      ไม่จับกลุ่ม ไม่เป็นคาบ ตรวจซ้ำก่อนใช้ ชุด 2 ตัวเลือกใช้ตรรกะเดียวกัน (แค่สลับ 2 ช่อง) ข้อที่ keep:true ไม่ถูกย้าย
+ *  Q3  CLEAN[]: ทุกแอนิเมชัน/ตัวจับเวลาของแท็บต้องลงทะเบียน K.clean(fn) (หรือใช้ K.anim) เพื่อหยุดก่อนเปลี่ยนแท็บ
+ *  Q4  LabScore.use(id,title) เรียก "หลัง" สร้างแผงเสร็จ ไม่งั้นตัวนับของแผงส่งผลที่ inject ไว้จะค้างค่าแท็บก่อนหน้า
+ *  Q5  ตาราง .tw ไม่บังคับ min-width กับตาราง <= 2 คอลัมน์ (ไม่โดนตัดครึ่ง) และมีคำใบ้ "เลื่อนดูต่อ" เมื่อกรอบแคบกว่าตาราง
+ *  Q6  .fig svg กว้างไม่เกิน 560px อยู่กึ่งกลาง; K.svg บังคับ role=img + aria-label; K.fitSvg ดันฟอนต์ให้ >= 11px ที่หน้าจอจริง (375px)
+ *  Q7  ปุ่มรีเซ็ตบอกว่าคะแนนที่บันทึกไปแล้วไม่ถูกล้าง (LabScore.set ค่าล่าสุดยังอยู่)
+ *  Q8  hero แสดงเฉพาะฟีเจอร์ที่มีจริง (ประโยคสร้างจาก PAGE) + หมายเหตุข้อเขียน (ส่งเฉพาะแท็บที่เปิดอยู่ตอนกดส่ง)
+ *  Q9  ข้อเขียนเป็น <textarea id label[for]> เสมอ (โมดูลส่งคะแนนเก็บ textarea ทั้งหน้าด้วย label[for]); ส่งออก/คัดลอกใช้ <pre> สำรอง ไม่ใช้ textarea
+ *  Q10 localStorage ทุกจุดอยู่ใน try/catch; หน้าต้องใช้ได้เมื่อ storage ใช้ไม่ได้
+ *  Q11 reduced-motion: ห้องทดลองต้องกระโดดไปผลสุดท้ายเอง (K.REDUCE / K.reduced()); CSS ปิด animation/transition
+ *  Q12 ทิศทางลูกศร/Home/End บนแท็บ (roving tabindex) และลิงก์ตรง #act-<id>
+ */
+(function () {
+  'use strict';
+  const K = window.K = { version: 1 };
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fmt = (x, d) => { const v = Number(x); return Number.isFinite(v) ? String(+v.toFixed(d == null ? 2 : d)) : '–'; };
+  const REDUCE = (() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { return false; } })();
+  const reduced = () => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { return false; } };
+  Object.assign(K, { $, $$, esc, fmt, REDUCE, reduced });
+
+  let P = null;                 /* PAGE */
+  let st = { done: {}, q: {}, run: {} };
+  let DR = {};
+  let KEY = '', DK = '';
+  const BUILD = {};             /* id -> [build, wire] */
+  const CLEAN = [];
+  let cur = 0, TABS = [], usedFields = false;
+  const QS = {}, NUMS = {}, GRIDS = {};   /* ชุดที่ประมวลผลแล้ว */
+  const qid = a => String(a).replace(/[^A-Za-z0-9_-]/g, '_');
+
+  /* ---------- storage (Q10) ---------- */
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (_) { } }
+  function dsave() { try { localStorage.setItem(DK, JSON.stringify(DR)); } catch (_) { } }
+  function loadState() {
+    try { const s = JSON.parse(localStorage.getItem(KEY) || '{}'); if (s && s.done) st = Object.assign({ done: {}, q: {}, run: {} }, s); } catch (_) { }
+    try { DR = JSON.parse(localStorage.getItem(DK) || '{}') || {}; } catch (_) { DR = {}; }
+  }
+  const dget = (ns, k) => { const v = DR[ns + '|' + k]; return v == null ? '' : v; };
+  const dset = (ns, k, v) => { DR[ns + '|' + k] = v; dsave(); };
+  const PARTS = {};
+  function ls(name, got, max) {
+    /* LabScore รับชื่อส่วน <= 40 ตัวอักษร, เต็ม <= 100, รวมไม่เกิน 20 ส่วน: เตือนใน console ถ้าละเมิด */
+    try { PARTS[name] = max; if ([...String(name)].length > 40 || max > 100 || Object.keys(PARTS).length > 20) console.warn('pagekit: ส่วนคะแนนผิดข้อจำกัด', name, max); } catch (_) { }
+    try { window.LabScore && window.LabScore.set(name, got, max); } catch (_) { }
+  }
+  Object.assign(K, { dget, dset, ls, save, qid });
+  K.state = () => st;
+  K.clean = fn => { CLEAN.push(fn); };
+  K.lab = (id, build, wire) => { BUILD[id] = [build || (() => ''), wire || (() => { })]; };
+
+  /* ---------- ตำแหน่งเฉลย (Q2) ---------- */
+  function hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  /* ตรวจรูปแบบตำแหน่งเฉลย: คืนข้อความปัญหา หรือ '' ถ้าใช้ได้ */
+  function posProblem(pos, ks) {
+    const n = pos.length; if (n < 3) return '';
+    if (n < 4) return pos.every(p => p === pos[0]) ? 'ตำแหน่งเดียวกันทุกข้อ' : '';   /* ชุดสั้นมาก: เวียน/สมดุลเลี่ยงไม่ได้ ตรวจแค่ไม่ซ้ำหมด */
+    const kmax = Math.max.apply(null, ks), same = ks.every(k => k === ks[0]);
+    if (pos.every(p => p === pos[0])) return 'ตำแหน่งเดียวกันทุกข้อ';
+    for (let i = 0; i + 2 < n; i++) if (pos[i] === pos[i + 1] && pos[i] === pos[i + 2]) return 'เฉลยตำแหน่งเดียวกัน 3 ข้อติด';
+    if (same) {
+      const k = ks[0]; let ap = true; const d = ((pos[1] - pos[0]) % k + k) % k;
+      for (let i = 1; i + 1 < n; i++) if ((((pos[i + 1] - pos[i]) % k) + k) % k !== d) { ap = false; break; }
+      if (ap) return 'เวียนเป็นวงจร';
+    }
+    if (n >= 4) for (let p = 1; p <= Math.floor(n / 2); p++) { let per = true; for (let i = 0; i + p < n; i++) if (pos[i] !== pos[i + p]) { per = false; break; } if (per) return 'เป็นคาบ ' + p; }
+    const cnt = new Array(kmax).fill(0); pos.forEach(p => cnt[p]++);
+    const cap = Math.ceil(n / (same ? ks[0] : 2)) + (same ? 0 : 1);
+    if (cnt.some(c => c > cap)) return 'จับกลุ่มที่ตำแหน่งเดียว';
+    return '';
+  }
+  function autoPositions(ks, seed) {
+    const n = ks.length, same = ks.every(k => k === ks[0]);
+    let last = null;
+    for (let t = 0; t < 400; t++) {
+      const R = rng(hash(seed + '|' + t)); let pos;
+      if (same) { /* multiset สมดุล แล้วสับ */
+        const k = ks[0], a = []; for (let i = 0; i < n; i++) a.push(i % k);
+        for (let i = n - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); const x = a[i]; a[i] = a[j]; a[j] = x; }
+        pos = a;
+      } else pos = ks.map(k => Math.floor(R() * k));
+      last = pos; if (!posProblem(pos, ks)) return pos;
+    }
+    return last;
+  }
+  /* วางตัวเลือกถูกที่ตำแหน่ง t โดยคงลำดับของตัวเลือกผิดไว้ */
+  function placeCorrect(o, ci, t) { const c = o[ci], rest = o.filter((_, i) => i !== ci); return rest.slice(0, t).concat([c], rest.slice(t)); }
+  function prepQuiz(id, set) {
+    const items = set.items || [], ks = items.map(q => q.o.length);
+    let pos;
+    if (set.fixed) pos = items.map(q => q.a);
+    else if (set.perm) pos = set.perm.slice();
+    else pos = autoPositions(ks, (P.id || '') + '|' + id);
+    const out = items.map((q, i) => (set.fixed || q.keep) ? { n: q.n, q: q.q, o: q.o.slice(), a: q.a, w: q.w } : { n: q.n, q: q.q, o: placeCorrect(q.o, q.a, pos[i]), a: pos[i], w: q.w });
+    return { id, name: set.name || (id + ' แบบทดสอบ'), title: set.title, items: out };
+  }
+  K.auto = autoPositions; K.posProblem = posProblem;   /* เปิดให้ทดสอบ */
+  K.positions = () => Object.keys(QS).map(k => ({ set: k, pos: QS[k].items.map(q => q.a), k: QS[k].items.map(q => q.o.length), problem: posProblem(QS[k].items.map(q => q.a), QS[k].items.map(q => q.o.length)) }));
+
+  /* ---------- ร่างงาน ข้อเขียน ส่งออก ---------- */
+  function wireDraft(root, ns, onchg) {
+    $$('[data-d]', root).forEach(el => {
+      const k = ns + '|' + el.dataset.d;
+      if (el.type === 'checkbox') { el.checked = !!DR[k]; el.addEventListener('change', () => { DR[k] = el.checked; dsave(); onchg && onchg(); }); }
+      else if (el.type === 'radio') { el.checked = DR[k] === el.value; el.addEventListener('change', () => { if (el.checked) { DR[k] = el.value; dsave(); onchg && onchg(); } }); }
+      else { if (DR[k] != null) el.value = DR[k]; const h = () => { DR[k] = el.value; dsave(); onchg && onchg(); }; el.addEventListener('input', h); el.addEventListener('change', h); }
+    });
+  }
+  /* radio ผูกกับร่างงาน (ใช้ name เป็นคีย์) */
+  function wireRadio(root, ns, name, cb) {
+    const k = ns + '|' + name;
+    $$('input[name="' + name + '"]', root).forEach(el => { el.checked = DR[k] === el.value; el.addEventListener('change', () => { if (el.checked) { DR[k] = el.value; dsave(); cb && cb(el.value); } }); });
+  }
+  const radioGroup = (name, opts) => `<div class="rg" role="radiogroup" aria-label="${esc(name)}">` + opts.map(o => `<label><input type="radio" name="${name}" value="${o[0]}" data-r="1"><span>${o[1]}</span></label>`).join('') + '</div>';
+  const normRows = rows => rows.map(r => Array.isArray(r) ? r : [r.id, r.label, r.hint]);
+  function fieldsHTML(rows) {
+    usedFields = true;
+    return normRows(rows).map(r => `<div class="q"><label class="lbl" for="f_${r[0]}">${r[1]}</label>${r[2] ? `<div class="small">${r[2]}</div>` : ''}<textarea id="f_${r[0]}" data-d="${r[0]}" placeholder="พิมพ์ที่นี่"></textarea></div>`).join('');
+  }
+  const stripTags = s => String(s).replace(/<[^>]+>/g, '');
+  function textOf(ns, rows, head) { return head + '\n' + normRows(rows).map(r => '\n## ' + stripTags(r[1]) + '\n' + (dget(ns, r[0]) || '(ยังไม่ได้กรอก)')).join('\n') + '\n'; }
+  /* เนื้อหาที่ขึ้นต้นด้วยแท็กบล็อก (p/ul/ol/div/table) ใส่ตรง ๆ ไม่งั้นห่อด้วย <p> */
+  function revealHTML(items) { return items.map(r => `<details class="rd-q"><summary>${r[0]}</summary>${/^\s*<(p|ul|ol|div|table)[\s>]/.test(r[1]) ? r[1] : `<p>${r[1]}</p>`}</details>`).join(''); }
+  function expHTML(id) { return `<div class="btns"><button class="btn sm" type="button" data-ex="copy" data-for="${id}">คัดลอกเป็นข้อความ</button><button class="btn alt sm" type="button" data-ex="dl" data-for="${id}">ดาวน์โหลดเป็นไฟล์ .txt</button></div><div class="small" id="exs_${id}" aria-live="polite"></div>`; }
+  function wireExp(id, getText, fname) {
+    const c = $('[data-ex=copy][data-for="' + id + '"]'), d = $('[data-ex=dl][data-for="' + id + '"]'), s = $('#exs_' + id); if (!c || !d || !s) return;
+    const fb = t => { s.innerHTML = '<pre tabindex="0" style="white-space:pre-wrap;user-select:all;margin:0" aria-label="ข้อความสำหรับคัดลอก"></pre>'; const pre = $('pre', s); pre.textContent = t; pre.focus(); try { const rg = document.createRange(); rg.selectNodeContents(pre); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(rg); } catch (_) { } };
+    c.onclick = () => { const t = getText(); let ok = false; try { if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(() => { s.textContent = 'คัดลอกแล้ว'; }, () => fb(t)); ok = true; } } catch (_) { } if (!ok) fb(t); };
+    d.onclick = () => { try { const b = new Blob([getText()], { type: 'text/plain;charset=utf-8' }), u = URL.createObjectURL(b), a = document.createElement('a'); a.href = u; a.download = fname; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 1500); s.textContent = 'สร้างไฟล์ ' + fname + ' แล้ว'; } catch (_) { fb(getText()); } };
+  }
+  Object.assign(K, { wireDraft, wireRadio, radioGroup, fieldsHTML, textOf, revealHTML, expHTML, wireExp });
+
+  /* ---------- อ่านก่อนทดลอง ---------- */
+  function readHTML(a) {
+    const r = P.read && P.read[a]; if (!r) return '';
+    return `<div class="rd"><div class="rd-head"><span class="rd-tag">อ่านก่อนทดลอง</span><p class="rd-lead">${r.lead}</p></div>` +
+      r.secs.map(x => `<article class="rd-sec"><h2>${x.h}</h2><p class="rd-pg">${x.pg} · สรุปโดยผู้จัดทำหน้า ไม่ใช่ข้อความต้นฉบับ</p>${x.html}${x.q ? `<details class="rd-q"><summary>ลองคิด: ${x.q[0]}</summary><p>${x.q[1]}</p></details>` : ''}</article>`).join('') +
+      `<div class="rd-skip"><button class="btn alt sm" type="button" id="skipRead">ไปที่กิจกรรม ↓</button></div><div class="rd-div" id="labstart" tabindex="-1"><span>ลงมือทำ</span></div></div>`;
+  }
+
+  /* ---------- แบบทดสอบ (Q1) ---------- */
+  function quizHTML(set, title) {
+    const q = QS[set]; if (!q) throw new Error('ไม่พบชุดแบบทดสอบ ' + set);
+    const id = qid(set);
+    return '<div class="box" id="quiz-' + id + '"><h3>' + (title || q.title || 'แบบทดสอบสั้น') + ' (ข้อละ 1 คะแนน)</h3>' + q.items.map((it, i) => '<fieldset class="q exf" data-i="' + i + '"><legend>' + (it.n ? it.n + ' ' : (i + 1) + '. ') + it.q + '</legend>' + it.o.map((o, j) => '<label class="opt"><input type="radio" name="q' + id + '_' + i + '" value="' + j + '"><span>' + o + '</span></label>').join('') + '<div class="why hide"></div></fieldset>').join('') +
+      '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+  }
+  function wireQuiz(set, gate, tabId) {
+    const root = $('#quiz-' + qid(set)); if (!root) return; const q = QS[set], qs = q.items;
+    $('[data-act=check]', root).onclick = () => {
+      let got = 0, answered = 0;
+      $$('.q', root).forEach((el, i) => {
+        const sel = el.querySelector('input:checked'), why = $('.why', el);
+        if (sel) { answered++; if (+sel.value === qs[i].a) got++; }
+        why.classList.remove('hide'); why.innerHTML = (sel && +sel.value === qs[i].a ? 'ถูกต้อง · ' : 'เฉลย: ' + qs[i].o[qs[i].a] + ' · ') + qs[i].w;
+      });
+      const r = $('.res', root);
+      if (answered < qs.length) { r.className = 'res bad'; r.textContent = 'ยังตอบไม่ครบ (' + answered + '/' + qs.length + ') ได้ ' + got + ' / ' + qs.length + ' คะแนน (ข้อที่ว่างนับเป็นไม่ถูก)'; }
+      else { r.className = 'res ok'; r.textContent = 'ได้ ' + got + ' / ' + qs.length + ' คะแนน'; }
+      ls(q.name, got, qs.length);
+      if (answered === qs.length && gate) { st.q[set] = true; save(); tryDone(tabId || set); }
+    };
+    $('[data-act=retry]', root).onclick = () => { $$('input', root).forEach(i => i.checked = false); $$('.why', root).forEach(w => w.classList.add('hide')); $('.res', root).textContent = ''; };
+  }
+  Object.assign(K, { quizHTML, wireQuiz });
+
+  /* ---------- ช่องตัวเลข (ตรวจอัตโนมัติ ค่าคลาดเคลื่อน) ---------- */
+  const numOk = (raw, it) => { const v = parseFloat(raw); if (raw === '' || !Number.isFinite(v)) return false; const tol = it.tol != null ? it.tol : 0.001; return Math.abs(v - it.a) <= Math.max(tol, it.rel ? Math.abs(it.a) * it.rel : 0); };
+  function numHTML(id, title) {
+    const s = NUMS[id]; if (!s) throw new Error('ไม่พบชุดตัวเลข ' + id);
+    return '<div class="box" id="num-' + qid(id) + '"><h3>' + (title || s.title || '') + '</h3>' + s.items.map((it, i) => '<div class="q"><label class="lbl" for="n_' + qid(id) + '_' + i + '">' + it.q + '</label><input class="num" id="n_' + qid(id) + '_' + i + '" type="number" step="any" inputmode="decimal"> ' + (it.u || '') + '<div class="why hide"></div></div>').join('') + '<div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+  }
+  function wireNum(id) {
+    const root = $('#num-' + qid(id)); if (!root) return; const s = NUMS[id], items = s.items;
+    $('[data-act=check]', root).onclick = () => {
+      let got = 0, answered = 0;
+      items.forEach((it, i) => { const el = $('#n_' + qid(id) + '_' + i, root), why = $('.why', el.parentNode); const raw = el.value.trim(); const ok = numOk(raw, it);
+        if (raw !== '' && Number.isFinite(parseFloat(raw))) answered++; if (ok) got++;
+        why.classList.remove('hide'); why.textContent = (ok ? 'ถูกต้อง · ' : 'เฉลย: ' + it.a + ' ' + (it.u || '') + ' · ') + it.w; });
+      const r = $('.res', root); r.className = 'res ' + (answered < items.length ? 'bad' : 'ok');
+      r.textContent = (answered < items.length ? 'ยังกรอกไม่ครบ (' + answered + '/' + items.length + ') ' : '') + 'ได้ ' + got + ' / ' + items.length + ' คะแนน';
+      ls(s.name, got, items.length);
+    };
+    $('[data-act=retry]', root).onclick = () => { $$('input', root).forEach(i => i.value = ''); $$('.why', root).forEach(w => w.classList.add('hide')); $('.res', root).textContent = ''; };
+  }
+  Object.assign(K, { numHTML, wireNum });
+
+  /* ---------- ตารางเติม/เลือก (grid) : เซลล์เป็นข้อความคงที่ หรือ {sel:[ตัวเลือก],a:index} หรือ {n:ค่า,tol,u} ---------- */
+  const gridCells = s => { const out = []; s.rows.forEach((r, ri) => r.forEach((c, ci) => { if (c && typeof c === 'object') out.push([ri, ci, c]); })); return out; };
+  function gridHTML(id, title) {
+    const s = GRIDS[id]; if (!s) throw new Error('ไม่พบตาราง ' + id); const gid = qid(id);
+    return '<div class="box" id="grid-' + gid + '"><h3>' + (title || s.title || '') + '</h3><div class="tw"><table class="tbl-sm' + (s.head.length >= 3 ? ' wide' : '') + '"><thead><tr>' + s.head.map((h, i) => '<th' + (i === 0 ? ' class="l"' : '') + '>' + h + '</th>').join('') + '</tr></thead><tbody>' +
+      s.rows.map((r, ri) => '<tr>' + r.map((c, ci) => { if (!c || typeof c !== 'object') return '<td' + (ci === 0 ? ' class="l"' : '') + '>' + c + '</td>'; const k = 'g_' + gid + '_' + ri + '_' + ci, lab = esc(stripTags(r[0] && typeof r[0] === 'string' ? r[0] : 'แถว ' + (ri + 1)) + ' ' + stripTags(s.head[ci] || ''));
+        return '<td>' + (c.sel ? '<select id="' + k + '" aria-label="' + lab + '"><option value="">— เลือก —</option>' + c.sel.map((o, j) => '<option value="' + j + '">' + o + '</option>').join('') + '</select>' : '<input class="num" id="' + k + '" type="number" step="any" inputmode="decimal" aria-label="' + lab + '"> ' + (c.u || '')) + '<span class="mk" id="m_' + k + '" aria-live="polite"></span></td>'; }).join('') + '</tr>').join('') +
+      '</tbody></table></div><div class="btns"><button class="btn" type="button" data-act="check">ตรวจคำตอบ</button><button class="btn alt" type="button" data-act="retry">ทำใหม่</button></div><div class="res" aria-live="polite"></div></div>';
+  }
+  function wireGrid(id) {
+    const s = GRIDS[id], gid = qid(id), root = $('#grid-' + gid); if (!root) return; const cells = gridCells(s);
+    $('[data-act=check]', root).onclick = () => {
+      let got = 0, answered = 0;
+      cells.forEach(([ri, ci, c]) => { const k = 'g_' + gid + '_' + ri + '_' + ci, el = $('#' + k, root), m = $('#m_' + k, root); let ok = false, has = false;
+        if (c.sel) { has = el.value !== ''; ok = has && +el.value === c.a; } else { const raw = el.value.trim(); has = raw !== '' && Number.isFinite(parseFloat(raw)); ok = numOk(raw, { a: c.n, tol: c.tol, rel: c.rel }); }
+        if (has) answered++; if (ok) got++;
+        m.className = 'mk ' + (ok ? 'okc' : 'badc'); m.textContent = ok ? ' ถูกต้อง' : ' เฉลย: ' + (c.sel ? c.sel[c.a] : c.n); });
+      const r = $('.res', root); r.className = 'res ' + (answered < cells.length ? 'bad' : 'ok');
+      r.textContent = (answered < cells.length ? 'ยังตอบไม่ครบ (' + answered + '/' + cells.length + ') ' : '') + 'ได้ ' + got + ' / ' + cells.length + ' คะแนน' + (s.w ? ' · ' + s.w : '');
+      ls(s.name, got, cells.length);
+    };
+    $('[data-act=retry]', root).onclick = () => { $$('input,select', root).forEach(i => i.value = ''); $$('.mk', root).forEach(m => m.textContent = ''); $('.res', root).textContent = ''; };
+  }
+  Object.assign(K, { gridHTML, wireGrid });
+
+  /* ---------- แบบบันทึก/สืบค้น (forms) ---------- */
+  const DEF_SMALL = 'ข้อความที่พิมพ์ในช่องจะถูกส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า ไม่มีคะแนนอัตโนมัติ';
+  const DEF_SMALL_DONE = 'ข้อความที่พิมพ์จะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดส่งในแผงส่งผลท้ายหน้า</b> ไม่มีคะแนนอัตโนมัติ';
+  const formList = t => { const f = P.forms && P.forms[t.id]; return !f ? [] : (Array.isArray(f) ? f : [f]); };
+  const formGroups = f => f.groups || [{ fields: f.fields || [] }];
+  const fieldObj = x => Array.isArray(x) ? { id: x[0], label: x[1], hint: x[2] } : x;
+  const formKey = (t, f, i) => 'p_' + qid(t.id) + '_' + (f.id || i);
+  function formState(t, f) {
+    const need = f.need, mc = f.minChars != null ? f.minChars : 5; let n = 0, m = 0, mustOk = true;
+    formGroups(f).forEach(g => {
+      const role = g.role || (f.need != null ? 'count' : 'must');
+      const fs = (g.fields || []).map(fieldObj).filter(x => !x.opt);
+      const ok = fs.every(x => dget(t.id, x.id).trim().length >= (x.min != null ? x.min : g.min != null ? g.min : mc));
+      if (role === 'count') { m++; if (ok) n++; } else if (!ok) mustOk = false;
+    });
+    const need2 = need != null ? need : m;
+    return { n, m, need: need2, mustOk, ok: n >= need2 && mustOk };
+  }
+  function formHTML(t, f, i) {
+    const key = formKey(t, f, i), small = f.small != null ? f.small : (f.need != null ? DEF_SMALL_DONE + ' ใส่ให้ครบอย่างน้อย ' + f.need + ' ' + (f.unit || 'กลุ่ม') + (formGroups(f).some(g => g.role === 'must') ? ' และกรอกส่วนที่จำเป็นให้ครบ' : '') + ' จึงถือว่ากิจกรรมเสร็จ' : DEF_SMALL);
+    const checks = f.checks ? `<div class="box"><h3>${f.checksTitle || 'ตรวจตนเองก่อนส่ง'}</h3>${f.checks.map((c, j) => `<label class="opt"><input type="checkbox" data-d="ck${j}"><span>${c}</span></label>`).join('')}</div>` : '';
+    const rub = f.rubric ? `<div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">${f.rubric.title || 'สิ่งที่ประเมิน'}</th>${(f.rubric.levels || ['ดี', 'พอใช้', 'ต้องปรับปรุง']).map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>${f.rubric.rows.map((r, j) => `<tr><td class="l">${r}</td>${(f.rubric.levels || ['ดี', 'พอใช้', 'ต้องปรับปรุง']).map(l => `<td><label class="opt" style="justify-content:center"><input type="radio" name="rt${j}" value="${l}" data-d="rt${j}" aria-label="${esc(l + ': ' + stripTags(r))}"></label></td>`).join('')}</tr>`).join('')}</tbody></table></div><div class="res" id="rate_${key}" aria-live="polite"></div>` : '';
+    return `<div class="lab" id="${key}"><h3>${f.title || 'แบบบันทึก'}</h3><p class="small">${small}</p>${checks}` +
+      formGroups(f).map(g => g.title ? `<div class="box"><h3>${g.title}</h3>${fieldsHTML(g.fields.map(fieldObj))}</div>` : fieldsHTML((g.fields || []).map(fieldObj))).join('') +
+      rub + (f.reveal ? revealHTML(f.reveal) : '') + (f.need != null ? `<div class="res" id="st_${key}" aria-live="polite"></div>` : '') + expHTML(key) + '</div>' + (f.after || '');
+  }
+  function formRows(f) { const out = []; formGroups(f).forEach(g => (g.fields || []).map(fieldObj).forEach(x => out.push([x.id, (g.title ? g.title + ': ' : '') + stripTags(x.short || x.label)]))); return out; }
+  function wireForm(t, f, i) {
+    const key = formKey(t, f, i), unit = f.unit || 'กลุ่ม';
+    const upd = () => {
+      const r = $('#st_' + key); if (r) {
+        const s = formState(t, f);
+        r.className = 'res ' + (s.ok ? 'ok' : '');
+        r.textContent = f.statusText ? f.statusText(s) : (s.ok ? 'กรอกครบ ' + s.n + ' / ' + s.m + ' ' + unit + ' ✓ (ครบเกณฑ์อย่างน้อย ' + s.need + ')' : 'กรอกครบแล้ว ' + s.n + ' / ' + s.m + ' ' + unit + ' (ต้องการอย่างน้อย ' + s.need + (s.mustOk ? '' : ' และกรอกช่องที่จำเป็นให้ครบ') + ')');
+      }
+      if (f.rubric) { const rr = $('#rate_' + key), lv = f.rubric.levels || ['ดี', 'พอใช้', 'ต้องปรับปรุง'], c = {}; lv.forEach(l => c[l] = 0); let a = 0;
+        f.rubric.rows.forEach((_, j) => { const v = dget(t.id, 'rt' + j); if (v && c[v] != null) { c[v]++; a++; } });
+        if (rr) rr.textContent = a ? 'ประเมินแล้ว ' + a + '/' + f.rubric.rows.length + ' ข้อ: ' + lv.map(l => l + ' ' + c[l]).join(' · ') + ' (ประเมินตนเอง ไม่คิดคะแนน)' : ''; }
+    };
+    wireExp(key, () => textOf(t.id, formRows(f), f.exportHead || (t.id + ' ผลบันทึก')), f.exportName || ('activity-' + qid(t.id) + '.txt'));
+    return upd;
+  }
+
+  /* ---------- สถานะเสร็จ ---------- */
+  function reqs(t) {
+    if (t.kind !== 'activity' || t.track === false) return null;
+    if (t.done) return t.done === 'visit' ? ['visit'] : t.done;
+    const r = [], fd = formList(t).some(f => f.need != null), qs = tabQuizSets(t);
+    if (fd) r.push('form'); else if (qs.length) r.push('quiz');
+    if (t.run) r.push('run');
+    return r;
+  }
+  function tabQuizSets(t) { return t.quiz === false ? [] : t.quiz ? [].concat(t.quiz) : (P.quiz && P.quiz[t.id] ? [t.id] : []); }
+  function isDone(t) { return !!st.done[t.id]; }
+  function tryDone(id) {
+    if (st.done[id]) return; const t = TABS.find(x => x.id === id); if (!t) return; const r = reqs(t); if (!r || !r.length) return;
+    const ok = r.every(k => k === 'quiz' ? tabQuizSets(t).every(s => st.q[s]) : k === 'run' ? st.run[id] : k === 'form' ? st['form:' + id] : k === 'visit' ? true : false);
+    if (ok) markDone(id);
+  }
+  function markDone(id) {
+    if (!st.done[id]) { st.done[id] = true; save(); paintTabs(); paintProgress(); }
+  }
+  /* ห้องทดลองเรียกเมื่อผู้เรียนทำการทดลองครบ (นับเป็น run) */
+  K.run = id => { st.run[id] = true; save(); tryDone(id); };
+  K.markDone = markDone;
+  K.anim = (step, o) => { /* ลูปแอนิเมชันที่หยุดเองเมื่อเปลี่ยนแท็บ (Q3) step(dt วินาที ถูก clamp 0.1) คืน false เมื่อจบ */
+    o = o || {}; let raf = null, last = 0, run = false;
+    const stop = () => { run = false; if (raf) { cancelAnimationFrame(raf); raf = null; } };
+    const tick = ts => { if (!run) return; if (o.el && !o.el.isConnected) { stop(); return; } const dt = Math.max(0, Math.min(.1, (ts - last) / 1000)); last = ts; if (step(dt) === false) { stop(); o.onEnd && o.onEnd(); return; } raf = requestAnimationFrame(tick); };
+    const h = { start() { stop(); run = true; last = performance.now(); raf = requestAnimationFrame(tick); }, stop, get running() { return run; } };
+    CLEAN.push(stop); return h;
+  };
+
+  /* ---------- SVG helper (Q6) ---------- */
+  K.svg = (w, h, label, inner, o) => {
+    o = o || {}; if (!label || !String(label).trim()) throw new Error('K.svg: ต้องมี aria-label');
+    return `<svg${o.id ? ` id="${o.id}"` : ''} viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">${inner}</svg>`;
+  };
+  K.setLabel = (svg, label) => { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', label); };
+  const MINFS = 11;
+  function fitSvg(root) {
+    $$('svg[viewBox]', root || document).forEach(svg => {
+      const vb = svg.viewBox.baseVal; if (!vb || !vb.width) return;
+      if (svg.closest('.fig')) svg.style.maxWidth = Math.min(560, Math.round(vb.width * 2.2)) + 'px'; /* ไม่ขยายภาพเล็กเกิน 2.2 เท่า */
+      const bw = svg.getBoundingClientRect().width; if (!bw) return;
+      const scale = bw / vb.width, need = MINFS / scale;
+      $$('text', svg).forEach(tx => {
+        if (tx.dataset.fs0 == null) { const a = tx.getAttribute('font-size'); tx.dataset.fs0 = a != null ? a : ''; }
+        const base = tx.dataset.fs0 === '' ? 16 : parseFloat(tx.dataset.fs0); if (!Number.isFinite(base)) return;
+        if (base < need) tx.setAttribute('font-size', (Math.ceil(need * 10) / 10)); else if (tx.dataset.fs0 !== '') tx.setAttribute('font-size', tx.dataset.fs0); else tx.removeAttribute('font-size');
+      });
+    });
+  }
+  K.fitSvg = fitSvg;
+  function tidyTables(root) {
+    $$('.tw', root || document).forEach(w => {
+      const tb = $('table', w); if (!tb) return;
+      let cols = 0; $$('tr', tb).forEach(r => { let c = 0; Array.from(r.children).forEach(x => c += +(x.getAttribute('colspan') || 1)); if (c > cols) cols = c; });
+      if (cols <= 2) tb.classList.remove('wide');
+      tb.style.minWidth = tb.classList.contains('wide') ? (cols * 92) + 'px' : '';
+      const prev = w.previousElementSibling, hint = prev && prev.classList.contains('tw-hint') ? prev : null;
+      if (w.scrollWidth > w.clientWidth + 1) {
+        w.tabIndex = 0; w.setAttribute('role', 'region'); w.setAttribute('aria-label', 'ตาราง เลื่อนไปทางขวาเพื่อดูต่อ');
+        if (!hint) { const h = document.createElement('div'); h.className = 'tw-hint'; h.textContent = 'ตารางนี้กว้างกว่าหน้าจอ เลื่อนไปทางขวาเพื่อดูคอลัมน์ที่เหลือ →'; w.parentNode.insertBefore(h, w); }
+      } else { if (hint) hint.remove(); w.removeAttribute('tabindex'); w.removeAttribute('role'); w.removeAttribute('aria-label'); }
+    });
+  }
+  K.tidyTables = tidyTables;
+  /* ตรวจรวดเดียวสำหรับ QA/ผู้พัฒนา: คืนรายการปัญหาของแท็บที่เปิดอยู่ */
+  K.audit = () => {
+    const out = { svgNoLabel: [], smallText: [], overflow: [], noLabelField: [] }, root = $('#main');
+    $$('svg', root).forEach((s, i) => { if (s.getAttribute('role') !== 'img' || !s.getAttribute('aria-label')) out.svgNoLabel.push(s.id || 'svg#' + i); if (s.closest('[aria-hidden=true]')) return;
+      const vb = s.viewBox.baseVal, bw = s.getBoundingClientRect().width; if (vb && vb.width && bw) $$('text', s).forEach(tx => { const fs = parseFloat(getComputedStyle(tx).fontSize) * bw / vb.width; if (fs < MINFS - 0.05) out.smallText.push((tx.textContent || '').slice(0, 20) + ' ' + fs.toFixed(1)); }); });
+    $$('textarea', root).forEach(t => { if (!t.id || !$('label[for="' + t.id + '"]')) out.noLabelField.push(t.id || '(no id)'); });
+    const W = document.documentElement.clientWidth;
+    $$('body *', document).forEach(e => { const r = e.getBoundingClientRect(); if (r.width > 0 && r.right > W + 1 && !e.closest('.tw,.tabs,pre')) out.overflow.push(e.tagName + '.' + e.className + ':' + Math.round(r.right)); });
+    out.overflow = out.overflow.slice(0, 8); return out;
+  };
+
+  /* ---------- สร้างแท็บ ---------- */
+  const tabPrefix = t => /^\d/.test(t.id) ? t.id + ' ' : '';
+  const tabText = t => tabPrefix(t) + t.label;
+  const shortRef = t => /^\d/.test(t.id) ? t.id : t.label;
+  function extraBlocks(t) { /* ฟอร์ม + แบบทดสอบ ท้ายแท็บกิจกรรม */
+    let h = ''; formList(t).forEach((f, i) => { h += formHTML(t, f, i); });
+    tabQuizSets(t).forEach(s => { h += quizHTML(s, P.quiz[s].title); });
+    return h;
+  }
+  function exBlockHTML(b, ns) {
+    const h = b.h ? `<h3>${b.h}</h3>` : '';
+    if (b.type === 'quiz') return h + quizHTML(b.set, b.title);
+    if (b.type === 'num') return h + numHTML(b.set, b.title);
+    if (b.type === 'grid') return h + gridHTML(b.set, b.title);
+    if (b.type === 'html') return h + b.html;
+    if (b.type === 'fields') return `<div class="lab"><h3>${b.h || b.title || 'ข้อเขียน'}</h3><p class="small">${b.small || DEF_SMALL}</p>${fieldsHTML(b.fields)}${b.reveal ? revealHTML(b.reveal) : ''}</div>`;
+    throw new Error('ex block type ไม่รู้จัก: ' + b.type);
+  }
+  function exFieldRows() { const o = []; (P.ex.blocks || []).forEach(b => { if (b.type === 'fields') normRows(b.fields).forEach(r => o.push(r)); }); return o; }
+  function exerciseHTML(t) {
+    const ex = P.ex || {}; if (!ex.blocks) return '';
+    return `<h2>${t.title || ex.title || t.label}</h2>${ex.sub ? `<p class="sub">${ex.sub}</p>` : ''}${ex.note ? `<div class="notice">${ex.note}</div>` : ''}` + ex.blocks.map(b => exBlockHTML(b, 'ex')).join('') +
+      (ex.export !== false ? expHTML('pex') : '') + (ex.progress ? `<div class="box"><h3>ความคืบหน้า</h3><div class="tw"><table class="tbl-sm"><thead><tr><th class="l">กิจกรรม</th><th>สถานะ</th></tr></thead><tbody id="progT"></tbody></table></div></div>` : '');
+  }
+  function wireExercise(t) {
+    const ex = P.ex || {}; const labs = TABS.filter(x => x.kind === 'activity' && x.track !== false);
+    if ($('#progT')) $('#progT').innerHTML = labs.map(a => `<tr><td class="l">${tabText(a)}</td><td>${st.done[a.id] ? '<span class="ok-t">✓ เสร็จแล้ว</span>' : 'ยังไม่เสร็จ'}</td></tr>`).join('');
+    const e = ex.export || {};
+    wireExp('pex', () => (e.head || ('สรุปการเรียน ' + P.short)) + '\n\n' + labs.map(a => (st.done[a.id] ? '[x] ' : '[ ] ') + tabText(a)).join('\n') + '\n' + textOf('ex', exFieldRows(), '\nข้อเขียนในแบบฝึกหัด'), e.file || 'exercise.txt');
+    (ex.blocks || []).forEach(b => { if (b.type === 'quiz') wireQuiz(b.set, false, t.id); if (b.type === 'num') wireNum(b.set); if (b.type === 'grid') wireGrid(b.set); });
+  }
+  function panelHTML(t) {
+    let body = '', err = '';
+    if (t.kind === 'exercise') return exerciseHTML(t);
+    if (t.kind === 'custom') { try { body = BUILD[t.id] ? BUILD[t.id][0]() : ''; } catch (e) { err = e; } return readHTML(t.id) + body + errBox(err); }
+    const head = `<h2>${t.title || t.label}</h2>${t.sub ? `<p class="sub">${t.sub}</p>` : ''}`;
+    const st_ = t.html ? [].concat(t.html).join('\n') : '';
+    try { body = BUILD[t.id] ? BUILD[t.id][0]() : ''; } catch (e) { err = e; }
+    return readHTML(t.id) + head + st_ + body + errBox(err) + (t.kind === 'activity' ? extraBlocks(t) : '');
+  }
+  const errBox = e => { if (!e) return ''; try { console.error(e); } catch (_) { } return '<div class="warn" role="alert">ส่วนนี้แสดงผลไม่ได้ (' + esc(e.message || e) + ')</div>'; };
+  function wirePanel(t, panel) {
+    if (t.kind === 'exercise') { wireDraft(panel, 'ex'); wireExercise(t); return; }
+    let upd = [];
+    try { BUILD[t.id] && BUILD[t.id][1](panel); } catch (e) { console.error(e); }
+    if (t.kind === 'activity') {
+      formList(t).forEach((f, i) => upd.push(wireForm(t, f, i)));
+      tabQuizSets(t).forEach(s => wireQuiz(s, (reqs(t) || []).indexOf('quiz') >= 0, t.id));
+    }
+    const all = () => { upd.forEach(u => u()); /* ธง form ต่อแท็บ: ทุกฟอร์มที่ need ต้องผ่าน */ const fl = formList(t).filter(f => f.need != null); if (fl.length) { const ok = fl.every(f => formState(t, f).ok); if (ok && !st['form:' + t.id]) { st['form:' + t.id] = true; save(); } tryDone(t.id); } };
+    wireDraft(panel, t.id, all); all();
+  }
+  function paintTabs(refocus) {
+    const n = TABS.length;
+    $('#tabs').innerHTML = TABS.map((t, i) => `<button class="tab" type="button" role="tab" id="tab-${qid(t.id)}" aria-controls="panel" tabindex="${i === cur ? 0 : -1}" aria-selected="${i === cur}" data-i="${i}">${tabText(t)}${st.done[t.id] ? '<span class="ck" aria-label="เสร็จแล้ว">✓</span>' : ''}</button>`).join('');
+    $$('#tabs .tab').forEach(b => { b.onclick = () => select(+b.dataset.i, true); b.onkeydown = e => { const m = { ArrowRight: (cur + 1) % n, ArrowLeft: (cur + n - 1) % n, Home: 0, End: n - 1 }[e.key]; if (m !== undefined) { e.preventDefault(); select(m, true); } }; });
+    if (refocus) { const tb = $('#tabs .tab[aria-selected=true]'); if (tb) { tb.focus({ preventScroll: true }); try { tb.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (_) { } } }
+  }
+  function paintProgress() {
+    const labs = TABS.filter(t => t.kind === 'activity' && t.track !== false), n = labs.filter(t => st.done[t.id]).length, m = labs.length;
+    $('#progText').textContent = 'ความคืบหน้า ' + n + ' / ' + m + ' กิจกรรม'; $('#progBar').style.width = (m ? n / m * 100 : 0) + '%'; $('#progTrack').setAttribute('aria-valuenow', n);
+  }
+  function select(i, refocus) {
+    CLEAN.forEach(f => { try { f(); } catch (_) { } }); CLEAN.length = 0;
+    cur = i; const t = TABS[i];
+    $('#main').innerHTML = '<section class="panel" id="panel" role="tabpanel" aria-labelledby="tab-' + qid(t.id) + '">' + panelHTML(t) + '<div class="btns"><button class="btn alt" type="button" id="reset">เริ่มกิจกรรมนี้ใหม่ (ล้างเครื่องหมายเสร็จและแบบทดสอบ ข้อความที่เขียนยังอยู่ และคะแนนที่บันทึกไว้แล้วไม่ถูกล้าง)</button></div></section>';
+    const panel = $('#panel');
+    wirePanel(t, panel);
+    const sk = $('#skipRead'); if (sk) sk.onclick = () => { const d = $('#labstart'); d.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); d.focus({ preventScroll: true }); };
+    $('#reset').onclick = () => { delete st.done[t.id]; delete st.run[t.id]; delete st['form:' + t.id]; tabQuizSets(t).forEach(s => delete st.q[s]); save(); paintTabs(); paintProgress(); select(cur); };
+    paintTabs(refocus);
+    try { window.LabScore && window.LabScore.use(P.scoreId, P.scoreTitle); } catch (_) { } /* Q4: หลังสร้างแผงเสร็จ */
+    try { history.replaceState(null, '', '#act-' + t.id); } catch (_) { }
+    fitSvg(panel); tidyTables(panel);
+  }
+  K.select = select;
+
+  /* ---------- hero ---------- */
+  const join = a => a.length > 2 ? a.slice(0, -1).join(', ') + ' และ ' + a[a.length - 1] : a.join(' และ ');
+  function featureSentence() {
+    const act = TABS.filter(t => t.kind === 'activity'), s = [];
+    const refs = f => { const l = TABS.filter(f).map(shortRef); return l.length === act.length && l.length > 1 && TABS.filter(f).every(t => t.kind === 'activity') ? 'ทุกแท็บกิจกรรม' : 'แท็บ ' + join(l); };
+    if (act.length) s.push('หน้านี้มี ' + act.length + ' กิจกรรม (' + act.map(shortRef).join(' · ') + ')');
+    const labs = TABS.filter(t => (t.kind === 'activity' || t.kind === 'custom') && BUILD[t.id]); if (labs.length) s.push(refs(t => (t.kind === 'activity' || t.kind === 'custom') && BUILD[t.id]) + ' มีแบบจำลองให้ลองเล่น');
+    if (TABS.some(t => P.read && P.read[t.id])) s.push(refs(t => P.read && P.read[t.id]) + ' มีส่วน "อ่านก่อนทดลอง" ที่ผู้จัดทำหน้าเรียบเรียงใหม่');
+    if (TABS.some(t => t.kind === 'activity' && formList(t).length)) s.push(refs(t => t.kind === 'activity' && formList(t).length) + ' มีแบบบันทึกหรือข้อเขียน (ไม่มีคะแนนอัตโนมัติ)');
+    if (TABS.some(t => t.kind === 'activity' && tabQuizSets(t).length)) s.push(refs(t => t.kind === 'activity' && tabQuizSets(t).length) + ' มีแบบทดสอบตรวจคำตอบอัตโนมัติ');
+    if (TABS.some(t => t.kind === 'summary')) s.push('มีแท็บสรุปเนื้อหา');
+    if (TABS.some(t => t.kind === 'exercise')) { const bl = (P.ex && P.ex.blocks) || [], hasF = bl.some(b => b.type === 'fields'), hasS = bl.some(b => b.type !== 'fields' && b.type !== 'html'); s.push('มีแท็บแบบฝึกหัด' + (hasS ? ' (ตรวจอัตโนมัติ' + (hasF ? ' และมีข้อเขียน' : '') + ')' : hasF ? ' (ข้อเขียน)' : '')); }
+    return s.length ? s.join(' · ') + '' : '';
+  }
+  const HONESTY = '<b>งานเขียนของนักเรียน:</b> ข้อความที่พิมพ์ในช่องเปิดจะบันทึกในเครื่องนี้อัตโนมัติ และ<b>ถูกส่งให้ครูเมื่อกดปุ่มส่งในแผงส่งผลท้ายหน้า เฉพาะช่องเขียนในแท็บที่เปิดอยู่ตอนกดส่ง</b> (ถ้าเขียนไว้หลายแท็บ ให้ส่งทีละแท็บ แท็บที่ไม่ได้เปิดตอนกดส่งจะยังอยู่ในเครื่องนี้เท่านั้น ยังไม่ถูกส่ง) ข้อเขียนไม่มีคะแนนอัตโนมัติ มีคะแนนเฉพาะแบบทดสอบและแบบฝึกหัดที่มีเฉลย';
+  function hasFreeText() {
+    if (P.hero && P.hero.freeText) return true;
+    if (TABS.some(t => t.kind === 'activity' && formList(t).length)) return true;
+    return !!(P.ex && (P.ex.blocks || []).some(b => b.type === 'fields'));
+  }
+  function heroHTML() {
+    const h = P.hero || {}, nt = [].concat(h.notice || []).join('<br>'), feat = featureSentence();
+    return `<div class="wrap"><nav class="top"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⚗</span><span>ห้องทดลองเสมือน</span></a><a href="index.html">← สารบัญหลักสูตร</a></nav>
+<header class="hero"><div class="eyebrow">${h.eyebrow || ''}</div><h1>${h.h1 || P.title}</h1>${h.lead ? `<p>${h.lead}</p>` : ''}${feat ? `<p>${feat}</p>` : ''}
+<div class="progress"><span id="progText"></span><span class="track" id="progTrack" role="progressbar" aria-valuemin="0" aria-valuemax="${TABS.filter(t => t.kind === 'activity' && t.track !== false).length}" aria-valuenow="0" aria-label="ความคืบหน้า"><i id="progBar"></i></span></div>
+<div class="notice">${nt}${nt && hasFreeText() ? '<br>' : ''}${hasFreeText() ? HONESTY : ''}</div></header>
+<div class="tabs" role="tablist" id="tabs" aria-label="${esc(P.tabsLabel || 'กิจกรรมในหน้านี้')}"></div><main id="main"></main>
+<footer class="footer">${P.footer || ''}</footer></div>`;
+  }
+
+  /* ---------- เริ่มทำงาน ---------- */
+  K.start = function (page) {
+    P = K.PAGE = page; KEY = P.id + '-v1'; DK = P.id + '-drafts-v1'; loadState();
+    TABS = P.tabs.map(t => Object.assign({}, t));
+    Object.keys(P.quiz || {}).forEach(id => { QS[id] = prepQuiz(id, P.quiz[id]); });
+    Object.keys(P.num || {}).forEach(id => { NUMS[id] = P.num[id]; });
+    Object.keys(P.grid || {}).forEach(id => { GRIDS[id] = P.grid[id]; });
+    const host = $('#kit-root') || document.body; host.innerHTML = heroHTML();
+    /* ชื่อ global เดียวกับหน้าเดิม เพื่อให้ชุดตรวจ tools/qa (อ่าน ACTS/LABS/select/QUIZ/readHTML) ใช้กับหน้าที่สร้างด้วย kit ได้ */
+    Object.assign(window, { ACTS: TABS.map(t => t.id), LABS: TABS.filter(t => t.kind === 'activity' && t.track !== false).map(t => t.id), select: select, readHTML: readHTML, qid: qid,
+      QUIZ: Object.keys(QS).reduce((o, k) => { o[k] = QS[k].items; return o; }, {}) });
+    paintProgress();
+    const m = (location.hash.match(/^#act-(.+)$/) || [])[1]; let ix = 0;
+    if (m) { const d = decodeURIComponent(m); const j = TABS.findIndex(t => t.id === d); if (j >= 0) ix = j; }
+    select(ix);
+    window.addEventListener('hashchange', () => { const mm = (location.hash.match(/^#act-(.+)$/) || [])[1]; if (!mm) return; const j = TABS.findIndex(t => t.id === decodeURIComponent(mm)); if (j >= 0 && j !== cur) select(j); });
+    let rz = null; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { fitSvg($('#main')); tidyTables($('#main')); }, 120); });
+    try { new MutationObserver(ms => { if (ms.some(x => Array.from(x.addedNodes).some(n => n.nodeType === 1))) { clearTimeout(rz); rz = setTimeout(() => { fitSvg($('#main')); tidyTables($('#main')); }, 60); } }).observe($('#main'), { childList: true, subtree: true }); } catch (_) { }
+    if (usedFields && !hasFreeText()) try { console.warn('pagekit: ใช้ K.fieldsHTML แต่ hero.freeText ไม่เป็น true หมายเหตุข้อเขียนจะไม่แสดง'); } catch (_) { }
+  };
+})();
+</script>
+<script>
+/* content.js */
+window.PAGE=(function(){let PAGE;
+/* spec ของ chemistry-m5-phys-ch4.html (สร้างใหม่ผ่าน pagekit) ข้อมูลล้วน: เนื้อหา อ่านก่อนทดลอง แบบทดสอบ แบบฝึกหัด ฟอร์ม
+ * ย้ายมาจากหน้าเดิมโดยไม่แก้ถ้อยคำ ส่วนที่เปลี่ยนคือ answer position (a:0 ทุกข้อ เปลี่ยนเป็น a+perm/สุ่มกำหนดผลได้โดย kit) */
+PAGE = {
+  id: 'chemistry-m5-phys-ch4',
+  title: 'วิทยาศาสตร์กายภาพ ม.5 บทที่ 4 พลังงาน',
+  short: 'วิทยาศาสตร์กายภาพ ม.5 บทที่ 4',
+  scoreId: 'วิทยาศาสตร์กายภาพ ม.5 บทที่ 4',
+  scoreTitle: 'วิทยาศาสตร์กายภาพ ม.5 บทที่ 4 พลังงาน (กิจกรรม 4.1–4.4)',
+  accent: '#0f766e',
+  accentDark: '#0b5a54',
+  tabsLabel: 'กิจกรรมในบทที่ 4',
+  hero: {
+    eyebrow: 'PHYSICAL SCIENCE · MATTHAYOM 5 · CHEMISTRY PART · CHAPTER 4',
+    h1: 'บทที่ 4 พลังงาน: ตัวเร่งปฏิกิริยา ปัจจัยที่มีผลต่ออัตรา และสารกัมมันตรังสี',
+    lead: 'หน้านี้เป็นรายวิชาวิทยาศาสตร์กายภาพ ม.5 (พื้นฐาน) ภาคเคมี',
+    notice: [
+      '<b>แบบจำลองเพื่อการศึกษา</b> ผลตัวอย่างในกิจกรรม 4.2 ใช้ตัวเลขจากคู่มือครู (เวลา 50 / 15 / 25 วินาที และ &gt; 300 วินาที) ส่วนบีกเกอร์ที่ผสมหลายปัจจัยพร้อมกัน อุณหภูมิห้อง และความเร็วเวลาของแอนิเมชันเป็นค่าที่ผู้จัดทำหน้าสมมติเอง ติดป้ายไว้ในแต่ละกิจกรรม ปริมาณฟองในกิจกรรม 4.1 เป็นภาพเชิงคุณภาพ',
+      '<b>ข้อควรระวังเมื่อทำจริง</b> (คู่มือครู หน้า 104 และ 120): H<sub>2</sub>O<sub>2</sub> และกรดไฮโดรคลอริกมีฤทธิ์กัดกร่อน ต้องระวังการเท การสัมผัส และสูดไอ สวมแว่นตา ถุงมือ และหน้ากากตามที่ครูกำหนด การอุ่นกรดให้ทำตามครูสั่งเท่านั้น (ข้อความหลังชื่อ &quot;คู่มือครู&quot; เป็นของคู่มือ ส่วนอุปกรณ์ป้องกันเป็นข้อแนะนำของผู้จัดทำหน้า)'
+    ]
+  },
+  footer: 'แหล่งข้อมูล: คู่มือครูรายวิชาวิทยาศาสตร์กายภาพ ม.5 เล่ม 1 บทที่ 4 พลังงาน (สสวท.) เลขหน้าคือเลขที่พิมพ์ในคู่มือครู: ภาพรวมบท หน้า 97–98 · หัวข้อ 4.1 เชื้อเพลิง และแบบฝึกหัด 4.1 หน้า 100–102 · กิจกรรม 4.1 หน้า 103–105 · กิจกรรม 4.2 หน้า 106–109 · กิจกรรม 4.3 หน้า 109 · แบบฝึกหัด 4.2 หน้า 110–111 · หัวข้อ 4.2 แบตเตอรี่ และแบบฝึกหัด 4.3 หน้า 111–112 · หัวข้อ 4.3 สารกัมมันตรังสี หน้า 113–118 · กิจกรรม 4.4 หน้า 115–117 · แบบฝึกหัด 4.4 หน้า 118 · แบบฝึกหัดท้ายบท หน้า 119–122 · ใช้หนังสือเรียนเพียงยืนยันโครงสร้างและข้อความกิจกรรม (หนังสือเรียนสแกนเป็นภาพคู่เปิดหน้า ช่วงหน้าต่อไปนี้ดูจากลำดับข้อความ OCR จึงเป็นช่วงโดยประมาณ: กิจกรรม 4.1 หน้า 106–107, กิจกรรม 4.2 หน้า 108–110, กิจกรรม 4.3 หน้า 110–111, กิจกรรม 4.4 หน้า 120–121 ส่วนตาราง 4.2 หน้า 125 ตรวจกับภาพหน้าแล้ว) · ข้อความทั้งหมดในหน้านี้เรียบเรียงใหม่โดยผู้จัดทำหน้า',
+  tabs: [
+    {
+      id: '4.1',
+      kind: 'activity',
+      label: 'ตัวเร่งปฏิกิริยา (KI กับ H₂O₂)',
+      title: 'กิจกรรม 4.1 การทดลองการเติมสารเคมีบางชนิดที่มีผลต่ออัตราการเกิดปฏิกิริยาเคมี',
+      sub: 'คู่มือครู หน้า 103–105 · เวลาในคู่มือ 25 นาที (อภิปรายก่อน 5 · ทดลอง 10 · อภิปรายหลัง 10)',
+      run: true,
+      html: `<div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ศึกษาผลของสารละลายโพแทสเซียมไอโอไดด์ (KI) ที่มีต่ออัตราการสลายตัวของไฮโดรเจนเปอร์ออกไซด์ (H<sub>2</sub>O<sub>2</sub>)</p></div>
+  <div class="cols"><div class="box"><h3>สารเคมีและอุปกรณ์ต่อกลุ่ม (คู่มือ หน้า 103)</h3><ul><li>H<sub>2</sub>O<sub>2</sub> เข้มข้น 3 %w/v · 40 mL</li><li>สารละลาย KI อิ่มตัว · 5 หยด</li><li>น้ำยาล้างจาน · 4 mL</li><li>ขวดรูปกรวย 125 mL · 2 อัน</li><li>กระบอกตวง 10 mL และ 25 mL อย่างละ 1 อัน (ใช้ร่วมกัน) · หลอดหยด 1 อัน</li></ul><p class="small">เตรียมล่วงหน้า: KI อิ่มตัว 5 mL ใช้ KI 8 g ละลายในน้ำกลั่น 5 mL ใช้ได้ประมาณ 20 กลุ่ม</p></div>
+  <div class="box"><h3>วิธีทำ (หนังสือเรียน หน้า 107 เรียบเรียงใหม่)</h3><ol><li>ใส่ H<sub>2</sub>O<sub>2</sub> ลงขวดรูปกรวย 2 ใบ ใบละ 20 mL</li><li>เติมน้ำยาล้างจานขวดละ 2 mL ผสมให้เข้ากัน สังเกตลักษณะก่อนและหลังเติม</li><li>เติม KI อิ่มตัว 4–5 หยดลงขวดเดียว สังเกตขวดทั้งสองเป็นเวลา 3 นาที แล้วบันทึกผล</li></ol></div></div>
+  <div class="warn"><b>ข้อควรระวัง:</b> H<sub>2</sub>O<sub>2</sub> มีฤทธิ์กัดกร่อน เทด้วยความระมัดระวัง (คู่มือ หน้า 104)</div>`
+    },
+    {
+      id: '4.2',
+      kind: 'activity',
+      label: 'ปัจจัยที่มีผลต่ออัตราการเกิดปฏิกิริยา',
+      title: 'กิจกรรม 4.2 การทดลองปัจจัยที่มีผลต่ออัตราการเกิดปฏิกิริยาเคมี',
+      sub: 'คู่มือครู หน้า 106–109 · เวลาในคู่มือ 50 นาที (อภิปรายก่อน 10 · ทดลอง 30 · อภิปรายหลัง 10)',
+      run: true,
+      html: `<div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>ศึกษาผลของความเข้มข้น อุณหภูมิ และพื้นที่ผิวของสารตั้งต้นที่มีต่ออัตราการเกิดปฏิกิริยาเคมีระหว่างกรดไฮโดรคลอริกกับหินปูน (แคลเซียมคาร์บอเนต)</p></div>
+  <div class="cols"><div class="box"><h3>สารเคมีและอุปกรณ์ต่อกลุ่ม (คู่มือ หน้า 106)</h3><ul><li>CaCO<sub>3</sub> ผง 0.3 g · เม็ด 0.1 g</li><li>HCl 7 %w/v 5 mL · HCl 1 %w/v 15 mL</li><li>หลอดทดลองขนาดกลาง 4 หลอด · บีกเกอร์ 50 mL 4 ใบ · นาฬิกาจับเวลา · เทอร์มอมิเตอร์</li><li>เตาแผ่นความร้อนหรือชุดตะเกียงแอลกอฮอล์ 1 ชุด · กระบอกตวง 10 mL 2 อัน (ใช้ร่วมกัน)</li></ul><p class="small">เตรียมล่วงหน้า (หน้า 107): HCl 7 %w/v ≈ 2 mol/L 100 mL จาก HCl 12 mol/L 16.7 mL · HCl 1 %w/v ≈ 0.3 mol/L 200 mL จาก HCl 2 mol/L 30 mL</p></div>
+  <div class="box"><h3>วิธีทำ (หนังสือเรียน หน้า 109 เรียบเรียงใหม่)</h3><ol><li>ผง CaCO<sub>3</sub> ใส่บีกเกอร์ใบที่ 1–3 เม็ดใส่ใบที่ 4 (ใบละ 0.1 g)</li><li>HCl 7 %w/v ใส่หลอดที่ 2 ส่วน HCl 1 %w/v ใส่หลอดที่ 1, 3, 4 หลอดละ 5 mL</li><li>อุ่น HCl ในหลอดที่ 3 ให้ได้ประมาณ 60 °C</li><li>เทกรดลงบีกเกอร์ทีละคู่ จับเวลาทันทีจนไม่เห็นฟองแก๊สเกิดอีก แล้วบันทึกเวลา</li></ol></div></div>
+  <div class="warn"><b>ข้อควรระวัง:</b> HCl กัดกร่อน ไอระเหยอันตรายต่อทางเดินหายใจ สวมแว่นตาและถุงมือ การอุ่นกรดให้ทำเมื่อครูอนุญาตเท่านั้น (ข้อแนะนำอุปกรณ์ป้องกันเป็นของผู้จัดทำหน้า)</div>`
+    },
+    {
+      id: '4.3',
+      kind: 'activity',
+      label: 'สืบค้นปัจจัยในชีวิตประจำวัน',
+      title: 'กิจกรรม 4.3 สืบค้นข้อมูลปัจจัยที่มีผลต่ออัตราการเกิดปฏิกิริยาเคมีในชีวิตประจำวัน',
+      sub: 'คู่มือครู หน้า 109 · งานสืบค้นจริง ไม่มีคะแนนอัตโนมัติ (มีแบบทดสอบจัดประเภทที่ตรวจอัตโนมัติท้ายแท็บ)',
+      html: '<div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>สืบค้นและยกตัวอย่างเหตุการณ์ ปรากฏการณ์ หรือกรณีศึกษาที่เกี่ยวกับผลของความเข้มข้น พื้นที่ผิว อุณหภูมิ หรือตัวเร่งปฏิกิริยา ต่ออัตราการเกิดปฏิกิริยาเคมี แล้วนำเสนอแลกเปลี่ยนความรู้ในชั้นเรียน</p></div>'
+    },
+    {
+      id: '4.4',
+      kind: 'activity',
+      label: 'ประโยชน์และโทษของสารกัมมันตรังสี',
+      title: 'กิจกรรม 4.4 สืบค้นข้อมูลประโยชน์และโทษของสารกัมมันตรังสี',
+      sub: 'คู่มือครู หน้า 115–117 · งานสืบค้นจริง ไม่มีคะแนนอัตโนมัติ (มีแบบทดสอบตรวจอัตโนมัติท้ายแท็บ)',
+      html: `<div class="box"><h3>จุดประสงค์ (ตามคู่มือ)</h3><p>สืบค้นข้อมูลเกี่ยวกับประโยชน์และโทษของสารกัมมันตรังสี และนำเสนอแลกเปลี่ยนความรู้ในชั้นเรียน</p></div>
+  <div class="box"><h3>ตัวอย่างผลสืบค้นของคู่มือ (หน้า 115–116) เพิ่มจากหนังสือเรียน</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ด้าน</th><th class="l">สาร</th><th class="l">ใช้ทำอะไร</th><th>แหล่ง</th></tr></thead><tbody>
+  <tr><td class="l">เกษตร</td><td class="l">P-32</td><td class="l">ติดตามการหมุนเวียนแร่ธาตุในพืช ตั้งแต่ดูดซึมที่รากถึงคายออกที่ใบ หรือตรวจแร่ธาตุที่สะสมในใบ</td><td>คู่มือ</td></tr>
+  <tr><td class="l">เกษตร / อาหาร</td><td class="l">Co-60</td><td class="l">ฉายรังสีแกมมาเมล็ดพันธุ์เพื่อให้กลายพันธุ์แล้วคัดพันธุ์ · ฆ่าแบคทีเรียเพื่อถนอมอาหาร</td><td>หนังสือเรียน</td></tr>
+  <tr><td class="l">ธรณีวิทยา</td><td class="l">U-238 / Pb-206 · C-14</td><td class="l">หาอายุหิน (Pb-206 มากแสดงว่าเก่ามาก) · หาอายุซากโบราณ</td><td>คู่มือ · หนังสือเรียน</td></tr>
+  <tr><td class="l">การแพทย์</td><td class="l">C-11, N-13, O-15, F-18</td><td class="l">PET scan สร้างภาพสมอง (สลายให้โพซิตรอน รวมกับอิเล็กตรอนได้รังสีแกมมา)</td><td>คู่มือ</td></tr>
+  <tr><td class="l">การแพทย์</td><td class="l">Tc-99 (จาก Mo-99)</td><td class="l">สร้างภาพหัวใจ ปอด ตับ กระดูก ช่วยวินิจฉัย</td><td>คู่มือ</td></tr>
+  <tr><td class="l">การแพทย์</td><td class="l">Co-60 · I-131</td><td class="l">รักษามะเร็ง · ติดตามการทำงานและรักษาความผิดปกติของต่อมไทรอยด์</td><td>หนังสือเรียน</td></tr>
+  <tr><td class="l">อุตสาหกรรม</td><td class="l">Na-24 · Co-60</td><td class="l">ตรวจรอยตำหนิหรือรอยรั่วของท่อส่งของเหลว · เปลี่ยนสีอัญมณีควอตซ์</td><td>หนังสือเรียน</td></tr></tbody></table></div></div>`
+    },
+    {
+      id: 'sum',
+      kind: 'summary',
+      label: 'สรุปเนื้อหา',
+      title: 'สรุปเนื้อหาบทที่ 4 พลังงาน',
+      sub: 'สรุปโดยผู้จัดทำหน้า จากคู่มือครู หน้า 97–122 และหนังสือเรียนบทที่ 4'
+    },
+    {
+      id: 'ex',
+      kind: 'exercise',
+      label: 'แบบฝึกหัด'
+    }
+  ],
+  read: {
+    '4.1': {
+      lead: 'อ่านเรื่องเชื้อเพลิง สมการเคมี และเครื่องฟอกไอเสีย ซึ่งนำไปสู่คำถามว่าตัวเร่งปฏิกิริยาคืออะไร แล้วลองกับ KI และ H₂O₂ ในห้องทดลองเสมือน',
+      secs: [
+        {
+          h: 'เชื้อเพลิงซากดึกดำบรรพ์และสมการเคมีของการเผาไหม้',
+          pg: 'คู่มือครู หน้า 99–102',
+          html: `
+<p>เชื้อเพลิงคือสารตั้งต้นของปฏิกิริยาการเผาไหม้ ตัวที่ใช้มากที่สุดคือเชื้อเพลิงซากดึกดำบรรพ์ ได้แก่ แก๊สธรรมชาติ น้ำมัน ถ่านหิน และหินน้ำมัน ซึ่งส่วนใหญ่เป็นสารประกอบไฮโดรคาร์บอน ความร้อนจากการเผาไหม้ใช้หุงต้ม ขับยานพาหนะ และผลิตไฟฟ้า</p>
+<p>สมการเคมีเขียนสารตั้งต้นไว้ซ้าย ลูกศรกลาง ผลิตภัณฑ์ไว้ขวา และจำนวนอะตอมของแต่ละธาตุสองข้างต้องเท่ากัน ตัวอย่างของหนังสือคือโพรเพน:</p>
+<p class="eq">C<sub>3</sub>H<sub>8</sub>(g) + 5O<sub>2</sub>(g) → 3CO<sub>2</sub>(g) + 4H<sub>2</sub>O(g) + 2220 kJ/mol</p>
+<ul><li>ตัวอักษรในวงเล็บบอกสถานะ: s ของแข็ง · l ของเหลว · g แก๊ส · aq สารละลายในน้ำ</li><li>ตัวเลขพลังงานทางขวา = คายพลังงาน ทางซ้าย = ดูดพลังงาน</li><li>สัญลักษณ์บนลูกศร (เช่น Δ แปลว่าให้ความร้อน หรือสูตรของตัวเร่ง) บอกเงื่อนไขของปฏิกิริยา ไม่ได้บอกว่าดูดหรือคาย</li></ul>`,
+          q: [
+            'ในสมการข้างบน แต่ละข้างมี C, H, O อย่างละกี่อะตอม',
+            'C 3 · H 8 · O 10 อะตอมเท่ากันทั้งสองข้าง (ผู้จัดทำหน้านับจากสมการ ใช้ตัวตรวจในแท็บสรุปเนื้อหาลองเองได้)'
+          ]
+        },
+        {
+          h: 'มลพิษจากไอเสียและเครื่องฟอกไอเสียเชิงเร่งปฏิกิริยา',
+          pg: 'คู่มือครู หน้า 102–103',
+          html: `
+<p>เครื่องยนต์รถยนต์ร้อนมาก การเผาไหม้เชื้อเพลิงจึงเกิดแก๊สมลพิษบางชนิด เช่น CO และ NO ปฏิกิริยาที่เปลี่ยนมลพิษเหล่านี้เป็นแก๊สที่ไม่เป็นพิษเกิดช้ามากในภาวะปกติ จึงมีการติดตั้งเครื่องฟอกไอเสียที่ใช้โลหะ Pt และ Rh ช่วยให้เกิดเร็วขึ้น:</p>
+<p class="eq">2CO(g) + O<sub>2</sub>(g) → 2CO<sub>2</sub>(g) &nbsp;&nbsp; 2NO(g) → N<sub>2</sub>(g) + O<sub>2</sub>(g)</p>
+<p>โลหะเหล่านี้คือ <b>ตัวเร่งปฏิกิริยา</b> คำถามต่อไปคือ สารอื่นนอกจากโลหะทำหน้าที่เป็นตัวเร่งได้ไหม</p>`,
+          q: [
+            'ทำไมจึงไม่รอให้ปฏิกิริยาเปลี่ยนไอเสียเกิดเองตามธรรมชาติ',
+            'เพราะปฏิกิริยาเหล่านี้เกิดช้ามากในภาวะปกติ ไอเสียออกจากท่อไปก่อน ตัวเร่งช่วยให้ทันก่อนปล่อยออกสู่อากาศ'
+          ]
+        },
+        {
+          h: 'อัตราการเกิดปฏิกิริยาและตัวเร่งปฏิกิริยา',
+          pg: 'คู่มือครู หน้า 99, 103–105',
+          html: `
+<p>ในปฏิกิริยาหนึ่ง สารตั้งต้นลดลงเมื่อผลิตภัณฑ์เพิ่มขึ้น ถ้าสารตั้งต้นหมดเร็ว ผลิตภัณฑ์ก็เพิ่มเร็ว จึงบอกความเร็วของปฏิกิริยาได้จาก<b>การเปลี่ยนแปลงปริมาณสารต่อเวลา</b> เรียกว่า <b>อัตราการเกิดปฏิกิริยา</b></p>
+<p><b>ตัวเร่งปฏิกิริยา</b>คือสารที่ทำให้ปฏิกิริยาเกิดเร็วขึ้น โดยผลิตภัณฑ์ยังเป็นสารเดิม และเมื่อจบปฏิกิริยาจะได้ตัวเร่งกลับคืนในปริมาณเท่าเดิม จึงใช้เพียงเล็กน้อยก็พอ ตัวอย่างจากหนังสือ: เอนไซม์ย่อยอาหาร คลอโรฟิลล์ในการสังเคราะห์ด้วยแสง แพลทินัมในอุตสาหกรรมน้ำมัน</p>
+<p>กิจกรรม 4.1 ใช้การสลายตัวของไฮโดรเจนเปอร์ออกไซด์: <span class="eq">2H<sub>2</sub>O<sub>2</sub>(aq) → 2H<sub>2</sub>O(l) + O<sub>2</sub>(g)</span> น้ำยาล้างจานช่วยจับแก๊ส O<sub>2</sub> ไว้เป็นฟองเพื่อให้เห็นและเปรียบเทียบปริมาณได้ (คำอธิบายของผู้จัดทำหน้า คู่มือส่วนที่อ่านได้ไม่ได้เฉลยหน้าที่ข้อนี้)</p>
+<details class="rd-q"><summary>ความรู้เพิ่มเติมสำหรับครู (หน้า 104): I⁻ ถูกใช้แล้วคืนกลับอย่างไร</summary><p>คู่มือแสดงสองขั้น: H<sub>2</sub>O<sub>2</sub> + I⁻ → H<sub>2</sub>O + OI⁻ แล้ว OI⁻ + H<sub>2</sub>O<sub>2</sub> → O<sub>2</sub> + I⁻ + H<sub>2</sub>O จะเห็นว่า I⁻ ถูกใช้ในขั้นแรกและเกิดกลับคืนในขั้นสอง รวมสองขั้นได้ 2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub> (นับอะตอมได้สมดุล) ตัวเร่งจึงไม่ปรากฏในสมการรวม</p></details>
+<div class="warn"><b>ข้อควรระวังตามคู่มือ (หน้า 104):</b> H<sub>2</sub>O<sub>2</sub> มีฤทธิ์กัดกร่อน ต้องระวังเวลาเท และให้สังเกตลักษณะก่อนเติมน้ำยาล้างจาน</div>`,
+          q: [
+            'ทำไมตัวเร่งใช้ปริมาณน้อยก็ช่วยให้สารตั้งต้นจำนวนมากทำปฏิกิริยาได้',
+            'เพราะตัวเร่งไม่ถูกใช้หมด เมื่อจบขั้นหนึ่งแล้วกลับมาช่วยโมเลกุลถัดไปได้อีก (ตามสมบัติ "ได้คืนในปริมาณเท่าเดิม" ที่หนังสือระบุ)'
+          ]
+        }
+      ]
+    },
+    '4.2': {
+      lead: 'อ่านวิธีออกแบบเปรียบเทียบบีกเกอร์ 4 ใบ แล้วทำนายก่อนว่าใบใดเสร็จเร็วที่สุด ก่อนกดทดลองในแบบจำลอง',
+      secs: [
+        {
+          h: 'ปฏิกิริยาหินปูนกับกรดไฮโดรคลอริก',
+          pg: 'คู่มือครู หน้า 106–107',
+          html: `
+<p>กิจกรรม 4.2 ศึกษาปฏิกิริยา <span class="eq">CaCO<sub>3</sub>(s) + 2HCl(aq) → CaCl<sub>2</sub>(aq) + H<sub>2</sub>O(l) + CO<sub>2</sub>(g)</span> ฟองที่เห็นคือแก๊ส CO<sub>2</sub> จับเวลาตั้งแต่เติมกรดจนไม่เห็นฟองเกิดอีก</p>
+<p>สารที่ใช้ต่อกลุ่ม: CaCO<sub>3</sub> ผง 0.3 g (บีกเกอร์ละ 0.1 g × 3) และเม็ด 0.1 g กรด HCl 7 %w/v 5 mL และ HCl 1 %w/v 15 mL (หลอดละ 5 mL × 3) คู่มือบอกว่า 7 %w/v ≈ 2 mol/L และ 1 %w/v ≈ 0.3 mol/L เวลาที่ใช้ 50 นาที</p>`,
+          q: [
+            'ทำไมต้องจับเวลาจน "ไม่เห็นฟองเกิดอีก"',
+            'เพราะตอนนั้น CaCO₃ ถูกใช้หมดหรือเกือบหมด จึงใช้เวลานี้แทนเวลาที่ปฏิกิริยาเสร็จเพื่อเปรียบเทียบกันได้ (ผู้จัดทำหน้าอธิบาย)'
+          ]
+        },
+        {
+          h: 'ออกแบบให้เปลี่ยนทีละปัจจัย',
+          pg: 'คู่มือครู หน้า 106–108',
+          html: `
+<div class="tw"><table class="tbl-sm wide"><thead><tr><th>บีกเกอร์</th><th class="l">CaCO<sub>3</sub> (0.1 g)</th><th class="l">กรด 5 mL</th><th class="l">เทียบกับใบที่ 1 ต่างที่</th></tr></thead><tbody>
+<tr><td>1</td><td class="l">ผง</td><td class="l">HCl 1 %w/v</td><td class="l">(ชุดเปรียบเทียบ)</td></tr>
+<tr><td>2</td><td class="l">ผง</td><td class="l">HCl 7 %w/v</td><td class="l">ความเข้มข้น</td></tr>
+<tr><td>3</td><td class="l">ผง</td><td class="l">HCl 1 %w/v อุ่นประมาณ 60 °C</td><td class="l">อุณหภูมิ</td></tr>
+<tr><td>4</td><td class="l">เม็ด</td><td class="l">HCl 1 %w/v</td><td class="l">พื้นที่ผิว</td></tr></tbody></table></div>
+<p>แต่ละใบเปลี่ยนจากใบที่ 1 เพียงปัจจัยเดียว จึงรู้ว่าความต่างของเวลามาจากปัจจัยนั้น ผงมีพื้นที่ผิวรวมที่สัมผัสกรดมากกว่าเม็ดมวลเท่ากัน เพราะชิ้นเล็กลงจึงมีผิวนอกเพิ่มขึ้น (ดูตัวอย่างลูกบาศก์ในห้องทดลอง)</p>
+<div class="warn"><b>ข้อควรระวัง:</b> กรดไฮโดรคลอริกกัดกร่อนและไอระเหยอันตรายต่อทางเดินหายใจ (ตามที่คู่มือกล่าวในข้อสอบท้ายบท หน้า 120) การอุ่นกรดให้ทำตามที่ครูกำหนดเท่านั้น</div>`,
+          q: [
+            'ถ้าใบที่ 2 ใช้เม็ดแทนผงด้วย จะเปรียบเทียบความเข้มข้นได้ไหม',
+            'ไม่ได้ เพราะจะมีปัจจัยต่างกันสองอย่างพร้อมกัน (ความเข้มข้นกับพื้นที่ผิว) แยกไม่ได้ว่าความต่างของเวลามาจากอะไร'
+          ]
+        }
+      ]
+    },
+    '4.3': {
+      lead: 'อ่านตัวอย่างปัจจัยที่เปลี่ยนอัตราปฏิกิริยาในชีวิตประจำวัน แล้วหาตัวอย่างของตัวเอง',
+      secs: [
+        {
+          h: 'สี่ปัจจัยจากกิจกรรม 4.1 และ 4.2',
+          pg: 'คู่มือครู หน้า 105–109',
+          html: `
+<p>กิจกรรมทั้งสองสรุปว่า การเพิ่ม<b>ความเข้มข้น</b> เพิ่ม<b>อุณหภูมิ</b> เพิ่ม<b>พื้นที่ผิว</b>ของสารตั้งต้น หรือเติม<b>ตัวเร่งปฏิกิริยา</b> ทำให้ปฏิกิริยาเกิดเร็วขึ้น กิจกรรม 4.3 ให้สืบค้นเหตุการณ์จริงที่เกี่ยวกับปัจจัยใดปัจจัยหนึ่ง แล้วนำเสนอ</p>
+<p>ตัวอย่างผลสืบค้นของคู่มือ (หน้า 109) มี 5 ข้อ: น้ำยาล้างห้องน้ำเข้มข้นกว่าขจัดหินปูนเร็วกว่า · เก็บอาหารในตู้เย็นให้อยู่ได้นาน · อุณหภูมิร่างกายสูงขึ้น 1 °C ทำให้ชีพจรและการหายใจเร็วขึ้น · เคี้ยวอาหารให้ละเอียดช่วยการย่อย · หมักเนื้อด้วยยางมะละกอที่มีเอนไซม์ปาเปน ให้ลองจัดประเภทข้อเหล่านี้ในแบบทดสอบท้ายแท็บ</p>`,
+          q: [
+            'ปัจจัยใดที่ทำให้ปฏิกิริยา "ช้าลง" ได้ ยกตัวอย่าง',
+            'ลดความเข้มข้น ลดอุณหภูมิ หรือลดพื้นที่ผิว เช่น เก็บอาหารในตู้เย็นเพื่อชะลอการเสีย'
+          ]
+        },
+        {
+          h: 'ทำอย่างไรให้การสืบค้นน่าเชื่อถือ',
+          pg: 'ผู้จัดทำหน้าเขียนเพิ่ม (ไม่ได้อยู่ในคู่มือ)',
+          html: `
+<ul><li>เลือกเหตุการณ์ที่บอกได้ว่า "ตัวไหนเปลี่ยน" และ "อัตราเปลี่ยนไปทางใด"</li><li>เขียนเหตุผลโดยใช้คำว่าสารตั้งต้นหรือผลิตภัณฑ์</li><li>จดแหล่งข้อมูล และตรวจว่ามาจากหน่วยงานหรือตำราที่เชื่อถือได้</li></ul>`
+        }
+      ]
+    },
+    '4.4': {
+      lead: 'อ่านเรื่องสารกัมมันตรังสี ครึ่งชีวิต และตัวอย่างประโยชน์กับโทษ แล้วสืบค้นเพิ่มเติม',
+      secs: [
+        {
+          h: 'สารกัมมันตรังสีและปฏิกิริยานิวเคลียร์',
+          pg: 'คู่มือครู หน้า 113–114',
+          html: `
+<p>สารกัมมันตรังสีมีนิวเคลียสไม่เสถียร จึงสลายและแผ่รังสีออกมา ปรากฏการณ์นี้เรียกว่า <b>กัมมันตภาพรังสี</b> (radioactivity) ส่วน &quot;กัมมันตรังสี&quot; (radioactive) เป็นคำขยายนาม เช่น สารกัมมันตรังสี ธาตุกัมมันตรังสี คู่มือเตือนว่าไม่ควรใช้แทนกัน</p>
+<p>ปฏิกิริยานิวเคลียร์เปลี่ยนแปลงที่<b>นิวเคลียส</b> ทำให้ชนิดของธาตุหรือไอโซโทปเปลี่ยน แต่ปฏิกิริยาเคมีเปลี่ยนแปลงที่อิเล็กตรอนโดยนิวเคลียสคงเดิม ธาตุจึงไม่เปลี่ยนชนิด ดังนั้นปฏิกิริยานิวเคลียร์ไม่จัดเป็นปฏิกิริยาเคมี ตัวอย่างในโรงไฟฟ้านิวเคลียร์: ยิงนิวตรอนใส่ U-235 แตกเป็น Kr-90 กับ Ba-144 พร้อมนิวตรอนและพลังงาน (ตรวจเลขมวล 235 + 1 = 90 + 144 + 2 จึงได้นิวตรอน 2 ตัว ผู้จัดทำหน้าคำนวณเอง) ความร้อนใช้ผลิตไอน้ำหมุนกังหันเหมือนโรงไฟฟ้าที่เผาถ่านหิน ต่างที่แหล่งความร้อน</p>`,
+          q: [
+            'การเผาไหม้โพรเพนกับการแตกตัวของ U-235 ต่างกันอย่างไรในแง่ชนิดของธาตุ',
+            'การเผาไหม้ธาตุยังเป็น C, H, O เหมือนเดิม (อะตอมจัดเรียงใหม่) ส่วน U-235 แตกเป็นธาตุอื่น (Kr, Ba) เพราะนิวเคลียสเปลี่ยน'
+          ]
+        },
+        {
+          h: 'ครึ่งชีวิต',
+          pg: 'คู่มือครู หน้า 114, 117',
+          html: `
+<p><b>ครึ่งชีวิต</b>คือเวลาที่สารกัมมันตรังสีสลายจนเหลือครึ่งหนึ่งของปริมาณเดิม สารแต่ละชนิดมีค่าไม่เท่ากัน ตัวอย่างหนังสือเรียน: Mo-99 ครึ่งชีวิต 3 วัน เริ่มต้น 10 g → 5 g (3 วัน) → 2.5 g (6 วัน) ค่าคงเดิมไม่ว่าเริ่มด้วยมวลเท่าใด จึงสลายจาก 100 g เหลือ 50 g ใช้เวลาเท่ากับจาก 2 g เหลือ 1 g</p>
+<p>เหลือ = เริ่มต้น × (½)<sup>จำนวนครึ่งชีวิต</sup> ลองคำนวณในห้องทดลองด้านล่าง</p>`,
+          q: [
+            'สารที่มีครึ่งชีวิต 50 ปี หลังผ่านไป 100 ปีจะหมดไปหรือไม่',
+            'ไม่หมด ผ่านไป 2 ครึ่งชีวิตจึงเหลือ ¼ ของเดิม'
+          ]
+        },
+        {
+          h: 'ประโยชน์ โทษ และการป้องกัน',
+          pg: 'คู่มือครู หน้า 115–117 · หนังสือเรียน ตาราง 4.2',
+          html: `
+<ul><li><b>เกษตร:</b> P-32 ติดตามการเคลื่อนที่ของแร่ธาตุในพืช</li><li><b>ธรณีวิทยา:</b> U-238 กับ Pb-206 หาอายุหิน (Pb-206 มากแสดงว่าเก่ามาก) · C-14 หาอายุซากโบราณ</li><li><b>การแพทย์:</b> C-11, N-13, O-15, F-18 สร้างภาพสมองใน PET scan · Tc-99 สร้างภาพหัวใจ ปอด ตับ กระดูก (เตรียมจาก Mo-99) · หนังสือเรียนเพิ่ม Co-60 รักษามะเร็ง และ I-131 ติดตามต่อมไทรอยด์</li><li><b>อุตสาหกรรม (จากหนังสือเรียน):</b> Na-24 ตรวจรอยรั่วของท่อ · Co-60 ฉายรังสีเปลี่ยนสีอัญมณี</li></ul>
+<p>โทษมักมาจากได้รับรังสีมากเกินไป ผลช่วงต้นขึ้นกับปริมาณ (ดูตารางในห้องทดลอง) ผลระยะยาวเช่น เนื้องอก มะเร็งเม็ดเลือดขาว และความผิดปกติทางพันธุกรรมในบุตร ผู้ทำงานกับรังสีต้องสวมอุปกรณ์ป้องกัน แสดงสัญลักษณ์รังสีชัดเจน และกากกัมมันตรังสีต้องเก็บในภาชนะเหมาะสม ในที่ควบคุมและห่างจากชุมชน</p>`,
+          q: [
+            'รังสีจากสารกัมมันตรังสีที่ใช้ประโยชน์ได้ ยังเป็นอันตรายได้ด้วยหรือไม่',
+            'ได้ ถ้าได้รับพลังงานสูงหรือปริมาณมากเกินไป จึงต้องควบคุมการใช้ ป้องกัน และจัดการกากอย่างเข้มงวด (หนังสือเรียน)'
+          ]
+        }
+      ]
+    }
+  },
+  quiz: {
+    '4.1': {
+      name: '4.1 แบบทดสอบ',
+      items: [
+        {
+          q: 'ในกิจกรรม 4.1 สารละลาย KI อิ่มตัวทำหน้าที่อะไรกับ H₂O₂',
+          o: [
+            'เป็นตัวเร่งปฏิกิริยา ทำให้ H₂O₂ สลายตัวได้เร็วขึ้น',
+            'เป็นสารตั้งต้นที่ทำให้เกิดฟอง',
+            'เป็นผลิตภัณฑ์ของปฏิกิริยา',
+            'ทำให้ H₂O₂ มีสีเข้มขึ้น'
+          ],
+          a: 0,
+          w: 'ผลสรุปของคู่มือครู หน้า 104: KI ช่วยให้ H₂O₂ สลายตัวเร็วขึ้น'
+        },
+        {
+          q: 'ฟองแก๊สที่เห็นในขวดที่เติม KI คือแก๊สชนิดใด',
+          o: ['ออกซิเจน (O₂)', 'ไฮโดรเจน (H₂)', 'คาร์บอนไดออกไซด์ (CO₂)', 'คลอรีน (Cl₂)'],
+          a: 0,
+          w: 'คู่มือ หน้า 104 ระบุว่าแก๊สที่เกิดคือออกซิเจน จากสมการ 2H₂O₂ → 2H₂O + O₂'
+        },
+        {
+          q: 'เมื่อปฏิกิริยาที่มีตัวเร่งสิ้นสุดลง ตัวเร่งปฏิกิริยามีสถานะอย่างไร',
+          o: [
+            'ได้ตัวเร่งกลับคืนมาในปริมาณเท่าเดิม ไม่เป็นส่วนของผลิตภัณฑ์',
+            'ถูกใช้จนหมดไป',
+            'กลายเป็นผลิตภัณฑ์ส่วนหนึ่ง',
+            'เพิ่มปริมาณขึ้นเรื่อย ๆ'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 105 และหนังสือเรียนสรุปตรงกันว่าตัวเร่งไม่เป็นส่วนของผลิตภัณฑ์และได้คืนมาเมื่อปฏิกิริยาสิ้นสุด'
+        },
+        {
+          q: 'เหตุใดจึงเปรียบเทียบอัตราการเกิดปฏิกิริยาจากปริมาณฟองแก๊ส "ในเวลาที่เท่ากัน" (3 นาที)',
+          o: [
+            'เพราะแก๊สคือผลิตภัณฑ์ ถ้าเกิดมากกว่าในเวลาเท่ากันแสดงว่าอัตราสูงกว่า',
+            'เพราะฟองแก๊สคือสารตั้งต้น',
+            'เพราะเวลา 3 นาทีทำให้ปฏิกิริยาหยุดพอดี',
+            'เพราะเปรียบเทียบจากสีของสารละลาย'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 104: เปรียบเทียบอัตราได้จากปริมาณฟองแก๊สที่เกิดในเวลาเท่ากัน'
+        },
+        {
+          q: 'จากสมการ 2H₂O₂ → 2H₂O + O₂ ถ้า H₂O₂ จำนวน 4 โมเลกุลสลายตัวหมด จะได้ O₂ กี่โมเลกุล',
+          o: ['2', '4', '1', '8'],
+          a: 0,
+          w: 'อัตราส่วน H₂O₂ : O₂ = 2 : 1 ดังนั้น 4 โมเลกุลให้ O₂ 2 โมเลกุล (ผู้จัดทำหน้าตั้งโจทย์จากสมการในหนังสือเรียน)'
+        }
+      ]
+    },
+    '4.2': {
+      name: '4.2 แบบทดสอบ',
+      items: [
+        {
+          q: 'จากผลตัวอย่างของคู่มือ บีกเกอร์ใบใดเกิดปฏิกิริยาเสร็จเร็วที่สุด',
+          o: [
+            'ใบที่ 2 (ผง CaCO₃ + HCl 7 %w/v) 15 วินาที',
+            'ใบที่ 1 (ผง CaCO₃ + HCl 1 %w/v) 50 วินาที',
+            'ใบที่ 3 (ผง CaCO₃ + HCl 1 % อุ่น 60 °C) 25 วินาที',
+            'ใบที่ 4 (เม็ด CaCO₃ + HCl 1 %w/v)'
+          ],
+          a: 0,
+          w: 'ตารางผลตัวอย่าง คู่มือครู หน้า 107: 50 · 15 · 25 · > 300 วินาที'
+        },
+        {
+          q: 'เปรียบเทียบบีกเกอร์ใบที่ 1 กับใบที่ 3 ซึ่งต่างกันที่อุณหภูมิของกรด สรุปได้อย่างไร',
+          o: [
+            'อุณหภูมิสูงขึ้นทำให้อัตราการเกิดปฏิกิริยาเพิ่มขึ้น',
+            'อุณหภูมิสูงขึ้นทำให้อัตราการเกิดปฏิกิริยาลดลง',
+            'อุณหภูมิไม่มีผลต่ออัตรา',
+            'อุณหภูมิสูงขึ้นทำให้ได้ผลิตภัณฑ์คนละชนิด'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 108: ใบที่ 3 (≈ 60 °C) เกิดฟองเร็วกว่า จึงสรุปว่าเพิ่มอุณหภูมิแล้วอัตราเพิ่มขึ้น'
+        },
+        {
+          q: 'เหตุใดผง CaCO₃ จึงทำปฏิกิริยากับ HCl ได้เร็วกว่าเม็ด CaCO₃ ที่มวลเท่ากัน',
+          o: ['ผงมีพื้นที่ผิวรวมสัมผัสกรดมากกว่า', 'ผงมีความเข้มข้นมากกว่า', 'ผงมีอุณหภูมิสูงกว่า', 'ผงเป็นตัวเร่งปฏิกิริยา'],
+          a: 0,
+          w: 'คู่มือ หน้า 108: ผงมีพื้นที่ผิวรวมมากกว่า จึงเกิดฟองเร็วกว่าเม็ด'
+        },
+        {
+          q: 'เมื่อเปรียบเทียบใบที่ 1 กับใบที่ 2 เพื่อดูผลของความเข้มข้น ข้อใดต้องควบคุมให้เท่ากัน',
+          o: [
+            'ชนิดและมวลของ CaCO₃ (ผง 0.1 g) ปริมาตรกรด 5 mL และอุณหภูมิ',
+            'ความเข้มข้นของกรด',
+            'เวลาที่จับได้',
+            'จำนวนฟองที่เกิด'
+          ],
+          a: 0,
+          w: 'ผู้จัดทำหน้าเรียบเรียงจากวิธีทำของคู่มือ (ใบที่ 1 และ 2 ใช้ผง 0.1 g และกรด 5 mL) ตัวแปรต้นคือความเข้มข้น ส่วนตัวแปรตามคือเวลา'
+        },
+        {
+          q: 'ปฏิกิริยา CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g) ฟองแก๊สที่เห็นคือแก๊สใด',
+          o: ['คาร์บอนไดออกไซด์ (CO₂)', 'ออกซิเจน (O₂)', 'ไฮโดรเจน (H₂)', 'คลอรีน (Cl₂)'],
+          a: 0,
+          w: 'สมการในหนังสือเรียน (กิจกรรม 4.2) ผลิตภัณฑ์ที่เป็นแก๊สคือ CO₂'
+        }
+      ]
+    },
+    '4.3': {
+      name: '4.3 จัดประเภทปัจจัย',
+      title: 'จัดประเภทตัวอย่างตามปัจจัย (ตัวอย่างจากคู่มือ)',
+      items: [
+        {
+          q: 'ล้างห้องน้ำด้วยน้ำยาที่มีกรดไฮโดรคลอริกเข้มข้นกว่า ขจัดหินปูนได้เร็วกว่า เป็นผลของปัจจัยใด',
+          o: ['ความเข้มข้น', 'อุณหภูมิ', 'พื้นที่ผิวของสาร', 'ตัวเร่งปฏิกิริยา'],
+          a: 0,
+          w: 'ตัวอย่างผลสืบค้นของคู่มือ หน้า 109'
+        },
+        {
+          q: 'การเก็บผลไม้หรืออาหารในตู้เย็นให้อยู่ได้นานขึ้น เป็นผลของปัจจัยใด',
+          o: ['อุณหภูมิ', 'ความเข้มข้น', 'ตัวเร่งปฏิกิริยา', 'พื้นที่ผิวของสาร'],
+          a: 0,
+          w: 'อุณหภูมิต่ำทำให้ปฏิกิริยาที่ทำให้อาหารเสียเกิดช้าลง (คู่มือ หน้า 109)'
+        },
+        {
+          q: 'การเคี้ยวอาหารให้ละเอียดก่อนกลืนทำให้ย่อยง่ายขึ้น เป็นผลของปัจจัยใด',
+          o: ['พื้นที่ผิวของสาร', 'อุณหภูมิ', 'ความเข้มข้น', 'ตัวเร่งปฏิกิริยา'],
+          a: 0,
+          w: 'อาหารชิ้นเล็กมีพื้นที่ผิวรวมมาก กรดและเอนไซม์ในกระเพาะทำปฏิกิริยาได้เร็วขึ้น (คู่มือ หน้า 109)'
+        },
+        {
+          q: 'การหมักเนื้อด้วยยางมะละกอที่มีเอนไซม์ปาเปนทำให้เนื้อนุ่ม เอนไซม์ทำหน้าที่ตามข้อใด',
+          o: ['ตัวเร่งปฏิกิริยา', 'เพิ่มอุณหภูมิ', 'เพิ่มความเข้มข้นของโปรตีน', 'เพิ่มพื้นที่ผิวของเตา'],
+          a: 0,
+          w: 'ปาเปนช่วยย่อยโปรตีนในเนื้อ จัดเป็นตัวเร่งปฏิกิริยา (คู่มือ หน้า 109)'
+        },
+        {
+          q: 'เมื่อร่างกายมีอุณหภูมิสูงขึ้น 1 °C เนื้อเยื่อต้องการออกซิเจนเพิ่มขึ้น ชีพจรและการหายใจเร็วขึ้น ตัวอย่างนี้แสดงผลของปัจจัยใด',
+          o: ['อุณหภูมิ', 'พื้นที่ผิวของสาร', 'ตัวเร่งปฏิกิริยา', 'ความเข้มข้น'],
+          a: 0,
+          w: 'คู่มือ หน้า 109: อุณหภูมิมีผลต่ออัตราการเกิดปฏิกิริยาของสารในร่างกาย'
+        }
+      ]
+    },
+    '4.4': {
+      name: '4.4 แบบทดสอบ',
+      items: [
+        {
+          q: 'U-238 และ Pb-206 ใช้ประโยชน์ด้านใด และหินที่มี Pb-206 มากแสดงว่าอย่างไร',
+          o: [
+            'หาอายุของหิน หินที่มี Pb-206 มากมีอายุมาก เพราะ U-238 สลายไปมากแล้ว',
+            'รักษามะเร็ง หินที่มี Pb-206 มากแสดงว่าปลอดภัย',
+            'ตรวจรอยรั่วของท่อ หินที่มี Pb-206 มากแสดงว่ารั่วมาก',
+            'ถนอมอาหาร หินที่มี Pb-206 มากแสดงว่าสดกว่า'
+          ],
+          a: 0,
+          w: 'ตัวอย่างผลสืบค้นด้านธรณีวิทยา คู่มือครู หน้า 115'
+        },
+        {
+          q: 'ธาตุที่ใช้ใน PET scan (C-11, N-13, O-15, F-18) สลายให้อนุภาคใดที่ไปรวมกับอิเล็กตรอนแล้วได้รังสีแกมมา',
+          o: ['โพซิตรอน', 'นิวตรอน', 'อนุภาคแอลฟา', 'โปรตอน'],
+          a: 0,
+          w: 'คู่มือ หน้า 115: ธาตุเหล่านี้สลายให้โพซิตรอน ซึ่งรวมกับอิเล็กตรอนได้รังสีแกมมาที่ใช้สร้างภาพ'
+        },
+        {
+          q: 'ตามคู่มือ เทคนีเชียม-99 (Tc-99) ซึ่งไม่มีในธรรมชาติ ต้องเตรียมจากสารใดก่อนใช้งาน',
+          o: ['โมลิบดีนัม-99 (Mo-99)', 'คาร์บอน-14 (C-14)', 'ฟอสฟอรัส-32 (P-32)', 'ยูเรเนียม-238 (U-238)'],
+          a: 0,
+          w: 'คู่มือ หน้า 115 (ข้อมูลนอกหนังสือจากผู้จัดทำหน้า: ในทางปฏิบัติใช้ไอโซเมอร์ Tc-99m)'
+        },
+        {
+          q: 'ตามตารางผลต่อสุขภาพช่วงต้นในคู่มือ การได้รับรังสีประมาณ 2 เกรย์ (Gy) ทำให้เกิดอาการใด',
+          o: [
+            'คลื่นไส้อาเจียน',
+            'ระบบประสาทส่วนกลางถูกทำลายและเสียชีวิตใน 2–3 วัน',
+            'เสียชีวิตจากระบบทางเดินอาหารถูกทำลายใน 2–3 สัปดาห์',
+            'ไม่มีผลใด ๆ'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 116: 2 Gy → คลื่นไส้อาเจียน · 8 Gy → อาการหลายอย่าง และเสียชีวิตใน 2–3 สัปดาห์ · > 50 Gy → ระบบประสาทถูกทำลาย เสียชีวิตใน 2–3 วัน'
+        },
+        {
+          q: 'C-14 มีครึ่งชีวิต 5730 ปี ซากพืชโบราณเหลือ C-14 ร้อยละ 25 ซากนี้มีอายุกี่ปี',
+          o: ['11,460 ปี', '5,730 ปี', '22,920 ปี', '2,865 ปี'],
+          a: 0,
+          w: 'ร้อยละ 25 = 1/4 = ผ่านไป 2 ครึ่งชีวิต ดังนั้น 2 × 5730 = 11,460 ปี (ตรวจสอบความเข้าใจ คู่มือ หน้า 117)'
+        }
+      ]
+    },
+    x41: {
+      name: 'ฝ.4.1 สมการเคมี',
+      items: [
+        {
+          n: '1(1)',
+          q: 'CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(g) + 890 kJ/mol (มี Δ บนลูกศร) ข้อมูลอื่นที่เกี่ยวข้องคือข้อใด',
+          o: [
+            'ให้ความร้อนเพื่อเริ่มปฏิกิริยา และคายพลังงาน 890 kJ/mol',
+            'ใช้ตัวเร่งปฏิกิริยา และดูดพลังงาน 890 kJ/mol',
+            'ไม่มีข้อมูลอื่น',
+            'ใช้แสงเริ่มปฏิกิริยา และดูดพลังงาน'
+          ],
+          a: 0,
+          w: 'Δ บนลูกศรแสดงการให้ความร้อน ตัวเลขทางขวาของสมการแสดงพลังงานที่คายออก (คู่มือ หน้า 100)'
+        },
+        {
+          n: '1(2)',
+          q: '2Na(s) + 2H₂O(l) → 2NaOH(aq) + H₂(g) + พลังงาน ข้อมูลอื่นที่เกี่ยวข้องคือข้อใด',
+          o: ['คายพลังงาน', 'ดูดพลังงาน', 'ใช้ตัวเร่งปฏิกิริยา', 'ให้ความร้อนเพื่อเริ่มปฏิกิริยา'],
+          a: 0,
+          w: 'คำว่า "พลังงาน" อยู่ทางขวาของสมการ แปลว่าคายพลังงาน (คู่มือ หน้า 100)'
+        },
+        {
+          n: '1(3)',
+          q: 'Fe₂O₃(s) + 3CO(g) → 2Fe(s) + 3CO₂(g) ข้อมูลอื่นที่เกี่ยวข้องคือข้อใด',
+          o: [
+            'ไม่มีข้อมูลอื่น (ไม่ระบุตัวเร่ง พลังงาน หรือเงื่อนไข)',
+            'ใช้ตัวเร่ง Fe',
+            'คายพลังงาน',
+            'ดูดพลังงาน'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 100 ใส่เครื่องหมาย "-" คือไม่มีข้อมูลอื่น (หน้า 100)'
+        },
+        {
+          n: '1(4)',
+          q: '2H₂O(l) → 2H₂(g) + O₂(g) โดยมี H₂SO₄ เหนือลูกศร ข้อมูลอื่นที่เกี่ยวข้องคือข้อใด',
+          o: ['ใช้ H₂SO₄ เป็นตัวเร่งปฏิกิริยา', 'ใช้ H₂SO₄ เป็นสารตั้งต้น', 'H₂SO₄ เป็นผลิตภัณฑ์', 'คายพลังงานจาก H₂SO₄'],
+          a: 0,
+          w: 'สูตรที่เขียนบนลูกศรคือตัวเร่งปฏิกิริยา (คู่มือ หน้า 100)'
+        },
+        {
+          n: '1(5)',
+          q: 'CH₄(g) + 2H₂O(g) + 165 kJ/mol → 4H₂(g) + CO₂(g) ข้อมูลอื่นที่เกี่ยวข้องคือข้อใด',
+          o: ['ดูดพลังงาน 165 kJ/mol', 'คายพลังงาน 165 kJ/mol', 'ใช้ตัวเร่งปฏิกิริยา', 'ไม่มีข้อมูลอื่น'],
+          a: 0,
+          w: 'ตัวเลขพลังงานอยู่ทางซ้ายของสมการ แปลว่าดูดพลังงาน'
+        },
+        {
+          n: '2.1',
+          q: 'ปฏิกิริยาใดมีสารตั้งต้นและผลิตภัณฑ์ทุกชนิดเป็นแก๊ส (ปฏิกิริยา (1) CO₂ + Ca(OH)₂ → CaCO₃(s) + H₂O(l); (2) 2NO₂(g) + 114.2 kJ/mol → 2NO(g) + O₂(g); (3) 4C₂H₄ → C₈H₁₆(l) ใช้ Pt,Re; (4) 2H₂(g) + O₂(g) → 2H₂O(g) + 483.6 kJ/mol)',
+          o: ['(2) และ (4)', '(1) และ (3)', '(1) เท่านั้น', '(3) และ (4)'],
+          a: 0,
+          w: '(1) มีของแข็งและของเหลว (3) ผลิตภัณฑ์เป็นของเหลว จึงมีเฉพาะ (2) และ (4) (คู่มือ หน้า 101)'
+        },
+        {
+          n: '2.2',
+          q: 'ปฏิกิริยา (1)–(4) ข้างต้น ปฏิกิริยาใดใช้ตัวเร่งปฏิกิริยา',
+          o: ['(3)', '(1)', '(2)', '(4)'],
+          a: 0,
+          w: '(3) มี Pt, Re เหนือลูกศร'
+        },
+        {
+          n: '2.3',
+          q: 'ปฏิกิริยา (1)–(4) ข้างต้น ปฏิกิริยาใดคายพลังงาน',
+          o: ['(4)', '(2)', '(1)', '(3)'],
+          a: 0,
+          w: '(4) มี + 483.6 kJ/mol ทางขวา ส่วน (2) มีพลังงานทางซ้าย คือดูดพลังงาน'
+        },
+        {
+          n: '2.4',
+          q: 'ปฏิกิริยา (1)–(4) ข้างต้น ปฏิกิริยาใดให้ผลิตภัณฑ์เป็นของแข็ง',
+          o: ['(1)', '(3)', '(4)', '(2)'],
+          a: 0,
+          w: '(1) ได้ CaCO₃(s)'
+        }
+      ]
+    },
+    x42: {
+      name: 'ฝ.4.2 ปัจจัยอัตราปฏิกิริยา',
+      items: [
+        {
+          n: '1.1',
+          q: 'การบูดของแกงกะทิที่เก็บในตู้เย็นกับวางไว้บนโต๊ะ สอดคล้องกับปัจจัยใด',
+          o: ['อุณหภูมิ', 'ความเข้มข้น', 'ตัวเร่งปฏิกิริยา', 'พื้นที่ผิว'],
+          a: 0,
+          w: 'คู่มือ หน้า 110: ค (อุณหภูมิ)'
+        },
+        {
+          n: '1.2',
+          q: 'เผากระดาษในบริเวณที่มีแก๊สออกซิเจนมากและน้อย สอดคล้องกับปัจจัยใด',
+          o: ['ความเข้มข้น', 'อุณหภูมิ', 'ตัวเร่งปฏิกิริยา', 'พื้นที่ผิว'],
+          a: 0,
+          w: 'คู่มือ หน้า 110: ก (ความเข้มข้น) ปริมาณ O₂ ต่อปริมาตรต่างกัน'
+        },
+        {
+          n: '1.3',
+          q: 'การเผาน้ำมันในถ้วยกับการเผาละอองน้ำมัน สอดคล้องกับปัจจัยใด',
+          o: ['พื้นที่ผิว', 'ความเข้มข้น', 'อุณหภูมิ', 'ตัวเร่งปฏิกิริยา'],
+          a: 0,
+          w: 'คู่มือ หน้า 110: ง (พื้นที่ผิว)'
+        },
+        {
+          n: '1.4',
+          q: 'หมักเนื้อในซอสที่ผสมและไม่ผสมน้ำสับปะรด สอดคล้องกับปัจจัยใด',
+          o: ['ตัวเร่งปฏิกิริยา', 'พื้นที่ผิว', 'ความเข้มข้น', 'อุณหภูมิ'],
+          a: 0,
+          w: 'คู่มือ หน้า 110: ข (ตัวเร่งปฏิกิริยา)'
+        },
+        {
+          n: '2.1',
+          q: 'เจือจางน้ำยาล้างห้องน้ำก่อนเทลงบนคราบหินปูน ส่งผลต่ออัตราอย่างไร',
+          o: [
+            'มีผล อัตราลดลง เพราะลดความเข้มข้นของสารตั้งต้น',
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มความเข้มข้น',
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มพื้นที่ผิว',
+            'ไม่มีผลต่ออัตรา'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 110'
+        },
+        {
+          n: '2.2',
+          q: 'เคี้ยวอาหารให้ละเอียดมากขึ้นก่อนกลืน ส่งผลต่ออัตราอย่างไร',
+          o: [
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มพื้นที่ผิวของสารตั้งต้น',
+            'มีผล อัตราลดลง เพราะลดพื้นที่ผิว',
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มอุณหภูมิ',
+            'ไม่มีผลต่ออัตรา'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 110'
+        },
+        {
+          n: '2.3',
+          q: 'เก็บผักผลไม้หรืออาหารไว้ในตู้เย็น ส่งผลต่ออัตราอย่างไร',
+          o: [
+            'มีผล อัตราลดลง เพราะลดอุณหภูมิของปฏิกิริยา',
+            'มีผล อัตราเพิ่มขึ้น เพราะลดอุณหภูมิ',
+            'มีผล อัตราลดลง เพราะเพิ่มความเข้มข้น',
+            'ไม่มีผลต่ออัตรา'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 111'
+        },
+        {
+          n: '2.4',
+          q: 'เติมยีสต์ลงไปในการทำขนมปัง ส่งผลต่ออัตราอย่างไร',
+          o: [
+            'มีผล อัตราเพิ่มขึ้น เพราะเป็นการเติมตัวเร่งปฏิกิริยา',
+            'มีผล อัตราลดลง เพราะเติมตัวเร่ง',
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มพื้นที่ผิว',
+            'ไม่มีผลต่ออัตรา'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 111'
+        },
+        {
+          n: '2.5',
+          q: 'ทำให้น้ำมันเป็นละอองด้วยหัวฉีดในกระบอกสูบเครื่องยนต์ ส่งผลต่ออัตราอย่างไร',
+          o: [
+            'มีผล อัตราเพิ่มขึ้น เพราะเพิ่มพื้นที่ผิวของสารตั้งต้น',
+            'มีผล อัตราลดลง เพราะลดความเข้มข้น',
+            'มีผล อัตราเพิ่มขึ้น เพราะเติมตัวเร่ง',
+            'ไม่มีผลต่ออัตรา'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 111'
+        }
+      ]
+    },
+    x43: {
+      name: 'ฝ.4.3 รีดอกซ์',
+      perm: [1, 0, 0, 1, 0],
+      items: [
+        {
+          n: '1.',
+          q: 'ปฏิกิริยารีดอกซ์มีการถ่ายโอนอิเล็กตรอนระหว่างสารเคมีเสมอ',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 0,
+          w: 'นิยามของปฏิกิริยารีดอกซ์ (คู่มือ หน้า 111 และ 112) หมายเหตุ: เครื่องหมายถูก/ผิดในไฟล์ข้อความของคู่มือหายไป แต่ตรวจกับภาพหน้า PDF ของคู่มือ (หน้า 112) แล้วตรงกับเฉลยนี้'
+        },
+        {
+          n: '2.',
+          q: 'ปฏิกิริยารีดอกซ์ให้กระแสไฟฟ้าเสมอ',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 1,
+          w: 'ไม่ถูกต้อง หนังสือเรียนระบุว่ารีดอกซ์มีทั้งที่ให้กระแสไฟฟ้า (เซลล์เคมีไฟฟ้า) และไม่ให้ เช่น การเกิดสนิม การเผาไหม้'
+        },
+        {
+          n: '3.',
+          q: 'ปฏิกิริยารีดอกซ์ในเซลล์เคมีไฟฟ้าเกี่ยวข้องกับกระแสไฟฟ้าเสมอ',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 0,
+          w: 'เซลล์เคมีไฟฟ้าคืออุปกรณ์ที่ผลิตกระแสไฟฟ้าจากปฏิกิริยารีดอกซ์ (คู่มือ หน้า 111)'
+        },
+        {
+          n: '4.',
+          q: 'ปฏิกิริยารีดอกซ์ให้ความร้อนและแสงสว่างเสมอ',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 1,
+          w: 'ไม่ถูกต้อง เช่น เซลล์ไฟฟ้าให้พลังงานไฟฟ้า ไม่ได้ให้ความร้อนและแสงเสมอไป'
+        },
+        {
+          n: '5.',
+          q: 'ปฏิกิริยาเคมีในกระบวนการหายใจเป็นปฏิกิริยารีดอกซ์',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 0,
+          w: 'หนังสือเรียนยกกระบวนการหายใจเป็นตัวอย่างปฏิกิริยารีดอกซ์ในชีวิตประจำวัน'
+        }
+      ]
+    },
+    x44: {
+      name: 'ฝ.4.4 ถูก/ผิด',
+      perm: [0, 1, 1, 0],
+      items: [
+        {
+          n: '1.1',
+          q: 'สารกัมมันตรังสีเป็นสารที่มีนิวเคลียสไม่เสถียร สามารถแผ่รังสีได้',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 0,
+          w: 'คู่มือ หน้า 114 และ 118 (เครื่องหมายถูก/ผิดในไฟล์ข้อความหายไป แต่ตรวจกับภาพหน้า PDF คู่มือแล้วตรงกับเฉลย)'
+        },
+        {
+          n: '1.2',
+          q: 'การสลายของสารกัมมันตรังสีจัดเป็นปฏิกิริยาเคมี',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 1,
+          w: 'ไม่ถูกต้อง เป็นปฏิกิริยานิวเคลียร์ (เปลี่ยนแปลงที่นิวเคลียส เปลี่ยนชนิดธาตุหรือไอโซโทป) ไม่ใช่ปฏิกิริยาเคมี'
+        },
+        {
+          n: '1.3',
+          q: 'สารกัมมันตรังสีที่มีครึ่งชีวิต 50 ปี จะมีระยะเวลาที่คงอยู่ทั้งหมด 100 ปี',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 1,
+          w: 'ไม่ถูกต้อง ครึ่งชีวิตคือเวลาที่เหลือครึ่งหนึ่ง ผ่าน 100 ปีจะเหลือ 1/4 ไม่ใช่หมด'
+        },
+        {
+          n: '1.4',
+          q: 'สารกัมมันตรังสีชนิดหนึ่งใช้เวลาสลายจาก 100 กรัมเหลือ 50 กรัม มากกว่าการสลายจาก 2 กรัมเหลือ 1 กรัม',
+          o: ['ถูกต้อง', 'ไม่ถูกต้อง'],
+          a: 1,
+          w: 'ไม่ถูกต้อง ทั้งสองกรณีลดลงครึ่งหนึ่ง ใช้เวลาเท่ากับ 1 ครึ่งชีวิต'
+        }
+      ]
+    },
+    xe: {
+      name: 'ฝ.ท้ายบท ปรนัย',
+      items: [
+        {
+          n: '1',
+          q: 'สมการใดมีจำนวนอะตอมของแต่ละธาตุทางซ้ายและขวาเท่ากัน (1.1 H₂ + O₂ → H₂O · 1.2 CuCl₂ → Cu + Cl₂ · 1.3 CaCO₃(s) → CaO(s) + CO₂(g) · 1.4 N₂O₅(g) → NO₂(g) + O₂(g))',
+          o: ['1.2 และ 1.3', '1.1 และ 1.4', '1.1 และ 1.2', '1.3 และ 1.4'],
+          a: 0,
+          w: 'นับอะตอม: 1.2 Cu 1 Cl 2 และ 1.3 Ca 1 C 1 O 3 สมดุลทั้งคู่ ส่วน 1.1 (O ซ้าย 2 ขวา 1) และ 1.4 (N ซ้าย 2 ขวา 1) ไม่สมดุล (คู่มือ หน้า 119)'
+        },
+        {
+          n: '2.1',
+          q: 'C₆H₁₂O₆(aq) → 2CH₃CH₂OH(aq) + 2CO₂(g) มียีสต์เหนือลูกศร ข้อมูลอื่นคือข้อใด',
+          o: ['ใช้ยีสต์เป็นตัวเร่งปฏิกิริยา', 'ยีสต์เป็นสารตั้งต้น', 'ยีสต์เป็นผลิตภัณฑ์', 'คายพลังงาน'],
+          a: 0,
+          w: 'คู่มือ หน้า 119'
+        },
+        {
+          n: '2.2',
+          q: 'CH₃CH₂OH(l) + 3O₂(g) → 2CO₂(g) + 3H₂O(g) มี Δ เหนือลูกศร ข้อมูลอื่นคือข้อใด',
+          o: ['มีการให้ความร้อน', 'ใช้ตัวเร่งปฏิกิริยา', 'ดูดพลังงาน', 'คายพลังงาน'],
+          a: 0,
+          w: 'คู่มือ หน้า 119'
+        },
+        {
+          n: '2.3',
+          q: 'N₂(g) + O₂(g) + 180.5 kJ/mol → 2NO(g) ข้อมูลอื่นคือข้อใด',
+          o: ['ดูดพลังงาน 180.5 kJ/mol', 'คายพลังงาน 180.5 kJ/mol', 'ใช้ตัวเร่งปฏิกิริยา', 'ไม่มีข้อมูลอื่น'],
+          a: 0,
+          w: 'คู่มือ หน้า 119: พลังงานอยู่ทางซ้าย คือดูดพลังงาน'
+        },
+        {
+          n: '2.4',
+          q: 'C₂H₄(g) + H₂(g) → C₂H₆(g) + 137 kJ/mol มี Ni เหนือลูกศร ข้อมูลอื่นคือข้อใด',
+          o: [
+            'ใช้ Ni เป็นตัวเร่งปฏิกิริยา และคายพลังงาน 137 kJ/mol',
+            'ใช้ Ni เป็นตัวเร่ง และดูดพลังงาน 137 kJ/mol',
+            'Ni เป็นสารตั้งต้น',
+            'ไม่มีข้อมูลอื่น'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 119'
+        },
+        {
+          n: '2.5',
+          q: '2H₂O₂(aq) → O₂(g) + 2H₂O(l) มีเอนไซม์เหนือลูกศร ข้อมูลอื่นคือข้อใด',
+          o: ['ใช้เอนไซม์เป็นตัวเร่งปฏิกิริยา', 'เอนไซม์เป็นผลิตภัณฑ์', 'ดูดพลังงาน', 'มีการให้ความร้อน'],
+          a: 0,
+          w: 'คู่มือ หน้า 120'
+        },
+        {
+          n: '4',
+          q: 'ฉลากน้ำยาล้างห้องน้ำ ขวดที่ 1 มี HCl 20.00 %w/w ขวดที่ 2 มี HCl 9.50 %w/w ขวดใดขจัดคราบหินปูนได้เร็วกว่า และใช้อย่างไรให้ปลอดภัย',
+          o: [
+            'ขวดที่ 1 เพราะ HCl เข้มข้นกว่า ควรหลีกเลี่ยงการสัมผัสและสูดไอ สวมถุงมือและหน้ากาก',
+            'ขวดที่ 2 เพราะ HCl เจือจางกว่า ไม่ต้องป้องกัน',
+            'ขวดที่ 1 เพราะมีกรดแลกติก ไม่ต้องป้องกัน',
+            'เร็วเท่ากัน เพราะเป็นกรดชนิดเดียวกัน'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 120 (ผู้จัดทำหน้าอ่านตัวเลขจากฉลากตัวอย่างในคู่มือ)'
+        },
+        {
+          n: '5',
+          q: 'ในหน้าหนาวการหมักแป้งขนมปังใช้เวลานานกว่าหน้าร้อน เพราะเหตุใด',
+          o: ['อุณหภูมิต่ำกว่า ปฏิกิริยาเกิดช้ากว่า', 'ความเข้มข้นของแป้งสูงกว่า', 'พื้นที่ผิวของแป้งมากกว่า', 'ตัวเร่งปฏิกิริยามากกว่า'],
+          a: 0,
+          w: 'คู่มือ หน้า 121'
+        },
+        {
+          n: '6',
+          q: 'ไส้เทียนช่วยให้เนื้อเทียนเผาไหม้ได้อย่างไร',
+          o: [
+            'เพิ่มพื้นที่ผิวของเนื้อเทียน โดยดูดเนื้อเทียนที่หลอมเป็นสายเล็ก ๆ ไว้ในไส้',
+            'เป็นตัวเร่งปฏิกิริยา',
+            'เพิ่มความเข้มข้นของออกซิเจน',
+            'ลดอุณหภูมิของเทียน'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 121'
+        },
+        {
+          n: '7',
+          q: 'นิกเกิลในกระบวนการทำมาการีนเปลี่ยนไขมันไม่อิ่มตัวเป็นไขมันอิ่มตัว นิกเกิลทำหน้าที่ใด',
+          o: [
+            'ตัวเร่งปฏิกิริยา เพราะไม่เป็นองค์ประกอบของผลิตภัณฑ์',
+            'สารตั้งต้น',
+            'ผลิตภัณฑ์',
+            'ตัวทำให้อุณหภูมิลดลง'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 121'
+        },
+        {
+          n: '8',
+          q: 'สาร A ให้อิเล็กตรอนกับสาร B แล้วเกิดสาร C และ D ปฏิกิริยานี้เป็นรีดอกซ์หรือไม่',
+          o: [
+            'เป็นรีดอกซ์ เพราะมีการถ่ายโอนอิเล็กตรอนระหว่างสาร',
+            'ไม่เป็นรีดอกซ์ เพราะไม่มีกระแสไฟฟ้า',
+            'ไม่เป็นรีดอกซ์ เพราะไม่มีความร้อน',
+            'เป็นปฏิกิริยานิวเคลียร์'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 121'
+        },
+        {
+          n: '9',
+          q: 'สารกัมมันตรังสีแผ่รังสีได้เพราะเหตุใด',
+          o: [
+            'นิวเคลียสไม่เสถียร (รังสีที่แผ่ เช่น แอลฟา บีตา แกมมา)',
+            'มีอิเล็กตรอนมากเกินไป',
+            'อยู่ในสถานะแก๊ส',
+            'ทำปฏิกิริยากับออกซิเจน'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 121'
+        },
+        {
+          n: '13',
+          q: 'พบกองขยะที่มีอุปกรณ์ติดสัญลักษณ์รังสี ควรทำอย่างไร',
+          o: [
+            'หลีกเลี่ยงบริเวณนั้น และแจ้งหน่วยงานที่เกี่ยวข้องมาจัดการ',
+            'เก็บกลับไปศึกษาที่บ้าน',
+            'เปิดอุปกรณ์ดูข้างใน',
+            'ทิ้งรวมกับขยะทั่วไป'
+          ],
+          a: 0,
+          w: 'คู่มือ หน้า 122'
+        }
+      ]
+    }
+  },
+  num: {
+    x44n: {
+      name: 'ฝ.4.4 ตาราง Na-24',
+      title: 'แบบฝึกหัด 4.4 ข้อ 2 ตาราง Na-24 (เริ่มต้น 100 g ครึ่งชีวิต 15 ชั่วโมง)',
+      items: [
+        {
+          q: 'Na-24 มวลเริ่มต้น 100 g ครึ่งชีวิต 15 ชั่วโมง เมื่อเวลาผ่านไป 15 ชั่วโมง เหลือกี่กรัม',
+          u: 'g',
+          a: 50,
+          w: '1 ครึ่งชีวิต เหลือครึ่งหนึ่ง (คู่มือ หน้า 118)'
+        },
+        {
+          q: 'เมื่อเวลาผ่านไป 30 ชั่วโมง เหลือกี่กรัม',
+          u: 'g',
+          a: 25,
+          w: '2 ครึ่งชีวิต'
+        },
+        {
+          q: 'เมื่อเวลาผ่านไป 45 ชั่วโมง เหลือกี่กรัม',
+          u: 'g',
+          a: 12.5,
+          w: '3 ครึ่งชีวิต'
+        },
+        {
+          q: 'เมื่อเวลาผ่านไป 60 ชั่วโมง เหลือกี่กรัม',
+          u: 'g',
+          a: 6.25,
+          w: '4 ครึ่งชีวิต'
+        }
+      ]
+    },
+    xen: {
+      name: 'ฝ.ท้ายบท คำนวณ',
+      title: 'แบบฝึกหัดท้ายบท ข้อคำนวณ (ข้อ 3, 10, 11)',
+      items: [
+        {
+          q: 'ข้อ 3: 2C₈H₁₈(l) + 25O₂(g) → 16CO₂ + 18H₂O เผาออกเทน 2 โมเลกุล ใช้ O₂ กี่โมเลกุล',
+          u: 'โมเลกุล',
+          a: 25,
+          w: 'ตามสัมประสิทธิ์ในสมการ (คู่มือ หน้า 120) หมายเหตุ: คู่มือเขียน CO₂(l) ซึ่งน่าจะพิมพ์ผิด ควรเป็น CO₂(g)'
+        },
+        {
+          q: 'ข้อ 3: จากสมการเดียวกัน ได้ CO₂ กี่โมเลกุล',
+          u: 'โมเลกุล',
+          a: 16,
+          w: 'สัมประสิทธิ์ของ CO₂ คือ 16'
+        },
+        {
+          q: 'ข้อ 10: Os-182 ครึ่งชีวิต 21.5 ชั่วโมง เริ่มต้น 8.0 g ผ่านไป 64.5 ชั่วโมง เหลือกี่กรัม',
+          u: 'g',
+          a: 1,
+          w: '64.5 ÷ 21.5 = 3 ครึ่งชีวิต 8 → 4 → 2 → 1 g (คู่มือ หน้า 121)'
+        },
+        {
+          q: 'ข้อ 11: สารเริ่มต้น 32 g เมื่อ 1 วัน เหลือ 2 g ครึ่งชีวิตกี่ชั่วโมง',
+          u: 'ชั่วโมง',
+          a: 6,
+          w: '32 → 2 คือ 4 ครึ่งชีวิต ใช้เวลา 24 ชั่วโมง ดังนั้นครึ่งชีวิต 6 ชั่วโมง (คู่มือ หน้า 122)'
+        }
+      ]
+    }
+  },
+  forms: {
+    '4.1': {
+      id: 'q',
+      title: 'คำถามท้ายการทดลอง (หนังสือเรียน หน้า 107–108)',
+      fields: [
+        [
+          'q1',
+          '1. นักเรียนทราบได้อย่างไรว่ามีปฏิกิริยาเคมีเกิดขึ้น'
+        ],
+        ['q2', '2. น้ำยาล้างจานทำหน้าที่อะไร'],
+        [
+          'q3',
+          '3. ปริมาณฟองแก๊สที่เกิดเมื่อเติมและไม่เติม KI แตกต่างกันหรือไม่ อย่างไร'
+        ],
+        [
+          'q4',
+          '4. อัตราการเกิดปฏิกิริยาการสลายตัวของ H₂O₂ ที่เติมและไม่เติม KI แตกต่างกันอย่างไร เพราะเหตุใด'
+        ]
+      ],
+      reveal: [
+        [
+          'ดูแนวคำตอบ (เปิดหลังเขียนเองแล้ว)',
+          '1. สังเกตได้จากฟองแก๊สที่เกิดขึ้น (แก๊สคือสารใหม่ O₂) · 2. จับแก๊สที่เกิดไว้เป็นฟอง ทำให้เห็นและเปรียบเทียบปริมาณแก๊สได้ (คำอธิบายของผู้จัดทำหน้า) · 3. ต่างกัน ขวดที่เติม KI มีฟองจำนวนมาก ขวดที่ไม่เติมมีเล็กน้อยหรือไม่มี (คู่มือ หน้า 104) · 4. ขวดที่เติม KI มีอัตราสูงกว่า เพราะ KI เป็นตัวเร่งปฏิกิริยา ทำให้ได้แก๊สมากกว่าในเวลาเท่ากัน (คู่มือ หน้า 104)'
+        ]
+      ],
+      exportName: 'activity-4-1.txt',
+      exportHead: 'คำตอบกิจกรรม 4.1'
+    },
+    '4.2': {
+      id: 'q',
+      title: 'คำถามท้ายการทดลอง (หนังสือเรียน หน้า 110)',
+      fields: [
+        [
+          'q1',
+          '1. นักเรียนทราบได้อย่างไรว่ามีปฏิกิริยาเคมีเกิดขึ้น'
+        ],
+        [
+          'q2',
+          '2. อัตราการเกิดฟองแก๊สในแต่ละบีกเกอร์แตกต่างกันหรือไม่ อย่างไร'
+        ],
+        [
+          'q3',
+          '3. ปัจจัยใดบ้างมีผลต่ออัตราการเกิดฟองแก๊ส'
+        ]
+      ],
+      reveal: [
+        [
+          'ดูแนวคำตอบ (เปิดหลังเขียนเองแล้ว)',
+          '1. เห็นฟองแก๊ส (CO₂) เกิดขึ้น · 2. ต่างกัน ใบที่ 2 (กรดเข้มข้นกว่า) เร็วกว่าใบที่ 1 · ใบที่ 3 (อุ่น) เร็วกว่าใบที่ 1 · ใบที่ 4 (เม็ด) ช้ากว่าใบที่ 1 (ผลตัวอย่าง 50 · 15 · 25 · > 300 วินาที) · 3. ความเข้มข้นของกรด อุณหภูมิ และพื้นที่ผิวของ CaCO₃ (คู่มือ หน้า 108)'
+        ]
+      ],
+      after: '<div class="tip"><b>สรุปของคู่มือ (หน้า 108):</b> การเพิ่มความเข้มข้นของ HCl การเพิ่มอุณหภูมิ และการเพิ่มพื้นที่ผิวของ CaCO<sub>3</sub> ทำให้อัตราการเกิดปฏิกิริยาเพิ่มขึ้น เมื่อรวมกับกิจกรรม 4.1 ได้ปัจจัยสี่อย่าง คือ ความเข้มข้น อุณหภูมิ พื้นที่ผิว และตัวเร่งปฏิกิริยา</div>',
+      exportName: 'activity-4-2.txt',
+      exportHead: 'คำตอบกิจกรรม 4.2'
+    },
+    '4.3': {
+      id: 'q',
+      title: 'แบบบันทึกผลสืบค้น (ปัจจัยละ 1 ตัวอย่าง)',
+      need: 2,
+      minChars: 5,
+      unit: 'ปัจจัย',
+      groups: [
+        {
+          title: 'ปัจจัย: ความเข้มข้น',
+          fields: [
+            ['conc_e', 'เหตุการณ์หรือปรากฏการณ์ที่พบ'],
+            [
+              'conc_x',
+              'ปัจจัยนี้ทำให้อัตราเปลี่ยนไปทางใด และเพราะอะไร'
+            ],
+            {
+              id: 'conc_s',
+              label: 'แหล่งข้อมูล',
+              opt: true
+            }
+          ]
+        },
+        {
+          title: 'ปัจจัย: อุณหภูมิ',
+          fields: [
+            ['temp_e', 'เหตุการณ์หรือปรากฏการณ์ที่พบ'],
+            [
+              'temp_x',
+              'ปัจจัยนี้ทำให้อัตราเปลี่ยนไปทางใด และเพราะอะไร'
+            ],
+            {
+              id: 'temp_s',
+              label: 'แหล่งข้อมูล',
+              opt: true
+            }
+          ]
+        },
+        {
+          title: 'ปัจจัย: พื้นที่ผิวของสาร',
+          fields: [
+            ['area_e', 'เหตุการณ์หรือปรากฏการณ์ที่พบ'],
+            [
+              'area_x',
+              'ปัจจัยนี้ทำให้อัตราเปลี่ยนไปทางใด และเพราะอะไร'
+            ],
+            {
+              id: 'area_s',
+              label: 'แหล่งข้อมูล',
+              opt: true
+            }
+          ]
+        },
+        {
+          title: 'ปัจจัย: ตัวเร่งปฏิกิริยา',
+          fields: [
+            ['cat_e', 'เหตุการณ์หรือปรากฏการณ์ที่พบ'],
+            [
+              'cat_x',
+              'ปัจจัยนี้ทำให้อัตราเปลี่ยนไปทางใด และเพราะอะไร'
+            ],
+            {
+              id: 'cat_s',
+              label: 'แหล่งข้อมูล',
+              opt: true
+            }
+          ]
+        }
+      ],
+      reveal: [
+        [
+          'ดูตัวอย่างผลสืบค้นของคู่มือ (เปิดหลังเขียนของตัวเองแล้ว) หน้า 109',
+          `
+  <p><b>ความเข้มข้น:</b> น้ำยาล้างห้องน้ำที่มี HCl เข้มข้นกว่าทำปฏิกิริยากับหินปูนได้เร็วกว่า</p><p><b>อุณหภูมิ:</b> เก็บผลไม้อาหารในตู้เย็นให้สดนาน · ร่างกายอุณหภูมิสูงขึ้น 1 °C ทำให้ต้องการออกซิเจนเพิ่ม ชีพจรและการหายใจเร็วขึ้น</p><p><b>พื้นที่ผิว:</b> เคี้ยวอาหารละเอียดทำให้กรดและเอนไซม์ย่อยได้เร็วขึ้น</p><p><b>ตัวเร่งปฏิกิริยา:</b> หมักเนื้อด้วยยางมะละกอที่มีเอนไซม์ปาเปนย่อยโปรตีน ทำให้เนื้อนุ่ม</p>`
+        ]
+      ],
+      exportName: 'activity-4-3.txt',
+      exportHead: 'ผลสืบค้นกิจกรรม 4.3',
+      statusText: s => s.ok ? 'กรอกครบ ' + s.n + ' / 4 ปัจจัย ✓ (ครบเกณฑ์อย่างน้อย 2)' : 'กรอกครบแล้ว ' + s.n + ' / 4 ปัจจัย (ต้องมีเหตุการณ์และคำอธิบายอย่างน้อยหัวข้อละ 5 ตัวอักษร)'
+    },
+    '4.4': {
+      id: 'q',
+      title: 'แบบบันทึกผลสืบค้น',
+      need: 2,
+      minChars: 3,
+      unit: 'ด้าน',
+      groups: [
+        {
+          title: 'ประโยชน์ ด้านการเกษตร',
+          fields: [
+            ['ag_n', 'ด้านการเกษตร: สารกัมมันตรังสีที่ใช้'],
+            ['ag_u', 'ใช้ทำอะไร'],
+            [
+              'ag_w',
+              'ทำไมรังสีหรือครึ่งชีวิตของสารนี้จึงเหมาะกับงานนั้น'
+            ]
+          ]
+        },
+        {
+          title: 'ประโยชน์ ด้านธรณีวิทยา',
+          fields: [
+            ['geo_n', 'ด้านธรณีวิทยา: สารกัมมันตรังสีที่ใช้'],
+            ['geo_u', 'ใช้ทำอะไร'],
+            [
+              'geo_w',
+              'ทำไมรังสีหรือครึ่งชีวิตของสารนี้จึงเหมาะกับงานนั้น'
+            ]
+          ]
+        },
+        {
+          title: 'ประโยชน์ ด้านการแพทย์',
+          fields: [
+            ['med_n', 'ด้านการแพทย์: สารกัมมันตรังสีที่ใช้'],
+            ['med_u', 'ใช้ทำอะไร'],
+            [
+              'med_w',
+              'ทำไมรังสีหรือครึ่งชีวิตของสารนี้จึงเหมาะกับงานนั้น'
+            ]
+          ]
+        },
+        {
+          title: 'ประโยชน์ ด้านอุตสาหกรรม',
+          fields: [
+            ['ind_n', 'ด้านอุตสาหกรรม: สารกัมมันตรังสีที่ใช้'],
+            ['ind_u', 'ใช้ทำอะไร'],
+            [
+              'ind_w',
+              'ทำไมรังสีหรือครึ่งชีวิตของสารนี้จึงเหมาะกับงานนั้น'
+            ]
+          ]
+        },
+        {
+          title: 'โทษและการป้องกัน',
+          role: 'must',
+          min: 5,
+          fields: [
+            ['r1', 'ผลต่อสุขภาพที่พบ (ช่วงต้นและระยะยาว)'],
+            {
+              id: 'r2',
+              label: 'วิธีป้องกันและจัดการกากกัมมันตรังสี',
+              opt: true
+            },
+            {
+              id: 'r3',
+              label: 'แหล่งข้อมูลที่ใช้',
+              opt: true
+            }
+          ]
+        }
+      ],
+      exportName: 'activity-4-4.txt',
+      exportHead: 'ผลสืบค้นกิจกรรม 4.4',
+      statusText: s => s.ok ? 'ประโยชน์ครบ ' + s.n + ' / 4 ด้าน และมีข้อมูลด้านโทษ ✓' : 'ประโยชน์ครบ ' + s.n + ' / 4 ด้าน (ต้องการอย่างน้อย 2) · ข้อมูลด้านโทษ: ' + (s.mustOk ? 'มีแล้ว' : 'ยังไม่มี')
+    }
+  },
+  ex: {
+    title: 'แบบฝึกหัดตามคู่มือครู',
+    sub: 'คู่มือครู หน้า 100–122 · ข้อที่มีเฉลยตรวจอัตโนมัติและส่งคะแนน ข้อเขียนเปิดไม่มีคะแนน',
+    note: 'หมายเหตุ: ในไฟล์ข้อความของคู่มือ เครื่องหมายถูก/ผิดของแบบฝึกหัด 4.3 และ 4.4 ข้อ 1 หายไป แต่ตรวจกับภาพหน้า PDF ของคู่มือ (หน้า 112 และ 118) แล้วตรงกับเฉลยของหน้านี้ ข้อ 1 ของแบบฝึกหัด 4.1 และข้อ 2 ของแบบฝึกหัดท้ายบทเป็นตารางเติมคำ ผู้จัดทำหน้าแปลงเป็นข้อเลือกตอบ ส่วน &quot;ตรวจสอบความรู้ก่อนเรียน&quot; ของคู่มือ (หน้า 98) ไม่ได้นำมาทำเป็นแบบทดสอบ',
+    progress: true,
+    export: {
+      file: 'exercise-4.txt',
+      head: 'สรุปการเรียนบทที่ 4 พลังงาน'
+    },
+    blocks: [
+      {
+        type: 'quiz',
+        set: 'x41',
+        h: 'แบบฝึกหัด 4.1 สมการเคมี',
+        title: 'แบบฝึกหัด 4.1 ข้อ 1–2'
+      },
+      {
+        type: 'fields',
+        h: 'แบบฝึกหัด 4.1 ข้อ 3 เขียนสมการเคมี (ข้อเขียน)',
+        fields: [
+          [
+            'e3a',
+            'แบบฝึกหัด 4.1 ข้อ 3.1 เขียนสมการเคมีของการสังเคราะห์แอมโมเนีย (N₂ 1 โมเลกุล + H₂ 3 โมเลกุล → NH₃ 2 โมเลกุล ใช้เหล็กเป็นตัวเร่ง)'
+          ],
+          [
+            'e3b',
+            'แบบฝึกหัด 4.1 ข้อ 3.2 เขียนสมการเคมีของการเผาน้ำตาลทราย C₁₂H₂₂O₁₁ ในอากาศ (ใช้ O₂ 12 โมเลกุล ได้ CO₂ 12 และไอน้ำ 11 โมเลกุล และมีพลังงานออกมา)'
+          ]
+        ],
+        reveal: [
+          [
+            'ดูแนวคำตอบ (เปิดหลังเขียนเองแล้ว) หน้า 101',
+            '3.1: N₂(g) + 3H₂(g) → 2NH₃(g) โดยมี Fe เหนือลูกศร · 3.2: C₁₂H₂₂O₁₁(s) + 12O₂(g) → 12CO₂(g) + 11H₂O(g) + พลังงาน โดยมี Δ เหนือลูกศร (ใช้ตัวตรวจอะตอมในแท็บสรุปตรวจดุลได้)'
+          ]
+        ]
+      },
+      {
+        type: 'quiz',
+        set: 'x42',
+        h: 'แบบฝึกหัด 4.2 ปัจจัยที่มีผลต่ออัตรา',
+        title: 'แบบฝึกหัด 4.2 ข้อ 1–2'
+      },
+      {
+        type: 'quiz',
+        set: 'x43',
+        h: 'แบบฝึกหัด 4.3 ปฏิกิริยารีดอกซ์',
+        title: 'แบบฝึกหัด 4.3 (ถูกหรือผิด)'
+      },
+      {
+        type: 'quiz',
+        set: 'x44',
+        h: 'แบบฝึกหัด 4.4 สารกัมมันตรังสี',
+        title: 'แบบฝึกหัด 4.4 ข้อ 1 (ถูกหรือผิด)'
+      },
+      {
+        type: 'num',
+        set: 'x44n',
+        title: 'แบบฝึกหัด 4.4 ข้อ 2 ตาราง Na-24 (เริ่มต้น 100 g ครึ่งชีวิต 15 ชั่วโมง)'
+      },
+      {
+        type: 'quiz',
+        set: 'xe',
+        h: 'แบบฝึกหัดท้ายบทที่ 4',
+        title: 'แบบฝึกหัดท้ายบท (ข้อที่เลือกตอบได้)'
+      },
+      {
+        type: 'num',
+        set: 'xen',
+        title: 'แบบฝึกหัดท้ายบท ข้อคำนวณ (ข้อ 3, 10, 11)'
+      },
+      {
+        type: 'fields',
+        h: 'แบบฝึกหัดท้ายบท ข้อเขียน (ข้อ 4 และข้อ 12)',
+        fields: [
+          [
+            'e4p',
+            'แบบฝึกหัดท้ายบท ข้อ 4 ข้อควรระวังในการใช้น้ำยาล้างห้องน้ำที่มี HCl เข้มข้น'
+          ],
+          [
+            'e12',
+            'แบบฝึกหัดท้ายบท ข้อ 12 ยกตัวอย่างการใช้ประโยชน์จากสารกัมมันตรังสี'
+          ]
+        ],
+        reveal: [
+          [
+            'ดูแนวคำตอบ (เปิดหลังเขียนเองแล้ว)',
+            'ข้อ 4: หลีกเลี่ยงการสัมผัสและสูดไอระเหย สวมถุงมือและหน้ากากอนามัย (หน้า 120) · ข้อ 12: ผลิตไฟฟ้าในโรงไฟฟ้านิวเคลียร์ รักษามะเร็ง ปรับปรุงพันธุ์พืช ถนอมอาหาร ตรวจรอยตำหนิหรือรอยรั่วของท่อ หาอายุซากดึกดำบรรพ์ (หน้า 122)'
+          ]
+        ]
+      }
+    ]
+  }
+};
+
+;return PAGE;})();
+</script>
+<script>
+/* labs.js */
+(function(){'use strict';const {$,$$,esc,fmt,REDUCE,reduced,dget,dset,ls,qid,state,clean,lab,run,anim,svg,fitSvg,wireDraft,wireRadio,radioGroup,fieldsHTML,textOf,revealHTML,expHTML,wireExp,quizHTML,wireQuiz,numHTML,wireNum,markDone,setLabel,select}=K;
+/* ห้องทดลองและเครื่องมือเฉพาะของบทที่ 4 (ย้ายมาจากหน้าเดิม) ฟังก์ชันตรวจ/แบบทดสอบ/ฟอร์ม/ส่งออก ใช้ของ kit แล้ว ลบออกจากไฟล์นี้ */
+/* ---- ฟังก์ชันคำนวณ (ฟังก์ชันบริสุทธิ์) ---- */
+/* ครึ่งชีวิต: เหลือ = m0 × (1/2)^(t/ครึ่งชีวิต) (คู่มือครู หน้า 114, 118–122: ข้อสอบ Na-24, Os-182, C-14) */
+function remaining(m0,t,half){if(!(half>0)||!(t>=0)||!(m0>=0))throw new Error('bad input');return m0*Math.pow(0.5,t/half);}
+function ageFromPercent(pct,half){if(!(pct>0&&pct<=100)||!(half>0))throw new Error('bad input');return half*Math.log2(100/pct);}
+/* นับอะตอมในสูตรเคมี เช่น C3H8, Ca(OH)2, 2H2O(l) ; สัญลักษณ์สถานะท้ายสูตรถูกตัดทิ้ง ไม่รองรับวงเล็บซ้อน */
+function countAtoms(f){
+  let s=String(f).trim().replace(/\((g|s|l|aq)\)$/,'');
+  const mc=s.match(/^(\d+)/);const co=mc?+mc[1]:1;if(mc)s=s.slice(mc[1].length);
+  const stack=[{}];let i=0;
+  const num=()=>{let j=i;while(i<s.length&&/\d/.test(s[i]))i++;return i>j?+s.slice(j,i):1;};
+  while(i<s.length){
+    const c=s[i];
+    if(c==='('){stack.push({});i++;}
+    else if(c===')'){i++;const m=num(),top=stack.pop(),b=stack[stack.length-1];for(const k in top)b[k]=(b[k]||0)+top[k]*m;}
+    else if(/[A-Z]/.test(c)){let e=c;i++;if(i<s.length&&/[a-z]/.test(s[i])){e+=s[i];i++;}const m=num(),b=stack[stack.length-1];b[e]=(b[e]||0)+m;}
+    else throw new Error('bad formula');
+  }
+  if(stack.length!==1)throw new Error('bad formula');
+  const out={};for(const k in stack[0])out[k]=stack[0][k]*co;return out;
+}
+function sumAtoms(list){const t={};list.forEach(f=>{const a=countAtoms(f);for(const k in a)t[k]=(t[k]||0)+a[k];});return t;}
+function isBalanced(L,R){const a=sumAtoms(L),b=sumAtoms(R),ks=new Set(Object.keys(a).concat(Object.keys(b)));for(const k of ks)if((a[k]||0)!==(b[k]||0))return false;return true;}
+/* แบบจำลองเวลาเกิดปฏิกิริยา CaCO3 + HCl (ค่าของผู้จัดทำหน้า ปรับให้ตรงผลตัวอย่างของคู่มือ หน้า 107):
+   พื้นฐาน = ผง · HCl 1 %w/v · อุณหภูมิห้อง → 50 s ; HCl 7 % → 15 s ; อุ่น 60 °C → 25 s ; เม็ด → "> 300 s"
+   สมมติเอง: อุณหภูมิห้อง 30 °C ; เวลา ∝ conc^−n (n หาจาก 50→15 ที่ความเข้มข้น 7 เท่า) ; เวลาลดครึ่งต่อ +30 °C ; เม็ดช้ากว่าผง 8 เท่า */
+const T_ROOM=30,T_WARM=60,N_CONC=Math.log(50/15)/Math.log(7),TABLET_X=8,T_OBS=300;
+function reactTime(conc,tempC,form){
+  if(!(conc>0)||!Number.isFinite(tempC)||(form!=='powder'&&form!=='tablet'))throw new Error('bad input');
+  let t=50*Math.pow(conc,-N_CONC)*Math.pow(2,-(tempC-T_ROOM)/(T_WARM-T_ROOM));
+  if(form==='tablet')t*=TABLET_X;return t;}
+/* พื้นที่ผิวรวมของลูกบาศก์ด้านละ 1 cm ที่ผ่าเป็น n×n×n ชิ้นเล็ก = 6n cm² (ผู้จัดทำหน้าคำนวณเอง ใช้ประกอบเรื่องพื้นที่ผิว) */
+function cubeArea(n){if(!Number.isInteger(n)||n<1)throw new Error('bad');return 6*n;}
+const mmss=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+
+/* ---- กิจกรรม 4.1 ---- */
+const HMAX=165,YL=200,NECKX=20;
+/* ระดับฟองของแบบจำลอง (ผู้จัดทำหน้าสมมติ เป็นภาพเชิงคุณภาพ): ขวด B แบบเร็วแล้วช้าลง ขวด A เกือบไม่มี ตามที่คู่มือกล่าวว่าอาจเห็นเล็กน้อยหรือไม่เห็นเลย */
+function foamH(flask,t,soap){if(!soap)return 0;return flask==='B'?HMAX*(1-Math.exp(-t/40)):HMAX*0.03*(t/180);}
+function foamWord(h){const r=h/HMAX;return r<=0.001?'ไม่มี':r<0.1?'น้อยมาก':r<0.5?'ปานกลาง':'มาก';}
+function flaskSVG(cx,id){
+  const outline=`M${cx-NECKX} 60 L${cx-NECKX} 130 L${cx-70} 250 Q${cx-74} 285 ${cx-45} 285 L${cx+45} 285 Q${cx+74} 285 ${cx+70} 250 L${cx+NECKX} 130 L${cx+NECKX} 60`;
+  const clip=`M${cx-NECKX} 0 L${cx-NECKX} 130 L${cx-70} 250 Q${cx-74} 285 ${cx-45} 285 L${cx+45} 285 Q${cx+74} 285 ${cx+70} 250 L${cx+NECKX} 130 L${cx+NECKX} 0 Z`;
+  return`<clipPath id="cp${id}"><path d="${clip}"/></clipPath>
+  <g clip-path="url(#cp${id})"><rect x="${cx-80}" y="${YL}" width="160" height="90" fill="#d9f0ee"/>
+  <rect id="fm${id}" x="${cx-80}" y="${YL}" width="160" height="0" fill="url(#foamP)" stroke="none"/>
+  ${[0,1,2,3,4,5,6,7,8,9,10,11].map(j=>`<circle class="gb${id}" cx="${cx-30+(j*19)%60}" cy="270" r="${2+(j%3)}" fill="#fff" stroke="#0f766e" stroke-width="1" opacity="0"/>`).join('')}</g>
+  <path d="${outline}" fill="none" stroke="#24413f" stroke-width="3"/>`;
+}
+lab('4.1',()=>`<div class="lab"><h3>ห้องทดลองเสมือน: ขวด A (ไม่เติม KI) เทียบกับขวด B (เติม KI 5 หยด)</h3>
+  <p class="small">แบบจำลองเพื่อการศึกษา ปริมาณฟองเป็นภาพเชิงคุณภาพที่ผู้จัดทำหน้าสมมติให้สอดคล้องกับผลตัวอย่างของคู่มือ (ขวดที่เติม KI มีฟองจำนวนมาก ขวดที่ไม่เติมอาจเห็นเล็กน้อยหรือไม่เห็น) ไม่ใช่ข้อมูลวัดจริง เวลา 3 นาทีถูกย่อให้เล่นเร็วขึ้น</p>
+  <div class="btns"><label class="opt"><input type="checkbox" id="soap" checked><span>เติมน้ำยาล้างจานทั้งสองขวด (ตามวิธีทำ)</span></label></div>
+  <div class="fig"><svg id="svg41" viewBox="0 0 360 310" role="img" aria-label="ขวดรูปกรวยสองใบ ขวด A ไม่เติม KI ขวด B เติม KI">
+   <defs><pattern id="foamP" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#f4fbfa"/><circle cx="4" cy="4" r="3.4" fill="none" stroke="#5eb6ad" stroke-width="1"/><circle cx="11" cy="10" r="3" fill="none" stroke="#5eb6ad" stroke-width="1"/></pattern></defs>
+   ${flaskSVG(95,'A')}${flaskSVG(265,'B')}
+   <text x="95" y="303" text-anchor="middle" font-size="13" fill="#24413f">ขวด A · ไม่เติม KI</text><text x="265" y="303" text-anchor="middle" font-size="13" fill="#24413f">ขวด B · เติม KI</text>
+   <g id="kiDrops" opacity="0">${[0,1,2,3,4].map(i=>`<circle cx="265" cy="${8+i*9}" r="3" fill="#0f766e"/>`).join('')}<text x="285" y="30" font-size="11" fill="#0f766e">KI</text></g>
+  </svg></div>
+  <div class="btns"><button class="btn" type="button" id="go41">เติม KI ลงขวด B แล้วเริ่มจับเวลา 3 นาที</button><button class="btn alt" type="button" id="skip41">ข้ามไปที่ 3 นาที</button><button class="btn alt" type="button" id="rst41">ตั้งต้นใหม่</button></div>
+  <div class="rowflex"><label for="sl41">เลื่อนดูเวลา (หลังเริ่มแล้ว)<input id="sl41" type="range" min="0" max="180" step="1" value="0" disabled></label><div class="read" id="tm41" aria-live="off">0:00</div></div>
+  <div class="stat"><div>ขวด A (ไม่เติม KI)<b id="fa41">–</b></div><div>ขวด B (เติม KI)<b id="fb41">–</b></div></div>
+  <div class="tip" id="msg41" aria-live="polite">กดปุ่มเริ่มเพื่อดูการเปลี่ยนแปลง</div></div>
+  <div class="box"><h3>บันทึกผลสังเกต (เลือกหลังทดลอง)</h3><p class="lbl">ขวด A (ไม่เติม KI) หลัง 3 นาที</p>${radioGroup('oa41',[['none','ฟองเล็กน้อยหรือไม่มี'],['many','ฟองจำนวนมาก']])}<p class="lbl">ขวด B (เติม KI) หลัง 3 นาที</p>${radioGroup('ob41',[['none','ฟองเล็กน้อยหรือไม่มี'],['many','ฟองจำนวนมาก']])}<div class="res" id="obsres" aria-live="polite"></div></div>`,
+()=>{
+  const root=$('#panel');let t=0,raf=null,last=0,rt=0,started=false,speed=15;
+  const sl=$('#sl41'),soap=()=>$('#soap').checked;
+  function render(){
+    const sp=soap(),hA=foamH('A',t,sp),hB=started?foamH('B',t,sp):0;
+    const fa=$('#fmA'),fb=$('#fmB');if(!fa||!fb)return;
+    fa.setAttribute('y',YL-hA);fa.setAttribute('height',hA);fb.setAttribute('y',YL-hB);fb.setAttribute('height',hB);
+    const gb=started?Math.min(12,Math.round(12*(1-Math.exp(-t/25))+1)):0;
+    $$('.gbB').forEach((c,j)=>{if(j<gb&&t<180.5){const ph=((rt*1.2+j*0.137)%1);c.setAttribute('cy',270-ph*(70+(j%4)*8));c.setAttribute('opacity',1-ph*.7);}else c.setAttribute('opacity',0);});
+    const ga=started?(t>5?Math.round(t/60):0):0;
+    $$('.gbA').forEach((c,j)=>{if(j<ga&&t<180.5){const ph=((rt*0.5+j*0.31)%1);c.setAttribute('cy',270-ph*70);c.setAttribute('opacity',(1-ph)*.7);}else c.setAttribute('opacity',0);});
+    $('#tm41').textContent=mmss(t);sl.value=Math.round(t);
+    $('#fa41').textContent=started?(sp?foamWord(hA):'ฟองไม่สะสม (ไม่มีน้ำยาล้างจาน)'):'–';
+    $('#fb41').textContent=started?(sp?foamWord(hB):'มีแก๊สเกิดแต่ไม่สะสมเป็นฟอง'):'–';
+    $('#svg41').setAttribute('aria-label','ขวด A ไม่เติม KI ระดับฟอง '+(started?(sp?foamWord(hA):'ไม่มีฟองสะสม'):'ยังไม่เริ่ม')+' ขวด B เติม KI ระดับฟอง '+(started?(sp?foamWord(hB):'ไม่มีฟองสะสม'):'ยังไม่เริ่ม')+' ที่เวลา '+mmss(t));
+  }
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+  clean(stop);
+  function finish(){
+    t=180;render();stop();
+    $('#msg41').textContent=soap()?'ครบ 3 นาที: ขวด B (เติม KI) มีฟองมาก ขวด A เกือบไม่มีฟอง ตรงกับผลตัวอย่างของคู่มือ จึงสรุปว่า KI เป็นตัวเร่งปฏิกิริยาที่ทำให้ H₂O₂ สลายตัวเร็วขึ้น':'ครบ 3 นาที: ไม่มีน้ำยาล้างจาน แก๊สเกิดแต่หลุดออกไปไม่เกิดฟองสะสม จึงเปรียบเทียบปริมาณแก๊สยาก (นี่คือเหตุผลที่หนังสือให้เติมน้ำยาล้างจาน ตามคำอธิบายของผู้จัดทำหน้า)';
+    if(soap()){run('4.1');}
+  }
+  function step(ts){if(!root.isConnected){stop();return;}const dt=Math.max(0,Math.min(.1,(ts-last)/1000));last=ts;rt+=dt;t+=dt*speed;if(t>=180){finish();return;}render();raf=requestAnimationFrame(step);}
+  function begin(){stop();started=true;t=0;sl.disabled=false;$('#kiDrops').setAttribute('opacity',1);$('#msg41').textContent='ทดลองกำลังเดินอยู่ (เวลาในแบบจำลองถูกย่อให้เร็วขึ้น)';render();
+    if(REDUCE){finish();return;}last=performance.now();raf=requestAnimationFrame(step);}
+  $('#go41').onclick=begin;
+  $('#skip41').onclick=()=>{stop();started=true;sl.disabled=false;$('#kiDrops').setAttribute('opacity',1);finish();};
+  $('#rst41').onclick=()=>{stop();started=false;t=0;sl.disabled=true;$('#kiDrops').setAttribute('opacity',0);render();$('#msg41').textContent='กดปุ่มเริ่มเพื่อดูการเปลี่ยนแปลง';};
+  sl.oninput=()=>{stop();t=+sl.value;render();};
+  $('#soap').onchange=render;
+  render();
+  const obs=()=>{const a=dget('4.1','oa41'),b=dget('4.1','ob41'),r=$('#obsres');if(!a||!b){r.textContent='';return;}
+    const ok=a==='none'&&b==='many';r.className='res '+(ok?'ok':'bad');r.textContent=ok?'ตรงกับผลตัวอย่างของคู่มือ: ขวด A ฟองเล็กน้อยหรือไม่มี · ขวด B ฟองจำนวนมาก':'ยังไม่ตรงกับผลตัวอย่างของคู่มือ ลองกดทดลองในห้องเสมือนแล้วสังเกตใหม่';};
+  wireRadio(root,'4.1','oa41',obs);wireRadio(root,'4.1','ob41',obs);obs();
+});
+
+/* ---- กิจกรรม 4.2 ---- */
+const NBUB=16;
+function formTxt(c){return(c.form==='powder'?'ผง':'เม็ด')+' · HCl '+c.conc+' %w/v · '+(c.temp>T_ROOM?'อุ่น '+c.temp+' °C':'อุณหภูมิห้อง');}
+function mkCfg(conc,temp,form){return{conc,temp,form,T:reactTime(conc,temp,form)};}
+const GUIDE=[mkCfg(1,T_ROOM,'powder'),mkCfg(7,T_ROOM,'powder'),mkCfg(1,T_WARM,'powder'),mkCfg(1,T_ROOM,'tablet')];
+const GUIDE_T=['50','15','25','> 300'];
+const DOTS=[[-26,0],[-18,-3],[-10,0],[-2,-2],[6,0],[14,-3],[22,0],[-22,-6],[-6,-6],[10,-6],[18,-6],[-14,-9],[2,-9],[-28,-3]];
+function makeSim(hostId,cfgs,onDone){
+  const host=$('#'+hostId);if(!host)return null;
+  const W=cfgs.length*140,H=290,Y0=232;
+  let g='';
+  cfgs.forEach((c,i)=>{const cx=70+i*140,warm=c.temp>T_ROOM;
+    g+=`<g><rect x="${cx-42}" y="92" width="84" height="${Y0-92}" fill="${warm?'#fbe3d3':'#dff3f0'}" opacity=".9"/>
+    ${c.form==='powder'?DOTS.map((d,j)=>`<circle class="sd${i}" data-j="${j}" cx="${cx+d[0]}" cy="${Y0-4+d[1]}" r="2.2" fill="#6b6f76"/>`).join(''):`<rect class="tb${i}" x="${cx-12}" y="${Y0-14}" width="24" height="14" rx="3" fill="#6b6f76"/>`}
+    ${Array.from({length:NBUB},(_,j)=>`<circle class="bb${i}" cx="${cx-32+(j*29)%64}" cy="${Y0-8}" r="${2.3+(j%3)*.8}" fill="#fff" stroke="#0f766e" stroke-width="1" opacity="0"/>`).join('')}
+    <path d="M${cx-42} 82 L${cx-42} ${Y0} L${cx+42} ${Y0} L${cx+42} 82" fill="none" stroke="#24413f" stroke-width="3" stroke-linejoin="round"/>
+    <text x="${cx}" y="${Y0+22}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#172033">${cfgs.length===1?'บีกเกอร์ทดลองเอง':'ใบที่ '+(i+1)}</text>
+    <text x="${cx}" y="${Y0+38}" text-anchor="middle" font-size="10.5" fill="#33415c">${(c.form==='powder'?'ผง':'เม็ด')} · ${c.conc} %${warm?' · '+c.temp+'°C':''}</text>
+    <text class="tt${i}" x="${cx}" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#0f766e">0 s</text></g>`;});
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="บีกเกอร์ CaCO3 ในกรดไฮโดรคลอริก">${g}</svg>`;
+  const svg=$('svg',host);
+  let t=0,rt=0,raf=null,last=0,speed=20;
+  const tEnd=cfgs.map(c=>Math.min(c.T,T_OBS)),tmax=Math.max.apply(null,tEnd);
+  function render(){
+    if(!host.isConnected)return;
+    const lbl=[];
+    cfgs.forEach((c,i)=>{
+      const tt=Math.min(t,tEnd[i]),fin=t>=tEnd[i]-1e-9&&t>0,rem=Math.max(0,1-tt/c.T);
+      const nv=fin?0:Math.max(1,Math.round(NBUB*Math.min(1,15/c.T)));
+      $$('.bb'+i,host).forEach((el,j)=>{if(t>0&&j<nv){const ph=(rt*1.1+j*0.211)%1;el.setAttribute('cy',Y0-8-ph*(Y0-110));el.setAttribute('opacity',(1-ph*.75).toFixed(2));}else el.setAttribute('opacity',0);});
+      if(c.form==='powder'){const keep=Math.ceil(DOTS.length*rem);$$('.sd'+i,host).forEach(el=>el.setAttribute('opacity',+el.dataset.j<keep?1:0));}
+      else{const k=Math.sqrt(rem),w=24*k,h=14*k,r=$('.tb'+i,host);if(r){r.setAttribute('width',w);r.setAttribute('height',h);r.setAttribute('x',70+i*140-w/2);r.setAttribute('y',Y0-h);}}
+      const txt=fin?(c.T>T_OBS?'> 300 s':Math.round(c.T)+' s ✓'):Math.round(tt)+' s';
+      $('.tt'+i,host).textContent=txt;lbl.push((cfgs.length===1?'บีกเกอร์ทดลองเอง ':'ใบที่ '+(i+1)+' ')+txt);
+    });
+    svg.setAttribute('aria-label','บีกเกอร์ CaCO3 ในกรดไฮโดรคลอริก เวลาในแบบจำลอง '+lbl.join(' · '));
+  }
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+  function done(){stop();t=tmax;render();onDone&&onDone(cfgs);}
+  function step(ts){if(!host.isConnected){stop();return;}const dt=Math.max(0,Math.min(.1,(ts-last)/1000));last=ts;rt+=dt;t+=dt*speed;if(t>=tmax){done();return;}render();raf=requestAnimationFrame(step);}
+  render();
+  return{run(sp){stop();speed=sp||20;t=0;rt=0;render();if(REDUCE){done();return;}last=performance.now();raf=requestAnimationFrame(step);},skip(){done();},reset(){stop();t=0;render();},stop};
+}
+lab('4.2',()=>{const c1=(a,b)=>`<option value="${a}">${b}</option>`;
+  return`<div class="lab"><h3>ห้องทดลองเสมือน A: บีกเกอร์ 4 ใบตามคู่มือ</h3>
+  <p class="small"><b>ค่าของแบบจำลอง:</b> เวลาของใบที่ 1–3 (50 · 15 · 25 วินาที) และใบที่ 4 ที่ &gt; 300 วินาที ตั้งตามตารางผลตัวอย่างของคู่มือ (หน้า 107) ส่วนอุณหภูมิห้องที่สมมติเป็น 30 °C และความเร็วของแอนิเมชัน (ย่อเวลาให้เร็วขึ้น) เป็นค่าของผู้จัดทำหน้า ตัวเลขจากการทดลองจริงของนักเรียนอาจต่างจากนี้</p>
+  <p class="lbl" id="predl">ทำนายก่อนทดลอง: บีกเกอร์ใบใดเสร็จเร็วที่สุด</p>${radioGroup('pr42',[['1','ใบที่ 1'],['2','ใบที่ 2'],['3','ใบที่ 3'],['4','ใบที่ 4']])}
+  <div class="fig" id="simA"></div>
+  <div class="btns"><label class="small" for="sp42">ความเร็วแอนิเมชัน&nbsp;</label><select id="sp42" style="width:auto"><option value="10">×10</option><option value="20" selected>×20</option><option value="50">×50</option></select><button class="btn" type="button" id="go42">เริ่มทดลองทั้ง 4 ใบ</button><button class="btn alt" type="button" id="skip42">ข้ามไปที่ผล</button><button class="btn alt" type="button" id="rst42">ตั้งต้นใหม่</button></div>
+  <div class="tw"><table class="tbl-sm wide"><thead><tr><th>ใบที่</th><th class="l">สาร</th><th>เวลาในแบบจำลอง (วินาที)</th><th>ผลตัวอย่างของคู่มือ (วินาที)</th></tr></thead><tbody id="tb42">${GUIDE.map((c,i)=>`<tr><td>${i+1}</td><td class="l">${formTxt(c)}</td><td id="r42_${i}">–</td><td>${GUIDE_T[i]}</td></tr>`).join('')}</tbody></table></div>
+  <div class="tip" id="msg42" aria-live="polite">กดเริ่มทดลองเพื่อดูว่าใบใดเสร็จก่อน</div></div>
+  <div class="lab"><h3>ห้องทดลองเสมือน B: ลองผสมหลายปัจจัยเอง (ค่าสมมติของแบบจำลอง)</h3>
+  <p class="small">คู่มือมีผลเฉพาะ 4 แบบด้านบน การผสมแบบอื่นคำนวณจากแบบจำลองที่ผู้จัดทำหน้าตั้งขึ้น: เวลา ∝ (ความเข้มข้น)<sup>−0.62</sup> · เวลาลดลงครึ่งหนึ่งเมื่ออุณหภูมิเพิ่ม 30 °C (30 → 60 °C) · เม็ดช้ากว่าผง 8 เท่า ไม่ใช่กฎจากหนังสือ</p>
+  <div class="ledrow"><label for="cc42">ความเข้มข้นของ HCl<select id="cc42">${c1(1,'1 %w/v')}${c1(7,'7 %w/v')}</select></label><label for="ct42">อุณหภูมิของกรด<select id="ct42">${c1(30,'อุณหภูมิห้อง (สมมติ 30 °C)')}${c1(60,'อุ่นประมาณ 60 °C')}</select></label><label for="cf42">รูปของ CaCO<sub>3</sub> (0.1 g)<select id="cf42">${c1('powder','ผง')}${c1('tablet','เม็ด')}</select></label></div>
+  <div class="fig" id="simB"></div>
+  <div class="btns"><button class="btn" type="button" id="go42b">ทดลองบีกเกอร์นี้</button></div><div class="tip" id="msg42b" aria-live="polite">เลือกค่าแล้วกดทดลอง</div></div>
+  <div class="lab"><h3>พื้นที่ผิวรวมเมื่อชิ้นเล็กลง (ตัวอย่างของผู้จัดทำหน้า)</h3>
+  <p class="small">คู่มือแนะนำให้ครูวาดรูปแสดงว่าทำให้ชิ้นเล็กลงเพิ่มพื้นที่ผิวอย่างไร ตัวอย่างนี้คำนวณเอง: ลูกบาศก์ด้านละ 1 cm ผ่าให้เป็นลูกบาศก์เล็ก n × n × n ชิ้น ปริมาตรรวมเท่าเดิม (1 cm³)</p>
+  <label for="cube" class="lbl">แบ่งแต่ละด้านเป็น n ส่วน: n = <b id="cubeN">1</b></label><input id="cube" type="range" min="1" max="5" step="1" value="1">
+  <div class="fig"><svg id="cubeSvg" viewBox="0 0 300 150" role="img" aria-label="ลูกบาศก์ด้านละ 1 เซนติเมตร"></svg></div>
+  <div class="stat"><div>จำนวนชิ้น<b id="cubeP">1</b></div><div>พื้นที่ผิวรวม<b id="cubeA">6 cm²</b></div></div></div>`;},
+()=>{
+  const root=$('#panel');let simA=null,simB=null,finished={};
+  simA=makeSim('simA',GUIDE,cfgs=>{
+    cfgs.forEach((c,i)=>{$('#r42_'+i).textContent=c.T>T_OBS?'> 300':String(Math.round(c.T));});
+    finished.a=true;run('4.2');
+    const pv=dget('4.2','pr42');$('#msg42').textContent=(pv?(pv==='2'?'ทำนายถูก · ':'ทำนายไม่ตรง (ใบที่เร็วที่สุดคือใบที่ 2) · '):'')+'ใบที่ 2 (กรดเข้มข้นกว่า) เสร็จก่อน ใบที่ 3 (อุ่น) ตามมา ใบที่ 1 ช้ากว่า และใบที่ 4 (เม็ด) ยังไม่เสร็จเมื่อครบ 300 วินาที เทียบกับใบที่ 1 จึงสรุปว่าเพิ่มความเข้มข้น เพิ่มอุณหภูมิ หรือเพิ่มพื้นที่ผิว อัตราเพิ่มขึ้น (ตรงกับคู่มือ)';});
+  clean(()=>{simA&&simA.stop();simB&&simB.stop();});
+  $('#go42').onclick=()=>{finished={};GUIDE.forEach((c,i)=>{$('#r42_'+i).textContent='–';});$('#msg42').textContent='กำลังทดลอง…';simA.run(+$('#sp42').value);};
+  $('#skip42').onclick=()=>simA.skip();
+  $('#rst42').onclick=()=>{simA.reset();finished={};GUIDE.forEach((c,i)=>{$('#r42_'+i).textContent='–';});$('#msg42').textContent='กดเริ่มทดลองเพื่อดูว่าใบใดเสร็จก่อน';};
+  wireRadio(root,'4.2','pr42');
+  const runB=()=>{const c=mkCfg(+$('#cc42').value,+$('#ct42').value,$('#cf42').value);
+    const gi=GUIDE.findIndex(g=>g.conc===c.conc&&g.temp===c.temp&&g.form===c.form);
+    if(simB)simB.stop();
+    simB=makeSim('simB',[c],cf=>{$('#msg42b').textContent='เวลาในแบบจำลอง '+(c.T>T_OBS?'> 300':'≈ '+Math.round(c.T))+' วินาที · '+(gi>=0?'ตรงกับใบที่ '+(gi+1)+' ในคู่มือ':'การผสมนี้คู่มือไม่มีผล เป็นค่าคำนวณของแบบจำลอง (สมมติ)');});
+    $('#msg42b').textContent='กำลังทดลอง…';simB.run(+$('#sp42').value);};
+  $('#go42b').onclick=runB;
+  simB=makeSim('simB',[mkCfg(1,T_ROOM,'powder')],null);
+  function cube(){const n=+$('#cube').value;$('#cubeN').textContent=n;$('#cubeP').textContent=n*n*n+' ชิ้น';$('#cubeA').textContent=cubeArea(n)+' cm²';
+    const s=110/n;let g='';for(let i=0;i<n;i++)for(let j=0;j<n;j++)g+=`<rect x="${70+i*s}" y="${20+j*s}" width="${s}" height="${s}" fill="#e0f2f1" stroke="#0f766e" stroke-width="${n>3?1:1.6}"/>`;
+    $('#cubeSvg').innerHTML=g+`<text x="200" y="80" font-size="13" fill="#172033">ด้านละ 1 cm</text><text x="200" y="100" font-size="13" fill="#172033">แบ่งเป็น ${n}×${n}×${n} ชิ้น</text>`;
+    $('#cubeSvg').setAttribute('aria-label','ลูกบาศก์ด้านละ 1 เซนติเมตร แบ่งเป็น '+n*n*n+' ชิ้น พื้นที่ผิวรวม '+cubeArea(n)+' ตารางเซนติเมตร');}
+  $('#cube').oninput=cube;cube();
+});
+
+/* ---- กิจกรรม 4.4 ---- */
+const HL=[['mo','Mo-99',3,'วัน',10,'หนังสือเรียน (รูป 4.13): เริ่มต้น 10 g'],['na','Na-24',15,'ชั่วโมง',100,'คู่มือ แบบฝึกหัด 4.4 ข้อ 2'],['os','Os-182',21.5,'ชั่วโมง',8,'คู่มือ แบบฝึกหัดท้ายบท ข้อ 10'],['c14','C-14',5730,'ปี',100,'คู่มือ หน้า 117 (ตรวจสอบความเข้าใจ)']];
+const DOSE=[['รังสีคอสมิก',0.39],['พื้นโลก',0.48],['อาหาร',0.29],['แก๊สเรดอนในอากาศ',1.30],['การวินิจฉัยโรคด้วยรังสี เช่น เอ็กซเรย์',0.62]];
+function curveSVG(k){
+  const X=i=>40+i*(240/6),Y=f=>20+(1-f)*110;let pts='';for(let i=0;i<=24;i++){const kk=i/4;pts+=X(kk)+','+Y(Math.pow(.5,kk))+' ';}
+  let dots='',gr='';for(let i=0;i<=6;i++){dots+=`<circle cx="${X(i)}" cy="${Y(Math.pow(.5,i))}" r="3.5" fill="#0f766e"/><text x="${X(i)}" y="146" text-anchor="middle" font-size="11" fill="#33415c">${i}</text>`;}
+  [0,.5,1].forEach(v=>{gr+=`<line x1="40" x2="280" y1="${Y(v)}" y2="${Y(v)}" stroke="#d5e8e5"/><text x="34" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#33415c">${v*100}%</text>`;});
+  return`${gr}<polyline points="${pts}" fill="none" stroke="#0f766e" stroke-width="2"/>${dots}<circle cx="${X(k)}" cy="${Y(Math.pow(.5,k))}" r="7" fill="none" stroke="#b63f43" stroke-width="2.5"/><text x="160" y="164" text-anchor="middle" font-size="11" fill="#33415c">จำนวนครึ่งชีวิตที่ผ่านไป</text>`;
+}
+lab('4.4',()=>`<div class="lab"><h3>ห้องทดลองเสมือน: ครึ่งชีวิต</h3>
+  <p class="small"><b>แบบจำลองเพื่อการศึกษา:</b> ใช้สูตรเหลือ = เริ่มต้น × (½)<sup>t ÷ ครึ่งชีวิต</sup> ค่าครึ่งชีวิตและมวลเริ่มต้นเป็นค่าที่หนังสือหรือคู่มือใช้ในโจทย์ (ระบุที่มาใต้ตัวเลือก) มวลเริ่มต้นแก้ได้</p>
+  <div class="ledrow"><label for="hs">สารกัมมันตรังสี<select id="hs">${HL.map((h,i)=>`<option value="${i}">${h[1]} (ครึ่งชีวิต ${h[2]} ${h[3]})</option>`).join('')}</select></label><label for="hm">มวลเริ่มต้น (g)<input id="hm" type="number" min="0" step="any" value="10"></label><label for="hk">เวลาที่ผ่านไป (จำนวนครึ่งชีวิต): <b id="hkv">0</b><input id="hk" type="range" min="0" max="6" step="0.5" value="0"></label></div>
+  <p class="small" id="hsrc"></p>
+  <div class="fig"><svg id="hcurve" viewBox="0 0 300 175" role="img" aria-label="กราฟการสลายของสารกัมมันตรังสี"></svg></div>
+  <div class="stat"><div>เวลาที่ผ่านไป<b id="ht">–</b></div><div>มวลที่เหลือ<b id="hr">–</b></div><div>ร้อยละที่เหลือ<b id="hp">–</b></div></div>
+  <div class="tw"><table class="tbl-sm mini"><thead><tr><th>ครึ่งชีวิตที่ผ่าน</th><th>เวลา</th><th>มวลที่เหลือ (g)</th></tr></thead><tbody id="htab"></tbody></table></div>
+  <h3 style="margin-top:14px">คิดย้อนกลับ: อายุจากร้อยละ C-14 ที่เหลือ (ครึ่งชีวิต 5730 ปี)</h3>
+  <div class="ledrow"><label for="cp">ร้อยละของ C-14 ที่เหลือ (0–100)<input id="cp" type="number" min="0.01" max="100" step="any" value="25"></label></div><div class="tip" id="cage" aria-live="polite"></div></div>
+  <div class="lab"><h3>โทษของรังสี: ผลต่อสุขภาพและปริมาณรังสีในชีวิตประจำวัน</h3>
+  <div class="tw"><table class="tbl-sm wide"><thead><tr><th>ปริมาณรังสี (Gy)</th><th class="l">ผลกระทบช่วงต้น (คู่มือ หน้า 116)</th></tr></thead><tbody><tr><td>&gt; 50</td><td class="l">ระบบประสาทส่วนกลางถูกทำลาย เสียชีวิตภายใน 2–3 วัน</td></tr><tr><td>8</td><td class="l">คลื่นไส้ อาเจียน ท้องร่วง กระสับกระส่าย ปวดศีรษะ เป็นไข้ ความดันต่ำ และเสียชีวิตจากระบบทางเดินอาหารถูกทำลายภายใน 2–3 สัปดาห์ถัดมา</td></tr><tr><td>2</td><td class="l">คลื่นไส้ อาเจียน</td></tr></tbody></table></div>
+  <p class="small">ผลระยะยาว (คู่มือ): เนื้องอก มะเร็งเม็ดเลือดขาว และความผิดปกติทางพันธุกรรมในบุตรของผู้ได้รับรังสี</p>
+  <h3 style="margin-top:12px">ตัวอย่างรังสีที่คนได้รับใน 1 ปี (หนังสือเรียน ตาราง 4.2 หน้า 125)</h3>
+  ${DOSE.map(d=>`<div class="bar2"><span class="lb">${d[0]}</span><span class="tr"><i style="width:${(d[1]/1.3*100).toFixed(1)}%"></i></span><span class="vv">${d[1].toFixed(2)}</span></div>`).join('')}
+  <p class="small">หน่วย mSv ต่อปี · ผู้จัดทำหน้าบวกได้ ${DOSE.reduce((a,d)=>a+d[1],0).toFixed(2)} mSv ต่อปี หนังสือเรียนระบุว่า ICRP กำหนดค่ารังสีสะสมที่ไม่เป็นอันตรายไว้ไม่เกิน 50 mSv ต่อปี (<b>ข้อมูลนอกหนังสือ ผู้จัดทำหน้าเพิ่ม ควรสอบถามครู:</b> ICRP แยกเกณฑ์สำหรับประชาชนทั่วไปที่ 1 mSv ต่อปี และผู้ปฏิบัติงานด้านรังสีเฉลี่ย 20 mSv ต่อปี และเกณฑ์เหล่านี้ไม่นับรังสีธรรมชาติและการแพทย์ จึงไม่ควรเอาผลรวมในตารางไปเทียบตรง ๆ)</p></div>`,
+()=>{
+  const root=$('#panel');
+  const hs=$('#hs'),hm=$('#hm'),hk=$('#hk');
+  function hl(){
+    const h=HL[+hs.value],m0=parseFloat(hm.value),k=+hk.value;$('#hkv').textContent=k;$('#hsrc').textContent='ที่มาของค่า: '+h[5];
+    let ok=Number.isFinite(m0)&&m0>=0;
+    $('#htab').innerHTML=ok?[0,1,2,3,4,5,6].map(i=>`<tr><td>${i}</td><td>${fmt(i*h[2],2)} ${h[3]}</td><td>${fmt(remaining(m0,i*h[2],h[2]),3)}</td></tr>`).join(''):'<tr><td colspan="3">กรอกมวลเริ่มต้นให้ถูกต้อง</td></tr>';
+    $('#hcurve').innerHTML=curveSVG(k);
+    if(!ok){$('#ht').textContent=$('#hr').textContent=$('#hp').textContent='–';return;}
+    const t=k*h[2],r=remaining(m0,t,h[2]);
+    $('#ht').textContent=fmt(t,2)+' '+h[3];$('#hr').textContent=fmt(r,3)+' g';$('#hp').textContent=m0>0?fmt(100*r/m0,2)+' %':'–';
+    $('#hcurve').setAttribute('aria-label','กราฟการสลายของ '+h[1]+' เมื่อผ่านไป '+k+' ครึ่งชีวิต เหลือร้อยละ '+(m0>0?fmt(100*r/m0,2):'–'));
+  }
+  hs.onchange=()=>{hm.value=HL[+hs.value][4];hl();};hm.oninput=hl;hk.oninput=hl;hl();
+  const cp=$('#cp');function age(){const p=parseFloat(cp.value);const e=$('#cage');
+    if(!(p>0&&p<=100)){e.textContent='กรอกร้อยละระหว่างมากกว่า 0 ถึง 100';return;}
+    const n=Math.log2(100/p),a=ageFromPercent(p,5730);e.textContent='ผ่านไป '+fmt(n,3)+' ครึ่งชีวิต ≈ '+Math.round(a).toLocaleString('en-US')+' ปี'+(p===25?' (ตรงกับตัวอย่างของคู่มือ หน้า 117: 11,460 ปี)':'');}
+  cp.oninput=age;age();
+});
+
+/* ---- แท็บสรุปเนื้อหา ---- */
+function svgWrap(w,h,label,inner){return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}"><rect width="${w}" height="${h}" fill="#fff"/>${inner}</svg>`;}
+function mapSVG(){
+  const bx=(x,y,w,t,f)=>`<rect x="${x}" y="${y}" width="${w}" height="34" rx="10" fill="${f||'#ecf7f5'}" stroke="#0f766e" stroke-width="1.5"/><text x="${x+w/2}" y="${y+22}" text-anchor="middle" font-size="12.5" fill="#172033">${t}</text>`;
+  const ln=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#0f766e" stroke-width="1.8"/>`;
+  return svgWrap(560,300,'ผังมโนทัศน์บทที่ 4 พลังงานมาจากปฏิกิริยาเคมีและปฏิกิริยานิวเคลียร์ ปฏิกิริยาเคมีมีการเผาไหม้ที่ใช้เชื้อเพลิง และปฏิกิริยารีดอกซ์ในเซลล์เคมีไฟฟ้า อัตราการเกิดปฏิกิริยาขึ้นกับความเข้มข้น อุณหภูมิ พื้นที่ผิว และตัวเร่ง ปฏิกิริยานิวเคลียร์ใช้สารกัมมันตรังสี มีครึ่งชีวิต ประโยชน์และโทษ',
+   bx(210,8,140,'พลังงาน','#e0f2f1')+ln(280,42,280,58)+ln(130,58,430,58)+ln(130,58,130,72)+ln(430,58,430,72)+
+   bx(40,72,180,'ปฏิกิริยาเคมี')+bx(340,72,180,'ปฏิกิริยานิวเคลียร์')+
+   ln(80,106,80,126)+ln(190,106,190,126)+bx(10,126,140,'การเผาไหม้ (เชื้อเพลิง)')+bx(165,126,140,'รีดอกซ์ / แบตเตอรี่')+
+   ln(430,106,430,126)+bx(340,126,180,'สารกัมมันตรังสี')+
+   ln(80,160,80,184)+bx(10,184,180,'อัตราการเกิดปฏิกิริยา')+ln(100,218,100,236)+
+   `<text x="100" y="254" text-anchor="middle" font-size="12" fill="#172033">ความเข้มข้น · อุณหภูมิ</text><text x="100" y="272" text-anchor="middle" font-size="12" fill="#172033">พื้นที่ผิว · ตัวเร่ง</text>`+
+   ln(430,160,430,184)+bx(340,184,180,'ครึ่งชีวิต')+ln(430,218,430,236)+`<text x="430" y="254" text-anchor="middle" font-size="12" fill="#172033">ประโยชน์ · โทษ</text><text x="430" y="272" text-anchor="middle" font-size="12" fill="#172033">การป้องกัน</text>`);
+}
+function cellSVG(){
+  return svgWrap(520,200,'แผนภาพถ่านไฟฉาย อิเล็กตรอนไหลจากขั้วลบสังกะสีผ่านลวดและหลอดไฟไปยังขั้วบวกคาร์บอน กระแสไฟฟ้ามีทิศตรงข้ามกับอิเล็กตรอน',
+   `<rect x="40" y="70" width="90" height="100" rx="8" fill="#e8f0ee" stroke="#24413f" stroke-width="2"/><text x="85" y="125" text-anchor="middle" font-size="13" fill="#172033">สังกะสี</text><text x="85" y="145" text-anchor="middle" font-size="12" fill="#b63f43">ขั้วลบ (−)</text>
+   <rect x="380" y="70" width="90" height="100" rx="8" fill="#e8f0ee" stroke="#24413f" stroke-width="2"/><text x="425" y="115" text-anchor="middle" font-size="12.5" fill="#172033">คาร์บอน +</text><text x="425" y="133" text-anchor="middle" font-size="12.5" fill="#172033">สารประกอบ</text><text x="425" y="151" text-anchor="middle" font-size="12.5" fill="#172033">ออกไซด์ Mn</text><text x="425" y="190" text-anchor="middle" font-size="12" fill="#1f4f4a">ขั้วบวก (+)</text>
+   <rect x="130" y="110" width="250" height="40" fill="#f4fbfa" stroke="#8fc2bb"/><text x="255" y="135" text-anchor="middle" font-size="12" fill="#33415c">อิเล็กโทรไลต์</text>
+   <path d="M85 70 L85 30 L425 30 L425 70" fill="none" stroke="#24413f" stroke-width="2"/><circle cx="255" cy="30" r="19" fill="#fff6c9" stroke="#24413f" stroke-width="2"/><text x="255" y="34" text-anchor="middle" font-size="11" fill="#172033">หลอด</text>
+   <path d="M130 20 L215 20" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar)"/><text x="172" y="14" text-anchor="middle" font-size="11.5" fill="#0f766e">e⁻ →</text>
+   <path d="M380 44 L300 44" stroke="#b63f43" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#ar2)"/><text x="340" y="62" text-anchor="middle" font-size="11.5" fill="#b63f43">← กระแสไฟฟ้า</text>
+   <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#0f766e"/></marker><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#b63f43"/></marker></defs>`);
+}
+const EQS=[
+ ['C<sub>3</sub>H<sub>8</sub>(g) + 5O<sub>2</sub>(g) → 3CO<sub>2</sub>(g) + 4H<sub>2</sub>O(g)',['C3H8(g)','5O2(g)'],['3CO2(g)','4H2O(g)']],
+ ['2C<sub>8</sub>H<sub>18</sub>(l) + 25O<sub>2</sub>(g) → 16CO<sub>2</sub>(g) + 18H<sub>2</sub>O(g)',['2C8H18(l)','25O2(g)'],['16CO2(g)','18H2O(g)']],
+ ['CaCO<sub>3</sub>(s) → CaO(s) + CO<sub>2</sub>(g)',['CaCO3(s)'],['CaO(s)','CO2(g)']],
+ ['CuCl<sub>2</sub> → Cu + Cl<sub>2</sub>',['CuCl2'],['Cu','Cl2']],
+ ['CaCO<sub>3</sub>(s) + 2HCl(aq) → CaCl<sub>2</sub>(aq) + H<sub>2</sub>O(l) + CO<sub>2</sub>(g)',['CaCO3(s)','2HCl(aq)'],['CaCl2(aq)','H2O(l)','CO2(g)']],
+ ['2H<sub>2</sub>O<sub>2</sub>(aq) → 2H<sub>2</sub>O(l) + O<sub>2</sub>(g)',['2H2O2(aq)'],['2H2O(l)','O2(g)']],
+ ['H<sub>2</sub> + O<sub>2</sub> → H<sub>2</sub>O (ยังไม่ดุล)',['H2','O2'],['H2O']],
+ ['N<sub>2</sub>O<sub>5</sub>(g) → NO<sub>2</sub>(g) + O<sub>2</sub>(g) (ยังไม่ดุล)',['N2O5(g)'],['NO2(g)','O2(g)']]];
+lab('sum',()=>`
+  <div class="box"><h3>ภาพรวม</h3><div class="fig">${mapSVG()}</div></div>
+  <div class="box"><h3>ใจความหลัก</h3><ul>
+  <li>พลังงานที่ใช้ในชีวิตประจำวันมาจากปฏิกิริยาเคมี (ความร้อน แสง ไฟฟ้า) หรือปฏิกิริยานิวเคลียร์</li>
+  <li>สมการเคมีเขียนสารตั้งต้นซ้าย ผลิตภัณฑ์ขวา จำนวนอะตอมแต่ละธาตุเท่ากันทั้งสองข้าง และอาจบอกสถานะ พลังงาน และตัวเร่ง</li>
+  <li>ตัวเร่งปฏิกิริยาทำให้ปฏิกิริยาเร็วขึ้น โดยไม่เป็นส่วนของผลิตภัณฑ์ และได้คืนเมื่อปฏิกิริยาสิ้นสุด</li>
+  <li>เพิ่มความเข้มข้น อุณหภูมิ หรือพื้นที่ผิวของสารตั้งต้น ปฏิกิริยาเร็วขึ้น</li>
+  <li>ปฏิกิริยารีดอกซ์คือปฏิกิริยาที่มีการถ่ายโอนอิเล็กตรอน มีทั้งแบบให้และไม่ให้กระแสไฟฟ้า แบตเตอรี่เป็นเซลล์เคมีไฟฟ้า</li>
+  <li>สารกัมมันตรังสีมีนิวเคลียสไม่เสถียร สลายและแผ่รังสี ครึ่งชีวิตคือเวลาที่เหลือครึ่งหนึ่งของเดิม ใช้ประโยชน์ได้หลายด้านแต่ต้องป้องกันและจัดการอย่างเหมาะสม</li></ul></div>
+  <div class="box"><h3>สัญลักษณ์ในสมการเคมี (หนังสือเรียน ตาราง 4.1 และหน้า 99–101 ของคู่มือ)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th>สัญลักษณ์</th><th class="l">ความหมาย</th></tr></thead><tbody><tr><td>(s)</td><td class="l">ของแข็ง (solid)</td></tr><tr><td>(l)</td><td class="l">ของเหลว (liquid)</td></tr><tr><td>(g)</td><td class="l">แก๊ส (gas)</td></tr><tr><td>(aq)</td><td class="l">สารละลายในน้ำ (aqueous)</td></tr><tr><td>+ พลังงานทางขวา</td><td class="l">คายพลังงาน เช่น + 890 kJ/mol</td></tr><tr><td>+ พลังงานทางซ้าย</td><td class="l">ดูดพลังงาน เช่น N<sub>2</sub> + O<sub>2</sub> + 180.5 kJ/mol → 2NO</td></tr><tr><td>Δ บนลูกศร</td><td class="l">ให้ความร้อนเพื่อเริ่มปฏิกิริยา (บอกเงื่อนไข ไม่ได้บอกว่าดูดหรือคาย)</td></tr><tr><td>สูตรหรือชื่อบนลูกศร (เช่น Pt, Ni, ยีสต์)</td><td class="l">ตัวเร่งปฏิกิริยาที่ใช้</td></tr></tbody></table></div></div>
+  <div class="lab"><h3>ตัวตรวจจำนวนอะตอมในสมการ</h3><p class="small">ผู้จัดทำหน้าเขียนตัวนับอะตอมไว้ตรวจสมการจากหนังสือและแบบฝึกหัด (สัมประสิทธิ์คูณอะตอมทุกตัวในสูตร)</p>
+  <label for="eqs" class="lbl">เลือกสมการ</label><select id="eqs">${EQS.map((e,i)=>`<option value="${i}">สมการที่ ${i+1}</option>`).join('')}</select><p class="eq" id="eqshow" style="margin:8px 0"></p>
+  <div class="tw"><table class="tbl-sm mini"><thead><tr><th>ธาตุ</th><th>ซ้าย</th><th>ขวา</th><th>เท่ากัน?</th></tr></thead><tbody id="eqtb"></tbody></table></div><div class="res" id="eqres" aria-live="polite"></div></div>
+  <div class="box"><h3>ปัจจัยที่เพิ่มอัตราการเกิดปฏิกิริยา (กิจกรรม 4.1–4.3)</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">ปัจจัย</th><th class="l">ทำอย่างไรให้เร็วขึ้น</th><th class="l">ตัวอย่างจากกิจกรรม</th></tr></thead><tbody><tr><td class="l">ความเข้มข้น</td><td class="l">ใช้สารตั้งต้นเข้มข้นขึ้น</td><td class="l">HCl 7 %w/v เสร็จ 15 วินาที เทียบ 1 %w/v 50 วินาที</td></tr><tr><td class="l">อุณหภูมิ</td><td class="l">เพิ่มอุณหภูมิ</td><td class="l">HCl 1 % อุ่นประมาณ 60 °C เสร็จ 25 วินาที</td></tr><tr><td class="l">พื้นที่ผิว</td><td class="l">ทำสารให้ชิ้นเล็กลง (ผง ละออง)</td><td class="l">ผง CaCO<sub>3</sub> 50 วินาที ส่วนเม็ด &gt; 300 วินาที</td></tr><tr><td class="l">ตัวเร่งปฏิกิริยา</td><td class="l">เติมตัวเร่งที่เหมาะสม</td><td class="l">KI กับ H<sub>2</sub>O<sub>2</sub> ฟองมาก · Pt และ Rh ในเครื่องฟอกไอเสีย · ยีสต์ เอนไซม์</td></tr></tbody></table></div><p class="small">ตัวเลขเวลาอ้างจากตารางผลตัวอย่างของคู่มือ หน้า 107</p></div>
+  <div class="box"><h3>แบตเตอรี่และปฏิกิริยารีดอกซ์ (คู่มือ หน้า 111–112)</h3><div class="fig">${cellSVG()}</div><p class="small">ถ่านไฟฉายสังกะสี–คาร์บอน (หนังสือเรียน): สังกะสีขั้วลบให้อิเล็กตรอน ไหลไปยังขั้วบวกที่เป็นคาร์บอนเคลือบสารประกอบออกไซด์ของแมงกานีส กระแสไฟฟ้ามีทิศตรงข้ามกับอิเล็กตรอน ถ่านไฟฉายประจุใหม่ไม่ได้ ส่วนแบตเตอรี่มือถือประจุใหม่ได้ โดยปฏิกิริยาตอนประจุเป็นรีดอกซ์ทิศตรงกันข้าม ตัวอย่างรีดอกซ์อื่น: การเผาไหม้ การเกิดสนิม การสังเคราะห์ด้วยแสง การหายใจ (ไม่เป็นเซลล์เคมีไฟฟ้าเพราะไม่เกี่ยวข้องกับกระแสไฟฟ้า) แบตเตอรี่ใช้แล้วให้ทิ้งในที่รองรับ</p></div>
+  <div class="box"><h3>ตัวเลขที่ยกในคู่มือและหนังสือเรียน</h3><div class="tw"><table class="tbl-sm wide"><thead><tr><th class="l">เรื่อง</th><th class="l">ค่า</th><th>หน้า</th></tr></thead><tbody>
+  <tr><td class="l">การเผาไหม้โพรเพน</td><td class="l">คาย 2220 kJ/mol (หนังสือเรียน)</td><td>หนังสือเรียน</td></tr>
+  <tr><td class="l">กิจกรรม 4.1</td><td class="l">H<sub>2</sub>O<sub>2</sub> 3 %w/v ขวดละ 20 mL · น้ำยาล้างจานขวดละ 2 mL · KI อิ่มตัว 4–5 หยด · สังเกต 3 นาที</td><td>103–104</td></tr>
+  <tr><td class="l">กิจกรรม 4.2</td><td class="l">ผง 0.1 g × 3 · เม็ด 0.1 g · กรด 5 mL ต่อใบ · HCl 7 %w/v ≈ 2 mol/L · HCl 1 %w/v ≈ 0.3 mol/L · อุ่นกรดประมาณ 60 °C</td><td>106–107</td></tr>
+  <tr><td class="l">เวลาตัวอย่าง (วินาที)</td><td class="l">50 · 15 · 25 · &gt; 300</td><td>107</td></tr>
+  <tr><td class="l">ครึ่งชีวิต</td><td class="l">Mo-99 3 วัน (10 → 5 → 2.5 g) · Na-24 15 ชั่วโมง · Os-182 21.5 ชั่วโมง · C-14 5730 ปี</td><td>118, 121, 117</td></tr>
+  <tr><td class="l">ผลของรังสีช่วงต้น</td><td class="l">2 Gy · 8 Gy · &gt; 50 Gy</td><td>116</td></tr>
+  <tr><td class="l">ปริมาณรังสีในชีวิตประจำวัน</td><td class="l">0.39 · 0.48 · 0.29 · 1.30 · 0.62 mSv ต่อปี (หนังสือเรียน หน้า 125)</td><td>หนังสือเรียน</td></tr>
+  <tr><td class="l">เวลาที่คู่มือเสนอ</td><td class="l">บท 19 ชั่วโมง (4.1 เชื้อเพลิง 9 · 4.2 แบตเตอรี่ 2 · 4.3 สารกัมมันตรังสี 8)</td><td>97</td></tr></tbody></table></div></div>
+  <div class="box"><h3>คำศัพท์สำคัญ (เรียบเรียงใหม่)</h3><ul><li><b>เชื้อเพลิง</b> สารตั้งต้นของปฏิกิริยาเผาไหม้</li><li><b>อัตราการเกิดปฏิกิริยา</b> ปริมาณสารที่เปลี่ยนต่อเวลา</li><li><b>เซลล์เคมีไฟฟ้า</b> อุปกรณ์ผลิตไฟฟ้าจากปฏิกิริยารีดอกซ์</li><li><b>กัมมันตภาพรังสี</b> ปรากฏการณ์ที่สารแผ่รังสี · <b>กัมมันตรังสี</b> คำขยายนามเช่น สารกัมมันตรังสี</li><li><b>ครึ่งชีวิต</b> เวลาที่เหลือครึ่งหนึ่ง</li></ul></div>`,
+()=>{
+  const sel=$('#eqs');
+  function eq(){const e=EQS[+sel.value];$('#eqshow').innerHTML=e[0];
+    const a=sumAtoms(e[1]),b=sumAtoms(e[2]),ks=Array.from(new Set(Object.keys(a).concat(Object.keys(b)))).sort((x,y)=>{const o=['C','H','O'];const ix=o.indexOf(x),iy=o.indexOf(y);return(ix<0?9:ix)-(iy<0?9:iy)||(x<y?-1:1);});
+    $('#eqtb').innerHTML=ks.map(k=>`<tr><td>${k}</td><td>${a[k]||0}</td><td>${b[k]||0}</td><td>${(a[k]||0)===(b[k]||0)?'<span class="ok-t">เท่ากัน</span>':'<span class="bad-t">ไม่เท่ากัน</span>'}</td></tr>`).join('');
+    const ok=isBalanced(e[1],e[2]);const r=$('#eqres');r.className='res '+(ok?'ok':'bad');r.textContent=ok?'ดุลแล้ว จำนวนอะตอมทุกธาตุเท่ากัน':'ยังไม่ดุล ต้องปรับสัมประสิทธิ์ก่อน';}
+  sel.onchange=eq;eq();
+});
+
+})();
+</script>
+<script>
+K.col={"acc":"#0f766e","accd":"#0b5a54","acc2":"#e2efee","acc3":"#61a59f","soft":"#f1f7f6","line":"#d4e6e5"};window.PAGE.scoreId="วิทยาศาสตร์กายภาพ ม.5 บทที่ 4";window.PAGE.scoreTitle="วิทยาศาสตร์กายภาพ ม.5 บทที่ 4 พลังงาน (กิจกรรม 4.1–4.4)";K.start(window.PAGE);
+</script>
+</body>
+</html>

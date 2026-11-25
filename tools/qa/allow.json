@@ -1,0 +1,9 @@
+{
+  "_comment": "รายการ regex ที่ยกเว้นให้ (ใช้ flag g) 'text' = ลบข้อความที่ตรงก่อนสแกนหา undefined/NaN/[object/Infinity ; 'console' = ข้อความ console/log error ที่ไม่ถือเป็นข้อผิดพลาด",
+  "text": [
+    "NaNO[0-9₀-₉]*"
+  ],
+  "console": [
+    "favicon"
+  ]
+}
