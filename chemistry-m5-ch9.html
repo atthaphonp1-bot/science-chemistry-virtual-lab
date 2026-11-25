@@ -221,7 +221,7 @@ td.l,th.l{text-align:left}
 .read{display:inline-block;padding:3px 12px;border-radius:8px;background:#1b2a30;color:#9ff0c0;font:700 1.1rem ui-monospace,Menlo,monospace}
 .small{font-size:.86rem;color:var(--muted)}
 .fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
-.fig svg{display:block;width:100%;height:auto}
+.fig svg{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
 .q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
 .q p{margin:0 0 .4rem;font-weight:600}
 .opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
@@ -388,33 +388,33 @@ const REDUCED=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: red
 
 /* กราฟเส้น SVG: o={aria,xmax,ymax,xstep,ystep,xl,yl,series:[{n,c,pts,dash,dots}],vline} */
 function chart(o){
-  const W=o.w||540,H=o.h||280,L=52,R=16,T=14,B=46;
+  const W=300,H=Math.round((o.h||280)*.85),L=50,R=14,T=32,B=46;
   const X=x=>L+(W-L-R)*x/o.xmax,Y=y=>H-B-(H-T-B)*y/o.ymax;
   let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+o.aria+'"><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#fff"/>';
-  for(let y=0;y<=o.ymax+1e-9;y+=o.ystep)s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(y)+'" y2="'+Y(y)+'" stroke="#e3e9f3"/><text x="'+(L-6)+'" y="'+(Y(y)+4)+'" text-anchor="end" font-size="11" fill="#5d6b82">'+(+y.toFixed(2))+'</text>';
-  for(let x=0;x<=o.xmax+1e-9;x+=o.xstep)s+='<line x1="'+X(x)+'" x2="'+X(x)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#eef2f9"/><text x="'+X(x)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11" fill="#5d6b82">'+x+'</text>';
+  for(let y=0;y<=o.ymax+1e-9;y+=o.ystep)s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(y)+'" y2="'+Y(y)+'" stroke="#e3e9f3"/><text x="'+(L-6)+'" y="'+(Y(y)+4)+'" text-anchor="end" font-size="12.5" fill="#5d6b82">'+(+y.toFixed(2))+'</text>';
+  for(let x=0;x<=o.xmax+1e-9;x+=o.xstep)s+='<line x1="'+X(x)+'" x2="'+X(x)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#eef2f9"/><text x="'+X(x)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="12.5" fill="#5d6b82">'+x+'</text>';
   s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+(H-B)+'" y2="'+(H-B)+'" stroke="#8a93a8"/><line x1="'+L+'" x2="'+L+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#8a93a8"/>';
-  s+='<text x="'+((L+W-R)/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="12" fill="#33415c">'+o.xl+'</text><text transform="translate(13 '+((T+H-B)/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="#33415c">'+o.yl+'</text>';
+  s+='<text x="'+((L+W-R)/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="12.5" fill="#33415c">'+o.xl+'</text><text transform="translate(13 '+((T+H-B)/2)+') rotate(-90)" text-anchor="middle" font-size="12.5" fill="#33415c">'+o.yl+'</text>';
   if(o.vline!==undefined&&o.vline!==null)s+='<line x1="'+X(o.vline)+'" x2="'+X(o.vline)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#b63f43" stroke-dasharray="4 4"/>';
   (o.series||[]).forEach((se,k)=>{
     if(!se.pts.length)return;
     s+='<polyline fill="none" stroke="'+se.c+'" stroke-width="2.4" '+(se.dash?'stroke-dasharray="6 4" ':'')+'points="'+se.pts.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ')+'"/>';
     if(se.dots)se.pts.forEach(p=>{s+='<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3.4" fill="'+se.c+'"/>';});
-    s+='<rect x="'+(W-R-118)+'" y="'+(T+4+k*17-9)+'" width="12" height="3" fill="'+se.c+'"/><text x="'+(W-R-102)+'" y="'+(T+4+k*17)+'" font-size="11.5" fill="#33415c">'+se.n+'</text>';
+    s+='<rect x="'+(L+k*76)+'" y="9" width="12" height="3" fill="'+se.c+'"/><text x="'+(L+k*76+16)+'" y="14" font-size="12.5" fill="#33415c">'+se.n+'</text>';
   });
   return s+'</svg>';
 }
 function bars(o){ // แท่งเปรียบเทียบ o={aria,names,groups:[{n,c,v:[...]}],ymax}
-  const W=520,H=230,L=46,B=34,T=16,gw=(W-L-10)/o.names.length;
+  const W=300,L=46,T=52,PH=150,B=34,Y0=T+PH,H=Y0+B+8+18*o.groups.length,gw=(W-L-8)/o.names.length;
   let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+o.aria+'"><rect width="'+W+'" height="'+H+'" fill="#fff"/>';
-  const Y=v=>H-B-(H-B-T)*v/o.ymax;
-  for(let i=0;i<=4;i++){const v=o.ymax*i/4;s+='<line x1="'+L+'" x2="'+(W-6)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#e3e9f3"/><text x="'+(L-5)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="11" fill="#5d6b82">'+(+v.toPrecision(2))+'</text>';}
+  const Y=v=>Y0-PH*v/o.ymax;
+  for(let i=0;i<=4;i++){const v=o.ymax*i/4;s+='<line x1="'+L+'" x2="'+(W-6)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#e3e9f3"/><text x="'+(L-5)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="12.5" fill="#5d6b82">'+(+v.toPrecision(2))+'</text>';}
   o.names.forEach((nm,i)=>{
-    const bw=(gw-14)/o.groups.length;
-    o.groups.forEach((g,k)=>{const v=Math.min(o.ymax,g.v[i]);const x=L+i*gw+7+k*bw;s+='<rect x="'+x.toFixed(1)+'" y="'+Y(v).toFixed(1)+'" width="'+(bw-3).toFixed(1)+'" height="'+(H-B-Y(v)).toFixed(1)+'" fill="'+g.c+'"/><text x="'+(x+(bw-3)/2).toFixed(1)+'" y="'+(Y(v)-3).toFixed(1)+'" text-anchor="middle" font-size="10" fill="#33415c">'+(+g.v[i].toPrecision(3))+'</text>';});
-    s+='<text x="'+(L+i*gw+gw/2)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="12" fill="#33415c">'+nm+'</text>';
+    const bw=(gw-10)/o.groups.length;
+    o.groups.forEach((g,k)=>{const v=Math.min(o.ymax,g.v[i]);const x=L+i*gw+5+k*bw;s+='<rect x="'+x.toFixed(1)+'" y="'+Y(v).toFixed(1)+'" width="'+(bw-3).toFixed(1)+'" height="'+(Y0-Y(v)).toFixed(1)+'" fill="'+g.c+'"/><text transform="translate('+(x+(bw-3)/2+4.5).toFixed(1)+' '+(Y(v)-4).toFixed(1)+') rotate(-90)" font-size="12.5" fill="#33415c">'+(+g.v[i].toPrecision(3))+'</text>';});
+    s+='<text x="'+(L+i*gw+gw/2)+'" y="'+(Y0+16)+'" text-anchor="middle" font-size="12.5" fill="#33415c">'+nm+'</text>';
   });
-  o.groups.forEach((g,k)=>{s+='<rect x="'+(L+k*110)+'" y="'+(H-12)+'" width="11" height="8" fill="'+g.c+'"/><text x="'+(L+k*110+15)+'" y="'+(H-4)+'" font-size="11" fill="#33415c">'+g.n+'</text>';});
+  o.groups.forEach((g,k)=>{const y=Y0+B+8+18*k;s+='<rect x="'+L+'" y="'+(y-9)+'" width="11" height="9" fill="'+g.c+'"/><text x="'+(L+16)+'" y="'+y+'" font-size="12.5" fill="#33415c">'+g.n+'</text>';});
   return s+'</svg>';
 }
 
@@ -486,7 +486,7 @@ function act91(){
   <div class="lab"><h3>ห้องทดลองเสมือน: ย้ายลวดเสียบกระดาษ</h3>
    <div class="btns" role="group" aria-label="เลือกตอน"><button class="chip" type="button" id="p91_1" aria-pressed="true">ตอนที่ 1 (A 30 · B 10)</button><button class="chip" type="button" id="p91_2" aria-pressed="false">ตอนที่ 2 (A 40 · B 0)</button></div>
    <div class="btns"><button class="btn sm" type="button" id="n91">ย้ายครั้งถัดไป</button><button class="btn alt sm" type="button" id="a91">ย้ายครบ 5 ครั้ง</button><button class="btn alt sm" type="button" id="r91">เริ่มใหม่</button></div>
-   <div class="fig"><svg viewBox="0 0 560 250" id="g91" role="img" aria-label="กลุ่ม A และกลุ่ม B ของลวดเสียบกระดาษ"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 300" id="g91" role="img" aria-label="กลุ่ม A และกลุ่ม B ของลวดเสียบกระดาษ"></svg></div>
    <div class="tip" id="obs91" aria-live="polite"></div>
    <div class="tw"><table><thead><tr><th rowspan="2">ครั้งที่</th><th colspan="2">A</th><th colspan="2">B</th></tr><tr><th>ย้ายออก (อัน)</th><th>รวม (อัน)</th><th>ย้ายออก (อัน)</th><th>รวม (อัน)</th></tr></thead><tbody id="tb91"></tbody></table></div>
    <div class="cols"><div class="fig" id="c91a"></div><div class="fig" id="c91b"></div></div>
@@ -498,15 +498,15 @@ function act91(){
 function wire91(){
   const S={p:1,n:0};
   const data=()=>{const b=BOOK91[S.p];return clipRun(b.A0,b.B0,5);};
-  function dots(x,n,col){let s='';for(let i=0;i<n;i++){const r=Math.floor(i/10),c=i%10;s+='<rect x="'+(x+c*15)+'" y="'+(70+r*24)+'" width="10" height="18" rx="4" fill="none" stroke="'+col+'" stroke-width="2.5"/>';}return s;}
+  function dots(x,y0,n,col){let s='';for(let i=0;i<n;i++){const r=Math.floor(i/20),c=i%20;s+='<rect x="'+(x+c*12)+'" y="'+(y0+r*24)+'" width="8" height="18" rx="3" fill="none" stroke="'+col+'" stroke-width="2.2"/>';}return s;}
   function draw(){
     const b=BOOK91[S.p],rows=data().slice(0,S.n);
     const A=S.n?rows[S.n-1].A:b.A0,B=S.n?rows[S.n-1].B:b.B0,last=S.n?rows[S.n-1]:null;
-    let s='<rect x="20" y="40" width="170" height="130" rx="12" fill="#f3f7fd" stroke="#1f5fbf" stroke-width="2"/><rect x="370" y="40" width="170" height="130" rx="12" fill="#fff7ec" stroke="#d9811c" stroke-width="2"/>';
-    s+='<text x="105" y="32" text-anchor="middle" font-weight="700" fill="#1f5fbf">กลุ่ม A: '+A+' อัน</text><text x="455" y="32" text-anchor="middle" font-weight="700" fill="#b8650d">กลุ่ม B: '+B+' อัน</text>';
-    s+=dots(28,A,'#1f5fbf')+dots(378,B,'#d9811c');
-    if(last){s+='<text x="280" y="86" text-anchor="middle" font-size="13" fill="#1f5fbf">A → B ย้าย '+last.mA+' อัน</text><line x1="210" x2="350" y1="95" y2="95" stroke="#1f5fbf" stroke-width="3"/><polygon points="350,95 340,89 340,101" fill="#1f5fbf"/><text x="280" y="140" text-anchor="middle" font-size="13" fill="#b8650d">B → A ย้าย '+last.mB+' อัน</text><line x1="350" x2="210" y1="125" y2="125" stroke="#d9811c" stroke-width="3"/><polygon points="210,125 220,119 220,131" fill="#d9811c"/>';}
-    $('#g91').innerHTML=s+'<text x="280" y="215" text-anchor="middle" font-size="13" fill="#33415c">ครั้งที่ '+S.n+' จาก 5</text>';
+    let s='<rect x="14" y="28" width="272" height="76" rx="12" fill="#f3f7fd" stroke="#1f5fbf" stroke-width="2"/><rect x="14" y="190" width="272" height="76" rx="12" fill="#fff7ec" stroke="#d9811c" stroke-width="2"/>';
+    s+='<text x="150" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5fbf">กลุ่ม A: '+A+' อัน</text><text x="150" y="184" text-anchor="middle" font-size="14" font-weight="700" fill="#b8650d">กลุ่ม B: '+B+' อัน</text>';
+    s+=dots(24,38,A,'#1f5fbf')+dots(24,200,B,'#d9811c');
+    if(last){s+='<text x="80" y="128" text-anchor="middle" font-size="12.5" fill="#1f5fbf">A → B ย้าย '+last.mA+' อัน</text><line x1="80" x2="80" y1="136" y2="170" stroke="#1f5fbf" stroke-width="3"/><polygon points="80,178 74,168 86,168" fill="#1f5fbf"/><text x="220" y="128" text-anchor="middle" font-size="12.5" fill="#b8650d">B → A ย้าย '+last.mB+' อัน</text><line x1="220" x2="220" y1="170" y2="144" stroke="#d9811c" stroke-width="3"/><polygon points="220,136 214,146 226,146" fill="#d9811c"/>';}
+    $('#g91').innerHTML=s+'<text x="150" y="292" text-anchor="middle" font-size="13" fill="#33415c">ครั้งที่ '+S.n+' จาก 5</text>';
     $('#tb91').innerHTML='<tr><td>เริ่มต้น</td><td>-</td><td>'+b.A0+'</td><td>-</td><td>'+b.B0+'</td></tr>'+rows.map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+r.mA+'</td><td>'+r.A+'</td><td>'+r.mB+'</td><td>'+r.B+'</td></tr>').join('');
     const pa=[[0,b.A0]].concat(rows.map((r,i)=>[i+1,r.A])),pb=[[0,b.B0]].concat(rows.map((r,i)=>[i+1,r.B]));
     $('#c91a').innerHTML=chart({aria:'จำนวนลวดรวมในกลุ่ม A และ B ตามครั้งที่ย้าย',xmax:5,ymax:40,xstep:1,ystep:10,xl:'ครั้งที่ย้าย',yl:'จำนวนรวม (อัน)',h:240,series:[{n:'กลุ่ม A',c:'#1f5fbf',pts:pa,dots:1},{n:'กลุ่ม B',c:'#d9811c',pts:pb,dots:1}]});
@@ -671,7 +671,7 @@ function act94(){
   <div class="box"><h3>วิธีทำ (สรุปจากตัวอย่างผลในหนังสือ)</h3><ol><li>หลอดที่ 1 เติมน้ำกลั่น · หลอดที่ 2 เติม HCl · หลอดที่ 3 เติม NaOH ลงในน้ำดอกอัญชัน (สีม่วง) ในปริมาณที่กำหนด</li><li>สังเกตสีหลังเติมสาร แล้ววางไว้ 1 นาทีและสังเกตอีกครั้ง</li></ol></div>
   <div class="lab"><h3>ห้องทดลองเสมือน: น้ำดอกอัญชัน</h3>
    <p class="small">สมดุลของแอนโทไซยานินตามที่หนังสืออธิบาย: รูป A (สีน้ำเงิน) อยู่ในสมดุลกับ AH⁺ (สีแดง) เขียนเป็น <span class="eq">A + H₃O⁺ ⇌ AH⁺ + H₂O</span> · สัดส่วนสีแดงต่อน้ำเงินในแต่ละหลอดเป็นค่าสมมติเชิงคุณภาพของแบบจำลอง เพื่อให้สีที่เห็นเรียงตามผลในหนังสือ</p>
-   <div class="fig"><svg viewBox="0 0 560 250" id="g94" role="img" aria-label="หลอดทดลองน้ำดอกอัญชัน 4 หลอด"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 284" id="g94" role="img" aria-label="หลอดทดลองน้ำดอกอัญชัน 4 หลอด"></svg></div>
    <div class="btns"><button class="btn sm" type="button" id="b94_1">หลอด 1: เติมน้ำกลั่น</button><button class="btn sm" type="button" id="b94_2">หลอด 2: เติม HCl</button><button class="btn sm" type="button" id="b94_3">หลอด 3: เติม NaOH</button><button class="btn alt sm" type="button" id="w94">วางไว้ 1 นาที</button><button class="btn alt sm" type="button" id="r94">เริ่มใหม่</button></div>
    <div class="tip" id="o94" aria-live="polite">กดเติมสารทีละหลอด</div>
    <div class="tw"><table><thead><tr><th>หลอดที่</th><th>สารที่เติม</th><th>หลังเติมสาร</th><th>วางไว้ 1 นาที</th></tr></thead><tbody id="tb94"></tbody></table></div>
@@ -690,11 +690,13 @@ function wire94(){
   const NM={1:'น้ำกลั่น',2:'HCl',3:'NaOH'};
   const AFTER={1:'ม่วงเปลี่ยนเป็นม่วงน้ำเงิน',2:'ม่วงเปลี่ยนเป็นม่วงแดง',3:'ม่วงเปลี่ยนเป็นน้ำเงิน'};
   const WAIT={1:'ม่วงน้ำเงิน',2:'ม่วงแดง',3:'น้ำเงิน'};
-  function tubeSvg(x,label,col,sub){return'<rect x="'+(x-22)+'" y="50" width="44" height="130" rx="10" fill="#f5f7fb" stroke="#8a93a8" stroke-width="2"/><rect class="tube" x="'+(x-20)+'" y="82" width="40" height="96" rx="8" fill="'+col+'" opacity=".92"/><text x="'+x+'" y="40" text-anchor="middle" font-size="12.5" font-weight="700" fill="#33415c">'+label+'</text><text x="'+x+'" y="198" text-anchor="middle" font-size="11" fill="#5d6b82">'+sub+'</text>';}
+  function tubeSvg(x,label,col,sub){return'<rect x="'+(x-22)+'" y="50" width="44" height="130" rx="10" fill="#f5f7fb" stroke="#8a93a8" stroke-width="2"/><rect class="tube" x="'+(x-20)+'" y="82" width="40" height="96" rx="8" fill="'+col+'" opacity=".92"/><text x="'+x+'" y="40" text-anchor="middle" font-size="12.5" font-weight="700" fill="#33415c">'+label+'</text><text x="'+x+'" y="198" text-anchor="middle" font-size="12.5" fill="#5d6b82">'+sub+'</text>';}
   function draw(){
-    let s=tubeSvg(70,'เริ่มต้น',peaColor(X.start),'ม่วง');
-    [1,2,3].forEach((k,i)=>{s+=tubeSvg(210+i*130,'หลอดที่ '+k,peaColor(S.a[k-1]?X[k]:X.start),S.a[k-1]?'+ '+NM[k]:'ยังไม่เติม');});
-    s+='<text x="280" y="232" text-anchor="middle" font-size="11.5" fill="#33415c">แถบสี: น้ำเงิน (A) '+'→ แดง (AH⁺) · สัดส่วนสีแดง (ค่าสมมติ): เริ่มต้น '+X.start+(S.a[0]?' · น้ำ '+X[1]:'')+(S.a[1]?' · HCl '+X[2]:'')+(S.a[2]?' · NaOH '+X[3]:'')+'</text>';
+    let s=tubeSvg(42,'เริ่มต้น',peaColor(X.start),'ม่วง');
+    [1,2,3].forEach((k,i)=>{s+=tubeSvg(114+i*72,'หลอดที่ '+k,peaColor(S.a[k-1]?X[k]:X.start),S.a[k-1]?'+ '+NM[k]:'ยังไม่เติม');});
+    const pts=['เริ่มต้น '+X.start];if(S.a[0])pts.push('น้ำ '+X[1]);if(S.a[1])pts.push('HCl '+X[2]);if(S.a[2])pts.push('NaOH '+X[3]);
+    const ln=['แถบสี: น้ำเงิน (A) → แดง (AH⁺)','สัดส่วนสีแดง (ค่าสมมติ):'];for(let i=0;i<pts.length;i+=2)ln.push(pts.slice(i,i+2).join(' · '));
+    ln.forEach((t,i)=>{s+='<text x="150" y="'+(222+i*17)+'" text-anchor="middle" font-size="12.5" fill="#33415c">'+t+'</text>';});
     $('#g94').innerHTML=s;
     $('#tb94').innerHTML=[1,2,3].map(k=>'<tr><td>'+k+'</td><td>'+NM[k]+'</td><td>'+(S.a[k-1]?AFTER[k]:'—')+'</td><td>'+(S.a[k-1]&&S.w?'สารละลายมีสี'+WAIT[k]+' (สีคงที่)':'—')+'</td></tr>').join('');
     const n=S.a.filter(Boolean).length;

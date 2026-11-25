@@ -225,6 +225,9 @@ td.l,th.l{text-align:left}
 .small{font-size:.86rem;color:var(--muted)}
 .fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
 .fig svg{display:block;width:100%;height:auto}
+/* ขนาด SVG: จำกัดไม่ให้ขยายเกิน ~2.2 เท่าของ viewBox บนจอกว้าง และเพิ่มขนาดตัวอักษรในกราฟบนมือถือ (>=11px หลังย่อ) */
+.fig #tubes5,.fig #g5,.fig #t3g,.fig #t4g{max-width:900px;margin:0 auto}.cap2{max-width:840px;margin:0 auto}.tubesvg{max-width:190px;margin:0 auto}#g2{max-width:640px;margin:0 auto}
+@media(max-width:600px){#g2 text{font-size:14px}#t3g text,#t4g text,#g5 text,.cap2 text{font-size:17px}#tubes5 text{font-size:18px}}
 .stripcell{cursor:pointer}
 .bar{height:16px;border-radius:8px;background:var(--acc);min-width:3px;transition:width .5s}
 .barrow{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:6px 0;font-size:.92rem}
@@ -377,25 +380,25 @@ let cur=0;
 /* ======================= แบบทดสอบ ======================= */
 const QUIZ={
 '10.1':[
- {q:'สารละลายเบส 0.50 mol/L ของเอทิลเอมีน (K<sub>b</sub> 4.47×10⁻⁴) แอมโมเนีย (1.80×10⁻⁵) และฟีนิลเอมีน (7.41×10⁻¹⁰) เรียงร้อยละการแตกตัวจากมากไปน้อยได้อย่างไร',o:['เอทิลเอมีน > แอมโมเนีย > ฟีนิลเอมีน','ฟีนิลเอมีน > แอมโมเนีย > เอทิลเอมีน','แอมโมเนีย > เอทิลเอมีน > ฟีนิลเอมีน','ทั้งสามเท่ากันเพราะความเข้มข้นเท่ากัน'],a:0,w:'ที่ความเข้มข้นเท่ากัน เบสที่มี K<sub>b</sub> มากกว่าแตกตัวได้มากกว่า จึงเรียงตามค่า K<sub>b</sub>'},
+ {q:'สารละลายเบส 0.50 mol/L ของเอทิลเอมีน (K<sub>b</sub> 4.47×10⁻⁴) แอมโมเนีย (1.80×10⁻⁵) และฟีนิลเอมีน (7.41×10⁻¹⁰) เรียงร้อยละการแตกตัวจากมากไปน้อยได้อย่างไร',o:['ฟีนิลเอมีน > แอมโมเนีย > เอทิลเอมีน','แอมโมเนีย > เอทิลเอมีน > ฟีนิลเอมีน','เอทิลเอมีน > แอมโมเนีย > ฟีนิลเอมีน','ทั้งสามเท่ากันเพราะความเข้มข้นเท่ากัน'],a:2,w:'ที่ความเข้มข้นเท่ากัน เบสที่มี K<sub>b</sub> มากกว่าแตกตัวได้มากกว่า จึงเรียงตามค่า K<sub>b</sub>'},
  {q:'เมื่อเจือจางสารละลาย CH₃COOH จาก 1.0 เป็น 0.050 mol/L ร้อยละการแตกตัวเปลี่ยนอย่างไร (K<sub>a</sub> คงที่)',o:['เพิ่มขึ้น','ลดลง','ไม่เปลี่ยน','เพิ่มแล้วลดลง'],a:0,w:'หนังสือสรุปว่าเมื่อความเข้มข้นเพิ่ม ร้อยละการแตกตัวลดลง ดังนั้นเมื่อเจือจางจึงเพิ่มขึ้น (จากแล็บ 0.42% เป็น 1.9%)'},
- {q:'กรด HA 0.20 mol/L แตกตัวได้ร้อยละ 10 ส่วนกรด HB 0.020 mol/L แตกตัวได้ร้อยละ 20 HB เป็นกรดที่แรงกว่า HA ใช่หรือไม่',o:['ไม่ใช่ เพราะต้องเทียบด้วย K<sub>a</sub> (ค่าคงที่การแตกตัว) ไม่ใช่ร้อยละการแตกตัวที่ความเข้มข้นต่างกัน','ใช่ เพราะแตกตัวร้อยละมากกว่า','ใช่ เพราะความเข้มข้นต่ำกว่า','ตอบไม่ได้เลย'],a:0,w:'K<sub>a</sub> ของ HA = 0.20×0.10²/0.90 ≈ 2.2×10⁻³ ส่วน HB = 0.020×0.20²/0.80 = 1.0×10⁻³ จึงพบว่า HA แรงกว่า'}],
+ {q:'กรด HA 0.20 mol/L แตกตัวได้ร้อยละ 10 ส่วนกรด HB 0.020 mol/L แตกตัวได้ร้อยละ 20 HB เป็นกรดที่แรงกว่า HA ใช่หรือไม่',o:['ใช่ เพราะแตกตัวร้อยละมากกว่า','ใช่ เพราะความเข้มข้นต่ำกว่า','ตอบไม่ได้เลย','ไม่ใช่ เพราะต้องเทียบด้วย K<sub>a</sub> (ค่าคงที่การแตกตัว) ไม่ใช่ร้อยละการแตกตัวที่ความเข้มข้นต่างกัน'],a:3,w:'K<sub>a</sub> ของ HA = 0.20×0.10²/0.90 ≈ 2.2×10⁻³ ส่วน HB = 0.020×0.20²/0.80 = 1.0×10⁻³ จึงพบว่า HA แรงกว่า'}],
 '10.2':[
- {q:'สารละลาย NH₄Cl มีสมบัติเป็นอะไร และเพราะไอออนใด',o:['กรด เพราะ NH₄⁺ ให้โปรตอนแก่น้ำ','เบส เพราะ Cl⁻ รับโปรตอนจากน้ำ','กลาง เพราะเป็นเกลือ','เบส เพราะ NH₄⁺ รับโปรตอน'],a:0,w:'NH₄⁺ เป็นคู่กรดของเบสอ่อน NH₃ จึงให้โปรตอนกับน้ำได้ H₃O⁺ (K<sub>a</sub> = 5.56×10⁻¹⁰) ส่วน Cl⁻ เป็นคู่เบสของกรดแก่ ไม่ทำปฏิกิริยากับน้ำ'},
- {q:'ไอออนใดทำให้สารละลาย CH₃COONa เป็นเบส',o:['CH₃COO⁻','Na⁺','ทั้งสองไอออน','ไม่มีไอออนใด'],a:0,w:'CH₃COO⁻ เป็นคู่เบสของกรดอ่อน CH₃COOH จึงรับโปรตอนจากน้ำให้ OH⁻ (K<sub>b</sub> = 5.56×10⁻¹⁰) ส่วน Na⁺ ไม่ทำปฏิกิริยากับน้ำ'},
- {q:'NaHCO₃: HCO₃⁻ มี K<sub>a</sub> = 4.68×10⁻¹¹ และ K<sub>b</sub> = 2.24×10⁻⁸ สารละลายมีสมบัติอย่างไร',o:['เบส เพราะ K<sub>b</sub> มากกว่า K<sub>a</sub>','กรด เพราะ K<sub>a</sub> น้อยกว่า','กลาง เพราะให้และรับโปรตอนได้','กรด เพราะมีไฮโดรเจน'],a:0,w:'หนังสือสรุปว่า K<sub>b</sub> > K<sub>a</sub> สารละลายเป็นเบส'}],
+ {q:'สารละลาย NH₄Cl มีสมบัติเป็นอะไร และเพราะไอออนใด',o:['เบส เพราะ Cl⁻ รับโปรตอนจากน้ำ','กรด เพราะ NH₄⁺ ให้โปรตอนแก่น้ำ','กลาง เพราะเป็นเกลือ','เบส เพราะ NH₄⁺ รับโปรตอน'],a:1,w:'NH₄⁺ เป็นคู่กรดของเบสอ่อน NH₃ จึงให้โปรตอนกับน้ำได้ H₃O⁺ (K<sub>a</sub> = 5.56×10⁻¹⁰) ส่วน Cl⁻ เป็นคู่เบสของกรดแก่ ไม่ทำปฏิกิริยากับน้ำ'},
+ {q:'ไอออนใดทำให้สารละลาย CH₃COONa เป็นเบส',o:['Na⁺','ทั้งสองไอออน','ไม่มีไอออนใด','CH₃COO⁻'],a:3,w:'CH₃COO⁻ เป็นคู่เบสของกรดอ่อน CH₃COOH จึงรับโปรตอนจากน้ำให้ OH⁻ (K<sub>b</sub> = 5.56×10⁻¹⁰) ส่วน Na⁺ ไม่ทำปฏิกิริยากับน้ำ'},
+ {q:'NaHCO₃: HCO₃⁻ มี K<sub>a</sub> = 4.68×10⁻¹¹ และ K<sub>b</sub> = 2.24×10⁻⁸ สารละลายมีสมบัติอย่างไร',o:['กรด เพราะ K<sub>a</sub> น้อยกว่า','เบส เพราะ K<sub>b</sub> มากกว่า K<sub>a</sub>','กลาง เพราะให้และรับโปรตอนได้','กรด เพราะมีไฮโดรเจน'],a:1,w:'หนังสือสรุปว่า K<sub>b</sub> > K<sub>a</sub> สารละลายเป็นเบส'}],
 '10.3':[
  {q:'การไทเทรต CH₃COOH 0.10 mol/L ด้วย NaOH อินดิเคเตอร์ใดให้จุดยุติใกล้จุดสมมูลที่สุด',o:['ฟีนอล์ฟทาลีน (ช่วง pH 8.3–10.0)','เมทิลออเรนจ์ (ช่วง pH ประมาณ 3.1–4.4)','ใช้ได้เท่ากันทั้งสองชนิด','ไม่ต้องใช้อินดิเคเตอร์'],a:0,w:'จุดสมมูลเป็นสารละลายเกลือ CH₃COONa ซึ่งเป็นเบส (pH ≈ 8.7 ในแบบจำลองนี้) อยู่ในช่วงเปลี่ยนสีของฟีนอล์ฟทาลีน'},
- {q:'ทำไมปริมาตร NaOH ที่ใช้จนเมทิลออเรนจ์เป็นสีเหลืองจึงน้อยกว่าที่จุดสมมูลมาก',o:['เมทิลออเรนจ์เปลี่ยนสีที่ pH ต่ำ (ประมาณ 3.1–4.4) ซึ่งถึงก่อนจุดสมมูลที่ pH สูงกว่า 7','NaOH ที่ใช้ไม่บริสุทธิ์','CH₃COOH ระเหย','อ่านบิวเรตต์ผิดเสมอ'],a:0,w:'ในการไทเทรตกรดอ่อนกับเบสแก่ pH ถึง 4.4 ตั้งแต่เติม NaOH เพียงประมาณ 3 mL จากที่ต้องใช้ 10 mL'},
- {q:'จุดสมมูลของการไทเทรตกรดอ่อนกับเบสแก่มี pH อย่างไร',o:['มากกว่า 7','เท่ากับ 7','น้อยกว่า 7','ขึ้นกับอินดิเคเตอร์'],a:0,w:'หนังสือสรุปว่า กรดอ่อน–เบสแก่ จุดสมมูล pH > 7 (ผลิตภัณฑ์เป็นเกลือที่เป็นเบส)'}],
+ {q:'ทำไมปริมาตร NaOH ที่ใช้จนเมทิลออเรนจ์เป็นสีเหลืองจึงน้อยกว่าที่จุดสมมูลมาก',o:['NaOH ที่ใช้ไม่บริสุทธิ์','CH₃COOH ระเหย','เมทิลออเรนจ์เปลี่ยนสีที่ pH ต่ำ (ประมาณ 3.1–4.4) ซึ่งถึงก่อนจุดสมมูลที่ pH สูงกว่า 7','อ่านบิวเรตต์ผิดเสมอ'],a:2,w:'ในการไทเทรตกรดอ่อนกับเบสแก่ pH ถึง 4.4 ตั้งแต่เติม NaOH เพียงประมาณ 3 mL จากที่ต้องใช้ 10 mL'},
+ {q:'จุดสมมูลของการไทเทรตกรดอ่อนกับเบสแก่มี pH อย่างไร',o:['เท่ากับ 7','มากกว่า 7','น้อยกว่า 7','ขึ้นกับอินดิเคเตอร์'],a:1,w:'หนังสือสรุปว่า กรดอ่อน–เบสแก่ จุดสมมูล pH > 7 (ผลิตภัณฑ์เป็นเกลือที่เป็นเบส)'}],
 '10.4':[
- {q:'การไทเทรต HCl กับ NaOH ที่จุดสมมูลมี pH เท่าใด',o:['7','ต่ำกว่า 7','สูงกว่า 7','ขึ้นกับความเข้มข้น'],a:0,w:'กรดแก่–เบสแก่ ผลิตภัณฑ์คือ NaCl เป็นกลาง (รูป 10.11 หน้า 52)'},
- {q:'ช่วง pH ที่เปลี่ยนอย่างรวดเร็วของกรดแก่–เบสแก่กว้าง (ประมาณ 3–11) อินดิเคเตอร์ในแล็บนี้ชนิดใดใช้ได้',o:['เมทิลเรด โบรโมไทมอลบลู และฟีนอล์ฟทาลีน ใช้ได้ทั้งสามชนิด','ใช้ได้เฉพาะโบรโมไทมอลบลู','ใช้ได้เฉพาะฟีนอล์ฟทาลีน','ใช้ไม่ได้เลย'],a:0,w:'ช่วงเปลี่ยนสีของทั้งสามชนิดอยู่ในช่วงที่ pH กระโดด จึงให้ปริมาตรที่จุดยุติใกล้เคียงกัน'},
+ {q:'การไทเทรต HCl กับ NaOH ที่จุดสมมูลมี pH เท่าใด',o:['ต่ำกว่า 7','สูงกว่า 7','ขึ้นกับความเข้มข้น','7'],a:3,w:'กรดแก่–เบสแก่ ผลิตภัณฑ์คือ NaCl เป็นกลาง (รูป 10.11 หน้า 52)'},
+ {q:'ช่วง pH ที่เปลี่ยนอย่างรวดเร็วของกรดแก่–เบสแก่กว้าง (ประมาณ 3–11) อินดิเคเตอร์ในแล็บนี้ชนิดใดใช้ได้',o:['ใช้ได้เฉพาะโบรโมไทมอลบลู','ใช้ได้เฉพาะฟีนอล์ฟทาลีน','เมทิลเรด โบรโมไทมอลบลู และฟีนอล์ฟทาลีน ใช้ได้ทั้งสามชนิด','ใช้ไม่ได้เลย'],a:2,w:'ช่วงเปลี่ยนสีของทั้งสามชนิดอยู่ในช่วงที่ pH กระโดด จึงให้ปริมาตรที่จุดยุติใกล้เคียงกัน'},
  {q:'ไทเทรต HCl 10.00 mL ด้วย NaOH 0.100 mol/L ใช้ NaOH เฉลี่ย 8.50 mL HCl เข้มข้นเท่าใด',o:['0.0850 mol/L','0.118 mol/L','0.850 mol/L','0.0085 mol/L'],a:0,w:'n(NaOH) = 0.100 × 8.50/1000 = 8.50×10⁻⁴ mol = n(HCl) ดังนั้น C = 8.50×10⁻⁴ / 0.01000 L = 0.0850 mol/L'}],
 '10.5':[
- {q:'เมื่อหยดกรดหรือเบสเล็กน้อยลงในสารละลายผสม CH₃COOH กับ CH₃COONa pH เปลี่ยนอย่างไรเมื่อเทียบกับน้ำ',o:['เปลี่ยนน้อยมาก','เปลี่ยนมากกว่าน้ำ','เปลี่ยนเท่ากับน้ำ','ไม่เปลี่ยนเลยแม้เติมมากแค่ไหน'],a:0,w:'ทำหน้าที่เป็นบัฟเฟอร์ คู่กรด–เบสทำปฏิกิริยากับ H₃O⁺ หรือ OH⁻ ที่เติมเข้าไป'},
- {q:'บัฟเฟอร์ CH₃COOH/CH₃COONa ที่มีความเข้มข้นกรดเท่ากับเกลือ มี pH เท่ากับอะไร',o:['pK<sub>a</sub> ของ CH₃COOH (≈ 4.74)','7.00','14 − pK<sub>a</sub>','pK<sub>b</sub> ของ CH₃COO⁻'],a:0,w:'pH = pK<sub>a</sub> − log([HA]/[A⁻]) เมื่ออัตราส่วนเท่ากับ 1 ค่า log เป็นศูนย์ ดังนั้น pH = pK<sub>a</sub>'},
- {q:'สารละลายคู่ใดเป็นบัฟเฟอร์',o:['NH₄Cl กับ NH₃','HCl กับ NaCl','NaOH กับ NaCl','HNO₃ กับ NaNO₃'],a:0,w:'บัฟเฟอร์ประกอบด้วยกรดอ่อนกับเกลือของกรดอ่อน หรือเบสอ่อนกับเกลือของเบสอ่อนที่เป็นคู่กรด–เบสกัน (ตาราง 10.5)'}]
+ {q:'เมื่อหยดกรดหรือเบสเล็กน้อยลงในสารละลายผสม CH₃COOH กับ CH₃COONa pH เปลี่ยนอย่างไรเมื่อเทียบกับน้ำ',o:['เปลี่ยนมากกว่าน้ำ','เปลี่ยนเท่ากับน้ำ','ไม่เปลี่ยนเลยแม้เติมมากแค่ไหน','เปลี่ยนน้อยมาก'],a:3,w:'ทำหน้าที่เป็นบัฟเฟอร์ คู่กรด–เบสทำปฏิกิริยากับ H₃O⁺ หรือ OH⁻ ที่เติมเข้าไป'},
+ {q:'บัฟเฟอร์ CH₃COOH/CH₃COONa ที่มีความเข้มข้นกรดเท่ากับเกลือ มี pH เท่ากับอะไร',o:['7.00','14 − pK<sub>a</sub>','pK<sub>a</sub> ของ CH₃COOH (≈ 4.74)','pK<sub>b</sub> ของ CH₃COO⁻'],a:2,w:'pH = pK<sub>a</sub> − log([HA]/[A⁻]) เมื่ออัตราส่วนเท่ากับ 1 ค่า log เป็นศูนย์ ดังนั้น pH = pK<sub>a</sub>'},
+ {q:'สารละลายคู่ใดเป็นบัฟเฟอร์',o:['HCl กับ NaCl','NH₄Cl กับ NH₃','NaOH กับ NaCl','HNO₃ กับ NaNO₃'],a:1,w:'บัฟเฟอร์ประกอบด้วยกรดอ่อนกับเกลือของกรดอ่อน หรือเบสอ่อนกับเกลือของเบสอ่อนที่เป็นคู่กรด–เบสกัน (ตาราง 10.5)'}]
 };
 function quizHTML(act){
   return'<div class="box" id="quiz-'+act.replace('.','_')+'"><h3>แบบทดสอบสั้น (ข้อละ 1 คะแนน)</h3>'+QUIZ[act].map((q,i)=>'<div class="q" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>'<label class="opt"><input type="radio" name="q'+act.replace('.','_')+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+'<div class="why hide"></div></div>').join('')+
@@ -461,7 +464,7 @@ function wire101(){
     [0,1,2].forEach(p=>s+=`<text x="34" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="40" x2="300" y1="${Y(p)}" y2="${Y(p)}" stroke="#eef0f6"/>`);
     s+='<text x="170" y="218" font-size="11" text-anchor="middle" fill="#5d6b82">ความเข้มข้น CH₃COOH (mol/L)</text><text x="10" y="105" font-size="11" fill="#5d6b82" transform="rotate(-90 10 105)" text-anchor="middle">ร้อยละการแตกตัว</text>';
     if(cs.length>1)s+='<polyline fill="none" stroke="#7a4fb5" stroke-width="2" points="'+cs.map(c=>X(c)+','+Y(rec[c].pct)).join(' ')+'"/>';
-    cs.forEach(c=>s+=`<circle cx="${X(c)}" cy="${Y(rec[c].pct)}" r="5" fill="#7a4fb5"/><text x="${X(c)+7}" y="${Y(rec[c].pct)-7}" font-size="11" fill="#33415c">${pct(rec[c].pct)}</text>`);
+    cs.forEach(c=>s+=`<circle cx="${X(c)}" cy="${Y(rec[c].pct)}" r="5" fill="#7a4fb5"/><text x="${X(c)>250?X(c)-7:X(c)+7}" y="${Y(rec[c].pct)-7}" text-anchor="${X(c)>250?'end':'start'}" font-size="11" fill="#33415c">${pct(rec[c].pct)}</text>`);
     $('#g2').innerHTML=s;tip();
   };
   $$('#cchips .chip').forEach(b=>b.onclick=()=>{const c=+b.dataset.c;rec[c]=weakIon(KA_AC,c);b.setAttribute('aria-pressed','true');draw2();});
@@ -477,7 +480,7 @@ const SALTS={nacl:{n:'NaCl',pH:7.0,ions:'Na⁺ และ Cl⁻',why:'ทั้�
 const SALT_C=0.5; // สมมติของแบบจำลอง: 1 ช้อนเบอร์ 1 ละลายใน 5 mL ประมาณ 0.5 mol/L (หนังสือไม่ระบุมวล)
 SALTS.nh4cl.pH=-Math.log10(weakIon(KA_NH4,SALT_C).x);
 SALTS.ch3coona.pH=14+Math.log10(weakIon(KB_AC,SALT_C).x);
-function strip(clickable){return'<svg viewBox="0 0 420 70" class="fig" role="img" aria-label="แถบสีของยูนิเวอร์ซัลอินดิเคเตอร์ pH 1–14" style="border:0;padding:0">'+UI_COL.map((c,i)=>`<g class="${clickable?'stripcell':''}" data-ph="${i+1}"${clickable?` tabindex="0" role="button" aria-label="pH ${i+1}"`:''}><rect x="${i*30}" y="6" width="30" height="46" fill="${c}"/><text x="${i*30+15}" y="35" text-anchor="middle" font-size="13" fill="#fff">${i+1}</text></g>`).join('')+'</svg>';}
+function strip(clickable){return'<svg viewBox="0 0 420 70" class="fig cap2" role="img" aria-label="แถบสีของยูนิเวอร์ซัลอินดิเคเตอร์ pH 1–14" style="border:0;padding:0">'+UI_COL.map((c,i)=>`<g class="${clickable?'stripcell':''}" data-ph="${i+1}"${clickable?` tabindex="0" role="button" aria-label="pH ${i+1}"`:''}><rect x="${i*30}" y="6" width="30" height="46" fill="${c}"/><text x="${i*30+15}" y="35" text-anchor="middle" font-size="13" fill="#fff">${i+1}</text></g>`).join('')+'</svg>';}
 function act102(){
   return`<h2>กิจกรรม 10.2 สมบัติกรด–เบสของสารละลายเกลือ</h2><p class="sub">หนังสือหน้า 30–31 · ทดลองสมบัติกรด–เบสของสารละลายเกลือ</p>
   <div class="cols"><div class="box"><h3>จุดประสงค์ (ตามหนังสือ)</h3><ol><li>ทดลองเพื่อศึกษาสมบัติกรด–เบสของสารละลายเกลือ</li><li>ระบุสมบัติกรด–เบสของสารละลายเกลือจากอินดิเคเตอร์</li><li>ระบุชนิดของไอออนที่ส่งผลต่อสมบัติกรด–เบสของสารละลายเกลือ</li></ol></div>
@@ -485,7 +488,7 @@ function act102(){
   <div class="box"><h3>วิธีการทดลอง (ตามหนังสือ)</h3><ol><li>ใส่ NaCl, NH₄Cl และ CH₃COONa ลงในหลอดทดลอง หลอดละ 1 ชนิด ปริมาณ 1 ช้อนเบอร์ 1 เติมน้ำ 5 mL คนจนเป็นสารละลายเนื้อเดียว</li><li>หยดยูนิเวอร์ซัลอินดิเคเตอร์หลอดละ 1 หยด เขย่า สังเกตสี เทียบกับแถบสี แล้วบันทึก pH</li></ol></div>
   <div class="lab"><h3>โต๊ะปฏิบัติการ</h3><p class="small">กดปุ่มใต้หลอดทีละขั้น เมื่อหยดอินดิเคเตอร์แล้ว ให้คลิกที่ช่องสีในแถบเพื่อบันทึก pH ที่คุณอ่านได้</p>
    <div class="cols" style="grid-template-columns:repeat(3,1fr)" id="tubes2">${Object.keys(SALTS).map(k=>`<div class="fig" data-s="${k}" style="text-align:center"><b>${SALTS[k].n}</b>
-   <svg viewBox="0 0 100 130" role="img" aria-label="หลอดทดลองใส่สารละลายเกลือ"><rect x="30" y="10" width="40" height="100" rx="18" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect class="tube liq" x="32" y="110" width="36" height="0" fill="#eef3fa"/><g class="dropg hide"><circle cx="50" cy="4" r="4" fill="#6b3fa0" class="dropanim"/></g></svg>
+   <svg class="tubesvg" viewBox="0 0 100 130" role="img" aria-label="หลอดทดลองใส่สารละลายเกลือ"><rect x="30" y="10" width="40" height="100" rx="18" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect class="tube liq" x="32" y="110" width="36" height="0" fill="#eef3fa"/><g class="dropg hide"><circle cx="50" cy="4" r="4" fill="#6b3fa0" class="dropanim"/></g></svg>
    <div class="small stage">ยังไม่ได้ใส่เกลือ</div><button class="btn sm" type="button" data-step="0">ใส่เกลือ 1 ช้อนเบอร์ 1</button></div>`).join('')}</div>
    <p class="lbl">แถบสีเทียบ (คลิกเลือก pH ที่ตรงกับสีของหลอดที่หยดอินดิเคเตอร์แล้ว)</p><div id="strip2">${strip(true)}</div><p class="small" id="msg2" aria-live="polite"></p>
    <div class="btns"><label class="small">เลือกหลอดที่จะบันทึก <select id="pick2" aria-label="เลือกหลอด"><option value="nacl">NaCl</option><option value="nh4cl">NH₄Cl</option><option value="ch3coona">CH₃COONa</option></select></label></div>
@@ -542,7 +545,7 @@ function mountTitration(host,cfg){
    <defs><clipPath id="${cfg.id}fl"><path d="M112 300 L112 324 L78 364 Q74 372 84 372 L176 372 Q186 372 182 364 L148 324 L148 300 Z"/></clipPath></defs>
    <rect x="118" y="14" width="24" height="230" rx="3" fill="#fff" stroke="#8a93a8" stroke-width="2"/>
    <rect id="${cfg.id}liq" class="tube" x="120" y="16" width="20" height="226" fill="#cfe3ff"/>
-   ${[0,10,20,30,40,50].map(v=>`<line x1="142" x2="150" y1="${16+v/50*226}" y2="${16+v/50*226}" stroke="#8a93a8"/><text x="153" y="${20+v/50*226}" font-size="10" fill="#5d6b82">${v}</text>`).join('')}
+   ${[0,10,20,30,40,50].map(v=>`<line x1="142" x2="150" y1="${16+v/50*226}" y2="${16+v/50*226}" stroke="#8a93a8"/><text x="153" y="${20+v/50*226}" font-size="11" fill="#5d6b82">${v}</text>`).join('')}
    <rect x="110" y="244" width="40" height="8" fill="#a9b2c6"/><rect x="154" y="244" width="26" height="8" rx="2" fill="#7a4fb5"/><rect x="127" y="252" width="6" height="40" fill="#cfd6e4"/>
    <g id="${cfg.id}drop" class="hide"><circle cx="130" cy="292" r="4" fill="#6aa0e8" class="dropanim"/></g>
    <path d="M112 300 L112 324 L78 364 Q74 372 84 372 L176 372 Q186 372 182 364 L148 324 L148 300 Z" fill="#fff" fill-opacity=".4" stroke="#8a93a8" stroke-width="2"/>
@@ -556,7 +559,7 @@ function mountTitration(host,cfg){
    <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" id="${cfg.id}ph"> แสดง pH และกราฟการไทเทรต (โหมดอธิบายผล ไม่มีในการทดลองจริง)</label>
    <p class="small">1 mL = 20 หยด · ไขช้า ๆ ใกล้จุดยุติทีละหยด หยุดเมื่อสีเปลี่ยน<b>อย่างถาวร</b> ตามหนังสือ</p></div></div></div>
   <div class="tw"><table id="${cfg.id}tb"><thead><tr><th class="l">อินดิเคเตอร์</th><th>ครั้งที่ 1</th><th>ครั้งที่ 2</th><th>ครั้งที่ 3</th><th>ครั้งที่ 4–5 (ถ้าจำเป็น)</th><th>เฉลี่ย (mL)</th></tr></thead><tbody></tbody></table></div>
-  <div class="fig hide" id="${cfg.id}gw" style="margin-top:10px"><svg id="${cfg.id}g" viewBox="0 0 420 250" role="img" aria-label="กราฟการไทเทรต"></svg></div><p class="small hide" id="${cfg.id}gcap"></p>`;
+  <div class="fig hide" id="${cfg.id}gw" style="margin-top:10px"><svg id="${cfg.id}g" viewBox="0 0 420 262" role="img" aria-label="กราฟการไทเทรต"></svg></div><p class="small hide" id="${cfg.id}gcap"></p>`;
   const $$$=s=>$('#'+cfg.id+s,host);
   const V=()=>S.drops*DROP;
   const pHnow=()=>titrationPH(S.Ca,cfg.Va,cfg.Cb,V(),cfg.Ka);
@@ -586,15 +589,15 @@ function mountTitration(host,cfg){
     gw.classList.toggle('hide',!S.showPH);cap.classList.toggle('hide',!S.showPH);if(!S.showPH)return;
     const X=v=>46+v/20*350,Y=p=>210-p/14*190;
     let s='<line x1="46" y1="210" x2="396" y2="210" stroke="#8a93a8"/><line x1="46" y1="20" x2="46" y2="210" stroke="#8a93a8"/>';
-    [0,5,10,15,20].forEach(v=>s+=`<text x="${X(v)}" y="226" font-size="11" text-anchor="middle" fill="#5d6b82">${v}</text>`);
+    [0,5,10,15,20].forEach(v=>s+=`<text x="${X(v)}" y="229" font-size="11" text-anchor="middle" fill="#5d6b82">${v}</text>`);
     [0,2,4,6,8,10,12,14].forEach(p=>s+=`<text x="40" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="46" x2="396" y1="${Y(p)}" y2="${Y(p)}" stroke="#f0f2f8"/>`);
     cfg.indicators.forEach(k=>{const d=IND[k];s+=`<rect x="46" y="${Y(d.hi)}" width="350" height="${Y(d.lo)-Y(d.hi)}" fill="${mix(d.a==='#eef3fa'?'#f2a0cc':d.a,d.b,.5)}" opacity="${k===S.ind?.3:.1}"/>`;});
     const pts=[];for(let v=0;v<=20.001;v+=0.05)pts.push(X(v)+','+Y(titrationPH(S.Ca,cfg.Va,cfg.Cb,v,cfg.Ka)));
     s+='<polyline fill="none" stroke="#c0392b" stroke-width="2" points="'+pts.join(' ')+'"/>';
-    const ve=S.Ca*cfg.Va/cfg.Cb;s+=`<line x1="${X(ve)}" x2="${X(ve)}" y1="20" y2="210" stroke="#7a4fb5" stroke-dasharray="4 3"/><text x="${X(ve)+4}" y="34" font-size="11" fill="#7a4fb5">จุดสมมูล ${ve.toFixed(2)} mL (pH ${titrationPH(S.Ca,cfg.Va,cfg.Cb,ve,cfg.Ka).toFixed(2)})</text>`;
+    const ve=S.Ca*cfg.Va/cfg.Cb;s+=`<line x1="${X(ve)}" x2="${X(ve)}" y1="20" y2="210" stroke="#7a4fb5" stroke-dasharray="4 3"/><text x="${X(ve)-6}" y="36" text-anchor="end" font-size="11" fill="#7a4fb5">จุดสมมูล ${ve.toFixed(2)} mL<tspan x="${X(ve)-6}" dy="1.25em">(pH ${titrationPH(S.Ca,cfg.Va,cfg.Cb,ve,cfg.Ka).toFixed(2)})</tspan></text>`;
     cfg.indicators.forEach(k=>stat(k).arr.forEach(v=>s+=`<circle cx="${X(v)}" cy="${Y(titrationPH(S.Ca,cfg.Va,cfg.Cb,v,cfg.Ka))}" r="4" fill="#1769e0"/>`));
     s+=`<circle cx="${X(Math.min(20,V()))}" cy="${Y(pHnow())}" r="5" fill="#fff" stroke="#172033" stroke-width="2"/>`;
-    s+='<text x="221" y="244" font-size="11" text-anchor="middle" fill="#5d6b82">ปริมาตร NaOH (mL)</text>';
+    s+='<text x="221" y="256" font-size="11" text-anchor="middle" fill="#5d6b82">ปริมาตร NaOH (mL)</text>';
     $$$('g').innerHTML=s;
     cap.textContent='เส้นแดง: pH ที่คำนวณจากแบบจำลอง · แถบสีจาง: ช่วง pH เปลี่ยนสีของอินดิเคเตอร์ · จุดน้ำเงิน: จุดยุติที่คุณบันทึก · เส้นประ: จุดสมมูล';
   }
@@ -688,9 +691,9 @@ function act105(){
   <div class="lab"><h3>ห้องทดลองเสมือน</h3>
    <p class="small">แบบจำลองกำหนด 1 หยด = 0.05 mL (ตามหนังสือ 1 mL = 20 หยด ในแบบฝึกหัด 10.7) และไม่นับปริมาตรของอินดิเคเตอร์ ค่า pH คำนวณจากสมดุลประจุของ CH₃COOH/CH₃COO⁻ (K<sub>a</sub> = 1.80×10⁻⁵) ส่วนสีที่เห็นคือสีของยูนิเวอร์ซัลอินดิเคเตอร์ที่ pH ปัดเป็นจำนวนเต็ม</p>
    <div class="btns"><button class="btn" type="button" id="s1">ขั้น 2: หยดอินดิเคเตอร์ทุกหลอด</button><button class="btn alt" type="button" id="sH" disabled>ขั้น 3: หยด HCl 1 หยด (หลอด 1 และ 3)</button><button class="btn alt" type="button" id="sO" disabled>ขั้น 4: หยด NaOH 1 หยด (หลอด 2 และ 4)</button><button class="btn alt" type="button" id="sR">เริ่มใหม่</button></div>
-   <div class="fig"><svg viewBox="0 0 440 190" id="tubes5" role="img" aria-label="หลอดทดลอง 4 หลอด"></svg></div>
+   <div class="fig"><svg viewBox="0 0 440 222" id="tubes5" role="img" aria-label="หลอดทดลอง 4 หลอด"></svg></div>
    <div class="tw"><table id="t5"><thead><tr><th class="l">หลอด</th><th>สารในหลอด</th><th>pH เริ่มต้น</th><th>หยด HCl/NaOH</th><th>pH หลังเติม</th><th>pH เปลี่ยน</th></tr></thead><tbody></tbody></table></div>
-   <div class="fig" style="margin-top:10px"><svg id="g5" viewBox="0 0 420 250" role="img" aria-label="กราฟ pH เมื่อหยดกรดหรือเบสเพิ่ม"></svg></div><p class="small">กราฟเปรียบเทียบน้ำ (เส้นแดง) กับบัฟเฟอร์ (เส้นน้ำเงิน) เมื่อหยด HCl (ซ้าย) หรือ NaOH (ขวา) 0–10 หยด คำนวณจากแบบจำลอง จุดที่ระบายสีคือค่าที่คุณเติมจริงในหลอดบนหน้านี้</p></div>
+   <div class="fig" style="margin-top:10px"><svg id="g5" viewBox="0 0 420 264" role="img" aria-label="กราฟ pH เมื่อหยดกรดหรือเบสเพิ่ม"></svg></div><p class="small">กราฟเปรียบเทียบน้ำ (เส้นแดง) กับบัฟเฟอร์ (เส้นน้ำเงิน) เมื่อหยด HCl (ซ้าย) หรือ NaOH (ขวา) 0–10 หยด คำนวณจากแบบจำลอง จุดที่ระบายสีคือค่าที่คุณเติมจริงในหลอดบนหน้านี้</p></div>
   <div class="box"><h3>คำถามท้ายการทดลอง (ตามหนังสือ)</h3>${written('w105_1','1. เมื่อเติม HCl ค่า pH ของสารละลายหลอดที่ 1 และ 3 เปลี่ยนแปลงเหมือนหรือต่างกันอย่างไร')}${written('w105_2','2. เมื่อเติม NaOH ค่า pH ของสารละลายหลอดที่ 2 และ 4 เปลี่ยนแปลงเหมือนหรือต่างกันอย่างไร')}</div>
   <div class="box"><h3>ความรู้เสริมจากหนังสือ</h3>pH = pK<sub>a</sub> − log([กรด]/[เกลือ]) เมื่อความเข้มข้นกรดเท่ากับเกลือ pH = pK<sub>a</sub> · บัฟเฟอร์ที่ควบคุม pH ได้ดี อัตราส่วนความเข้มข้นของคู่กรด–เบสควรอยู่ระหว่าง 0.1–10 · บัฟเฟอร์ที่เข้มข้นสูงควบคุม pH ได้ดีกว่าที่เข้มข้นต่ำ (หน้า 67)</div>
   ${quizHTML('10.5')}`;
@@ -705,8 +708,8 @@ function wire105(){
     for(let i=0;i<4;i++){
       const x=30+i*105,p=ph(i);const fill=S.step===0?'#eef3fa':uiColor(p);
       s+=`<rect x="${x}" y="30" width="46" height="110" rx="20" fill="#fff" stroke="#8a93a8" stroke-width="2"/><rect class="tube" x="${x+2}" y="82" width="42" height="56" rx="18" fill="${fill}"/>`;
-      s+=`<text x="${x+23}" y="20" text-anchor="middle" font-size="12" fill="#33415c">หลอด ${i+1}</text><text x="${x+23}" y="158" text-anchor="middle" font-size="11" fill="#5d6b82">${i<2?'น้ำ 2 mL':'CH₃COOH+CH₃COONa'}</text>`;
-      s+=`<text x="${x+23}" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#33415c">${p===null?'':'pH ≈ '+Math.max(1,Math.min(14,Math.round(p)))}</text>`;
+      s+=`<text x="${x+23}" y="20" text-anchor="middle" font-size="12" fill="#33415c">หลอด ${i+1}</text><text x="${x+23}" y="158" text-anchor="middle" font-size="11" fill="#5d6b82">${i<2?'น้ำ 2 mL':'CH₃COOH'}</text>${i<2?'':`<text x="${x+23}" y="178" text-anchor="middle" font-size="11" fill="#5d6b82">CH₃COONa</text>`}`;
+      s+=`<text x="${x+23}" y="204" text-anchor="middle" font-size="12" font-weight="700" fill="#33415c">${p===null?'':'pH ≈ '+Math.max(1,Math.min(14,Math.round(p)))}</text>`;
     }
     $('#tubes5').innerHTML=s;
     $('#t5 tbody').innerHTML=[0,1,2,3].map(i=>{const p=ph(i);if(p===null)return`<tr><td class="l">${i+1}</td><td>${i<2?'น้ำ':'CH₃COOH + CH₃COONa'}</td><td colspan="4" class="small">ยังไม่ได้หยดอินดิเคเตอร์</td></tr>`;
@@ -717,13 +720,13 @@ function wire105(){
     graph();
   }
   function graph(){
-    const X=d=>210+d*19,Y=p=>215-p/14*195;
-    let s='<line x1="20" y1="215" x2="400" y2="215" stroke="#8a93a8"/><line x1="210" y1="20" x2="210" y2="215" stroke="#d3d8e6"/>';
-    [-10,-5,0,5,10].forEach(d=>s+=`<text x="${X(d)}" y="231" font-size="11" text-anchor="middle" fill="#5d6b82">${d<0?'HCl '+(-d):d>0?'NaOH '+d:'0'}</text>`);
-    [0,2,4,6,8,10,12,14].forEach(p=>s+=`<text x="14" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="20" x2="400" y1="${Y(p)}" y2="${Y(p)}" stroke="#f0f2f8"/>`);
+    const X=d=>216+d*17,Y=p=>215-p/14*195;
+    let s='<line x1="34" y1="215" x2="400" y2="215" stroke="#8a93a8"/><line x1="216" y1="20" x2="216" y2="215" stroke="#d3d8e6"/>';
+    [-10,-5,0,5,10].forEach(d=>s+=`<text x="${X(d)}" y="234" font-size="11" text-anchor="middle" fill="#5d6b82">${d<0?'HCl '+(-d):d>0?'NaOH '+d:'0'}</text>`);
+    [0,2,4,6,8,10,12,14].forEach(p=>s+=`<text x="28" y="${Y(p)+4}" font-size="11" text-anchor="end" fill="#5d6b82">${p}</text><line x1="34" x2="400" y1="${Y(p)}" y2="${Y(p)}" stroke="#f0f2f8"/>`);
     [['water','#c0392b'],['buf','#1769e0']].forEach(([k,c])=>{const pts=[];for(let d=-10;d<=10;d+=.5)pts.push(X(d)+','+Y(d<0?bufPH(k,-d,0):bufPH(k,0,d)));s+=`<polyline fill="none" stroke="${c}" stroke-width="2" points="${pts.join(' ')}"/>`;});
     if(S.step){[0,1,2,3].forEach(i=>{const d=S.hcl[i]?-S.hcl[i]:S.naoh[i];s+=`<circle cx="${X(d)}" cy="${Y(ph(i))}" r="5" fill="${kinds[i]==='water'?'#c0392b':'#1769e0'}" stroke="#fff" stroke-width="2"/>`;});}
-    s+='<text x="60" y="34" font-size="11" fill="#c0392b">— น้ำ</text><text x="110" y="34" font-size="11" fill="#1769e0">— บัฟเฟอร์ CH₃COOH/CH₃COONa</text><text x="210" y="246" font-size="11" text-anchor="middle" fill="#5d6b82">จำนวนหยด (0.05 mL ต่อหยด)</text>';
+    s+='<text x="40" y="16" font-size="11" fill="#c0392b">— น้ำ</text><text x="100" y="16" font-size="11" fill="#1769e0">— บัฟเฟอร์ CH₃COOH/CH₃COONa</text><text x="216" y="258" font-size="11" text-anchor="middle" fill="#5d6b82">จำนวนหยด (0.05 mL ต่อหยด)</text>';
     $('#g5').innerHTML=s;
   }
   $('#s1').onclick=()=>{S.step=1;$('#s1').disabled=true;draw();};

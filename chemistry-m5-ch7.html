@@ -222,6 +222,7 @@ td.l,th.l{text-align:left}
 .small{font-size:.86rem;color:var(--muted)}
 .fig{border:1px solid var(--line);border-radius:16px;background:#fff;padding:8px}
 .fig svg{display:block;width:100%;height:auto}
+#g71,#g74,#g75{max-width:560px;margin:0 auto}
 .q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
 .q p{margin:0 0 .4rem;font-weight:600}
 .opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:12px;border:1px solid transparent;min-height:44px}
@@ -363,18 +364,18 @@ function stopTimers(){cancelAnimationFrame(TIM.raf);clearInterval(TIM.iv);TIM.ra
 /* กราฟ SVG ขนาดเล็ก (ไม่ใช้ไลบรารี) */
 let chartN=0;
 function chart(o){
-  const W=o.w||340,H=o.h||240,m={l:48,r:14,t:14,b:40},id='ck'+(++chartN);
+  const W=300,H=o.h||(o.w>400?250:226),m={l:50,r:14,t:18,b:44},id='ck'+(++chartN);
   const sx=x=>m.l+(x-o.x[0])/(o.x[1]-o.x[0])*(W-m.l-m.r),sy=y=>H-m.b-(y-o.y[0])/(o.y[1]-o.y[0])*(H-m.t-m.b);
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.label}"><defs><clipPath id="${id}"><rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}"/></clipPath></defs>`;
-  (o.xt||[]).forEach(t=>{s+=`<line x1="${sx(t)}" y1="${m.t}" x2="${sx(t)}" y2="${H-m.b}" stroke="#eee3d3"/><text x="${sx(t)}" y="${H-m.b+15}" text-anchor="middle" font-size="10.5" fill="#5d6b82">${(o.xf||(v=>v))(t)}</text>`;});
-  (o.yt||[]).forEach(t=>{s+=`<line x1="${m.l}" y1="${sy(t)}" x2="${W-m.r}" y2="${sy(t)}" stroke="#eee3d3"/><text x="${m.l-5}" y="${sy(t)+3.5}" text-anchor="end" font-size="10.5" fill="#5d6b82">${(o.yf||(v=>v))(t)}</text>`;});
+  (o.xt||[]).forEach(t=>{s+=`<line x1="${sx(t)}" y1="${m.t}" x2="${sx(t)}" y2="${H-m.b}" stroke="#eee3d3"/><text x="${sx(t)}" y="${H-m.b+16}" text-anchor="middle" font-size="12.5" fill="#5d6b82">${(o.xf||(v=>v))(t)}</text>`;});
+  (o.yt||[]).forEach(t=>{s+=`<line x1="${m.l}" y1="${sy(t)}" x2="${W-m.r}" y2="${sy(t)}" stroke="#eee3d3"/><text x="${m.l-5}" y="${sy(t)+4}" text-anchor="end" font-size="12.5" fill="#5d6b82">${(o.yf||(v=>v))(t)}</text>`;});
   s+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="none" stroke="#b9a58c"/>`;
   s+=`<g clip-path="url(#${id})">`;
   (o.series||[]).forEach(se=>{if(se.pts.length>1)s+=`<polyline fill="none" stroke="${se.col||'#c46a12'}" stroke-width="${se.w||2.2}" ${se.dash?'stroke-dasharray="6 4"':''} points="${se.pts.map(p=>sx(p[0]).toFixed(1)+','+sy(p[1]).toFixed(1)).join(' ')}"/>`;});
   (o.marks||[]).forEach(p=>{s+=`<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="${p.r||4.5}" fill="${p.col||'#1769e0'}" stroke="#fff" stroke-width="1.2"/>`;});
   s+='</g>';
-  (o.marks||[]).filter(p=>p.label).forEach(p=>{s+=`<text x="${Math.min(W-m.r-2,sx(p.x)+7)}" y="${Math.max(m.t+11,sy(p.y)-7)}" font-size="10.5" fill="#33415c" ${sx(p.x)>W-110?'text-anchor="end"':''}>${p.label}</text>`;});
-  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-5}" text-anchor="middle" font-size="11.5" fill="#33415c">${o.xl}</text><text x="12" y="${(m.t+H-m.b)/2}" text-anchor="middle" font-size="11.5" fill="#33415c" transform="rotate(-90 12 ${(m.t+H-m.b)/2})">${o.yl}</text></svg>`;
+  (o.marks||[]).filter(p=>p.label).forEach(p=>{s+=`<text x="${Math.min(W-m.r-2,sx(p.x)+7)}" y="${Math.max(m.t+11,sy(p.y)-7)}" font-size="12.5" fill="#33415c" ${sx(p.x)>W-90?'text-anchor="end"':''}>${p.label}</text>`;});
+  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" text-anchor="middle" font-size="12.5" fill="#33415c">${o.xl}</text><text x="13" y="${(m.t+H-m.b)/2}" text-anchor="middle" font-size="12.5" fill="#33415c" transform="rotate(-90 13 ${(m.t+H-m.b)/2})">${o.yl}</text></svg>`;
   return s;
 }
 const range=(a,b,n)=>Array.from({length:n+1},(_,i)=>a+(b-a)*i/n);
@@ -464,7 +465,7 @@ function act71(){return`<h2>กิจกรรม 7.1 การทดลอง�
   <div class="box"><h3>วิธีทำ (เรียบเรียงจากตัวอย่างผลการทดลองในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>ตั้งก้านกระบอกฉีดยาที่ 10.0 mL ปิดปลายกระบอก ความดันของอากาศเท่ากับความดันบรรยากาศ</li><li>กดก้านจนอากาศเหลือ 5.0 mL แล้วปล่อยมือ สังเกตการเลื่อนของก้าน</li><li>ดึงก้านจนอากาศเป็น 20.0 mL แล้วปล่อยมือ สังเกตการเลื่อนของก้าน</li></ol><p class="small">ข้อควรระวัง (ผู้จัดทำหน้าเพิ่มเอง): ปิดปลายกระบอกให้แน่น และอย่าปล่อยก้านให้ดีดเข้าหาตัวหรือผู้อื่น</p></div>
   <div class="lab"><h3>ห้องทดลองเสมือน: กระบอกฉีดยา 20 mL</h3>
    <p class="small"><b>ค่าของแบบจำลอง:</b> อากาศ 10.0 mL เริ่มต้นมีความดันเท่าบรรยากาศ ซึ่งสมมติเป็น 1.00 atm (= 760 mmHg) และ T กับจำนวนโมลคงที่ จึงคำนวณ P = 10.0 atm·mL ÷ V (หนังสือรายงานผลเชิงคุณภาพ ตัวเลขความดันจึงเป็นค่าที่คำนวณจากกฎ)</p>
-   <div class="fig"><svg viewBox="0 0 470 152" id="g71" role="img" aria-label="กระบอกฉีดยาและอนุภาคอากาศ"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 176" id="g71" role="img" aria-label="กระบอกฉีดยาและอนุภาคอากาศ"></svg></div>
    <label class="lbl" for="v71">ปริมาตรอากาศในกระบอกฉีดยา (mL)</label><input type="range" id="v71" min="5" max="20" step="0.5" value="10">
    <div class="btns"><button class="btn sm" type="button" id="p71">กดก้านถึง 5.0 mL</button><button class="btn sm" type="button" id="u71">ดึงก้านถึง 20.0 mL</button><button class="btn alt sm" type="button" id="r71">ปล่อยมือ</button><button class="btn alt sm" type="button" id="s71">บันทึกค่า</button><button class="btn alt sm" type="button" id="c71">ล้างตาราง</button></div>
    <div class="stat" aria-live="polite"><span>V = <b id="vv71">10.0</b> mL</span><span>P = <b id="pp71">1.00</b> atm (<b id="pm71">760</b> mmHg)</span><span>PV = <b id="pv71">10.0</b> atm·mL</span></div>
@@ -476,18 +477,18 @@ function act71(){return`<h2>กิจกรรม 7.1 การทดลอง�
   ${quizHTML('7.1')}`;}
 function wire71(){
   const S={v:10,rows:[]};
-  const X0=50,PX=14;
+  const X0=30,PX=9;
   function draw(){
     if(!$('#g71'))return;const V=S.v,P=10/V,pxh=X0+PX*V;
     let s=`<rect x="${X0}" y="55" width="${PX*20}" height="52" fill="#fff" stroke="#8a93a8" stroke-width="2" rx="3"/><rect x="${X0-18}" y="76" width="18" height="10" fill="#fff" stroke="#8a93a8" stroke-width="2"/>`;
     s+=`<rect x="${X0+1}" y="57" width="${PX*V-1}" height="48" fill="${mixc('#fff2e0','#ffc98a',Math.min(1,Math.max(0,(P-0.5)/1.6)))}"/>`;
-    for(let i=0;i<26;i++){const u=Math.abs(Math.sin(i*12.9898)*43758.5453)%1,w=Math.abs(Math.sin(i*78.233)*12345.679)%1;s+=`<circle cx="${(X0+5+(PX*V-10)*u).toFixed(1)}" cy="${(61+40*w).toFixed(1)}" r="2.6" fill="#c46a12" opacity=".8"/>`;}
-    s+=`<rect x="${pxh}" y="57" width="8" height="48" fill="#6d7482"/><rect x="${pxh+8}" y="76" width="${X0+PX*20+80-pxh}" height="10" fill="#b8bcc6" stroke="#6d7482"/><rect x="${X0+PX*20+80}" y="62" width="10" height="38" rx="3" fill="#6d7482"/>`;
-    s+=`<text x="${X0+PX*V/2}" y="48" text-anchor="middle" font-size="12" fill="#8a4a0a">อากาศ ${f(V,1)} mL</text>`;
+    for(let i=0;i<26;i++){const u=Math.abs(Math.sin(i*12.9898)*43758.5453)%1,w=Math.abs(Math.sin(i*78.233)*12345.679)%1;s+=`<circle cx="${(X0+5+(PX*V-10)*u).toFixed(1)}" cy="${(61+40*w).toFixed(1)}" r="2.2" fill="#c46a12" opacity=".8"/>`;}
+    s+=`<rect x="${pxh}" y="57" width="8" height="48" fill="#6d7482"/><rect x="${pxh+8}" y="76" width="${X0+PX*20+60-pxh}" height="10" fill="#b8bcc6" stroke="#6d7482"/><rect x="${X0+PX*20+60}" y="62" width="10" height="38" rx="3" fill="#6d7482"/>`;
+    s+=`<text x="${X0+PX*V/2}" y="48" text-anchor="middle" font-size="12.5" fill="#8a4a0a">อากาศ ${f(V,1)} mL</text>`;
     const gl=Math.min(70,30*P);
     s+=`<path d="M${pxh-gl} 30 H${pxh-6}" stroke="#c46a12" stroke-width="3" fill="none"/><path d="M${pxh} 30 l-9 -5 v10z" fill="#c46a12"/>`;
     s+=`<path d="M${pxh+38} 125 H${pxh+17}" stroke="#1769e0" stroke-width="3" fill="none"/><path d="M${pxh+8} 125 l9 -5 v10z" fill="#1769e0"/>`;
-    s+=`<text x="8" y="146" font-size="11" fill="#33415c">ลูกศรส้ม = แรงดันของแก๊สภายใน (ยาวตาม P) · ลูกศรน้ำเงิน = ความดันบรรยากาศ 1.00 atm</text>`;
+    s+=`<text x="8" y="146" font-size="12.5" fill="#33415c">ลูกศรส้ม = แรงดันของแก๊สภายใน (ยาวตาม P)</text><text x="8" y="166" font-size="12.5" fill="#33415c">ลูกศรน้ำเงิน = ความดันบรรยากาศ 1.00 atm</text>`;
     $('#g71').innerHTML=s;
     $('#v71').value=V;$('#vv71').textContent=f(V,1);$('#pp71').textContent=f(P,2);$('#pm71').textContent=Math.round(P*760);$('#pv71').textContent=f(P*V,1);
     $('#obs71').textContent=Math.abs(P-1)<0.005?'ความดันของอากาศเท่ากับความดันบรรยากาศ ก้านอยู่นิ่ง':(P>1?'ปริมาตรลดลงแล้ว ความดันภายในมากกว่าบรรยากาศ ถ้าปล่อยมือ ก้านจะเลื่อนกลับออกมาที่ 10.0 mL':'ปริมาตรเพิ่มขึ้นแล้ว ความดันภายในน้อยกว่าบรรยากาศ ถ้าปล่อยมือ ก้านจะเลื่อนกลับเข้าไปที่ 10.0 mL');
@@ -587,7 +588,7 @@ function wire73(){
       if(S.ext){series.push({pts:[[x0,0],pts[0]],dash:true,col:'#c46a12'});marks.push({x:x0,y:0,col:'#157a55',r:5.5,label:C?'≈ '+f(x0,0)+' °C':'≈ '+f(x0,1)+' K'});}
       eq=`y = ${f(m,2)}x ${b<0?'−':'+'} ${f(Math.abs(b),C?0:1)}`;xi=f(x0,1)+(C?' °C':' K');
       obs=C?'เส้นตรงตัดแกน x ใกล้ −272 °C หนังสือสรุปว่าประมาณ −273 °C ซึ่งคือ 0 K (อุณหภูมิศูนย์สัมบูรณ์) เป็นการต่อเส้นกราฟไปคาดการณ์ ไม่ได้วัดจริง':'ในหน่วยเคลวิน เส้นตรงตัดแกน x ใกล้ 0 K (ผ่านจุดกำเนิดโดยประมาณ) แสดงว่า V ∝ T ซึ่งคือกฎของชาร์ล';}
-    $('#ch73').innerHTML=chart({label:'กราฟปริมาตรกับอุณหภูมิ',w:420,h:290,x:C?[-300,250]:[0,550],y:[0,200],xt:C?[-300,-200,-100,0,100,200]:[0,100,200,300,400,500],yt:[0,50,100,150,200],xl:C?'อุณหภูมิ (°C)':'อุณหภูมิ (K)',yl:'ปริมาตร (mL)',series,marks});
+    $('#ch73').innerHTML=chart({label:'กราฟปริมาตรกับอุณหภูมิ',w:300,h:250,x:C?[-300,250]:[0,550],y:[0,200],xt:C?[-300,-200,-100,0,100,200]:[0,100,200,300,400,500],yt:[0,50,100,150,200],xl:C?'อุณหภูมิ (°C)':'อุณหภูมิ (K)',yl:'ปริมาตร (mL)',series,marks});
     $('#cap73').textContent=C?'แกน x เป็น °C (เหมือนกราฟในคู่มือ แกนตั้ง 0–200 mL)':'แกน x เป็น K (เส้นตรงผ่านจุดกำเนิดโดยประมาณ)';
     $('#n73').textContent=S.n;$('#eq73').textContent=eq;$('#xi73').textContent=xi;$('#obs73').textContent=obs;
     $('#tb73').innerHTML=ts.length?ts.map(t=>`<tr><td>${t}</td><td>${K(t)}</td><td>${f(V73(t),1)}</td><td>${t===0?'—':f(V73(t)/t,3)}</td><td>${f(V73(t)/K(t),3)}</td></tr>`).join(''):'<tr><td colspan="5" class="small">ยังไม่มีจุดข้อมูล</td></tr>';
@@ -615,7 +616,7 @@ function act74(){return`<h2>กิจกรรม 7.4 การทดลอง�
   <div class="box"><h3>วิธีทำ (เรียบเรียงจากข้อมูลเพิ่มเติมสำหรับครูในคู่มือ ไม่ใช่ข้อความขั้นตอนต้นฉบับ)</h3><ol><li>ใส่ HCl 0.50 mol/L ขวดละ 50.0 mL ในขวดรูปกรวย 3 ขวด</li><li>ชั่ง NaHCO₃ 0.10, 0.50 และ 1.00 g ใส่ในลูกโป่งหมายเลข 1, 2 และ 3 ตามลำดับ</li><li>สวมลูกโป่งที่ปากขวด แล้วยกลูกโป่งให้ NaHCO₃ ตกลงไปในกรด สังเกตและเปรียบเทียบขนาดลูกโป่งที่พองขึ้น</li></ol><p class="small"><b>ข้อควรระวัง (จากคู่มือครู):</b> HCl มีฤทธิ์กัดกร่อน ควรสวมถุงมือระหว่างทดลอง</p></div>
   <div class="lab"><h3>ห้องทดลองเสมือน: ลูกโป่งและแก๊ส CO₂</h3>
    <p class="small"><b>สมการ:</b> HCl(aq) + NaHCO₃(s) → NaCl(aq) + H₂O(l) + CO₂(g) · <b>ค่าของแบบจำลอง:</b> ลูกโป่งใบที่ 4 (ปรับมวลได้) เพิ่มโดยผู้จัดทำหน้า · ปริมาตรลูกโป่งคำนวณจาก V = nRT/P สำหรับ CO₂ ที่เกิดอย่างเดียวที่ 25 °C และ 1.00 atm (ไม่คิดอากาศเดิม แรงตึงของยางลูกโป่ง และก๊าซที่ละลายในสารละลาย ผลจริงจึงต่างจากตัวเลขนี้)</p>
-   <div class="fig"><svg viewBox="0 0 560 270" id="g74" role="img" aria-label="ขวดรูปกรวย 4 ขวดพร้อมลูกโป่ง"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 184" id="g74" role="img" aria-label="ขวดรูปกรวย 4 ขวดพร้อมลูกโป่ง"></svg></div>
    <label class="lbl" for="m74">มวล NaHCO₃ ของลูกโป่งใบที่ 4 (g)</label><input type="range" id="m74" min="0" max="3" step="0.05" value="1.5">
    <div class="btns"><button class="btn sm" type="button" id="go74">ยกลูกโป่งให้ NaHCO₃ ตกลงในกรด</button><button class="btn alt sm" type="button" id="r74">เริ่มใหม่</button></div>
    <div class="tip" id="obs74" aria-live="polite"></div>
@@ -630,11 +631,13 @@ function wire74(){
   const MS=()=>[0.10,0.50,1.00,S.m4];
   function draw(){
     if(!$('#g74'))return;let s='';
-    MS().forEach((m,i)=>{const c=70+140*i,v=vCO2(co2Moles(m)),r1=rBalloon(v)*13,r0=9,r=r0+(r1-r0)*S.k,cy=170-(S.k>0?r+4:12);
-      s+=`<path d="M${c-10} 170 V196 L${c-46} 248 H${c+46} L${c+10} 196 V170Z" fill="#fff" fill-opacity=".7" stroke="#6d7482" stroke-width="2"/><path d="M${c-44} 244 H${c+44} L${c+30} 222 H${c-30}Z" fill="#cfe3f5" opacity=".8"/>`;
+    MS().forEach((m,i)=>{const c=75+150*i,v=vCO2(co2Moles(m)),r1=rBalloon(v)*13,r0=9,r=r0+(r1-r0)*S.k,cy=170-(S.k>0?r+4:12);
+      s+=`<g transform="scale(.5)"><path d="M${c-10} 170 V196 L${c-46} 248 H${c+46} L${c+10} 196 V170Z" fill="#fff" fill-opacity=".7" stroke="#6d7482" stroke-width="2"/><path d="M${c-44} 244 H${c+44} L${c+30} 222 H${c-30}Z" fill="#cfe3f5" opacity=".8"/>`;
       s+=`<rect x="${c-12}" y="164" width="24" height="10" rx="2" fill="#b9a58c"/><ellipse cx="${c}" cy="${cy}" rx="${r}" ry="${r*1.12}" fill="${S.k>0?'#f4a261':'#e9b98a'}" fill-opacity=".85" stroke="#c46a12" stroke-width="2"/>`;
       if(S.k>0.1)for(let j=0;j<5;j++)s+=`<circle cx="${c-18+j*9}" cy="${232-((j*7+i*3)%14)}" r="2.4" fill="#fff" stroke="#8aa9c5"/>`;
-      s+=`<text x="${c}" y="264" text-anchor="middle" font-size="12" fill="#33415c">${i<3?'ใบที่ '+(i+1):'ใบที่ 4 (ปรับเอง)'} · ${f(m,2)} g</text>`;});
+      s+='</g>';
+      const cx=c/2,T=(y,t)=>`<text x="${cx}" y="${y}" text-anchor="middle" font-size="12.5" fill="#33415c">${t}</text>`;
+      s+=T(144,'ใบที่ '+(i+1))+(i<3?T(160,f(m,2)+' g'):T(160,'(ปรับเอง)')+T(176,f(m,2)+' g'));});
     $('#g74').innerHTML=s;
     $('#tb74').innerHTML=MS().map((m,i)=>{const n=m/M_NAHCO3,nc=co2Moles(m),lim=n<=N_HCL?'NaHCO₃':'HCl';return`<tr><td>${i<3?i+1:'4 (ปรับเอง)'}</td><td>${f(m,2)}</td><td>${f(n,4)}</td><td>${f(N_HCL,3)}</td><td>${lim}</td><td>${f(nc,4)}</td><td>${f(vCO2(nc),0)}</td></tr>`;}).join('');
     const nmax=0.03;
@@ -666,7 +669,7 @@ function act75(){const opts=Object.keys(GAS).map(k=>`<option value="${k}">${GAS[
   <div class="lab"><h3>ห้องทดลองเสมือน: การแพร่สวนทางในหลอดยาว 30 cm</h3>
    <p class="small"><b>ค่าของแบบจำลอง:</b> หนังสือรายงานเชิงคุณภาพ (วงแหวนสีขาวอยู่ใกล้ปลายด้าน HCl) แบบจำลองนี้ใช้กฎของเกรแฮมประมาณตำแหน่งที่แก๊สสองชนิดพบกัน โดยให้หน้าแก๊สเคลื่อนด้วยอัตรา v = 3.0/√M cm/s (ค่าสมมติเพื่อดูแนวโน้ม ในอากาศจริงการแพร่ช้ากว่านี้มากและตำแหน่งจริงอาจต่างจากค่าที่คำนวณ)</p>
    <div class="rowflex"><label>แก๊สปลายซ้าย<select id="ga75">${opts}</select></label><label>แก๊สปลายขวา<select id="gb75">${opts}</select></label></div>
-   <div class="fig"><svg viewBox="0 0 560 150" id="g75" role="img" aria-label="หลอดแก้วที่แก๊สสองชนิดแพร่เข้าหากัน"></svg></div>
+   <div class="fig"><svg viewBox="0 0 300 150" id="g75" role="img" aria-label="หลอดแก้วที่แก๊สสองชนิดแพร่เข้าหากัน"></svg></div>
    <label class="lbl" for="t75">เวลา (วินาทีของแบบจำลอง)</label><input type="range" id="t75" min="0" max="40" step="0.5" value="0">
    <div class="btns"><button class="btn sm" type="button" id="p75">เล่นการแพร่</button><button class="btn alt sm" type="button" id="r75">รีเซ็ต</button></div>
    <div class="stat" aria-live="polite"><span>t = <b id="tt75">0.0</b> s</span><span>อัตราส่วนอัตราการแพร่ r<sub>ซ้าย</sub>/r<sub>ขวา</sub> = <b id="rr75">—</b></span><span>พบกันที่ <b id="xm75">—</b> cm จากปลายซ้าย</span></div>
@@ -678,13 +681,13 @@ function wire75(){
   const S={t:0,a:'NH3',b:'HCl'};
   const st75=()=>{const A=GAS[S.a],B=GAS[S.b],vA=C75/Math.sqrt(A.M),vB=C75/Math.sqrt(B.M),xm=meet75(A.M,B.M);return{A,B,vA,vB,xm,tm:L75/(vA+vB)};};
   function draw(){
-    if(!$('#g75'))return;const {A,B,vA,vB,xm,tm}=st75(),X0=30,PX=500/L75,dA=Math.min(vA*S.t,xm),dB=Math.min(vB*S.t,L75-xm),met=S.t>=tm,react=S.a!==S.b&&((S.a==='NH3'&&S.b==='HCl')||(S.a==='HCl'&&S.b==='NH3'));
-    let s=`<rect x="${X0}" y="55" width="500" height="34" rx="4" fill="#fff" stroke="#8a93a8" stroke-width="2"/>`;
-    s+=`<rect x="${X0+1}" y="57" width="${dA*PX}" height="30" fill="#6fa8e8" opacity=".55"/><rect x="${X0+500-dB*PX}" y="57" width="${Math.max(0,dB*PX-1)}" height="30" fill="#e8a45a" opacity=".6"/>`;
-    s+=`<rect x="6" y="60" width="24" height="24" fill="#6fa8e8"/><text x="18" y="98" font-size="11" text-anchor="middle" fill="#33415c">${A.n}</text><rect x="${X0+500}" y="60" width="24" height="24" fill="#e8a45a"/><text x="${X0+512}" y="98" font-size="11" text-anchor="middle" fill="#33415c">${B.n}</text>`;
-    if(met){const x=X0+xm*PX;s+=react?`<rect x="${x-9}" y="57" width="18" height="30" fill="#fff" stroke="#b9a58c"/><text x="${x}" y="48" text-anchor="middle" font-size="12" fill="#33415c">วงแหวนขาว NH₄Cl</text>`:`<line x1="${x}" y1="50" x2="${x}" y2="94" stroke="#33415c" stroke-dasharray="4 3" stroke-width="2"/><text x="${x}" y="44" text-anchor="middle" font-size="12" fill="#33415c">พบกัน</text>`;}
-    for(let i=0;i<=6;i++)s+=`<text x="${X0+i*5*PX}" y="118" text-anchor="middle" font-size="10.5" fill="#5d6b82">${i*5}</text>`;
-    s+=`<text x="${X0+250}" y="138" text-anchor="middle" font-size="11.5" fill="#33415c">ระยะจากปลายซ้าย (cm)</text>`;
+    if(!$('#g75'))return;const {A,B,vA,vB,xm,tm}=st75(),X0=30,TL=240,PX=TL/L75,dA=Math.min(vA*S.t,xm),dB=Math.min(vB*S.t,L75-xm),met=S.t>=tm,react=S.a!==S.b&&((S.a==='NH3'&&S.b==='HCl')||(S.a==='HCl'&&S.b==='NH3'));
+    let s=`<rect x="${X0}" y="55" width="${TL}" height="34" rx="4" fill="#fff" stroke="#8a93a8" stroke-width="2"/>`;
+    s+=`<rect x="${X0+1}" y="57" width="${dA*PX}" height="30" fill="#6fa8e8" opacity=".55"/><rect x="${X0+TL-dB*PX}" y="57" width="${Math.max(0,dB*PX-1)}" height="30" fill="#e8a45a" opacity=".6"/>`;
+    s+=`<rect x="6" y="60" width="24" height="24" fill="#6fa8e8"/><text x="18" y="98" font-size="12.5" text-anchor="middle" fill="#33415c">${A.n}</text><rect x="${X0+TL}" y="60" width="24" height="24" fill="#e8a45a"/><text x="${X0+TL+12}" y="98" font-size="12.5" text-anchor="middle" fill="#33415c">${B.n}</text>`;
+    if(met){const x=X0+xm*PX;s+=react?`<rect x="${x-9}" y="57" width="18" height="30" fill="#fff" stroke="#b9a58c"/><text x="${Math.min(X0+TL-30,Math.max(X0+30,x))}" y="48" text-anchor="middle" font-size="12.5" fill="#33415c">วงแหวนขาว NH₄Cl</text>`:`<line x1="${x}" y1="50" x2="${x}" y2="94" stroke="#33415c" stroke-dasharray="4 3" stroke-width="2"/><text x="${x}" y="44" text-anchor="middle" font-size="12.5" fill="#33415c">พบกัน</text>`;}
+    for(let i=0;i<=6;i++)s+=`<text x="${X0+i*5*PX}" y="118" text-anchor="middle" font-size="12.5" fill="#5d6b82">${i*5}</text>`;
+    s+=`<text x="${X0+TL/2}" y="140" text-anchor="middle" font-size="12.5" fill="#33415c">ระยะจากปลายซ้าย (cm)</text>`;
     $('#g75').innerHTML=s;$('#t75').value=S.t;
     $('#tt75').textContent=f(S.t,1);$('#rr75').textContent=S.a===S.b?'1.00':f(G.grahamRatio(A.M,B.M),2);$('#xm75').textContent=f(xm,1);
     let o;if(S.a===S.b)o='เลือกแก๊สต่างชนิดกัน (ถ้าเป็นแก๊สเดียวกัน หน้าแก๊สพบกันตรงกลางหลอด)';
@@ -769,7 +772,7 @@ function wire_ig(){
   const nice=x=>{const e=Math.pow(10,Math.floor(Math.log10(x)));return Math.ceil(x/e*2)/2*e;};
   function calc(){const q=S.solve;if(q==='P')S.P=G.idealP(S.n,S.V,S.T);else if(q==='V')S.V=G.idealV(S.n,S.P,S.T);else if(q==='T')S.T=G.idealTc(S.P,S.V,S.n);else S.n=G.idealN(S.P,S.V,S.T);}
   function ch(id,label,xr,xl,yl,fn,cx,cy){const pts=range(xr[0]<=0?xr[1]*0.02:xr[0],xr[1],80).map(x=>[x,fn(x)]),ym=nice(Math.max(cy*1.8,fn(xr[1])*1.05,1e-6));
-    $(id).innerHTML=chart({label,w:300,h:210,x:xr,y:[0,ym],xt:range(xr[0],xr[1],4).map(v=>Math.round(v*100)/100),yt:range(0,ym,4),yf:tick,xf:tick,xl,yl,series:[{pts}],marks:[{x:cx,y:cy,col:'#c46a12',r:6}]});}
+    $(id).innerHTML=chart({label,w:300,h:226,x:xr,y:[0,ym],xt:range(xr[0],xr[1],4).map(v=>Math.round(v*100)/100),yt:range(0,ym,4),yf:tick,xf:tick,xl,yl,series:[{pts}],marks:[{x:cx,y:cy,col:'#c46a12',r:6}]});}
   function draw(){
     if(!$('#vars_ig'))return;calc();const Tk=K(S.T);
     ['P','V','T','n'].forEach(k=>{const r=$('#r_'+k+'_ig'),v=S[k];r.disabled=S.solve===k;r.value=Math.max(IGV[k].min,Math.min(IGV[k].max,v));$('#o_'+k+'_ig').textContent=f(v,IGV[k].d)+' '+IGV[k].u+(S.solve===k?' (คำนวณ)':'');});
