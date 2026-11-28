@@ -375,7 +375,11 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .qitem.open .caret{transform:rotate(90deg);color:var(--sun)}
 .ans{display:none;margin:8px 0 2px 33px;padding:12px 14px;border-radius:10px;background:var(--sun-soft);
   border:1px solid color-mix(in srgb,var(--sun) 28%,transparent);font-size:15px;color:var(--ink)}
-.qitem.open .ans{display:block}
+.qitem.open .ans{display:none}
+.qwork .qb{padding:8px 16px;border-radius:999px;border:1px solid var(--sun);background:var(--sun);color:#fff;cursor:pointer;font:inherit;font-weight:600}
+.qstatic{cursor:default}.qwork{margin:8px 0 0 33px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.qwork textarea{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line-strong);border-radius:10px;background:var(--paper);color:var(--ink);resize:vertical}
+.ans .cmp{margin-top:8px;font-size:13.5px;color:var(--ink-soft)}
 .ans .lbl{font-family:"Chakra Petch",sans-serif;font-weight:700;color:var(--sun);margin-right:6px}
 .ans .tf{font-family:"Chakra Petch",sans-serif;font-weight:700}
 .ans .tf.y{color:var(--good)}.ans .tf.n{color:var(--bad)}
@@ -407,7 +411,7 @@ button,input,.tab,.pbtn,.qbtn,.revealall{touch-action:manipulation}
   .moonlab{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr 1fr}
 }
-@media (max-width:560px){.grid2{grid-template-columns:1fr}.ans{margin-left:0}}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}.ans,.qwork{margin-left:0}}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-faint);font-size:13.5px}
 </style>
 <header class="hero">
@@ -419,7 +423,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
       <div class="chiprow">
         <span class="chip">4 เรื่อง · 18 ใบงาน</span>
         <span class="chip">แบบจำลองโต้ตอบ 5 ชุด</span>
-        <span class="chip">เฉลย 100+ ข้อ</span>
+        <span class="chip">ใบงาน 100+ ข้อ</span>
       </div>
       <div class="byline"><span class="dot">ก๋</span>จัดทำโดย <b>ครูเก๋</b></div>
     </div>
@@ -493,7 +497,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
     <p class="legend">สังเกต: ถ้าเลื่อนระยะทางออกไปเป็น 2 เท่า แรงจะลดเหลือเพียง 1/4 เพราะระยะทางอยู่ในรูป <b>กำลังสอง</b> ที่ตัวส่วน</p>
   </div>
 
-  <div class="card"><h3>ใบงานเรื่องที่ 1 · คำถามพร้อมเฉลย</h3><div id="q1"></div></div>
+  <div class="card"><h3>ใบงานเรื่องที่ 1 · ตอบคำถามแล้วตรวจคำตอบ</h3><div id="q1"></div></div>
   <div class="card quizcard" id="quiz1"></div>
 </section>
 
@@ -527,7 +531,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
     <p class="legend" id="s-note"></p>
   </div>
 
-  <div class="card"><h3>ใบงานเรื่องที่ 2 · คำถามพร้อมเฉลย</h3><div id="q2"></div></div>
+  <div class="card"><h3>ใบงานเรื่องที่ 2 · ตอบคำถามแล้วตรวจคำตอบ</h3><div id="q2"></div></div>
   <div class="card quizcard" id="quiz2"></div>
 </section>
 
@@ -565,7 +569,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
     <p class="legend" id="tide-note"></p>
   </div>
 
-  <div class="card"><h3>ใบงานเรื่องที่ 3 · คำถามพร้อมเฉลย</h3><div id="q3"></div></div>
+  <div class="card"><h3>ใบงานเรื่องที่ 3 · ตอบคำถามแล้วตรวจคำตอบ</h3><div id="q3"></div></div>
   <div class="card quizcard" id="quiz3"></div>
 </section>
 
@@ -745,7 +749,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
     <div class="cards" id="tech-cards"></div>
   </div>
 
-  <div class="card"><h3>ใบงานเรื่องที่ 4 · คำถามพร้อมเฉลย</h3><div id="q4"></div></div>
+  <div class="card"><h3>ใบงานเรื่องที่ 4 · ตอบคำถามแล้วตรวจคำตอบ</h3><div id="q4"></div></div>
   <div class="card quizcard" id="quiz4"></div>
 </section>
 </main>
@@ -1105,32 +1109,29 @@ tabs.forEach((t,i)=>{
   });
 });
 
-/* ---------------- answer-key accordion ---------------- */
+/* ---------------- worksheets: type answer, then check ---------------- */
 const caret='<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg>';
 function renderQ(hostId,sections){
   const host=document.getElementById(hostId);
   sections.forEach(sec=>{
     const wrap=document.createElement('div');wrap.className='qsec';
-    wrap.innerHTML='<div class="qsec-head"><div><h3>'+sec.title+'</h3><span class="src">ใบงาน '+sec.src+'</span></div>'+
-      '<button class="revealall">เปิดเฉลยทั้งหมด</button></div>';
+    wrap.innerHTML='<div class="qsec-head"><div><h3>'+sec.title+'</h3><span class="src">ใบงาน '+sec.src+'</span></div></div>';
     const list=document.createElement('div');
     sec.items.forEach((it,i)=>{
-      const d=document.createElement('div');d.className='qitem';
-      d.innerHTML='<button class="qbtn" aria-expanded="false"><span class="qnum">'+(i+1)+'.</span>'+
-        '<span class="qtext">'+it[0]+'</span>'+caret+'</button>'+
-        '<div class="ans"><span class="lbl">เฉลย</span>'+it[1]+'</div>';
-      const btn=d.querySelector('.qbtn');
-      btn.addEventListener('click',()=>{const o=d.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));});
+      const d=document.createElement('div');d.className='qitem open';
+      d.innerHTML='<div class="qbtn qstatic"><span class="qnum">'+(i+1)+'.</span><span class="qtext">'+it[0]+'</span></div>'+
+        '<div class="qwork"><textarea rows="3" placeholder="พิมพ์คำตอบของนักเรียนที่นี่" aria-label="คำตอบข้อ '+(i+1)+'"></textarea>'+
+        '<button type="button" class="qb main chk">ตรวจคำตอบ</button></div>'+
+        '<div class="ans"><span class="lbl">แนวคำตอบ</span>'+it[1]+'<div class="cmp">เทียบกับคำตอบของนักเรียน แล้วเติมส่วนที่ยังขาดให้สมบูรณ์</div></div>';
+      const ta=d.querySelector('textarea'),ans=d.querySelector('.ans'),chk=d.querySelector('.chk');
+      chk.addEventListener('click',()=>{
+        if(!ta.value.trim()){ta.focus();ta.placeholder='พิมพ์คำตอบก่อน แล้วจึงกดตรวจคำตอบ';return;}
+        ans.style.display='block';chk.textContent='ตรวจแล้ว';
+      });
+      ta.addEventListener('input',()=>{ans.style.display='none';chk.textContent='ตรวจคำตอบ';});
       list.appendChild(d);
     });
     wrap.appendChild(list);
-    const all=wrap.querySelector('.revealall');
-    all.addEventListener('click',()=>{
-      const open=all.dataset.on!=='1';all.dataset.on=open?'1':'0';
-      all.textContent=open?'ซ่อนเฉลยทั้งหมด':'เปิดเฉลยทั้งหมด';
-      list.querySelectorAll('.qitem').forEach(q=>{q.classList.toggle('open',open);
-        q.querySelector('.qbtn').setAttribute('aria-expanded',String(open));});
-    });
     host.appendChild(wrap);
   });
 }
