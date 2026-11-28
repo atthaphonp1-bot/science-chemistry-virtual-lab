@@ -65,6 +65,7 @@ acts["เคมี ม.6 บทที่ 14"] = "เคมี ม.6 เล่ม
 acts["เคมี ม.6 บทที่ 13"] = "เคมี ม.6 เล่ม 5 บทที่ 13 พอลิเมอร์ (กิจกรรม 13.1–13.3)"
 acts["เคมี ม.5 บทที่ 10"] = "เคมี ม.5 เล่ม 4 บทที่ 10 กรด–เบส (กิจกรรม 10.1–10.5)"
 acts["เคมี ม.5 บทที่ 11"] = "เคมี ม.5 เล่ม 4 บทที่ 11 เคมีไฟฟ้า (กิจกรรม 11.1–11.5)"
+acts["วิทยาศาสตร์ ม.3 ระบบสุริยะ"] = "วิทยาศาสตร์ ม.3 ระบบสุริยะของเรา (แบบทดสอบท้ายเรื่อง 4 เรื่อง)"
 gs = open("tools/apps_script/Code.gs", encoding="utf8").read()
 region = "// ids:start (สร้างอัตโนมัติโดย tools/build_curriculum.py ห้ามแก้ด้วยมือ)\nvar ACTIVITIES = " + json.dumps(acts, ensure_ascii=False, indent=2) + ";\n// ids:end"
 gs = re.sub(r"// ids:start.*?// ids:end", lambda m: region, gs, flags=re.S)
