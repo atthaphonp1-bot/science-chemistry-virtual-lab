@@ -1,5 +1,164 @@
 <meta charset="utf-8">
 <title>ระบบสุริยะของเรา</title>
+<!-- wm:css:start -->
+<style>body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2147483000;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22360%22%20height%3D%22260%22%3E%3Ctext%20x%3D%22180%22%20y%3D%22130%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-28%20180%20130%29%22%20font-family%3D%22Thonburi%2C%20Sarabun%2C%20Noto%20Sans%20Thai%2C%20Tahoma%2C%20sans-serif%22%20font-size%3D%2222%22%20fill%3D%22%231d2433%22%3E%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B3%E0%B9%82%E0%B8%94%E0%B8%A2%20%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B9%80%E0%B8%81%E0%B9%8B%20%E0%B8%A7%E0%B8%B4%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B2%20%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%3C/text%3E%3C/svg%3E");background-repeat:repeat}.site-credit{text-align:center;color:#66708a;font-size:.85rem;padding:18px 16px 28px}@media print{body::after{opacity:.12}}</style>
+<!-- wm:css:end -->
+<!-- ls:start -->
+<script>window.__LAB_SUBMIT__={"id": "วิทยาศาสตร์ ม.3 ระบบสุริยะ", "title": "วิทยาศาสตร์ ม.3 ระบบสุริยะของเรา (แบบทดสอบท้ายเรื่อง 4 เรื่อง)", "url": "https://script.google.com/macros/s/AKfycbwAvebvWdkeKES99AN2tWHmpYqEcvh2qW6Zco6CzOyW8_fpyv8rycy-o4BP1zEPJmW9QQ/exec"};</script>
+<script>
+/* โมดูลส่งคะแนนรวมเข้า Google Sheet (ฝังในแต่ละหน้าโดย tools/inject_site_meta.py)
+ * หน้ากิจกรรมเรียก: window.LabScore.set('ชื่อส่วน', คะแนนที่ได้, คะแนนเต็ม)
+ * ทุกครั้งที่ตรวจคำตอบส่วนนั้น (เรียกซ้ำได้ ค่าล่าสุดทับค่าเดิม)
+ * หน้าที่มีหลายบทในไฟล์เดียว (เช่น chemistry-m4.html) เรียก window.LabScore.use(id, title) เมื่อเปลี่ยนบท
+ * ถ้า __LAB_SUBMIT__.url ว่าง จะไม่แสดงแผงส่งผล (เก็บคะแนนในเครื่องอย่างเดียว) */
+(() => {
+  'use strict';
+  const CFG = window.__LAB_SUBMIT__ || {};
+  const URL_ = String(CFG.url || '');
+  let ID = String(CFG.id || ''), TITLE = String(CFG.title || '');
+  const rd = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (_) { return d; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const SKEY = 'labStudentInfo_v1';
+  const PKEY = () => 'labScoreParts_v1_' + ID, LKEY = () => 'labSubmitLog_v1_' + ID;
+  let parts = rd(PKEY(), {});
+  let rendered = false;
+
+  const total = () => {
+    let got = 0, max = 0;
+    for (const k in parts) { got += parts[k].got; max += parts[k].max; }
+    return { got, max };
+  };
+
+  window.LabScore = {
+    use(id, title) {
+      id = String(id || ''); if (!id) return;
+      ID = id; TITLE = String(title || ''); parts = rd(PKEY(), {});
+      const m = $('#lsMsg'); if (m) { m.textContent = ''; m.className = 'ls-msg'; }
+      refresh();
+    },
+    set(name, got, max) {
+      got = Number(got); max = Number(max);
+      if (!ID || !name || !(max > 0) || max > 100 || !Number.isFinite(got) || !Number.isFinite(max)) return;
+      parts[String(name).slice(0, 40)] = { got: Math.max(0, Math.min(got, max)), max };
+      wr(PKEY(), parts);
+      refresh();
+    },
+    get() { return Object.assign({ parts: JSON.parse(JSON.stringify(parts)) }, total()); },
+    clear() { parts = {}; if (ID) wr(PKEY(), parts); refresh(); }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  function css() {
+    const st = document.createElement('style');
+    st.textContent =
+      '.ls-panel{max-width:1080px;margin:18px auto;padding:clamp(18px,4vw,30px);border:1px solid rgba(140,150,180,.3);border-radius:22px;background:#f7faff;color:#1d2433;font:16px/1.6 -apple-system,BlinkMacSystemFont,Thonburi,Sarabun,system-ui,sans-serif}' +
+      '.ls-panel h2{margin:0 0 .3rem;font-size:1.3rem}.ls-panel p{margin:.3rem 0;color:#4a5570}' +
+      '.ls-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0}.ls-grid label{display:block;font-size:.85rem;color:#4a5570}' +
+      '.ls-grid input,.ls-grid select{width:100%;padding:9px 10px;border:1px solid #b7c0d6;border-radius:10px;font:inherit;background:#fff;color:#1d2433}' +
+      '.ls-score{font-weight:700;font-size:1.15rem}.ls-btn{border:0;border-radius:999px;padding:11px 22px;background:#1769e0;color:#fff;font:inherit;font-weight:650;cursor:pointer}.ls-btn:disabled{opacity:.5;cursor:not-allowed}' +
+      '.ls-msg{min-height:1.5em;font-weight:620;margin:.5rem 0 0}.ls-msg.ok{color:#176553}.ls-msg.err{color:#b63f43}.ls-hp{position:absolute;left:-9999px;opacity:0}' +
+      '@media(max-width:640px){.ls-grid{grid-template-columns:1fr 1fr}.ls-grid>div:first-child{grid-column:1/-1}}';
+    document.head.appendChild(st);
+  }
+
+  function build() {
+    if (rendered || !URL_) return;
+    rendered = true; css();
+    const info = rd(SKEY, {});
+    const box = document.createElement('section');
+    box.className = 'ls-panel'; box.id = 'lsPanel';
+    box.innerHTML =
+      '<h2>ส่งผลการเรียนให้ครู</h2>' +
+      '<p>กรอกข้อมูลแล้วกดส่ง ระบบจะส่ง <b>คะแนนรวมของกิจกรรมนี้</b> ให้ครูผู้สอนบันทึก ข้อมูลที่กรอกใช้เพื่อบันทึกคะแนนในรายวิชาเท่านั้น</p>' +
+      '<p class="ls-act" id="lsAct"></p>' +
+      '<div class="ls-score" id="lsScore" aria-live="polite"></div>' +
+      '<p class="ls-act" id="lsWritten"></p>' +
+      '<div class="ls-grid">' +
+      '<div><label for="lsName">ชื่อ-สกุล</label><input id="lsName" autocomplete="name" maxlength="80"></div>' +
+      '<div><label for="lsNo">เลขที่</label><input id="lsNo" inputmode="numeric" maxlength="2"></div>' +
+      '<div><label for="lsCls">ชั้น</label><select id="lsCls"><option value="">เลือก</option>' +
+      [1, 2, 3, 4, 5, 6].map(n => '<option>ม.' + n + '</option>').join('') + '</select></div>' +
+      '<div><label for="lsRoom">ห้อง</label><input id="lsRoom" inputmode="numeric" maxlength="2"></div></div>' +
+      '<input class="ls-hp" id="lsHp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button class="ls-btn" id="lsSend" type="button">ส่งคะแนน</button>' +
+      '<p class="ls-msg" id="lsMsg" aria-live="polite"></p>';
+    const foot = $('.site-credit');
+    (foot && foot.parentNode === document.body ? document.body.insertBefore(box, foot) : document.body.appendChild(box));
+    $('#lsName').value = info.name || ''; $('#lsNo').value = info.no || '';
+    $('#lsCls').value = info.cls || ''; $('#lsRoom').value = info.room || '';
+    $('#lsSend').addEventListener('click', send);
+    document.addEventListener('input', e => { if (e.target && e.target.tagName === 'TEXTAREA') refresh(); });
+    refresh();
+  }
+
+  function refresh() {
+    const el = $('#lsScore'); if (!el) return;
+    const act = $('#lsAct'); if (act) act.textContent = ID ? 'กิจกรรมที่จะส่ง: ' + (TITLE || ID) : 'เลือกบทเรียนและทำแบบทดสอบก่อน แล้วกลับมากดส่ง';
+    const t = total(), n = Object.keys(parts).length;
+    el.textContent = n ? 'คะแนนรวมตอนนี้ ' + t.got + ' / ' + t.max : 'ยังไม่มีคะแนน ทำแบบทดสอบในหน้านี้ก่อน แล้วกลับมากดส่ง';
+    const w = collectWritten().length;
+    const wl = $('#lsWritten'); if (wl) wl.textContent = w ? 'ข้อเขียนที่จะส่งให้ครูตรวจ: ' + w + ' ข้อ (ไม่นับในคะแนนรวมนี้ ครูจะให้คะแนนภายหลัง)' : '';
+    const log = ID ? rd(LKEY(), []) : [];
+    const m = $('#lsMsg');
+    if (log.length && !m.textContent) {
+      m.className = 'ls-msg'; m.textContent = 'เคยส่งแล้ว ' + log.length + ' ครั้ง (ล่าสุด ' + log[log.length - 1].got + '/' + log[log.length - 1].max + ')';
+    }
+  }
+
+  /* ข้อเขียน: เก็บทุก textarea ที่นักเรียนพิมพ์ไว้ในหน้านี้ (รหัสข้อ = id ของช่อง, คำถาม = ป้ายกำกับที่อยู่ใกล้ช่อง) */
+  function labelOf(ta) {
+    let t = '';
+    if (ta.id) { const l = document.querySelector('label[for="' + ta.id.replace(/"/g, '') + '"]'); if (l) t = l.textContent; }
+    if (!t) { const fs = ta.closest('fieldset'), lg = fs && fs.querySelector('legend'); if (lg) t = lg.textContent; }
+    if (!t) { let p = ta.previousElementSibling; for (let n = 0; p && n < 3 && !t; n++, p = p.previousElementSibling) { const x = (p.textContent || '').trim(); if (x && x.length <= 300) t = x; } }
+    if (!t) t = ta.getAttribute('aria-label') || ta.placeholder || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+  function collectWritten() {
+    const out = [];
+    document.querySelectorAll('textarea').forEach((ta, i) => {
+      const a = (ta.value || '').trim();
+      if (a) out.push({ k: (ta.id || 't' + (i + 1)).slice(0, 40), q: labelOf(ta), a: a.slice(0, 3000) });
+    });
+    return out.slice(0, 30);
+  }
+  window.LabScore.written = collectWritten;
+
+  function msg(t, cls) { const m = $('#lsMsg'); m.textContent = t; m.className = 'ls-msg ' + (cls || ''); }
+
+  async function send() {
+    const t = total();
+    if (!ID) return msg('เลือกบทเรียนและทำแบบทดสอบก่อน', 'err');
+    if (!Object.keys(parts).length && !collectWritten().length) return msg('ยังไม่มีคะแนนหรือข้อเขียน กรุณาทำกิจกรรมในหน้านี้ก่อน', 'err');
+    const name = $('#lsName').value.trim(), no = $('#lsNo').value.trim(), cls = $('#lsCls').value, room = $('#lsRoom').value.trim();
+    if (name.length < 2) return msg('กรุณากรอกชื่อ-สกุล', 'err');
+    if (!/^\d{1,2}$/.test(no) || +no < 1) return msg('เลขที่ต้องเป็นตัวเลข 1–99', 'err');
+    if (!cls) return msg('กรุณาเลือกชั้น', 'err');
+    if (!/^\d{1,2}$/.test(room) || +room < 1) return msg('ห้องต้องเป็นตัวเลข เช่น 1', 'err');
+    wr(SKEY, { name, no, cls, room });
+    const log = rd(LKEY(), []);
+    const payload = { v: 1, id: ID, title: TITLE, name, no: +no, cls, room: +room,
+      got: t.got, max: t.max, parts, attempt: log.length + 1, hp: $('#lsHp').value };
+    const written = collectWritten(); if (written.length) payload.written = written;
+    const btn = $('#lsSend'); btn.disabled = true; msg('กำลังส่ง…');
+    try {
+      /* text/plain + no-cors เพื่อไม่ต้องมี preflight กับ Apps Script (อ่านผลตอบกลับไม่ได้) */
+      await fetch(URL_, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      log.push({ ts: Date.now(), got: t.got, max: t.max }); wr(LKEY(), log);
+      const what = (t.max ? 'คะแนน ' + t.got + '/' + t.max : '') + (t.max && written.length ? ' + ' : '') + (written.length ? 'ข้อเขียน ' + written.length + ' ข้อ' : '');
+      msg('ส่งคำขอแล้ว ✓ ' + what + ' (ครั้งที่ ' + log.length + ') ระบบยืนยันการรับให้ไม่ได้ ถ้าไม่แน่ใจว่าครูได้รับ ให้แจ้งครู', 'ok');
+    } catch (_) {
+      msg('ส่งไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วกดส่งอีกครั้ง', 'err');
+    }
+    setTimeout(() => { btn.disabled = false; }, 6000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+
+</script>
+<!-- ls:end -->
 <script>if(!document.querySelector('meta[name="viewport"]')){var _m=document.createElement("meta");_m.name="viewport";_m.content="width=device-width,initial-scale=1,viewport-fit=cover";(document.head||document.documentElement).appendChild(_m);}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,6 +230,20 @@ header.hero{position:relative;overflow:hidden;background:
 @media (prefers-reduced-motion: reduce){.orbits g.rot{animation:none}}
 @media(max-width:720px){.hero .wrap{grid-template-columns:1fr}.orbits{display:none}}
 
+
+/* ---------- แบบทดสอบ + ส่งคะแนน ---------- */
+.quizcard{margin-top:16px}
+.quizcard .qz{margin:14px 0;padding-top:12px;border-top:1px solid var(--line)}
+.quizcard .qz p{margin:0 0 8px;font-weight:600}
+.quizcard .qopt{display:flex;gap:9px;align-items:flex-start;padding:7px 10px;border-radius:10px;cursor:pointer}
+.quizcard .qopt:hover{background:var(--paper2)}
+.quizcard .qopt input{margin-top:5px}
+.quizcard .why{font-size:14.5px;color:var(--ink-soft);margin-top:6px}
+.quizcard .why.hide{display:none}
+.quizcard .qres{margin-top:10px;font-weight:700}
+.quizcard .qbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.quizcard .qb{padding:9px 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer;font:inherit;font-weight:600}
+.quizcard .qb.main{background:var(--sun);border-color:var(--sun);color:#fff}
 /* ---------- tabs ---------- */
 nav.tabs{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sky) 88%,transparent);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -321,6 +494,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
   </div>
 
   <div class="card"><h3>ใบงานเรื่องที่ 1 · คำถามพร้อมเฉลย</h3><div id="q1"></div></div>
+  <div class="card quizcard" id="quiz1"></div>
 </section>
 
 <!-- ======================= TAB 2 ======================= -->
@@ -354,6 +528,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
   </div>
 
   <div class="card"><h3>ใบงานเรื่องที่ 2 · คำถามพร้อมเฉลย</h3><div id="q2"></div></div>
+  <div class="card quizcard" id="quiz2"></div>
 </section>
 
 <!-- ======================= TAB 3 ======================= -->
@@ -391,6 +566,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
   </div>
 
   <div class="card"><h3>ใบงานเรื่องที่ 3 · คำถามพร้อมเฉลย</h3><div id="q3"></div></div>
+  <div class="card quizcard" id="quiz3"></div>
 </section>
 
 <!-- ======================= TAB 4 ======================= -->
@@ -570,6 +746,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
   </div>
 
   <div class="card"><h3>ใบงานเรื่องที่ 4 · คำถามพร้อมเฉลย</h3><div id="q4"></div></div>
+  <div class="card quizcard" id="quiz4"></div>
 </section>
 </main>
 
@@ -853,6 +1030,61 @@ QDATA.q4=[
   ["ดาวเทียมที่อยู่ ณ ตำแหน่งเดิมบนท้องฟ้า เนื่องจากใช้เวลาโคจรรอบโลกครบรอบเท่ากับโลกหมุนรอบตัวเองครบรอบพอดี","<span class='lbl'>ตอบ</span> <b>ฌ. ดาวเทียมค้างฟ้า</b> (Geostationary satellite โคจรที่ความสูงประมาณ 35,786 กม. เหนือเส้นศูนย์สูตร คาบ 24 ชั่วโมง)"]
  ]}
 ];
+</script>
+<script>
+/* ---------------- แบบทดสอบท้ายเรื่อง (ข้อละ 1 คะแนน) ส่งคะแนนผ่าน LabScore ---------------- */
+const QUIZ={
+ 1:[
+  {q:'น้ำหนักของเราบนดวงจันทร์น้อยกว่าบนโลก เพราะเหตุใด',o:['มวลของเราลดลงเมื่ออยู่บนดวงจันทร์','ดวงจันทร์ไม่มีแรงโน้มถ่วงเลย','ดวงจันทร์มีมวลน้อยกว่า สนามโน้มถ่วงที่ผิวจึงน้อยกว่า','ดวงจันทร์อยู่ใกล้ดวงอาทิตย์มากกว่า'],a:2,w:'น้ำหนักคือแรงโน้มถ่วงที่กระทำต่อมวล (W = mg) ผิวดวงจันทร์มี g ประมาณ 1.62 m/s² ส่วนโลกประมาณ 9.8 m/s² น้ำหนักจึงเหลือราว 1 ใน 6 ทั้งที่มวลเท่าเดิม'},
+  {q:'ถ้าระยะห่างจากจุดศูนย์กลางของโลกเพิ่มเป็น 2 เท่า แรงโน้มถ่วงจะเป็นอย่างไร',o:['เหลือ 1/2 เท่า','เหลือ 1/4 เท่า','เพิ่มเป็น 2 เท่า','เพิ่มเป็น 4 เท่า'],a:1,w:'แรงโน้มถ่วงแปรผกผันกับกำลังสองของระยะทาง (F ∝ 1/r²) ห่างเป็น 2 เท่า แรงเหลือ 1/4'},
+  {q:'แรงโน้มถ่วงที่ดวงอาทิตย์กระทำต่อดาวเคราะห์แต่ละดวงเป็นอย่างไร',o:['เท่ากันทุกดวง เพราะดวงอาทิตย์มีมวลเท่าเดิม','มากที่สุดที่ดาวเนปจูน เพราะอยู่ไกลที่สุด','ขึ้นกับอุณหภูมิผิวของดาวเคราะห์เท่านั้น','ไม่เท่ากัน เพราะมวลและระยะห่างต่างกัน'],a:3,w:'จาก F = G·m₁m₂/r² ดาวเคราะห์แต่ละดวงมีมวลและระยะห่างจากดวงอาทิตย์ต่างกัน แรงจึงไม่เท่ากัน'},
+  {q:'ข้อใดถูกต้องเกี่ยวกับแรงกิริยา–ปฏิกิริยา',o:['ขนาดเท่ากัน ทิศตรงข้าม และกระทำต่อวัตถุคนละชิ้น','ขนาดเท่ากัน ทิศตรงข้าม และกระทำต่อวัตถุชิ้นเดียวกัน','ขนาดต่างกัน ทิศตรงข้าม และกระทำต่อวัตถุคนละชิ้น','ขนาดเท่ากัน ทิศเดียวกัน และกระทำต่อวัตถุคนละชิ้น'],a:0,w:'แรงคู่นี้เกิดบนวัตถุคนละชิ้น จึงไม่หักล้างกัน ถ้าเกิดบนวัตถุเดียวกันแรงลัพธ์จะเป็นศูนย์'},
+  {q:'ดวงอาทิตย์มวล 1.99 × 10³⁰ kg กับโลกมวล 5.97 × 10²⁴ kg อยู่ห่างกัน 1.50 × 10¹¹ m แรงโน้มถ่วงระหว่างทั้งสองมีค่าใกล้เคียงข้อใด',o:['3.52 × 10²⁵ N','7.93 × 10⁴⁴ N','3.52 × 10²² N','2.25 × 10²² N'],a:2,w:'F = (6.674 × 10⁻¹¹)(1.99 × 10³⁰)(5.97 × 10²⁴) ÷ (1.50 × 10¹¹)² = 3.52 × 10²² N (7.93 × 10⁴⁴ คือตัวเศษ และ 2.25 × 10²² คือตัวส่วน)'}],
+ 2:[
+  {q:'ฤดูกาลบนโลกเกิดจากสาเหตุใด',o:['โลกอยู่ใกล้ดวงอาทิตย์ไม่เท่ากันในรอบปี','แกนโลกเอียงประมาณ 23.5° คงที่ขณะโคจรรอบดวงอาทิตย์','โลกหมุนรอบตัวเอง','ดวงอาทิตย์ปล่อยความร้อนไม่คงที่'],a:1,w:'แกนโลกเอียงชี้ไปทางเดิมตลอดการโคจร จึงทำให้มุมตกกระทบของแสงและความยาวกลางวันต่างกันในแต่ละช่วงปี'},
+  {q:'ในวันที่ 21–22 ธันวาคม (เหมายัน) ซีกโลกเหนือเป็นฤดูใด',o:['ร้อน เพราะโลกอยู่ใกล้ดวงอาทิตย์ที่สุด','ใบไม้ผลิ','ใบไม้ร่วง','หนาว ส่วนซีกโลกใต้เป็นฤดูร้อน'],a:3,w:'ขั้วโลกเหนือเอียงออกจากดวงอาทิตย์มากที่สุด ซีกโลกเหนือจึงหนาว ซีกโลกใต้ร้อน'},
+  {q:'ปรากฏการณ์กลางวัน–กลางคืนเกิดจากอะไร',o:['การหมุนรอบตัวเองของโลก','การโคจรของโลกรอบดวงอาทิตย์','การเอียงของแกนโลก','การโคจรของดวงจันทร์รอบโลก'],a:0,w:'โลกหมุนรอบตัวเอง 1 รอบใน 24 ชั่วโมง ส่วนการโคจรรอบดวงอาทิตย์ 365 วันทำให้เกิดฤดูกาล'},
+  {q:'วสันตวิษุวัตคือวันใด',o:['วันที่กลางวันยาวที่สุดของซีกโลกเหนือ','วันที่กลางคืนยาวที่สุดของซีกโลกเหนือ','วันที่กลางวันยาวเท่ากลางคืนทั่วโลก ประมาณ 20–21 มีนาคม','วันที่ดวงอาทิตย์ตั้งฉากกับเส้นทรอปิกออฟแคนเซอร์'],a:2,w:'ดวงอาทิตย์ตั้งฉากกับเส้นศูนย์สูตร กลางวันเท่ากลางคืน ซีกโลกเหนือเริ่มฤดูใบไม้ผลิ'},
+  {q:'บริเวณที่ได้รับแสงตกตั้งฉากมีอุณหภูมิเป็นอย่างไรเมื่อเทียบกับบริเวณที่รับแสงเฉียง',o:['ต่ำกว่า เพราะแสงกระจายมาก','สูงกว่า เพราะได้พลังงานต่อหน่วยพื้นที่มากกว่า','เท่ากัน เพราะรับแสงจากดวงอาทิตย์เหมือนกัน','ไม่เกี่ยวกับมุมที่แสงตกกระทบ'],a:1,w:'แสงตั้งฉากรวมพลังงานบนพื้นที่น้อย พลังงานต่อหน่วยพื้นที่มาก อุณหภูมิจึงสูงกว่า'}],
+ 3:[
+  {q:'ข้างขึ้น–ข้างแรมเกิดจากสาเหตุใด',o:['เงาของโลกบังดวงจันทร์','เงาของดวงจันทร์ตกบนโลก','ดวงจันทร์ผลิตแสงเองได้ไม่เท่ากัน','ดวงจันทร์โคจรรอบโลก ทำให้เห็นด้านสว่างมากน้อยต่างกัน'],a:3,w:'ดวงจันทร์สะท้อนแสงอาทิตย์ครึ่งดวงเสมอ เมื่อโคจรรอบโลกเราเห็นด้านสว่างในสัดส่วนที่เปลี่ยนไป'},
+  {q:'จากจันทร์เพ็ญครั้งหนึ่งถึงจันทร์เพ็ญครั้งถัดไป ใช้เวลาประมาณเท่าใด',o:['7 วัน','29.5 วัน','365 วัน','15 วัน'],a:1,w:'1 เดือนจันทรคติ = ประมาณ 29.5 วัน (15 วันคือครึ่งรอบ)'},
+  {q:'ถ้าสังเกตดวงจันทร์ที่ตำแหน่งเดิมในวันถัด ๆ ไป เวลาที่ดวงจันทร์ขึ้นและตกจะเปลี่ยนอย่างไร',o:['ช้าลงวันละประมาณ 50 นาที','เร็วขึ้นวันละประมาณ 50 นาที','เป็นเวลาเดิมทุกวัน','ช้าลงวันละประมาณ 5 นาที'],a:0,w:'ดวงจันทร์เคลื่อนไปทางตะวันออกวันละประมาณ 13° โลกต้องหมุนเพิ่มอีกราว 50 นาที'},
+  {q:'แรงไทดัลเกิดจากสิ่งใด',o:['แรงแม่เหล็กของดวงจันทร์','แรงเสียดทานระหว่างน้ำกับพื้นทะเล','ความแตกต่างของแรงโน้มถ่วงที่กระทำต่อส่วนต่าง ๆ ของวัตถุ','ลมที่พัดผ่านผิวมหาสมุทร'],a:2,w:'ด้านใกล้ถูกดึงมากกว่าด้านไกล ความต่างของแรงนี้ทำให้มวลน้ำโป่งออก เกิดน้ำขึ้นน้ำลง'},
+  {q:'เหตุใดคนบนโลกจึงเห็นพื้นผิวดวงจันทร์ด้านเดียวเสมอ',o:['ดวงจันทร์ไม่หมุนรอบตัวเอง','ดวงจันทร์หมุนรอบตัวเองเร็วกว่าที่โคจรรอบโลก','เงาของโลกบังอีกด้านไว้ตลอด','คาบหมุนรอบตัวเองเท่ากับคาบโคจรรอบโลก'],a:3,w:'ทั้งสองคาบเท่ากันประมาณ 27.3 วัน เรียกว่าถูกตรึงด้วยแรงไทดัล'}],
+ 4:[
+  {q:'ข้อใดเป็นเหตุผลที่ต้องส่งกล้องโทรทรรศน์ไปอยู่นอกโลก',o:['เพื่อให้อยู่ใกล้ดวงอาทิตย์มากขึ้น','เพื่อให้กล้องเย็นลง','บรรยากาศรบกวนภาพและดูดกลืนคลื่นบางช่วง เช่น รังสีเอกซ์','เพื่อให้แรงโน้มถ่วงดึงกล้องน้อยลง'],a:2,w:'นอกบรรยากาศได้ภาพคมชัดกว่า และรับคลื่นที่บรรยากาศดูดกลืนไว้ได้'},
+  {q:'ดาวเทียมสื่อสารดวงแรกของประเทศไทยคือดวงใด',o:['ไทยคม 1','ฮับเบิล','แคสสินี','อพอลโล 11'],a:0,w:'ไทยคม 1 ส่งขึ้นสู่วงโคจรเมื่อ พ.ศ. 2536 (ฮับเบิลเป็นกล้องโทรทรรศน์อวกาศ แคสสินีเป็นยานสำรวจดาวเสาร์)'},
+  {q:'เหตุใดจึงสร้างจรวดเป็นหลายท่อนต่อกัน',o:['เพื่อให้ดูสวยงามขณะขึ้น','เพื่อเพิ่มแรงต้านอากาศ','เพื่อให้ดวงอาทิตย์ส่องถึงทุกท่อน','เพื่อสลัดท่อนที่เชื้อเพลิงหมดทิ้ง น้ำหนักที่ต้องเร่งจึงลดลง'],a:3,w:'การทิ้งท่อนที่หมดเชื้อเพลิงช่วยให้ท่อนที่เหลือเร่งได้เร็วขึ้น ใช้พลังงานคุ้มค่า'},
+  {q:'เหตุใดสถานีอวกาศนานาชาติจึงโคจรรอบโลกโดยไม่ตกลงมา',o:['ที่ความสูงนั้นไม่มีแรงโน้มถ่วง','เคลื่อนที่เร็วมาก จึงตกไปตามความโค้งของโลกพอดี','มีเครื่องยนต์ดันขึ้นตลอดเวลา','อยู่นอกบรรยากาศทั้งหมดจึงลอยอยู่'],a:1,w:'แรงโน้มถ่วงยังดึงอยู่ แต่ความเร็วสูงทำให้ตกตามความโค้งของผิวโลก จึงเป็นวงโคจร'},
+  {q:'เหตุใดจึงนิยมส่งหุ่นยนต์ไปสำรวจดาวอังคารก่อนส่งมนุษย์',o:['เพราะดาวอังคารอยู่ใกล้โลกจนไม่ต้องเดินทาง','เพราะหุ่นยนต์เดินทางเร็วกว่ามนุษย์มาก','เพราะสภาพแวดล้อมเสี่ยงและงบสูง ส่วนหุ่นยนต์ทำงานได้นาน','เพราะดาวอังคารมีออกซิเจนเพียงพออยู่แล้ว'],a:2,w:'ดาวอังคารไกล เย็นจัด บรรยากาศเบาบางไม่มีออกซิเจน รังสีสูง หุ่นยนต์จึงปลอดภัยและคุ้มค่ากว่า'}]
+};
+const QNAMES={1:'เรื่อง 1 แรงโน้มถ่วง',2:'เรื่อง 2 โลกโคจรรอบดวงอาทิตย์',3:'เรื่อง 3 โลก-ดวงจันทร์',4:'เรื่อง 4 เทคโนโลยีอวกาศ'};
+function qzScore(n,got,max){try{window.LabScore&&window.LabScore.set(QNAMES[n]+' แบบทดสอบ',got,max);}catch(_){}}
+function buildQuiz(n){
+  const host=document.getElementById('quiz'+n),qs=QUIZ[n];
+  host.innerHTML='<h3>แบบทดสอบท้ายเรื่อง (ข้อละ 1 คะแนน)</h3>'+qs.map((q,i)=>
+    '<div class="qz" data-i="'+i+'"><p>'+(i+1)+'. '+q.q+'</p>'+q.o.map((o,j)=>
+    '<label class="qopt"><input type="radio" name="z'+n+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join('')+
+    '<div class="why hide"></div></div>').join('')+
+    '<div class="qbtns"><button class="qb main" type="button" data-act="check">ตรวจคำตอบ</button><button class="qb" type="button" data-act="retry">ทำใหม่</button></div><div class="qres" aria-live="polite"></div>';
+  host.querySelector('[data-act=check]').onclick=()=>{
+    let got=0,done=0;
+    host.querySelectorAll('.qz').forEach((el,i)=>{
+      const sel=el.querySelector('input:checked'),why=el.querySelector('.why');
+      if(sel){done++;if(+sel.value===qs[i].a)got++;}
+      why.classList.remove('hide');why.textContent=(sel&&+sel.value===qs[i].a?'ถูกต้อง · ':'เฉลย: '+qs[i].o[qs[i].a]+' · ')+qs[i].w;
+    });
+    const r=host.querySelector('.qres');
+    r.textContent=done<qs.length?'ยังตอบไม่ครบ ('+done+'/'+qs.length+') ตรวจเฉพาะข้อที่ตอบแล้ว':'ได้ '+got+' / '+qs.length+' คะแนน';
+    qzScore(n,got,qs.length);
+  };
+  host.querySelector('[data-act=retry]').onclick=()=>{
+    host.querySelectorAll('input').forEach(i=>i.checked=false);
+    host.querySelectorAll('.why').forEach(w=>w.classList.add('hide'));host.querySelector('.qres').textContent='';
+  };
+}
+[1,2,3,4].forEach(buildQuiz);
 </script>
 <script>
 /* ---------------- tabs ---------------- */

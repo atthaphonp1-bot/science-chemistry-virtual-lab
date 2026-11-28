@@ -49,6 +49,8 @@ M5_TITLES = {
     "m6-14": "เคมี ม.6 เล่ม 6 บทที่ 14 เคมีกับการแก้ปัญหา (กิจกรรม 14.1–14.8)",
 }
 CHEM_LAB_ID = "เคมี ม.4 ปฏิบัติการเบื้องต้น"
+SOLAR_ID = "วิทยาศาสตร์ ม.3 ระบบสุริยะ"
+SOLAR_TITLE = "วิทยาศาสตร์ ม.3 ระบบสุริยะของเรา (แบบทดสอบท้ายเรื่อง 4 เรื่อง)"
 CFG = json.load(open("tools/submit_config.json", encoding="utf8"))
 MODULE = open("tools/submit_module.js", encoding="utf8").read()
 
@@ -71,6 +73,9 @@ def submit_block(f, title):
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     if base == "chemistry-m4-lab.html":
         cfg = json.dumps({"id": CHEM_LAB_ID, "title": "ปฏิบัติการเบื้องต้น: ความปลอดภัยและทักษะเคมี ม.4", "url": CFG.get("url", "")}, ensure_ascii=False)
+        return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
+    if base == "solar-system-m3.html":     # วิทยาศาสตร์ ม.3 ระบบสุริยะ: หนึ่งหน้า สี่เรื่อง ส่งคะแนนรวมภายใต้รหัสเดียว
+        cfg = json.dumps({"id": SOLAR_ID, "title": SOLAR_TITLE, "url": CFG.get("url", "")}, ensure_ascii=False)
         return f"<!-- ls:start -->\n<script>window.__LAB_SUBMIT__={cfg};</script>\n<script>\n{MODULE}\n</script>\n<!-- ls:end -->\n"
     m = re.match(r"sci-m1-v2-(lab|final)-(\d+)-(\d+)\.html$", base)
     if not m:
@@ -114,7 +119,7 @@ for f in sorted(glob.glob("sci-m1-v2*.html")):
     print(f)
 
 # หน้าเคมี: ลายน้ำ + เครดิตอย่างเดียว (ไม่แตะ meta เดิมของหน้า)
-for f in ["index.html"] + sorted(glob.glob("chemistry-m4*.html")) + sorted(glob.glob("chemistry-m5*.html")) + sorted(glob.glob("chemistry-m6*.html")):
+for f in ["index.html", "solar-system-m3.html"] + sorted(glob.glob("chemistry-m4*.html")) + sorted(glob.glob("chemistry-m5*.html")) + sorted(glob.glob("chemistry-m6*.html")):
     s = strip(open(f, encoding="utf8").read())
     title = re.search(r"<title>(.*?)</title>", s).group(1)
     s = s.replace("</title>", "</title>\n" + WM_CSS + submit_block(f, title), 1)
