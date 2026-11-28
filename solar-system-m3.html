@@ -160,47 +160,24 @@
 </script>
 <!-- ls:end -->
 <script>if(!document.querySelector('meta[name="viewport"]')){var _m=document.createElement("meta");_m.name="viewport";_m.content="width=device-width,initial-scale=1,viewport-fit=cover";(document.head||document.documentElement).appendChild(_m);}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Sarabun:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --sky:#eaeef8; --paper:#ffffff; --paper2:#f5f7fd;
-  --ink:#101b34; --ink-soft:#4d5878; --ink-faint:#7b86a6;
-  --sun:#c9741a; --sun-bright:#e8952f; --sun-soft:#fbeddb;
-  --orbit:#256b64; --orbit-soft:#dcece9;
-  --line:#d3dbee; --line-strong:#b9c4de;
-  --good:#1f7a4d; --bad:#b23a2b;
+  color-scheme:light;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Thonburi","Sarabun",system-ui,sans-serif;
+  --sky:#ffffff; --paper:#ffffff; --paper2:#f6f8fc;
+  --ink:#172033; --ink-soft:#5d6b82; --ink-faint:#6b7790;
+  --sun:#c2410c; --sun-bright:#e8662c; --sun-soft:#fff6ee;
+  --orbit:#1769e0; --orbit-soft:#e6f0ff;
+  --line:#e3e8f2; --line-strong:#cfd7e6;
+  --good:#157a55; --bad:#b63f43;
   --moon-lit:#f3e6cd; --moon-dark:#2b3450;
-  --shadow:0 1px 2px rgba(16,27,52,.06), 0 8px 24px -12px rgba(16,27,52,.18);
+  --shadow:0 1px 2px rgba(23,32,51,.05), 0 8px 24px -14px rgba(23,32,51,.16);
   --r:14px;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --sky:#0a1020; --paper:#131b30; --paper2:#18213a;
-    --ink:#e9edf9; --ink-soft:#a9b4d3; --ink-faint:#7d88a8;
-    --sun:#f0a63f; --sun-bright:#f7bd63; --sun-soft:#3a2a12;
-    --orbit:#5cc3b3; --orbit-soft:#12302b;
-    --line:#28324f; --line-strong:#3a4566;
-    --good:#5cd28f; --bad:#f0796a;
-    --moon-lit:#f6ecd6; --moon-dark:#1b2237;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
-  }
-}
-:root[data-theme="dark"]{
-  --sky:#0a1020; --paper:#131b30; --paper2:#18213a;
-  --ink:#e9edf9; --ink-soft:#a9b4d3; --ink-faint:#7d88a8;
-  --sun:#f0a63f; --sun-bright:#f7bd63; --sun-soft:#3a2a12;
-  --orbit:#5cc3b3; --orbit-soft:#12302b;
-  --line:#28324f; --line-strong:#3a4566;
-  --good:#5cd28f; --bad:#f0796a;
-  --moon-lit:#f6ecd6; --moon-dark:#1b2237;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px -16px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--sky);color:var(--ink);-webkit-text-size-adjust:100%;
-  font-family:"Sarabun",-apple-system,"Helvetica Neue",sans-serif;font-size:16px;line-height:1.75;}
-h1,h2,h3,h4{font-family:"Chakra Petch","Sarabun",sans-serif;margin:0;text-wrap:balance;line-height:1.3}
+  font-family:var(--font);font-size:16px;line-height:1.75;}
+h1,h2,h3,h4{font-family:var(--font);margin:0;text-wrap:balance;line-height:1.3}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
 /* ---------- header ---------- */
@@ -209,13 +186,14 @@ header.hero{position:relative;overflow:hidden;background:
    linear-gradient(180deg,var(--paper2),var(--sky));
   border-bottom:1px solid var(--line);}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding-top:34px;padding-bottom:34px}
-.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun);margin-bottom:10px}
+.home{display:inline-block;color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:12px}.home:hover{color:var(--sun)}
+.eyebrow{font-family:var(--font);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun);margin-bottom:10px}
 .hero h1{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.01em}
 .hero p{margin:10px 0 0;color:var(--ink-soft);max-width:62ch}
 .chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .byline{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:7px 16px 7px 9px;
   border:1px solid var(--line-strong);border-radius:999px;background:var(--paper);
-  font-family:"Chakra Petch",sans-serif;font-size:15px;color:var(--ink-soft)}
+  font-family:var(--font);font-size:15px;color:var(--ink-soft)}
 .byline .dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
   background:linear-gradient(140deg,var(--sun-bright),var(--sun));color:#fff;font-size:13px;font-weight:700}
 .byline b{color:var(--ink);font-weight:600}
@@ -249,12 +227,12 @@ nav.tabs{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sky
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:thin}
 .tab{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:10px;border:1px solid transparent;
-  background:none;cursor:pointer;color:var(--ink-soft);font-family:"Chakra Petch",sans-serif;font-size:15px;font-weight:600;white-space:nowrap}
+  background:none;cursor:pointer;color:var(--ink-soft);font-family:var(--font);font-size:15px;font-weight:600;white-space:nowrap}
 .tab:hover{background:var(--paper);color:var(--ink)}
 .tab svg{width:20px;height:20px;flex:0 0 auto}
 .tab[aria-selected="true"]{background:var(--paper);border-color:var(--line-strong);color:var(--ink);box-shadow:var(--shadow)}
 .tab[aria-selected="true"] .tnum{color:var(--sun)}
-.tnum{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-faint)}
+.tnum{font-family:var(--font);font-size:12px;color:var(--ink-faint)}
 :focus-visible{outline:2.5px solid var(--sun);outline-offset:2px;border-radius:6px}
 
 /* ---------- panels & cards ---------- */
@@ -265,12 +243,12 @@ main{padding:28px 0 72px}
 .card > h2{font-size:22px;margin-bottom:4px}
 .card > h3{font-size:17px}
 .lede{color:var(--ink-soft);margin:6px 0 0}
-.kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orbit);margin-bottom:8px}
+.kicker{font-family:var(--font);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orbit);margin-bottom:8px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
 .fact{background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:14px 15px}
-.fact b{display:block;font-family:"Chakra Petch",sans-serif;font-size:15px;margin-bottom:2px}
+.fact b{display:block;font-family:var(--font);font-size:15px;margin-bottom:2px}
 .fact span{font-size:14.5px;color:var(--ink-soft)}
-.formula{font-family:"IBM Plex Mono",monospace;background:var(--paper2);border-left:3px solid var(--sun);
+.formula{font-family:var(--font);background:var(--paper2);border-left:3px solid var(--sun);
   padding:12px 14px;border-radius:0 9px 9px 0;overflow-x:auto;font-size:15px}
 .note{border-left:3px solid var(--orbit);background:var(--orbit-soft);padding:11px 14px;border-radius:0 9px 9px 0;font-size:14.5px}
 </style>
@@ -282,7 +260,7 @@ main{padding:28px 0 72px}
 .lab-head em{font-style:normal;font-size:13px;color:var(--ink-faint)}
 .ctrl{display:grid;gap:14px}
 .slider label{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;margin-bottom:4px}
-.slider .val{font-family:"IBM Plex Mono",monospace;color:var(--sun);font-weight:500}
+.slider .val{font-family:var(--font);color:var(--sun);font-weight:500}
 input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .presets{display:flex;flex-wrap:wrap;gap:6px}
 .pbtn{font-size:13.5px;padding:5px 11px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink-soft);cursor:pointer;font-family:inherit}
@@ -290,8 +268,8 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .pbtn[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:#fff}
 .readout{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .stat{flex:1 1 150px;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
-.stat .k{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
-.stat .v{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat .k{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;font-family:var(--font)}
+.stat .v{font-family:var(--font);font-size:22px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
 .stat .v small{font-size:13px;color:var(--ink-soft)}
 .stage{width:100%;overflow-x:auto;margin-top:6px}
 .stage svg{display:block;max-width:100%;height:auto}
@@ -306,7 +284,7 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .posdot{position:absolute;width:46px;height:46px;touch-action:manipulation;transform:translate(-50%,-50%);border-radius:50%;
   border:2px solid var(--line-strong);cursor:pointer;padding:0;display:grid;place-items:center;
   background:linear-gradient(90deg,var(--moon-dark) 0 50%,var(--moon-lit) 50% 100%)}
-.posdot i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-soft);
+.posdot i{font-style:normal;font-family:var(--font);font-size:11.5px;color:var(--ink-soft);
   background:var(--paper);width:21px;height:21px;border-radius:50%;display:grid;place-items:center;line-height:1}
 .posdot:hover{border-color:var(--sun)}
 .posdot[aria-pressed="true"]{border-color:var(--sun);border-width:3px;box-shadow:0 0 0 5px var(--sun-soft)}
@@ -319,14 +297,14 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .moonview{text-align:center}
 .moon-vis{width:136px;height:136px;margin:0 auto 14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.28))}
 .moon-vis svg{display:block;width:100%;height:100%}
-.moonview h4{font-family:"Chakra Petch",sans-serif;font-size:20px;margin:0}
-.moonview .thai{color:var(--sun);font-family:"IBM Plex Mono",monospace;font-size:13.5px;margin:2px 0 8px}
+.moonview h4{font-family:var(--font);font-size:20px;margin:0}
+.moonview .thai{color:var(--sun);font-family:var(--font);font-size:13.5px;margin:2px 0 8px}
 .moonview p{font-size:14.5px;color:var(--ink-soft);margin:0}
 
 /* illustrated explainers */
 .figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:18px}
 .figcard{background:var(--paper2);border:1px solid var(--line);border-radius:13px;padding:16px;color:var(--ink-soft)}
-.figcard h4{font-family:"Chakra Petch",sans-serif;font-size:16.5px;color:var(--ink);margin:0 0 10px}
+.figcard h4{font-family:var(--font);font-size:16.5px;color:var(--ink);margin:0 0 10px}
 .figcard figure{margin:0}
 .figcard svg{display:block;width:100%;height:auto;background:var(--paper);
   border:1px solid var(--line);border-radius:10px}
@@ -344,13 +322,13 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
   background:var(--sun-soft);color:var(--sun)}
 .ticon svg{width:30px;height:30px}
 .tbody{display:flex;flex-direction:column;gap:5px;min-width:0}
-.tbody .tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.08em;color:var(--sun)}
-.tbody b{font-family:"Chakra Petch",sans-serif;font-size:16.5px;line-height:1.35;font-weight:600}
+.tbody .tag{font-family:var(--font);font-size:11.5px;letter-spacing:.08em;color:var(--sun)}
+.tbody b{font-family:var(--font);font-size:16.5px;line-height:1.35;font-weight:600}
 .tbody .desc{display:none;font-size:15px;line-height:1.65;color:var(--ink)}
 .tbody .ansletter{display:none;align-items:center;gap:7px;align-self:flex-start;
   padding:3px 11px;border:1px solid var(--sun);border-radius:999px;
-  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--sun);background:var(--sun-soft)}
-.tbody .ansletter b{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--sun);line-height:1}
+  font-family:var(--font);font-size:12px;letter-spacing:.06em;color:var(--sun);background:var(--sun-soft)}
+.tbody .ansletter b{font-family:var(--font);font-size:14px;color:var(--sun);line-height:1}
 .tcard[aria-expanded="true"] .ansletter{display:inline-flex}
 .tbody .hint{font-size:12.5px;color:var(--ink-faint)}
 .tcard[aria-expanded="true"] .desc{display:block}
@@ -361,7 +339,7 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .qsec-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   padding-bottom:8px;border-bottom:2px solid var(--line-strong);margin-bottom:10px}
 .qsec-head h3{font-size:17px}
-.qsec-head .src{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-faint)}
+.qsec-head .src{font-family:var(--font);font-size:12px;color:var(--ink-faint)}
 .revealall{font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid var(--line-strong);
   background:var(--paper);color:var(--ink-soft);cursor:pointer;font-family:inherit}
 .revealall:hover{border-color:var(--sun);color:var(--sun)}
@@ -369,7 +347,7 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .qitem:last-child{border-bottom:0}
 .qbtn{width:100%;display:flex;gap:11px;align-items:flex-start;background:none;border:0;padding:0;cursor:pointer;
   text-align:left;font-family:inherit;font-size:15.5px;color:var(--ink);line-height:1.7}
-.qnum{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--sun);padding-top:3px;min-width:22px}
+.qnum{flex:0 0 auto;font-family:var(--font);font-size:13px;color:var(--sun);padding-top:3px;min-width:22px}
 .qtext{flex:1}
 .caret{flex:0 0 auto;width:18px;height:18px;margin-top:5px;color:var(--ink-faint);transition:transform .2s}
 .qitem.open .caret{transform:rotate(90deg);color:var(--sun)}
@@ -380,13 +358,13 @@ input[type=range]{width:100%;accent-color:var(--sun);height:24px}
 .qstatic{cursor:default}.qwork{margin:8px 0 0 33px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .qwork textarea{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line-strong);border-radius:10px;background:var(--paper);color:var(--ink);resize:vertical}
 .ans .cmp{margin-top:8px;font-size:13.5px;color:var(--ink-soft)}
-.ans .lbl{font-family:"Chakra Petch",sans-serif;font-weight:700;color:var(--sun);margin-right:6px}
-.ans .tf{font-family:"Chakra Petch",sans-serif;font-weight:700}
+.ans .lbl{font-family:var(--font);font-weight:700;color:var(--sun);margin-right:6px}
+.ans .tf{font-family:var(--font);font-weight:700}
 .ans .tf.y{color:var(--good)}.ans .tf.n{color:var(--bad)}
-.ans code{font-family:"IBM Plex Mono",monospace;background:var(--paper);padding:1px 5px;border-radius:5px;font-size:14px}
+.ans code{font-family:var(--font);background:var(--paper);padding:1px 5px;border-radius:5px;font-size:14px}
 table.tide{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;margin-top:12px}
 table.tide th,table.tide td{border:1px solid var(--line);padding:6px 9px;text-align:center}
-table.tide thead th{background:var(--paper2);font-family:"Chakra Petch",sans-serif;font-weight:600}
+table.tide thead th{background:var(--paper2);font-family:var(--font);font-weight:600}
 table.tide caption{caption-side:top;text-align:left;font-size:13px;color:var(--ink-faint);padding-bottom:6px}
 .scrollx{overflow-x:auto}
 /* ---------- touch / iPad ---------- */
@@ -417,9 +395,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
 <header class="hero">
   <div class="wrap">
     <div>
+      <a class="home" href="index.html">← สารบัญบทเรียน</a>
       <div class="eyebrow">วิทยาศาสตร์ ม.3 · ภาคเรียนที่ 1 · หน่วยที่ 4</div>
       <h1>ระบบสุริยะของเรา</h1>
-      <p>บทที่ 1 ปฏิสัมพันธ์ในระบบสุริยะ — สื่อการสอนเชิงโต้ตอบ ครบทั้ง 4 เรื่องตามใบงาน พร้อมเฉลยทุกข้อ กดที่คำถามเพื่อดูเฉลย</p>
+      <p>บทที่ 1 ปฏิสัมพันธ์ในระบบสุริยะ — สื่อการสอนเชิงโต้ตอบ ครบทั้ง 4 เรื่องตามใบงาน อ่านเนื้อหา ลองห้องทดลอง ตอบใบงานแล้วกด "ตรวจคำตอบ" และทำแบบทดสอบท้ายเรื่อง</p>
       <div class="chiprow">
         <span class="chip">4 เรื่อง · 18 ใบงาน</span>
         <span class="chip">แบบจำลองโต้ตอบ 5 ชุด</span>
@@ -589,7 +568,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
             <defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,1 L10,5 L0,9 z" fill="currentColor"/></marker></defs>
             <line x1="18" y1="212" x2="442" y2="212" stroke="currentColor" opacity=".45" stroke-dasharray="4 5"/>
-            <text x="18" y="230" font-size="11.5" fill="currentColor" opacity=".7" font-family="Sarabun">พื้นโลก</text>
+            <text x="18" y="230" font-size="11.5" fill="currentColor" opacity=".7" font-family="Thonburi,Sarabun,system-ui,sans-serif">พื้นโลก</text>
             <g stroke="currentColor" fill="none" stroke-width="1.6" stroke-linejoin="round">
               <g transform="translate(70,205)">
                 <rect x="-10" y="-24" width="20" height="24"/><rect x="-10" y="-48" width="20" height="24"/>
@@ -612,13 +591,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
               <rect x="126" y="176" width="16" height="19" transform="rotate(24 134 185)"/>
               <rect x="292" y="128" width="16" height="19" transform="rotate(24 300 137)"/>
             </g>
-            <g font-family="Sarabun" font-size="11.5" fill="var(--sun)" text-anchor="middle">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="11.5" fill="var(--sun)" text-anchor="middle">
               <text x="147" y="103">สลัดท่อนที่ 1</text><text x="303" y="61">สลัดท่อนที่ 2</text>
             </g>
-            <g font-family="IBM Plex Mono" font-size="12" fill="currentColor" text-anchor="middle">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="12" fill="currentColor" text-anchor="middle">
               <text x="70" y="104">มวล 100%</text><text x="230" y="80">เหลือ ~30%</text><text x="388" y="50">เหลือ ~8%</text>
             </g>
-            <g font-family="Sarabun" font-size="11" fill="currentColor" opacity=".7" text-anchor="middle">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="11" fill="currentColor" opacity=".7" text-anchor="middle">
               <text x="70" y="232">ทะยานขึ้น</text><text x="230" y="186">สูง ~70 กม.</text><text x="388" y="136">เข้าสู่วงโคจร</text>
             </g>
           </svg>
@@ -636,26 +615,26 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
             <rect x="1" y="151" width="458" height="46" fill="var(--orbit)" opacity=".18"/>
             <line x1="0" y1="151" x2="460" y2="151" stroke="var(--orbit)" stroke-width="1.2" opacity=".7"/>
             <line x1="0" y1="197" x2="460" y2="197" stroke="currentColor" stroke-width="1.6"/>
-            <text x="452" y="176" font-size="11.5" fill="var(--orbit)" text-anchor="end" font-family="Sarabun">ชั้นบรรยากาศโลก</text>
-            <text x="8" y="216" font-size="11.5" fill="currentColor" opacity=".7" font-family="Sarabun">พื้นโลก</text>
+            <text x="452" y="176" font-size="11.5" fill="var(--orbit)" text-anchor="end" font-family="Thonburi,Sarabun,system-ui,sans-serif">ชั้นบรรยากาศโลก</text>
+            <text x="8" y="216" font-size="11.5" fill="currentColor" opacity=".7" font-family="Thonburi,Sarabun,system-ui,sans-serif">พื้นโลก</text>
             <g stroke="var(--sun)" stroke-width="1.8" color="var(--sun)">
               <line x1="70" y1="28" x2="70" y2="146" marker-end="url(#ar2)"/>
             </g>
             <g stroke="var(--bad)" stroke-width="2.2" stroke-linecap="round">
               <path d="M62,153 L78,169 M78,153 L62,169"/>
             </g>
-            <text x="70" y="20" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">รังสีเอกซ์ / UV</text>
-            <text x="70" y="186" font-size="11" fill="var(--bad)" text-anchor="middle" font-family="Sarabun">ถูกดูดกลืนหมด</text>
+            <text x="70" y="20" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">รังสีเอกซ์ / UV</text>
+            <text x="70" y="186" font-size="11" fill="var(--bad)" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">ถูกดูดกลืนหมด</text>
             <g stroke="currentColor" stroke-width="1.6" fill="none" color="currentColor">
               <line x1="196" y1="28" x2="196" y2="151"/>
               <path d="M196,151 l7,10 l-11,11 l8,10 l-4,9" marker-end="url(#ar2)"/>
             </g>
-            <text x="196" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">แสงที่ตามองเห็น</text>
-            <text x="250" y="186" font-size="11" fill="currentColor" opacity=".75" text-anchor="start" font-family="Sarabun">หักเห → ภาพสั่นไหว</text>
+            <text x="196" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">แสงที่ตามองเห็น</text>
+            <text x="250" y="186" font-size="11" fill="currentColor" opacity=".75" text-anchor="start" font-family="Thonburi,Sarabun,system-ui,sans-serif">หักเห → ภาพสั่นไหว</text>
             <g stroke="currentColor" stroke-width="1.6" color="currentColor" opacity=".8">
               <line x1="330" y1="28" x2="330" y2="193" marker-end="url(#ar2)"/>
             </g>
-            <text x="330" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">คลื่นวิทยุ</text>
+            <text x="330" y="20" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">คลื่นวิทยุ</text>
             <g stroke="currentColor" fill="none" stroke-width="1.6" stroke-linejoin="round">
               <g transform="translate(196,197)"><path d="M-22,0 A22,22 0 0 1 22,0 z"/><path d="M-6,-19 L-6,-3 L6,-3 L6,-19"/></g>
               <g transform="translate(408,86)" stroke="var(--sun)">
@@ -663,9 +642,9 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
                 <rect x="-38" y="-7" width="16" height="14"/>
               </g>
             </g>
-            <text x="196" y="234" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Sarabun">กล้องบนพื้นโลก</text>
-            <text x="408" y="118" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">กล้องอวกาศ</text>
-            <text x="408" y="134" font-size="10.5" fill="var(--sun)" opacity=".85" text-anchor="middle" font-family="Sarabun">รับได้ทุกช่วงคลื่น</text>
+            <text x="196" y="234" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">กล้องบนพื้นโลก</text>
+            <text x="408" y="118" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">กล้องอวกาศ</text>
+            <text x="408" y="134" font-size="10.5" fill="var(--sun)" opacity=".85" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">รับได้ทุกช่วงคลื่น</text>
           </svg>
           <figcaption>บรรยากาศ<b>ดูดกลืนรังสีเอกซ์และอัลตราไวโอเลตไว้จนหมด</b> เหลือแต่แสงที่ตามองเห็นและคลื่นวิทยุที่ผ่านลงมาได้ แถมยังหักเหจนภาพสั่นไหว กล้องที่อยู่เหนือบรรยากาศจึงเห็นได้ทั้งคมชัดกว่าและครบทุกช่วงคลื่น</figcaption>
         </figure>
@@ -680,25 +659,25 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
             <ellipse cx="230" cy="392" rx="252" ry="248" fill="var(--orbit)" opacity=".22"/>
             <ellipse cx="230" cy="392" rx="252" ry="248" fill="none" stroke="currentColor" opacity=".5"/>
             <ellipse cx="230" cy="392" rx="300" ry="296" fill="none" stroke="var(--sun)" stroke-width="1.8" stroke-dasharray="7 6"/>
-            <text x="230" y="230" font-size="12" fill="currentColor" text-anchor="middle" font-family="Sarabun" opacity=".8">โลก</text>
+            <text x="230" y="230" font-size="12" fill="currentColor" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif" opacity=".8">โลก</text>
             <g fill="none" stroke="currentColor" stroke-width="1.6" color="currentColor">
               <path d="M230,144 Q262,140 276,156" marker-end="url(#ar3)"/>
               <path d="M230,144 Q310,132 350,178" marker-end="url(#ar3)"/>
             </g>
-            <g font-family="Sarabun" font-size="11.5" fill="currentColor">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="11.5" fill="currentColor">
               <text x="286" y="152">ยิงช้า → ตกใกล้</text>
               <text x="360" y="186">เร็วขึ้น → ตกไกลขึ้น</text>
             </g>
-            <text x="230" y="112" font-size="12" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">เร็วพอ 27,600 กม./ชม. → โค้งไปรอบโลก ไม่ตกถึงพื้น</text>
+            <text x="230" y="112" font-size="12" fill="var(--sun)" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">เร็วพอ 27,600 กม./ชม. → โค้งไปรอบโลก ไม่ตกถึงพื้น</text>
             <g stroke="var(--sun)" fill="none" stroke-width="1.6">
               <g transform="translate(70,140)"><rect x="-7" y="-5" width="14" height="10" rx="2"/>
                 <path d="M-7,-3 L-20,-7 L-20,7 L-7,3 M7,-3 L20,-7 L20,7 L7,3"/></g>
             </g>
-            <text x="70" y="122" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Sarabun">สถานีอวกาศ</text>
+            <text x="70" y="122" font-size="11.5" fill="var(--sun)" text-anchor="middle" font-family="Thonburi,Sarabun,system-ui,sans-serif">สถานีอวกาศ</text>
             <g stroke="currentColor" stroke-width="1.4" color="currentColor" opacity=".85" marker-end="url(#ar3)">
               <line x1="70" y1="155" x2="102" y2="203"/>
             </g>
-            <text x="96" y="212" font-size="11" fill="currentColor" opacity=".8" font-family="Sarabun">แรงโน้มถ่วงดึงเข้าหาโลกตลอดเวลา</text>
+            <text x="96" y="212" font-size="11" fill="currentColor" opacity=".8" font-family="Thonburi,Sarabun,system-ui,sans-serif">แรงโน้มถ่วงดึงเข้าหาโลกตลอดเวลา</text>
           </svg>
           <figcaption>สถานีอวกาศ<b>ตกลงหาโลกอยู่ตลอดเวลา</b> แต่เพราะพุ่งไปข้างหน้าเร็วมาก เส้นทางที่ตกจึงโค้งพอดีกับความโค้งของผิวโลก กลายเป็นวนรอบโลกโดยไม่ถึงพื้น สภาพนี้เองที่ทำให้นักบินอวกาศรู้สึกไร้น้ำหนัก</figcaption>
         </figure>
@@ -724,18 +703,18 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink-fain
             <circle cx="78" cy="112" r="7" fill="var(--sun)"/>
             <circle cx="230" cy="112" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
             <circle cx="382" cy="112" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <g font-family="Chakra Petch" font-size="13" text-anchor="middle" fill="currentColor">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="13" text-anchor="middle" fill="currentColor">
               <text x="78" y="140" fill="var(--sun)">ไทยคม 1</text><text x="230" y="140">ไทยโชต</text><text x="382" y="140">THEOS-2</text>
             </g>
-            <g font-family="IBM Plex Mono" font-size="11.5" text-anchor="middle" fill="currentColor" opacity=".8">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="11.5" text-anchor="middle" fill="currentColor" opacity=".8">
               <text x="78" y="158">พ.ศ. 2536</text><text x="230" y="158">พ.ศ. 2551</text><text x="382" y="158">พ.ศ. 2566</text>
             </g>
-            <g font-family="Sarabun" font-size="11" text-anchor="middle" fill="currentColor" opacity=".75">
+            <g font-family="Thonburi,Sarabun,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="currentColor" opacity=".75">
               <text x="78" y="177">ดาวเทียมสื่อสาร</text><text x="78" y="191">ดวงแรกของไทย</text>
               <text x="230" y="177">สำรวจทรัพยากร</text><text x="230" y="191">ดวงแรกของไทย</text>
               <text x="382" y="177">สำรวจความละเอียดสูง</text><text x="382" y="191">ระดับ 50 ซม.</text>
             </g>
-            <text x="26" y="34" font-size="11.5" fill="currentColor" opacity=".75" font-family="Sarabun">วงโคจรค้างฟ้า 35,786 กม. (ไทยคม) · วงโคจรต่ำ ~600–800 กม. (ไทยโชต, THEOS-2)</text>
+            <text x="26" y="34" font-size="11.5" fill="currentColor" opacity=".75" font-family="Thonburi,Sarabun,system-ui,sans-serif">วงโคจรค้างฟ้า 35,786 กม. (ไทยคม) · วงโคจรต่ำ ~600–800 กม. (ไทยโชต, THEOS-2)</text>
           </svg>
           <figcaption><b>ไทยคม 1</b> ขึ้นสู่วงโคจรเมื่อ พ.ศ. 2536 เป็นดาวเทียมสื่อสารดวงแรกของไทย ต่อมามี<b>ไทยโชต (THEOS-1)</b> พ.ศ. 2551 เป็นดาวเทียมสำรวจทรัพยากรดวงแรก และ <b>THEOS-2</b> พ.ศ. 2566 ที่ถ่ายภาพได้ละเอียดถึงระดับ 50 เซนติเมตร</figcaption>
         </figure>
@@ -1171,12 +1150,12 @@ function drawG(){
    '<defs><radialGradient id="sg"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient></defs>'+
    '<line x1="0" y1="150" x2="700" y2="150" stroke="var(--line)" stroke-dasharray="4 6"/>'+
    '<circle cx="60" cy="95" r="42" fill="url(#sg)"/>'+
-   '<text x="64" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Sarabun">ดวงอาทิตย์</text>'+
+   '<text x="64" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Thonburi,Sarabun,system-ui,sans-serif">ดวงอาทิตย์</text>'+
    '<line x1="102" y1="95" x2="'+(x-r-4)+'" y2="95" stroke="var(--sun)" stroke-width="'+w+'" opacity=".75" stroke-linecap="round"/>'+
    '<polygon points="'+(x-r-4)+',95 '+(x-r+10)+',88 '+(x-r+10)+',102" fill="var(--sun)" opacity=".85"/>'+
    '<circle cx="'+x+'" cy="95" r="'+r+'" fill="var(--orbit)"/>'+
-   '<text x="'+x+'" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Sarabun">ดาวเคราะห์</text>'+
-   '<text x="112" y="62" text-anchor="start" font-size="26" fill="var(--sun)" font-family="IBM Plex Mono">F = '+fmt(f)+'×</text>';
+   '<text x="'+x+'" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Thonburi,Sarabun,system-ui,sans-serif">ดาวเคราะห์</text>'+
+   '<text x="112" y="62" text-anchor="start" font-size="26" fill="var(--sun)" font-family="Thonburi,Sarabun,system-ui,sans-serif">F = '+fmt(f)+'×</text>';
 }
 [gm,gd].forEach(el=>el.addEventListener('input',()=>{
   document.querySelectorAll('#g-presets .pbtn').forEach(b=>b.setAttribute('aria-pressed','false'));drawG();}));
@@ -1213,7 +1192,7 @@ function drawS(){
   let marks='';
   KEY.forEach(k=>{const ka=((k[0]-79)/365)*2*Math.PI;const kx=cx+rx*Math.cos(ka),ky=cy+ry*Math.sin(ka);
     marks+='<circle cx="'+kx+'" cy="'+ky+'" r="3.5" fill="var(--line-strong)"/>'+
-      '<text x="'+kx+'" y="'+(ky<cy?ky-16:ky+26)+'" text-anchor="middle" font-size="11.5" font-family="Sarabun" fill="var(--ink-faint)">'+k[1]+'</text>';});
+      '<text x="'+kx+'" y="'+(ky<cy?ky-16:ky+26)+'" text-anchor="middle" font-size="11.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--ink-faint)">'+k[1]+'</text>';});
   const tilt=-23.5, ax=ex+26*Math.sin(tilt*Math.PI/180), ay=ey-26*Math.cos(tilt*Math.PI/180);
   const bx=ex-26*Math.sin(tilt*Math.PI/180), by=ey+26*Math.cos(tilt*Math.PI/180);
   sstage.innerHTML=
@@ -1225,8 +1204,8 @@ function drawS(){
    '<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'" stroke="var(--sun)" stroke-width="1.4" opacity=".45" stroke-dasharray="3 5"/>'+
    '<circle cx="'+ex+'" cy="'+ey+'" r="21" fill="url(#eg)"/>'+
    '<line x1="'+ax+'" y1="'+ay+'" x2="'+bx+'" y2="'+by+'" stroke="var(--ink)" stroke-width="2.2"/>'+
-   '<text x="'+ax+'" y="'+(ay-6)+'" text-anchor="middle" font-size="11" font-family="IBM Plex Mono" fill="var(--ink-soft)">N 23.5°</text>'+
-   '<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" font-size="12" font-family="Sarabun" fill="#7a4a10">ดวงอาทิตย์</text>';
+   '<text x="'+ax+'" y="'+(ay-6)+'" text-anchor="middle" font-size="11" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--ink-soft)">N 23.5°</text>'+
+   '<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" font-size="12" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="#7a4a10">ดวงอาทิตย์</text>';
 }
 sday.addEventListener('input',drawS);
 document.getElementById('s-presets').addEventListener('click',e=>{const b=e.target.closest('.pbtn');if(!b)return;
@@ -1261,14 +1240,14 @@ let wheelHTML='<svg viewBox="0 0 '+W+' '+H+'" style="position:absolute;inset:0;w
   '<radialGradient id="earthw" cx="36%" cy="32%"><stop offset="0" stop-color="#5b9fd8"/>'+
   '<stop offset="100%" stop-color="#22578a"/></radialGradient></defs>'+
   '<g stroke="var(--sun)" stroke-width="1.4" opacity=".42" stroke-linecap="round" stroke-linejoin="round">'+rays+'</g>'+
-  '<text x="250" y="20" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--sun)">แสงอาทิตย์ (ลำขนาน)</text>'+
+  '<text x="250" y="20" text-anchor="middle" font-size="12.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--sun)">แสงอาทิตย์ (ลำขนาน)</text>'+
   '<circle cx="'+CX+'" cy="'+CY+'" r="'+RR+'" fill="none" stroke="var(--line-strong)" stroke-dasharray="4 7"/>'+
   '<line id="m-sight" x1="'+CX+'" y1="'+CY+'" x2="'+(CX+RR)+'" y2="'+CY+'" stroke="var(--sun)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8"/>'+
   '<circle cx="378" cy="150" r="40" fill="url(#glow)"/>'+
   '<circle cx="378" cy="150" r="24" fill="url(#sunw)"/>'+
-  '<text x="378" y="200" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--sun)">ดวงอาทิตย์</text>'+
+  '<text x="378" y="200" text-anchor="middle" font-size="12.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--sun)">ดวงอาทิตย์</text>'+
   '<circle cx="'+CX+'" cy="'+CY+'" r="20" fill="url(#earthw)"/>'+
-  '<text x="'+CX+'" y="'+(CY+38)+'" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">โลก</text>'+
+  '<text x="'+CX+'" y="'+(CY+38)+'" text-anchor="middle" font-size="12.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--ink-soft)">โลก</text>'+
   '</svg>';
 PHASES.forEach((p,i)=>{const ang=-i*45*Math.PI/180;   /* ทวนเข็มนาฬิกา เริ่มจากตำแหน่งใกล้ดวงอาทิตย์ */
   const x=(CX+RR*Math.cos(ang))/W*100, y=(CY+RR*Math.sin(ang))/H*100;
@@ -1329,13 +1308,13 @@ function drawTide(k){
   document.getElementById('tide-stage').innerHTML=
    '<defs><radialGradient id="sg3"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient></defs>'+
    '<circle cx="60" cy="115" r="40" fill="url(#sg3)"/>'+
-   '<text x="60" y="176" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">ดวงอาทิตย์</text>'+
+   '<text x="60" y="176" text-anchor="middle" font-size="12.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--ink-soft)">ดวงอาทิตย์</text>'+
    '<ellipse cx="'+ex+'" cy="'+ey+'" rx="'+(60+bulge)+'" ry="'+(60-bulge*0.45)+'" fill="var(--orbit)" opacity=".33" transform="rotate('+(spring?0:90)+' '+ex+' '+ey+')"/>'+
    '<circle cx="'+ex+'" cy="'+ey+'" r="52" fill="#2a5f93"/>'+
-   '<text x="'+ex+'" y="'+(ey+5)+'" text-anchor="middle" font-size="13" font-family="Sarabun" fill="#e9f2ff">โลก</text>'+
+   '<text x="'+ex+'" y="'+(ey+5)+'" text-anchor="middle" font-size="13" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="#e9f2ff">โลก</text>'+
    '<circle cx="'+moon[0]+'" cy="'+moon[1]+'" r="17" fill="var(--moon-lit)" stroke="var(--line-strong)"/>'+
-   '<text x="'+moon[0]+'" y="'+(moon[1]+34)+'" text-anchor="middle" font-size="12.5" font-family="Sarabun" fill="var(--ink-soft)">ดวงจันทร์</text>'+
-   '<text x="'+ex+'" y="'+(ey-88)+'" text-anchor="middle" font-size="13" font-family="IBM Plex Mono" fill="var(--sun)">'+(spring?'แรงไทดัลเสริมกัน':'แรงไทดัลหักล้างกัน')+'</text>';
+   '<text x="'+moon[0]+'" y="'+(moon[1]+34)+'" text-anchor="middle" font-size="12.5" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--ink-soft)">ดวงจันทร์</text>'+
+   '<text x="'+ex+'" y="'+(ey-88)+'" text-anchor="middle" font-size="13" font-family="Thonburi,Sarabun,system-ui,sans-serif" fill="var(--sun)">'+(spring?'แรงไทดัลเสริมกัน':'แรงไทดัลหักล้างกัน')+'</text>';
 }
 document.getElementById('tide-presets').addEventListener('click',e=>{const b=e.target.closest('.pbtn');if(!b)return;
   document.querySelectorAll('#tide-presets .pbtn').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));drawTide(b.dataset.k);});
