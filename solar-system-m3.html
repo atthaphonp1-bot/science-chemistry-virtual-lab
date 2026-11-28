@@ -857,11 +857,21 @@ QDATA.q4=[
 <script>
 /* ---------------- tabs ---------------- */
 const tabs=[...document.querySelectorAll('.tab')];
-tabs.forEach(t=>t.addEventListener('click',()=>{
-  tabs.forEach(o=>{o.setAttribute('aria-selected',String(o===t));
-    document.getElementById(o.getAttribute('aria-controls')).hidden=(o!==t);});
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
+function selTab(t,scroll){
+  tabs.forEach(o=>{const on=o===t;o.setAttribute('aria-selected',String(on));o.tabIndex=on?0:-1;
+    document.getElementById(o.getAttribute('aria-controls')).hidden=!on;});
+  if(scroll)window.scrollTo({top:0,behavior:'smooth'});
+}
+tabs.forEach((t,i)=>{
+  t.tabIndex=t.getAttribute('aria-selected')==='true'?0:-1;
+  t.addEventListener('click',()=>selTab(t,true));
+  t.addEventListener('keydown',e=>{
+    const n=tabs.length;let j=-1;
+    if(e.key==='ArrowRight')j=(i+1)%n;else if(e.key==='ArrowLeft')j=(i+n-1)%n;
+    else if(e.key==='Home')j=0;else if(e.key==='End')j=n-1;
+    if(j<0)return;e.preventDefault();selTab(tabs[j],false);tabs[j].focus();
+  });
+});
 
 /* ---------------- answer-key accordion ---------------- */
 const caret='<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg>';
@@ -928,12 +938,12 @@ function drawG(){
    '<defs><radialGradient id="sg"><stop offset="0" stop-color="#fff6e0"/><stop offset="1" stop-color="var(--sun-bright)"/></radialGradient></defs>'+
    '<line x1="0" y1="150" x2="700" y2="150" stroke="var(--line)" stroke-dasharray="4 6"/>'+
    '<circle cx="60" cy="95" r="42" fill="url(#sg)"/>'+
-   '<text x="60" y="160" text-anchor="middle" font-size="13" fill="var(--ink-soft)" font-family="Sarabun">ดวงอาทิตย์</text>'+
+   '<text x="64" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Sarabun">ดวงอาทิตย์</text>'+
    '<line x1="102" y1="95" x2="'+(x-r-4)+'" y2="95" stroke="var(--sun)" stroke-width="'+w+'" opacity=".75" stroke-linecap="round"/>'+
    '<polygon points="'+(x-r-4)+',95 '+(x-r+10)+',88 '+(x-r+10)+',102" fill="var(--sun)" opacity=".85"/>'+
    '<circle cx="'+x+'" cy="95" r="'+r+'" fill="var(--orbit)"/>'+
-   '<text x="'+x+'" y="160" text-anchor="middle" font-size="13" fill="var(--ink-soft)" font-family="Sarabun">ดาวเคราะห์</text>'+
-   '<text x="'+((102+x)/2)+'" y="78" text-anchor="middle" font-size="13" fill="var(--sun)" font-family="IBM Plex Mono">F = '+fmt(f)+'×</text>';
+   '<text x="'+x+'" y="182" text-anchor="middle" font-size="26" fill="var(--ink-soft)" font-family="Sarabun">ดาวเคราะห์</text>'+
+   '<text x="112" y="62" text-anchor="start" font-size="26" fill="var(--sun)" font-family="IBM Plex Mono">F = '+fmt(f)+'×</text>';
 }
 [gm,gd].forEach(el=>el.addEventListener('input',()=>{
   document.querySelectorAll('#g-presets .pbtn').forEach(b=>b.setAttribute('aria-pressed','false'));drawG();}));
